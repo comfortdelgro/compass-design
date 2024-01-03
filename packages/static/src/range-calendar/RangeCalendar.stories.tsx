@@ -119,7 +119,7 @@ export const Custom = () => {
 }
 
 const meta = {
-  title: 'Example/Range Calendar Server',
+  title: 'Example/Range Calendar',
   component: Controlled,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

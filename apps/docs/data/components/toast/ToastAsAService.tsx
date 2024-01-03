@@ -8,6 +8,9 @@ import {
 import {faImage} from '@fortawesome/free-solid-svg-icons'
 import React, {Key} from 'react'
 
+type DirectionHorizontal = 'center' | 'left' | 'right'
+type DirectionVertical = 'center' | 'top' | 'bottom'
+
 const SubService1 = () => {
   const toast = useToast()
   return (
@@ -37,6 +40,7 @@ const SubService1 = () => {
     </>
   )
 }
+
 const SubService2 = () => {
   const toast = useToast()
   return (
@@ -69,24 +73,18 @@ const SubService2 = () => {
 }
 
 const ToastAsService: React.FC = () => {
-  const [horizontal, setHorizontal] = React.useState<
-    'center' | 'left' | 'right'
-  >('right')
-  const [vertical, setVertical] = React.useState<'center' | 'top' | 'bottom'>(
-    'top',
-  )
+  const [horizontal, setHorizontal] =
+    React.useState<DirectionHorizontal>('right')
+  const [vertical, setVertical] = React.useState<DirectionVertical>('top')
 
   return (
-    <div>
-      <h3>Toast as a service</h3>
+    <>
       <Dropdown.Select
         isRequired
         label='Please select horizontal'
         placeholder='Choose a horizontal'
         selectedKey={horizontal}
-        onSelectionChange={(k: Key) =>
-          setHorizontal(k as 'center' | 'left' | 'right')
-        }
+        onSelectionChange={(k: Key) => setHorizontal(k as DirectionHorizontal)}
       >
         <Dropdown.Item key='left'>Left</Dropdown.Item>
         <Dropdown.Item key='center'>Center</Dropdown.Item>
@@ -98,9 +96,7 @@ const ToastAsService: React.FC = () => {
         label='Please select vertical'
         placeholder='Choose a vertical'
         selectedKey={vertical}
-        onSelectionChange={(k: Key) =>
-          setVertical(k as 'center' | 'top' | 'bottom')
-        }
+        onSelectionChange={(k: Key) => setVertical(k as DirectionVertical)}
       >
         <Dropdown.Item key='top'>Top</Dropdown.Item>
         <Dropdown.Item key='center'>Center</Dropdown.Item>
@@ -111,6 +107,8 @@ const ToastAsService: React.FC = () => {
           style={{
             display: 'flex',
             justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
             gap: '0.5rem',
             margin: '1rem',
           }}
@@ -119,7 +117,7 @@ const ToastAsService: React.FC = () => {
           <SubService2 />
         </div>
       </ToastContextProvider>
-    </div>
+    </>
   )
 }
 

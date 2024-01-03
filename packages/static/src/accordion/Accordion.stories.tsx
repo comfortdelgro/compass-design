@@ -228,7 +228,7 @@ export const AccordionTable = () => {
 }
 
 const meta = {
-  title: 'Example/Accordion Server',
+  title: 'Example/Accordion',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

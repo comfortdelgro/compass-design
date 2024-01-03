@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/footer-info-download.module.css'
@@ -16,13 +15,18 @@ const FooterInfoDownload = React.forwardRef<
   FooterInfoDownloadProps
 >((props, ref) => {
   const {children, css = {}, className, ...delegated} = props
+
+  const rootClasses = [
+    styles.footerInfoDownload,
+    className,
+    'cdg-footer-info-download',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={ref}>
-      <div
-        className={clsx(styles.footerInfoDownload, className)}
-        ref={ref}
-        {...delegated}
-      >
+      <div className={rootClasses} ref={ref} {...delegated}>
         {children}
       </div>
     </CssInjection>

@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import NavbarActions from './navbar-actions'
@@ -36,21 +35,21 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
   //   variant: variant,
   // }
 
+  const rootClasses = [
+    styles.navbar,
+    color === 'blue' && styles.blue,
+    color === 'white' && styles.white,
+    variant === 'website' && styles.website,
+    `cdg-navbar-${color}`,
+    className,
+    'cdg-navbar',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={ref}>
-      <nav
-        className={clsx({
-          [`navbar-${color}`]: true,
-          [styles.navbar]: true,
-          [styles.blue]: color === 'blue',
-          [styles.white]: color === 'white',
-          [styles.website]: variant === 'website',
-          [className]: true,
-        })}
-        ref={ref}
-        role='navigation'
-        {...delegated}
-      >
+      <nav className={rootClasses} ref={ref} role='navigation' {...delegated}>
         {children}
       </nav>
     </CssInjection>

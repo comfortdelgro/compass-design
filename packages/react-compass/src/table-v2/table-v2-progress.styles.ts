@@ -2,7 +2,6 @@ import {styled} from '../theme'
 import type {VariantProps} from '../utils/stitches.types'
 
 export const StyledTableV2ProgressBar = styled('div', {
-  width: '200px',
   height: '20px',
   backgroundColor: '$secondaryBg',
   borderRadius: '10px',

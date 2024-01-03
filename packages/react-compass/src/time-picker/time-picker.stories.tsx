@@ -5,6 +5,7 @@ import TimePicker from './index'
 export const Default: React.FC = () => {
   const [value, setValue] = useState('')
   const [value24H, setValue24H] = useState('')
+  const [valueMinTime, setValueMinTime] = useState('15:00:00')
 
   return (
     <>
@@ -66,6 +67,20 @@ export const Default: React.FC = () => {
               console.log('Value 24-hours changed: ', value24H)
               setValue24H(value)
             }}
+          />
+        </Row>
+        <h3>Disabled dropdown with min times</h3>
+        <Row>
+          <TimePicker
+            formatTime='HH:mm:ss'
+            views={['hours24', 'minutes', 'seconds']}
+            hasFooter
+            value={valueMinTime}
+            onTimeChange={(value: string) => {
+              console.log('Value 24-hours changed: ', value)
+              setValueMinTime(value)
+            }}
+            minTime={value24H}
           />
         </Row>
       </Column>

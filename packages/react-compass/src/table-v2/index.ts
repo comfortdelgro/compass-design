@@ -3,6 +3,7 @@ import {
   Cell,
   CellContext,
   ColumnDef,
+  ColumnFiltersState,
   DisplayColumnDef,
   GroupColumnDef,
   HeaderContext,
@@ -42,6 +43,7 @@ export type TableV2ColumnDef<T> = ColumnDef<T>
 export type TableV2AccessorColumnDef<T> = AccessorColumnDef<T>
 export type TableV2DisplayColumnDef<T> = DisplayColumnDef<T>
 export type TableV2SortingState = SortingState
+export type TableColumnFiltersState = ColumnFiltersState
 export type TableV2GroupColumnDef<T> = GroupColumnDef<T>
 export type TableV2Row<T> = Row<T>
 export type TableV2Cell<TData, TValue> = Cell<TData, TValue>

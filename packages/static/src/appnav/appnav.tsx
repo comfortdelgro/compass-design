@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React, {HTMLAttributes} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -27,13 +26,19 @@ const AppNav = React.forwardRef<HTMLDivElement, AppNavProps>((props, ref) => {
     onChange: AppNavChange,
     ...delegated
   } = props
+
+  const rootClasses = [
+    styles.appNav,
+    styles[position],
+    'cdg-appnav',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={navBarRef}>
       <nav
-        className={clsx({
-          [styles.appNav]: true,
-          [styles[position]]: true,
-        })}
+        className={rootClasses}
         ref={navBarRef}
         {...delegated}
       >

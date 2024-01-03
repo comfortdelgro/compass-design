@@ -3,7 +3,6 @@
 
 @layer default {
   .cdgTableProgressBar {
-    width: var(--cdg-spacing-50);
     height: var(--cdg-spacing-5);
     background-color: var(--cdg-color-secondaryBg);
     border-radius: var(--cdg-border-radius-lg);

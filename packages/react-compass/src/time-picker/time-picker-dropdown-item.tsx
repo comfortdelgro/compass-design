@@ -8,6 +8,7 @@ interface TimePickerDropdownItemProps {
   focusingItemId: string
   selectedDisplayList: TimePickerDropdownSelectedDisplayList
   selectedTime: string | number | null
+  minTime: string | number | null
   time: string
   isOpen?: boolean
   displayDataType: SelectedKey
@@ -23,6 +24,7 @@ function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
     isOpen,
     itemId,
     focusingItemId,
+    minTime = '',
   } = props
   const ref = useRef<HTMLButtonElement>(null)
 
@@ -58,11 +60,13 @@ function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
   return (
     <TimePickerDropdownItemStyle
       ref={ref}
-      className={`cdg-timepicker-dropdown-item ${
+      id={itemId}
+      className={`cdg-timepicker-dropdown-item cdg-timepicker-dropdown-item__${itemId} ${
         selectedTime === time ? 'active' : ''
       }`}
       onClick={onClickItem(time, displayDataType)}
       tabIndex={-1}
+      disabled={Number(minTime) > Number(time)}
     >
       {time}
     </TimePickerDropdownItemStyle>

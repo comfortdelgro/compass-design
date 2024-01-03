@@ -103,7 +103,7 @@ export const Bars: React.FC = () => (
 )
 
 const meta = {
-  title: 'Example/Chart Server',
+  title: 'Example/Chart',
   component: Areas,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

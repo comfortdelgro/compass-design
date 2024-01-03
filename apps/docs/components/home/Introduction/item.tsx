@@ -20,7 +20,7 @@ export default function Item(props: Props) {
         width: '100%',
         display: 'flex',
         borderRadius: 12,
-        background: 'var(--colors-background)',
+        background: 'var(--cdg-color-background)',
         boxShadow:
           '0px 1.6px 3.6px 0px rgba(0, 0, 0, 0.13), 0px 0.3px 0.9px 0px rgba(0, 0, 0, 0.10)',
       }}

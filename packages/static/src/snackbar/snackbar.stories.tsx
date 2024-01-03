@@ -186,7 +186,7 @@ export const Multiple: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Snackbar Server',
+  title: 'Example/Snackbar',
   component: Multiple,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

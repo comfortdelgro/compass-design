@@ -37,7 +37,7 @@ export const Default: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Video Player Server',
+  title: 'Example/Video Player ',
   component: Default,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

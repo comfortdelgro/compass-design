@@ -171,6 +171,7 @@ const Button = React.forwardRef<
     loading && styles.loading,
     isDisabled && styles.isDisabled,
     href && variant && styles[variant + 'Link'],
+    href && styles.linkButton,
     h5 && styles.h5,
     h5 && variant && styles[variant + 'H5'],
     className,

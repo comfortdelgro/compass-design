@@ -84,7 +84,7 @@ export const Sizes: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Banner Server',
+  title: 'Example/Banner',
   component: Sizes,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

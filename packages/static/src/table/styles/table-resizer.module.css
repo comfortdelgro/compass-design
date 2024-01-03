@@ -12,10 +12,25 @@
     cursor: col-resize;
     opacity: 0;
   }
+
   .cdgTableResizer:hover {
     opacity: 1;
   }
+
   .cdgTableResizer:active {
     user-select: none;
+  }
+
+  @media screen and (max-width: 767px),
+  screen and (min-width: 768px) and (max-width: 1024px) {
+    .cdgTableResizer {
+      opacity: 1;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .cdgTableResizer:hover {
+      background-color: var(--cdg-color-cdgBlue);
+    }
   }
 }

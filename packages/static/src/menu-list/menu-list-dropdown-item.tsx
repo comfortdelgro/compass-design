@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/menu-list-dropdown-item.module.css'
@@ -35,27 +34,23 @@ const MenuListDropdownItem = React.forwardRef<
 
   const tabIndex = isDisabled || isNested ? -1 : 0
 
+  const rootClasses = [
+    styles.menuListDropdownItem,
+    isNested && styles.nested,
+    isActive && styles.active,
+    isDisabled && styles.disabled,
+    className,
+    'cdg-menu-list-dropdown-item',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={ref}>
-      <div
-        // className={`${className} menu-list-dropdown-item`}
-        className={clsx({
-          [className]: true,
-          [styles.menuListDropdownItem]: true,
-          [styles.nested]: isNested,
-          [styles.active]: isActive,
-          [styles.disabled]: isDisabled,
-        })}
-        ref={ref}
-        tabIndex={tabIndex}
-        {...delegated}
-      >
+      <div className={rootClasses} ref={ref} tabIndex={tabIndex} {...delegated}>
         {icon ? (
           <div
-            className={clsx(
-              styles.cdgMenuListDropdownIcon,
-              `cdg-menu-list-dropdown-icon`,
-            )}
+            className={`${styles.cdgMenuListDropdownIcon} cdg-menu-list-dropdown-icon`}
           >
             {icon}
           </div>

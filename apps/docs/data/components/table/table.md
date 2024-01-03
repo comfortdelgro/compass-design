@@ -39,6 +39,7 @@ const options: TableOptions = {
   enableMultiSort: true,
   columnResizeMode: 'onChange',
   manualSorting: true,
+  onManualFilter: false
 }
 ```
 
@@ -53,10 +54,38 @@ const onSorting = (sortingField: TableSortingState) => {
 ```
 
 ```js
- <Table data={data} columns={columns} options={options} onManualSorting={onSorting}>
+ <Table data={data} columns={columns} options={options} onManualSorting={onSorting} onManualFilter={onFiltering}>
 ```
 
 \*props `sortingField` contain all informations sorting for your need
+
+### For server filtering
+
+\*if user want to custom sort. Add `manualSorting: true` to TableOptions.
+
+```js
+const options: TableOptions = {
+  enableSorting: true,
+  enableMultiSort: true,
+  columnResizeMode: 'onChange',
+  manualFiltering: true
+}
+```
+
+\*then create function and assign to `onFiltering` props on ReactTable.
+
+Example
+
+```js
+const onFiltering = (filtering: TableColumnFiltersState) => {
+  console.log(filtering)
+}
+```
+
+```js
+ <Table data={data} columns={columns} options={options} onManualFilter={onFiltering}>
+```
+\*noted: using `TableColumnFiltersState` type for prevent for TypeError 
 
 ### ColumnConfig
 

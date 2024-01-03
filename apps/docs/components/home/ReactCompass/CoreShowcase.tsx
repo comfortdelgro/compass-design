@@ -1,55 +1,29 @@
-import {Box, Button} from '@comfortdelgro/react-compass'
 import HighlightedCode from 'components/common/HighlightedCode'
 import MarkdownElement from '../../markdown/MarkdownElement'
 import ShowcaseContainer from './ShowcaseContainer'
-import {componentCode} from './ShowcaseDemo'
+
+export const coreCode = `
+// _app.tsx
+import type { AppProps } from 'next/app'
+import '@comfortdelgro/react-compass/style.css'
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />
+}
+
+export default MyApp;
+`
 
 export default function CoreShowcase() {
   return (
     <ShowcaseContainer
       code={
-        <Box>
-          <Box
-            css={{
-              padding: '$3',
-              display: 'flex',
-              alignItems: 'center',
-              right: 0,
-              zIndex: 10,
-            }}
-          >
-            <Button size='sm' variant='secondary' css={{color: 'white'}}>
-              Compass Design
-            </Button>
-          </Box>
-          <Box
-            css={{
-              padding: '$3',
-              overflow: 'hidden',
-              flexGrow: 1,
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
-              '& pre': {
-                backgroundColor: 'transparent !important',
-                position: 'relative',
-                zIndex: 1,
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
-              },
-            }}
-          >
-            <Box css={{position: 'relative'}}>
-              <HighlightedCode
-                copyButtonHidden
-                component={MarkdownElement}
-                code={componentCode}
-                language='jsx'
-              />
-            </Box>
-          </Box>
-        </Box>
+        <HighlightedCode
+          copyButtonHidden
+          component={MarkdownElement}
+          code={coreCode}
+          language='jsx'
+        />
       }
     />
   )

@@ -320,7 +320,6 @@ export type {
   TableSortingState,
   TableType,
 } from './table'
-
 export {default as ReactTable} from './table-v2'
 export type {
   ReactTableProps,
@@ -350,6 +349,8 @@ export * from './theme'
 export {default as ThemeStaticProvider} from './theme/ThemeProvider'
 export {default as TimePicker} from './time-picker'
 export type {TimePickerProps} from './time-picker'
+export {default as TimeLine} from './timeline'
+export type {TimelineItemProps, TimelineProps} from './timeline'
 export {default as Toast} from './toast'
 export type {
   ToastActionsProps,

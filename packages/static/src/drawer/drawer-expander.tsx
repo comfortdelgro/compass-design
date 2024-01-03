@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import clsx from 'clsx'
 import {HTMLAttributes, PropsWithChildren, useEffect, useMemo} from 'react'
 import useDrag, {DraggableOptions} from '../utils/hooks/useDrag'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import expanderStyles from './styles/drawer-expander.module.css'
+import styles from './styles/drawer-expander.module.css'
 
 type Props = PropsWithChildren<{
   drawerOpen: boolean
@@ -66,17 +65,19 @@ const DrawerExpander = ({
     onDragPositionYChange?.(y)
   }, [y])
 
+  const rootClasses = [styles.drawerExpander, className, 'cdg-drawer-expander']
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={drawerExpanderRef}>
       <div
         ref={drawerExpanderRef}
-        className={clsx(expanderStyles.drawerExpander, className)}
+        className={rootClasses}
         {...htmlDivAttributes}
       >
         {children || (
-          <div
-            className={clsx(expanderStyles.expanderLine, 'expander-line')}
-          ></div>
+          <div className={`${styles.expanderLine} cdg-drawer-expander-line`} />
         )}
       </div>
     </CssInjection>

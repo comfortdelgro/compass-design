@@ -101,6 +101,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
     children,
     // styled component props
     css = {},
+    className = '',
     // custom props
     as: asProp = 'div',
     border,
@@ -111,7 +112,6 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
     borderRight,
     borderTop,
     boxShadow,
-    className,
     displayPrint,
     displayRaw,
     alignContent,
@@ -193,13 +193,21 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
 
   const Component = asProp as React.ElementType
 
+  const rootClasses = [
+    styles.box,
+    className,
+    'cdg-box',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <>
       <CssInjection css={css}>
         <Component
           {...htmlProps}
           ref={BoxRef as never}
-          className={clsx('cdg-box', className, styles.box)}
+          className={rootClasses}
           style={{
             border,
             borderBottom,

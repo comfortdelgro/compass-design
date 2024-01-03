@@ -133,7 +133,7 @@ export const Custom = () => {
 }
 
 const meta = {
-  title: 'Example/Card Server',
+  title: 'Example/Card',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

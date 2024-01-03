@@ -111,6 +111,9 @@
   .thirdLoadingDot {
     animation-delay: 0.4s;
   }
+  .linkButton {
+    display: block;
+  }
   /***** End of level 1 *****/
 }
 

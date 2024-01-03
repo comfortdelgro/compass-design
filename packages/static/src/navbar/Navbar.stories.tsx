@@ -217,7 +217,7 @@ export const Basic = () => {
 }
 
 const meta = {
-  title: 'Example/Navbar Server',
+  title: 'Example/Navbar',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

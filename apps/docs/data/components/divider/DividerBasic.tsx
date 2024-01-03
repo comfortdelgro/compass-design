@@ -5,7 +5,7 @@ const Basic: React.FC = () => {
     <Column
       css={{
         alignItems: 'center',
-        background: 'var(--colors-background)',
+        background: 'var(--cdg-color-background)',
         padding: '1.6rem',
       }}
     >

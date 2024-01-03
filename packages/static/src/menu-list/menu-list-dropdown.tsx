@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React, {useState} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {MenuListContext} from './menu-list-context'
@@ -58,25 +57,28 @@ const MenuListDropdown = React.forwardRef<
 
   const bodyOpenState = isOpen ? EBodyOpenState.OPEN : EBodyOpenState.CLOSE
 
+  const rootClasses = [
+    styles.menuListDropdown,
+    className,
+    'cdg-menu-list-dropdown',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const bodyClasses = [
+    styles.menuListDropdownBody,
+    styles[bodyOpenState],
+    'cdg-menu-list-dropdown-body',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={ref}>
-      <div
-        // className={`${className} menu-list-dropdown`}
-        className={clsx(
-          styles.menuListDropdown,
-          className,
-          'menu-list-dropdown',
-        )}
-        ref={ref}
-        {...delegated}
-      >
+      <div className={rootClasses} ref={ref} {...delegated}>
         <MenuListContext.Provider value={{isOpen: isOpen, toggleOpen}}>
           {title}
-          <div
-            className={clsx(styles.menuListDropdownBody, styles[bodyOpenState])}
-          >
-            {body}
-          </div>
+          <div className={bodyClasses}>{body}</div>
         </MenuListContext.Provider>
       </div>
     </CssInjection>
