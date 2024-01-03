@@ -121,7 +121,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       initialPage = 1,
       onChange,
       count,
-      rowsPerPage = 10,
+      rowsPerPage,
       onRowsPerPageChange,
       rowsOptions = [5, 10, 15, 20, 25],
       // html props
@@ -180,7 +180,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         {rowsPerPage && (
           <RowsCounting
             rowsOptions={rowsOptions}
-            rowsPerPage={5}
+            rowsPerPage={rowsPerPage}
             onRowsPerPageChange={
               onRowsPerPageChange
                 ? onRowsPerPageChange
@@ -191,7 +191,11 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           />
         )}
         {count && (
-          <ItemCounting count={count} page={page} rowsPerPage={rowsPerPage} />
+          <ItemCounting
+            count={count}
+            page={page}
+            rowsPerPage={rowsPerPage ?? 0}
+          />
         )}
         <StyledPaginationItem
           onClick={previous}
