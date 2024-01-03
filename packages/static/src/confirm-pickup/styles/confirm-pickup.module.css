@@ -66,13 +66,17 @@
       gap: var(--cdg-spacing-3);
 
       padding: var(--cdg-spacing-3);
-      height: var(--cdg-spacing-10);
       background-color: var(--cdg-color-blueShades10);
       color: var(--cdg-color-blueShades120);
 
+      .puSpecificLocationSVG {
+        flex-shrink: 0;
+      }
+
       .puSpecificLocationName {
         max-width: 90%;
-        overflow-x: hidden;
+        line-height: 1em;
+        overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
