@@ -20,6 +20,7 @@ import {Icon} from '../icon'
 import Pagination from '../pagination'
 import SearchField from '../searchfield'
 import Spinner from '../spinner'
+import {TableColumnFiltersState} from '../table-v2'
 import StatusComponent from '../table-v2/for story/person-status'
 import {
   LimitRequestStatus,
@@ -40,6 +41,7 @@ export const FullFeatured: React.FC = () => {
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: false,
+    manualFiltering: true,
     enableRowSelection: (row) => row.original.age > 30,
   }
 
@@ -48,6 +50,9 @@ export const FullFeatured: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onChangeRowSelection = (rowSelection: any) => {}
 
+  const onFiltering = (filtering: TableColumnFiltersState) => {
+    console.log(filtering)
+  }
   const columns = React.useMemo<Array<TableColumnDef<Person>>>(
     () => [
       {
@@ -177,6 +182,7 @@ export const FullFeatured: React.FC = () => {
         columns={columns}
         options={options}
         onManualSorting={onSorting}
+        onManualFilter={onFiltering}
         onChangeRowSelection={onChangeRowSelection}
       >
         <Table.Toolbar
