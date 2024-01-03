@@ -50,11 +50,11 @@ function ReactCompass() {
         <Divider style={{padding: 'var(--cdg-spacing-4)'}} />
         <Box style={{paddingTop: 'var(--cdg-spacing-8)'}}>
           <Typography.Header style={{paddingBottom: 'var(--cdg-spacing-3)'}}>
-            Add preflight flushing styles for SSR.
+            Add compass-design style into your SSR app
           </Typography.Header>
           <CoreShowcase />
         </Box>
-        <Box style={{paddingTop: 'var(--cdg-spacing-8)'}}>
+        <Box style={{padding: 'var(--cdg-spacing-8) 0px'}}>
           <Typography.Header style={{paddingBottom: 'var(--cdg-spacing-3)'}}>
             Add Preflight component for better CSS resets according to design
             guidelines.

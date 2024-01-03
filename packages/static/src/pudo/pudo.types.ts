@@ -8,7 +8,7 @@ export type PudoValueChange<TItemKeys extends PropertyKey = string> = Array<{
    *
    * Why? **Bad decision!** Tracking focus status should be seperated from `onValuesChange`.
    * ___
-   * `isFocusing` still works as expected but consider using `onFocusChange` prop instead to track item's focus status.
+   * `isFocusing` still works as expected but consider using `onItemFocusChange` prop instead to track item's focus status.
    */
   isFocusing?: boolean
 }>

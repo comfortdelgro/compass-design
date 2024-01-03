@@ -42,14 +42,34 @@ export default function ShowcaseContainer({
             borderStyle: 'solid',
             borderColor: '$gray100',
             backgroundColor: '$black',
-            borderBottomLeftRadius: 20,
-            borderBottomRightRadius: 20,
+            borderRadius: 8,
+            padding: 'var(--cdg-spacing-4)',
             '.token.punctuation': {
               color: 'white',
             },
           }}
         >
-          {code}
+          <Box
+            css={{
+              padding: '$3',
+              overflow: 'hidden',
+              flexGrow: 1,
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              },
+              pre: {
+                backgroundColor: 'transparent !important',
+                position: 'relative',
+                overflow: 'initial !important',
+                zIndex: 1,
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                },
+              },
+            }}
+          >
+            {code}
+          </Box>
         </Box>
       </Box>
     </Box>
