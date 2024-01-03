@@ -41,6 +41,10 @@ import {TimePicker} from '@comfortdelgro/react-compass'
 
 {{"demo": "TimePickerControlled24Hours.tsx"}}
 
+## MinTime
+
+{{"demo": "TimePickerMinTime.tsx"}}
+
 ## Props
 
 | Name         | Type         | Default                              | Description                                                                                                                                                                                                                                                                 |
@@ -55,3 +59,4 @@ import {TimePicker} from '@comfortdelgro/react-compass'
 | views        | `ViewType[]` | `['hours12', 'minutes', 'sessions']` | Available views. <br />`ViewType`: `hours12` \| `hours24` \| `minutes` \| `seconds` \| `sessions`                                                                                                                                                                           |
 | onTimeChange | `Function`   | -                                    | Callback fired when the value changes.                                                                                                                                                                                                                                      |
 | onOpenChange | `Function`   | -                                    | Callback fired when open/close Popover.                                                                                                                                                                                                                                     |
+| minTime      | `null`       | -                                    | Times smaller than minTime will be disabled (except formats containing AA/aa)                                                                                                                                                                                               |
