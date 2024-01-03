@@ -49,22 +49,23 @@ This example is just for demo the swap, add & remove features. To prevent render
 
 Type: `PudoProps<TItemKeys extends PropertyKey = string>`<sup>(1)</sup>
 
-| Name                | Type                                           | Default    | Description                                                                                                                 |
-| :------------------ | :--------------------------------------------- | :--------- | :-------------------------------------------------------------------------------------------------------------------------- |
-| `css`               | `CSS`                                          | —          | The system prop that allows defining system overrides as well as additional CSS styles.                                     |
-| `items`\*           | `PudoItemProps[]`                              | —          |                                                                                                                             |
-| `type`              | `"input"` \| `"custom"`                        | —          | If provided, this prop will override the `type` of all items.                                                               |
-| `onValuesChange`    | `(values: PudoValueChange<TItemKeys>) => void` | —          |                                                                                                                             |
-| `onItemFocusChange` | `(focusingItem?: TItemKeys) => void`           | —          | `focusingItem` is the name of the focused item.<br/><small>If no items are focusing, the value will be `undefined`.</small> |
-| `minLength`         | `number`                                       | `2`        | Minimum length of list items.                                                                                               |
-| `maxLength`         | `number`                                       | `3`        | Maximum length of list items.                                                                                               |
-| `addItems`          | `PudoItemProps[]`                              | —          | Provide a items list to add to the existing item list.<br/><small>This list will be automatically deduplicated.</small>     |
-| `addItemsLabel`     | `string`                                       | `"Add"`    | Label for the "add" button.                                                                                                 |
-| `removableItems`    | `TItemKeys[]`                                  | —          | A list of item name that allowed to remove.<br/><small>This list will be automatically deduplicated.</small>                |
-| `removableLabel`    | `string`                                       | `"Remove"` | Label for the "remove" button.                                                                                              |
-| `compact`           | `"sm" \| "md"`                                 | —          | Compact size                                                                                                                |
-| `alignIcon`         | `"top"` \| `"center"`                          | —          | If provided, this prop will override the `alignIcon` of all items.                                                          |
-| `isClearable`       | `boolean`                                      | —          | If provided, this prop will override the `isClearable` of all items.                                                        |
+| Name                | Type                                                              | Default    | Description                                                                                                                 |
+| :------------------ | :---------------------------------------------------------------- | :--------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `css`               | `CSS`                                                             | —          | The system prop that allows defining system overrides as well as additional CSS styles.                                     |
+| `items`\*           | `PudoItemProps[]`                                                 | —          |                                                                                                                             |
+| `type`              | `"input"` \| `"custom"`                                           | —          | If provided, this prop will override the `type` of all items.                                                               |
+| `onValuesChange`    | `(values: PudoValueChange<TItemKeys>) => void`                    | —          |                                                                                                                             |
+| `onItemFocusChange` | `(focusingItem?: TItemKeys) => void`                              | —          | `focusingItem` is the name of the focused item.<br/><small>If no items are focusing, the value will be `undefined`.</small> |
+| `onItemSwap`        | `(pairItemSwapped: [itemA: TItemKeys, itemB: TItemKeys]) => void` | —          | `pairItemSwapped` is a pair of item names that have just swapped their values.                                              |
+| `minLength`         | `number`                                                          | `2`        | Minimum length of list items.                                                                                               |
+| `maxLength`         | `number`                                                          | `3`        | Maximum length of list items.                                                                                               |
+| `addItems`          | `PudoItemProps[]`                                                 | —          | Provide a items list to add to the existing item list.<br/><small>This list will be automatically deduplicated.</small>     |
+| `addItemsLabel`     | `string`                                                          | `"Add"`    | Label for the "add" button.                                                                                                 |
+| `removableItems`    | `TItemKeys[]`                                                     | —          | A list of item name that allowed to remove.<br/><small>This list will be automatically deduplicated.</small>                |
+| `removableLabel`    | `string`                                                          | `"Remove"` | Label for the "remove" button.                                                                                              |
+| `compact`           | `"sm" \| "md"`                                                    | —          | Compact size                                                                                                                |
+| `alignIcon`         | `"top"` \| `"center"`                                             | —          | If provided, this prop will override the `alignIcon` of all items.                                                          |
+| `isClearable`       | `boolean`                                                         | —          | If provided, this prop will override the `isClearable` of all items.                                                        |
 
 ### `PudoItemProps`
 

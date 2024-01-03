@@ -29,6 +29,8 @@ export type PudoProps<TItemKeys extends PropertyKey> = {
    * If no items are focusing, the value will be `undefined`.
    */
   onItemFocusChange?: (focusingItem?: TItemKeys) => void
+  /** @param pairItemSwapped a pair of item names that have just swapped their values. */
+  onItemSwap?: (pairItemSwapped: [itemA: TItemKeys, itemB: TItemKeys]) => void
   /**
    * This will override the `type` of all items.
    */
