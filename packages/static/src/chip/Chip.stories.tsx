@@ -93,7 +93,7 @@ export const CustomStyling: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Chip Server',
+  title: 'Example/Chip',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

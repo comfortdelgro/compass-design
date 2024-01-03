@@ -174,7 +174,7 @@ export const DragAndDrop: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Upload Server',
+  title: 'Example/Upload ',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

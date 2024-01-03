@@ -108,7 +108,7 @@ export const Variants: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/SearchField Server',
+  title: 'Example/SearchField',
   component: Variants,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
@@ -119,18 +119,3 @@ const meta = {
 } satisfies Meta<typeof Variants>
 
 export default meta
-
-// export default {
-//   decorators: [
-//     (Component) => (
-//       <div>
-//         <style
-//           dangerouslySetInnerHTML={{
-//             __html: `.ladle-main { background: #eee; }`,
-//           }}
-//         ></style>
-//         <Component />
-//       </div>
-//     ),
-//   ] as StoryDecorator[],
-// }

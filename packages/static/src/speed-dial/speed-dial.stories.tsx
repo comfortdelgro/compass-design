@@ -65,7 +65,7 @@ export const Positions: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Speed Dial Server',
+  title: 'Example/Speed Dial',
   component: Positions,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

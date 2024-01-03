@@ -157,7 +157,7 @@ export const LoadingState = () => (
 )
 
 const meta = {
-  title: 'Example/Progress Bar Server',
+  title: 'Example/Progress Bar',
   component: Variants,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

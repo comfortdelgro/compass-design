@@ -95,7 +95,7 @@ export const Basic: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Textarea Server',
+  title: 'Example/Textarea ',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

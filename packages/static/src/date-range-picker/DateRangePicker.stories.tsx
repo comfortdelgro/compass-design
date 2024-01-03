@@ -190,7 +190,7 @@ export const Custom = () => {
 }
 
 const meta = {
-  title: 'Example/Date Range Picker Server',
+  title: 'Example/Date Range Picker',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

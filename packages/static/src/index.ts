@@ -288,9 +288,9 @@ export {default as SpeedDial} from './speed-dial'
 export type {SpeedDialProps} from './speed-dial'
 export {default as SpeedDial2} from './speed-dial-2'
 export type {
+  SpeedDial2Props,
   SpeedDialActionsProps,
   SpeedDialButtonProps,
-  SpeedDial2Props,
 } from './speed-dial-2'
 export {default as Spinner} from './spinner'
 export type {SpinnerProps} from './spinner'
@@ -349,6 +349,8 @@ export * from './theme'
 export {default as ThemeStaticProvider} from './theme/ThemeProvider'
 export {default as TimePicker} from './time-picker'
 export type {TimePickerProps} from './time-picker'
+export {default as TimeLine} from './timeline'
+export type {TimelineItemProps, TimelineProps} from './timeline'
 export {default as Toast} from './toast'
 export type {
   ToastActionsProps,
