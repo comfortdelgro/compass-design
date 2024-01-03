@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/footer-info-social.module.css'
@@ -15,13 +14,18 @@ const FooterInfoSocial = React.forwardRef<
   FooterInfoSocialProps
 >((props, ref) => {
   const {children, className, css = {}, ...delegated} = props
+
+  const rootClasses = [
+    styles.footerInfoSocial,
+    className,
+    'cdg-footer-info-social',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={ref}>
-      <div
-        className={clsx(styles.footerInfoSocial, className)}
-        ref={ref}
-        {...delegated}
-      >
+      <div className={rootClasses} ref={ref} {...delegated}>
         {children}
       </div>
     </CssInjection>

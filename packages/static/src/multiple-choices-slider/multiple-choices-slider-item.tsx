@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import {forwardRef, HTMLAttributes, ReactNode, useCallback} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/multiple-choices-slider.module.css'
@@ -28,16 +27,16 @@ const MultipleChoicesSliderItem = forwardRef<
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, isSelected])
 
+  const rootClasses = [
+    styles.multipleChoicesSliderItem,
+    isSelected && styles.isActive,
+    'cdg-multiple-choices-slider-item',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <button
-      ref={itemRef}
-      className={clsx(
-        styles.multipleChoicesSliderItem,
-        'multiple-choices-slider-item',
-        isSelected && styles.isActive,
-      )}
-      onClick={handleItemClick}
-    >
+    <button ref={itemRef} className={rootClasses} onClick={handleItemClick}>
       {icon}
       <span className={styles.itemLabel}>{label}</span>
     </button>

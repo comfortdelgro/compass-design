@@ -13,4 +13,20 @@ export const StyledTableV2Resizer = styled('div', {
   '&:active': {
     userSelect: 'none',
   },
+  '@media (max-width: 768px)': {
+    opacity: 1,
+    userSelect: 'none',
+    touchAction: 'none',
+    '&:hover': {
+      backgroundColor: '$blueShades100',
+    },
+  },
+  '@media(min-width: 768px) and (max-width: 1024px)': {
+    opacity: 1,
+    userSelect: 'none',
+    touchAction: 'none',
+    '&:hover': {
+      backgroundColor: '$blueShades100',
+    },
+  },
 })

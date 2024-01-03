@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -15,7 +14,7 @@ const DrawerFooter = forwardRef<HTMLElement, DrawerFooterProps>(
       <CssInjection css={css} childrenRef={drawerFooterRef}>
         <footer
           ref={drawerFooterRef}
-          className={clsx(styles.drawerFooter, 'drawer-footer')}
+          className={`${styles.drawerFooter} cdg-drawer-footer`}
           {...htmlAttributes}
         >
           {children}

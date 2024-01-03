@@ -127,7 +127,7 @@ export const Basic: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Tag box v2 Server',
+  title: 'Example/Tag box v2 ',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

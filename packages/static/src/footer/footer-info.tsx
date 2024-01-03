@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import FooterInfoDownload from './footer-info-download'
@@ -16,13 +15,14 @@ export type FooterInfoProps = Props &
 const FooterInfo = React.forwardRef<HTMLDivElement, FooterInfoProps>(
   (props, ref) => {
     const {children, css = {}, className, ...delegated} = props
+
+    const rootClasses = [styles.footerInfo, className, 'cdg-footer-info']
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div
-          className={clsx(styles.footerInfo, className)}
-          ref={ref}
-          {...delegated}
-        >
+        <div className={rootClasses} ref={ref} {...delegated}>
           {children}
         </div>
       </CssInjection>

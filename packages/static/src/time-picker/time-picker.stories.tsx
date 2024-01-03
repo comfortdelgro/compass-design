@@ -18,6 +18,7 @@ const styleRow: React.CSSProperties = {
 export const Basic: React.FC = () => {
   const [value, setValue] = useState('')
   const [value24H, setValue24H] = useState('')
+  const [valueMinTime, setValueMinTime] = useState('15:00:00')
 
   return (
     <div style={{...style}}>
@@ -80,12 +81,26 @@ export const Basic: React.FC = () => {
           }}
         />
       </div>
+      <h3>Disabled dropdown with min times</h3>
+      <div style={{...styleRow}}>
+        <TimePicker
+          formatTime='HH:mm:ss'
+          views={['hours24', 'minutes', 'seconds']}
+          hasFooter
+          value={valueMinTime}
+          onTimeChange={(value: string) => {
+            console.log('Value 24-hours changed: ', value)
+            setValueMinTime(value)
+          }}
+          minTime={value24H}
+        />
+      </div>
     </div>
   )
 }
 
 const meta = {
-  title: 'Example/TimePicker Server',
+  title: 'Example/TimePicker ',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

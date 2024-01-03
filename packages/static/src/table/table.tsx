@@ -1,5 +1,6 @@
 import {
   ColumnDef,
+  ColumnFiltersState,
   getCoreRowModel,
   getExpandedRowModel,
   getFilteredRowModel,
@@ -11,10 +12,10 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Progress from '../progress'
-import {pickChild} from '../utils/pick-child'
-import {useDOMRef} from '../utils/use-dom-ref'
+import { pickChild } from '../utils/pick-child'
+import { useDOMRef } from '../utils/use-dom-ref'
 
 import CssInjection from '../utils/objectToCss/CssInjection'
 import ExpandableRow from './expandable/expandable-row'
@@ -26,7 +27,7 @@ import TableCheckboxCell from './table-checkbox-cell'
 import TableColumnHeader from './table-column-header'
 import TableFooter from './table-footer'
 import TableHeaderRow from './table-header-row'
-import {NoDataComponent} from './table-nodata'
+import { NoDataComponent } from './table-nodata'
 import ProgressPercentage from './table-progress'
 import TableRow from './table-row'
 import TableToolbar from './table-toolbar'
@@ -35,6 +36,7 @@ export interface Options<TData> {
   enableSorting?: boolean
   enableMultiSort?: boolean
   manualSorting?: boolean
+  manualFiltering?: boolean
   columnResizeMode?: 'onChange' | 'onEnd'
   initialSortBy?: SortingState
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
@@ -47,6 +49,7 @@ export interface Props<T> {
   columns: Array<ColumnDef<T>>
   options: OptionType<T>
   onManualSorting?: (sortingField: SortingState) => void
+  onManualFilter?: (filter: ColumnFiltersState) => void
   onChangeRowSelection?: (selectionRows: T[]) => void
   children: React.ReactNode
   onUpdateData?: (newData: object) => void
@@ -63,9 +66,9 @@ export type TableProps<T = any> = Props<T> &
 
 const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   const [sorting, setSorting] = useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [rowSelection, setRowSelection] = useState({})
   const [grouping, setGrouping] = React.useState<GroupingState>([])
-
   const {
     // StyledComponentProps
     css = {},
@@ -73,6 +76,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     columns,
     options,
     onManualSorting,
+    onManualFilter,
     onChangeRowSelection,
     renderRowSubComponent,
     isLoading,
@@ -82,11 +86,11 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     ...htmlProps
   } = props
 
-  const {child: toolbar, rest: childrenWithoutToolbar} = pickChild<
+  const { child: toolbar, rest: childrenWithoutToolbar } = pickChild<
     typeof TableToolbar
   >(children, TableToolbar)
 
-  const {child: footer} = pickChild<typeof TableFooter>(
+  const { child: footer } = pickChild<typeof TableFooter>(
     childrenWithoutToolbar,
     TableFooter,
   )
@@ -95,10 +99,12 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
 
   const table = useReactTable({
     state: {
+      columnFilters,
       grouping,
       rowSelection,
       sorting: options.initialSortBy ? options.initialSortBy : sorting,
     },
+    onColumnFiltersChange: setColumnFilters,
     onGroupingChange: setGrouping,
     getExpandedRowModel: getExpandedRowModel(),
     getGroupedRowModel: getGroupedRowModel(),
@@ -128,6 +134,10 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   useEffect(() => {
     onManualSorting?.(sorting)
   }, [sorting])
+
+  useEffect(() => {
+    onManualFilter?.(columnFilters);
+  }, [columnFilters])
 
   const tableRows = table.getRowModel().rows ?? []
 

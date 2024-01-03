@@ -1,6 +1,6 @@
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import {useDOMRef} from '../utils/use-dom-ref'
+import { useDOMRef } from '../utils/use-dom-ref'
 import styles from './styles/table-resizer.module.css'
 export interface Props {
   resizeHandler: (e: unknown) => void
@@ -12,7 +12,7 @@ export type TableV2ResizerProps = Props
 const TableV2Resizer = React.forwardRef<
   HTMLTableCellElement,
   TableV2ResizerProps
->(({resizeHandler, css = {}}, ref) => {
+>(({ resizeHandler, css = {} }, ref) => {
   const TableV2ResizerRef = useDOMRef<HTMLDivElement>(ref)
   return (
     <CssInjection css={css} childrenRef={ref}>

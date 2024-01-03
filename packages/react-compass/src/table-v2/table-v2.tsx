@@ -1,5 +1,6 @@
 import {
   ColumnDef,
+  ColumnFiltersState,
   getCoreRowModel,
   getExpandedRowModel,
   getFilteredRowModel,
@@ -35,6 +36,7 @@ export interface Options<TData> {
   enableSorting?: boolean
   enableMultiSort?: boolean
   manualSorting?: boolean
+  manualFiltering?: boolean
   columnResizeMode?: 'onChange' | 'onEnd'
   initialSortBy?: SortingState
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
@@ -47,6 +49,7 @@ export interface Props<T> extends StyledComponentProps {
   columns: Array<ColumnDef<T>>
   options: OptionType<T>
   onManualSorting?: (sortingField: SortingState) => void
+  onManualFilter?: (filter: ColumnFiltersState) => void
   onChangeRowSelection?: (selectionRows: T[]) => void
   children: React.ReactNode
   onUpdateData?: (newData: object) => void
@@ -61,6 +64,7 @@ export type ReactTableProps<T = any> = Props<T> &
 const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
   (props, ref) => {
     const [sorting, setSorting] = useState<SortingState>([])
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
     const [rowSelection, setRowSelection] = useState({})
     const [grouping, setGrouping] = React.useState<GroupingState>([])
 
@@ -71,6 +75,7 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
       columns,
       options,
       onManualSorting,
+      onManualFilter,
       onChangeRowSelection,
       onUpdateData,
       renderRowSubComponent,
@@ -94,10 +99,12 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
 
     const table = useReactTable({
       state: {
+        columnFilters,
         grouping,
         rowSelection,
         sorting: options.initialSortBy ? options.initialSortBy : sorting,
       },
+      onColumnFiltersChange: setColumnFilters,
       onGroupingChange: setGrouping,
       getExpandedRowModel: getExpandedRowModel(),
       getGroupedRowModel: getGroupedRowModel(),
@@ -126,6 +133,10 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
     useEffect(() => {
       onManualSorting?.(sorting)
     }, [sorting])
+
+    useEffect(() => {
+      onManualFilter?.(columnFilters)
+    }, [columnFilters])
 
     const tableRows = table.getRowModel().rows ?? []
 

@@ -526,7 +526,7 @@ export const Basic: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Multiple Dropdown Server',
+  title: 'Example/Multiple Dropdown',
   component: Basic,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

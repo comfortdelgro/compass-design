@@ -1,0 +1,16 @@
+<Button
+    href='/#page'
+    variant='primary'
+    leftIcon={<Icon icon={faChevronDown} />}
+>
+    Click me
+</Button>
+<Button href='https://google.com' hrefExternal variant='secondary'>
+    Google
+</Button>
+<Button href='/#page' variant='danger' hrefTarget='_blank'>
+    Hit me
+</Button>
+<Button href='/#page' variant='ghost'>
+    Beat me
+</Button>

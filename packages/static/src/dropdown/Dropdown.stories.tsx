@@ -899,7 +899,7 @@ export const ForH5 = () => {
 }
 
 const meta = {
-  title: 'Example/Dropdown Server',
+  title: 'Example/Dropdown',
   component: Select,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

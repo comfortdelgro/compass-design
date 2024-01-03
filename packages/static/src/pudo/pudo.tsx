@@ -46,6 +46,7 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
     type,
     onValuesChange,
     onItemFocusChange,
+    onItemSwap,
     minLength = 2,
     maxLength: unCheckedMaxLength = 3,
     removableItems = [],
@@ -216,8 +217,9 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
       }
 
       handleUpdatePudoValues(newArrayPudoValues)
+      onItemSwap?.([itemName, swapKey])
     },
-    [arrPudoValues, handleUpdatePudoValues],
+    [arrPudoValues, handleUpdatePudoValues, onItemSwap],
   )
 
   const handlePudoItemsWrapperBlur = useCallback<

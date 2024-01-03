@@ -1,6 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 'use client'
 
-import clsx from 'clsx'
 import React, {
   Children,
   cloneElement,
@@ -54,10 +54,7 @@ const MultipleChoicesSlider = forwardRef<
     <CssInjection css={css} childrenRef={MultipleChoicesSliderRef}>
       <div
         ref={MultipleChoicesSliderRef}
-        className={clsx(
-          styles.multipleChoicesSlider,
-          'multiple-choices-slider',
-        )}
+        className={`${styles.multipleChoicesSlider} cdg-multiple-choices-slider`}
         {...htmlDivAttributes}
       >
         {Children.map(children, (child) => {

@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import {isNil} from 'lodash'
 import React, {HTMLAttributes, useCallback} from 'react'
 import Badge from '../badge'
@@ -44,16 +43,20 @@ export const AppNavSection = React.forwardRef<
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const rootClasses = [
+    styles.appNavSection,
+    isActive ? styles.isActive : styles.isInactive,
+    'cdg-appnav-section',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={itemRef}>
       <button
         type='button'
         ref={itemRef}
-        className={clsx({
-          [styles.appNavSection]: true,
-          [styles.isActive]: isActive,
-          [styles.isInactive]: !isActive,
-        })}
+        className={rootClasses}
         onClick={handleClick}
         tabIndex={0}
         {...delegated}

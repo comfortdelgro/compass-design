@@ -97,7 +97,7 @@ export const Variant: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Error Server',
+  title: 'Example/Error',
   component: Variant,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],

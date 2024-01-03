@@ -113,7 +113,7 @@ export const Linear: React.FC = () => {
 }
 
 const meta = {
-  title: 'Example/Progress Server',
+  title: 'Example/Progress',
   component: Basic,
   tags: ['autodocs'],
   parameters: {

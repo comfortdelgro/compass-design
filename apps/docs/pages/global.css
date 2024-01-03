@@ -38,24 +38,11 @@
 .figma-preview-wrapper {
   flex: 0.4;
   background-color: #d9d6ec;
-  padding-left: 36px;
-}
-
-.figma-preview-wrapper::after {
-  content: '';
-  background-color: #d9d6ec;
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  left: 64%;
+  overflow: hidden;
 }
 
 .figma-preview {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  width: 42%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: left;

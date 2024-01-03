@@ -9,7 +9,7 @@ export type PudoValueChange<TItemKeys extends PropertyKey = string> = Array<{
    *
    * Why? **Bad decision!** Tracking focus status should be seperated from `onValuesChange`.
    * ___
-   * `isFocusing` still works as expected but consider using `onFocusChange` prop instead to track item's focus status.
+   * `isFocusing` still works as expected but consider using `onItemFocusChange` prop instead to track item's focus status.
    */
   isFocusing?: boolean
 }>
@@ -29,6 +29,8 @@ export type PudoProps<TItemKeys extends PropertyKey> = {
    * If no items are focusing, the value will be `undefined`.
    */
   onItemFocusChange?: (focusingItem?: TItemKeys) => void
+  /** @param pairItemSwapped a pair of item names that have just swapped their values. */
+  onItemSwap?: (pairItemSwapped: [itemA: TItemKeys, itemB: TItemKeys]) => void
   /**
    * This will override the `type` of all items.
    */
