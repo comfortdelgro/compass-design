@@ -3,12 +3,12 @@ import {
   Cell,
   CellContext,
   ColumnDef,
+  ColumnFiltersState,
   DisplayColumnDef,
   GroupColumnDef,
   HeaderContext,
   Row,
   SortingState,
-  ColumnFiltersState,
   Table as TanstackTable,
 } from '@tanstack/react-table'
 import TableCheckbox from './table-checkbox'

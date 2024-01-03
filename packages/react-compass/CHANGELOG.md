@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 3.3.0
+
+### Minor Changes
+
+- e94a97f8: Fixes
+
 ## 3.2.0
 
 ### Minor Changes
