@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/menu-list.module.css'
@@ -23,13 +22,13 @@ const MenuList = React.forwardRef<HTMLDivElement, MenuListProps>(
       ...delegated
     } = props
 
+    const rootClasses = [styles.menuList, className, 'cdg-menu-list']
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div
-          className={clsx('menu-list', styles.menuList, className)}
-          ref={ref}
-          {...delegated}
-        >
+        <div className={rootClasses} ref={ref} {...delegated}>
           {children}
         </div>
       </CssInjection>
