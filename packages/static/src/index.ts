@@ -320,7 +320,6 @@ export type {
   TableSortingState,
   TableType,
 } from './table'
-
 export {default as ReactTable} from './table-v2'
 export type {
   ReactTableProps,

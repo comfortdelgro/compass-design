@@ -1,9 +1,9 @@
-import {flexRender, Header, Table} from '@tanstack/react-table'
-import React, {useMemo} from 'react'
-import {useIsDarkTheme} from '../theme'
-import {EKeyboardKey} from '../utils/keyboard.enum'
+import { flexRender, Header, Table } from '@tanstack/react-table'
+import React, { useMemo } from 'react'
+import { useIsDarkTheme } from '../theme'
+import { EKeyboardKey } from '../utils/keyboard.enum'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import {useDOMRef} from '../utils/use-dom-ref'
+import { useDOMRef } from '../utils/use-dom-ref'
 import styles from './styles/table-column-header.module.css'
 import HeaderColumnFilter from './table-column-header-filter'
 import TableV2Resizer from './table-resizer'
@@ -23,7 +23,7 @@ export type TableV2ColumnHeaderProps<TData = unknown, TValue = unknown> = Props<
 const TableV2ColumnHeader = React.forwardRef<
   HTMLTableCellElement,
   TableV2ColumnHeaderProps
->(({headerProps, tableOption, css = {}, onKeyDown}, ref) => {
+>(({ headerProps, tableOption, css = {}, onKeyDown }, ref) => {
   const enableResizing = headerProps?.column?.columnDef?.enableResizing
   const isFilterableColumn =
     headerProps.column.columnDef.enableColumnFilter === true &&
@@ -124,7 +124,9 @@ const TableV2ColumnHeader = React.forwardRef<
           </div>
         )}
         {enableResizing && (
-          <TableV2Resizer resizeHandler={headerProps.getResizeHandler()} />
+          <TableV2Resizer resizeHandler={
+            headerProps.getResizeHandler()
+          } />
         )}
       </th>
     </CssInjection>

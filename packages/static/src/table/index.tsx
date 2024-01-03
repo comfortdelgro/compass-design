@@ -8,6 +8,7 @@ import {
   HeaderContext,
   Row,
   SortingState,
+  ColumnFiltersState,
   Table as TanstackTable,
 } from '@tanstack/react-table'
 import TableCheckbox from './table-checkbox'
@@ -41,6 +42,7 @@ export type TableColumnDef<T> = ColumnDef<T>
 export type TableAccessorColumnDef<T> = AccessorColumnDef<T>
 export type TableDisplayColumnDef<T> = DisplayColumnDef<T>
 export type TableSortingState = SortingState
+export type TableColumnFiltersState = ColumnFiltersState
 export type TableGroupColumnDef<T> = GroupColumnDef<T>
 export type TableRow<T> = Row<T>
 export type TableCell<TData, TValue> = Cell<TData, TValue>
