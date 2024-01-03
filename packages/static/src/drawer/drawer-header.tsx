@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -15,7 +14,7 @@ const DrawerHeader = forwardRef<HTMLElement, DrawerHeaderProps>(
       <CssInjection css={css} childrenRef={drawerHeaderRef}>
         <header
           ref={drawerHeaderRef}
-          className={clsx(styles.drawerHeader, 'drawer-header')}
+          className={`${styles.drawerHeader} cdg-drawer-header`}
           {...htmlAttributes}
         >
           {children}
