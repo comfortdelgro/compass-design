@@ -39,7 +39,7 @@ const options: TableOptions = {
   enableMultiSort: true,
   columnResizeMode: 'onChange',
   manualSorting: true,
-  onManualFilter: false
+  onManualFilter: false,
 }
 ```
 
@@ -68,7 +68,7 @@ const options: TableOptions = {
   enableSorting: true,
   enableMultiSort: true,
   columnResizeMode: 'onChange',
-  manualFiltering: true
+  manualFiltering: true,
 }
 ```
 
@@ -85,7 +85,8 @@ const onFiltering = (filtering: TableColumnFiltersState) => {
 ```js
  <Table data={data} columns={columns} options={options} onManualFilter={onFiltering}>
 ```
-\*noted: using `TableColumnFiltersState` type for prevent for TypeError 
+
+\*noted: using `TableColumnFiltersState` type for prevent for TypeError
 
 ### ColumnConfig
 

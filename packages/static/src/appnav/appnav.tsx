@@ -27,21 +27,13 @@ const AppNav = React.forwardRef<HTMLDivElement, AppNavProps>((props, ref) => {
     ...delegated
   } = props
 
-  const rootClasses = [
-    styles.appNav,
-    styles[position],
-    'cdg-appnav',
-  ]
+  const rootClasses = [styles.appNav, styles[position], 'cdg-appnav']
     .filter(Boolean)
     .join(' ')
 
   return (
     <CssInjection css={css} childrenRef={navBarRef}>
-      <nav
-        className={rootClasses}
-        ref={navBarRef}
-        {...delegated}
-      >
+      <nav className={rootClasses} ref={navBarRef} {...delegated}>
         {React.Children.map(children, (child, childIndex) => {
           if (!React.isValidElement(child)) {
             return null

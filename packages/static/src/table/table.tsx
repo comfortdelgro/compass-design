@@ -12,10 +12,10 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import Progress from '../progress'
-import { pickChild } from '../utils/pick-child'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {pickChild} from '../utils/pick-child'
+import {useDOMRef} from '../utils/use-dom-ref'
 
 import CssInjection from '../utils/objectToCss/CssInjection'
 import ExpandableRow from './expandable/expandable-row'
@@ -27,7 +27,7 @@ import TableCheckboxCell from './table-checkbox-cell'
 import TableColumnHeader from './table-column-header'
 import TableFooter from './table-footer'
 import TableHeaderRow from './table-header-row'
-import { NoDataComponent } from './table-nodata'
+import {NoDataComponent} from './table-nodata'
 import ProgressPercentage from './table-progress'
 import TableRow from './table-row'
 import TableToolbar from './table-toolbar'
@@ -86,11 +86,11 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     ...htmlProps
   } = props
 
-  const { child: toolbar, rest: childrenWithoutToolbar } = pickChild<
+  const {child: toolbar, rest: childrenWithoutToolbar} = pickChild<
     typeof TableToolbar
   >(children, TableToolbar)
 
-  const { child: footer } = pickChild<typeof TableFooter>(
+  const {child: footer} = pickChild<typeof TableFooter>(
     childrenWithoutToolbar,
     TableFooter,
   )
@@ -136,7 +136,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   }, [sorting])
 
   useEffect(() => {
-    onManualFilter?.(columnFilters);
+    onManualFilter?.(columnFilters)
   }, [columnFilters])
 
   const tableRows = table.getRowModel().rows ?? []

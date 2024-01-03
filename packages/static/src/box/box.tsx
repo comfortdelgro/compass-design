@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -193,11 +192,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
 
   const Component = asProp as React.ElementType
 
-  const rootClasses = [
-    styles.box,
-    className,
-    'cdg-box',
-  ]
+  const rootClasses = [styles.box, className, 'cdg-box']
     .filter(Boolean)
     .join(' ')
 

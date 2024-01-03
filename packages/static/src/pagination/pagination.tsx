@@ -1,13 +1,13 @@
 'use client'
 
 import clsx from 'clsx'
-import React, { useCallback } from 'react'
+import React, {useCallback} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {useDOMRef} from '../utils/use-dom-ref'
 import Ellipsis from './components/Ellipsis'
 import ItemCounting from './components/ItemCounting'
 import RowsCounting from './components/RowsCounting'
-import { usePagination } from './pagination.hooks'
+import {usePagination} from './pagination.hooks'
 import styles from './styles/pagination.module.css'
 
 interface Props {
@@ -41,7 +41,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       ...htmlProps
     } = props
     const paginationRef = useDOMRef<HTMLDivElement>(ref)
-    const { items, active, setPage, next, previous } = usePagination({
+    const {items, active, setPage, next, previous} = usePagination({
       page,
       total,
       initialPage,
@@ -70,8 +70,8 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         const itemStyle =
           item.toString().length > 3
             ? {
-              padding: '0 4px',
-            }
+                padding: '0 4px',
+              }
             : undefined
 
         return (
@@ -111,7 +111,11 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             />
           )}
           {count && (
-            <ItemCounting count={count} page={page} rowsPerPage={rowsPerPage ?? 0} />
+            <ItemCounting
+              count={count}
+              page={page}
+              rowsPerPage={rowsPerPage ?? 0}
+            />
           )}
           <div
             onClick={previous}
