@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+/* eslint-disable react-refresh/only-export-components */
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import FooterHeader from './footer-header'
@@ -16,14 +16,14 @@ export type FooterProps = Props &
 
 const Footer = React.forwardRef<HTMLDivElement, FooterProps>((props, ref) => {
   const {children, color = 'white', className, css = {}, ...delegated} = props
+
+  const rootClasses = [styles.footer, styles[color], className, 'cdg-footer']
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={ref}>
-      <div
-        className={clsx(styles.footer, styles[color], className)}
-        ref={ref}
-        color={color}
-        {...delegated}
-      >
+      <div className={rootClasses} ref={ref} color={color} {...delegated}>
         {children}
       </div>
     </CssInjection>
