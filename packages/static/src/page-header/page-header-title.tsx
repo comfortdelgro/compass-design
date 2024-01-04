@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/page-header-description.module.css'
@@ -15,13 +14,17 @@ const PageHeaderTitle = React.forwardRef<HTMLDivElement, PageHeaderTitleProps>(
   (props, ref) => {
     const {children, css = {}, className, ...delegated} = props
 
+    const rootClasses = [
+      styles.pageHeaderTitle,
+      className,
+      'cdg-page-header-title',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <h1
-          className={clsx(styles.pageHeaderTitle, className)}
-          ref={ref}
-          {...delegated}
-        >
+        <h1 className={rootClasses} ref={ref} {...delegated}>
           {children}
         </h1>
       </CssInjection>
