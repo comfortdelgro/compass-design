@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
-import clsx from 'clsx'
 import {CSSProperties, forwardRef, useCallback, useRef, useState} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -126,16 +125,37 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
       [onChange, handleUpdateSlideBg, allowSwipeAfterEnd, onSwipeEnd],
     )
 
+    const rootClasses = [
+      classes.slideAction,
+      compact && classes.compact,
+      className,
+      'cdg-slide-action',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const bgClasses = [
+      classes.slideActionBackground,
+      slideColor && classes[slideColor],
+      slideType && classes[slideType],
+      'cdg-slide-action__bg',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const labelClasses = [
+      classes.slideActionLabel,
+      labelType && classes[labelType],
+      'cdg-slide-action__label',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={slideRef}>
         <div
           ref={slideRef}
-          className={clsx(
-            classes.slideAction,
-            compact ? classes.compact : '',
-            'slide-action',
-            className,
-          )}
+          className={rootClasses}
           // data-color={color} // attr(data-color) is not widely supported yet, using inline style for now
           style={
             {
@@ -146,15 +166,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
           }
           {...htmlDivAttributes}
         >
-          <div
-            ref={slideBgRef}
-            className={clsx(
-              classes.slideActionBackground,
-              slideColor && classes[slideColor],
-              slideType && classes[slideType],
-              'slide-action__bg',
-            )}
-          />
+          <div ref={slideBgRef} className={bgClasses} />
           <SlideDragger
             slideRef={slideRef}
             icon={icon}
@@ -165,11 +177,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
 
           <div
             ref={slideLabelRef}
-            className={clsx(
-              classes.slideActionLabel,
-              labelType && classes[labelType],
-              'slide-action__label',
-            )}
+            className={labelClasses}
             title={typeof children === 'string' ? children : label}
           >
             {children || label}

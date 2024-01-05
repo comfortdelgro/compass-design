@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import {useMemo, useRef} from 'react'
 import useDrag from '../utils/hooks/useDrag'
 import {SlideDraggerProps} from './slide-action.types'
@@ -59,15 +58,12 @@ export default function SlideDragger({
   return (
     <button
       ref={slideDragRef}
-      className={clsx(classes.slideActionDragger, 'slide-action__dragger')}
+      className={`${classes.slideActionDragger} cdg-slide-action__dragger`}
       style={{pointerEvents: disableDrag ? 'none' : 'auto'}}
     >
       {icon || (
         <svg
-          className={clsx(
-            classes.slideActionDefaultIcon,
-            'slide-action__default-icon',
-          )}
+          className={`${classes.slideActionDefaultIcon} cdg-slide-action__default-icon`}
           width='14'
           height='15'
           viewBox='0 0 14 15'
