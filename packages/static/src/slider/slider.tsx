@@ -1,6 +1,5 @@
 'use client'
 
-import clsx from 'clsx'
 import React, {HTMLAttributes, useEffect, useState} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -214,28 +213,34 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     htmlDivAttributes.onKeyDown?.(event)
   }
 
+  const rootClasses = [
+    classes.rangeSliderContainer,
+    isDisabled ? classes.disabled : '',
+    className,
+    'cdg-range-slider',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const thumbClasses = [
+    classes.rangeSliderThumb,
+    tooltip && `${classes.thumbTooltip} cdg-range-slider-thumb-tooltips`,
+    'cdg-range-slider-thumb',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection childrenRef={sliderRef} css={css}>
       <div
         ref={sliderRef}
-        className={clsx(
-          'cdg-range-slider',
-          classes.rangeSliderContainer,
-          isDisabled ? classes.disabled : '',
-          className,
-        )}
+        className={rootClasses}
         tabIndex={0}
         onKeyDown={handleKeyDown}
         {...htmlDivAttributes}
       >
-        <div className={clsx('range-slider', classes.rangeSlider)}>
-          <div
-            className={clsx(
-              'thumb',
-              classes.rangeSliderThumb,
-              tooltip ? `${classes.thumbTooltip} cdg-thumb-tooltips` : '',
-            )}
-          />
+        <div className={`${classes.rangeSliderInner} cdg-range-slider-inner`}>
+          <div className={thumbClasses} />
         </div>
       </div>
     </CssInjection>
