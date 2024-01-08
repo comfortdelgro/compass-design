@@ -59,7 +59,7 @@
     }
   }
 
-  .rangeSliderInner {
+  .rangeSliderProgress {
     position: relative;
     height: 100%;
     background-color: var(--cdg-color-cdgBlue100);

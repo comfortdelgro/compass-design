@@ -46,14 +46,14 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     if (onChangeEnd && currentValue !== undefined && !dragging) {
       onChangeEnd(currentValue)
     }
-  }, [dragging])
+  }, [currentValue, dragging, onChangeEnd])
 
   useEffect(() => {
     const slider = sliderRef.current
     if (slider) {
-      const thumb = slider.querySelector('.thumb') as HTMLElement
+      const thumb = slider.querySelector('.cdg-range-slider-thumb') as HTMLElement
       const sliderProgress = slider.querySelector(
-        '.range-slider',
+        '.cdg-range-slider-progress',
       ) as HTMLElement
       let isDragging = false
       let prevX = 0
@@ -171,16 +171,16 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     return () => {
       console.log('slider not found!!!')
     }
-  }, [isDisabled, minValue, maxValue, step, onChange, defaultValue, value])
+  }, [isDisabled, minValue, maxValue, step, onChange, defaultValue, value, sliderRef, onChangeEnd])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const key = event.key
     const updateThumbPosition = (newValue: number) => {
       const slider = sliderRef.current
       if (slider) {
-        const thumb = slider.querySelector('.thumb') as HTMLElement
+        const thumb = slider.querySelector('.cdg-range-slider-thumb') as HTMLElement
         const sliderProgress = slider.querySelector(
-          '.range-slider',
+          '.cdg-range-slider-progress',
         ) as HTMLElement
         const sliderWidth = slider.offsetWidth
         const thumbWidth = thumb.offsetWidth
@@ -239,7 +239,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         onKeyDown={handleKeyDown}
         {...htmlDivAttributes}
       >
-        <div className={`${classes.rangeSliderInner} cdg-range-slider-inner`}>
+        <div className={`${classes.rangeSliderProgress} cdg-range-slider-progress`}>
           <div className={thumbClasses} />
         </div>
       </div>
