@@ -8,9 +8,9 @@ import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/dropdown.module.css'
 
 const Tick = () => (
-  <svg width='16' height='16' fill='none'>
+  <svg width='10' height='10' viewBox='0 0 10 10' fill='none'>
     <path
-      d='M15.0265 2.97978C15.4357 3.39649 15.4357 4.0699 15.0265 4.48661L6.64506 13.0209C6.23581 13.4376 5.57446 13.4376 5.16521 13.0209L0.973587 8.75375C0.564469 8.33704 0.564469 7.66363 0.973587 7.24692C1.38277 6.8302 2.04608 6.8302 2.45533 7.24692L5.87567 10.7573L13.5466 2.97978C13.9559 2.5624 14.6172 2.5624 15.0265 2.97978Z'
+      d='M9.39158 1.86239C9.64736 2.12284 9.64736 2.54372 9.39158 2.80416L4.15319 8.13808C3.89741 8.39853 3.48407 8.39853 3.22829 8.13808L0.608522 5.47112C0.352823 5.21068 0.352823 4.7898 0.608522 4.52935C0.864262 4.26891 1.27883 4.26891 1.53461 4.52935L3.67232 6.72334L8.46668 1.86239C8.72246 1.60153 9.1358 1.60153 9.39158 1.86239Z'
       fill='currentColor'
     />
   </svg>
@@ -185,11 +185,9 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       return [
         styles.dropdownItemRightIcon,
         isSelected && styles.dropdownItemRightIconSelected,
-        checkmark === 'checkbox'
-          ? styles.dropdownItemRightIconCheckMarkCheckbox
-          : checkmark === 'tick'
-          ? styles.dropdownItemRightIconCheckMarkTick
-          : null,
+        checkmark === 'checkbox' &&
+          styles.dropdownItemRightIconCheckMarkCheckbox,
+        checkmark === 'tick' && styles.dropdownItemRightIconCheckMarkTick,
         'cdg-dropdown-item-right-icon',
       ]
         .filter(Boolean)

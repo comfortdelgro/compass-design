@@ -403,7 +403,9 @@
     align-items: center;
     justify-content: center;
     background: var(--cdg-color-background);
+    color: #FFF;
   }
+
   .dropdownItemRightIcon.dropdownItemRightIconCheckMarkCheckbox
     .dropdownItemRightIconContentSvg {
     color: var(--cdg-color-whiteText);
