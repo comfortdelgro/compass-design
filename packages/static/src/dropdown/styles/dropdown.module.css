@@ -55,10 +55,8 @@
     border-radius: var(--cdg-border-radius-md);
   }
 
-  .dropdownItemColor .dropdownItemColor {
+  .dropdownItemColor svg {
     display: none;
-    color: var(--cdg-color-whiteText);
-    margin-right: var(--cdg-spacing--0_25);
   }
 
   .dropdownItemRightIcon {
@@ -391,7 +389,7 @@
     color: var(--cdg-color-disabledText);
   }
 
-  .dropdownItemColor.dropdownItemSelected .dropdownItemColor {
+  .dropdownItemColor.dropdownItemSelected svg {
     display: block;
   }
 

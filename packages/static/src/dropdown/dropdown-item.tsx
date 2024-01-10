@@ -1,3 +1,4 @@
+import Color from 'colorjs.io'
 import React, {Key, useContext, useEffect, useMemo} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
@@ -7,9 +8,9 @@ import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/dropdown.module.css'
 
 const Tick = () => (
-  <svg width='10' height='10' viewBox='0 0 10 10' fill='none'>
+  <svg width='16' height='16' fill='none'>
     <path
-      d='M9.39158 1.86239C9.64736 2.12284 9.64736 2.54372 9.39158 2.80416L4.15319 8.13808C3.89741 8.39853 3.48407 8.39853 3.22829 8.13808L0.608522 5.47112C0.352823 5.21068 0.352823 4.7898 0.608522 4.52935C0.864262 4.26891 1.27883 4.26891 1.53461 4.52935L3.67232 6.72334L8.46668 1.86239C8.72246 1.60153 9.1358 1.60153 9.39158 1.86239Z'
+      d='M15.0265 2.97978C15.4357 3.39649 15.4357 4.0699 15.0265 4.48661L6.64506 13.0209C6.23581 13.4376 5.57446 13.4376 5.16521 13.0209L0.973587 8.75375C0.564469 8.33704 0.564469 7.66363 0.973587 7.24692C1.38277 6.8302 2.04608 6.8302 2.45533 7.24692L5.87567 10.7573L13.5466 2.97978C13.9559 2.5624 14.6172 2.5624 15.0265 2.97978Z'
       fill='currentColor'
     />
   </svg>
@@ -236,17 +237,14 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
           )}
           {type === 'color' && rightColor && (
             <div className={colorClasses} style={{background: rightColor}}>
-              <svg
-                className={styles.dropdownItemColor}
-                width='16'
-                height='16'
-                viewBox='0 0 16 16'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
+              <svg width='16' height='16' fill='none'>
                 <path
-                  d='M13.7893 3.08716C14.1555 3.45337 14.1555 4.0481 13.7893 4.41431L6.28931 11.9143C5.9231 12.2805 5.32837 12.2805 4.96216 11.9143L1.21216 8.16431C0.845947 7.7981 0.845947 7.20337 1.21216 6.83716C1.57837 6.47095 2.1731 6.47095 2.53931 6.83716L5.6272 9.92212L12.4651 3.08716C12.8313 2.72095 13.426 2.72095 13.7922 3.08716H13.7893Z'
-                  fill='currentColor'
+                  d='M15.0265 2.97978C15.4357 3.39649 15.4357 4.0699 15.0265 4.48661L6.64506 13.0209C6.23581 13.4376 5.57446 13.4376 5.16521 13.0209L0.973587 8.75375C0.564469 8.33704 0.564469 7.66363 0.973587 7.24692C1.38277 6.8302 2.04608 6.8302 2.45533 7.24692L5.87567 10.7573L13.5466 2.97978C13.9559 2.5624 14.6172 2.5624 15.0265 2.97978Z'
+                  fill={
+                    new Color(rightColor).luminance > 0.3
+                      ? '#000000'
+                      : '#ffffff'
+                  }
                 />
               </svg>
             </div>
