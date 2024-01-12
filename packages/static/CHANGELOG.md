@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 4.1.0
+
+### Minor Changes
+
+- cc970d00: fix for time picker
+
 ## 4.0.0
 
 ### Major Changes
