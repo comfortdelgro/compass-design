@@ -97,13 +97,39 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           second: minTime.substring(second.start, second.end),
           session: minTime.substring(session.start, session.end),
         }
-        if (Number(selectedDropdownValue.hour) > Number(minTimeDropdown.hour)) {
-          minTimeDropdown.minute = '0'
-          minTimeDropdown.second = '0'
-          minTimeDropdown.session = ''
-        } else if (
-          Number(selectedDropdownValue.minute) > Number(minTimeDropdown.minute)
+
+        if (
+          minTimeDropdown.session &&
+          minTimeDropdown.session === selectedDropdownValue.session
         ) {
+          if (
+            Number(selectedDropdownValue.hour) > Number(minTimeDropdown.hour)
+          ) {
+            minTimeDropdown.minute = '0'
+            minTimeDropdown.second = '0'
+            minTimeDropdown.session = ''
+          } else if (
+            Number(selectedDropdownValue.minute) >
+            Number(minTimeDropdown.minute)
+          ) {
+            minTimeDropdown.second = '0'
+            minTimeDropdown.session = ''
+          }
+        }
+        // Check if need to disabled all
+        else if (
+          minTimeDropdown.session === 'PM' &&
+          selectedDropdownValue.session === 'AM'
+        ) {
+          minTimeDropdown.hour = '-'
+          minTimeDropdown.minute = '-'
+          minTimeDropdown.second = '-'
+          minTimeDropdown.session = 'PM'
+        }
+        // Reset disabled
+        else {
+          minTimeDropdown.hour = '0'
+          minTimeDropdown.minute = '0'
           minTimeDropdown.second = '0'
           minTimeDropdown.session = ''
         }
@@ -152,31 +178,49 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
     )
 
     const resetToMinTime = () => {
+      const {hour, minute, second, session} = splittedTimeFormat
+      const minTimeDropdown = {
+        hour: minTime.substring(hour.start, hour.end),
+        minute: minTime.substring(minute.start, minute.end),
+        second: minTime.substring(second.start, second.end),
+        session: minTime.substring(session.start, session.end),
+      }
       let needUpdatValue = false
       const newSelectedDropdownValue = {...selectedDropdownValue}
       // Reset hour to min hour
       if (
         Number(newSelectedDropdownValue.hour) <
-        Number(minTimeDropdownValue.hour)
+          Number(minTimeDropdownValue.hour) ||
+        minTimeDropdownValue.hour === '-'
       ) {
         needUpdatValue = true
-        newSelectedDropdownValue.hour = minTimeDropdownValue.hour
+        newSelectedDropdownValue.hour = minTimeDropdown.hour
       }
       // Reset minute to min minute
       if (
         Number(newSelectedDropdownValue.minute) <
-        Number(minTimeDropdownValue.minute)
+          Number(minTimeDropdownValue.minute) ||
+        minTimeDropdownValue.minute === '-'
       ) {
         needUpdatValue = true
-        newSelectedDropdownValue.minute = minTimeDropdownValue.minute
+        newSelectedDropdownValue.minute = minTimeDropdown.minute
       }
       // Reset second to min second
       if (
         Number(newSelectedDropdownValue.second) <
-        Number(minTimeDropdownValue.second)
+          Number(minTimeDropdownValue.second) ||
+        minTimeDropdownValue.second === '-'
       ) {
         needUpdatValue = true
-        newSelectedDropdownValue.second = minTimeDropdownValue.second
+        newSelectedDropdownValue.second = minTimeDropdown.second
+      }
+      // Reset second to min session
+      if (
+        newSelectedDropdownValue.session === 'AM' &&
+        minTimeDropdownValue.session === 'PM'
+      ) {
+        needUpdatValue = true
+        newSelectedDropdownValue.session = 'PM'
       }
       const dataValue = formatTime
         .replace('hh', String(newSelectedDropdownValue.hour).padStart(2, '0'))

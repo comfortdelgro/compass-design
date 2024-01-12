@@ -66,7 +66,11 @@ function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
       }`}
       onClick={onClickItem(time, displayDataType)}
       tabIndex={-1}
-      disabled={Number(minTime) > Number(time)}
+      disabled={
+        (displayDataType !== 'session' && minTime === '-') ||
+        (displayDataType === 'session' && minTime === 'PM' && time === 'AM') ||
+        Number(minTime) > Number(time)
+      }
     >
       {time}
     </TimePickerDropdownItemStyle>
