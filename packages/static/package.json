@@ -77,7 +77,6 @@
     "@tiptap/react": "2.0.3",
     "@tiptap/starter-kit": "2.0.3",
     "chart.js": "3.9.1",
-    "clsx": "1.2.1",
     "colorjs.io": "^0.4.3",
     "framer-motion": "^7.6.1",
     "install": "^0.13.0",
