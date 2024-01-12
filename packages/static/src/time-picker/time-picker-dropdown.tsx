@@ -85,6 +85,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
    */
   useEffect(() => {
     const newDisplayList: TimePickerDropdownDisplayList = []
+    const hasSession = views.findIndex((view) => view === 'sessions') !== -1
 
     views.forEach((view) => {
       switch (view) {
@@ -98,7 +99,7 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
         case 'hours12':
           newDisplayList.push({
             default: '01',
-            items: createDropdownList(1, 12, hourStep),
+            items: createDropdownList(1, hasSession ? 11 : 12, hourStep),
             type: 'hour',
           })
           break
