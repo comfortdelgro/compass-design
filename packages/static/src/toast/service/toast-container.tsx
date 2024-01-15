@@ -70,6 +70,7 @@ const ToastsContainer = (props: ToastsContainerProps) => {
             <ToastItem
               key={toast.id}
               {...toast}
+              vertical={anchorOrigin.vertical}
               horizontal={anchorOrigin.horizontal}
               toastItemClassName={`${toastItemClassName || ''}`}
             />

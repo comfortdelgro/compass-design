@@ -27,6 +27,7 @@ export interface Anchor {
 interface ToastContextProviderProps {
   children: ReactNode
   anchorOrigin?: Anchor
+  toastItemClassName?: string
 }
 
 export interface ToastContextValue {
@@ -40,6 +41,7 @@ const ANCHOR_DEFAULT: Anchor = {horizontal: 'right', vertical: 'top'}
 export const ToastContextProvider = ({
   children,
   anchorOrigin,
+  toastItemClassName = '',
 }: ToastContextProviderProps) => {
   const [state, dispatch] = useReducer(toastReducer, initialState)
   // rest of the code
@@ -70,6 +72,7 @@ export const ToastContextProvider = ({
       <ToastsContainer
         toasts={state.toasts}
         anchorOrigin={anchorOrigin ?? ANCHOR_DEFAULT}
+        toastItemClassName={toastItemClassName}
       />
       {children}
     </ToastContext.Provider>

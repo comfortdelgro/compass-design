@@ -63,6 +63,7 @@ import {Toast} from '@comfortdelgro/react-compass'
 
 ##### Store multiple toasts and display them in the same container and handle toast's open/close state.
 
-| Name         | Type     | Default                                  | Description                   |
-| :----------- | :------- | :--------------------------------------- | :---------------------------- |
-| anchorOrigin | `Anchor` | `{horizontal: 'right', vertical: 'top'}` | Placements of ToastContainer. |
+| Name               | Type     | Default                                  | Description                   |
+| :----------------- | :------- | :--------------------------------------- | :---------------------------- |
+| anchorOrigin       | `Anchor` | `{horizontal: 'right', vertical: 'top'}` | Placements of ToastContainer. |
+| toastItemClassName | `String` | —                                        | Class name of the ToastItem.  |

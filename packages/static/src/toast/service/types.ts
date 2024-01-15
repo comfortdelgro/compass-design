@@ -10,6 +10,7 @@ export interface ToastItemType {
   hasCloseIcon?: boolean
   autoClose?: false | number
   color?: 'informative' | 'neutral' | 'negative' | 'positive'
+  itemClassName?: string
 }
 
 export interface ToastState {

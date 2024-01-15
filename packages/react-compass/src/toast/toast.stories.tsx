@@ -7,6 +7,7 @@ import {Column} from '../utils/components'
 import {useToast} from './hooks/useToast'
 import Toast from './index'
 import {ToastContextProvider} from './service/toast-context'
+import './stories.css'
 
 const SubService1 = () => {
   const toast = useToast()
@@ -18,6 +19,7 @@ const SubService1 = () => {
           toast.show({
             color: 'informative',
             title: 'Lorem ipsum dolor, sit amet consectetur',
+            itemClassName: 'test-tomato-bg',
           })
         }
       >
@@ -29,6 +31,7 @@ const SubService1 = () => {
           toast.show({
             title: 'Lorem ipsum dolor, sit amet consectetur',
             hasCloseIcon: false,
+            itemClassName: 'test-aqua-bg',
           })
         }
       >
