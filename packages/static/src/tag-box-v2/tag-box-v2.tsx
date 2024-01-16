@@ -6,6 +6,7 @@ import React, {
   AriaAttributes,
   DataHTMLAttributes,
   forwardRef,
+  useCallback,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -23,7 +24,7 @@ const TagBoxV2 = forwardRef<
     {
       isRequired,
       tagBoxLabel,
-      tags,
+      tags = [],
       onAddTag,
       onEditTag,
       onRemoveTag,
@@ -195,7 +196,7 @@ const TagBoxV2 = forwardRef<
 
     //  classes
     const tagBoxV2Classes = useMemo(() => {
-      return [styles.tagBoxV2, className, 'cdg-tag-box-v2-container']
+      return [styles.tagBoxV2, className, 'cdg-tag-box-v2']
         .filter(Boolean)
         .join(' ')
     }, [className])
@@ -207,10 +208,22 @@ const TagBoxV2 = forwardRef<
         isErrored && styles.containerIsErrored,
         isDisabled && styles.containerIsDisabled,
         focused && styles.containerFocused,
+        'cdg-tag-box-v2-container',
       ]
         .filter(Boolean)
         .join(' ')
     }, [focused, isDisabled, isErrored])
+
+    //  classes
+    const tagClasses = useCallback((tag) => {
+      return [
+        styles.tagContainer,
+        tag.isErrored && styles.tagContainerIsErrored,
+        'cdg-tag-box-v2-tag',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [])
 
     return (
       <CssInjection css={css}>
@@ -219,10 +232,14 @@ const TagBoxV2 = forwardRef<
           <div
             aria-label={tagBoxLabel}
             onClick={handleClickContainer}
-            className={`${styles.label}`}
+            className={`${styles.label} cdg-tag-box-v2-label`}
           >
             {tagBoxLabel}
-            {isRequired && <span className={`${styles.asterisk}`}>*</span>}
+            {isRequired && (
+              <span className={`${styles.asterisk} cdg-tag-box-v2-asterisk`}>
+                *
+              </span>
+            )}
           </div>
 
           {/**************  The main box  *************/}
@@ -234,18 +251,16 @@ const TagBoxV2 = forwardRef<
             className={tagBoxV2ContainerClasses}
           >
             {/**** This is to loop and create tags ****/}
-            {(tags ?? []).map((tag) => (
+            {tags.map((tag) => (
               <div
                 key={tag.id}
                 onClick={(event) => handleClickOrDblClickTag(event, tag)}
                 onDoubleClick={(event) => handleClickOrDblClickTag(event, tag)}
-                className={`${styles.tagContainer} ${
-                  tag.isErrored ? styles.tagContainerIsErrored : ''
-                }`}
+                className={tagClasses(tag)}
               >
                 <div
                   title={isEditable ? 'Click to edit' : undefined}
-                  className={`tag-content ${styles.tagContent}`}
+                  className={`${styles.tagContent} cdg-tag-box-v2-tag-content`}
                 >
                   {currentlyEditingTag && currentlyEditingTag.id === tag.id ? (
                     <input
@@ -256,7 +271,7 @@ const TagBoxV2 = forwardRef<
                       onChange={(event) => handleChangeTagInput(event, tag)}
                       onBlur={(event) => handleBlurTagInput(event, tag)}
                       onKeyDown={(event) => handleKeyDownTagInput(event, tag)}
-                      className={`${styles.tagInput}`}
+                      className={`${styles.tagInput} cdg-tag-box-v2-tag-input`}
                     />
                   ) : (
                     tag.value
@@ -272,7 +287,7 @@ const TagBoxV2 = forwardRef<
                           ? 'none'
                           : 'inline-block',
                     }}
-                    className={`${styles.tagCloseIcon}`}
+                    className={`${styles.tagCloseIcon} cdg-tag-box-v2-tag-icon`}
                   />
                 )}
               </div>
@@ -280,14 +295,14 @@ const TagBoxV2 = forwardRef<
 
             {/**** add new button ****/}
             {!isDisabled && (
-              <div className={`${styles.buttonContainer}`}>
+              <div className={`${styles.buttonContainer} cdg-tag-box-v2-add`}>
                 {!isUsingNewTagInput && (
                   <div
                     onClick={handleClickAddNewTag}
-                    className={`${styles.newTagButton}`}
+                    className={`${styles.newTagButton} cdg-tag-box-v2-add-button`}
                   >
                     <FontAwesomeIcon icon={faPlus} />
-                    &nbsp;New Tag
+                    <p>New Tag</p>
                   </div>
                 )}
                 <input
@@ -302,7 +317,7 @@ const TagBoxV2 = forwardRef<
                   onChange={handleChangeNewTag}
                   onKeyDown={handleKeyDownNewTag}
                   onBlur={handleBlurNewTag}
-                  className={`${styles.newTagInput}`}
+                  className={`${styles.newTagInput} cdg-tag-box-v2-add-input`}
                 />
               </div>
             )}
