@@ -86,20 +86,38 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
         handleClose()
       },
     })
-    const toSpeedDialClassName = (type: string = '') => {
-      return position ? styles[`${type}${capitalizeFirstLetter(position)}`] : ''
-    }
-    const toSpeedDialActionsClassName = (type: string = '') => {
-      return position ? styles[`${type}${capitalizeFirstLetter(position)}`] : ''
-    }
+
+    const rootClasses = [
+      styles.speedDial,
+      position && styles[`speedDial${capitalizeFirstLetter(position)}`],
+      className,
+      'cdg-speed-dial',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const triggerClasses = [
+      styles.speedDialTriggerContent,
+      isOpen ? styles.speedDialTriggerOpenSpan : styles.speedDialTriggerSpan,
+      'cdg-speed-dial-trigger-content',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const actionClasses = [
+      styles.speedDialActions,
+      position && styles[`speedDialActions${capitalizeFirstLetter(position)}`],
+      isOpen && styles.speedDialActionsOpen,
+      'cdg-speed-dial-actions',
+    ]
+      .filter(Boolean)
+      .join(' ')
 
     return (
       <CssInjection css={css} childrenRef={speedDialRef}>
         <div
-          className={`cdg-speed-dial ${className} ${
-            styles.speedDial
-          } ${toSpeedDialClassName(`speedDial`)}`}
           {...htmlProps}
+          className={rootClasses}
           ref={speedDialRef}
           role='presentation'
           onMouseLeave={handleMouseLeave}
@@ -113,24 +131,11 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
             aria-expanded={isOpen}
             aria-haspopup={true}
           >
-            <span
-              className={`${styles.speedDialTriggerContent} ${
-                isOpen
-                  ? styles.speedDialTriggerOpenSpan
-                  : styles.speedDialTriggerSpan
-              }`}
-            >
+            <span className={triggerClasses}>
               <FontAwesomeIcon icon={faPlus} />
             </span>
           </SpeedDialTrigger>
-          <ul
-            className={`speed-dial-actions ${
-              styles.speedDialActions
-            } ${toSpeedDialActionsClassName('speedDialActions')} ${
-              isOpen && styles.speedDialActionsOpen
-            }`}
-            role='menu'
-          >
+          <ul className={actionClasses} role='menu'>
             {actions.map(({name, icon, onClick}, index) => (
               <SpeedDialAction
                 key={index}
