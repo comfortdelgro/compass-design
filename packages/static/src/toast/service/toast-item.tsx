@@ -7,6 +7,7 @@ import {ToastItemType} from './types'
 export type ToastItemProps = ToastItemType & {
   toastItemClassName?: string
   horizontal: 'left' | 'right' | 'center'
+  vertical: 'bottom' | 'top' | 'center'
 }
 const ANIMATION_TIME = 300
 const CLOSE_TIME = 1000
@@ -22,7 +23,9 @@ const ToastItem = ({
   title,
   label,
   color,
-  horizontal,
+  itemClassName,
+  horizontal = 'right',
+  vertical = 'top',
 }: ToastItemProps) => {
   const toast = useToast() // call useToast
 
@@ -43,10 +46,11 @@ const ToastItem = ({
       horizontal === 'left' ? styles.toastItemHorizontalLeft : false,
       horizontal === 'right' ? styles.toastItemHorizontalRight : false,
       horizontal === 'center' ? styles.toastItemHorizontalCenter : false,
+      vertical === 'bottom' && horizontal === 'center' ? styles.toastItemBottomCenter : false,
     ]
       .filter(Boolean)
       .join(' ')
-  }, [horizontal])
+  }, [horizontal, vertical])
 
   return (
     <div ref={toastItemRef} className={toastItemClasses}>
@@ -54,7 +58,7 @@ const ToastItem = ({
         isItemContainer
         isOpen
         handleClose={handleDismiss}
-        className={toastItemClassName}
+        className={`${toastItemClassName || ''} ${itemClassName || ''}`}
         autoClose={autoClose ?? CLOSE_TIME}
         color={color ?? 'neutral'}
       >
