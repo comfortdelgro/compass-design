@@ -1,6 +1,5 @@
 'use client'
 
-import clsx from 'clsx'
 import {
   CSSProperties,
   FocusEventHandler,
@@ -295,11 +294,15 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
     setArrPudoValues(pudoValue)
   }, [items])
 
+  const rootClasses = [classes.pudoContainer, className, 'cdg-pudo-container']
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={PudoRef}>
       <div
         ref={PudoRef}
-        className={clsx(classes.pudoContainer, 'cdg-pudo-container', className)}
+        className={rootClasses}
         {...htmlDataAttributes}
         style={
           {
@@ -311,19 +314,16 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
         }
       >
         <div
-          className={clsx(classes.pudoItemsWrapper, 'cdg-pudo-items-wrapper')}
+          className={`${classes.pudoItemsWrapper} cdg-pudo-items-wrapper`}
           onBlur={handlePudoItemsWrapperBlur}
         >
           {renderPudoItems}
         </div>
 
-        <div className={clsx(classes.pudoActions, 'cdg-pudo-actions')}>
+        <div className={`${classes.pudoActions} cdg-pudo-actions`}>
           {showAddButton && (
             <Button
-              className={clsx(
-                classes.pudoActionButton,
-                'cdg-pudo-action-button',
-              )}
+              className={`${classes.pudoActionButton} cdg-pudo-action-button`}
               variant='ghost'
               type='button'
               size='sm'
@@ -349,10 +349,7 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
 
           {showRemoveButton && (
             <Button
-              className={clsx(
-                classes.pudoActionButton,
-                'cdg-pudo-action-button',
-              )}
+              className={`${classes.pudoActionButton} cdg-pudo-action-button`}
               variant='danger'
               type='button'
               size='sm'
