@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import PageHeaderDescription from './page-header-description'
@@ -19,18 +18,20 @@ export type PageHeaderProps = Props &
 // eslint-disable-next-line react-refresh/only-export-components
 const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>(
   (props, ref) => {
-    const {children, color = 'white', css = {}, ...delegated} = props
+    const {children, color = 'white', css = {}, className, ...delegated} = props
+
+    const rootClasses = [
+      styles.pageHeader,
+      styles[color],
+      className,
+      'cdg-page-header',
+    ]
+      .filter(Boolean)
+      .join(' ')
 
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div
-          className={clsx({
-            [styles.pageHeader]: true,
-            [styles[color]]: true,
-          })}
-          ref={ref}
-          {...delegated}
-        >
+        <div className={rootClasses} ref={ref} {...delegated}>
           {children}
         </div>
       </CssInjection>
