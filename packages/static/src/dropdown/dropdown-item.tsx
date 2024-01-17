@@ -1,3 +1,4 @@
+import Color from 'colorjs.io'
 import React, {Key, useContext, useEffect, useMemo} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
@@ -56,6 +57,7 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       rightIcon,
       leftIcon,
       rightColor,
+      className,
       css = {},
       checkmark = 'none',
       ...other
@@ -165,80 +167,88 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       })
     }
 
-    const dropdownOptionClassName = useMemo(() => {
-      let className = `${styles.dropdownOption}`
-      if (isFocused && !isSelected) {
-        className += ` ${styles.dropdownItemIsFocused}`
-      }
-      if (isSelected && !isFocused) {
-        className += ` ${styles.dropdownItemIsSelected}`
-      }
-      if (isSelected && isFocused) {
-        className += ` ${styles.dropdownItemIsSelectedFocused}`
-      }
-      if (isDisabled) {
-        className += ` ${styles.dropdownItemIsDisabled}`
-      }
+    const rootClasses = useMemo(() => {
+      return [
+        styles.dropdownOption,
+        isFocused && !isSelected && styles.dropdownItemIsFocused,
+        isSelected && !isFocused && styles.dropdownItemIsSelected,
+        isSelected && isFocused && styles.dropdownItemIsSelectedFocused,
+        isDisabled && styles.dropdownItemIsDisabled,
+        className,
+        'cdg-dropdown-item',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [className, isDisabled, isFocused, isSelected])
 
-      return className
-    }, [isDisabled, isFocused, isSelected])
-
-    const dropdownItemRightIconClassName = useMemo(() => {
-      let className = `${styles.dropdownItemRightIcon}`
-      if (isSelected) {
-        className += ` ${styles.dropdownItemRightIconSelected}`
-      }
-
-      if (checkmark === 'checkbox') {
-        className += ` ${styles.dropdownItemRightIconCheckMarkCheckbox}`
-      } else if (checkmark === 'tick') {
-        className += ` ${styles.dropdownItemRightIconCheckMarkTick}`
-      }
-
-      return className
+    const rightIconClasses = useMemo(() => {
+      return [
+        styles.dropdownItemRightIcon,
+        isSelected && styles.dropdownItemRightIconSelected,
+        checkmark === 'checkbox' &&
+          styles.dropdownItemRightIconCheckMarkCheckbox,
+        checkmark === 'tick' && styles.dropdownItemRightIconCheckMarkTick,
+        'cdg-dropdown-item-right-icon',
+      ]
+        .filter(Boolean)
+        .join(' ')
     }, [checkmark, isSelected])
+
+    const colorClasses = useMemo(() => {
+      return [
+        styles.dropdownItemColor,
+        isSelected && styles.dropdownItemSelected,
+        'cdg-dropdown-item-color',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [isSelected])
 
     return canDisplayed ? (
       <CssInjection css={css} childrenRef={dropdownItemRef}>
         <li
-          className={`${dropdownOptionClassName} cdg-dropdown-item`}
+          {...delegated}
+          className={rootClasses}
           onClick={handleItemClick}
           ref={dropdownItemRef}
           role='option'
           aria-selected={isSelected}
-          {...delegated}
         >
           {leftIcon && (
-            <div className={`${styles.dropdownItemIcon}`}>{leftIcon}</div>
+            <div
+              className={`${styles.dropdownItemIcon} cdg-dropdown-item-left-icon`}
+            >
+              {leftIcon}
+            </div>
           )}
-          <div className={`${styles.dropdownItemContent}`}>{children}</div>
+          <div
+            className={`${styles.dropdownItemContent} cdg-dropdown-item-content`}
+          >
+            {children}
+          </div>
           {type === 'icon' && rightIcon && (
-            <div className={`${styles.dropdownItemIcon}`}>{rightIcon}</div>
+            <div
+              className={`${styles.dropdownItemIcon} cdg-dropdown-item-right-icon`}
+            >
+              {rightIcon}
+            </div>
           )}
           {type === 'color' && rightColor && (
-            <div
-              className={`${styles.dropdownItemColor} ${
-                isSelected ? styles.dropdownItemSelected : ''
-              }`}
-              style={{background: rightColor}}
-            >
-              <svg
-                className={styles.dropdownItemColor}
-                width='16'
-                height='16'
-                viewBox='0 0 16 16'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
+            <div className={colorClasses} style={{background: rightColor}}>
+              <svg width='16' height='16' fill='none'>
                 <path
-                  d='M13.7893 3.08716C14.1555 3.45337 14.1555 4.0481 13.7893 4.41431L6.28931 11.9143C5.9231 12.2805 5.32837 12.2805 4.96216 11.9143L1.21216 8.16431C0.845947 7.7981 0.845947 7.20337 1.21216 6.83716C1.57837 6.47095 2.1731 6.47095 2.53931 6.83716L5.6272 9.92212L12.4651 3.08716C12.8313 2.72095 13.426 2.72095 13.7922 3.08716H13.7893Z'
-                  fill='currentColor'
+                  d='M15.0265 2.97978C15.4357 3.39649 15.4357 4.0699 15.0265 4.48661L6.64506 13.0209C6.23581 13.4376 5.57446 13.4376 5.16521 13.0209L0.973587 8.75375C0.564469 8.33704 0.564469 7.66363 0.973587 7.24692C1.38277 6.8302 2.04608 6.8302 2.45533 7.24692L5.87567 10.7573L13.5466 2.97978C13.9559 2.5624 14.6172 2.5624 15.0265 2.97978Z'
+                  fill={
+                    new Color(rightColor).luminance > 0.3
+                      ? '#000000'
+                      : '#ffffff'
+                  }
                 />
               </svg>
             </div>
           )}
           {checkmark !== 'none' && (
-            <div className={dropdownItemRightIconClassName}>
+            <div className={rightIconClasses}>
               {checkmark === 'checkbox' ? (
                 <div className={styles.dropdownItemRightIconContent}>
                   <Tick />

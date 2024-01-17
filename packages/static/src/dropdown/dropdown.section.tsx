@@ -23,6 +23,7 @@ const DropdownSection = React.forwardRef<HTMLDivElement, DropdownSectionProps>(
       children,
       title,
       isClickable,
+      className,
       css = {},
       onClick,
       ...delegated
@@ -37,20 +38,27 @@ const DropdownSection = React.forwardRef<HTMLDivElement, DropdownSectionProps>(
       onClick?.()
     }
 
+    const rootClasses = [
+      styles.dropdownSection,
+      className,
+      'cdg-dropdown-section',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const titleClasses = [
+      styles.dropdownSectionContent,
+      isClickable && styles.dropdownSectionContentClickable,
+      'cdg-dropdown-section-title',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={DropdownSectionRef}>
-        <div
-          className={`${styles.dropdownSection}`}
-          ref={DropdownSectionRef}
-          {...delegated}
-        >
+        <div {...delegated} className={rootClasses} ref={DropdownSectionRef}>
           {title && (
-            <div
-              className={`${styles.dropdownSectionContent} ${
-                isClickable ? styles.dropdownSectionContentClickable : ''
-              }`}
-              onClick={handleOnClick}
-            >
+            <div className={titleClasses} onClick={handleOnClick}>
               {title}
             </div>
           )}
