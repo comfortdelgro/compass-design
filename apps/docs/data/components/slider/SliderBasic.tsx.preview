@@ -1,4 +1,4 @@
-<Slider />
-<Slider value={20} onChangeEnd={(val) => console.log(val)} />
+<Slider defaultValue={25} />
+<Slider.Range defaultValue={{start: 12, end: 36}} />
 <Slider isDisabled />
 <Slider tooltip={false} />
