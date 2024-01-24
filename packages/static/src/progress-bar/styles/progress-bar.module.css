@@ -46,6 +46,7 @@
   .progressBarLabel {
     display: flex;
     justify-content: space-between;
+    color: var(--cdg-color-gray90);
     margin-bottom: var(--cdg-spacing-2);
   }
 

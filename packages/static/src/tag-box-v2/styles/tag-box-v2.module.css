@@ -155,6 +155,7 @@
     overflow: hidden;
     background: transparent;
     cursor: pointer;
+    color: var(--cdg-color-gray90);
     font-weight: var(--cdg-font-weight-semibold);
     text-align: left;
     font-size: var(--cdg-font-size-label1);

@@ -79,6 +79,7 @@
     margin: 0;
     background: transparent;
     width: 100%;
+    color: var(--cdg-color-gray90);
     height: var(--cdg-spacing-4_5);
     font-family: var(--cdg-font-sans);
     font-size: var(--cdg-font-size-label1);

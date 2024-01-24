@@ -44,6 +44,7 @@
     align-items: center;
     width: 1.625rem;
     height: 1.625rem;
+    color: var(--cdg-color-gray90);
     font-family: var(--cdg-font-sans);
     font-weight: var(--cdg-font-weight-bold);
     font-size: var(--cdg-font-size-header5);

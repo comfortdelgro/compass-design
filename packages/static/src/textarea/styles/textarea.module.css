@@ -63,6 +63,7 @@
     border-color: var(--cdg-color-cdgBlue120);
   }
   .textAreaLabel {
+    color: var(--cdg-color-gray90);
     font-size: var(--cdg-font-size-label1);
     font-weight: var(--cdg-font-weight-semibold);
     margin-bottom: var(--cdg-spacing-2);

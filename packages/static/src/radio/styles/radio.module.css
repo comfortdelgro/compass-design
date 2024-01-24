@@ -41,7 +41,7 @@
   font-weight: var(--cdg-font-weight-semibold);
   display: flex;
   align-items: center;
-  color: var(--cdg-color-primaryText);
+  color: var(--cdg-color-gray90);
 }
 
 .radioDescription {

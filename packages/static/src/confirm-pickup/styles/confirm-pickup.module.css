@@ -50,6 +50,7 @@
     }
 
     .puPointLabel {
+      color: var(--cdg-color-gray90);
       height: var(--cdg-spacing-5);
       font-size: var(--cdg-font-size-label3);
       line-height: 16px;
