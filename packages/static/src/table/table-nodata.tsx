@@ -1,21 +1,17 @@
-import {useRef} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/table-nodata.module.css'
 
-export const NoDataComponent = ({
-  colSpan,
-  css = {},
-  message = 'Your list is empty.',
-}: {
+interface Props {
   colSpan: number
-  css?: unknown
-  message?: React.ReactNode
-}) => {
-  const ref = useRef()
+  content?: React.ReactNode
+}
+
+export const NoDataComponent = ({colSpan, content}: Props) => {
   return (
     <tr>
       <td colSpan={colSpan}>
-        <CssInjection css={css} childrenRef={ref}>
+        {content ? (
+          content
+        ) : (
           <div className={styles.cdgTableNoData}>
             <svg
               width='165'
@@ -72,9 +68,11 @@ export const NoDataComponent = ({
                 stroke-linejoin='round'
               />
             </svg>
-            <div className={styles.cdgTableNoDataDesciption}>{message}</div>
+            <div className={styles.cdgTableNoDataDesciption}>
+              Your list is empty.
+            </div>
           </div>
-        </CssInjection>
+        )}
       </td>
     </tr>
   )

@@ -22,13 +22,10 @@ import ExpandableRow from './expandable/expandable-row'
 import LoadingComponent from './loading/loading-component'
 import styles from './styles/table.module.css'
 import TableCell from './table-cell'
-import TableCheckbox from './table-checkbox'
-import TableCheckboxCell from './table-checkbox-cell'
 import TableColumnHeader from './table-column-header'
 import TableFooter from './table-footer'
 import TableHeaderRow from './table-header-row'
 import { NoDataComponent } from './table-nodata'
-import ProgressPercentage from './table-progress'
 import TableRow from './table-row'
 import TableToolbar from './table-toolbar'
 
@@ -56,6 +53,7 @@ export interface Props<T> {
   renderRowSubComponent?: (row: T) => React.JSX.Element
   isLoading?: boolean
   loadingIndicator?: React.ReactNode
+  emptyComponent?: React.ReactNode
   className?: string
   css?: unknown
 }
@@ -80,6 +78,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     onChangeRowSelection,
     renderRowSubComponent,
     isLoading,
+    emptyComponent,
     loadingIndicator = <Progress.Circular variant='indeterminate' />,
     children,
     // HTMLDiv Props
@@ -129,15 +128,15 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
       return item.original
     })
     onChangeRowSelection?.(selectedRowOriginals)
-  }, [rowSelection])
+  }, [onChangeRowSelection, rowSelection, table])
 
   useEffect(() => {
     onManualSorting?.(sorting)
-  }, [sorting])
+  }, [onManualSorting, sorting])
 
   useEffect(() => {
     onManualFilter?.(columnFilters);
-  }, [columnFilters])
+  }, [columnFilters, onManualFilter])
 
   const tableRows = table.getRowModel().rows ?? []
 
@@ -199,6 +198,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
                 ) : (
                   <NoDataComponent
                     colSpan={table.getAllLeafColumns()?.length}
+                    content={emptyComponent}
                   ></NoDataComponent>
                 )}
               </tbody>
@@ -211,10 +211,4 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   )
 })
 
-export default Table as typeof Table & {
-  Toolbar: typeof TableToolbar
-  Footer: typeof TableFooter
-  Checkbox: typeof TableCheckbox
-  CheckboxCell: typeof TableCheckboxCell
-  ProgressPercentage: typeof ProgressPercentage
-}
+export default Table

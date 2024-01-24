@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   AccessorColumnDef,
   Cell,
@@ -16,7 +17,7 @@ import TableCheckboxCell from '../table/table-checkbox-cell'
 import TableFooter from '../table/table-footer'
 import ProgressPercentage from '../table/table-progress'
 import TableToolbar from '../table/table-toolbar'
-import TableV2 from './table-v2'
+import _TableV2 from './table-v2'
 export type {
   OptionType,
   ReactTableCheckboxProps,
@@ -28,6 +29,14 @@ export {
   EditableCellContextProvider,
   useEditableCellContext,
 } from '../table/editable/editable-cell'
+
+const TableV2 = _TableV2  as typeof TableV2 & {
+  Toolbar: typeof TableToolbar
+  Footer: typeof TableFooter
+  Checkbox: typeof TableCheckbox
+  CheckboxCell: typeof TableCheckboxCell
+  ProgressPercentage: typeof ProgressPercentage
+}
 
 TableV2.Toolbar = TableToolbar
 TableV2.Footer = TableFooter
