@@ -132,7 +132,7 @@ export default function DrawerCustomizeDocs() {
           onClick={() =>
             setOpenNoFocusDrawer({
               open: true,
-              preventFocus: true,
+              preventFocus: false,
             })
           }
         >
@@ -144,7 +144,7 @@ export default function DrawerCustomizeDocs() {
           onClick={() =>
             setOpenNoFocusDrawer({
               open: true,
-              preventFocus: false,
+              preventFocus: true,
             })
           }
         >
