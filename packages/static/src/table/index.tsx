@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   AccessorColumnDef,
   Cell,
@@ -14,7 +15,7 @@ import {
 import TableCheckbox from './table-checkbox'
 import TableToolbar from './table-toolbar'
 
-import Table from './table'
+import _Table from './table'
 import TableCheckboxCell from './table-checkbox-cell'
 import TableFooter from './table-footer'
 import ProgressPercentage from './table-progress'
@@ -26,6 +27,14 @@ export type {OptionType, TableProps} from './table'
 export type {TableCheckboxProps as ReactTableCheckboxProps} from './table-checkbox'
 export type {TableFooterProps as ReactTableFooterProps} from './table-footer'
 export type {TableToolbarProps as ReactTableToolbarProps} from './table-toolbar'
+
+const Table = _Table as typeof Table & {
+  Toolbar: typeof TableToolbar
+  Footer: typeof TableFooter
+  Checkbox: typeof TableCheckbox
+  CheckboxCell: typeof TableCheckboxCell
+  ProgressPercentage: typeof ProgressPercentage
+}
 
 Table.Toolbar = TableToolbar
 Table.Footer = TableFooter
@@ -49,4 +58,5 @@ export type TableCell<TData, TValue> = Cell<TData, TValue>
 export type TableHeaderContext<TData, TValue> = HeaderContext<TData, TValue>
 export type TableCellContext<TData, TValue> = CellContext<TData, TValue>
 export type TableType<T> = TanstackTable<T>
+
 export default Table

@@ -21,13 +21,10 @@ import ExpandableRow from '../table/expandable/expandable-row'
 import LoadingComponent from '../table/loading/loading-component'
 import styles from '../table/styles/table.module.css'
 import TableCell from '../table/table-cell'
-import TableCheckbox from '../table/table-checkbox'
-import TableCheckboxCell from '../table/table-checkbox-cell'
 import TableColumnHeader from '../table/table-column-header'
 import TableFooter from '../table/table-footer'
 import TableHeaderRow from '../table/table-header-row'
 import {NoDataComponent} from '../table/table-nodata'
-import ProgressPercentage from '../table/table-progress'
 import TableRow from '../table/table-row'
 import TableToolbar from '../table/table-toolbar'
 import CssInjection from '../utils/objectToCss/CssInjection'
@@ -56,6 +53,7 @@ export interface Props<T> {
   renderRowSubComponent?: (row: T) => React.JSX.Element
   isLoading?: boolean
   loadingIndicator?: React.ReactNode
+  emptyComponent?: React.ReactNode
   className?: string
   css?: unknown
 }
@@ -80,6 +78,7 @@ const TableV2 = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     onChangeRowSelection,
     renderRowSubComponent,
     isLoading,
+    emptyComponent,
     loadingIndicator = <Progress.Circular variant='indeterminate' />,
     children,
     // HTMLDiv Props
@@ -129,15 +128,15 @@ const TableV2 = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
       return item.original
     })
     onChangeRowSelection?.(selectedRowOriginals)
-  }, [rowSelection])
+  }, [onChangeRowSelection, rowSelection, table])
 
   useEffect(() => {
     onManualSorting?.(sorting)
-  }, [sorting])
+  }, [onManualSorting, sorting])
 
   useEffect(() => {
     onManualFilter?.(columnFilters)
-  }, [columnFilters])
+  }, [columnFilters, onManualFilter])
 
   const tableRows = table.getRowModel().rows ?? []
 
@@ -199,6 +198,7 @@ const TableV2 = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
                 ) : (
                   <NoDataComponent
                     colSpan={table.getAllLeafColumns()?.length}
+                    content={emptyComponent}
                   ></NoDataComponent>
                 )}
               </tbody>
@@ -211,10 +211,4 @@ const TableV2 = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   )
 })
 
-export default TableV2 as typeof TableV2 & {
-  Toolbar: typeof TableToolbar
-  Footer: typeof TableFooter
-  Checkbox: typeof TableCheckbox
-  CheckboxCell: typeof TableCheckboxCell
-  ProgressPercentage: typeof ProgressPercentage
-}
+export default TableV2
