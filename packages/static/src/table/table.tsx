@@ -25,7 +25,7 @@ import TableCell from './table-cell'
 import TableColumnHeader from './table-column-header'
 import TableFooter from './table-footer'
 import TableHeaderRow from './table-header-row'
-import { NoDataComponent } from './table-nodata'
+import {NoDataComponent} from './table-nodata'
 import TableRow from './table-row'
 import TableToolbar from './table-toolbar'
 
@@ -135,7 +135,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   }, [onManualSorting, sorting])
 
   useEffect(() => {
-    onManualFilter?.(columnFilters);
+    onManualFilter?.(columnFilters)
   }, [columnFilters, onManualFilter])
 
   const tableRows = table.getRowModel().rows ?? []

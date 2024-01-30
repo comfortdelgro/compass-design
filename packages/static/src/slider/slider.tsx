@@ -51,7 +51,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   useEffect(() => {
     const slider = sliderRef.current
     if (slider) {
-      const thumb = slider.querySelector('.cdg-range-slider-thumb') as HTMLElement
+      const thumb = slider.querySelector(
+        '.cdg-range-slider-thumb',
+      ) as HTMLElement
       const sliderProgress = slider.querySelector(
         '.cdg-range-slider-progress',
       ) as HTMLElement
@@ -171,14 +173,26 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     return () => {
       console.log('slider not found!!!')
     }
-  }, [isDisabled, minValue, maxValue, step, onChange, defaultValue, value, sliderRef, onChangeEnd])
+  }, [
+    isDisabled,
+    minValue,
+    maxValue,
+    step,
+    onChange,
+    defaultValue,
+    value,
+    sliderRef,
+    onChangeEnd,
+  ])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const key = event.key
     const updateThumbPosition = (newValue: number) => {
       const slider = sliderRef.current
       if (slider) {
-        const thumb = slider.querySelector('.cdg-range-slider-thumb') as HTMLElement
+        const thumb = slider.querySelector(
+          '.cdg-range-slider-thumb',
+        ) as HTMLElement
         const sliderProgress = slider.querySelector(
           '.cdg-range-slider-progress',
         ) as HTMLElement
@@ -239,7 +253,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         onKeyDown={handleKeyDown}
         {...htmlDivAttributes}
       >
-        <div className={`${classes.rangeSliderProgress} cdg-range-slider-progress`}>
+        <div
+          className={`${classes.rangeSliderProgress} cdg-range-slider-progress`}
+        >
           <div className={thumbClasses} />
         </div>
       </div>

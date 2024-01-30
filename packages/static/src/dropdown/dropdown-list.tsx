@@ -73,7 +73,9 @@ const DropdownList: React.FC<DropdownItemListProps> = (
           {isLoading ? (
             <DropdownLoading />
           ) : displayedItemsCount === 0 ? (
-            <div className={`${styles.dropdownListEmptyData} cdg-dropdown-list-empty-data`}>
+            <div
+              className={`${styles.dropdownListEmptyData} cdg-dropdown-list-empty-data`}
+            >
               {noDataMessage || 'No data'}
             </div>
           ) : (

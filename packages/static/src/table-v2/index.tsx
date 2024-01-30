@@ -30,7 +30,7 @@ export {
   useEditableCellContext,
 } from '../table/editable/editable-cell'
 
-const TableV2 = _TableV2  as typeof TableV2 & {
+const TableV2 = _TableV2 as typeof TableV2 & {
   Toolbar: typeof TableToolbar
   Footer: typeof TableFooter
   Checkbox: typeof TableCheckbox

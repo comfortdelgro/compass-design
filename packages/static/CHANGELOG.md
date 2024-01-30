@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 4.2.0
+
+### Minor Changes
+
+- 77dd153f: Fix bugs
+
 ## 4.1.0
 
 ### Minor Changes
