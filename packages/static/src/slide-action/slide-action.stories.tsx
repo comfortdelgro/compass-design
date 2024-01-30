@@ -1,7 +1,6 @@
 import {faPowerOff} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {Meta} from '@storybook/react'
-import clsx from 'clsx'
 import {useState} from 'react'
 import Typography from '../typography'
 import SlideAction from './slide-action'
@@ -136,7 +135,11 @@ export function Customize() {
 
       <Typography.Header variant='header5'>With custom icon</Typography.Header>
       <div className={classes.iphoneFake}>
-        <div className={clsx(classes.showCase, turnedOff && classes.turnedOff)}>
+        <div
+          className={[classes.showCase, turnedOff && classes.turnedOff]
+            .filter(Boolean)
+            .join(' ')}
+        >
           <SlideAction
             css={{
               border: 'none',

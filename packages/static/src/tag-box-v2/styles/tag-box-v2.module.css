@@ -10,7 +10,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background: transparent;
   }
   .container {
@@ -28,6 +27,10 @@
     border-style: solid;
     border-color: var(--cdg-color-divider);
     min-height: 7.75rem;
+  }
+  .container:focus-within {
+    border-color: var(--cdg-color-cdgBlue);
+    outline: 1px var(--cdg-color-cdgBlue) solid;
   }
   .tagCloseIcon {
     appearance: none;
@@ -63,6 +66,7 @@
     overflow: hidden;
     background: transparent;
     color: var(--cdg-color-black);
+    font-family: var(--cdg-font-sans);
     font-weight: var(--cdg-font-weight-bold);
   }
   .tagContainer {
@@ -108,9 +112,19 @@
     font-weight: 500;
     display: inline-block;
     height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--cdg-spacing-1);
     color: var(--cdg-color-primaryText);
   }
+  .newTagButton p {
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
   .newTagInput {
+    font-family: var(--cdg-font-sans);
     appearance: none;
     outline: none;
     border: none;
@@ -141,6 +155,7 @@
     overflow: hidden;
     background: transparent;
     cursor: pointer;
+    color: var(--cdg-color-gray90);
     font-weight: var(--cdg-font-weight-semibold);
     text-align: left;
     font-size: var(--cdg-font-size-label1);
@@ -162,9 +177,8 @@
     background-color: var(--cdg-color-gray20);
   }
   .containerFocused {
-    border-width: 2px;
-    border-style: solid;
-    border-color: var(--cdg-color-cdgBlue100);
+    border-color: var(--cdg-color-cdgBlue);
+    outline: 1px var(--cdg-color-cdgBlue) solid;
   }
   .tagContainerIsErrored {
     border: 1px solid var(--cdg-color-danger);

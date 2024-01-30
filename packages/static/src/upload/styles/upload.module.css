@@ -41,6 +41,7 @@
     line-height: var(--cdg-line-height-normal);
     cursor: pointer;
     background-color: var(--cdg-color-gray10);
+    color: var(--cdg-color-gray90);
   }
   .browseFile:hover {
     background-color: var(--cdg-color-gray20);
@@ -85,6 +86,7 @@
     margin: 0;
     background: transparent;
     width: 100%;
+    color: var(--cdg-color-gray90);
     height: var(--cdg-spacing-4_5);
     font-family: var(--cdg-font-sans);
     font-size: var(--cdg-font-size-label1);

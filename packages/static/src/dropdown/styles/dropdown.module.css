@@ -55,10 +55,8 @@
     border-radius: var(--cdg-border-radius-md);
   }
 
-  .dropdownItemColor .dropdownItemColor {
+  .dropdownItemColor svg {
     display: none;
-    color: var(--cdg-color-whiteText);
-    margin-right: var(--cdg-spacing--0_25);
   }
 
   .dropdownItemRightIcon {
@@ -205,6 +203,7 @@
   }
 
   .dropdownWrapper .dropdownLabel {
+    color: var(--cdg-color-gray90);
     font-size: var(--cdg-font-size-label1);
     font-weight: var(--cdg-font-weight-semibold);
     margin-bottom: var(--cdg-spacing-2);
@@ -213,6 +212,7 @@
   }
 
   .dropdownWrapper .dropdownLabel {
+    color: var(--cdg-color-gray90);
     font-size: var(--cdg-font-size-label1);
     font-weight: var(--cdg-font-weight-semibold);
     margin-bottom: var(--cdg-spacing-2);
@@ -391,7 +391,7 @@
     color: var(--cdg-color-disabledText);
   }
 
-  .dropdownItemColor.dropdownItemSelected .dropdownItemColor {
+  .dropdownItemColor.dropdownItemSelected svg {
     display: block;
   }
 
@@ -405,7 +405,9 @@
     align-items: center;
     justify-content: center;
     background: var(--cdg-color-background);
+    color: #FFF;
   }
+
   .dropdownItemRightIcon.dropdownItemRightIconCheckMarkCheckbox
     .dropdownItemRightIconContentSvg {
     color: var(--cdg-color-whiteText);

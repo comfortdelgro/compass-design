@@ -129,7 +129,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
         const firstOption = optionArray[0] as HTMLElement
         const lastOption = optionArray[optionArray.length - 1] as HTMLElement
         const hoveredOption = popoverContentElement.querySelector(
-          '.cdg-hovered-option',
+          `.${styles.hover}`,
         ) as HTMLElement
 
         switch (event.key) {

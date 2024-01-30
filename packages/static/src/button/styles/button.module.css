@@ -62,7 +62,7 @@
   .content {
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
   }
 
   .children {
@@ -75,6 +75,9 @@
   .rightIcon {
     width: var(--cdg-spacing-4);
     height: var(--cdg-spacing-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .leftIcon {

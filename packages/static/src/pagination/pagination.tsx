@@ -1,6 +1,5 @@
 'use client'
 
-import clsx from 'clsx'
 import React, {useCallback} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -76,11 +75,13 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
 
         return (
           <div
-            className={clsx({
-              [styles.paginationItem]: true,
-              [styles.paginationItemActive]: item === active,
-              'cdg-pagination-item': true,
-            })}
+            className={[
+              styles.paginationItem,
+              item === active && styles.paginationItemActive,
+              'cdg-pagination-item',
+            ]
+              .filter(Boolean)
+              .join(' ')}
             key={index}
             style={itemStyle}
             onClick={() => item !== active && setPage(item)}
@@ -93,6 +94,22 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       },
       [active, items, setPage, total],
     )
+
+    const previousPageClasses = [
+      styles.paginationItem,
+      active === 1 && styles.paginationItemDisabled,
+      'cdg-pagination-item',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const nextPageClasses = [
+      styles.paginationItem,
+      active === total && styles.paginationItemDisabled,
+      'cdg-pagination-item',
+    ]
+      .filter(Boolean)
+      .join(' ')
 
     return (
       <CssInjection css={css} childrenRef={paginationRef}>
@@ -120,11 +137,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           <div
             onClick={previous}
             aria-label='previous page'
-            className={clsx({
-              [styles.paginationItem]: true,
-              [styles.paginationItemDisabled]: active === 1,
-              'cdg-pagination-item': true,
-            })}
+            className={previousPageClasses}
           >
             <svg
               viewBox='0 0 320 512'
@@ -140,11 +153,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           <div
             onClick={next}
             aria-label='next page'
-            className={clsx({
-              [styles.paginationItem]: true,
-              [styles.paginationItemDisabled]: active === total,
-              'cdg-pagination-item': true,
-            })}
+            className={nextPageClasses}
           >
             <svg
               viewBox='0 0 320 512'

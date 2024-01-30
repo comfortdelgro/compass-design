@@ -37,7 +37,7 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     open = false,
     onClose,
     onMouseDown,
-    preventFocus = true,
+    preventFocus = false,
     preventClose = false,
 
     variant = 'default',
@@ -271,7 +271,7 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     }
 
     if (open) {
-      if (!preventFocus) {
+      if (preventFocus) {
         DrawerElement.setAttribute('inert', '')
       }
       drawerMode === 'modal' ? DrawerElement.showModal() : DrawerElement.show()

@@ -13,6 +13,7 @@
   }
 
   .label {
+    color: var(--cdg-color-gray90);
     display: inline-block;
     font-size: var(--cdg-font-size-body3);
     line-height: var(--cdg-line-height-normal);

@@ -2,6 +2,7 @@ import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
 import type {Meta} from '@storybook/react'
 import React, {Key} from 'react'
 import {Button, Dropdown, Icon, Toast, ToastContextProvider, useToast} from '..'
+import './stories.css'
 
 const style: React.CSSProperties = {
   display: 'flex',
@@ -273,6 +274,7 @@ const SubService1 = () => {
           toast.show({
             color: 'informative',
             title: 'Lorem ipsum dolor, sit amet consectetur',
+            itemClassName: 'test-tomato-bg',
           })
         }
       >
@@ -284,6 +286,7 @@ const SubService1 = () => {
           toast.show({
             title: 'Lorem ipsum dolor, sit amet consectetur',
             hasCloseIcon: false,
+            itemClassName: 'test-aqua-bg',
           })
         }
       >
