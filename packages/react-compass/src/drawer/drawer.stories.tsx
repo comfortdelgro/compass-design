@@ -149,7 +149,7 @@ export function H5() {
         onClick={() =>
           setOpenNoFocusDrawer({
             open: true,
-            preventFocus: true,
+            preventFocus: false,
           })
         }
       >
@@ -161,7 +161,7 @@ export function H5() {
         onClick={() =>
           setOpenNoFocusDrawer({
             open: true,
-            preventFocus: false,
+            preventFocus: true,
           })
         }
       >

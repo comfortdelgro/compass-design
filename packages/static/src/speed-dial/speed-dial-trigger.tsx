@@ -24,15 +24,21 @@ export const SpeedDialTrigger = React.forwardRef<
 
   const mergeRef = useMergeRefs([ref, register, domRef])
 
+  const rootClasses = [
+    styles.speedDialTrigger,
+    isOpen && styles.speedDialTriggerOpen,
+    'cdg-speed-dial-trigger',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <button
-      className={`speed-dial-trigger ${styles.speedDialTrigger} ${
-        isOpen && styles.speedDialTriggerOpen
-      }`}
+      {...htmlProps}
+      className={rootClasses}
       ref={mergeRef}
       type='button'
       onMouseMove={onMouseMove?.(index)}
-      {...htmlProps}
     >
       {children}
     </button>

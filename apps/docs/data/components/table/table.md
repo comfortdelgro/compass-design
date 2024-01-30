@@ -199,3 +199,4 @@ By default, the Table V2 uses the circular Progress component as the default loa
 | `renderRowSubComponent ` | `(rowData: T) => React.JSX.Element` | —                   | `Callback after expanding row.`   |
 | `isLoading `             | `boolean`                           | `false`             | `Loading status of the table.`    |
 | `loadingIndicator `      | `React.ReactNode`                   | `Progress.Circular` | `Loading indicator of the table.` |
+| `emptyComponent`         | `React.ReactNode`                   | -                   | `Empty state for state component.`|

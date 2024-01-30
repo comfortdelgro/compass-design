@@ -32,32 +32,34 @@ export const SpeedDialAction = React.forwardRef<
   const isSelected = index === selected
 
   const mergeRef = useMergeRefs([ref, domRef, register])
+
   const actionClasses = [
-    className,
     styles.speedDialAction,
     position && styles[`speedDialAction${capitalizeFirstLetter(position)}`],
     isVisible ? styles.isVisibleTrue : styles.isVisibleFalse,
     position && styles[`speedDialAction${capitalizeFirstLetter(position)}`],
+    className,
     'cdg-speed-dial-action',
   ]
     .filter(Boolean)
     .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={mergeRef}>
       <button
-        className={`speed-dial-action ${actionClasses}`}
+        {...htmlProps}
+        className={actionClasses}
         ref={mergeRef}
         aria-selected={isSelected}
         onMouseMove={onMouseMove?.(index)}
         tabIndex={-1}
         type='button'
         role='menuitem'
-        {...htmlProps}
       >
-        <span className={`speed-dial-action-icon ${styles.speedDialIcon}`}>
+        <span className={`${styles.speedDialIcon} cdg-speed-dial-action-icon`}>
           {icon}
         </span>
-        <span className={`speed-dial-action-name ${styles.speedDialName}`}>
+        <span className={`${styles.speedDialName} cdg-speed-dial-action-name`}>
           {name}
         </span>
       </button>

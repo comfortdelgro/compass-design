@@ -24,6 +24,7 @@
     align-items: center;
     white-space: nowrap;
     gap: var(--cdg-spacing-3);
+    color: var(--cdg-color-gray90);
     min-width: var(--cdg-spacing-5);
     min-height: var(--cdg-spacing-5);
     font-size: var(--cdg-font-size-label1);

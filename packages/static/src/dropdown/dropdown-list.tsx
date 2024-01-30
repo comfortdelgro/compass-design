@@ -59,7 +59,7 @@ const DropdownList: React.FC<DropdownItemListProps> = (
         !isLoadingMore && onLoadMore?.()
       }
     }
-  }, [isInViewport])
+  }, [isInViewport, isLoadingMore, lastEl, onLoadMore, standEl])
 
   return useMemo(
     () => (
@@ -73,7 +73,7 @@ const DropdownList: React.FC<DropdownItemListProps> = (
           {isLoading ? (
             <DropdownLoading />
           ) : displayedItemsCount === 0 ? (
-            <div className={`${styles.dropdownListEmptyData}`}>
+            <div className={`${styles.dropdownListEmptyData} cdg-dropdown-list-empty-data`}>
               {noDataMessage || 'No data'}
             </div>
           ) : (

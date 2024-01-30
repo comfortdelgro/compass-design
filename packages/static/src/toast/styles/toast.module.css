@@ -49,6 +49,22 @@
     transform: translate3d(0, -150%, 0);
   }
 }
+@keyframes fadeInBottom {
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeOutTop {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 150%, 0);
+  }
+}
 
 @layer default, variant;
 
@@ -117,7 +133,7 @@
     font-weight: var(--cdg-font-weight-normal);
     font-family: var(--cdg-font-sans);
     font-size: var(--cdg-font-size-label2);
-    color: var(--cdg-color-gray70);
+    color: var(--cdg-color-gray90);
     line-height: var(--cdg-line-height-normal);
     display: flex;
     justify-content: center;
@@ -221,8 +237,7 @@
     display: flex;
     gap: var(--cdg-spacing-6);
     flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     z-index: 61;
   }
   .toastItemCloseIcon {
@@ -307,6 +322,12 @@
   }
   .toastItemHorizontalRight.toastItemFadeOut {
     animation: fadeOutRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .toastItemBottomCenter {
+    animation: fadeInBottom 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .toastItemBottomCenter.toastItemFadeOut {
+    animation: fadeOutTop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   .isItemContainer {
     position: relative;
