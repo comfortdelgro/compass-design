@@ -46,8 +46,7 @@ export const Basic: React.FC = () => {
     columnResizeMode: 'onChange',
     manualSorting: false,
     manualFiltering: true,
-    resetSelectionWhenDataChanged: true,
-    // enableRowSelection: (row) => row.original.age > 30,
+    enableRowSelection: (row) => row.original.age > 30,
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -114,7 +113,6 @@ export const Basic: React.FC = () => {
             enableResizing: false,
             enableGrouping: false,
             enableColumnFilter: true,
-            sortDescFirst: false,
             meta: {
               editable: true,
               updateData: (rowIndex: number, id: string, value: unknown) => {
@@ -141,7 +139,6 @@ export const Basic: React.FC = () => {
             enableColumnFilter: false,
             enableGrouping: false,
             enableResizing: true,
-            sortDescFirst: false,
           },
         ],
       },
@@ -156,7 +153,6 @@ export const Basic: React.FC = () => {
             header: () => 'Age',
             enableColumnFilter: true,
             enableGrouping: false,
-            sortDescFirst: false,
             footer: (info) => info.column.id,
           },
           {
@@ -164,7 +160,6 @@ export const Basic: React.FC = () => {
             header: () => <span>Visits</span>,
             enableColumnFilter: false,
             enableGrouping: false,
-            sortDescFirst: false,
             footer: (info) => info.column.id,
           },
           {
@@ -172,7 +167,6 @@ export const Basic: React.FC = () => {
             header: 'Status',
             enableColumnFilter: false,
             enableGrouping: false,
-            sortDescFirst: false,
             footer: (info) => info.column.id,
           },
           {
@@ -181,7 +175,6 @@ export const Basic: React.FC = () => {
             cell: (info) => info.getValue<string>(),
             enableColumnFilter: false,
             enableGrouping: false,
-            sortDescFirst: false,
             footer: (info) => info.column.id,
           },
         ],
@@ -215,9 +208,7 @@ export const Basic: React.FC = () => {
             gap: '0.5rem',
           }}
         >
-          <Button variant='primary' onClick={() => {
-            setData(makeData(10))
-          }}>Button</Button>
+          <Button variant='primary'>Button</Button>
           <Button variant='secondary'>Button</Button>
           <Button variant='ghost' aria-label='Delete'>
             <Icon icon={faTrashAlt} />
