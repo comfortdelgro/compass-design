@@ -111,7 +111,6 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     }
   }, [elRefs, isOpen])
 
-  console.log('asd', collaspable && !isOpen)
   const focusInput = () => {
     inputRef.current?.focus()
   }
