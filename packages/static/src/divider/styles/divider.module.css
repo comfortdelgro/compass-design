@@ -11,6 +11,7 @@
     border-style: solid;
     border-bottom-width: thin;
     border-color: var(--divider-color);
+    color: var(--cdg-color-primaryText);
   }
 
   .body {
