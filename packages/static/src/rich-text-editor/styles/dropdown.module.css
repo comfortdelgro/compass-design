@@ -5,6 +5,7 @@
     border-radius: var(--cdg-border-radius-lg);
     z-index: 0;
     transition: var(--cdg-transition-default);
+    color: var(--cdg-color-gray110);
   }
 
   .rteDropdown:hover {
@@ -34,6 +35,7 @@
     background: transparent;
     font-size: var(--cdg-font-size-label1);
     font-weight: var(--cdg-font-weight-semibold);
+    color: var(--cdg-color-gray110);
   }
 
   .rteDropdown button svg {
