@@ -210,6 +210,7 @@ export type {
   MultipleDropdownItemProps,
   MultipleDropdownProps,
 } from './multiple-dropdown'
+export {default as NaturalDrawer} from './natural-drawer'
 export {default as Navbar} from './navbar'
 export type {NavbarBrandProps, NavbarProps} from './navbar'
 export {default as NoSsr} from './nossr'
