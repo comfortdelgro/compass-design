@@ -34,6 +34,7 @@ export const NaturalDrawerWrapper = forwardRef<HTMLDivElement, DrawerProps>(
     const wrapperRef = useDOMRef<HTMLDivElement>(ref)
     const contentRef = useRef<HTMLDivElement>(null)
     const spaceRef = useRef<HTMLDivElement>(null)
+    const pullDownRef = useRef<HTMLDivElement>(null)
 
     const defaultVisibleHeight =
       visibleHeight || (wrapperRef.current?.clientHeight || 0) * 0.36
@@ -110,14 +111,20 @@ export const NaturalDrawerWrapper = forwardRef<HTMLDivElement, DrawerProps>(
           onExpanded()
         }, SCROLL_COOLDOWN_TIME)
       }
+
+      if (
+        viewDidMount &&
+        contentRef &&
+        contentRef.current &&
+        type === 'drawer'
+      ) {
+        contentRef.current.style.scrollSnapAlign = 'start'
+      }
     }, [onExpanded, scrollTo, type, viewDidMount])
 
     // To force the component rerender one time
     useEffect(() => {
       setViewDidMount(true)
-      if (contentRef && contentRef.current && type === 'drawer') {
-        contentRef.current.style.scrollSnapAlign = 'start'
-      }
     }, [expand, type])
 
     return (
@@ -147,6 +154,7 @@ export const NaturalDrawerWrapper = forwardRef<HTMLDivElement, DrawerProps>(
         )}
         {type === 'bottomSheet' ? (
           <div
+            ref={pullDownRef}
             className={classNames(
               'natural-drawer-stop',
               styles.naturalDrawerStop,
@@ -158,25 +166,28 @@ export const NaturalDrawerWrapper = forwardRef<HTMLDivElement, DrawerProps>(
         ) : (
           ''
         )}
-        <div
-          ref={spaceRef}
-          className={classNames(
-            'natural-drawer-stop',
-            styles.naturalDrawerStop,
-          )}
-          style={{
-            height: getStopHeight(),
-          }}
-        ></div>
-
-        <NaturalDrawerContent
-          ref={contentRef}
-          header={header}
-          setOffsetTop={setOffsetTop}
-          style={{opacity: viewDidMount ? '' : 0}}
-        >
-          {children}
-        </NaturalDrawerContent>
+        {viewDidMount && (
+          <>
+            <div
+              ref={spaceRef}
+              className={classNames(
+                'natural-drawer-stop',
+                styles.naturalDrawerStop,
+              )}
+              style={{
+                height: getStopHeight(),
+              }}
+            ></div>
+            <NaturalDrawerContent
+              ref={contentRef}
+              header={header}
+              setOffsetTop={setOffsetTop}
+              style={{opacity: viewDidMount ? '' : 0}}
+            >
+              {children}
+            </NaturalDrawerContent>
+          </>
+        )}
       </div>
     )
   },
