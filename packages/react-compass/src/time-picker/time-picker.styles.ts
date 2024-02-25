@@ -67,6 +67,10 @@ export const TimePickerDropdownControl = styled('div', {
   width: '$12_5',
   position: 'relative',
 
+  '@max_768': {
+    overflowY: 'auto',
+  },
+
   '&:hover': {
     overflowY: 'auto',
   },
