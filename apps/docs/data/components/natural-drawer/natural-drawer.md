@@ -26,7 +26,7 @@ import {Natural Drawer} from '@comfortdelgro/react-compass'
 
 {{"demo": "AccessibleBackground.tsx"}}
 
-## Interac With Background Full Screen
+## Interact With Background Full Screen
 
 {{"demo": "AccessibleBackgroundFullScreen.tsx"}}
 
