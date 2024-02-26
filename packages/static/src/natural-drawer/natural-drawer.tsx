@@ -20,6 +20,7 @@ export const NaturalDrawerWrapper = forwardRef<HTMLDivElement, DrawerProps>(
       header,
       fixedContent,
       visibleHeight,
+      style,
       drawerScroll = () => {},
       onReachBottom = () => {},
       onCollapsed = () => {},
@@ -52,8 +53,9 @@ export const NaturalDrawerWrapper = forwardRef<HTMLDivElement, DrawerProps>(
 
     const getBackgroundOpacity = () => {
       return (
-        (wrapperRef?.current?.scrollTop / wrapperRef?.current?.scrollHeight ||
-          0) * 0.8
+        ((wrapperRef?.current?.scrollTop +
+          (!fixedContent ? defaultVisibleHeight : 0)) /
+          wrapperRef?.current?.scrollHeight || 0) * 0.8
       )
     }
 
@@ -141,9 +143,10 @@ export const NaturalDrawerWrapper = forwardRef<HTMLDivElement, DrawerProps>(
         onScroll={handleScroll}
         style={{
           backgroundColor:
-            type === 'bottomSheet'
+            type === 'bottomSheet' || !fixedContent
               ? `rgba(0,0,0,${getBackgroundOpacity()})`
               : '',
+          ...style,
         }}
         {...rest}
       >
