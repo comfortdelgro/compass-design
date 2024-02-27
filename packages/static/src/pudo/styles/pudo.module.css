@@ -118,7 +118,7 @@
           var(--cdg-color-grayShades40) 100%,
           transparent 100%
         );
-        background-repeat: repeat-y;
+        background-repeat: no-repeat space;
         background-position-x: center;
         background-size: var(--cdg-pudo-dot-size)
           calc(var(--cdg-pudo-dot-size) * 2);
@@ -188,18 +188,22 @@
     &:first-child,
     &:last-child {
       .pudoItemIcon::before {
-        height: 50%;
+        height: calc(50% - var(--cdg-pudo-icon-height) / 2);
       }
     }
 
     &:first-child {
       .pudoItemIcon::before {
-        top: 50%;
+        top: calc(50% + var(--cdg-pudo-icon-height) / 2);
       }
     }
   }
 
   .pudoItem.alignIcon--top {
+    .pudoItemIcon::before {
+      background-repeat: repeat-y;
+    }
+
     &:first-child {
       .pudoItemIcon::before {
         top: calc(
