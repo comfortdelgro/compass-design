@@ -1,0 +1,3 @@
+
+<Slider defaultValue={25} orientation='vertical' />
+<Slider.Range defaultValue={{start: 12, end: 36}} orientation='vertical' />
