@@ -17,6 +17,7 @@
   padding-left: var(--cdg-spacing-4);
   padding-right: var(--cdg-spacing-2);
   background-color: var(--cdg-color-cdgBlue10);
+  color: var(--cdg-color-primaryText);
   border-bottom: 1px solid rgba(0, 0, 0, 0.02);
 }
 
@@ -42,6 +43,7 @@
   padding-left: var(--cdg-spacing-6);
   padding-right: var(--cdg-spacing-6);
   background-color: var(--cdg-color-primaryBg);
+  color: var(--cdg-color-primaryText);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
