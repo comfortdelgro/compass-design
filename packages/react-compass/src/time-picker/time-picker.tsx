@@ -125,12 +125,32 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           minTimeDropdown.minute = '-'
           minTimeDropdown.second = '-'
           minTimeDropdown.session = 'PM'
-        }
-        // Reset disabled
-        else {
+        } else if (
+          minTimeDropdown.session === 'AM' &&
+          selectedDropdownValue.session === 'PM'
+        ) {
           minTimeDropdown.hour = '0'
           minTimeDropdown.minute = '0'
           minTimeDropdown.second = '0'
+        }
+        // Reset disabled
+        else {
+          if (
+            !minTimeDropdown.hour ||
+            Number(minTimeDropdown.hour) <
+              Number(selectedDropdownValue.hour || 0) ||
+            !minTimeDropdown.minute
+          ) {
+            minTimeDropdown.minute = '0'
+          }
+          if (
+            !minTimeDropdown.minute ||
+            Number(minTimeDropdown.minute) <
+              Number(selectedDropdownValue.minute || 0) ||
+            !minTimeDropdown.second
+          ) {
+            minTimeDropdown.second = '0'
+          }
           minTimeDropdown.session = ''
         }
         setMinTimeDropdownValue(minTimeDropdown)
