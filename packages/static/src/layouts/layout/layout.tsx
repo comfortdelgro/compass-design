@@ -1,5 +1,6 @@
 import React from 'react'
 import CssInjection from '../../utils/objectToCss/CssInjection'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {LAYOUT_ALIGNMENT_MAP, LAYOUT_DIRECTION_MAP} from './layout.const'
 import styles from './styles/layout.module.css'
@@ -19,7 +20,7 @@ export interface Props {
   children?: React.ReactNode
   css?: unknown
   direction?: 'row' | 'column'
-  flex?: Number
+  flex?: number
   align?: LayoutAlignment
   className?: string
   style?: React.CSSProperties
@@ -32,6 +33,7 @@ const Layout = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     className,
     direction = 'column',
     align,
+    flex,
     style,
     ...htmlProps
   } = props
@@ -42,12 +44,16 @@ const Layout = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     <CssInjection css={css} childrenRef={actionBarRef}>
       <div
         ref={actionBarRef}
-        className={`cdg-layout ${direction} ${align ? align : ''} ${
-          styles.layout
-        } ${LAYOUT_DIRECTION_MAP[direction]} ${
-          align ? LAYOUT_ALIGNMENT_MAP[align] : ''
-        }`}
-        style={style}
+        className={classNames(
+          className,
+          `cdg-layout`,
+          direction,
+          align ? align : '',
+          styles.layout,
+          LAYOUT_DIRECTION_MAP[direction],
+          align ? LAYOUT_ALIGNMENT_MAP[align] : '',
+        )}
+        style={{...style, flex}}
         {...htmlProps}
       >
         {children}
