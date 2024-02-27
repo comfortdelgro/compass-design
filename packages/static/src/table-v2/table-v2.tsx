@@ -36,6 +36,8 @@ export interface Options<TData> {
   manualFiltering?: boolean
   columnResizeMode?: 'onChange' | 'onEnd'
   initialSortBy?: SortingState
+  debugTable?: boolean
+  resetSelectionWhenDataChanged?: boolean
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
 }
 
@@ -129,6 +131,13 @@ const TableV2 = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     })
     onChangeRowSelection?.(selectedRowOriginals)
   }, [onChangeRowSelection, rowSelection, table])
+
+  useEffect(() => {
+    if(options.resetSelectionWhenDataChanged) {
+      table.toggleAllRowsSelected(false)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options.resetSelectionWhenDataChanged, table, JSON.stringify(data)])
 
   useEffect(() => {
     onManualSorting?.(sorting)

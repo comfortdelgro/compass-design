@@ -113,7 +113,6 @@ export const Basic: React.FC = () => {
             enableResizing: false,
             enableGrouping: false,
             enableColumnFilter: true,
-            sortDescriptor: 'asc',
             meta: {
               editable: true,
               updateData: (rowIndex: number, id: string, value: unknown) => {
@@ -257,7 +256,7 @@ export const Basic: React.FC = () => {
 }
 
 export const ExpandableRow: React.FC = () => {
-  const [data, setData] = React.useState(() => makeRequestStatusData(10))
+  const [data] = React.useState(() => makeRequestStatusData(10))
   const [page, setPage] = useState(1)
   const options: OptionType<LimitRequestStatus> = {
     enableSorting: false,
@@ -499,7 +498,6 @@ export const EmptyState: React.FC = () => {
             footer: (props) => props.column.id,
             enableResizing: false,
             editable: true,
-            sortDescriptor: 'asc',
           },
           {
             accessorFn: (row) => row.lastName,
@@ -690,7 +688,6 @@ export const Loading: React.FC = () => {
             footer: (props) => props.column.id,
             enableResizing: false,
             editable: true,
-            sortDescriptor: 'asc',
           },
           {
             accessorFn: (row) => row.lastName,
@@ -837,9 +834,9 @@ export const EditableTemplateCell: React.FC = () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onSorting = (sortingField: TableSortingState) => { }
+  const onSorting = () => { }
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onChangeRowSelection = (rowSelection: any) => { }
+  const onChangeRowSelection = () => { }
 
   const columns = React.useMemo<Array<TableColumnDef<Person>>>(
     () => [
@@ -900,7 +897,7 @@ export const EditableTemplateCell: React.FC = () => {
         footer: (info) => info.column.id,
       },
     ],
-    [],
+    [originalData],
   )
 
   return (
@@ -1150,7 +1147,6 @@ export const DataGrid: React.FC = () => {
             footer: (props) => props.column.id,
             enableResizing: false,
             editable: true,
-            sortDescriptor: 'asc',
           },
           {
             accessorFn: (row) => row.lastName,
