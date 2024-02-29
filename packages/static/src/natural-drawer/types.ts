@@ -16,7 +16,7 @@ interface Props {
   onReachBottom?: () => void
 }
 
-export type DrawerProps = Props &
+export type NaturalDrawerProps = Props &
   Omit<
     React.HTMLAttributes<HTMLDivElement>,
     keyof Props | 'tabIndex' | 'autoFocus'
