@@ -7,11 +7,13 @@ import {
   SliderControlsChildArguments,
   SliderControlsProps,
 } from './component/SliderControls'
-import { SliderThumb } from './component/SliderThumb'
+import {SliderThumb} from './component/SliderThumb'
 import styles from './styles/slider.module.css'
-import { FocusableRef, InputDOMProps } from './utils/types'
+import {FocusableRef, InputDOMProps} from './utils/types'
 
-export interface SliderProps extends SliderControlsProps<number>, InputDOMProps {
+export interface SliderProps
+  extends SliderControlsProps<number>,
+    InputDOMProps {
   css?: unknown
   tooltip?: boolean
 }
@@ -60,15 +62,18 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         {...baseProps}
         ref={ref as unknown as FocusableRef<HTMLDivElement>}
       >
-        {({ trackRef, inputRef, state }: SliderControlsChildArguments) => {
+        {({trackRef, inputRef, state}: SliderControlsChildArguments) => {
           return (
             <>
               <div
                 className={upperTrackClasses}
                 style={
                   orientation === 'horizontal'
-                    ? { width: `${state.getThumbPercent(0) * 100}%` }
-                    : { height: `${(1 - state.getThumbPercent(0)) * 100}%`, backgroundColor: 'transparent' }
+                    ? {width: `${state.getThumbPercent(0) * 100}%`}
+                    : {
+                        height: `${(1 - state.getThumbPercent(0)) * 100}%`,
+                        backgroundColor: 'transparent',
+                      }
                 }
               />
               <SliderThumb
@@ -83,8 +88,11 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
                 className={lowerTrackClasses}
                 style={
                   orientation === 'horizontal'
-                    ? { width: `${(1 - state.getThumbPercent(0)) * 100}%`, backgroundColor: 'transparent' }
-                    : { height: `${state.getThumbPercent(0) * 100}%` }
+                    ? {
+                        width: `${(1 - state.getThumbPercent(0)) * 100}%`,
+                        backgroundColor: 'transparent',
+                      }
+                    : {height: `${state.getThumbPercent(0) * 100}%`}
                 }
               />
             </>

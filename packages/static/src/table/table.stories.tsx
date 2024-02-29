@@ -8,8 +8,8 @@ import {
   faPencil,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
-import { Meta } from '@storybook/react'
-import React, { Key, MouseEvent, TouchEvent, useState } from 'react'
+import {Meta} from '@storybook/react'
+import React, {Key, MouseEvent, TouchEvent, useState} from 'react'
 import Table, {
   TableCellContext,
   TableColumnDef,
@@ -35,7 +35,7 @@ import {
   makeData,
   makeRequestStatusData,
 } from './makeData'
-import { OptionType } from './table'
+import {OptionType} from './table'
 import ProgressPercentage from './table-progress'
 export const Basic: React.FC = () => {
   const [page, setPage] = useState(1)
@@ -65,7 +65,7 @@ export const Basic: React.FC = () => {
     () => [
       {
         id: 'select',
-        header: ({ table }) => {
+        header: ({table}) => {
           return (
             <div
               style={{
@@ -82,7 +82,7 @@ export const Basic: React.FC = () => {
             </div>
           )
         },
-        cell: ({ row }) => (
+        cell: ({row}) => (
           <div
             style={{
               display: 'flex',
@@ -101,7 +101,7 @@ export const Basic: React.FC = () => {
       },
       {
         id: 'name',
-        header: () => <div style={{ textAlign: 'center' }}>Name</div>,
+        header: () => <div style={{textAlign: 'center'}}>Name</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -144,7 +144,7 @@ export const Basic: React.FC = () => {
       },
       {
         id: 'otherInfo',
-        header: () => <div style={{ textAlign: 'center' }}>Other info</div>,
+        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -270,7 +270,7 @@ export const ExpandableRow: React.FC = () => {
       {
         id: 'expander',
         size: 40,
-        header: ({ table }: TableHeaderContext<LimitRequestStatus, unknown>) => (
+        header: ({table}: TableHeaderContext<LimitRequestStatus, unknown>) => (
           <span
             onClick={table.getToggleAllRowsExpandedHandler()}
             style={{
@@ -288,7 +288,7 @@ export const ExpandableRow: React.FC = () => {
             )}
           </span>
         ),
-        cell: ({ row }: TableCellContext<LimitRequestStatus, unknown>) => (
+        cell: ({row}: TableCellContext<LimitRequestStatus, unknown>) => (
           <span
             onClick={() => row.toggleExpanded()}
             style={{
@@ -310,7 +310,7 @@ export const ExpandableRow: React.FC = () => {
       {
         id: 'accountName',
         accessorKey: 'accountName',
-        header: () => <div style={{ textAlign: 'center' }}>Account Name</div>,
+        header: () => <div style={{textAlign: 'center'}}>Account Name</div>,
         footer: (props: TableHeaderContext<LimitRequestStatus, unknown>) =>
           props.column.id,
       },
@@ -318,7 +318,7 @@ export const ExpandableRow: React.FC = () => {
         id: 'code',
         accessorKey: 'code',
 
-        header: () => <div style={{ textAlign: 'center' }}>Code</div>,
+        header: () => <div style={{textAlign: 'center'}}>Code</div>,
         footer: (props: TableHeaderContext<LimitRequestStatus, unknown>) =>
           props.column.id,
       },
@@ -327,7 +327,7 @@ export const ExpandableRow: React.FC = () => {
         accessorKey: 'requestLimit',
 
         header: () => (
-          <div style={{ textAlign: 'center' }}>New Request Limit</div>
+          <div style={{textAlign: 'center'}}>New Request Limit</div>
         ),
         footer: (props: TableHeaderContext<LimitRequestStatus, unknown>) =>
           props.column.id,
@@ -337,7 +337,7 @@ export const ExpandableRow: React.FC = () => {
         size: 280,
 
         accessorKey: 'status',
-        header: () => <div style={{ textAlign: 'center' }}>Status</div>,
+        header: () => <div style={{textAlign: 'center'}}>Status</div>,
         footer: (props: TableHeaderContext<LimitRequestStatus, unknown>) =>
           props.column.id,
       },
@@ -361,8 +361,8 @@ export const ExpandableRow: React.FC = () => {
         {rowData.progress?.map((processItem) => {
           return (
             <>
-              <p style={{ fontSize: '12px' }}>{processItem.remarks}</p>
-              <p style={{ fontSize: '11px', fontWeight: 200, color: '#878787' }}>
+              <p style={{fontSize: '12px'}}>{processItem.remarks}</p>
+              <p style={{fontSize: '11px', fontWeight: 200, color: '#878787'}}>
                 {processItem.createdAt.toDateString()}
               </p>
               {/* <Divider /> */}
@@ -394,8 +394,8 @@ export const ExpandableRow: React.FC = () => {
             justifyContent: 'space-between',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <span style={{ width: 250 }}>Rows per page: </span>
+          <div style={{display: 'flex', alignItems: 'center'}}>
+            <span style={{width: 250}}>Rows per page: </span>
             <Dropdown.Select defaultSelectedKey='10'>
               <Dropdown.Item key='10'>10 rows</Dropdown.Item>
               <Dropdown.Item key='20'>20 rows</Dropdown.Item>
@@ -438,8 +438,8 @@ export const EmptyState: React.FC = () => {
     columnResizeMode: 'onChange',
     manualSorting: false,
     initialSortBy: [
-      { id: 'firstName', desc: true },
-      { id: 'lastName', desc: false },
+      {id: 'firstName', desc: true},
+      {id: 'lastName', desc: false},
     ],
   }
 
@@ -447,7 +447,7 @@ export const EmptyState: React.FC = () => {
     () => [
       {
         id: 'select',
-        header: ({ table }) => {
+        header: ({table}) => {
           return (
             <div
               style={{
@@ -467,7 +467,7 @@ export const EmptyState: React.FC = () => {
           )
         },
         enableGrouping: false,
-        cell: ({ row }) => (
+        cell: ({row}) => (
           <div
             style={{
               display: 'flex',
@@ -488,7 +488,7 @@ export const EmptyState: React.FC = () => {
       },
       {
         id: 'name',
-        header: () => <div style={{ textAlign: 'center' }}>Name</div>,
+        header: () => <div style={{textAlign: 'center'}}>Name</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -511,7 +511,7 @@ export const EmptyState: React.FC = () => {
       },
       {
         id: 'otherInfo',
-        header: () => <div style={{ textAlign: 'center' }}>Other info</div>,
+        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -628,8 +628,8 @@ export const Loading: React.FC = () => {
     columnResizeMode: 'onChange',
     manualSorting: false,
     initialSortBy: [
-      { id: 'firstName', desc: true },
-      { id: 'lastName', desc: false },
+      {id: 'firstName', desc: true},
+      {id: 'lastName', desc: false},
     ],
   }
 
@@ -637,7 +637,7 @@ export const Loading: React.FC = () => {
     () => [
       {
         id: 'select',
-        header: ({ table }) => {
+        header: ({table}) => {
           return (
             <div
               style={{
@@ -657,7 +657,7 @@ export const Loading: React.FC = () => {
           )
         },
         enableGrouping: false,
-        cell: ({ row }) => (
+        cell: ({row}) => (
           <div
             style={{
               display: 'flex',
@@ -678,7 +678,7 @@ export const Loading: React.FC = () => {
       },
       {
         id: 'name',
-        header: () => <div style={{ textAlign: 'center' }}>Name</div>,
+        header: () => <div style={{textAlign: 'center'}}>Name</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -701,7 +701,7 @@ export const Loading: React.FC = () => {
       },
       {
         id: 'otherInfo',
-        header: () => <div style={{ textAlign: 'center' }}>Other info</div>,
+        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -834,9 +834,9 @@ export const EditableTemplateCell: React.FC = () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onSorting = () => { }
+  const onSorting = () => {}
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onChangeRowSelection = () => { }
+  const onChangeRowSelection = () => {}
 
   const columns = React.useMemo<Array<TableColumnDef<Person>>>(
     () => [
@@ -1035,7 +1035,7 @@ const PersonTemplateCell = () => {
         md={2}
         lg={2}
         xl={2}
-        css={{ display: 'flex', justifyContent: 'center', gap: 5 }}
+        css={{display: 'flex', justifyContent: 'center', gap: 5}}
       >
         <Button onClick={handleConfirm} size='sm'>
           <Icon icon={faCheck} />
@@ -1080,8 +1080,8 @@ export const DataGrid: React.FC = () => {
     columnResizeMode: 'onChange',
     manualSorting: false,
     initialSortBy: [
-      { id: 'firstName', desc: true },
-      { id: 'lastName', desc: false },
+      {id: 'firstName', desc: true},
+      {id: 'lastName', desc: false},
     ],
   }
 
@@ -1096,7 +1096,7 @@ export const DataGrid: React.FC = () => {
     () => [
       {
         id: 'select',
-        header: ({ table }) => {
+        header: ({table}) => {
           return (
             <div
               style={{
@@ -1116,7 +1116,7 @@ export const DataGrid: React.FC = () => {
           )
         },
         enableGrouping: false,
-        cell: ({ row }) => (
+        cell: ({row}) => (
           <div
             style={{
               display: 'flex',
@@ -1137,7 +1137,7 @@ export const DataGrid: React.FC = () => {
       },
       {
         id: 'name',
-        header: () => <div style={{ textAlign: 'center' }}>Name</div>,
+        header: () => <div style={{textAlign: 'center'}}>Name</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -1160,7 +1160,7 @@ export const DataGrid: React.FC = () => {
       },
       {
         id: 'otherInfo',
-        header: () => <div style={{ textAlign: 'center' }}>Other info</div>,
+        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [

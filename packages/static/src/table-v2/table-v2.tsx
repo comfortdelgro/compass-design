@@ -12,10 +12,10 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import Progress from '../progress'
-import { pickChild } from '../utils/pick-child'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {pickChild} from '../utils/pick-child'
+import {useDOMRef} from '../utils/use-dom-ref'
 
 import ExpandableRow from '../table/expandable/expandable-row'
 import LoadingComponent from '../table/loading/loading-component'
@@ -24,7 +24,7 @@ import TableCell from '../table/table-cell'
 import TableColumnHeader from '../table/table-column-header'
 import TableFooter from '../table/table-footer'
 import TableHeaderRow from '../table/table-header-row'
-import { NoDataComponent } from '../table/table-nodata'
+import {NoDataComponent} from '../table/table-nodata'
 import TableRow from '../table/table-row'
 import TableToolbar from '../table/table-toolbar'
 import CssInjection from '../utils/objectToCss/CssInjection'
@@ -87,11 +87,11 @@ const TableV2 = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     ...htmlProps
   } = props
 
-  const { child: toolbar, rest: childrenWithoutToolbar } = pickChild<
+  const {child: toolbar, rest: childrenWithoutToolbar} = pickChild<
     typeof TableToolbar
   >(children, TableToolbar)
 
-  const { child: footer } = pickChild<typeof TableFooter>(
+  const {child: footer} = pickChild<typeof TableFooter>(
     childrenWithoutToolbar,
     TableFooter,
   )

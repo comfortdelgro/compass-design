@@ -132,10 +132,10 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   }, [onChangeRowSelection, rowSelection, table])
 
   useEffect(() => {
-    if(options.resetSelectionWhenDataChanged) {
+    if (options.resetSelectionWhenDataChanged) {
       table.toggleAllRowsSelected(false)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options.resetSelectionWhenDataChanged, table, JSON.stringify(data)])
 
   useEffect(() => {
