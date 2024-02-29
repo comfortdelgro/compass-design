@@ -1,7 +1,7 @@
 import React, {ReactNode, RefObject, useRef} from 'react'
 import {
-  SliderBaseProps,
   FocusableRef,
+  SliderBaseProps,
   SliderState,
   ValueBase,
 } from '../utils/types'
@@ -24,7 +24,10 @@ export interface SliderControlsProps<T = number[]>
   children?: (opts: SliderControlsChildArguments) => ReactNode
 }
 
-function SliderControls(props: SliderControlsProps, ref: FocusableRef<HTMLDivElement>) {
+function SliderControls(
+  props: SliderControlsProps,
+  ref: FocusableRef<HTMLDivElement>,
+) {
   const {
     children,
     minValue = 0,

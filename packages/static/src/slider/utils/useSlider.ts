@@ -1,9 +1,9 @@
 import React, {RefObject, useRef} from 'react'
+import mergeProps from '../../utils/mergeProps'
 import {clamp} from './number'
-import {SliderBaseProps, DOMAttributes, SliderState} from './types'
+import {DOMAttributes, SliderBaseProps, SliderState} from './types'
 import {useGlobalListeners} from './useGlobalListeners'
 import {useMove} from './useMove'
-import mergeProps from '../../utils/mergeProps'
 
 export interface SliderAria {
   trackProps: DOMAttributes
