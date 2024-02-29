@@ -155,7 +155,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       } else {
         setSelectedDropdownValue(cloneDeep(EMPTY_DISPLAY_TIME_DROPDOWN_LIST))
       }
-    }, [value, defaultValue])
+    }, [value, defaultValue, splittedTimeFormat])
 
     const handleItemClick = useCallback(
       (value: TimePickerDropdownSelectedDisplayList) => {
@@ -176,10 +176,10 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           onTimeChange && onTimeChange(dataValue)
         }
       },
-      [hasFooter, formatTime, isUncontrolledComponent, onTimeChange],
+      [formatTime, isUncontrolledComponent, onTimeChange],
     )
 
-    const resetToMinTime = () => {
+    const resetToMinTime = useCallback(() => {
       const {hour, minute, second, session} = splittedTimeFormat
       const minTimeDropdown = {
         hour: minTime.substring(hour.start, hour.end),
@@ -243,39 +243,54 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         setSelectedDropdownValue(newSelectedDropdownValue)
         onTimeChange && onTimeChange(dataValue)
       }
-    }
+    }, [
+      formatTime,
+      isUncontrolledComponent,
+      minTime,
+      minTimeDropdownValue.hour,
+      minTimeDropdownValue.minute,
+      minTimeDropdownValue.second,
+      minTimeDropdownValue.session,
+      onTimeChange,
+      selectedDropdownValue,
+      splittedTimeFormat,
+    ])
 
     /**
      * Emits when clicking outside popover or blur input
      * @param isClosePopover boolean
      */
-    const handlePopoverClose =
+    const handlePopoverClose = useCallback(
       (isClosePopover = false) =>
-      (event?: React.FocusEvent<HTMLInputElement>) => {
-        // Prevent to call action when close popup and click outside
-        if (!isOpen && isClosePopover) return
-        event?.preventDefault()
-        event?.stopPropagation()
-        // Reset for empty value input
-        if (
-          !timePickerInputRef.current?.value ||
-          timePickerInputRef.current?.value === formatTime
-        ) {
-          if (timePickerInputRef.current) {
-            timePickerInputRef.current.value = ''
+        (event?: React.FocusEvent<HTMLInputElement>) => {
+          // Prevent to call action when close popup and click outside
+          if (!isOpen && isClosePopover) return
+          event?.preventDefault()
+          event?.stopPropagation()
+          // Reset for empty value input
+          if (
+            !timePickerInputRef.current?.value ||
+            timePickerInputRef.current?.value === formatTime
+          ) {
+            if (timePickerInputRef.current) {
+              timePickerInputRef.current.value = ''
+            }
+            setSelectedDropdownValue(
+              cloneDeep(EMPTY_DISPLAY_TIME_DROPDOWN_LIST),
+            )
+          } else {
+            resetToMinTime()
           }
-          setSelectedDropdownValue(cloneDeep(EMPTY_DISPLAY_TIME_DROPDOWN_LIST))
-        } else {
-          resetToMinTime()
-        }
-        // Close popover when click outside
-        if (isClosePopover) {
-          setIsOpen(false)
-          onOpenChange?.(false)
-        }
-        // Clear selection position of input
-        setSelectedSelectionInput(cloneDeep(EMPTY_TIME_PICKER_FORMAT))
-      }
+          // Close popover when click outside
+          if (isClosePopover) {
+            setIsOpen(false)
+            onOpenChange?.(false)
+          }
+          // Clear selection position of input
+          setSelectedSelectionInput(cloneDeep(EMPTY_TIME_PICKER_FORMAT))
+        },
+      [formatTime, isOpen, onOpenChange, resetToMinTime],
+    )
 
     const handleFocusInput = (event: React.FocusEvent<HTMLInputElement>) => {
       event.preventDefault()
@@ -697,7 +712,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             direction='bottom-left'
             offset={8}
             isOpen={isOpen}
-            onClose={handlePopoverClose(true)}
+            onOutsidePress={handlePopoverClose(true)}
           >
             <TimePickerDropdown
               isUncontrolledComponent={isUncontrolledComponent}
