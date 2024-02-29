@@ -153,7 +153,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const click = useClick(context)
   const dismiss = useDismiss(context, {
     outsidePress: () => {
-      onOutsidePress()
+      onOutsidePress?.()
       return allowOutsidePress
     },
   })
