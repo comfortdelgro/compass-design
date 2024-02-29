@@ -1,43 +1,66 @@
 import {Meta} from '@storybook/react'
-import React from 'react'
-import Slider from './slider'
-import classes from './styles/slider-stories.module.css'
+import React, {CSSProperties} from 'react'
+import {Slider} from '..'
 
-export const Default: React.FC = () => {
+const styles: CSSProperties = {
+  gap: 32,
+  padding: 32,
+  display: 'flex',
+  flexDirection: 'column',
+}
+
+export const UnControlled: React.FC = () => {
   return (
-    <div className={classes.sliderStories}>
-      <h4>Default</h4>
-      <div className={classes.showCase}>
-        <Slider />
-      </div>
+    <div style={styles}>
+      <Slider defaultValue={25} tooltip={false} />
+      <Slider.Range defaultValue={{start: 12, end: 36}} />
+    </div>
+  )
+}
 
-      <h4>Value and step</h4>
-      <div className={classes.showCase}>
-        <Slider
-          step={5}
-          defaultValue={50}
-          minValue={-20}
-          maxValue={120}
-          onChange={(val) => console.log(val)}
-          onChangeEnd={(val) => console.log('onChangeEnd', val)}
+export const Controlled: React.FC = () => {
+  const [value, setValue] = React.useState(25)
+  const [value2, setValue2] = React.useState({start: 12, end: 36})
+  return (
+    <div style={styles}>
+      <Slider value={value} onChange={setValue} />
+      <Slider.Range value={value2} onChange={setValue2} />
+    </div>
+  )
+}
+
+export const Orientation: React.FC = () => {
+  return (
+    <div style={{...styles, flexDirection: 'row'}}>
+      <div style={{height: 300, width: 30}}>
+        <Slider defaultValue={25} orientation='vertical' />
+      </div>
+      <div style={{height: 300, width: 30}}>
+        <Slider.Range
+          defaultValue={{start: 12, end: 36}}
+          orientation='vertical'
         />
-      </div>
-
-      <h4>Disabled</h4>
-      <div className={classes.showCase}>
-        <Slider isDisabled />
       </div>
     </div>
   )
 }
 
+export const Disabled: React.FC = () => {
+  return (
+    <div style={styles}>
+      <Slider defaultValue={25} isDisabled />
+      <Slider.Range defaultValue={{start: 12, end: 36}} isDisabled />
+    </div>
+  )
+}
+
 const meta = {
-  title: 'Example/Slider',
-  component: Default,
+  title: 'Slider',
+  component: UnControlled,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof Default>
+} satisfies Meta<typeof UnControlled>
 
 export default meta

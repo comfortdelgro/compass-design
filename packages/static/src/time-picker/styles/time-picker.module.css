@@ -86,4 +86,11 @@
     font-size: var(--cdg-font-size-body3);
     line-height: var(--cdg-spacing-5_25);
   }
+
+  /* Responsive gap for mobile */
+  @media (max-width: 768px) {
+    .timePickerDropdownControl {
+      overflow-y: auto;
+    }
+  }
 }

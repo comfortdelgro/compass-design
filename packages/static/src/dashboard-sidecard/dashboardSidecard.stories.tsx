@@ -1,36 +1,24 @@
 import {Meta} from '@storybook/react'
 import React from 'react'
-import Box from '../box'
 import Button from '../button'
+import Card from '../card'
 import SearchField from '../searchfield'
 import DashboardSidecard from './index'
 
+const lorem = ` Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste
+  corrupti esse qui earum dolorum nulla assumenda excepturi, a
+  quibusdam rem eligendi vero hic, doloremque nam deserunt,
+  consequuntur aut atque eveniet.
+  `
+
 export const Default: React.FC = () => {
-  const Card = (
-    <Box
-      css={{
-        backgroundColor: '$background',
-        color: '$primaryText',
-        borderRadius: '8px',
-        width: '100%',
-        height: '11rem',
-        padding: '1rem',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-    >
-      <div style={{fontWeight: '500', fontSize: '1.2em'}}>Title</div>
-      <div
-        style={{
-          fontSize: '0.8em',
-          textAlign: 'justify',
-        }}
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo hic quae,
-        adipisci tempore minus beatae itaque tenetur.
-      </div>
-    </Box>
+  const CustomCard = (
+    <Card size='lg'>
+      <Card.Body>
+        <Card.Title>Card title</Card.Title>
+        <p style={{margin: 0}}>{lorem.slice(0, lorem.length / 2)}</p>
+      </Card.Body>
+    </Card>
   )
   return (
     <div>
@@ -38,8 +26,8 @@ export const Default: React.FC = () => {
       <DashboardSidecard>
         <DashboardSidecard.Header>My header</DashboardSidecard.Header>
         <DashboardSidecard.Content>
-          {Card}
-          {Card}
+          {CustomCard}
+          {CustomCard}
           <SearchField />
           <div
             style={{

@@ -1,4 +1,4 @@
-import React, {Key, useContext, useEffect, useMemo} from 'react'
+import React, {useContext, useEffect, useMemo} from 'react'
 import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
@@ -35,7 +35,7 @@ interface Props extends StyledComponentProps {
   type?: 'icon' | 'color'
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
-  value?: Key
+  value?: string | number
   textValue?: React.ReactNode
   checkmark?: 'none' | 'checkbox' | 'tick'
   flagName?: string

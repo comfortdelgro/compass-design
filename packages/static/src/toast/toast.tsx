@@ -20,6 +20,7 @@ interface Props {
   portalTo?: HTMLElement
   isOpen?: boolean
   isItemContainer?: boolean
+  withHeader?: boolean
   handleClose?: () => void
   autoClose?: false | number
   anchorOrigin?: Anchor
@@ -40,6 +41,7 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     //Component props
     portalTo,
     isOpen = false,
+    withHeader = false,
     handleClose,
     autoClose = false,
     isItemContainer = false,
@@ -101,6 +103,7 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     return [
       styles.toast,
       color && styles[color],
+      withHeader && styles.toastWithHeader,
       isItemContainer && styles.isItemContainer,
       anchorOrigin.vertical === 'top' ? styles.verticalTop : false,
       anchorOrigin.vertical === 'bottom' ? styles.verticalBottom : false,
@@ -116,13 +119,27 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
     ]
       .filter(Boolean)
       .join(' ')
-  }, [
-    anchorOrigin.horizontal,
-    anchorOrigin.vertical,
-    className,
-    color,
-    isItemContainer,
-  ])
+  }, [anchorOrigin.horizontal, anchorOrigin.vertical, className, color, isItemContainer, withHeader])
+
+  const headerClasses = useMemo(() => {
+    return [
+      styles.toastHeader,
+      withHeader && styles.headerWithHeader,
+      'cdg-toast-header',
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [withHeader])
+
+  const bodyClasses = useMemo(() => {
+    return [
+      styles.body,
+      withHeader && styles.bodyWithHeader,
+      'cdg-toast-body',
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [withHeader])
 
   return (
     <>
@@ -130,12 +147,12 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
         renderContent(
           <CssInjection css={css} childrenRef={toastRef}>
             <div ref={toastRef} className={toastClasses} {...delegated}>
-              <div className={`${styles.toastHeader}`}>
-                <div className={`${styles.toastHeaderLeft}`}>
+              <div className={headerClasses}>
+                <div className={`${styles.toastHeaderLeft} cdg-toast-header-left`}>
                   {ToastIconElement}
                   {ToastTitleElement}
                 </div>
-                <div className={`${styles.toastHeaderRight}`}>
+                <div className={`${styles.toastHeaderRight} cdg-toast-header-right`}>
                   {ToastLabelElement}
                   {ToastCloseIconElement &&
                     React.cloneElement(
@@ -146,8 +163,10 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
                     )}
                 </div>
               </div>
-              {ToastMessagelement}
-              {ToastActionsElement}
+              <div className={bodyClasses}>
+                {ToastMessagelement}
+                {ToastActionsElement}
+              </div>
             </div>
           </CssInjection>,
         )}

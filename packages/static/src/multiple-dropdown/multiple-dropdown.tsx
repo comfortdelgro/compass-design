@@ -119,6 +119,7 @@ const MultipleDropdown = React.forwardRef<
     erroredValues,
     noDataMessage = '',
     isLoadingMore = false,
+    className = '',
     onLoadMore = () => {
       //Load more
     },
@@ -586,20 +587,20 @@ const MultipleDropdown = React.forwardRef<
   }, [isDisabled, isErrored, open])
 
   const dropdownWrapperClassName = useMemo(() => {
-    let className = `cdg-multiple-dropdown-wrapper ${styles.multipleDropdownWrapper}`
+    let dropdownWrapperName = `cdg-multiple-dropdown-wrapper ${className} ${styles.multipleDropdownWrapper}`
     if (displayedValue === 'string') {
-      className += ` ${styles.displayedValueString}`
+      dropdownWrapperName += ` ${styles.displayedValueString}`
     } else if (displayedValue === 'chip') {
-      className += ` ${styles.displayedValueChip}`
+      dropdownWrapperName += ` ${styles.displayedValueChip}`
     }
     if (variant === 'select') {
-      className += ` ${styles.variantSelect}`
+      dropdownWrapperName += ` ${styles.variantSelect}`
     } else if (variant === 'combobox') {
-      className += ` ${styles.variantCombobox}`
+      dropdownWrapperName += ` ${styles.variantCombobox}`
     }
 
-    return className
-  }, [displayedValue, variant])
+    return dropdownWrapperName
+  }, [className, displayedValue, variant])
 
   return (
     <CssInjection css={css} childrenRef={refDOM}>

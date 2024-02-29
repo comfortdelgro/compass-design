@@ -14,11 +14,16 @@
     border-radius: var(--cdg-border-radius-md);
     font-weight: var(--cdg-font-weight-semibold);
     background-color: var(--cdg-color-primaryBg);
+    color: var(--cdg-color-primaryText);
   }
 
-  .item:hover {
+  .itemHover:hover {
     color: var(--cdg-color-black);
     background-color: var(--cdg-color-darkerBg);
+  }
+
+  .itemHover:hover .itemButton {
+    color: var(--cdg-color-black);
   }
 
   .itemSvg {
@@ -47,6 +52,7 @@
     width: var(--cdg-spacing-4);
     height: var(--cdg-spacing-4);
     background-color: transparent;
+    color: var(--cdg-color-primaryText);
   }
 }
 

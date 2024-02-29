@@ -1,5 +1,5 @@
 import {isEmpty} from 'lodash'
-import React, {Key} from 'react'
+import React from 'react'
 import {pickChild} from '../utils/pick-child'
 import {DropdownItemKey} from './dropdown-context'
 import {DropdownItemProps} from './dropdown-item'
@@ -29,8 +29,8 @@ export function textContent(
 
 const findItemByValue = (
   items: Array<React.ReactElement<DropdownItemProps>>,
-  value: Key,
-  disabledKeys: Key[] = [],
+  value: string | number,
+  disabledKeys: string[] | number[] = [],
 ): React.ReactElement<DropdownItemProps> | null => {
   for (let index = 0; index < items.length; index++) {
     const item = items[index]
@@ -41,7 +41,7 @@ const findItemByValue = (
         ''
       if (
         itemKey.toString() === value.toString() &&
-        !disabledKeys?.includes(itemKey.toString())
+        !disabledKeys?.find((item) => item === itemKey.toString())
       ) {
         return item
       }
@@ -68,7 +68,7 @@ const findItemByValue = (
  * @param dropdownItemKeys All keys of Dropdown.Item elements
  */
 export const getItemAbove = (
-  key: Key,
+  key: string | number,
   children?: React.ReactNode,
   dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
@@ -106,7 +106,7 @@ export const getItemAbove = (
  * @param dropdownItemKeys All keys of Dropdown.Item elements
  */
 export const getItemBelow = (
-  key: Key,
+  key: string | number,
   children?: React.ReactNode,
   dropdownItemKeys: DropdownItemKey[] = [],
 ) => {
@@ -190,7 +190,10 @@ export const getLastItem = (
  * @param key current key
  * @param children All Dropdown.Item elements
  */
-export const getItemByKey = (key: Key, children?: React.ReactNode) => {
+export const getItemByKey = (
+  key: string | number,
+  children?: React.ReactNode,
+) => {
   // Pick Dropdown.Item in children except for DropdownHeader
   const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
     children,
@@ -222,10 +225,10 @@ export const getDistanceBetweenElements = (
 }
 
 export function getDefaulValue(
-  defaulValue: React.Key | undefined,
-  value: React.Key | undefined,
+  defaulValue: string | number | undefined,
+  value: string | number | undefined,
   disableDefault?: boolean,
-): React.Key | undefined {
+): string | number | undefined {
   let res = undefined
   if (
     defaulValue !== undefined &&
@@ -243,35 +246,35 @@ export function getDefaulValue(
 }
 
 export interface KeyboardDelegate {
-  getKeyBelow?(key: Key): Key | null
-  getKeyAbove?(key: Key): Key | null
-  getFirstKey?(key?: Key, global?: boolean): Key | null
-  getLastKey?(key?: Key, global?: boolean): Key | null
+  getKeyBelow?(key: string | number): string | number | null
+  getKeyAbove?(key: string | number): string | number | null
+  getFirstKey?(key?: string | number, global?: boolean): string | number | null
+  getLastKey?(key?: string | number, global?: boolean): string | number | null
 }
 
 export class ListKeyboardDelegate implements KeyboardDelegate {
   private collection: Array<
     React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
   >
-  private disabledKeys: Iterable<React.Key>
+  private disabledKeys: Iterable<string | number>
 
   constructor(
     collection: Array<
       React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
     >,
-    disabledKeys: Iterable<React.Key>,
+    disabledKeys: Iterable<string | number>,
   ) {
     this.collection = collection
     this.disabledKeys = disabledKeys
   }
 
-  getKeyIndex = (key: Key) => {
+  getKeyIndex = (key: string | number) => {
     const index = this.collection.findIndex((item) => item.key === key)
     if (index !== -1) return index
     return null
   }
 
-  private getKeyAfter = (key: Key) => {
+  private getKeyAfter = (key: string | number) => {
     const currentKeyIndex = this.getKeyIndex(key)
     if (currentKeyIndex === null) return null
     const nextKey = this.collection[currentKeyIndex + 1]?.key
@@ -279,7 +282,7 @@ export class ListKeyboardDelegate implements KeyboardDelegate {
     return null
   }
 
-  private getKeyBefore = (key: Key) => {
+  private getKeyBefore = (key: string | number) => {
     const currentKeyIndex = this.getKeyIndex(key)
     if (currentKeyIndex === null) return null
     const nextKey = this.collection[currentKeyIndex - 1]?.key
@@ -287,7 +290,7 @@ export class ListKeyboardDelegate implements KeyboardDelegate {
     return null
   }
 
-  getKeyBelow(key: Key) {
+  getKeyBelow(key: string | number) {
     let nextKey = this.getKeyAfter(key)
     while (nextKey != null) {
       if (![...this.disabledKeys].includes(nextKey)) {
@@ -298,7 +301,7 @@ export class ListKeyboardDelegate implements KeyboardDelegate {
     return null
   }
 
-  getKeyAbove(key: Key) {
+  getKeyAbove(key: string | number) {
     let prevKey = this.getKeyBefore(key)
     while (prevKey != null) {
       if (![...this.disabledKeys].includes(prevKey)) {

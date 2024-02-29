@@ -1,0 +1,132 @@
+/* Importing the theme module */
+@import '../../theme/theme.module.css';
+
+.naturalDrawerWrapper {
+  max-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  pointer-events: painted;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.naturalDrawerWrapper.bottomSheet {
+  position: absolute;
+  inset: 0;
+}
+
+.naturalDrawerWrapper.fullscreen,
+.bottomSheet {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  pointer-events: painted;
+  scroll-snap-type: y mandatory;
+  z-index: 10;
+  scrollbar-width: none;
+}
+
+.bottomSheet::-webkit-scrollbar,
+.naturalDrawerWrapper::-webkit-scrollbar {
+  width: 0px;
+  display: none;
+}
+
+.naturalDrawerStop {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  flex-shrink: 0;
+}
+
+.naturalDrawerTopOffset {
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+  flex-shrink: 0;
+}
+
+.bottomSheetBody,
+.naturalDrawer {
+  max-height: 100dvh;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  background-color: var(--cdg-color-white);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+  /* scroll-snap-align: start; */
+  flex-shrink: 0;
+}
+
+.drawerOffsetTop {
+  background-color: transparent;
+}
+
+.drawerScroller,
+.naturalDrawerContent {
+  overflow: hidden;
+}
+
+.naturalDrawerWrapper.maximized .drawerScroller,
+.naturalDrawerWrapper.maximized .naturalDrawerContent {
+  overflow: auto;
+}
+
+.naturalDrawerDragger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.naturalDrawerHeader {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+}
+
+.naturalDrawerHeaderContent {
+  padding: 16px;
+}
+
+.fixedContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.naturalDrawerWrapper.fullscreen .fixedContent {
+  position: fixed;
+}
+
+.naturalDrawerHandle {
+  width: 40px;
+  height: 6px;
+  border-radius: 4px;
+  background-color: var(--cdg-color-grayShades20);
+  display: block;
+}
+
+.naturalBookingBottomSelect {
+  background-color: var(--cdg-color-white);
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border-top: 1px solid var(--cdg-color-grayShades20);
+}

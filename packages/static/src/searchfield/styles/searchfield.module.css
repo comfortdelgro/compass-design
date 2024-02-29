@@ -9,6 +9,7 @@
     padding: 0;
     border: 0;
     border-radius: var(--cdg-border-radius-md);
+    color: var(--cdg-color-primaryText);
     background-color: transparent;
   }
   
@@ -38,7 +39,7 @@
     border-color: var(--cdg-color-divider);
     border-radius: var(--cdg-border-radius-md);
     color: var(--cdg-color-typeHeading);
-    background-color: var(--cdg-color-whiteText);
+    background-color: var(--cdg-color-background);
     transition: var(--cdg-transition-default);
     min-width: var(--cdg-spacing-48);
     outline: none;

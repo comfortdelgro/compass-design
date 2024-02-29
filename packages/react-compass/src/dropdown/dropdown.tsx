@@ -1,12 +1,5 @@
 import {isEmpty} from 'lodash'
-import React, {
-  Key,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import Popover from '../popover'
 import {CSS, StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -41,10 +34,10 @@ import {
 
 interface Props extends StyledComponentProps {
   defaultOpen?: boolean
-  selectedKey?: Key
-  defaultSelectedKey?: Key
-  value?: Key
-  defaultValue?: Key
+  selectedKey?: string | number
+  defaultSelectedKey?: string | number
+  value?: string | number
+  defaultValue?: string | number
   shouldDeselect?: boolean
   allowsCustomValue?: boolean
   type?: 'select' | 'combobox'
@@ -61,8 +54,8 @@ interface Props extends StyledComponentProps {
   placeholder?: string
   errorMessage?: string
   numberOfRows?: number
-  disabledKeys?: Key[]
-  disabledValues?: Key[]
+  disabledKeys?: string[] | number[]
+  disabledValues?: string[] | number[]
   children?: React.ReactNode
   description?: React.ReactNode
   disableClearable?: boolean
@@ -181,7 +174,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen)
   const [selectedItem, setSelectedItem] =
     React.useState<SelectedItemDropdown | null>(null)
-  const [focusKey, setFocusKey] = React.useState<Key | null>(null)
+  const [focusKey, setFocusKey] = React.useState<string | number | null>(null)
   const [searchValue, setSearchValue] = useState<string>('')
   const [dropdownItemKeys, setDropdownItemKeys] = useState<DropdownItemKey[]>(
     [],
@@ -366,8 +359,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                     focusedItem.props.children as React.ReactElement,
                   )
                 }
-                onSelectionChange?.(focusedItem?.props?.value as Key)
-                onValueChange?.(focusedItem?.props?.value as Key)
+                onSelectionChange?.(
+                  focusedItem?.props?.value as string | number,
+                )
+                onValueChange?.(focusedItem?.props?.value as string | number)
               }
             }
 

@@ -36,6 +36,8 @@ export interface Options<TData> {
   manualFiltering?: boolean
   columnResizeMode?: 'onChange' | 'onEnd'
   initialSortBy?: SortingState
+  debugTable?: boolean
+  resetSelectionWhenDataChanged?: boolean
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
 }
 
@@ -112,7 +114,6 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onRowSelectionChange: setRowSelection,
-    debugTable: true,
     data: data,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     columns: columns as ColumnDef<any, unknown>[],
@@ -129,6 +130,13 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     })
     onChangeRowSelection?.(selectedRowOriginals)
   }, [onChangeRowSelection, rowSelection, table])
+
+  useEffect(() => {
+    if(options.resetSelectionWhenDataChanged) {
+      table.toggleAllRowsSelected(false)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options.resetSelectionWhenDataChanged, table, JSON.stringify(data)])
 
   useEffect(() => {
     onManualSorting?.(sorting)
