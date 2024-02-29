@@ -1,5 +1,5 @@
 import Color from 'colorjs.io'
-import React, {Key, useContext, useEffect, useMemo} from 'react'
+import React, {useContext, useEffect, useMemo} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
 import {textContent} from './utils'
@@ -36,7 +36,7 @@ interface Props {
   type?: 'icon' | 'color'
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
-  value?: Key
+  value?: string | number
   textValue?: React.ReactNode
   checkmark?: 'none' | 'checkbox' | 'tick'
   flagName?: string

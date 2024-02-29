@@ -1,4 +1,4 @@
-import {createContext, Key, ReactNode} from 'react'
+import {createContext, ReactNode} from 'react'
 
 export interface SelectedItemDropdown {
   value: string
@@ -7,7 +7,7 @@ export interface SelectedItemDropdown {
 }
 
 export interface DropdownItemKey {
-  value: Key
+  value: string | number
   visibility: boolean
 }
 
@@ -16,11 +16,11 @@ export interface DropdownContextType {
   open: boolean
   isLoadingMore: boolean
   searchValue: string
-  disabledKeys?: Key[]
+  disabledKeys?: string[] | number[]
   selectedItem: SelectedItemDropdown | null
-  focusKey: Key | null
-  selectedKey?: Key
-  defaultSelectedKey?: Key
+  focusKey: string | number | null
+  selectedKey?: string | number
+  defaultSelectedKey?: string | number
   dropdownItemKeys?: DropdownItemKey[]
   labelId: string
   setDropdownItemKeys?: React.Dispatch<React.SetStateAction<DropdownItemKey[]>>

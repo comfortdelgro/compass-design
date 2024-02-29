@@ -120,7 +120,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     inputRef.current?.focus()
   }
 
-  React.useEffect(() => {
+  const resizing = React.useCallback(() => {
     if (collaspable && !isOpen) {
       calculateRemainingItems()
     } else {
@@ -132,18 +132,20 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   }, [elRefs, isOpen, collaspable, calculateRemainingItems])
 
   React.useEffect(() => {
+    resizing()
+  }, [resizing])
+
+  React.useEffect(() => {
     const element = bodyContentRef.current
     if (!element) return
     const observer = new ResizeObserver(() => {
-      if (!isOpen) {
-        calculateRemainingItems()
-      }
+      resizing()
     })
     observer.observe(element)
     return () => {
       observer.disconnect()
     }
-  }, [calculateRemainingItems, isOpen])
+  }, [resizing])
 
   const rootClass = React.useMemo(
     () => [styles.tabBox, 'cdg-tag-box', className].filter(Boolean).join(' '),

@@ -62,8 +62,10 @@ interface Props {
   anchor: React.ReactNode
   attachToElement?: HTMLElement | null // legacy. Will be deprecated in the future
   isOpen?: boolean
+  allowOutsidePress?: boolean
   onOpenChange?: (isOpen: boolean) => void
   onClose?: () => void
+  onOutsidePress?: () => void
   direction?: PopoverDirection
   offset?: OffsetValue
   shouldFlip?: boolean
@@ -90,6 +92,8 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     onOpenChange,
     onClose,
     onPositionedChange,
+    onOutsidePress,
+    allowOutsidePress = true,
     offset = undefined,
     shouldFlip = true,
     direction = 'bottom',
@@ -147,7 +151,12 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     handleClose: disableInteractive ? null : safePolygon(),
   })
   const click = useClick(context)
-  const dismiss = useDismiss(context)
+  const dismiss = useDismiss(context, {
+    outsidePress: () => {
+      onOutsidePress()
+      return allowOutsidePress
+    },
+  })
   // Role props for screen readers
   const role = useRole(context, {role: 'dialog'})
 

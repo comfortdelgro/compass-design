@@ -75,6 +75,7 @@
     width: var(--cdg-spacing-6);
     height: var(--cdg-spacing-6);
     margin-top: var(--cdg-spacing-1);
+    color: var(--cdg-color-primaryText);
   }
 
   .icon > svg {

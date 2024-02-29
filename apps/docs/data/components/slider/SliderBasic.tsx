@@ -4,10 +4,10 @@ function BasicExample() {
   return (
     <div style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
       <div style={{width: '100%'}}>
-        <Slider />
+        <Slider defaultValue={25} />
       </div>
       <div style={{width: '100%'}}>
-        <Slider value={20} onChangeEnd={(val) => console.log(val)} />
+        <Slider.Range defaultValue={{start: 12, end: 36}} />
       </div>
       <div style={{width: '100%'}}>
         <Slider isDisabled />

@@ -360,6 +360,12 @@ export const routes: TSideNavItem[] = [
           'The Modal component is a flexible and customizable modal/dialog that can be used in various use cases like confirmation dialogs, information popups, and more.',
       },
       {
+        title: 'Natural Drawer',
+        pathname: '/natural-drawer',
+        description:
+          'The new version of Drawer that using natural scrollbar to handle everything and have less logic.',
+      },
+      {
         title: 'OTP Input',
         pathname: '/otp-input',
         description: 'OTP Input component for inputting One-Time Passwords.',
