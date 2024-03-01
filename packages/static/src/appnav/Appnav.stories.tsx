@@ -17,20 +17,19 @@ export const FourSections = () => {
       <h3>Bottom app nav with four sections</h3>
       <div
         style={{
-          position: 'relative',
           width: 375,
           height: 500,
           backgroundColor: '#f4f4f4',
           border: '1px solid #f0f0f0',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'stretch',
         }}
       >
         <AppNav
           index={index}
           onChange={(newIndex) => {
             setIndex(newIndex)
-          }}
-          css={{
-            position: 'absolute',
           }}
         >
           <AppNav.Section
@@ -67,23 +66,22 @@ export const FiveSections = () => {
       <h3>Top app nav with five sections</h3>
       <div
         style={{
-          position: 'relative',
-          width: 375,
-          height: 500,
           backgroundColor: '#f4f4f4',
           border: '1px solid #f0f0f0',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'stretch',
         }}
       >
         <AppNav
+          className='sample-app-nav'
           index={index}
           onChange={(newIndex) => {
             setIndex(newIndex)
           }}
-          css={{
-            position: 'absolute',
-          }}
         >
           <AppNav.Section
+            className='sample-app-nav-section'
             activeIcon={<Home />}
             inactiveIcon={<Home />}
             label='Home'

@@ -1,5 +1,6 @@
 import React, {HTMLAttributes} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {AppNavSection, AppNavSectionProps} from './appnav-section'
 import styles from './styles/appnav.module.css'
@@ -22,23 +23,21 @@ const AppNav = React.forwardRef<HTMLDivElement, AppNavProps>((props, ref) => {
     position = 'bottom',
     css = {},
     children,
+    className,
     index: AppNavIndex,
     onChange: AppNavChange,
     ...delegated
   } = props
 
-  const rootClasses = [
-    styles.appNav,
-    styles[position],
-    'cdg-appnav',
-  ]
-    .filter(Boolean)
-    .join(' ')
-
   return (
     <CssInjection css={css} childrenRef={navBarRef}>
       <nav
-        className={rootClasses}
+        className={classNames(
+          styles.appNav,
+          styles[position],
+          'cdg-appnav',
+          className,
+        )}
         ref={navBarRef}
         {...delegated}
       >
