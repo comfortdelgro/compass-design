@@ -339,6 +339,8 @@ export const darkThemeColors = {
   checkbox: '#2B3041',
 }
 
+  checkbox: '#2B3041',
+}
 const theme = {
   colors: lightThemeColors,
   fonts,
