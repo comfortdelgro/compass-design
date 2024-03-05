@@ -3,7 +3,7 @@
 import React from 'react'
 import styles from '../styles/pagination.module.css'
 
-export type Props = React.HTMLAttributes<HTMLDivElement>
+export type ItemCountingProps = React.HTMLAttributes<HTMLDivElement>
 
 const ItemCounting: React.FC<{
   count: number

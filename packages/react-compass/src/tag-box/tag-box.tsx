@@ -43,6 +43,7 @@ interface Props {
 export type TagBoxProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
+// eslint-disable-next-line react-refresh/only-export-components
 const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   const {
     id,
@@ -279,4 +280,6 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   )
 })
 
-export default TagBox
+export default TagBox as typeof TagBox & {
+  Action: typeof TagBoxAction
+}
