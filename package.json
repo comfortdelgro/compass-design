@@ -13,7 +13,7 @@
     "dev": "turbo run dev --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "version": "changeset version && pnpm run format"
+    "version": "changeset version"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged"
