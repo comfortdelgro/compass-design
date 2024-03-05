@@ -7,7 +7,6 @@ import {
   getGroupedRowModel,
   getSortedRowModel,
   GroupingState,
-  Row,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
@@ -27,38 +26,8 @@ import TableHeaderRow from '../table/table-header-row'
 import {NoDataComponent} from '../table/table-nodata'
 import TableRow from '../table/table-row'
 import TableToolbar from '../table/table-toolbar'
+import {Props} from '../table/types'
 import CssInjection from '../utils/objectToCss/CssInjection'
-
-export interface Options<TData> {
-  enableSorting?: boolean
-  enableMultiSort?: boolean
-  manualSorting?: boolean
-  manualFiltering?: boolean
-  columnResizeMode?: 'onChange' | 'onEnd'
-  initialSortBy?: SortingState
-  debugTable?: boolean
-  resetSelectionWhenDataChanged?: boolean
-  enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
-}
-
-export type OptionType<TData> = Options<TData>
-
-export interface Props<T> {
-  data: unknown[]
-  columns: Array<ColumnDef<T>>
-  options: OptionType<T>
-  onManualSorting?: (sortingField: SortingState) => void
-  onManualFilter?: (filter: ColumnFiltersState) => void
-  onChangeRowSelection?: (selectionRows: T[]) => void
-  children: React.ReactNode
-  onUpdateData?: (newData: object) => void
-  renderRowSubComponent?: (row: T) => React.JSX.Element
-  isLoading?: boolean
-  loadingIndicator?: React.ReactNode
-  emptyComponent?: React.ReactNode
-  className?: string
-  css?: unknown
-}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TableProps<T = any> = Props<T> &
@@ -99,27 +68,24 @@ const TableV2 = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   const tableRef = useDOMRef<HTMLTableElement>(ref)
 
   const table = useReactTable({
+    data: data,
     state: {
       columnFilters,
       grouping,
       rowSelection,
       sorting: options.initialSortBy ? options.initialSortBy : sorting,
     },
-    onColumnFiltersChange: setColumnFilters,
-    onGroupingChange: setGrouping,
-    getExpandedRowModel: getExpandedRowModel(),
-    getGroupedRowModel: getGroupedRowModel(),
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onRowSelectionChange: setRowSelection,
-    debugTable: true,
-    data: data,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     columns: columns as ColumnDef<any, unknown>[],
     isMultiSortEvent: () => true,
-    //enable sorting
+    onSortingChange: setSorting,
+    onGroupingChange: setGrouping,
+    onRowSelectionChange: setRowSelection,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getGroupedRowModel: getGroupedRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     ...options,
   })
 
@@ -133,10 +99,10 @@ const TableV2 = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   }, [onChangeRowSelection, rowSelection, table])
 
   useEffect(() => {
-    if(options.resetSelectionWhenDataChanged) {
+    if (options.resetSelectionWhenDataChanged) {
       table.toggleAllRowsSelected(false)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options.resetSelectionWhenDataChanged, table, JSON.stringify(data)])
 
   useEffect(() => {
