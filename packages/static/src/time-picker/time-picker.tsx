@@ -101,8 +101,9 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         }
 
         if (
-          minTimeDropdown.session &&
-          minTimeDropdown.session === selectedDropdownValue.session
+          (minTimeDropdown.session &&
+            minTimeDropdown.session === selectedDropdownValue.session) ||
+          !minTimeDropdown.session
         ) {
           if (
             Number(selectedDropdownValue.hour) > Number(minTimeDropdown.hour)
