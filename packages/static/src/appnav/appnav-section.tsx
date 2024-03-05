@@ -2,6 +2,7 @@ import {isNil} from 'lodash'
 import React, {HTMLAttributes, useCallback} from 'react'
 import Badge from '../badge'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/appnav.module.css'
 
@@ -30,6 +31,7 @@ export const AppNavSection = React.forwardRef<
     activeIcon,
     hasBadge = false,
     onChange,
+    className,
     index,
     label,
     css = {},
@@ -43,20 +45,17 @@ export const AppNavSection = React.forwardRef<
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const rootClasses = [
-    styles.appNavSection,
-    isActive ? styles.isActive : styles.isInactive,
-    'cdg-appnav-section',
-  ]
-    .filter(Boolean)
-    .join(' ')
-
   return (
     <CssInjection css={css} childrenRef={itemRef}>
       <button
         type='button'
         ref={itemRef}
-        className={rootClasses}
+        className={classNames(
+          'cdg-appnav-section',
+          className,
+          styles.appNavSection,
+          isActive ? styles.isActive : styles.isInactive,
+        )}
         onClick={handleClick}
         tabIndex={0}
         {...delegated}
