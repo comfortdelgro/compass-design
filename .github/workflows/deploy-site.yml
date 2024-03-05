@@ -1,0 +1,51 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  deploy:
+    name: Deploy Website to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup Bot
+        run: |
+          git config --global user.email "services.shared@zig.live"
+          git config --global user.name "CDG Zig Bot"
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.9.2
+
+      - name: Setup NodeJS 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Build the libraries
+        run: pnpm run --filter=@comfortdelgro/react-compass --filter=@comfortdelgro/compass-icons build
+
+      - name: Build the website
+        run: |
+          BASE_PATH="/compass-design" pnpm run --filter=@comfortdelgro/compass-design-website build
+          pnpm run --filter=@comfortdelgro/react-compass build:ladle --base "/compass-design/ladle"
+          mv packages/react-compass/build apps/docs/out/ladle
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.CDG_BOT_GITHUB_TOKEN }}
+          publish_dir: ./apps/docs/out
