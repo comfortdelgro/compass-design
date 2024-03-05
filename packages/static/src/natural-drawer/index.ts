@@ -11,4 +11,6 @@ NaturalDrawer.Header = NaturalDrawerHeader
 NaturalDrawer.Content = NaturalDrawerContent
 NaturalDrawer.displayName = 'Drawer'
 
+export type {NaturalDrawerProps} from './types'
+
 export default NaturalDrawer
