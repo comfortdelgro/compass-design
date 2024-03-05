@@ -39,7 +39,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
     icon,
     image,
     // VariantProps
-    size = '',
+    size = 'md',
     className,
     // html attribute
     style,

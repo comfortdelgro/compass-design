@@ -8,6 +8,8 @@
     width: var(--cdg-spacing-10);
     height: var(--cdg-spacing-10);
     font-size: 300%;
+    flex-shrink: 0;
+    aspect-ratio: 1;
   }
 
   .avatarInner {
