@@ -74,121 +74,135 @@ const NaturalDrawerWrapper = forwardRef<HTMLDivElement, NaturalDrawerProps>(
       const parentHeight = wrapperRef.current?.clientHeight
       height = 100 - (defaultVisibleHeight * 100) / parentHeight + '%'
       return height
-    }, [defaultVisibleHeight, wrapperRef])
-
-    const getBackgroundOpacity = () => {
-      return (
-        ((wrapperRef?.current?.scrollTop +
-          (!fixedContent ? defaultVisibleHeight : 0)) /
-          wrapperRef?.current?.scrollHeight || 0) * 0.8
-      )
     }
+    const parentHeight = wrapperRef.current?.clientHeight
+    height = 100 - (defaultVisibleHeight * 100) / parentHeight + '%'
+    return height
+  }, [defaultVisibleHeight, wrapperRef])
 
-    const scrollTo = useCallback(
-      (top: number) => {
-        if (wrapperRef.current && contentRef && contentRef.current) {
-          wrapperRef.current.scrollTo({top: top, behavior: 'smooth'})
-        }
-      },
-      [wrapperRef],
-    )
-
-    const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-      const top = (event.target as HTMLElement).scrollTop
-      setLastTop(top)
-      if (top >= distance) {
-        onExpanded()
-      } else if (top === 0) {
-        onCollapsed()
-      }
-
-      if (showing && top <= 10) {
-        onReachBottom()
-      }
-
-      drawerScroll(event)
-    }
-
-    const expand = useCallback(() => {
-      scrollTo(contentRef?.current?.offsetTop || 0)
-      onExpanded()
-    }, [contentRef, onExpanded, scrollTo])
-
-    const collapse = useCallback(() => {
-      if (wrapperRef.current && contentRef && contentRef.current) {
-        scrollTo(0)
-        onCollapsed()
-      }
-    }, [onCollapsed, scrollTo, wrapperRef])
-
-    useEffect(() => {
-      expanded ? expand() : collapse()
-    }, [collapse, expand, expanded])
-
-    useEffect(() => {
-      if (
-        viewDidMount &&
-        spaceRef &&
-        spaceRef.current &&
-        type === 'bottomSheet'
-      ) {
-        scrollTo(spaceRef.current.offsetTop)
-        setTimeout(() => {
-          setShowing(true)
-          onExpanded()
-        }, SCROLL_COOLDOWN_TIME)
-      }
-
-      if (
-        viewDidMount &&
-        contentRef &&
-        contentRef.current &&
-        type === 'drawer'
-      ) {
-        contentRef.current.style.scrollSnapAlign = 'start'
-      }
-    }, [onExpanded, scrollTo, type, viewDidMount])
-
-    // To force the component rerender one time
-    useEffect(() => {
-      setViewDidMount(true)
-    }, [expand, type])
-
+  const getBackgroundOpacity = () => {
     return (
-      <div
-        ref={wrapperRef}
-        className={classNames(
-          className,
-          `natural-drawer-wrapper`,
-          styles[type],
-          styles.naturalDrawerWrapper,
-          fullscreen ? styles.fullscreen : '',
-          lastTop >= distance ? classNames('maximized', styles.maximized) : '',
-        )}
-        onScroll={handleScroll}
-        style={{
-          backgroundColor:
-            type === 'bottomSheet' || !fixedContent
-              ? `rgba(0,0,0,${getBackgroundOpacity()})`
-              : '',
-          ...style,
-        }}
-        {...rest}
-      >
-        {fixedContent && (
-          <div className={classNames('fixed-content', styles.fixedContent)}>
-            {fixedContent}
-          </div>
-        )}
-        {type === 'bottomSheet' ? (
+      ((wrapperRef?.current?.scrollTop +
+        (!fixedContent ? defaultVisibleHeight : 0)) /
+        wrapperRef?.current?.scrollHeight || 0) * 0.8
+    )
+  }
+
+  const scrollTo = useCallback(
+    (top: number) => {
+      if (wrapperRef.current && contentRef && contentRef.current) {
+        wrapperRef.current.scrollTo({top: top, behavior: 'smooth'})
+      }
+    },
+    [wrapperRef],
+  )
+
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const top = (event.target as HTMLElement).scrollTop
+    setLastTop(top)
+    if (top >= distance) {
+      onExpanded()
+    } else if (top === 0) {
+      onCollapsed()
+    }
+
+    if (showing && top <= 10) {
+      onReachBottom()
+    }
+
+    drawerScroll(event)
+  }
+
+  const expand = useCallback(() => {
+    scrollTo(contentRef?.current?.offsetTop || 0)
+    onExpanded()
+  }, [contentRef, onExpanded, scrollTo])
+
+  const collapse = useCallback(() => {
+    if (wrapperRef.current && contentRef && contentRef.current) {
+      scrollTo(0)
+      onCollapsed()
+    }
+  }, [onCollapsed, scrollTo, wrapperRef])
+
+  useEffect(() => {
+    expanded ? expand() : collapse()
+  }, [collapse, expand, expanded])
+
+  useEffect(() => {
+    if (
+      viewDidMount &&
+      spaceRef &&
+      spaceRef.current &&
+      type === 'bottomSheet'
+    ) {
+      scrollTo(spaceRef.current.offsetTop)
+      setTimeout(() => {
+        setShowing(true)
+        onExpanded()
+      }, SCROLL_COOLDOWN_TIME)
+    }
+
+    if (viewDidMount && contentRef && contentRef.current && type === 'drawer') {
+      contentRef.current.style.scrollSnapAlign = 'start'
+    }
+  }, [onExpanded, scrollTo, type, viewDidMount])
+
+  // To force the component rerender one time
+  useEffect(() => {
+    setViewDidMount(true)
+  }, [expand, type])
+
+  return (
+    <div
+      ref={wrapperRef}
+      className={classNames(
+        className,
+        `natural-drawer-wrapper`,
+        styles[type],
+        styles.naturalDrawerWrapper,
+        fullscreen ? styles.fullscreen : '',
+        lastTop >= distance ? classNames('maximized', styles.maximized) : '',
+      )}
+      onScroll={handleScroll}
+      style={{
+        backgroundColor:
+          type === 'bottomSheet' || !fixedContent
+            ? `rgba(0,0,0,${getBackgroundOpacity()})`
+            : '',
+        ...style,
+      }}
+      {...rest}
+    >
+      {fixedContent && (
+        <div className={classNames('fixed-content', styles.fixedContent)}>
+          {fixedContent}
+        </div>
+      )}
+      {type === 'bottomSheet' ? (
+        <div
+          ref={pullDownRef}
+          className={classNames(
+            'natural-drawer-stop',
+            styles.naturalDrawerStop,
+          )}
+          style={{
+            height: `calc(100% - ${getStopHeight()})`,
+          }}
+        ></div>
+      ) : (
+        ''
+      )}
+      {viewDidMount && (
+        <>
           <div
-            ref={pullDownRef}
+            ref={spaceRef}
             className={classNames(
               'natural-drawer-stop',
               styles.naturalDrawerStop,
             )}
             style={{
-              height: `calc(100% - ${getStopHeight()})`,
+              height: getStopHeight(),
             }}
           ></div>
         ) : (
