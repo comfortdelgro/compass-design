@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Ripple from './ripple'
 import styles from './styles/button.module.css'
@@ -161,7 +162,7 @@ const Button = React.forwardRef<
   const Button = href ? 'a' : 'button'
 
   //  button classes
-  const buttonClasses = [
+  const buttonClasses = classNames(
     styles.button,
     loading && styles.loading,
     variant && styles[variant],
@@ -176,9 +177,7 @@ const Button = React.forwardRef<
     h5 && variant && styles[variant + 'H5'],
     className,
     'cdg-button',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   // content classes
   const contentClasses = [
