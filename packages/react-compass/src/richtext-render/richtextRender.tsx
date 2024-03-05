@@ -1,20 +1,17 @@
 import {Document} from '@contentful/rich-text-types'
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import RenderDocument from './renderDocument'
-import {
-  StyledRichTextRenderContainer,
-  StyledRichTextRenderContainerProps,
-} from './richtextRender.styles'
+import styles from './styles/richtextRender.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   document?: Document
   platform?: 'react' | 'html'
+  css?: unknown
 }
 
 export type RichTextRenderProps = Props &
-  StyledRichTextRenderContainerProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const RichTextRender = React.forwardRef<HTMLInputElement, RichTextRenderProps>(
@@ -26,19 +23,23 @@ const RichTextRender = React.forwardRef<HTMLInputElement, RichTextRenderProps>(
       document,
       platform = 'react',
       // element
-      ...delegates
+      ...htmlProps
     } = props
 
     const richTextRenderRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledRichTextRenderContainer
-        css={css}
-        ref={richTextRenderRef}
-        {...delegates}
-      >
-        {document ? RenderDocument(document, platform) : null}
-      </StyledRichTextRenderContainer>
+      <>
+        <CssInjection css={css}>
+          <div
+            className={styles.richTextRender}
+            ref={richTextRenderRef}
+            {...htmlProps}
+          >
+            {document ? RenderDocument(document, platform) : null}
+          </div>
+        </CssInjection>
+      </>
     )
   },
 )

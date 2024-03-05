@@ -1,12 +1,14 @@
 import React from 'react'
-import {styled} from '../../theme'
-import {StyledComponentProps} from '../../utils/stitches.types'
+import CssInjection from '../../utils/objectToCss/CssInjection'
 import {Component} from '../utils'
+import styles from './display.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   variant?: 'display1' | 'display2' | 'display3'
+  weight?: 'bold' | 'semibold'
   component?: Component
   children: React.ReactNode
+  css?: unknown
 }
 
 export type displayTypographyProps = Props &
@@ -17,10 +19,13 @@ const Display: React.FC<displayTypographyProps> = (props) => {
     css = {},
     children,
     variant = 'display1',
+    weight = 'bold',
     component,
-    ...delegated
+    className,
+    ...htmlProps
   } = props
-  const tag = React.useMemo(() => {
+
+  const Component = React.useMemo(() => {
     if (component) return component
     switch (variant) {
       case 'display1':
@@ -30,38 +35,27 @@ const Display: React.FC<displayTypographyProps> = (props) => {
       case 'display3':
         return 'h3'
     }
-  }, [variant])
+  }, [component, variant])
 
-  const StyledDisplay = styled(tag, {
-    width: '100%',
-    padding: 0,
-    margin: 0,
-    color: '$primaryText',
-    variants: {
-      variant: {
-        display1: {
-          fontSize: '$display1',
-          fontWeight: '$bold',
-          lineHeight: '5.25rem',
-        },
-        display2: {
-          fontSize: '$display2',
-          fontWeight: '$bold',
-          lineHeight: '4.5rem',
-        },
-        display3: {
-          fontSize: '$display3',
-          fontWeight: '$bold',
-          lineHeight: '3.75rem',
-        },
-      },
-    },
-  })
+  const classNames = React.useMemo(() => {
+    const arr = [
+      styles.display,
+      variant && styles[variant],
+      weight && styles[weight],
+      className,
+      'cdg-display',
+    ]
+    return arr.filter(Boolean).join(' ')
+  }, [className, variant, weight])
 
   return (
-    <StyledDisplay css={css} variant={variant} {...delegated}>
-      {children}
-    </StyledDisplay>
+    <>
+      <CssInjection css={css}>
+        <Component {...htmlProps} className={classNames}>
+          {children}
+        </Component>
+      </CssInjection>
+    </>
   )
 }
 

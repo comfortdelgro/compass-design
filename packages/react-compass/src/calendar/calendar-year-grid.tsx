@@ -1,10 +1,6 @@
-import React from 'react'
 import {CalendarDate} from '../internationalized/date'
-import {
-  StyledCalendarMonthGrid,
-  StyledCalendarMonthYearCell,
-} from './calendar-month-year-grid.style'
 import {MonthYearState} from './hooks/useMonthYearState'
+import styles from './styles/calendar-month-year-grid.module.css'
 import {CalendarState, DateValue, RangeCalendarState} from './types'
 
 interface Props {
@@ -34,7 +30,7 @@ const CalendarYearGrid = (props: Props) => {
   const currentDate = new Date()
 
   return (
-    <StyledCalendarMonthGrid>
+    <div className={styles.calendarMonthYearGrid}>
       {Array.isArray(monthYearState?.renderedYears) ? (
         monthYearState?.renderedYears.map((year) => {
           const isDisabled = (() => {
@@ -50,10 +46,12 @@ const CalendarYearGrid = (props: Props) => {
           const isCurrentYear = year === currentDate.getFullYear()
 
           return (
-            <StyledCalendarMonthYearCell
+            <button
               type='button'
               className={`calendar-year-cell ${isDisabled ? 'disabled' : ''} ${
                 isCurrentYear ? 'highlighted' : ''
+              } ${styles.calendarMonthYearCell} ${
+                isCurrentYear ? styles.highlighted : ''
               }`}
               aria-label={year.toString()}
               onClick={handleYearClick(year)}
@@ -61,13 +59,13 @@ const CalendarYearGrid = (props: Props) => {
               key={year}
             >
               {year}
-            </StyledCalendarMonthYearCell>
+            </button>
           )
         })
       ) : (
         <></>
       )}
-    </StyledCalendarMonthGrid>
+    </div>
   )
 }
 

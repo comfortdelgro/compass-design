@@ -1,6 +1,6 @@
 import Chip from './chip'
 
-export type {ChipProps} from './chip'
+export type {Props as ChipProps} from './chip'
 
 Chip.displayName = 'Chip'
 

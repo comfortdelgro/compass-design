@@ -1,4 +1,4 @@
-import {config} from '../../theme'
+import {Colors} from '../../theme'
 import {LegendPosition} from './type'
 
 export const colorsDefault = [
@@ -53,7 +53,7 @@ export const colorsDefault = [
 ]
 
 export const DEFAULT_PLUGINS = (
-  theme: typeof config.theme.colors,
+  theme: Colors,
   legendPosition: LegendPosition,
   title?: string,
 ) => {
@@ -92,7 +92,7 @@ export const DEFAULT_LAYOUT = {
 }
 
 export const DEFAULT_VERTICAL_OPTIONS = (
-  theme: typeof config.theme.colors,
+  theme: Colors,
   legendPosition: LegendPosition,
   title?: string,
   unit?: string,
@@ -150,7 +150,7 @@ export const DEFAULT_VERTICAL_OPTIONS = (
 }
 
 export const DEFAULT_HORIZONTAL_OPTIONS = (
-  theme: typeof config.theme.colors,
+  theme: Colors,
   legendPosition: LegendPosition,
   title?: string,
   unit?: string,
@@ -209,7 +209,7 @@ export const DEFAULT_HORIZONTAL_OPTIONS = (
 }
 
 export const DEFAULT_CIRCULAR_OPTIONS = (
-  theme: typeof config.theme.colors,
+  theme: Colors,
   legendPosition: LegendPosition,
   title?: string,
 ) => {

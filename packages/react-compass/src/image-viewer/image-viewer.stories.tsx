@@ -1,7 +1,7 @@
-import React from 'react'
+import type {Meta} from '@storybook/react'
+import {useState} from 'react'
 import Button from '../button'
 import Viewer from './Viewer'
-
 const images = Array.from(Array(8).keys()).map((index) => {
   return {
     src: `https://picsum.photos/id/${index + 1}/5000/3333`,
@@ -10,10 +10,19 @@ const images = Array.from(Array(8).keys()).map((index) => {
   }
 })
 
-export const Default: React.FC = () => {
-  const [visible, setVisible] = React.useState(false)
+export const Variations: React.FC = () => {
+  const [visible, setVisible] = useState<boolean>(false)
+  const [isActiveIndex, setIsActiveIndex] = useState<boolean>(false)
+  const [isDrag, setIsDrag] = useState<boolean>(false)
+  const [isZoomable, setIsZoomable] = useState<boolean>(false)
+  const [isRotatable, setIsRotatable] = useState<boolean>(false)
+  const [isScalable, setIsScalable] = useState<boolean>(false)
+  const [isShowImageInformation, setIsShowImageInformation] =
+    useState<boolean>(false)
+  const [isShowPreview, setIsShowPreview] = useState<boolean>(false)
+  const [isShowToolbar, setIsShowToolbar] = useState<boolean>(false)
   return (
-    <>
+    <div style={{width: '100%', height: '100%', padding: '2rem'}}>
       <h3>Default </h3>
       <Button onClick={() => setVisible(true)}>Open image viewer</Button>
       <Viewer
@@ -26,22 +35,6 @@ export const Default: React.FC = () => {
           setVisible(false)
         }}
       />
-    </>
-  )
-}
-
-export const Variants: React.FC = () => {
-  const [isActiveIndex, setIsActiveIndex] = React.useState<boolean>(false)
-  const [isDrag, setIsDrag] = React.useState<boolean>(false)
-  const [isZoomable, setIsZoomable] = React.useState<boolean>(false)
-  const [isRotatable, setIsRotatable] = React.useState<boolean>(false)
-  const [isScalable, setIsScalable] = React.useState<boolean>(false)
-  const [isShowImageInformation, setIsShowImageInformation] =
-    React.useState<boolean>(false)
-  const [isShowPreview, setIsShowPreview] = React.useState<boolean>(false)
-  const [isShowToolbar, setIsShowToolbar] = React.useState<boolean>(false)
-  return (
-    <>
       <h3>Active index</h3>
       <Button onClick={() => setIsActiveIndex(true)}>Open image viewer</Button>
       <Viewer
@@ -125,6 +118,17 @@ export const Variants: React.FC = () => {
         }}
         images={images}
       />
-    </>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/ImageViewer',
+  component: Variations,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Variations>
+
+export default meta

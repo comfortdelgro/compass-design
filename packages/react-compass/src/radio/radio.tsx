@@ -1,23 +1,26 @@
 import React, {useEffect, useState} from 'react'
-import type {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
 import RadioGroup, {RadioContext} from './radio-group'
-import {RadioVariantProps, StyledRadio, StyledRadioInput} from './radio.styles'
+import styles from './styles/radio.module.css'
 import Tooltip from './tooltip'
 
-interface Props extends StyledComponentProps {
+interface Props {
   className?: string
   label?: React.ReactNode
   description?: string
   rightLabel?: string
   tooltip?: string
   variant?: 'simple' | 'outlined' | 'h5'
+  inputPosition?: 'left' | 'right'
   isDisabled?: boolean
   value: string
   id?: string
   name?: string
+  css?: unknown
 }
 
-export type RadioProps = Props & RadioVariantProps
+export type RadioProps = Props
 
 const Radio: React.FC<RadioProps> = (props) => {
   const {
@@ -31,7 +34,7 @@ const Radio: React.FC<RadioProps> = (props) => {
     inputPosition = 'left',
     name = '',
     css = {},
-    ...delegated
+    ...htmlProps
   } = props
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const context = React.useContext(RadioContext)
@@ -49,41 +52,62 @@ const Radio: React.FC<RadioProps> = (props) => {
     setIsChecked(state.value === value)
   }, [state.value])
 
-  return (
-    <StyledRadio
-      css={css}
-      variant={variant}
-      inputPosition={inputPosition}
-      disabled={isDisabled}
-      onClick={onClick}
-      role='radio'
-      aria-disabled={isDisabled}
-      aria-valuetext={value}
-      {...delegated}
-    >
-      <div className={`radio-wrapper`}>
-        <StyledRadioInput
-          variant={variant}
-          active={isChecked}
-          disabled={isDisabled}
-        />
-        <input
-          type='radio'
-          name={state.radioName ? state.radioName : name}
-          disabled={isDisabled}
-        ></input>
-      </div>
-      <div className='radio-content-wrapper'>
-        {!!label && (
-          <div className='radio-label'>
-            {label} {!!tooltip && <Tooltip text={tooltip} />}
-          </div>
-        )}
+  const internalRadioClassName = `${
+    variant ? styles[`radioVariant${capitalizeFirstLetter(variant)}`] : ''
+  } ${inputPosition === 'left' ? '' : styles.radioInputPositionRight} ${
+    isDisabled ? styles.radioDisabled : ''
+  }
+  `
 
-        {description && <p className='radio-description'>{description}</p>}
+  const internalRadioInputClassName = `${
+    variant ? styles[`radioInputVariant${capitalizeFirstLetter(variant)}`] : ''
+  } ${isChecked ? styles.radioInputActive : ''} ${
+    isDisabled ? styles.radioInputDisabled : ''
+  }
+  `
+
+  return (
+    <CssInjection css={css}>
+      <div
+        className={`cdg-radio ${styles.radio} ${internalRadioClassName}`}
+        onClick={onClick}
+        role='radio'
+        aria-disabled={isDisabled}
+        aria-valuetext={value}
+        {...htmlProps}
+      >
+        <div className={styles.radioWrapper}>
+          <div
+            className={`cdg-radio-input ${styles.radioInput} ${internalRadioInputClassName}`}
+          />
+          <input
+            type='radio'
+            name={state.radioName ? state.radioName : name}
+            disabled={isDisabled}
+          ></input>
+        </div>
+        <div
+          className={`cdg-radio-content-wrapper ${styles.radioContentWrapper}`}
+        >
+          {!!label && (
+            <div className={`cdg-radio-label ${styles.radioLabel}`}>
+              {label} {!!tooltip && <Tooltip text={tooltip} />}
+            </div>
+          )}
+
+          {description && (
+            <p className={`cdg-radio-label  ${styles.radioDescription}`}>
+              {description}
+            </p>
+          )}
+        </div>
+        {!!rightLabel && (
+          <p className={`cdg-radio-label ${styles.radioRightLabel}`}>
+            {rightLabel}
+          </p>
+        )}
       </div>
-      {!!rightLabel && <p className='radio-right-label'>{rightLabel}</p>}
-    </StyledRadio>
+    </CssInjection>
   )
 }
 

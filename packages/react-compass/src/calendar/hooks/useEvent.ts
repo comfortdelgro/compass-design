@@ -17,6 +17,7 @@ import {RefObject, useEffect, useRef} from 'react'
 export function useEvent<K extends keyof GlobalEventHandlersEventMap>(
   ref: RefObject<EventTarget>,
   event: K,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handler: (this: Document, ev: GlobalEventHandlersEventMap[K]) => any,
   options?: boolean | AddEventListenerOptions,
 ) {

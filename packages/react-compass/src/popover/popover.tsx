@@ -15,8 +15,8 @@ import {
   useRole,
 } from '@floating-ui/react'
 import React, {HTMLAttributes, useState} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledAnchorWrapper, StyledPopoverWrapper} from './popover.style'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/popover.module.css'
 
 type OffsetValue =
   | number
@@ -57,13 +57,15 @@ export type LegacyPopoverDirection =
   | 'top-center'
 
 export type PopoverDirection = LegacyPopoverDirection | Placement
-interface Props extends StyledComponentProps {
+interface Props {
   children: React.ReactNode
   anchor: React.ReactNode
   attachToElement?: HTMLElement | null // legacy. Will be deprecated in the future
   isOpen?: boolean
+  allowOutsidePress?: boolean
   onOpenChange?: (isOpen: boolean) => void
   onClose?: () => void
+  onOutsidePress?: () => void
   direction?: PopoverDirection
   offset?: OffsetValue
   shouldFlip?: boolean
@@ -73,6 +75,8 @@ interface Props extends StyledComponentProps {
   trigger?: 'click' | null
   isFloatingPortal?: boolean
   onPositionedChange?: (isPositioned: boolean) => void
+  className?: string
+  css?: unknown
 }
 
 export type PopoverProps = Props &
@@ -88,6 +92,8 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     onOpenChange,
     onClose,
     onPositionedChange,
+    onOutsidePress,
+    allowOutsidePress = true,
     offset = undefined,
     shouldFlip = true,
     direction = 'bottom',
@@ -97,6 +103,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     trigger = 'click',
     css = {},
     isFloatingPortal = true,
+    className = '',
   } = props
 
   // uncontrolled state
@@ -144,7 +151,12 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     handleClose: disableInteractive ? null : safePolygon(),
   })
   const click = useClick(context)
-  const dismiss = useDismiss(context)
+  const dismiss = useDismiss(context, {
+    outsidePress: () => {
+      onOutsidePress?.()
+      return allowOutsidePress
+    },
+  })
   // Role props for screen readers
   const role = useRole(context, {role: 'dialog'})
 
@@ -190,32 +202,45 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     if (!isOpen) {
       onClose?.()
     }
-  }, [isOpen])
+  }, [isOpen, onClose])
 
   return (
     <>
-      <StyledAnchorWrapper
-        ref={refs.setReference}
-        {...getReferenceProps()}
-        css={css}
-      >
-        {anchor}
-      </StyledAnchorWrapper>
+      <CssInjection css={css} ref={refs.setReference}>
+        <div
+          ref={refs.setReference}
+          {...getReferenceProps()}
+          className={styles.popoverWrapper}
+        >
+          {anchor}
+        </div>
+      </CssInjection>
+      {/* anchorWrapper */}
 
       {isFloatingPortal ? (
         <FloatingPortal>
           {(isOpenProp != null ? isOpenProp : isOpen) && (
-            <StyledPopoverWrapper ref={mergeRefs} {...popoverProps}>
+            // popoverWrapper
+            <div
+              ref={mergeRefs}
+              {...popoverProps}
+              className={`${className} ${styles.popoverWrapper}`}
+            >
               {children} {/* The actual popover */}
-            </StyledPopoverWrapper>
+            </div>
           )}
         </FloatingPortal>
       ) : (
         <>
           {(isOpenProp != null ? isOpenProp : isOpen) && (
-            <StyledPopoverWrapper ref={mergeRefs} {...popoverProps}>
+            // popoverWrapper
+            <div
+              ref={mergeRefs}
+              {...popoverProps}
+              className={`${className} ${styles.popoverWrapper}`}
+            >
               {children} {/* The actual popover */}
-            </StyledPopoverWrapper>
+            </div>
           )}
         </>
       )}

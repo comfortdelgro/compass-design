@@ -1,13 +1,28 @@
-import {StoryDecorator} from '@ladle/react'
+'use client'
+
+import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
-import {Column, Row} from '../utils'
 import SubHeader from './index'
+
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  height: string
+  width: string
+  gap: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+  width: '100%',
+  gap: '0.5rem',
+}
 
 export const Default: React.FC = () => {
   return (
-    <>
-      <Column css={{marginBottom: '$8'}}>
+    <div style={{padding: '3em'}}>
+      <div style={{marginBottom: '2rem', ...style, alignItems: 'flex-start'}}>
         <h3>Default</h3>
         <SubHeader>
           <SubHeader.Header>
@@ -26,7 +41,7 @@ export const Default: React.FC = () => {
             },
           }}
         >
-          <Column css={{flex: 1}}>
+          <div style={{flex: 1, ...style}}>
             <SubHeader.Header>
               <SubHeader.Title>Title</SubHeader.Title>
             </SubHeader.Header>
@@ -36,17 +51,24 @@ export const Default: React.FC = () => {
               tempore magni, officia eaque repudiandae pariatur voluptate
               maiores debitis sed, reprehenderit assumenda.
             </SubHeader.Description>
-          </Column>
-          <Row css={{width: 'fit-content', flexWrap: 'wrap'}}>
+          </div>
+          <div
+            style={{
+              ...style,
+              width: 'fit-content',
+              flexWrap: 'wrap',
+              flexDirection: 'row',
+            }}
+          >
             <Button type='button' size='sm'>
               Call to action
             </Button>
             <Button type='button' variant='secondary' size='sm'>
               Call to action
             </Button>
-          </Row>
+          </div>
         </SubHeader>
-      </Column>
+      </div>
 
       <h3>H5</h3>
       <div
@@ -58,7 +80,7 @@ export const Default: React.FC = () => {
           border: '1px solid #f0f0f0',
         }}
       >
-        <Column>
+        <div style={style}>
           <SubHeader variant='h5'>
             <SubHeader.Body>
               <SubHeader.Header>
@@ -71,23 +93,21 @@ export const Default: React.FC = () => {
             </SubHeader.Body>
             <SubHeader.Image src='https://i.ibb.co/Tr9kWZ9/Image.png' />
           </SubHeader>
-        </Column>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
-}
+const meta = {
+  title: 'Example/Sub Header',
+  component: Default,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Default>
+
+export default meta

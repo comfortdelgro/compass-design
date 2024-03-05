@@ -1,15 +1,23 @@
 import {faBook} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import type {StoryDecorator} from '@ladle/react'
+import type {Meta} from '@storybook/react'
 import React, {useState} from 'react'
-import {Column} from '../utils/components'
 import Textarea from './index'
 
-export const Variants: React.FC = () => {
+const style: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  padding: '3rem',
+}
+
+export const Basic: React.FC = () => {
   const [value, setValue] = useState('My initial value')
 
   return (
-    <Column>
+    <div style={{...style}}>
       <h3> H5</h3>
       <Textarea
         variant='h5'
@@ -82,22 +90,19 @@ export const Variants: React.FC = () => {
         placeholder='Enter your message'
         css={{'& textarea': {width: '600px', height: '300px'}}}
       />
-      <br />
-    </Column>
+    </div>
   )
 }
 
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
-}
+const meta = {
+  title: 'Example/Textarea ',
+  component: Basic,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

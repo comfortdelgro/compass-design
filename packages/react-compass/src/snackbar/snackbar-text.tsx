@@ -1,10 +1,12 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledSnackbarText} from './snackbar.styles'
+import styles from './styles/snackbar.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type SnackbarTextProps = Props &
@@ -12,12 +14,18 @@ export type SnackbarTextProps = Props &
 
 const SnackbarText = React.forwardRef<HTMLHeadingElement, SnackbarTextProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className = '', ...htmlProps} = props
     const SnackbarTextRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledSnackbarText css={css} ref={SnackbarTextRef} {...delegated}>
-        {children}
-      </StyledSnackbarText>
+      <CssInjection css={css} childrenRef={SnackbarTextRef}>
+        <div
+          className={`cdg-snackbar-text ${className} ${styles.snackbarText}`}
+          ref={SnackbarTextRef}
+          {...htmlProps}
+        >
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

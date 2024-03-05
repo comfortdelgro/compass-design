@@ -1,13 +1,14 @@
 import MapMarked from '@comfortdelgro/compass-icons/react/map-marked'
 import InfoOutlined from '@comfortdelgro/compass-icons/react/outlined/info-outlined'
+import {Meta} from '@storybook/react'
 import debounce from 'lodash/debounce'
-import React, {useCallback, useState} from 'react'
+import {useCallback, useState} from 'react'
+import {SlideAction} from '..'
 import Button from '../button'
-import SlideAction from '../slide-action'
-import {styled} from '../theme'
 import Typography from '../typography'
 import Pudo from './pudo'
 import {PudoItemProps, PudoValueChange} from './pudo.types'
+import classes from './styles/pudo-stories.module.css'
 
 const exampleItem = [
   {name: 'item1', value: '', placeholder: 'item1'},
@@ -57,6 +58,7 @@ export function Default() {
     PudoValueChange<PudoItemAllKeys>
   >(pudoItems.map(({name, value = ''}) => ({name, value})))
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceUpdate = useCallback(
     debounce((newValue: PudoValueChange) => {
       setExampleValues(newValue)
@@ -89,34 +91,25 @@ export function Default() {
   }
 
   return (
-    <>
-      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
-        PUDO
-      </Typography.Header>
-      <Typography.Body
-        variant='body3'
-        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
-      >
+    <div className={classes.pudoStories}>
+      <h4>PUDO</h4>
+      <Typography.Body variant='body3' className={classes.description}>
         with 200ms debounced value changes.
       </Typography.Body>
-      <Pudo
-        css={{marginBlock: '$4'}}
-        items={exampleItems}
-        onValuesChange={debounceUpdate}
-        isClearable
-      />
-      <Button size='sm' css={{marginBottom: '$4'}} onClick={handleAddLocation}>
+      <Pudo items={exampleItems} onValuesChange={debounceUpdate} />
+      <Button
+        size='sm'
+        className={classes.pudoUpdateItemButton}
+        onClick={handleAddLocation}
+      >
         Update first item
       </Button>
-      <PreviewCode>{JSON.stringify(exampleValues, null, 2)}</PreviewCode>
+      <pre className={classes.previewCode}>
+        {JSON.stringify(exampleValues, null, 2)}
+      </pre>
 
-      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
-        Swap, add and remove items
-      </Typography.Header>
-      <Typography.Body
-        variant='body3'
-        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
-      >
+      <h4>Swap, add and remove items</h4>
+      <Typography.Body className={classes.description} variant='body3'>
         Default value - Minlength: <strong>2</strong>, Maxlength:{' '}
         <strong>3</strong>, Input&#39;s maxlength: <strong>255</strong>
       </Typography.Body>
@@ -133,14 +126,15 @@ export function Default() {
         isClearable
       />
       {formValues && (
-        <PreviewCode>{JSON.stringify(formValues, null, 2)}</PreviewCode>
+        <pre className={classes.previewCode}>
+          {JSON.stringify(formValues, null, 2)}
+        </pre>
       )}
 
-      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
+      <h4>
         Item type: <code>custom</code>
-      </Typography.Header>
+      </h4>
       <Pudo
-        css={{marginBlock: '$4'}}
         items={[
           {
             name: 'item1',
@@ -155,10 +149,14 @@ export function Default() {
                   }}
                 >
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Earum, praesentium. Fuga recusandae maxime molestias velit
-                  doloremque soluta modi suscipit quia fugit vitae, non
-                  laboriosam perferendis accusantium deserunt officiis eligendi.
-                  Dolore!
+                  Earum, praesentium.{' '}
+                  <del>
+                    Fuga recusandae maxime molestias velit doloremque soluta
+                    modi suscipit quia fugit vitae, non laboriosam perferendis
+                    accusantium deserunt officiis eligendi.
+                  </del>{' '}
+                  Dolore! Fuga recusandae maxime molestias velit doloremque
+                  soluta modi suscipit quia fugit vitae, non laboriosam.
                 </p>
                 <Button type='button' variant='secondary' size='sm'>
                   Some action
@@ -203,11 +201,10 @@ export function Default() {
         type='custom'
       />
 
-      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
+      <h4>
         Align Icon: <code>top</code>
-      </Typography.Header>
+      </h4>
       <Pudo
-        css={{marginBlock: '$4'}}
         alignIcon='top'
         items={[
           {
@@ -253,16 +250,11 @@ export function Default() {
         type='custom'
       />
 
-      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
-        Compact
-      </Typography.Header>
-      <Typography.Body
-        variant='body3'
-        css={{color: '$grayShades60', marginBlock: '$2 $4'}}
-      >
+      <h4>Compact</h4>
+      <Typography.Body variant='body3' className={classes.description}>
         Compact size: sm (1st example), md (2nd example)
       </Typography.Body>
-      <CompactContainer>
+      <div className={classes.compactContainer}>
         <Pudo
           items={[
             {name: 'item1', value: '', placeholder: 'item1'},
@@ -277,12 +269,12 @@ export function Default() {
           ]}
           compact='md'
         />
-      </CompactContainer>
+      </div>
 
-      <Typography.Header variant='header5' css={{marginBlock: '$2'}}>
+      <h5>
         Type <code>custom</code>
-      </Typography.Header>
-      <CompactContainer>
+      </h5>
+      <div className={classes.compactContainer}>
         <Pudo
           items={[
             {
@@ -317,19 +309,11 @@ export function Default() {
           type='custom'
           compact='md'
         />
-      </CompactContainer>
+      </div>
 
-      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
-        Styling
-      </Typography.Header>
+      <h4>Styling</h4>
       <Pudo
-        css={{
-          marginBlock: '$4',
-          '.cdg-pudo-items-wrapper': {
-            border: 'none',
-            boxShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.16)',
-          },
-        }}
+        className={classes.pudoCustomStyling}
         items={[
           {
             name: 'item1',
@@ -345,34 +329,17 @@ export function Default() {
           {name: 'item2', value: 'Destination', placeholder: 'item2'},
         ]}
       />
-    </>
+    </div>
   )
 }
 
-const PreviewCode = styled('pre', {
-  padding: '$2',
-  margin: '0',
-
-  width: '100%',
-  minHeight: '$5',
-  borderRadius: '$lg',
-
-  backgroundColor: '$secondaryBg',
-  fontSize: '$label1',
-  whiteSpace: 'pre-wrap',
-  overflowWrap: 'anywhere',
-})
-
-const CompactContainer = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '$4',
-
-  '@sm': {
-    flexDirection: 'row',
-
-    '& > .cdg-pudo-container': {
-      width: 'calc(100% / 2 - $2)',
-    },
+const meta: Meta<typeof Default> = {
+  title: 'Example/Pudo',
+  tags: ['autodocs'],
+  component: Default,
+  parameters: {
+    layout: 'fullscreen',
   },
-})
+}
+
+export default meta

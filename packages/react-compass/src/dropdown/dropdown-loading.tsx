@@ -1,15 +1,20 @@
-import React from 'react'
-import {StyledLoading} from './dropdown.styles'
+import styles from './styles/dropdown.module.css'
 
 export default function DropdownLoading() {
   return (
-    <StyledLoading>
-      <div className='spinner'>
-        <div className='spinner-1' />
-        <div className='spinner-2' />
-        <div className='spinner-3' />
+    <div className={`${styles.dropdownLoading}`}>
+      <div className={styles.dropdownLoadingSpinner}>
+        <div
+          className={`${styles.dropdownLoadingSpinnerItem} ${styles.dropdownLoadingSpinnerItem1}`}
+        />
+        <div
+          className={`${styles.dropdownLoadingSpinnerItem} ${styles.dropdownLoadingSpinnerItem2}`}
+        />
+        <div
+          className={`${styles.dropdownLoadingSpinnerItem} ${styles.dropdownLoadingSpinnerItem3}`}
+        />
         <div />
       </div>
-    </StyledLoading>
+    </div>
   )
 }

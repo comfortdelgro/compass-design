@@ -1,16 +1,11 @@
+import Color from 'colorjs.io'
 import React, {useContext, useEffect, useMemo} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
-import {
-  DropdownItemVariantProps,
-  StyledColor,
-  StyledContent,
-  StyledItemIcon,
-  StyledOption,
-  StyledRightIcon,
-} from './dropdown.styles'
 import {textContent} from './utils'
+
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/dropdown.module.css'
 
 const Tick = () => (
   <svg width='10' height='10' viewBox='0 0 10 10' fill='none'>
@@ -22,7 +17,13 @@ const Tick = () => (
 )
 
 const BlueTick = () => (
-  <svg width='16' height='17' viewBox='0 0 16 17' fill='none'>
+  <svg
+    width='16'
+    height='17'
+    viewBox='0 0 16 17'
+    fill='none'
+    className={`${styles.dropdownItemRightIconContentSvg}`}
+  >
     <path
       d='M15.0265 3.47966C15.4357 3.89637 15.4357 4.56978 15.0265 4.98649L6.64506 13.5208C6.23581 13.9375 5.57446 13.9375 5.16521 13.5208L0.973587 9.25363C0.564469 8.83691 0.564469 8.16351 0.973587 7.74679C1.38277 7.33008 2.04608 7.33008 2.45533 7.74679L5.87567 11.2572L13.5466 3.47966C13.9559 3.06228 14.6172 3.06228 15.0265 3.47966Z'
       fill='currentColor'
@@ -30,7 +31,7 @@ const BlueTick = () => (
   </svg>
 )
 
-interface Props extends StyledComponentProps {
+interface Props {
   rightColor?: string
   type?: 'icon' | 'color'
   leftIcon?: React.ReactNode
@@ -40,10 +41,10 @@ interface Props extends StyledComponentProps {
   checkmark?: 'none' | 'checkbox' | 'tick'
   flagName?: string
   children: React.ReactNode
+  css?: unknown
 }
 
 export type DropdownItemProps = Props &
-  DropdownItemVariantProps &
   Omit<React.HTMLAttributes<HTMLLIElement>, keyof Props>
 
 const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
@@ -56,6 +57,7 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       rightIcon,
       leftIcon,
       rightColor,
+      className,
       css = {},
       checkmark = 'none',
       ...other
@@ -123,7 +125,7 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
           return keys
         })
       }
-    }, [value, isDisabled, canDisplayed])
+    }, [value, isDisabled, canDisplayed, setDropdownItemKeys])
 
     useEffect(() => {
       if (selectedKey && selectedKey.toString() === value.toString()) {
@@ -132,23 +134,27 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
           displayValue: textValue || children,
         })
       }
-    }, [selectedKey, value])
+    }, [children, selectedKey, setSelectedItem, textValue, value])
 
     useEffect(() => {
       if (isPositioned && (isFocused || (isSelected && isFocused))) {
         if (dropdownItemRef.current) {
-          dropdownItemRef.current.scrollIntoView({block: 'nearest'})
+          setTimeout(() => {
+            dropdownItemRef.current.scrollIntoView({block: 'nearest'})
+          })
         }
       }
-    }, [isPositioned, isFocused, isSelected])
+    }, [isPositioned, isFocused, isSelected, dropdownItemRef])
 
     useEffect(() => {
       if (isSelected && isPositioned) {
         if (dropdownItemRef.current) {
-          dropdownItemRef.current.scrollIntoView({block: 'nearest'})
+          setTimeout(() => {
+            dropdownItemRef.current.scrollIntoView({block: 'nearest'})
+          })
         }
       }
-    }, [isPositioned, open, isSelected])
+    }, [isPositioned, open, isSelected, dropdownItemRef])
 
     const handleItemClick = () => {
       if (isDisabled) {
@@ -161,53 +167,99 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       })
     }
 
+    const rootClasses = useMemo(() => {
+      return [
+        styles.dropdownOption,
+        isFocused && !isSelected && styles.dropdownItemIsFocused,
+        isSelected && !isFocused && styles.dropdownItemIsSelected,
+        isSelected && isFocused && styles.dropdownItemIsSelectedFocused,
+        isDisabled && styles.dropdownItemIsDisabled,
+        className,
+        'cdg-dropdown-item',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [className, isDisabled, isFocused, isSelected])
+
+    const rightIconClasses = useMemo(() => {
+      return [
+        styles.dropdownItemRightIcon,
+        isSelected && styles.dropdownItemRightIconSelected,
+        checkmark === 'checkbox' &&
+          styles.dropdownItemRightIconCheckMarkCheckbox,
+        checkmark === 'tick' && styles.dropdownItemRightIconCheckMarkTick,
+        'cdg-dropdown-item-right-icon',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [checkmark, isSelected])
+
+    const colorClasses = useMemo(() => {
+      return [
+        styles.dropdownItemColor,
+        isSelected && styles.dropdownItemSelected,
+        'cdg-dropdown-item-color',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [isSelected])
+
     return canDisplayed ? (
-      <StyledOption
-        css={css}
-        isFocused={isFocused && !isSelected}
-        isSelected={isSelected && !isFocused}
-        isSelectedFocused={isSelected && isFocused}
-        isDisabled={isDisabled}
-        onClick={handleItemClick}
-        ref={dropdownItemRef}
-        role='option'
-        aria-selected={isSelected}
-        {...delegated}
-      >
-        {leftIcon && <StyledItemIcon>{leftIcon}</StyledItemIcon>}
-        <StyledContent>{children}</StyledContent>
-        {type === 'icon' && rightIcon && (
-          <StyledItemIcon>{rightIcon}</StyledItemIcon>
-        )}
-        {type === 'color' && rightColor && (
-          <StyledColor isSelected={isSelected} css={{$$bg: rightColor}}>
-            <svg
-              className='cdg-dropdown-item-color'
-              width='16'
-              height='16'
-              viewBox='0 0 16 16'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
+      <CssInjection css={css} childrenRef={dropdownItemRef}>
+        <li
+          {...delegated}
+          className={rootClasses}
+          onClick={handleItemClick}
+          ref={dropdownItemRef}
+          role='option'
+          aria-selected={isSelected}
+        >
+          {leftIcon && (
+            <div
+              className={`${styles.dropdownItemIcon} cdg-dropdown-item-left-icon`}
             >
-              <path
-                d='M13.7893 3.08716C14.1555 3.45337 14.1555 4.0481 13.7893 4.41431L6.28931 11.9143C5.9231 12.2805 5.32837 12.2805 4.96216 11.9143L1.21216 8.16431C0.845947 7.7981 0.845947 7.20337 1.21216 6.83716C1.57837 6.47095 2.1731 6.47095 2.53931 6.83716L5.6272 9.92212L12.4651 3.08716C12.8313 2.72095 13.426 2.72095 13.7922 3.08716H13.7893Z'
-                fill='currentColor'
-              />
-            </svg>
-          </StyledColor>
-        )}
-        {checkmark !== 'none' && (
-          <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>
-            {checkmark === 'checkbox' ? (
-              <div>
-                <Tick />
-              </div>
-            ) : checkmark === 'tick' ? (
-              <BlueTick />
-            ) : null}
-          </StyledRightIcon>
-        )}
-      </StyledOption>
+              {leftIcon}
+            </div>
+          )}
+          <div
+            className={`${styles.dropdownItemContent} cdg-dropdown-item-content`}
+          >
+            {children}
+          </div>
+          {type === 'icon' && rightIcon && (
+            <div
+              className={`${styles.dropdownItemIcon} cdg-dropdown-item-right-icon`}
+            >
+              {rightIcon}
+            </div>
+          )}
+          {type === 'color' && rightColor && (
+            <div className={colorClasses} style={{background: rightColor}}>
+              <svg width='16' height='16' fill='none'>
+                <path
+                  d='M15.0265 2.97978C15.4357 3.39649 15.4357 4.0699 15.0265 4.48661L6.64506 13.0209C6.23581 13.4376 5.57446 13.4376 5.16521 13.0209L0.973587 8.75375C0.564469 8.33704 0.564469 7.66363 0.973587 7.24692C1.38277 6.8302 2.04608 6.8302 2.45533 7.24692L5.87567 10.7573L13.5466 2.97978C13.9559 2.5624 14.6172 2.5624 15.0265 2.97978Z'
+                  fill={
+                    new Color(rightColor).luminance > 0.3
+                      ? '#000000'
+                      : '#ffffff'
+                  }
+                />
+              </svg>
+            </div>
+          )}
+          {checkmark !== 'none' && (
+            <div className={rightIconClasses}>
+              {checkmark === 'checkbox' ? (
+                <div className={styles.dropdownItemRightIconContent}>
+                  <Tick />
+                </div>
+              ) : checkmark === 'tick' ? (
+                <BlueTick />
+              ) : null}
+            </div>
+          )}
+        </li>
+      </CssInjection>
     ) : null
   },
 )

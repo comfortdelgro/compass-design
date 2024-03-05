@@ -1,7 +1,7 @@
-import React, {useMemo, useRef} from 'react'
+import {useMemo, useRef} from 'react'
 import useDrag from '../utils/hooks/useDrag'
-import {StyledSlideDragger} from './slide-action.styles'
 import {SlideDraggerProps} from './slide-action.types'
+import classes from './styles/slide-action.module.css'
 
 /**
  * @note This component is draggable.
@@ -10,10 +10,8 @@ import {SlideDraggerProps} from './slide-action.types'
  * depend on the `stepSize` option of `useDrag` hook.
  */
 export default function SlideDragger({
-  css,
   slideRef,
   icon,
-  color,
   onDrag,
   onDragEnd,
   disableDrag = false,
@@ -40,7 +38,8 @@ export default function SlideDragger({
       maxSlideDistance:
         slideRef.current.offsetWidth - elementPaddingInline - slideDragWidth,
     }
-  }, [slideRef.current, SlideDragElement])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [SlideDragElement?.offsetWidth])
 
   useDrag({
     targetRef: slideDragRef,
@@ -57,18 +56,14 @@ export default function SlideDragger({
   })
 
   return (
-    <StyledSlideDragger
+    <button
       ref={slideDragRef}
-      css={{
-        ...css,
-        backgroundColor: color,
-        pointerEvents: disableDrag ? 'none' : 'auto',
-      }}
-      className='slide-action__dragger'
+      className={`${classes.slideActionDragger} cdg-slide-action__dragger`}
+      style={{pointerEvents: disableDrag ? 'none' : 'auto'}}
     >
       {icon || (
         <svg
-          className='slide-action__default-icon'
+          className={`${classes.slideActionDefaultIcon} cdg-slide-action__default-icon`}
           width='14'
           height='15'
           viewBox='0 0 14 15'
@@ -87,6 +82,6 @@ export default function SlideDragger({
           </g>
         </svg>
       )}
-    </StyledSlideDragger>
+    </button>
   )
 }

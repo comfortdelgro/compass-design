@@ -1,9 +1,27 @@
+import type {Meta} from '@storybook/react'
 import React from 'react'
-import DropdownMenu from '.'
-import Button from '../button'
-import {Column} from '../utils/components'
+import {Button} from '..'
+import DropdownMenu from './index'
 
-export const Default: React.FC = () => {
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  alignItems: string
+  justifyContent: string
+  height: string
+  width: string
+  padding: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+  padding: '3rem',
+}
+
+export const Basic: React.FC = () => {
   const handleItemSelect = (
     event: React.MouseEvent<HTMLLIElement>,
     eventKey?: string | number,
@@ -12,7 +30,7 @@ export const Default: React.FC = () => {
   }
 
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Default</h3>
       <DropdownMenu>
         <DropdownMenu.Toggle>
@@ -121,6 +139,19 @@ export const Default: React.FC = () => {
           </DropdownMenu.Item>
         </DropdownMenu.Menu>
       </DropdownMenu>
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/DropdownMenu',
+  component: Basic,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

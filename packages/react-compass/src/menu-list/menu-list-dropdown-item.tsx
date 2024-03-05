@@ -1,8 +1,9 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledMenuListDropdownItem} from './menu-list-dropdown-item.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/menu-list-dropdown-item.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
   isActive?: boolean
   icon?: React.ReactNode
@@ -33,20 +34,32 @@ const MenuListDropdownItem = React.forwardRef<
 
   const tabIndex = isDisabled || isNested ? -1 : 0
 
+  const rootClasses = [
+    styles.menuListDropdownItem,
+    isNested && styles.nested,
+    isActive && styles.active,
+    isDisabled && styles.disabled,
+    className,
+    'cdg-menu-list-dropdown-item',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledMenuListDropdownItem
-      className={`${className} menu-list-dropdown-item`}
-      active={isActive ? 'active' : 'default'}
-      nested={isNested ? 'nested' : 'default'}
-      disabled={!!isDisabled}
-      ref={ref}
-      css={css}
-      tabIndex={tabIndex}
-      {...delegated}
-    >
-      {icon ? <div className='cdg-menu-list-dropdown-icon'>{icon}</div> : <></>}
-      {children}
-    </StyledMenuListDropdownItem>
+    <CssInjection css={css} childrenRef={ref}>
+      <div className={rootClasses} ref={ref} tabIndex={tabIndex} {...delegated}>
+        {icon ? (
+          <div
+            className={`${styles.cdgMenuListDropdownIcon} cdg-menu-list-dropdown-icon`}
+          >
+            {icon}
+          </div>
+        ) : (
+          <></>
+        )}
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

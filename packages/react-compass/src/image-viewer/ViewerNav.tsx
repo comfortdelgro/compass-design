@@ -1,5 +1,5 @@
-import * as React from 'react'
-import {StyledNavbar, StyledNavbarItem} from './image-viewer.styles'
+import {useCallback} from 'react'
+import styles from './styles/image-viewer.module.css'
 import {ImageDecorator} from './types'
 
 export interface ViewerNavProps {
@@ -11,29 +11,33 @@ export interface ViewerNavProps {
 export default function ViewerNav(props: ViewerNavProps) {
   const {activeIndex = 0} = props
 
-  function handleChangeImg(newIndex: number) {
-    if (activeIndex === newIndex) {
-      return
-    }
-    props.onChangeImg(newIndex)
-  }
+  const handleChangeImg = useCallback(
+    (newIndex: number) => {
+      if (activeIndex === newIndex) {
+        return
+      }
+      props.onChangeImg(newIndex)
+    },
+    [activeIndex, props],
+  )
 
   return (
-    <StyledNavbar>
+    <div className={styles.navbar}>
       {props.images.map((item, index) => (
-        <StyledNavbarItem
+        <div
+          className={styles.navbarItem}
           key={index}
           onClick={() => {
             handleChangeImg(index)
           }}
         >
           <img
-            className={index === activeIndex ? 'active' : ''}
+            className={index === activeIndex ? styles.navbarItemActive : ''}
             src={item?.srcPreview ?? item.src}
             alt={item.alt}
           />
-        </StyledNavbarItem>
+        </div>
       ))}
-    </StyledNavbar>
+    </div>
   )
 }

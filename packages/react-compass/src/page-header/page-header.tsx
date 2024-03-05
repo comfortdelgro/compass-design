@@ -1,31 +1,40 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import PageHeaderDescription from './page-header-description'
 import PageHeaderHeader from './page-header-header'
 import PageHeaderSubtitle from './page-header-subtitle'
 import PageHeaderTitle from './page-header-title'
-import {PageHeaderVariantProps, StyledPageHeader} from './page-header.style'
+import styles from './styles/page-header-description.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
+  color?: 'white' | 'blue'
 }
 
 export type PageHeaderProps = Props &
-  PageHeaderVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
+// eslint-disable-next-line react-refresh/only-export-components
 const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>(
   (props, ref) => {
-    const {children, color = 'white', css = {}, ...delegated} = props
+    const {children, color = 'white', css = {}, className, ...delegated} = props
 
-    const variantProps = {
-      color,
-    }
+    const rootClasses = [
+      styles.pageHeader,
+      styles[color],
+      className,
+      'cdg-page-header',
+    ]
+      .filter(Boolean)
+      .join(' ')
 
     return (
-      <StyledPageHeader ref={ref} css={css} {...variantProps} {...delegated}>
-        {children}
-      </StyledPageHeader>
+      <CssInjection css={css} childrenRef={ref}>
+        <div className={rootClasses} ref={ref} {...delegated}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

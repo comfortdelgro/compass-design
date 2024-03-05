@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import * as React from 'react'
-import Box from '../box'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useRef, useState } from 'react'
 import Spinner from '../spinner'
 
 export interface ViewerCanvasProps {
@@ -35,24 +33,24 @@ export interface ViewerCanvasState {
 }
 
 export default function ViewerCanvas(props: ViewerCanvasProps) {
-  const isMouseDown = React.useRef(false)
-  const prePosition = React.useRef({
+  const isMouseDown = useRef(false)
+  const prePosition = useRef({
     x: 0,
     y: 0,
   })
-  const [position, setPosition] = React.useState({
+  const [position, setPosition] = useState({
     x: 0,
     y: 0,
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       bindEvent(true)
       bindWindowResizeEvent(true)
     }
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     bindWindowResizeEvent()
 
     return () => {
@@ -60,7 +58,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     }
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.visible && props.drag) {
       bindEvent()
     }
@@ -72,7 +70,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     }
   }, [props.drag, props.visible, props.width, props.height])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const diffX = position.x - prePosition.current.x
     const diffY = position.y - prePosition.current.y
     prePosition.current = {
@@ -87,16 +85,16 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     )
   }, [position])
 
-  function handleResize() {
+  const handleResize = () => {
     props.onResize()
   }
 
-  function handleCanvasMouseDown(e: React.MouseEvent<HTMLDivElement>) {
+  const handleCanvasMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     props.onCanvasMouseDown(e)
     handleMouseDown(e)
   }
 
-  function handleMouseDown(e: React.MouseEvent<HTMLDivElement>) {
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.button !== 0) {
       return
     }
@@ -121,37 +119,33 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     }
   }
 
-  function handleMouseUp() {
+  const handleMouseUp = () => {
     isMouseDown.current = false
     handleResize()
   }
 
-  function bindWindowResizeEvent(remove?: boolean) {
+  const bindWindowResizeEvent = (remove?: boolean) => {
     let funcName = 'addEventListener'
     if (remove) {
       funcName = 'removeEventListener'
     }
-    // @ts-ignore
     window[funcName]('resize', handleResize, false)
   }
 
-  function bindEvent(remove?: boolean) {
+  const bindEvent = (remove?: boolean) => {
     let funcName = 'addEventListener'
     if (remove) {
       funcName = 'removeEventListener'
     }
-    // @ts-ignore
     document[funcName]('click', handleMouseUp, false)
-    // @ts-ignore
     document[funcName]('mousemove', handleMouseMove, false)
   }
 
   const imgStyle: React.CSSProperties = {
     width: `${props.width}px`,
     height: `${props.height}px`,
-    transform: `translateX(${
-      props.left !== null ? `${props.left}px` : 'auto'
-    }) translateY(${props.top}px)
+    transform: `translateX(${props.left !== null ? `${props.left}px` : 'auto'
+      }) translateY(${props.top}px)
     rotate(${props.rotate}deg) scaleX(${props.scaleX}) scaleY(${props.scaleY})`,
   }
 
@@ -163,8 +157,8 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
   }
   if (props.loading) {
     imgNode = (
-      <Box
-        css={{
+      <div
+        style={{
           display: 'flex',
           height: `${window.innerHeight - 84}px`,
           justifyContent: 'center',
@@ -172,13 +166,13 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
         }}
       >
         <Spinner size='2xl' />
-      </Box>
+      </div>
     )
   }
 
   return (
-    <Box onMouseDown={handleCanvasMouseDown} css={{zIndex: props.zIndex}}>
+    <div onMouseDown={handleCanvasMouseDown} style={{ zIndex: props.zIndex }}>
       {imgNode}
-    </Box>
+    </div>
   )
 }

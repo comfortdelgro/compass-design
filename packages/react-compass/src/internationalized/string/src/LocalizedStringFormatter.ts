@@ -15,6 +15,7 @@ export type LocalizedString =
   | string
   | ((
       args: Variables,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       formatter?: LocalizedStringFormatter<any, any>,
     ) => string)
 type InternalString = string | (() => string)
@@ -40,7 +41,7 @@ export class LocalizedStringFormatter<
 
   /** Formats a localized string for the given key with the provided variables. */
   format(key: K, variables?: Variables): string {
-    let message = this.strings.getStringForLocale(key, this.locale)
+    const message = this.strings.getStringForLocale(key, this.locale)
     return typeof message === 'function' ? message(variables, this) : message
   }
 
@@ -54,14 +55,14 @@ export class LocalizedStringFormatter<
       return typeof opt === 'function' ? opt() : opt
     }
 
-    let key = this.locale + ':' + type
+    const key = this.locale + ':' + type
     let pluralRules = pluralRulesCache.get(key)
     if (!pluralRules) {
       pluralRules = new Intl.PluralRules(this.locale, {type})
       pluralRulesCache.set(key, pluralRules)
     }
 
-    let selected = pluralRules.select(count)
+    const selected = pluralRules.select(count)
     opt = options[selected] || options['other']
     return typeof opt === 'function' ? opt() : opt
   }
@@ -76,7 +77,7 @@ export class LocalizedStringFormatter<
   }
 
   protected select(options: Record<string, InternalString>, value: string) {
-    let opt = options[value] || options['other']
+    const opt = options[value] || options['other']
     return typeof opt === 'function' ? opt() : opt
   }
 }

@@ -1,11 +1,12 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledToastCloseIcon} from './toast.styles'
+import styles from './styles/toast.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   onClose?: () => void
+  css?: unknown
 }
 
 export type ToastCloseIconProps = Props &
@@ -13,17 +14,19 @@ export type ToastCloseIconProps = Props &
 
 const ToastCloseIcon = React.forwardRef<HTMLDivElement, ToastCloseIconProps>(
   (props, ref) => {
-    const {children, css = {}, onClose, ...delegated} = props
+    const {children, css = {}, className = '', onClose, ...delegated} = props
     const toastCloseIconRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledToastCloseIcon
-        css={css}
-        ref={toastCloseIconRef}
-        {...delegated}
-        onClick={() => onClose?.()}
-      >
-        {children}
-      </StyledToastCloseIcon>
+      <CssInjection css={css} childrenRef={toastCloseIconRef}>
+        <div
+          ref={toastCloseIconRef}
+          className={`${className} ${styles.toastCloseIcon}`}
+          {...delegated}
+          onClick={() => onClose?.()}
+        >
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

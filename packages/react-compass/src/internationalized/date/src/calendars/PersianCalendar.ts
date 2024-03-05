@@ -15,16 +15,16 @@ import {mod} from '../utils'
 const PERSIAN_EPOCH = 1948321 // 622/03/19 Julian C.E.
 
 function isLeapYear(year: number): boolean {
-  let y0 = year > 0 ? year - 474 : year - 473
-  let y1 = mod(y0, 2820) + 474
+  const y0 = year > 0 ? year - 474 : year - 473
+  const y1 = mod(y0, 2820) + 474
 
   return mod((y1 + 38) * 31, 128) < 31
 }
 
 function persianToJulianDay(year: number, month: number, day: number): number {
-  let y0 = year > 0 ? year - 474 : year - 473
-  let y1 = mod(y0, 2820) + 474
-  let offset = month <= 7 ? 31 * (month - 1) : 30 * (month - 1) + 6
+  const y0 = year > 0 ? year - 474 : year - 473
+  const y1 = mod(y0, 2820) + 474
+  const offset = month <= 7 ? 31 * (month - 1) : 30 * (month - 1) + 6
 
   return (
     PERSIAN_EPOCH -
@@ -47,18 +47,19 @@ export class PersianCalendar implements Calendar {
   identifier = 'persian'
 
   fromJulianDay(jd: number): CalendarDate {
-    let d0 = jd - persianToJulianDay(475, 1, 1)
-    let n2820 = Math.floor(d0 / 1029983)
-    let d1 = mod(d0, 1029983)
-    let y2820 = d1 === 1029982 ? 2820 : Math.floor((128 * d1 + 46878) / 46751)
+    const d0 = jd - persianToJulianDay(475, 1, 1)
+    const n2820 = Math.floor(d0 / 1029983)
+    const d1 = mod(d0, 1029983)
+    const y2820 = d1 === 1029982 ? 2820 : Math.floor((128 * d1 + 46878) / 46751)
     let year = 474 + 2820 * n2820 + y2820
     if (year <= 0) {
       year--
     }
 
-    let yDay = jd - persianToJulianDay(year, 1, 1) + 1
-    let month = yDay <= 186 ? Math.ceil(yDay / 31) : Math.ceil((yDay - 6) / 31)
-    let day = jd - persianToJulianDay(year, month, 1) + 1
+    const yDay = jd - persianToJulianDay(year, 1, 1) + 1
+    const month =
+      yDay <= 186 ? Math.ceil(yDay / 31) : Math.ceil((yDay - 6) / 31)
+    const day = jd - persianToJulianDay(year, month, 1) + 1
 
     return new CalendarDate(this, year, month, day)
   }

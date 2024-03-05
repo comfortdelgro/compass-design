@@ -1,8 +1,6 @@
 import {DialogHTMLAttributes, ReactNode} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {DrawerVariantProps} from './drawer.styles'
 
-interface DrawerSharedProps {
+type DrawerSharedProps = {
   /**
    * @default "modal"
    * @description
@@ -39,7 +37,7 @@ interface DrawerSharedProps {
   preventClose?: boolean
 }
 
-interface DefaultDrawerProps {
+type DefaultDrawerProps = {
   variant?: 'default'
   position?: 'right' | 'bottom' | 'left' | undefined
 
@@ -66,10 +64,10 @@ type H5DrawerChildrenAsFunctionOptions = {
   | 'children'
 >
 
-interface H5DrawerProps {
+type H5DrawerProps = {
   variant: 'h5'
   position?: never
-  expanderCSS?: StyledComponentProps['css']
+  expanderCSS?: unknown
   onExpandChange?: (isExpand: boolean) => void
 
   /**
@@ -120,11 +118,9 @@ export type DrawerH5Props = DrawerSharedProps & H5DrawerProps
 export type DrawerDefaultProps = DrawerSharedProps & DefaultDrawerProps
 
 type Props = DrawerSharedProps &
-  (DefaultDrawerProps | H5DrawerProps) &
-  StyledComponentProps
+  (DefaultDrawerProps | H5DrawerProps) & {css?: unknown}
 
 export type DrawerProps = Props &
-  Omit<DrawerVariantProps, 'position'> &
   Omit<
     DialogHTMLAttributes<HTMLDialogElement>,
     keyof Props | 'tabIndex' | 'autoFocus'

@@ -1,12 +1,14 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from 'react'
-import {StyledComponentProps} from '../../utils/stitches.types'
+import CssInjection from '../../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import {StyledDragAndDrop} from './index.styles'
+import styles from './index.module.css'
 import DragAndDropListItem from './item'
 import {pickChilds} from './utils'
 import List from './utils/List'
 
-export interface Props extends StyledComponentProps {
+export interface Props {
+  css?: unknown
   children: React.ReactNode
   onReorderByKeys?: (keys: React.Key[]) => void
 }
@@ -16,7 +18,7 @@ export type DragAndDropListProps = Props &
 
 const DragAndDropList = React.forwardRef<HTMLDivElement, DragAndDropListProps>(
   (props, ref) => {
-    const {css = {}, children, onReorderByKeys, ...delegated} = props
+    const {css = {}, className, children, onReorderByKeys, ...htmlProps} = props
     const dndRef = useDOMRef<HTMLDivElement>(ref)
 
     const collection = React.useMemo(
@@ -30,23 +32,29 @@ const DragAndDropList = React.forwardRef<HTMLDivElement, DragAndDropListProps>(
     )
 
     return (
-      <StyledDragAndDrop ref={dndRef} css={css} {...delegated}>
-        <List
-          values={items}
-          collection={collection}
-          onChange={({oldIndex, newIndex}) => {
-            const array = items.slice()
-            array.splice(
-              newIndex < 0 ? array.length + newIndex : newIndex,
-              0,
-              array.splice(oldIndex, 1)[0]!,
-            )
-            onReorderByKeys?.(array)
-          }}
+      <CssInjection css={css} childrenRef={ref}>
+        <div
+          ref={dndRef}
+          className={`${styles.dnd} cdg-list-dnd ${className}`}
+          {...htmlProps}
         >
-          {children}
-        </List>
-      </StyledDragAndDrop>
+          <List
+            values={items}
+            collection={collection}
+            onChange={({oldIndex, newIndex}) => {
+              const array = items.slice()
+              array.splice(
+                newIndex < 0 ? array.length + newIndex : newIndex,
+                0,
+                array.splice(oldIndex, 1)[0]!,
+              )
+              onReorderByKeys?.(array)
+            }}
+          >
+            {children}
+          </List>
+        </div>
+      </CssInjection>
     )
   },
 )

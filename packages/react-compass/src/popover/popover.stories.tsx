@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import type {Meta} from '@storybook/react'
+import {useState} from 'react'
 import Popover, {PopoverDirection} from '.'
-import Button from '../button'
 
 const SamplePopover = () => {
   return (
@@ -116,9 +116,12 @@ export const Controlled = () => {
         <Popover
           isOpen={isOpen1}
           anchor={
-            <Button variant='secondary' onPress={openPopover1}>
+            <button
+              style={{width: '5rem', height: '3rem', borderRadius: '0.5rem'}}
+              onClick={openPopover1}
+            >
               Click me!
-            </Button>
+            </button>
           }
           offset={currentOffset}
           direction={currentDirection}
@@ -132,3 +135,16 @@ export const Controlled = () => {
     </>
   )
 }
+
+const meta = {
+  title: 'Example/Popover',
+  component: Controlled,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Controlled>
+
+export default meta

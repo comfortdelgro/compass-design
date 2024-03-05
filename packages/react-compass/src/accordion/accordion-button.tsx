@@ -1,53 +1,54 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {
-  AccordionTitleVariantProps,
-  StyledAccordionButton,
-} from './accordion-button.styles'
+import styles from './styles/accordion-button.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css: unknown
   children?: React.ReactNode
   className?: string
+  expand?: boolean
   onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void
   onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement>) => void
 }
 
-export type ButtonProps = Props &
-  AccordionTitleVariantProps &
+export type AccordionButtonProps = Props &
   Omit<React.HTMLAttributes<HTMLButtonElement>, keyof Props>
 
-const AccordionButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => {
-    const {
-      children,
-      expand = 'close',
-      className,
-      css = {},
-      onMouseDown,
-      onKeyDown,
-      ...delegated
-    } = props
+const AccordionButton = React.forwardRef<
+  HTMLButtonElement,
+  AccordionButtonProps
+>((props, ref) => {
+  const {
+    children,
+    expand,
+    className,
+    css = {},
+    onMouseDown,
+    onKeyDown,
+    ...delegated
+  } = props
 
-    const buttonRef = useDOMRef<HTMLButtonElement>(ref)
+  const buttonRef = useDOMRef<HTMLButtonElement>(ref)
 
-    return (
-      <StyledAccordionButton
-        aria-expanded={expand !== 'close'}
+  return (
+    <CssInjection css={css} childrenRef={buttonRef}>
+      <button
+        aria-expanded={expand}
         aria-controls={props['aria-controls']}
-        expand={expand}
         ref={buttonRef}
-        className={className}
-        css={css}
+        className={`${styles.accordionButton} ${
+          expand ? styles.open : styles.close
+        } ${className}`}
         onMouseDown={onMouseDown}
         onKeyDown={onKeyDown}
         type='button'
         {...delegated}
       >
         {children}
-      </StyledAccordionButton>
-    )
-  },
-)
+      </button>
+    </CssInjection>
+  )
+})
 
 export default AccordionButton

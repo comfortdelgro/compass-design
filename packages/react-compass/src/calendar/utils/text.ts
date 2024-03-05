@@ -64,7 +64,6 @@ export function restoreTextSelection(target: FocusableElement | null) {
 
       if (target.style.userSelect === 'none') {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
         target.style.userSelect = targetOldUserSelect
       }
 

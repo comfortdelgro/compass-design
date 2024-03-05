@@ -50,7 +50,6 @@ function unitDuration(duration: DateDuration) {
   const unit = {...duration}
   for (const key in duration) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     unit[key] = 1
   }
   return unit
@@ -242,7 +241,6 @@ export const useCalendarState = (
     isDisabled: props.isDisabled ?? false,
     isReadOnly: props.isReadOnly ?? false,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     value: calendarDateValue,
     setValue,
     visibleRange: {

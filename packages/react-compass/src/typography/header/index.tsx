@@ -1,9 +1,9 @@
 import React from 'react'
-import {styled} from '../../theme'
-import {StyledComponentProps} from '../../utils/stitches.types'
+import CssInjection from '../../utils/objectToCss/CssInjection'
 import {Component} from '../utils'
+import styles from './header.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   variant?:
     | 'header0'
     | 'header1'
@@ -13,20 +13,24 @@ interface Props extends StyledComponentProps {
     | 'header5'
   component?: Component
   children: React.ReactNode
+  css?: unknown
+  weight?: 'semibold' | 'bold'
 }
 
 export type headerTypographyProps = Props &
-  Omit<React.HTMLAttributes<HTMLHeadingElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
 
 const Header: React.FC<headerTypographyProps> = (props) => {
   const {
     css = {},
     children,
     variant = 'header1',
+    weight = 'semibold',
     component,
-    ...delegated
+    className,
+    ...htmlProps
   } = props
-  const tag = React.useMemo(() => {
+  const Component = React.useMemo(() => {
     if (component) return component
     switch (variant) {
       case 'header0':
@@ -42,55 +46,28 @@ const Header: React.FC<headerTypographyProps> = (props) => {
       case 'header5':
         return 'h5'
       default:
-        return 'p'
+        return 'h1'
     }
-  }, [variant])
+  }, [component, variant])
 
-  const StyledHeader = styled(tag, {
-    width: '100%',
-    padding: 0,
-    margin: 0,
-    color: '$primaryText',
-    variants: {
-      variant: {
-        header0: {
-          fontSize: '$header0',
-          fontWeight: '$semibold',
-          lineHeight: '3.375rem',
-        },
-        header1: {
-          fontSize: '$header1',
-          fontWeight: '$semibold',
-          lineHeight: '3rem',
-        },
-        header2: {
-          fontSize: '$header2',
-          fontWeight: '$semibold',
-          lineHeight: '2.625rem',
-        },
-        header3: {
-          fontSize: '$header3',
-          fontWeight: '$semibold',
-          lineHeight: '2.25rem',
-        },
-        header4: {
-          fontSize: '$header4',
-          fontWeight: '$semibold',
-          lineHeight: '1.875rem',
-        },
-        header5: {
-          fontSize: '$header5',
-          fontWeight: '$semibold',
-          lineHeight: '1.5rem',
-        },
-      },
-    },
-  })
-
+  const classNames = React.useMemo(() => {
+    const arr = [
+      styles.header,
+      variant && styles[variant],
+      weight && styles[weight],
+      className && className,
+      'cdg-header',
+    ]
+    return arr.filter(Boolean).join(' ')
+  }, [className, variant, weight])
   return (
-    <StyledHeader css={css} variant={variant} {...delegated}>
-      {children}
-    </StyledHeader>
+    <>
+      <CssInjection css={css}>
+        <Component {...htmlProps} className={classNames}>
+          {children}
+        </Component>
+      </CssInjection>
+    </>
   )
 }
 

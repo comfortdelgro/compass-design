@@ -1,11 +1,12 @@
 import React from 'react'
-import {styled} from '../../theme'
-import {StyledComponentProps} from '../../utils/stitches.types'
+import CssInjection from '../../utils/objectToCss/CssInjection'
+import styles from './link.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   variant?: 'link1' | 'link2' | 'link3'
-  weight?: 'none' | 'semibold' | 'bold'
+  weight?: 'semibold' | 'bold'
   children: React.ReactNode
+  css?: unknown
 }
 
 export type linkTypographyProps = Props &
@@ -15,51 +16,31 @@ const Link: React.FC<linkTypographyProps> = (props) => {
   const {
     css = {},
     children,
-    weight = 'none',
+    weight,
     variant = 'link1',
-    ...delegated
+    className,
+    ...htmlProps
   } = props
 
-  const StyledLink = styled('a', {
-    width: '100%',
-    padding: 0,
-    margin: 0,
-    color: '#009EDA',
-    textDecoration: 'underline',
-    variants: {
-      weight: {
-        none: {},
-        semibold: {
-          fontWeight: '$semibold',
-        },
-        bold: {
-          fontWeight: '$bold',
-        },
-      },
-      variant: {
-        link1: {
-          fontSize: '1.25rem',
-          fontWeight: '$semibold',
-          lineHeight: '1.875rem',
-        },
-        link2: {
-          fontSize: '1rem',
-          fontWeight: '$medium',
-          lineHeight: '1.5rem',
-        },
-        link3: {
-          fontSize: '0.875rem',
-          fontWeight: '$medium',
-          lineHeight: '1.3125rem',
-        },
-      },
-    },
-  })
+  const classNames = React.useMemo(() => {
+    const arr = [
+      styles.link,
+      variant && styles[variant],
+      weight && styles[weight],
+      className && className,
+      'cdg-link',
+    ]
+    return arr.filter(Boolean).join(' ')
+  }, [className, variant, weight])
 
   return (
-    <StyledLink css={css} variant={variant} weight={weight} {...delegated}>
-      {children}
-    </StyledLink>
+    <>
+      <CssInjection css={css}>
+        <a {...htmlProps} className={classNames}>
+          {children}
+        </a>
+      </CssInjection>
+    </>
   )
 }
 

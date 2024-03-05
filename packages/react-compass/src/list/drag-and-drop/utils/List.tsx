@@ -443,7 +443,7 @@ class List extends React.Component<IProps> {
       position: 'fixed',
       overflow: 'hidden',
       borderRadius: '4px',
-      outline: '2px solid var(--colors-cdgBlue)',
+      outline: '2px solid var(--cdg-color-cdgBlue)',
       boxShadow:
         '0px 8px 16px 0px rgba(0, 0, 0, 0.13), 0px 2px 4px 0px rgba(0, 0, 0, 0.1)',
       top: this.state.targetY,

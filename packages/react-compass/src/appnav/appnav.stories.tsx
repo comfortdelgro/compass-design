@@ -6,32 +6,30 @@ import Home from '@comfortdelgro/compass-icons/react/home'
 import Notification from '@comfortdelgro/compass-icons/react/notification-filled'
 import NotificationOutlined from '@comfortdelgro/compass-icons/react/notification-outlined'
 import User from '@comfortdelgro/compass-icons/react/user-duotone'
+import {Meta} from '@storybook/react'
 import React from 'react'
+import AppNav from '.'
 
-import {Column} from '../utils'
-import AppNav from './index'
-
-export const FourSections: React.FC = () => {
+export const FourSections = () => {
   const [index, setIndex] = React.useState<number>(0)
   return (
-    <Column>
+    <div style={{display: 'flex', flexDirection: 'column'}}>
       <h3>Bottom app nav with four sections</h3>
       <div
         style={{
-          position: 'relative',
           width: 375,
           height: 500,
           backgroundColor: '#f4f4f4',
           border: '1px solid #f0f0f0',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'stretch',
         }}
       >
         <AppNav
           index={index}
           onChange={(newIndex) => {
             setIndex(newIndex)
-          }}
-          css={{
-            position: 'absolute',
           }}
         >
           <AppNav.Section
@@ -57,33 +55,33 @@ export const FourSections: React.FC = () => {
           />
         </AppNav>
       </div>
-    </Column>
+    </div>
   )
 }
-export const FiveSections: React.FC = () => {
+
+export const FiveSections = () => {
   const [index, setIndex] = React.useState<number>(1)
   return (
-    <Column>
+    <div style={{display: 'flex', flexDirection: 'column'}}>
       <h3>Top app nav with five sections</h3>
       <div
         style={{
-          position: 'relative',
-          width: 375,
-          height: 500,
           backgroundColor: '#f4f4f4',
           border: '1px solid #f0f0f0',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'stretch',
         }}
       >
         <AppNav
+          className='sample-app-nav'
           index={index}
           onChange={(newIndex) => {
             setIndex(newIndex)
           }}
-          css={{
-            position: 'absolute',
-          }}
         >
           <AppNav.Section
+            className='sample-app-nav-section'
             activeIcon={<Home />}
             inactiveIcon={<Home />}
             label='Home'
@@ -112,6 +110,19 @@ export const FiveSections: React.FC = () => {
           />
         </AppNav>
       </div>
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Appnav',
+  component: FourSections,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof FourSections>
+
+export default meta

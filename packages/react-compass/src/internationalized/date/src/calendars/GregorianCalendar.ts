@@ -21,7 +21,7 @@ export function gregorianToJulianDay(
 ): number {
   year = getExtendedYear(era, year)
 
-  let y1 = year - 1
+  const y1 = year - 1
   let monthOffset = -2
   if (month <= 2) {
     monthOffset = 0
@@ -71,32 +71,32 @@ export class GregorianCalendar implements Calendar {
   identifier = 'gregory'
 
   fromJulianDay(jd: number): CalendarDate {
-    let jd0 = jd
-    let depoch = jd0 - EPOCH
-    let quadricent = Math.floor(depoch / 146097)
-    let dqc = mod(depoch, 146097)
-    let cent = Math.floor(dqc / 36524)
-    let dcent = mod(dqc, 36524)
-    let quad = Math.floor(dcent / 1461)
-    let dquad = mod(dcent, 1461)
-    let yindex = Math.floor(dquad / 365)
+    const jd0 = jd
+    const depoch = jd0 - EPOCH
+    const quadricent = Math.floor(depoch / 146097)
+    const dqc = mod(depoch, 146097)
+    const cent = Math.floor(dqc / 36524)
+    const dcent = mod(dqc, 36524)
+    const quad = Math.floor(dcent / 1461)
+    const dquad = mod(dcent, 1461)
+    const yindex = Math.floor(dquad / 365)
 
-    let extendedYear =
+    const extendedYear =
       quadricent * 400 +
       cent * 100 +
       quad * 4 +
       yindex +
       (cent !== 4 && yindex !== 4 ? 1 : 0)
-    let [era, year] = fromExtendedYear(extendedYear)
-    let yearDay = jd0 - gregorianToJulianDay(era, year, 1, 1)
+    const [era, year] = fromExtendedYear(extendedYear)
+    const yearDay = jd0 - gregorianToJulianDay(era, year, 1, 1)
     let leapAdj = 2
     if (jd0 < gregorianToJulianDay(era, year, 3, 1)) {
       leapAdj = 0
     } else if (isLeapYear(year)) {
       leapAdj = 1
     }
-    let month = Math.floor(((yearDay + leapAdj) * 12 + 373) / 367)
-    let day = jd0 - gregorianToJulianDay(era, year, month, 1) + 1
+    const month = Math.floor(((yearDay + leapAdj) * 12 + 373) / 367)
+    const day = jd0 - gregorianToJulianDay(era, year, month, 1) + 1
 
     return new CalendarDate(era, year, month, day)
   }
@@ -111,9 +111,10 @@ export class GregorianCalendar implements Calendar {
     ] as number
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  getMonthsInYear(date: AnyCalendarDate): number {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getMonthsInYear(_date: AnyCalendarDate): number {
     return 12
   }
 
@@ -121,8 +122,9 @@ export class GregorianCalendar implements Calendar {
     return isLeapYear(date.year) ? 366 : 365
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-comment
   // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getYearsInEra(date: AnyCalendarDate): number {
     return 9999
   }

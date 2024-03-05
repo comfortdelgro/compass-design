@@ -15,9 +15,9 @@
 /* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // Reference: https://github.com/adobe/react-spectrum/blob/98cad3f064c5302c04a1140d12a2cacc3ee921a2/packages/%40react-aria/datepicker/src/useDisplayNames.ts
-import {LocalizedStringDictionary} from '@internationalized/string'
 import {useMemo} from 'react'
 import {useLocale} from '../../internationalized/i18n'
+import {LocalizedStringDictionary} from '../../internationalized/string'
 import {intlMessage} from '../constants/common'
 
 type Field =

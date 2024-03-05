@@ -1,9 +1,14 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, {useState} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import ListH5 from './h5'
 import ListImage from './list-image'
-import {ListVariantProps, StyledList} from './list.styles'
-
-interface Props extends StyledComponentProps, ListVariantProps {
+import styles from './styles/list.module.css'
+interface Props {
+  css?: unknown
+  variant?: 'item' | 'interactive' | 'h5'
+  isDisabled?: boolean
+  size?: 'sm' | 'md'
   leftInfo?: React.ReactNode
   title?: string
   description?: string
@@ -36,7 +41,6 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
   } = props
 
   const [isPressed, setPressed] = useState(false)
-  const variantProps = {isDisabled, size, variant}
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (isDisabled) return
     if (props.onClick) {
@@ -49,62 +53,133 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     setPressed(value)
   }
 
+  const listClass = React.useMemo(() => {
+    return [
+      styles.list,
+      isDisabled && styles.listIsDisabled,
+      size == 'sm' && styles.listSizeSM,
+      variant === 'interactive' &&
+        !isPressed &&
+        !isDisabled &&
+        styles.listVariantInteractive,
+      variant === 'item' && !isPressed && !isDisabled && styles.listVariantItem,
+      variant === 'interactive' &&
+        isPressed &&
+        !isDisabled &&
+        styles.listVariantInteractiveIsPressed,
+      variant === 'item' &&
+        isPressed &&
+        !isDisabled &&
+        styles.listVariantItemIsPressed,
+      variant === 'interactive' &&
+        isDisabled &&
+        styles.listVariantInteractiveIsDisabled,
+      variant === 'item' && isDisabled && styles.listVariantItemIsDisabled,
+      'cdg-list',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [className, isDisabled, isPressed, size, variant])
+
+  const leftDescriptionClass = React.useMemo(() => {
+    return [
+      styles.leftDescription,
+      size == 'sm' && styles.leftDescriptionSizeSM,
+      variant === 'interactive' && styles.lefttDescriptionVariantInteractive,
+      size == 'sm' && isPressed && styles.leftDescriptionSizeSMIsPressed,
+      variant === 'interactive' &&
+        isDisabled &&
+        styles.leftDescriptionVariantInteractiveIsDisabled,
+      'cdg-list-description',
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [isDisabled, isPressed, size, variant])
+
+  const leftInfoClass = React.useMemo(() => {
+    return [
+      styles.leftInfo,
+      size == 'sm' && styles.leftInfoSizeSM,
+      size == 'sm' && isPressed && styles.leftInfoSizeSMIsPressed,
+      'cdg-list-info',
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [isPressed, size])
+
+  const leftTitleClass = React.useMemo(() => {
+    return [
+      styles.leftTitle,
+      size == 'sm' && styles.leftTitleSizeSM,
+      size == 'sm' && isPressed && styles.leftTitleSizeSMIsPressed,
+      'cdg-list-title',
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [isPressed, size])
+
+  const leftTextClass = React.useMemo(() => {
+    return [
+      styles.leftText,
+      size == 'sm' && styles.leftTextSizeSM,
+      size == 'sm' && isPressed && styles.leftTextSizeSMIsPressed,
+      'cdg-list-left-text',
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [isPressed, size])
+
+  const rightTextClass = React.useMemo(() => {
+    return [
+      styles.rightText,
+      variant === 'interactive' &&
+        isDisabled &&
+        styles.rightTextVariantInteractiveIsDisabled,
+      'cdg-list-right-text',
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [isDisabled, variant])
+
+  if (variant === 'h5') return <ListH5 {...props} />
+
   return (
-    <StyledList
-      ref={ref}
-      tabIndex={0}
-      role='button'
-      css={css}
-      className={`${className} ${isPressed ? 'pressed' : ''}
-        ${variant === 'interactive' ? 'interactive' : 'item'}`}
-      isPressed={isPressed}
-      onClick={handleClick}
-      onMouseDown={() => onMouse(true)}
-      onMouseUp={() => onMouse(false)}
-      {...variantProps}
-      {...delegated}
-    >
-      <div className='list-left-side'>
-        {leftInfo && <div className='list-left-info'>{leftInfo}</div>}
-        {(title || description) && (
-          <div className='list-text-wrapper'>
-            {title && <h2 className='list-text-title'>{title}</h2>}
-            <div>
-              {description && (
-                <span className='list-text-description'>{description}</span>
-              )}
-              {descriptionIcon && descriptionIcon}
+    <CssInjection css={css} childrenRef={ref}>
+      <div
+        ref={ref}
+        tabIndex={0}
+        role='button'
+        className={listClass}
+        onClick={handleClick}
+        onMouseDown={() => onMouse(true)}
+        onMouseUp={() => onMouse(false)}
+        {...delegated}
+      >
+        <div className={styles.left}>
+          {leftInfo && <div className={leftInfoClass}>{leftInfo}</div>}
+          {(title || description) && (
+            <div className={leftTextClass}>
+              {title && <h2 className={leftTitleClass}>{title}</h2>}
+              <div>
+                {description && (
+                  <span className={leftDescriptionClass}>{description}</span>
+                )}
+                {descriptionIcon && descriptionIcon}
+              </div>
             </div>
+          )}
+        </div>
+        {rightInfo && !rightContent && (
+          <div className={styles.right}>
+            {rightInfo.text && (
+              <span className={rightTextClass}>{rightInfo?.text}</span>
+            )}
+            {rightInfo?.icon}
           </div>
         )}
       </div>
-      {rightInfo && !rightContent && (
-        <>
-          {variant === 'h5' ? (
-            <div className='list-h5-right-side'>
-              {rightInfo?.text && (
-                <h2 className='list-text-title'>{rightInfo?.text}</h2>
-              )}
-              {rightInfo?.description && (
-                <span className='list-text-description'>
-                  {rightInfo?.description}
-                </span>
-              )}
-            </div>
-          ) : (
-            <div className='list-right-side'>
-              {rightInfo.text && (
-                <span className='list-right-side-text'>{rightInfo?.text}</span>
-              )}
-              {rightInfo?.icon}
-            </div>
-          )}
-        </>
-      )}
-      {rightContent && !rightInfo && (
-        <div className='list-h5-right-side'> {rightContent} </div>
-      )}
-    </StyledList>
+    </CssInjection>
   )
 })
 

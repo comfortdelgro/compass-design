@@ -1,9 +1,9 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledTagBoxAction} from './tag-box.styles'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
 }
 
@@ -11,19 +11,16 @@ export type TagBoxActionProps = Props
 
 const TagBoxAction = React.forwardRef<HTMLDivElement, TagBoxActionProps>(
   (props, ref) => {
-    const {
-      // StyledComponentProps
-      css = {},
-      children,
-      ...delegated
-    } = props
+    const {css = {}, children, ...htmlProps} = props
 
     const tagBoxActionRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledTagBoxAction css={css} ref={tagBoxActionRef} {...delegated}>
-        {children}
-      </StyledTagBoxAction>
+      <CssInjection css={css}>
+        <div ref={tagBoxActionRef} {...htmlProps}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

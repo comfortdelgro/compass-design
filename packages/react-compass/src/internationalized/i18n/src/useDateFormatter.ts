@@ -25,14 +25,15 @@ export function useDateFormatter(
   options?: DateFormatterOptions,
 ): DateFormatter {
   // Reuse last options object if it is shallowly equal, which allows the useMemo result to also be reused.
-  let lastOptions = useRef(null)
+  const lastOptions = useRef(null)
   if (options && lastOptions.current && isEqual(options, lastOptions.current)) {
     options = lastOptions.current as DateFormatterOptions
   }
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   lastOptions.current = options
 
-  let {locale} = useLocale()
+  const {locale} = useLocale()
   return useMemo(() => new DateFormatter(locale, options), [locale, options])
 }
 
@@ -41,13 +42,14 @@ function isEqual(a: DateFormatterOptions, b: DateFormatterOptions) {
     return true
   }
 
-  let aKeys = Object.keys(a)
-  let bKeys = Object.keys(b)
+  const aKeys = Object.keys(a)
+  const bKeys = Object.keys(b)
   if (aKeys.length !== bKeys.length) {
     return false
   }
 
-  for (let key of aKeys) {
+  for (const key of aKeys) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (b[key] !== a[key]) {
       return false

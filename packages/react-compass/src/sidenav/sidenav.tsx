@@ -1,15 +1,19 @@
+'use client'
+
 import React, {useRef, useState} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import Divider from './divider'
 import {SidenavContext} from './sidenav-context'
 import SidenavItem from './sidenav-item'
 import SidenavMenu from './sidenav-menu'
-import {StyledSidenav} from './sidenav.styles'
+import styles from './styles/sidenav.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children: React.ReactNode
   expand?: boolean
   delay?: number
+  css?: unknown
+  className?: string
   onExpandChange?: (expand: boolean) => void
 }
 
@@ -27,7 +31,7 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
     // StyledComponentProps
     css = {},
     // HTML Div props
-    ...delegated
+    ...htmlProps
   } = props
 
   const expandTimeout = useRef<NodeJS.Timeout | null>(null)
@@ -65,19 +69,21 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
   const isExpand = !expand ? expandOnHover : true
 
   return (
-    <StyledSidenav
-      css={{...css}}
-      ref={ref}
-      className={`${className} ${expandOnHover ? 'sidenav-expanded' : ''}`}
-      size={isExpand ? 'full' : 'default'}
-      onMouseOver={handleMouseOver}
-      onMouseLeave={handleMouseLeave}
-      {...delegated}
-    >
-      <SidenavContext.Provider value={{isExpand: isExpand}}>
-        {children}
-      </SidenavContext.Provider>
-    </StyledSidenav>
+    <CssInjection css={css} childrenRef={ref}>
+      <div
+        ref={ref}
+        className={`cdg-sidenav ${styles.sidenav} ${className} ${
+          expandOnHover ? 'sidenav-expanded' : ''
+        } ${isExpand ? `${styles.sidenavFull}` : 'default'}`}
+        onMouseOver={handleMouseOver}
+        onMouseLeave={handleMouseLeave}
+        {...htmlProps}
+      >
+        <SidenavContext.Provider value={{isExpand: isExpand}}>
+          {children}
+        </SidenavContext.Provider>
+      </div>
+    </CssInjection>
   )
 })
 

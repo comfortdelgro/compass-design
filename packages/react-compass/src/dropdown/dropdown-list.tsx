@@ -1,24 +1,21 @@
 import React, {useContext, useEffect, useMemo} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
 import DropdownLoading from './dropdown-loading'
 import DropdownHeader from './dropdown.header'
-import {
-  StyledDropdownList,
-  StyledDropdownListItem,
-  StyledEmptyData,
-} from './dropdown.styles'
 import {useIsInViewport} from './hooks/useInViewport'
+import styles from './styles/dropdown.module.css'
 import {getDistanceBetweenElements, textContent} from './utils'
 
-interface Props extends StyledComponentProps {
+interface Props {
   searchValue?: string
   isLoading?: boolean
   children?: React.ReactNode
   noDataMessage?: string
   onLoadMore?: () => void
+  css?: unknown
 }
 
 export type DropdownItemListProps = Props
@@ -62,28 +59,44 @@ const DropdownList: React.FC<DropdownItemListProps> = (
         !isLoadingMore && onLoadMore?.()
       }
     }
-  }, [isInViewport])
+  }, [isInViewport, isLoadingMore, lastEl, onLoadMore, standEl])
 
   return useMemo(
     () => (
-      <>
+      <CssInjection css={css}>
         {DropdownHeaderElement && DropdownHeaderElement}
-        <StyledDropdownList css={css} role='listbox' aria-labelledby={labelId}>
+        <ul
+          role='listbox'
+          aria-labelledby={labelId}
+          className={`${styles.dropdownList} cdg-dropdown-list`}
+        >
           {isLoading ? (
             <DropdownLoading />
           ) : displayedItemsCount === 0 ? (
-            <StyledEmptyData>{noDataMessage || 'No data'}</StyledEmptyData>
+            <div className={`${styles.dropdownListEmptyData} cdg-dropdown-list-empty-data`}>
+              {noDataMessage || 'No data'}
+            </div>
           ) : (
             dropdownItems
           )}
           {React.Children.toArray(dropdownItems).length > 0 && (
-            <StyledDropdownListItem ref={lastEl} />
+            <div className={`${styles.dropdownListItem}`} ref={lastEl} />
           )}
-          <StyledDropdownListItem ref={standEl} />
-        </StyledDropdownList>
-      </>
+          <div className={`${styles.dropdownListItem}`} ref={standEl} />
+        </ul>
+      </CssInjection>
     ),
-    [css, isLoading, displayedItemsCount, children],
+    [
+      css,
+      DropdownHeaderElement,
+      labelId,
+      isLoading,
+      displayedItemsCount,
+      noDataMessage,
+      dropdownItems,
+      lastEl,
+      standEl,
+    ],
   )
 }
 

@@ -1,9 +1,10 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledAccordionTable} from './accordion-table.styles'
+import styles from './styles/accordion-table.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children: React.ReactNode
 }
 
@@ -12,14 +13,20 @@ export type AccordionTableProps = Props &
 
 const AccordionTable = React.forwardRef<HTMLDivElement, AccordionTableProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className, ...htmlProps} = props
 
     const accordionTableRef = useDOMRef<HTMLDivElement>(ref)
 
     return (
-      <StyledAccordionTable {...delegated} css={css} ref={accordionTableRef}>
-        {children}
-      </StyledAccordionTable>
+      <CssInjection css={css} childrenRef={accordionTableRef}>
+        <div
+          className={`${styles.accordionTable} ${className}`}
+          {...htmlProps}
+          ref={accordionTableRef}
+        >
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

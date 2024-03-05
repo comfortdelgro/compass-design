@@ -1,4 +1,5 @@
 import {faCalendarDay} from '@fortawesome/free-solid-svg-icons'
+import type {Meta} from '@storybook/react'
 import React from 'react'
 import {Icon} from '../icon'
 import {Column} from '../utils/components'
@@ -525,3 +526,16 @@ export const Variants: React.FC = () => {
     </Column>
   )
 }
+
+const meta = {
+  title: 'Example/Timeline',
+  component: Default,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Default>
+
+export default meta

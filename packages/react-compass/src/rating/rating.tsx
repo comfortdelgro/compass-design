@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Button from '../button'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   FaceFrown,
@@ -9,8 +9,9 @@ import {
   FaceSmile,
   FaceSmileHeart,
 } from './constants'
-import {RatingVariantProps, StyledRatingComponent} from './rating.styles'
-interface Props extends StyledComponentProps {
+import styles from './styles/rating.module.css'
+
+interface Props {
   useIcons?: boolean
   onChange?: (point: number | null) => void
   className?: string
@@ -18,9 +19,9 @@ interface Props extends StyledComponentProps {
   value?: number
   readOnly?: boolean
   disabled?: boolean
+  css?: unknown
 }
 export type RatingProps = Props &
-  RatingVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
   const {
@@ -30,7 +31,8 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     value = null,
     readOnly = false,
     disabled = false,
-    ...delegated
+    className = '',
+    ...htmlProps
   } = props
   const ratingRef = useDOMRef<HTMLDivElement>(ref)
   const [activeIndex, setActiveIndex] = useState<number | null>(value)
@@ -50,35 +52,45 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     return (
       <>
         <Button
-          className={`rating ${activeIndex === 0 ? 'active' : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === 0 ? `${styles.active}` : ''
+          } ${styles.customButton}`}
           onPress={handleRatingBtnPress(0)}
           isDisabled={disabled}
         >
           <FaceSadTear />
         </Button>
         <Button
-          className={`rating ${activeIndex === 1 ? 'active' : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === 1 ? `${styles.active}` : ''
+          } ${styles.customButton}`}
           onPress={handleRatingBtnPress(1)}
           isDisabled={disabled}
         >
           <FaceFrown />
         </Button>
         <Button
-          className={`rating ${activeIndex === 2 ? 'active' : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === 2 ? `${styles.active}` : ''
+          } ${styles.customButton}`}
           onPress={handleRatingBtnPress(2)}
           isDisabled={disabled}
         >
           <FaceMeh />
         </Button>
         <Button
-          className={`rating ${activeIndex === 3 ? 'active' : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === 3 ? `${styles.active}` : ''
+          } ${styles.customButton}`}
           onPress={handleRatingBtnPress(3)}
           isDisabled={disabled}
         >
           <FaceSmile />
         </Button>
         <Button
-          className={`rating ${activeIndex === 4 ? 'active' : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === 4 ? `${styles.active}` : ''
+          } ${styles.customButton}`}
           onPress={handleRatingBtnPress(4)}
           isDisabled={disabled}
         >
@@ -91,7 +103,9 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     return [1, 2, 3, 4, 5].map((item, index) => {
       return (
         <Button
-          className={`rating ${activeIndex === index ? 'active' : ''}`}
+          className={`${styles.rating} ${
+            activeIndex === index ? `${styles.active}` : ''
+          } ${styles.customButton}`}
           onPress={handleRatingBtnPress(index)}
           key={index}
           isDisabled={disabled}
@@ -102,9 +116,15 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     })
   }
   return (
-    <StyledRatingComponent ref={ratingRef} css={css} {...delegated}>
-      {useIcons ? renderIconButtons() : renderNumberButtons()}
-    </StyledRatingComponent>
+    <CssInjection css={css} childrenRef={ratingRef}>
+      <div
+        ref={ratingRef}
+        {...htmlProps}
+        className={`cdg-rating ${styles.ratingWrapper} ${className}`}
+      >
+        {useIcons ? renderIconButtons() : renderNumberButtons()}
+      </div>
+    </CssInjection>
   )
 })
 

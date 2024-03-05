@@ -1,14 +1,17 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {SpinnerVariantProps, StyledSpinner} from './spinner.styles'
+import styles from './styles/spinner.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   label?: boolean | string
+  css?: unknown
+  className?: string
+  size?: '2xl' | 'xl' | 'lg' | 'md' | 'sm'
 }
 
 export type SpinnerProps = Props &
-  SpinnerVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
@@ -19,31 +22,66 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
     label = true,
     // VariantProps
     size = 'md',
-
-    ...delegated
+    className = '',
+    ...htmlProps
   } = props
 
-  const variantProps = {size} as SpinnerVariantProps
   const spinnerRef = useDOMRef<HTMLDivElement>(ref)
   const labelText =
     typeof label === 'boolean' ? (label ? 'Loading...' : null) : label
 
+  const toSpinnerClassName = (type: string = '') => {
+    return size ? styles[`${type}${capitalizeFirstLetter(size)}`] : ''
+  }
+
   return (
-    <StyledSpinner
-      css={css}
-      tabIndex={-1}
-      ref={spinnerRef}
-      {...variantProps}
-      {...delegated}
-    >
-      <div className='ring' tabIndex={-1}>
-        <div className='bg' />
-        <div className='segment' />
-        <div className='segment' />
-        <div className='segment' />
+    <CssInjection css={css} childrenRef={spinnerRef}>
+      <div
+        tabIndex={-1}
+        ref={spinnerRef}
+        className={`cdg-spinner ${styles.spinner} ${
+          size ? styles[capitalizeFirstLetter(size)] : ''
+        } ${className}`}
+        {...htmlProps}
+      >
+        <div
+          className={`cdg-spinner-ring ${styles.ring} ${toSpinnerClassName(
+            'ring',
+          )}`}
+          tabIndex={-1}
+        >
+          <div
+            className={`cdg-spinner-bg ${styles.bg} ${toSpinnerClassName(
+              'bg',
+            )}`}
+          />
+          <div
+            className={`cdg-spinner-segment ${
+              styles.segment
+            } ${toSpinnerClassName('segment')} ${styles.segment1}`}
+          />
+          <div
+            className={`cdg-spinner-segment ${
+              styles.segment
+            } ${toSpinnerClassName('segment')} ${styles.segment2}`}
+          />
+          <div
+            className={`cdg-spinner-segment ${
+              styles.segment
+            } ${toSpinnerClassName('segment')} ${styles.segment3}`}
+          />
+        </div>
+        {labelText ? (
+          <div
+            className={`cdg-spinner-label ${styles.label} ${toSpinnerClassName(
+              'label',
+            )}`}
+          >
+            {labelText}
+          </div>
+        ) : null}
       </div>
-      {labelText ? <div className='label'>{labelText}</div> : null}
-    </StyledSpinner>
+    </CssInjection>
   )
 })
 

@@ -1,8 +1,9 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledFooterInfoDownload} from './footer-info-download.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/footer-info-download.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
 }
 
@@ -13,11 +14,22 @@ const FooterInfoDownload = React.forwardRef<
   HTMLDivElement,
   FooterInfoDownloadProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const {children, css = {}, className, ...delegated} = props
+
+  const rootClasses = [
+    styles.footerInfoDownload,
+    className,
+    'cdg-footer-info-download',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledFooterInfoDownload ref={ref} css={css} {...delegated}>
-      {children}
-    </StyledFooterInfoDownload>
+    <CssInjection css={css} childrenRef={ref}>
+      <div className={rootClasses} ref={ref} {...delegated}>
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

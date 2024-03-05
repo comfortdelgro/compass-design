@@ -1,10 +1,11 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledToastLabel} from './toast.styles'
+import styles from './styles/toast.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type ToastLabelProps = Props &
@@ -12,12 +13,18 @@ export type ToastLabelProps = Props &
 
 const ToastLabel = React.forwardRef<HTMLDivElement, ToastLabelProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className = '', ...delegated} = props
     const toastLabelRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledToastLabel css={css} ref={toastLabelRef} {...delegated}>
-        {children}
-      </StyledToastLabel>
+      <CssInjection css={css} childrenRef={toastLabelRef}>
+        <div
+          ref={toastLabelRef}
+          className={`${className} ${styles.toastLabel}`}
+          {...delegated}
+        >
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

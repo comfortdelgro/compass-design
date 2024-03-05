@@ -1,6 +1,39 @@
+import type {Meta} from '@storybook/react'
 import React from 'react'
-import {Column} from '../utils/components'
 import Progress from './index'
+
+export const Basic: React.FC = () => {
+  const [progress, setProgress] = React.useState(0)
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 0 : prevProgress + 10,
+      )
+    }, 800)
+
+    return () => {
+      clearInterval(timer)
+    }
+  }, [])
+
+  return (
+    <>
+      <h3>Indeterminate</h3>
+      <Progress.Circular variant='indeterminate' />
+      <Progress.Linear variant='indeterminate' />
+      <h3>Determinate</h3>
+      <Progress.Circular variant='determinate' value={progress} />
+      <Progress.Linear variant='determinate' value={progress} />
+      <h3>Colorful</h3>
+      <Progress.Circular variant='indeterminate' color='red' />
+      <Progress.Linear variant='indeterminate' color='red' />
+      <h3>Size</h3>
+      <Progress.Circular variant='indeterminate' size={70} />
+      <Progress.Linear variant='indeterminate' size={10} />
+    </>
+  )
+}
 
 export const Circular: React.FC = () => {
   const [progress, setProgress] = React.useState(0)
@@ -18,7 +51,7 @@ export const Circular: React.FC = () => {
   }, [])
 
   return (
-    <Column>
+    <>
       <h3>Indeterminate</h3>
       <Progress.Circular variant='indeterminate' />
       <h3>Determinate</h3>
@@ -27,7 +60,7 @@ export const Circular: React.FC = () => {
       <Progress.Circular variant='indeterminate' color='red' />
       <h3>Size</h3>
       <Progress.Circular variant='indeterminate' size={70} />
-    </Column>
+    </>
   )
 }
 
@@ -62,7 +95,7 @@ export const Linear: React.FC = () => {
     }
   }, [])
   return (
-    <Column>
+    <>
       <h3>Indeterminate</h3>
       <Progress.Linear variant='indeterminate' />
       <h3>Determinate</h3>
@@ -75,6 +108,17 @@ export const Linear: React.FC = () => {
       <Progress.Linear variant='indeterminate' size={10} />
       <h3>Rounded</h3>
       <Progress.Linear variant='indeterminate' size={10} rounded />
-    </Column>
+    </>
   )
 }
+
+const meta = {
+  title: 'Example/Progress',
+  component: Basic,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

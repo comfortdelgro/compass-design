@@ -1,9 +1,9 @@
+import type {Meta} from '@storybook/react'
 import React from 'react'
-import {Column} from '../utils/components'
 import File from './index'
 
-export const States: React.FC = () => (
-  <Column>
+export const State: React.FC = () => (
+  <>
     <h4>Close</h4>
     <div style={{width: '100%'}}>
       <File.State
@@ -75,13 +75,20 @@ export const States: React.FC = () => (
         isLoading
       />
     </div>
-  </Column>
+  </>
 )
 
-export const Previews: React.FC = () => (
-  <Column>
+export const Preview: React.FC = () => (
+  <>
     <div style={{width: '100%'}}>
-      <File.Preview imageSrc='https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg' />
+      <File.Preview
+        css={{
+          '.cdg-file-preview-image': {
+            background: 'red',
+          },
+        }}
+        imageSrc='https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg'
+      />
     </div>
 
     <h3>With File.State</h3>
@@ -100,5 +107,16 @@ export const Previews: React.FC = () => (
         />
       </File.Preview>
     </div>
-  </Column>
+  </>
 )
+
+const meta = {
+  title: 'Example/File',
+  component: State,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof State>
+
+export default meta

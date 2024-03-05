@@ -1,15 +1,29 @@
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledSubHeaderImage} from './sub-header-image.style'
+'use client'
 
-export type SubHeaderImageProps = StyledComponentProps &
-  Omit<React.ImgHTMLAttributes<HTMLImageElement>, keyof StyledComponentProps>
+import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/sub-header-image.module.css'
+interface Props {
+  css?: unknown
+  className?: string
+}
+
+export type SubHeaderImageProps = Props &
+  Omit<React.ImgHTMLAttributes<HTMLImageElement>, keyof Props>
 
 const SubHeaderImage = React.forwardRef<HTMLImageElement, SubHeaderImageProps>(
   (props, ref) => {
-    const {css = {}, ...delegated} = props
+    const {css = {}, className = '', ...htmlProps} = props
 
-    return <StyledSubHeaderImage ref={ref} css={css} {...delegated} />
+    return (
+      <CssInjection css={css} childrenRef={ref}>
+        <img
+          className={`cdg-sub-header-image ${className} ${styles.subHeaderImage}`}
+          ref={ref}
+          {...htmlProps}
+        />
+      </CssInjection>
+    )
   },
 )
 

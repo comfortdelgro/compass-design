@@ -1,39 +1,45 @@
-import React, {HTMLAttributes} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {forwardRef, HTMLAttributes, ReactNode, useCallback} from 'react'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledMultipleChoicesSliderItem} from './multiple-choices-slider.styles'
+import styles from './styles/multiple-choices-slider.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   isSelected?: boolean
-  icon: React.ReactNode
+  icon: ReactNode
   label: string
   index: number
   onChange?: (index: number, isAdded: boolean) => void
 }
 
 export type MultipleChoicesSliderItemProps = Props &
-  Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<HTMLAttributes<HTMLButtonElement>, keyof Props>
 
-const MultipleChoicesSliderItem = React.forwardRef<
-  HTMLDivElement,
+const MultipleChoicesSliderItem = forwardRef<
+  HTMLButtonElement,
   MultipleChoicesSliderItemProps
->((props, ref) => {
-  const {isSelected, icon, label, index, onChange} = props
+>(({isSelected, icon, label, index, onChange}, ref) => {
   const itemRef = useDOMRef(ref)
-  const handleItemClick = React.useCallback(() => {
+
+  const handleItemClick = useCallback(() => {
     if (onChange) {
       onChange(index, !isSelected)
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, isSelected])
+
+  const rootClasses = [
+    styles.multipleChoicesSliderItem,
+    isSelected && styles.isActive,
+    'cdg-multiple-choices-slider-item',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledMultipleChoicesSliderItem
-      ref={itemRef}
-      onClick={handleItemClick}
-      isActive={!!isSelected}
-    >
+    <button ref={itemRef} className={rootClasses} onClick={handleItemClick}>
       {icon}
-      <span>{label}</span>
-    </StyledMultipleChoicesSliderItem>
+      <span className={styles.itemLabel}>{label}</span>
+    </button>
   )
 })
 

@@ -8,16 +8,15 @@ import {
   useInteractions,
 } from '@floating-ui/react'
 import React from 'react'
-import {getDefaulValue, ListKeyboardDelegate} from '../../dropdown/utils'
-import {StyledComponentProps} from '../../utils/stitches.types'
+import CssInjection from '../../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import {DropdownVariantProps, StyledSelect} from './dropdown.styles'
+import styles from '../styles/dropdown.module.css'
 import DropdownItem, {DropdownItemProps} from './item'
 import ListBox from './list-box'
 import Popover from './popover'
-import {Icon, pickChilds} from './utils'
+import {getDefaultValue, Icon, ListKeyboardDelegate, pickChilds} from './utils'
 
-interface Props extends StyledComponentProps {
+interface Props {
   isDisabled?: boolean
   isReadOnly?: boolean
   isRequired?: boolean
@@ -35,10 +34,10 @@ interface Props extends StyledComponentProps {
   defaultSelectedKey?: React.Key
   shouldDeselect?: boolean
   onSelectionChange?: (key: React.Key) => void
+  css?: unknown
 }
 
 export type DropdownProps = Props &
-  DropdownVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
@@ -53,7 +52,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     defaultSelectedKey,
     isDisabled = false,
     shouldDeselect = false,
-    ...delegated
+    className = '',
+    ...htmlProps
   } = props
 
   // ====================================== STATE ======================================
@@ -101,10 +101,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   // ====================================== EFFECT ======================================
   // map default value
   React.useEffect(() => {
-    const newValue = getDefaulValue(selectedKey, defaultSelectedKey)
+    const newValue = getDefaultValue(selectedKey, defaultSelectedKey)
     setCurrentKey(newValue)
     setFocusKey(newValue)
-  }, [selectedKey])
+  }, [defaultSelectedKey, selectedKey])
 
   React.useEffect(() => {
     props.onOpenChange?.(open)
@@ -113,7 +113,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     } else {
       selectRef.current?.blur()
     }
-  }, [open])
+  }, [open, props, selectRef])
 
   React.useEffect(() => {
     if (currentKey !== undefined) {
@@ -186,67 +186,78 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     setFocusKey(currentKey)
   }
 
+  const dropdownClasses = React.useMemo(() => {
+    return [
+      styles.rteDropdown,
+      !selectedItem && styles.isEmpty,
+      isDisabled && styles.isDisabled,
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [className, isDisabled, selectedItem])
+
   // ====================================== RENDER ======================================
   return (
-    <StyledSelect
-      css={css}
-      isEmpty={!selectedItem}
-      isDisabled={isDisabled}
-      ref={refs.setReference}
-      {...getReferenceProps}
-      {...delegated}
-    >
-      <button
-        id={id}
-        type='button'
-        ref={selectRef as React.RefObject<HTMLButtonElement>}
-        disabled={isDisabled}
-        onClick={handleClickIcon}
+    <CssInjection css={css} childrenRef={selectRef}>
+      <div
+        {...htmlProps}
+        {...getReferenceProps}
+        ref={refs.setReference}
+        className={dropdownClasses}
       >
-        <span>
-          {selectedItem
-            ? selectedItem.props.renderAs
+        <button
+          id={id}
+          type='button'
+          ref={selectRef as React.RefObject<HTMLButtonElement>}
+          disabled={isDisabled}
+          onClick={handleClickIcon}
+        >
+          <span>
+            {selectedItem
               ? selectedItem.props.renderAs
-              : selectedItem.props.children
-            : placeholder}
-        </span>
-        <Icon />
-      </button>
-      {collection && open && (
-        <FloatingPortal>
-          <div
-            className='Popover'
-            ref={refs.setFloating}
-            style={{
-              ...floatingStyles,
-              ...{
-                zIndex: 60,
-              },
-            }}
-            {...getFloatingProps}
-          >
-            <Popover
-              type={type}
-              isEmpty={collection.length === 0}
-              triggerRef={selectRef as React.RefObject<HTMLDivElement>}
-              onBlur={handleBlur}
-              onFocus={handleFocus}
-              handleKeyDown={handleKeyDown}
+                ? selectedItem.props.renderAs
+                : selectedItem.props.children
+              : placeholder}
+          </span>
+          <Icon />
+        </button>
+        {collection && open && (
+          <FloatingPortal>
+            <div
+              className='Popover'
+              ref={refs.setFloating}
+              style={{
+                ...floatingStyles,
+                ...{
+                  zIndex: 60,
+                },
+              }}
+              {...getFloatingProps}
             >
-              <ListBox
+              <Popover
                 type={type}
-                focusKey={focusKey}
-                currentKey={currentKey}
-                collection={collection}
-                listBoxRef={listBoxRef}
-                disabledKeys={disabledKeys}
-                onSelect={onSelect}
-              />
-            </Popover>
-          </div>
-        </FloatingPortal>
-      )}
-    </StyledSelect>
+                isEmpty={collection.length === 0}
+                triggerRef={selectRef as React.RefObject<HTMLDivElement>}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+                handleKeyDown={handleKeyDown}
+              >
+                <ListBox
+                  type={type}
+                  focusKey={focusKey}
+                  currentKey={currentKey}
+                  collection={collection}
+                  listBoxRef={listBoxRef}
+                  disabledKeys={disabledKeys}
+                  onSelect={onSelect}
+                />
+              </Popover>
+            </div>
+          </FloatingPortal>
+        )}
+      </div>
+    </CssInjection>
   )
 })
 

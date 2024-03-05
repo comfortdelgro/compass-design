@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import {CSS} from '@stitches/react'
 import React from 'react'
 import {ButtonProps} from '../button'
-import {DateField} from '../calendar/components'
+import DateField from '../calendar/components/date-field'
 import Dialog from '../calendar/components/dialog'
 import Popover from '../calendar/components/popover'
 import {useDateRangePicker} from '../calendar/hooks/useDateRangePicker'
@@ -20,17 +19,13 @@ import DatePickerProvider from '../date-picker/date-picker-context'
 import {DateValue, parseDate} from '../internationalized/date'
 import RangeCalendar from '../range-calendar/range-calendar'
 import {CustomShortcutsProps} from '../range-calendar/range-calendar-shortcuts'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useMediaQuery} from '../utils/use-media-query'
-import {
-  StyledDateRangeInputsWrapper,
-  StyledRangeDatepicker,
-} from './date-range-picker.style'
+import styles from './styles/date-range-picker.module.css'
 
-interface Props
-  extends StyledComponentProps,
-    SpectrumDateRangePickerProps<DateValue> {
+interface Props extends SpectrumDateRangePickerProps<DateValue> {
+  css?: unknown
   children?: React.ReactNode
   label?: string | React.ReactNode
   isInvalid?: boolean
@@ -38,7 +33,7 @@ interface Props
   endDateLabel?: string | React.ReactNode
   shouldCloseOnSelect?: boolean
   isMobile?: boolean
-  calendarCSS?: CSS
+  calendarCSS?: unknown
   helperText?: React.ReactNode
   maxValue?: DateValue | null | undefined
   hasShortcuts?: boolean
@@ -68,9 +63,9 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
       hasShortcuts,
       ctaButtonRender,
       visibleMonths,
+      shouldOnChangeTriggerOnSameDate,
       onSearchButtonClick,
       customShortcuts,
-      shouldOnChangeTriggerOnSameDate,
       ...delegated
     } = props
 
@@ -129,44 +124,45 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
     calendarProps.isReadOnly = checkIfCalendarInMobile()
 
     return (
-      <StyledRangeDatepicker
-        ref={calendarRef}
-        css={css}
-        className='date-range-picker-wrapper'
-      >
-        <DatePickerProvider>
-          <DateRangeInputsWrapper
-            state={state}
-            label={props.label}
-            labelProps={labelProps}
-            groupProps={groupProps}
-            startFieldProps={extendedStartFieldProps}
-            endFieldProps={extendedEndFieldProps}
-            buttonProps={buttonProps as unknown as ButtonProps}
-            startDateLabel={startDateLabel}
-            endDateLabel={endDateLabel}
-            isInvalid={props.isInvalid}
-            isReadOnly={props.isReadOnly}
-            isMobile={props.isMobile}
-            errorMessage={errorMessage}
-            helperText={helperText}
-          />
-          <DateRangeCalendarWrapper
-            maxValue={maxValue}
-            state={state}
-            calendarRef={calendarRef}
-            dialogProps={dialogProps}
-            calendarProps={calendarProps}
-            hasShortcuts={hasShortcuts}
-            ctaButtonRender={ctaButtonRender}
-            shouldOnChangeTriggerOnSameDate={shouldOnChangeTriggerOnSameDate}
-            onSearchButtonClick={onSearchButtonClick}
-            customShortcuts={customShortcuts}
-            css={props.calendarCSS}
-            visibleMonths={visibleMonths}
-          />
-        </DatePickerProvider>
-      </StyledRangeDatepicker>
+      <CssInjection css={css} childrenRef={calendarRef}>
+        <div
+          ref={calendarRef}
+          className={`date-range-picker-wrapper ${styles.dateRangePicker}`}
+        >
+          <DatePickerProvider>
+            <DateRangeInputsWrapper
+              state={state}
+              label={props.label}
+              labelProps={labelProps}
+              groupProps={groupProps}
+              startFieldProps={extendedStartFieldProps}
+              endFieldProps={extendedEndFieldProps}
+              buttonProps={buttonProps as unknown as ButtonProps}
+              startDateLabel={startDateLabel}
+              endDateLabel={endDateLabel}
+              isInvalid={props.isInvalid}
+              isReadOnly={props.isReadOnly}
+              isMobile={props.isMobile}
+              errorMessage={errorMessage}
+              helperText={helperText}
+            />
+            <DateRangeCalendarWrapper
+              maxValue={maxValue}
+              state={state}
+              calendarRef={calendarRef}
+              dialogProps={dialogProps}
+              calendarProps={calendarProps}
+              hasShortcuts={hasShortcuts}
+              ctaButtonRender={ctaButtonRender}
+              onSearchButtonClick={onSearchButtonClick}
+              customShortcuts={customShortcuts}
+              css={props.calendarCSS}
+              visibleMonths={visibleMonths}
+              shouldOnChangeTriggerOnSameDate={shouldOnChangeTriggerOnSameDate}
+            />
+          </DatePickerProvider>
+        </div>
+      </CssInjection>
     )
   },
 )
@@ -209,12 +205,12 @@ const DateRangeInputsWrapper = React.forwardRef<
   } = props
 
   return (
-    <StyledDateRangeInputsWrapper>
+    <div>
       <span {...labelProps} className='date-range-label'>
         {label}
       </span>
       <div {...groupProps} ref={ref} className='date-range-inputs-body'>
-        <div className='date-range-fields'>
+        <div className={`date-range-fields ${styles.dateRangeFields}`}>
           <DateField
             {...startFieldProps}
             label={startDateLabel}
@@ -235,7 +231,7 @@ const DateRangeInputsWrapper = React.forwardRef<
           />
         </div>
       </div>
-    </StyledDateRangeInputsWrapper>
+    </div>
   )
 })
 
@@ -245,7 +241,7 @@ interface DateRangeCalendarWrapperProps {
   dialogProps: AriaDialogProps
   calendarProps: RangeCalendarProps<DateValue | null>
   maxValue?: DateValue | null | undefined
-  css?: CSS | undefined
+  css?: unknown | undefined
   hasShortcuts?: boolean | undefined
   ctaButtonRender?: React.ReactNode | undefined
   visibleMonths?: 1 | 2 | undefined
@@ -310,13 +306,13 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
               maxValue={maxValue}
               hasShortcuts={hasShortcuts}
               ctaButtonRender={ctaButtonRender}
-              shouldOnChangeTriggerOnSameDate={
-                !!shouldOnChangeTriggerOnSameDate
-              }
               onSearchButtonClick={onSearchButtonClick}
               customShortcuts={customShortcuts}
               visibleMonths={
                 visibleMonths ? visibleMonths : isMobileView ? 1 : 2
+              }
+              shouldOnChangeTriggerOnSameDate={
+                !!shouldOnChangeTriggerOnSameDate
               }
             />
           </Dialog>

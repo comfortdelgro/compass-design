@@ -12,6 +12,7 @@ import {useEffect, useRef} from 'react'
 
 type EffectCallback = () => void
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useUpdateEffect(effect: EffectCallback, dependencies: any[]) {
   const isInitialMount = useRef(true)
 

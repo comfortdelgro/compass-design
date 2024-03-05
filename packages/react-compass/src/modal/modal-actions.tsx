@@ -1,10 +1,11 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledModalActionsContainer} from './modal.styles'
+import styles from './styles/modal.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type ModalActionsProps = Props &
@@ -12,16 +13,17 @@ export type ModalActionsProps = Props &
 
 const ModalActions = React.forwardRef<HTMLDivElement, ModalActionsProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className, ...htmlProps} = props
     const modalActionRef = useDOMRef<HTMLDivElement>(ref)
+    const classNames = [className, 'cdg-modal-actions', styles.actionsContainer]
+      .filter(Boolean)
+      .join(' ')
     return (
-      <StyledModalActionsContainer
-        css={css}
-        ref={modalActionRef}
-        {...delegated}
-      >
-        {children}
-      </StyledModalActionsContainer>
+      <CssInjection css={css}>
+        <div ref={modalActionRef} className={classNames} {...htmlProps}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

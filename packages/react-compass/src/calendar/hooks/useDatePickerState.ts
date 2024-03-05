@@ -122,7 +122,6 @@ export function useDatePickerState<T extends DateValue = DateValue>(
     (value && props.isDateUnavailable?.(value) ? 'invalid' : null)
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   return {
     value,
     setValue,

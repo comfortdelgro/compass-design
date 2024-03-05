@@ -1,17 +1,17 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {LinkVariantProps, StyledLink} from './link.styles'
+import styles from './styles/link.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   href?: string
   target?: string
   external?: boolean
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type LinkProps = Props &
-  LinkVariantProps &
   Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props>
 
 const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
@@ -24,26 +24,30 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
     external,
     children,
     // html props
-    ...delegated
+    ...htmlProps
   } = props
 
-  const variantProps = {} as LinkVariantProps
   const linkRef = useDOMRef<HTMLAnchorElement>(ref)
 
   return (
-    <StyledLink
-      css={css}
-      ref={linkRef}
-      href={href}
-      target={target || (external ? '_blank' : undefined)}
-      rel={target === '_blank' || external ? 'noopener noreferrer' : undefined}
-      {...variantProps}
-      {...delegated}
-      role='link'
-      tabIndex={0}
-    >
-      {children}
-    </StyledLink>
+    <>
+      <CssInjection css={css}>
+        <a
+          className={styles.link}
+          ref={linkRef}
+          href={href}
+          target={target || (external ? '_blank' : undefined)}
+          rel={
+            target === '_blank' || external ? 'noopener noreferrer' : undefined
+          }
+          {...htmlProps}
+          role='link'
+          tabIndex={0}
+        >
+          {children}
+        </a>
+      </CssInjection>
+    </>
   )
 })
 

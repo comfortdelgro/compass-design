@@ -1,3 +1,5 @@
+'use client'
+
 import {
   faAmbulance,
   faBank,
@@ -8,63 +10,79 @@ import {
   faTractor,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
-import {StoryDecorator} from '@ladle/react'
+import {Meta} from '@storybook/react'
 import React, {useState} from 'react'
 import Avatar from '../avatar'
 import Icon from '../icon'
-import {styled} from '../theme'
-import {Row} from '../utils/components'
 import Sidenav from './index'
 import SidenavMenu from './sidenav-menu'
 
-const ServiceMenuWrapper = styled('div', {
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  alignItems: string
+  justifyContent: string
+  height: string
+  width: string
+  padding: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+  padding: '3rem',
+}
+
+const styleServiceMenuWrapper = {
   display: 'flex',
   alignItems: 'center',
   gap: '12px',
   width: '100%',
-})
+}
 
-const Content = styled('div', {
+const styleContent = {
   padding: '10px 5px',
-  background: '$gray40',
+  background: '#E1DFDD',
   borderRadius: 4,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-})
+}
 
-const TitleWrapper = styled('p', {
+const styleTitleWrapper = {
   margin: 0,
   color: '#333333',
   borderRight: '0.5px solid #333333',
   fontSize: 12,
   fontFamily: 'Poppins',
   paddingRight: 3,
-})
+}
 
-const DetailWrapper = styled('div', {
+const styleDetailWrapper = {
   display: 'flex',
-  flexDirection: 'column',
+  'flex-direction': 'column',
   fontFamily: 'Poppins',
   justifyContent: 'center',
   marginLeft: 8,
-})
+}
 
-const DetailTitleWrapper = styled('b', {
+const styleDetailTitleWrapper = {
   fontSize: 14,
   lineHeight: '21px',
-  color: '$gray100',
+  color: '#323130',
   margin: 0,
-})
+}
 
-const DetailTimeWrapper = styled('span', {
+const styleDetailTimeWrapper = {
   fontSize: 12,
   lineHeight: '18px',
-  whiteSpace: 'nowrap',
+  'white-space': 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  color: '$gray70',
-})
+  color: '#A19F9D',
+}
 
 interface ItemBase {
   id: number
@@ -164,19 +182,23 @@ export const Default: React.FC = () => {
   }
 
   return (
-    <Row css={{position: 'relative'}}>
+    <div
+      style={{
+        flexDirection: 'row',
+        position: 'relative',
+        justifyContent: 'flex-start',
+        ...style,
+      }}
+    >
       <Sidenav
         css={{
           height: '800px',
           position: 'absolute',
           top: '0px',
-          zIndex: 2,
+          zIndex: '2',
           padding: '16px 0',
         }}
         expand={false}
-        onExpandChange={(expanded) => {
-          console.log(`Sidenav expanded: ${expanded}`)
-        }}
         delay={200}
       >
         <Sidenav.Item css={{'&.cdg-sidenav-item': {marginBottom: '36px'}}}>
@@ -188,19 +210,19 @@ export const Default: React.FC = () => {
           </h2>
         </Sidenav.Item>
         <Sidenav.Item css={{'&.cdg-sidenav-item': {marginBottom: '36px'}}}>
-          <ServiceMenuWrapper>
-            <Content>
-              <TitleWrapper>ZB</TitleWrapper>
+          <div style={styleServiceMenuWrapper}>
+            <div style={styleContent}>
+              <p style={styleTitleWrapper}>ZB</p>
               <Icon
                 icon={faChevronDown}
                 style={{width: 11, height: 7, color: '#333333', marginLeft: 0}}
               />
-            </Content>
-            <DetailWrapper>
-              <DetailTitleWrapper>Zig Biz</DetailTitleWrapper>
-              <DetailTimeWrapper>Fri 18 Nov 2:25 PM</DetailTimeWrapper>
-            </DetailWrapper>
-          </ServiceMenuWrapper>
+            </div>
+            <div style={styleDetailWrapper}>
+              <b style={styleDetailTitleWrapper}>Zig Biz</b>
+              <span style={styleDetailTimeWrapper}>Fri 18 Nov 2:25 PM</span>
+            </div>
+          </div>
         </Sidenav.Item>
         <Sidenav.Divider style={{marginBottom: '8px'}} />
         {items.map((item) => {
@@ -227,21 +249,19 @@ export const Default: React.FC = () => {
           <span>Placeholder</span>
         </Sidenav.Item>
       </Sidenav>
-    </Row>
+    </div>
   )
 }
 
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
-}
+const meta = {
+  title: 'Example/Sidenav',
+  component: Default,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Default>
+
+export default meta

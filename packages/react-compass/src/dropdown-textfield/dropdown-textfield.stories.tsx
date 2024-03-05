@@ -1,12 +1,25 @@
 import Singapore from '@comfortdelgro/compass-icons/react/flag-sgp'
 import USA from '@comfortdelgro/compass-icons/react/flag-usa'
+import type {Meta} from '@storybook/react'
 import {toString} from 'lodash'
 import React, {useEffect, useState} from 'react'
 import Dropdown from '../dropdown'
 import Textarea from '../textarea'
 import TextField from '../textfield'
-import {Column, Row} from '../utils'
 import DropdownTextfield, {DropdownOptions} from './dropdown-textfield'
+
+const style: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  height: '100%',
+  padding: '3rem',
+}
+const styleRow: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '8px',
+}
 
 const dropdownOptions: DropdownOptions[] = [
   {
@@ -44,26 +57,24 @@ export const Variants: React.FC = () => {
     setDropdownKey(selectedKey)
     setTextfieldValue(toString(value))
   }
-
   useEffect(() => {
     setTimeout(() => {
       setDropdownKey('mr')
       setTextfieldValue('test')
     }, 1000)
   }, [])
-
   return (
     <>
-      <Column>
+      <div style={{...style}}>
         <h3>Default</h3>
 
         <DropdownTextfield
           options={dropdownOptions}
           inputType='text'
           onChange={handleInputsChange}
+          label='Name'
           defaultInputValue={textfieldValue}
           defaultSelectedKey={dropdownKey}
-          label='Name'
         />
         <h3>Errored</h3>
 
@@ -112,9 +123,9 @@ export const Variants: React.FC = () => {
           label='Enter your mobile number'
           isRequired={true}
         />
-      </Column>
-      <Row>
-        <Column>
+      </div>
+      <div style={{...styleRow}}>
+        <div style={{...style}}>
           <h3>Min length</h3>
 
           <DropdownTextfield
@@ -125,8 +136,8 @@ export const Variants: React.FC = () => {
             minLength={5}
             placeholder='Min length of 5'
           />
-        </Column>
-        <Column>
+        </div>
+        <div style={{...style}}>
           <h3>Max length</h3>
 
           <DropdownTextfield
@@ -137,15 +148,15 @@ export const Variants: React.FC = () => {
             maxLength={10}
             placeholder='Max length of 10'
           />
-        </Column>
-      </Row>
+        </div>
+      </div>
     </>
   )
 }
 
 export const H5Form: React.FC = () => {
   return (
-    <>
+    <div style={{...style}}>
       <h4>Your Information</h4>
       <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
         <DropdownTextfield
@@ -185,6 +196,19 @@ export const H5Form: React.FC = () => {
           label={'Details'}
         />
       </div>
-    </>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Dropdown Textfield',
+  component: Variants,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Variants>
+
+export default meta

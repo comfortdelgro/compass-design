@@ -5,9 +5,9 @@ import React from 'react'
 import Button, {ButtonProps} from '../button'
 import {DateValue} from '../internationalized/date'
 import {useDateFormatter} from '../internationalized/i18n'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledCalendarHeader} from './calendar-header.style'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {MONTH_YEAR_STATE, MonthYearState} from './hooks/useMonthYearState'
+import styles from './styles/calendar-header.module.css'
 import {AriaLabelingProps, DOMProps} from './types'
 import {
   CalendarState,
@@ -15,7 +15,8 @@ import {
   RangeCalendarState,
 } from './types/calendar.types'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
   variant?: 'default' | 'range'
   state: CalendarState | RangeCalendarState
@@ -88,96 +89,102 @@ const CalendarHeader = (props: Props) => {
   }
 
   return (
-    <StyledCalendarHeader css={css}>
-      {/* Add a screen reader only description of the entire visible range rather than
-       * a separate heading above each month grid. This is placed first in the DOM order
-       * so that it is the first thing a touch screen reader user encounters.
-       * In addition, VoiceOver on iOS does not announce the aria-label of the grid
-       * elements, so the aria-label of the Calendar is included here as well. */}
-      <VisuallyHidden>
-        <h2>{(calendarProps as AriaLabelingProps)['aria-label']}</h2>
-      </VisuallyHidden>
-      <div className='calendar-header-left-side'>
-        <Button
-          variant='ghost'
-          type='button'
-          css={{
-            '& #cdg-calendar-arrow-left': iconButtonStyle,
-          }}
-          {...prevButtonProps}
+    <CssInjection css={css}>
+      <div className={styles.calendarHeader}>
+        {/* Add a screen reader only description of the entire visible range rather than
+         * a separate heading above each month grid. This is placed first in the DOM order
+         * so that it is the first thing a touch screen reader user encounters.
+         * In addition, VoiceOver on iOS does not announce the aria-label of the grid
+         * elements, so the aria-label of the Calendar is included here as well. */}
+        <VisuallyHidden>
+          <h2>{(calendarProps as AriaLabelingProps)['aria-label']}</h2>
+        </VisuallyHidden>
+        <div
+          className={`calendar-header-left-side ${styles.calendarHeaderLeftSide}`}
         >
-          <ArrowLeft id='cdg-calendar-arrow-left' />
-        </Button>
-        {variant === 'default' ? (
-          <button
-            // We have a visually hidden heading describing the entire visible range,
-            // and the calendar itself describes the individual month
-            // so we don't need to repeat that here for screen reader users.
-            className='calendar-header-middle'
-            aria-hidden
-            type='button'
-            onClick={() => {
-              if (variant === 'default' && middleButtonProps) {
-                middleButtonProps.nextState()
-              }
-            }}
-          >
-            {renderMiddleButtonContent(
-              monthDateFormatter.format(
-                state?.visibleRange?.start?.toDate(
-                  state.timeZone ?? 'UTC',
-                ) as Date,
-              ),
-            )}
-          </button>
-        ) : (
-          <h2>
-            {renderMiddleButtonContent(
-              monthDateFormatter.format(
-                state?.visibleRange?.start?.toDate(
-                  state.timeZone ?? 'UTC',
-                ) as Date,
-              ),
-            )}
-          </h2>
-        )}
-        {variant === 'default' && (
           <Button
             variant='ghost'
             type='button'
             css={{
-              '& #cdg-calendar-arrow-right': iconButtonStyle,
+              '& #cdg-calendar-arrow-left': iconButtonStyle,
             }}
-            {...nextButtonProps}
+            {...prevButtonProps}
           >
-            <ArrowRight id='cdg-calendar-arrow-right' />
+            <ArrowLeft id='cdg-calendar-arrow-left' />
           </Button>
+          {variant === 'default' ? (
+            <button
+              // We have a visually hidden heading describing the entire visible range,
+              // and the calendar itself describes the individual month
+              // so we don't need to repeat that here for screen reader users.
+              className={`calendar-header-middle ${styles.calendarHeaderMiddle}`}
+              aria-hidden
+              type='button'
+              onClick={() => {
+                if (variant === 'default' && middleButtonProps) {
+                  middleButtonProps.nextState()
+                }
+              }}
+            >
+              {renderMiddleButtonContent(
+                monthDateFormatter.format(
+                  state?.visibleRange?.start?.toDate(
+                    state.timeZone ?? 'UTC',
+                  ) as Date,
+                ),
+              )}
+            </button>
+          ) : (
+            <h2 className={styles.calendarHeaderTitle}>
+              {renderMiddleButtonContent(
+                monthDateFormatter.format(
+                  state?.visibleRange?.start?.toDate(
+                    state.timeZone ?? 'UTC',
+                  ) as Date,
+                ),
+              )}
+            </h2>
+          )}
+          {variant === 'default' && (
+            <Button
+              variant='ghost'
+              type='button'
+              css={{
+                '& #cdg-calendar-arrow-right': iconButtonStyle,
+              }}
+              {...nextButtonProps}
+            >
+              <ArrowRight id='cdg-calendar-arrow-right' />
+            </Button>
+          )}
+        </div>
+        {variant === 'range' && (
+          <div
+            className={`calendar-header-right-side ${styles.calendarHeaderRightSide}`}
+          >
+            <h2 className={styles.calendarHeaderTitle}>
+              {renderMiddleButtonContent(
+                monthDateFormatter.format(
+                  state?.visibleRange?.start
+                    ?.add({months: 1})
+                    .toDate(state.timeZone ?? 'UTC') as Date,
+                ),
+              )}
+            </h2>
+            <Button
+              variant='ghost'
+              type='button'
+              css={{
+                '& #cdg-calendar-arrow-right': iconButtonStyle,
+              }}
+              {...nextButtonProps}
+            >
+              <ArrowRight id='cdg-calendar-arrow-right' />
+            </Button>
+          </div>
         )}
       </div>
-      {variant === 'range' && (
-        <div className='calendar-header-right-side'>
-          <h2>
-            {renderMiddleButtonContent(
-              monthDateFormatter.format(
-                state?.visibleRange?.start
-                  ?.add({months: 1})
-                  .toDate(state.timeZone ?? 'UTC') as Date,
-              ),
-            )}
-          </h2>
-          <Button
-            variant='ghost'
-            type='button'
-            css={{
-              '& #cdg-calendar-arrow-right': iconButtonStyle,
-            }}
-            {...nextButtonProps}
-          >
-            <ArrowRight id='cdg-calendar-arrow-right' />
-          </Button>
-        </div>
-      )}
-    </StyledCalendarHeader>
+    </CssInjection>
   )
 }
 

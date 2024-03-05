@@ -1,27 +1,41 @@
-/* eslint-disable prettier/prettier */
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledSubBannerImage} from './subBanner.styles'
+'use client'
 
-type Props = StyledComponentProps
+import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
+import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/subBanner.module.css'
+
+interface Props {
+  css?: unknown
+  className?: string
+  variant?: 'primary' | 'secondary'
+}
 
 export type SubBannerImageProps = Props &
   Omit<React.ImgHTMLAttributes<HTMLImageElement>, keyof Props>
 
 const SubBannerImage = React.forwardRef<HTMLImageElement, SubBannerImageProps>(
   (props, ref) => {
-    const {css = {}, id = 'myId', ...delegated} = props
+    const {
+      css = {},
+      className = '',
+      variant = 'primary',
+      id = 'cdg-sub-banner-image',
+      ...htmlProps
+    } = props
     const subBannerImageRef = useDOMRef<HTMLImageElement>(ref)
     return (
-      <>
-        <StyledSubBannerImage
-          css={css}
-          {...delegated}
+      <CssInjection css={css} childrenRef={subBannerImageRef}>
+        <img
+          className={`cdg-sub-banner-image ${className} ${
+            styles.subBannerImage
+          } ${styles[`subBannerImage${capitalizeFirstLetter(variant)}`]}`}
+          {...htmlProps}
           ref={subBannerImageRef}
           id={id}
         />
-      </>
+      </CssInjection>
     )
   },
 )

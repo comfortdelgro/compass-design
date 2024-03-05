@@ -65,8 +65,8 @@ export function useFocusWithin(props: FocusWithinProps): FocusWithinResult {
   if (isDisabled) {
     return {
       focusWithinProps: {
-        // @ts-ignore
         onFocus: null,
+        // @ts-ignore
         onBlur: null,
       },
     }

@@ -1,6 +1,6 @@
+import {Meta} from '@storybook/react'
 import React, {useState} from 'react'
 import SearchField from '../searchfield'
-import {Column} from '../utils/components'
 import AutoComplete from './index'
 
 export const FullFeatured: React.FC = () => {
@@ -93,7 +93,7 @@ export const FullFeatured: React.FC = () => {
   }
 
   return (
-    <Column>
+    <div style={{width: '100%', height: '80vh', padding: '1rem'}}>
       <h3>Full-featured Example: Auto Complete</h3>
       <AutoComplete
         searchedValue={inputValue}
@@ -111,9 +111,23 @@ export const FullFeatured: React.FC = () => {
           onInput={(event: React.ChangeEvent<HTMLInputElement>) =>
             setInputValue(event.target.value)
           }
+          onClear={() => setInputValue('')}  
           value={inputValue}
         />
       </AutoComplete>
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/AutoComplete',
+  component: FullFeatured,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof FullFeatured>
+
+export default meta

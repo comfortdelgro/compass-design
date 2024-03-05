@@ -1,12 +1,13 @@
-import {StoryDecorator} from '@ladle/react'
 import React from 'react'
 
+import {Meta} from '@storybook/react'
 import OTPInput from '.'
-import {Column} from '../utils/components'
 
 export const Variants: React.FC = () => {
+  const [value, setValue] = React.useState('12345678')
+
   return (
-    <Column>
+    <div style={{padding: '2rem'}}>
       <h2>Number OTP</h2>
       <OTPInput
         length={4}
@@ -20,6 +21,14 @@ export const Variants: React.FC = () => {
         isNumberInput
         autoFocus
         onChangeOTP={(otp) => console.log('Number OTP: ', otp)}
+      />
+
+      <h2>Controlled</h2>
+      <OTPInput
+        isNumberInput
+        autoFocus
+        otp={value}
+        onChangeOTP={(otp) => setValue(otp)}
       />
 
       <h2>String OTP</h2>
@@ -36,6 +45,14 @@ export const Variants: React.FC = () => {
         onChangeOTP={(otp) => console.log('String OTP: ', otp)}
       />
 
+      <h2>Error</h2>
+      <OTPInput
+        isErrored
+        isNumberInput
+        autoFocus
+        onChangeOTP={(otp) => console.log('Number OTP: ', otp)}
+      />
+
       <h2>Mobile view</h2>
       <OTPInput
         css={{marginBottom: '$8'}}
@@ -45,21 +62,19 @@ export const Variants: React.FC = () => {
         isNumberInput
         isMobile
       />
-    </Column>
+    </div>
   )
 }
 
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #F7F8F9; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
-}
+const meta = {
+  title: 'Example/OTP Input',
+  component: Variants,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Variants>
+
+export default meta

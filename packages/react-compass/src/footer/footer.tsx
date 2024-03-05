@@ -1,23 +1,32 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import FooterHeader from './footer-header'
 import FooterNavigation from './footer-nav'
 import FooterPolicy from './footer-policy'
-import {FooterVariantProps, StyledFooter} from './footer.styles'
-
-interface Props extends FooterVariantProps, StyledComponentProps {
+import styles from './styles/footer.module.css'
+interface Props {
+  css?: unknown
   children?: React.ReactNode
+  color?: 'white' | 'black' | 'blue'
 }
 
 export type FooterProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Footer = React.forwardRef<HTMLDivElement, FooterProps>((props, ref) => {
-  const {children, color = 'white', css = {}, ...delegated} = props
+  const {children, color = 'white', className, css = {}, ...delegated} = props
+
+  const rootClasses = [styles.footer, styles[color], className, 'cdg-footer']
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledFooter ref={ref} css={css} color={color} {...delegated}>
-      {children}
-    </StyledFooter>
+    <CssInjection css={css} childrenRef={ref}>
+      <div className={rootClasses} ref={ref} color={color} {...delegated}>
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

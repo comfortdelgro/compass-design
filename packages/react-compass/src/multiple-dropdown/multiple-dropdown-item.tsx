@@ -1,19 +1,16 @@
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import React, {useMemo} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {MultipleDropdownContext} from './multiple-dropdown-context'
-import {
-  StyledContent,
-  StyledOption,
-  StyledRightIcon,
-} from './multiple-dropdown.styles'
+import styles from './styles/multiple-dropdown.module.css'
 import {textContent} from './utils'
 
-export interface StyledMultipleDropdownItemProps extends StyledComponentProps {
+export interface StyledMultipleDropdownItemProps {
   value?: string | number
   textValue?: string
   checkmark?: 'none' | 'checkbox' | 'tick'
   children: React.ReactNode
+  css?: unknown
 }
 
 export type MultipleDropdownItemProps = StyledMultipleDropdownItemProps
@@ -92,25 +89,29 @@ const MultipleDropdownItem = React.forwardRef<
         return keys
       })
     }
-  }, [value, isDisabled, canDisplayed])
+  }, [value, isDisabled, canDisplayed, setDropdownItemKeys])
 
   React.useEffect(() => {
     if (isPositioned && focusKey && focusKey.toString() === value.toString()) {
       if (multipleDropdownItemRef.current) {
-        multipleDropdownItemRef.current.scrollIntoView({
-          block: 'nearest',
+        setTimeout(() => {
+          multipleDropdownItemRef.current.scrollIntoView({
+            block: 'nearest',
+          })
         })
       }
     }
-  }, [focusKey, value, isPositioned])
+  }, [focusKey, value, isPositioned, multipleDropdownItemRef])
 
   React.useEffect(() => {
     if (isSelected && isPositioned) {
       if (multipleDropdownItemRef.current) {
-        multipleDropdownItemRef.current.scrollIntoView({block: 'nearest'})
+        setTimeout(() => {
+          multipleDropdownItemRef.current.scrollIntoView({block: 'nearest'})
+        })
       }
     }
-  }, [isPositioned, open, isSelected])
+  }, [isPositioned, isSelected, multipleDropdownItemRef])
 
   const handleItemClick = () => {
     if (isDisabled) {
@@ -122,29 +123,63 @@ const MultipleDropdownItem = React.forwardRef<
     })
   }
 
+  const multipleDropdownOptionClassName = useMemo(() => {
+    let className = `${styles.multipleDropdownOption}`
+    if (isFocused && !isSelected) {
+      className += ` ${styles.multipleDropdownItemIsFocused}`
+    }
+    if (isSelected && !isFocused) {
+      className += ` ${styles.multipleDropdownItemIsSelected}`
+    }
+    if (isSelected && isFocused) {
+      className += ` ${styles.multipleDropdownItemIsSelectedFocused}`
+    }
+    if (isDisabled) {
+      className += ` ${styles.multipleDropdownItemIsDisabled}`
+    }
+
+    return className
+  }, [isDisabled, isFocused, isSelected])
+
+  const multipleDropdownItemRightIconClassName = useMemo(() => {
+    let className = `${styles.multipleDropdownItemRightIcon}`
+    if (isSelected) {
+      className += ` ${styles.multipleDropdownItemRightIconSelected}`
+    }
+
+    if (checkmark === 'checkbox') {
+      className += ` ${styles.multipleDropdownItemRightIconCheckMarkCheckbox}`
+    } else if (checkmark === 'tick') {
+      className += ` ${styles.multipleDropdownItemRightIconCheckMarkTick}`
+    }
+
+    return className
+  }, [checkmark, isSelected])
+
   return canDisplayed ? (
-    <StyledOption
-      ref={multipleDropdownItemRef}
-      isFocused={isFocused}
-      isSelected={isSelected && !isFocused}
-      onClick={handleItemClick}
-      isDisabled={isDisabled}
-      css={css}
-      role='option'
-      aria-selected={isSelected}
-      {...delegated}
-    >
-      <StyledContent>{children}</StyledContent>
-      <StyledRightIcon isSelected={isSelected} checkmark={checkmark}>
-        {checkmark === 'checkbox' ? (
-          <div>
-            <Tick />
-          </div>
-        ) : checkmark === 'tick' ? (
-          <BlueTick />
-        ) : null}
-      </StyledRightIcon>
-    </StyledOption>
+    <CssInjection css={css} childrenRef={multipleDropdownItemRef}>
+      <li
+        className={`${multipleDropdownOptionClassName} cdg-dropdown-item`}
+        onClick={handleItemClick}
+        ref={multipleDropdownItemRef}
+        role='option'
+        aria-selected={isSelected}
+        {...delegated}
+      >
+        <div className={`${styles.multipleDropdownItemContent}`}>
+          {children}
+        </div>
+        <div className={multipleDropdownItemRightIconClassName}>
+          {checkmark === 'checkbox' ? (
+            <div className={`${styles.multipleDropdownItemRightIconContent}`}>
+              <Tick />
+            </div>
+          ) : checkmark === 'tick' ? (
+            <BlueTick />
+          ) : null}
+        </div>
+      </li>
+    </CssInjection>
   ) : null
 })
 

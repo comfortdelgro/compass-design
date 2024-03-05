@@ -1,13 +1,8 @@
 import {HTMLAttributes, ReactNode, RefObject} from 'react'
 import {DraggableOptions} from '../utils/hooks'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {
-  SlideActionVariantProps,
-  SlideBgVariantProps,
-  SlideLabelVariantProps,
-} from './slide-action.styles'
 
 type Props = {
+  css?: unknown
   icon?: ReactNode
   label?: string
   color?: string
@@ -32,10 +27,17 @@ type Props = {
    * @default false
    */
   allowSwipeAfterEnd?: boolean
-} & StyledComponentProps &
-  SlideActionVariantProps &
-  SlideBgVariantProps &
-  SlideLabelVariantProps
+  compact?: boolean
+
+  /** @default 'default' */
+  labelType?: 'default' | 'slide'
+
+  /** @default 'static' */
+  slideType?: 'static' | 'slide'
+
+  /** @default 'mono' */
+  slideColor?: 'mono' | 'gradient'
+}
 
 export type SlideActionProps = Props &
   Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
@@ -43,7 +45,6 @@ export type SlideActionProps = Props &
 export type SlideDraggerProps = {
   slideRef: RefObject<HTMLDivElement>
   icon?: ReactNode
-  color?: string
   onDrag?: (
     slideDragInfo: {slideDragWidth: number; maxSlideDistance: number},
     ...params: Parameters<NonNullable<DraggableOptions['onMove']>>
@@ -53,4 +54,4 @@ export type SlideDraggerProps = {
     ...params: Parameters<NonNullable<DraggableOptions['onEnd']>>
   ) => void
   disableDrag?: boolean
-} & StyledComponentProps
+}

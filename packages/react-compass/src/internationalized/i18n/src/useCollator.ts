@@ -10,7 +10,7 @@
 
 import {useLocale} from './context'
 
-let cache = new Map<string, Intl.Collator>()
+const cache = new Map<string, Intl.Collator>()
 
 /**
  * Provides localized string collation for the current locale. Automatically updates when the locale changes,
@@ -18,9 +18,9 @@ let cache = new Map<string, Intl.Collator>()
  * @param options - Collator options.
  */
 export function useCollator(options?: Intl.CollatorOptions): Intl.Collator {
-  let {locale} = useLocale()
+  const {locale} = useLocale()
 
-  let cacheKey =
+  const cacheKey =
     locale +
     (options
       ? Object.entries(options)
@@ -31,7 +31,7 @@ export function useCollator(options?: Intl.CollatorOptions): Intl.Collator {
     return cache.get(cacheKey) as Intl.Collator
   }
 
-  let formatter = new Intl.Collator(locale, options)
+  const formatter = new Intl.Collator(locale, options)
   cache.set(cacheKey, formatter)
   return formatter
 }
