@@ -3,6 +3,7 @@ import {useIsDarkTheme} from '../theme/useCurrentTheme'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/checkbox.module.css'
+import {useIsDarkTheme} from '../theme/useCurrentTheme'
 
 interface Props {
   id?: string
@@ -109,6 +110,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         .join(' ')
     }, [isDarkTheme, variant])
 
+    console.log(isDarkTheme)
     return (
       <CssInjection css={css} childrenRef={checkboxRef}>
         <div className={rootClass} {...htmlProps}>
