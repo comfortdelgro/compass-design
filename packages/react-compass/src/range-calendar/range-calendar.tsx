@@ -1,5 +1,4 @@
 import React, {useCallback, useMemo} from 'react'
-import Box from '../box'
 import Button, {ButtonProps} from '../button'
 import CalendarGrid from '../calendar/calendar-grid'
 import CalendarHeader from '../calendar/calendar-header'
@@ -15,15 +14,16 @@ import {
   parseDate,
 } from '../internationalized/date'
 import {useDateFormatter, useLocale} from '../internationalized/i18n'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useMediaQuery} from '../utils/use-media-query'
 import RangeCalendarShorcuts, {
   CustomShortcutsProps,
 } from './range-calendar-shortcuts'
-import {StyledRangeCalendar} from './range-calendar.style'
+import styles from './styles/range-calendar.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   value?: RangeValue<DateValue | null>
   children?: React.ReactNode
   state?: DateRangePickerState
@@ -162,75 +162,81 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
           )
         }
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ctaButtonRender, showShortcut])
 
     return (
-      <StyledRangeCalendar
-        ref={rangeCalendarRef}
-        css={css}
-        variants={showShortcut ? 'extend' : 'basic'}
-      >
-        {showShortcut ? (
-          <RangeCalendarShorcuts
-            state={state}
-            pickerState={pickerState}
-            customShortcuts={customShortcuts}
-          />
-        ) : (
-          <></>
-        )}
-        <Box>
-          <CalendarHeader
-            state={state}
-            variant={isRangeCalendar ? 'range' : 'default'}
-            calendarProps={calendarProps}
-            prevButtonProps={prevButtonProps as unknown as ButtonProps}
-            nextButtonProps={nextButtonProps as unknown as ButtonProps}
-          />
-          <div className='calendar-body'>
-            <CalendarGrid state={state} maxValue={maxValue} />
-            {isRangeCalendar ? (
-              <CalendarGrid
-                state={state}
-                offset={{months: 1}}
-                maxValue={maxValue}
-              />
-            ) : (
-              <></>
+      <CssInjection css={css} childrenRef={rangeCalendarRef}>
+        <div
+          ref={rangeCalendarRef}
+          className={`${styles.rangeCalendar} ${
+            showShortcut ? styles.extend : ''
+          }`}
+        >
+          {showShortcut ? (
+            <RangeCalendarShorcuts
+              state={state}
+              pickerState={pickerState}
+              customShortcuts={customShortcuts}
+            />
+          ) : (
+            <></>
+          )}
+          <div>
+            <CalendarHeader
+              state={state}
+              variant={isRangeCalendar ? 'range' : 'default'}
+              calendarProps={calendarProps}
+              prevButtonProps={prevButtonProps as unknown as ButtonProps}
+              nextButtonProps={nextButtonProps as unknown as ButtonProps}
+            />
+            <div className={`calendar-body ${styles.calendarBody}`}>
+              <CalendarGrid state={state} maxValue={maxValue} />
+              {isRangeCalendar ? (
+                <CalendarGrid
+                  state={state}
+                  offset={{months: 1}}
+                  maxValue={maxValue}
+                />
+              ) : (
+                <></>
+              )}
+            </div>
+            {hasFooter && (
+              <div className={`calendar-footer ${styles.calendarFooter}`}>
+                <Button variant='ghost' onPress={handleClearButtonClick}>
+                  Clear
+                </Button>
+                <div
+                  className={`calendar-footer-right-side ${styles.calendarFooterRightSide}`}
+                >
+                  <p className={`preview-date ${styles.previewDate}`}>
+                    {state?.value?.start && state?.value?.end
+                      ? formatter.formatRange(
+                          state.value.start.toDate(getLocalTimeZone()),
+                          state.value.end.toDate(getLocalTimeZone()),
+                        )
+                      : `${
+                          state?.value?.start
+                            ? formatter.format(
+                                state.value.start.toDate(getLocalTimeZone()),
+                              )
+                            : ''
+                        } - ${
+                          state?.value?.end
+                            ? formatter.format(
+                                state.value.end.toDate(getLocalTimeZone()),
+                              )
+                            : ''
+                        }`}
+                  </p>
+                  {renderCTAButton()}
+                </div>
+              </div>
             )}
           </div>
-          {hasFooter && (
-            <div className='calendar-footer'>
-              <Button variant='ghost' onPress={handleClearButtonClick}>
-                Clear
-              </Button>
-              <div className='calendar-footer-right-side'>
-                <p className='preview-date'>
-                  {state?.value?.start && state?.value?.end
-                    ? formatter.formatRange(
-                        state.value.start.toDate(getLocalTimeZone()),
-                        state.value.end.toDate(getLocalTimeZone()),
-                      )
-                    : `${
-                        state?.value?.start
-                          ? formatter.format(
-                              state.value.start.toDate(getLocalTimeZone()),
-                            )
-                          : ''
-                      } - ${
-                        state?.value?.end
-                          ? formatter.format(
-                              state.value.end.toDate(getLocalTimeZone()),
-                            )
-                          : ''
-                      }`}
-                </p>
-                {renderCTAButton()}
-              </div>
-            </div>
-          )}
-        </Box>
-      </StyledRangeCalendar>
+        </div>
+      </CssInjection>
     )
   },
 )

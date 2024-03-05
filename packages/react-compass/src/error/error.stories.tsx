@@ -1,16 +1,34 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
-import {Column} from '../utils/components'
 import Error from './index'
+
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  alignItems: string
+  justifyContent: string
+  height: string
+  width: string
+  padding: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+  padding: '3rem',
+}
 
 export const Default: React.FC = () => {
   const lorem =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
 
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Default error is primary variant</h3>
 
       <Error>
@@ -29,7 +47,7 @@ export const Default: React.FC = () => {
           </Button>
         </Error.Action>
       </Error>
-    </Column>
+    </div>
   )
 }
 
@@ -38,7 +56,7 @@ export const Variant: React.FC = () => {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
 
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Primary variant</h3>
       <Error variant='primary'>
         <Error.Icon>
@@ -60,7 +78,7 @@ export const Variant: React.FC = () => {
       <h3>Secondary variant</h3>
       <Error variant='secondary'>
         <Error.Image>
-          <FontAwesomeIcon icon={faBug} />
+          <FontAwesomeIcon icon={faBug} style={{height: 'inherit'}} />
         </Error.Image>
         <Error.Title>Error: some bugs</Error.Title>
         <Error.Description>{lorem}</Error.Description>
@@ -74,6 +92,19 @@ export const Variant: React.FC = () => {
           </Button>
         </Error.Action>
       </Error>
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Error',
+  component: Variant,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Variant>
+
+export default meta

@@ -1,10 +1,11 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDialogTitle} from './dialog.styles'
+import styles from './styles/dialog.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type DialogTitleProps = Props &
@@ -12,12 +13,15 @@ export type DialogTitleProps = Props &
 
 const DialogTitle = React.forwardRef<HTMLHeadingElement, DialogTitleProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className, ...htmlProps} = props
     const dialogTitleRef = useDOMRef<HTMLHeadingElement>(ref)
+    const classNames = [styles.title, className].filter(Boolean).join(' ')
     return (
-      <StyledDialogTitle css={css} ref={dialogTitleRef} {...delegated}>
-        {children}
-      </StyledDialogTitle>
+      <CssInjection css={css}>
+        <div className={classNames} ref={dialogTitleRef} {...htmlProps}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

@@ -1,6 +1,7 @@
 'use client'
 
-import React, {
+import {
+  CSSProperties,
   FocusEventHandler,
   forwardRef,
   ReactElement,
@@ -11,11 +12,30 @@ import React, {
 } from 'react'
 import Button from '../button'
 import {useDeepCompareEffect} from '../utils/hooks'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useStateWithCallback} from './hooks/useStateWithCallback'
 import PudoItem from './pudo-item'
-import {StyledPUDO} from './pudo.styles'
-import {PudoItemProps, PudoProps, PudoValueChange} from './pudo.types'
+import type {PudoItemProps, PudoProps, PudoValueChange} from './pudo.types'
+import classes from './styles/pudo.module.css'
+
+const getCSSVariableValue = (colorInput: string): string => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return colorInput
+  }
+
+  if (
+    !window
+      .getComputedStyle(document.documentElement)
+      .getPropertyValue(colorInput)
+      .trim()
+  ) {
+    // if input is NOT a valid color variable name
+    return colorInput
+  }
+
+  return `var(${colorInput})`
+}
 
 const PudoRefComponent = <TItemKeys extends PropertyKey>(
   {
@@ -41,7 +61,6 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
   }: PudoProps<TItemKeys>,
   ref: Ref<HTMLDivElement>,
 ) => {
-  const wrapperBg = htmlDataAttributes['data-background'] || bgColor
   const maxLength =
     unCheckedMaxLength < minLength ? minLength : unCheckedMaxLength
 
@@ -68,7 +87,7 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
 
   const dedupedRemoveKeys = useMemo(
     () => [...new Set(removableItems)],
-    [removableItems, pudoItems],
+    [removableItems],
   )
 
   const showAddButton = useMemo(() => {
@@ -134,10 +153,10 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
       ...allowToAdd.map(({name, value = ''}) => ({name, value})),
     ])
   }, [
-    pudoItems,
-    arrPudoValues,
     dedupedAddItems,
     maxLength,
+    pudoItems.length,
+    arrPudoValues,
     handleUpdatePudoValues,
   ])
 
@@ -165,9 +184,9 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
     setPudoItems(newPudoItems)
     handleUpdatePudoValues(newPudoArrValues)
   }, [
+    dedupedRemoveKeys,
     pudoItems,
     arrPudoValues,
-    dedupedRemoveKeys,
     handleUpdatePudoValues,
     minLength,
   ])
@@ -275,77 +294,87 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
     setArrPudoValues(pudoValue)
   }, [items])
 
+  const rootClasses = [classes.pudoContainer, className, 'cdg-pudo-container']
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledPUDO
-      ref={PudoRef}
-      className={`${className} cdg-pudo-container`}
-      css={{
-        ...css,
-        ...(wrapperBg ? {'--cdg-pudo-bg': wrapperBg} : undefined),
-      }}
-      {...htmlDataAttributes}
-    >
+    <CssInjection css={css} childrenRef={PudoRef}>
       <div
-        className='cdg-pudo-items-wrapper'
-        onBlur={handlePudoItemsWrapperBlur}
+        ref={PudoRef}
+        className={rootClasses}
+        {...htmlDataAttributes}
+        style={
+          {
+            ...style,
+            '--cdg-pudo-bg': getCSSVariableValue(
+              htmlDataAttributes['data-background'] || bgColor,
+            ),
+          } as CSSProperties
+        }
       >
-        {renderPudoItems}
-      </div>
+        <div
+          className={`${classes.pudoItemsWrapper} cdg-pudo-items-wrapper`}
+          onBlur={handlePudoItemsWrapperBlur}
+        >
+          {renderPudoItems}
+        </div>
 
-      <div className='cdg-pudo-actions'>
-        {showAddButton && (
-          <Button
-            className='cdg-pudo-action-button'
-            variant='ghost'
-            type='button'
-            size='sm'
-            onClick={handleAddItems}
-            rightIcon={
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='14'
-                height='14'
-                viewBox='0 0 14 14'
-                fill='none'
-              >
-                <path
-                  d='M7 13.9997C3.1339 13.9997 0 10.8658 0 6.99975C0 3.13365 3.1339 -0.00025177 7 -0.00025177C10.8661 -0.00025177 14 3.13365 14 6.99975C14 10.8658 10.8661 13.9997 7 13.9997ZM6.3 6.29975H4C3.72386 6.29975 3.5 6.52361 3.5 6.79975V7.19975C3.5 7.47589 3.72386 7.69975 4 7.69975H6.3V9.99975C6.3 10.2759 6.52386 10.4997 6.8 10.4997H7.2C7.47614 10.4997 7.7 10.2759 7.7 9.99975V7.69975H10C10.2761 7.69975 10.5 7.47589 10.5 7.19975V6.79975C10.5 6.52361 10.2761 6.29975 10 6.29975H7.7V3.99975C7.7 3.72361 7.47614 3.49975 7.2 3.49975H7H6.8C6.52386 3.49975 6.3 3.72361 6.3 3.99975V6.29975Z'
-                  fill='#0142AF'
-                />
-              </svg>
-            }
-          >
-            {addItemsLabel}
-          </Button>
-        )}
+        <div className={`${classes.pudoActions} cdg-pudo-actions`}>
+          {showAddButton && (
+            <Button
+              className={`${classes.pudoActionButton} cdg-pudo-action-button`}
+              variant='ghost'
+              type='button'
+              size='sm'
+              onClick={handleAddItems}
+              rightIcon={
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='14'
+                  height='14'
+                  viewBox='0 0 14 14'
+                  fill='none'
+                >
+                  <path
+                    d='M7 13.9997C3.1339 13.9997 0 10.8658 0 6.99975C0 3.13365 3.1339 -0.00025177 7 -0.00025177C10.8661 -0.00025177 14 3.13365 14 6.99975C14 10.8658 10.8661 13.9997 7 13.9997ZM6.3 6.29975H4C3.72386 6.29975 3.5 6.52361 3.5 6.79975V7.19975C3.5 7.47589 3.72386 7.69975 4 7.69975H6.3V9.99975C6.3 10.2759 6.52386 10.4997 6.8 10.4997H7.2C7.47614 10.4997 7.7 10.2759 7.7 9.99975V7.69975H10C10.2761 7.69975 10.5 7.47589 10.5 7.19975V6.79975C10.5 6.52361 10.2761 6.29975 10 6.29975H7.7V3.99975C7.7 3.72361 7.47614 3.49975 7.2 3.49975H7H6.8C6.52386 3.49975 6.3 3.72361 6.3 3.99975V6.29975Z'
+                    fill='#0142AF'
+                  />
+                </svg>
+              }
+            >
+              {addItemsLabel}
+            </Button>
+          )}
 
-        {showRemoveButton && (
-          <Button
-            className='cdg-pudo-action-button'
-            variant='danger'
-            type='button'
-            size='sm'
-            onClick={handleRemoveItems}
-            rightIcon={
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='16'
-                height='16'
-                viewBox='0 0 16 16'
-                fill='none'
-              >
-                <path
-                  d='M8 14.9995C4.1339 14.9995 1 11.8656 1 7.99945C1 4.13335 4.1339 0.999451 8 0.999451C11.8661 0.999451 15 4.13335 15 7.99945C15 11.8656 11.8661 14.9995 8 14.9995ZM5 7.29945C4.72386 7.29945 4.5 7.52331 4.5 7.79945V8.19945C4.5 8.47559 4.72386 8.69945 5 8.69945H11C11.2761 8.69945 11.5 8.47559 11.5 8.19945V7.79945C11.5 7.52331 11.2761 7.29945 11 7.29945H5Z'
-                  fill='#E31617'
-                />
-              </svg>
-            }
-          >
-            {removableLabel}
-          </Button>
-        )}
+          {showRemoveButton && (
+            <Button
+              className={`${classes.pudoActionButton} cdg-pudo-action-button`}
+              variant='danger'
+              type='button'
+              size='sm'
+              onClick={handleRemoveItems}
+              rightIcon={
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='16'
+                  height='16'
+                  viewBox='0 0 16 16'
+                  fill='none'
+                >
+                  <path
+                    d='M8 14.9995C4.1339 14.9995 1 11.8656 1 7.99945C1 4.13335 4.1339 0.999451 8 0.999451C11.8661 0.999451 15 4.13335 15 7.99945C15 11.8656 11.8661 14.9995 8 14.9995ZM5 7.29945C4.72386 7.29945 4.5 7.52331 4.5 7.79945V8.19945C4.5 8.47559 4.72386 8.69945 5 8.69945H11C11.2761 8.69945 11.5 8.47559 11.5 8.19945V7.79945C11.5 7.52331 11.2761 7.29945 11 7.29945H5Z'
+                    fill='#E31617'
+                  />
+                </svg>
+              }
+            >
+              {removableLabel}
+            </Button>
+          )}
+        </div>
       </div>
-    </StyledPUDO>
+    </CssInjection>
   )
 }
 

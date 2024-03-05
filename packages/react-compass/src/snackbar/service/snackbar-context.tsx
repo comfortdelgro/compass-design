@@ -1,5 +1,4 @@
-import React, {createContext, ReactNode, useReducer} from 'react'
-import {CSS} from '../../utils/stitches.types'
+import {createContext, ReactNode, useReducer} from 'react'
 import SnackbarsContainer from './snackbar-container'
 import {snackbarReducer} from './snackbar-reducer'
 import {SnackbarItemType} from './types'
@@ -22,7 +21,7 @@ const initialState = {
 
 interface SnackbarContextProviderProps {
   children: ReactNode
-  containerCSS?: CSS
+  containerCSS?: unknown
 }
 
 export interface SnackbarContextValue {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {FocusEvent, ReactNode} from 'react'
 import {ValidationState} from './calendar.types'
 import {DatePickerProps} from './date-picker.types'

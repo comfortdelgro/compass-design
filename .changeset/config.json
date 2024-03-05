@@ -9,7 +9,7 @@
   "updateInternalDependencies": "patch",
   "ignore": [
     "@comfortdelgro/compass-design-website",
-    "@comfortdelgro/react-compass-old",
+    "@comfortdelgro/react-compass",
     "@comfortdelgro/markdown"
   ]
 }

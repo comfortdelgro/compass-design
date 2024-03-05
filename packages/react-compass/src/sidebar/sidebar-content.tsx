@@ -1,10 +1,14 @@
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledSidebarContent} from './sidebar.styles'
+'use client'
 
-interface Props extends StyledComponentProps {
+import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/sidebar.module.css'
+
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type SidebarContentProps = Props &
@@ -12,12 +16,18 @@ export type SidebarContentProps = Props &
 
 const SidebarContent = React.forwardRef<HTMLDivElement, SidebarContentProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className = '', ...delegated} = props
     const sidebarContentRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledSidebarContent css={css} ref={sidebarContentRef} {...delegated}>
-        {children}
-      </StyledSidebarContent>
+      <CssInjection css={css} childrenRef={sidebarContentRef}>
+        <div
+          className={`cdg-sidebar-content ${styles.sidebarContent} ${className}`}
+          ref={sidebarContentRef}
+          {...delegated}
+        >
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

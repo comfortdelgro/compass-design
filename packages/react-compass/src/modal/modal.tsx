@@ -1,20 +1,15 @@
 import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ModalActions from './modal-actions'
 import ModalCloseIcon from './modal-closeIcon'
 import ModalDescription from './modal-description'
 import ModalTitle from './modal-title'
 import ModalTrigger from './modal-trigger'
-import {
-  ModalVariantProps,
-  StyledModal,
-  StyledModalContent,
-  StyledModalHeader,
-} from './modal.styles'
+import styles from './styles/modal.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   h5?: boolean
   children?: React.ReactNode
   handleClose?: () => void
@@ -22,10 +17,10 @@ interface Props extends StyledComponentProps {
   onClick?: () => void
   onKeyDown?: (e: KeyboardEvent) => void
   triggerId?: string
+  css?: unknown
 }
 
 export type ModalProps = Props &
-  ModalVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
@@ -42,11 +37,11 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     // VariantProps
     size = 'md',
     triggerId,
+    className,
     // AriaButtonProps
-    ...delegated
+    ...htmlProps
   } = props
 
-  const variantProps = {size} as ModalVariantProps
   const ModalRef = useDOMRef<HTMLDivElement>(ref)
   const FirstFocusableRef = React.useRef<HTMLElement | null>(null) // This is the Modal Content
   const SecondFocusableRef = React.useRef<HTMLElement | null>(null) // This is the Modal Close Icon
@@ -175,34 +170,51 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     }
   }, [ModalRef, FirstFocusableRef, LastFocusableRef])
 
-  return (
-    <StyledModal
-      css={css}
-      ref={ModalRef}
-      tabIndex={0}
-      role='dialog'
-      aria-modal={true}
-      h5={h5}
-      onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
-      onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
-      className='cdg-modal-container'
-      {...delegated}
-      {...variantProps}
-    >
-      <StyledModalContent tabIndex={0} className='cdg-modal-content'>
-        <StyledModalHeader h5={h5}>
-          {ModalTitleElement}
-          {CloseIconElement &&
-            React.cloneElement(CloseIconElement as unknown as JSX.Element, {
-              onClose: () => handleClose?.(),
-              ref: CloseIconRef,
-            })}
-        </StyledModalHeader>
+  const modalClassNames = [
+    className,
+    'cdg-modal-container',
+    styles.modal,
+    size && styles[size],
+    h5 && styles.h5,
+  ]
+    .filter(Boolean)
+    .join(' ')
 
-        {ModalDescriptionElement}
-        {ModalActionsElement}
-      </StyledModalContent>
-    </StyledModal>
+  const contentClassNames = ['cdg-modal-content', styles.content]
+    .filter(Boolean)
+    .join(' ')
+
+  const headerClassNames = ['cdg-modal-header', styles.header]
+    .filter(Boolean)
+    .join(' ')
+
+  return (
+    <CssInjection css={css}>
+      <div
+        ref={ModalRef}
+        tabIndex={0}
+        role='dialog'
+        aria-modal={true}
+        onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
+        onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
+        className={modalClassNames}
+        {...htmlProps}
+      >
+        <div tabIndex={0} className={contentClassNames}>
+          <div className={headerClassNames}>
+            {ModalTitleElement}
+            {CloseIconElement &&
+              React.cloneElement(CloseIconElement as unknown as JSX.Element, {
+                onClose: () => handleClose?.(),
+                ref: CloseIconRef,
+              })}
+          </div>
+
+          {ModalDescriptionElement}
+          {ModalActionsElement}
+        </div>
+      </div>
+    </CssInjection>
   )
 })
 

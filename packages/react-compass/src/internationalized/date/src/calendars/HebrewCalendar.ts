@@ -33,8 +33,8 @@ function isLeapYear(year: number) {
 // Test for delay of start of new year and to avoid
 // Sunday, Wednesday, and Friday as start of the new year.
 function hebrewDelay1(year: number) {
-  let months = Math.floor((235 * year - 234) / 19)
-  let parts = 12084 + 13753 * months
+  const months = Math.floor((235 * year - 234) / 19)
+  const parts = 12084 + 13753 * months
   let day = months * 29 + Math.floor(parts / 25920)
 
   if (mod(3 * (day + 1), 7) < 3) {
@@ -46,9 +46,9 @@ function hebrewDelay1(year: number) {
 
 // Check for delay in start of new year due to length of adjacent years
 function hebrewDelay2(year: number) {
-  let last = hebrewDelay1(year - 1)
-  let present = hebrewDelay1(year)
-  let next = hebrewDelay1(year + 1)
+  const last = hebrewDelay1(year - 1)
+  const present = hebrewDelay1(year)
+  const next = hebrewDelay1(year + 1)
 
   if (next - present === 356) {
     return 2
@@ -105,7 +105,7 @@ function getDaysInMonth(year: number, month: number): number {
     return 29
   }
 
-  let yearType = getYearType(year)
+  const yearType = getYearType(year)
 
   // If it's Heshvan, days depend on length of year
   if (month === 2) {
@@ -134,8 +134,8 @@ export class HebrewCalendar implements Calendar {
   identifier = 'hebrew'
 
   fromJulianDay(jd: number): CalendarDate {
-    let d = jd - HEBREW_EPOCH
-    let m = (d * DAY_PARTS) / MONTH_PARTS // Months (approx)
+    const d = jd - HEBREW_EPOCH
+    const m = (d * DAY_PARTS) / MONTH_PARTS // Months (approx)
     let year = Math.floor((19 * m + 234) / 235) + 1 // Years (approx)
     let ys = startOfYear(year) // 1st day of year
     let dayOfYear = Math.floor(d - ys)
@@ -158,7 +158,7 @@ export class HebrewCalendar implements Calendar {
     month--
     monthStart -= getDaysInMonth(year, month)
 
-    let day = dayOfYear - monthStart
+    const day = dayOfYear - monthStart
     return new CalendarDate(this, year, month, day)
   }
 

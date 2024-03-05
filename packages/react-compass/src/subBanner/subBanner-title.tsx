@@ -1,10 +1,13 @@
-/* eslint-disable prettier/prettier */
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledSubBannerTitle} from './subBanner.styles'
+'use client'
 
-interface Props extends StyledComponentProps {
+import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/subBanner.module.css'
+
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type SubBannerTitleProps = Props &
@@ -14,7 +17,7 @@ const SubBannerTitle = React.forwardRef<
   HTMLHeadingElement,
   SubBannerTitleProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const {children, css = {}, className = '', ...htmlProps} = props
 
   const renderTitle = () => {
     if (typeof children === 'string') {
@@ -24,9 +27,15 @@ const SubBannerTitle = React.forwardRef<
   }
 
   return (
-    <StyledSubBannerTitle css={css} ref={ref} {...delegated}>
-      {renderTitle()}
-    </StyledSubBannerTitle>
+    <CssInjection css={css} childrenRef={ref}>
+      <h1
+        className={`cdg-sub-banner-title ${className} ${styles.subBannerTitle}`}
+        ref={ref}
+        {...htmlProps}
+      >
+        {renderTitle()}
+      </h1>
+    </CssInjection>
   )
 })
 

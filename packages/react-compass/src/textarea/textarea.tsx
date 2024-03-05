@@ -1,17 +1,13 @@
+'use client'
 import React from 'react'
 import {useIsDarkTheme} from '../theme'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {
-  StyledTextarea,
-  StyledTextAreaHelperText,
-  StyledTextAreaLabel,
-  StyledTextareaWrapper,
-  TextareaVariantProps,
-  TextareaVariantWrapperProps,
-} from './textarea.styles'
+import {useId} from '../utils/useId'
+import styles from './styles/textarea.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   id?: string
   label?: React.ReactNode
   cols?: number
@@ -37,6 +33,7 @@ interface Props extends StyledComponentProps {
   pattern?: string
   excludeFromTabOrder?: boolean
   errorMessage?: string
+  textareaRef?: React.RefObject<HTMLTextAreaElement>
   onChangeEvent?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
   onChange?: (value: string) => void
   onCopy?: React.ClipboardEventHandler<HTMLTextAreaElement>
@@ -71,12 +68,11 @@ interface Props extends StyledComponentProps {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
-  variant?: TextareaVariantWrapperProps['variant']
+  variant?: 'h5' | string
   resizable?: boolean
 }
 
 export type TextareaProps = Props &
-  TextareaVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
@@ -86,7 +82,7 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       css = {},
       // ComponentProps
       label,
-      id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+      id,
       name,
       value,
       cols,
@@ -105,6 +101,8 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       autoFocus,
       className,
       placeholder,
+      textareaRef,
+      helperText,
       onChange,
       onChangeEvent,
       onCut = () => null,
@@ -125,13 +123,14 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       ...ariaSafeProps
     } = props
     const isDarkTheme = useIsDarkTheme()
-    const htmlProps = {...ariaSafeProps} as Omit<
+    const htmlProps = {...ariaSafeProps} as unknown as Omit<
       React.HTMLAttributes<HTMLDivElement>,
       keyof Props
     >
-    const textareaId = id
+
+    const textareaId = useId(id)
     const wrapperRef = useDOMRef<HTMLDivElement>(ref)
-    const textareaRef = useDOMRef<HTMLTextAreaElement>(null)
+    const textareaFieldRef = useDOMRef<HTMLTextAreaElement>(textareaRef)
     const [wordCountValue, setWordCountValue] = React.useState(0)
 
     const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -142,72 +141,133 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
 
     React.useEffect(() => {
       setWordCountValue(value?.length || 0) // word count on mount
-    }, [])
+    }, [value?.length])
+
+    //  classes
+    const wrapperClasses = React.useMemo(() => {
+      return [
+        styles.textareaWrapper,
+        variant && styles[variant],
+        className,
+        'cdg-textarea-container',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [className, variant])
+
+    const labelClasses = React.useMemo(() => {
+      return [
+        styles.textAreaLabel,
+        variant && styles[variant],
+        'cdg-textarea-label',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [variant])
+
+    const textareaClasses = React.useMemo(() => {
+      return [
+        styles.textarea,
+        isErrored && styles.isErrored,
+        resizable && styles.resizable,
+        isDarkTheme && styles.isDarkTheme,
+        variant && styles[variant],
+        'cdg-textarea',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [isDarkTheme, isErrored, resizable, variant])
+
+    const wordCountClasses = React.useMemo(() => {
+      return [
+        styles.textAreaHelperText,
+        styles.wordCount,
+        variant && styles[variant],
+        'cdg-textarea-word-count',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [variant])
+
+    const helperTextClasses = React.useMemo(() => {
+      return [
+        styles.textAreaHelperText,
+        variant && styles[variant],
+        'cdg-textarea-helper-text',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [variant])
+
+    const errorMessageClasses = React.useMemo(() => {
+      return [
+        styles.error,
+        styles.textAreaHelperText,
+        variant && styles[variant],
+        'cdg-textarea-error-message',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [variant])
+
     return (
-      <StyledTextareaWrapper
-        {...htmlProps}
-        css={css}
-        className={className ?? 'cdg-textarea-container'}
-        ref={wrapperRef}
-        isDarkTheme={isDarkTheme}
-        {...(variant ? {variant} : {})}
-      >
-        {label && (
-          <StyledTextAreaLabel
-            htmlFor={textareaId}
-            className='cdg-textarea-label'
-          >
-            {label}
-            {isRequired && <span className='asterisk'>*</span>}
-          </StyledTextAreaLabel>
-        )}
-        <StyledTextarea
-          ref={textareaRef}
-          id={textareaId}
-          cols={cols}
-          rows={rows}
-          wrap={wrap}
-          name={name}
-          value={value}
-          tabIndex={tabIndex}
-          autoFocus={autoFocus}
-          autoCapitalize={autoCapitalize}
-          readOnly={isReadOnly}
-          required={isRequired}
-          isErrored={isErrored}
-          disabled={isDisabled}
-          maxLength={maxLength}
-          minLength={minLength}
-          placeholder={placeholder}
-          onCut={onCut}
-          onCopy={onCopy}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          onPaste={onPaste}
-          onInput={onInput}
-          onKeyUp={onKeyUp}
-          onSelect={onSelect}
-          onChange={handleOnChange}
-          onKeyDown={onKeyDown}
-          onBeforeInput={onBeforeInput}
-          onCompositionEnd={onCompositionEnd}
-          onCompositionStart={onCompositionStart}
-          onCompositionUpdate={onCompositionUpdate}
-          resizable={resizable}
-          className='cdg-textarea'
-        />
-        {wordCount && (
-          <StyledTextAreaHelperText className='cdg-word-count'>
-            {wordCountValue}
-            {maxLength ? `/${maxLength}` : null}
-          </StyledTextAreaHelperText>
-        )}
-        {isErrored && errorMessage && (
-          <StyledTextAreaHelperText error className='cdg-error-message'>
-            {errorMessage}
-          </StyledTextAreaHelperText>
-        )}
-      </StyledTextareaWrapper>
+      <CssInjection css={css} childrenRef={wrapperRef}>
+        <div {...htmlProps} className={wrapperClasses} ref={wrapperRef}>
+          {label && (
+            <label htmlFor={textareaId} className={labelClasses}>
+              {label}
+              {isRequired && (
+                <span className={`${styles.asterisk} cdg-textarea-asterisk`}>
+                  *
+                </span>
+              )}
+            </label>
+          )}
+          <textarea
+            ref={textareaFieldRef}
+            className={textareaClasses}
+            id={textareaId}
+            cols={cols}
+            rows={rows}
+            wrap={wrap}
+            name={name}
+            value={value}
+            tabIndex={tabIndex}
+            autoFocus={autoFocus}
+            autoCapitalize={autoCapitalize}
+            readOnly={isReadOnly}
+            required={isRequired}
+            disabled={isDisabled}
+            maxLength={maxLength}
+            minLength={minLength}
+            placeholder={placeholder}
+            onCut={onCut}
+            onCopy={onCopy}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            onPaste={onPaste}
+            onInput={onInput}
+            onKeyUp={onKeyUp}
+            onSelect={onSelect}
+            onChange={handleOnChange}
+            onKeyDown={onKeyDown}
+            onBeforeInput={onBeforeInput}
+            onCompositionEnd={onCompositionEnd}
+            onCompositionStart={onCompositionStart}
+            onCompositionUpdate={onCompositionUpdate}
+          />
+          {wordCount && (
+            <div className={wordCountClasses}>
+              {wordCountValue}
+              {maxLength ? `/${maxLength}` : null}
+            </div>
+          )}
+          {isErrored && errorMessage && (
+            <div className={errorMessageClasses}>{errorMessage}</div>
+          )}
+          {helperText && <div className={helperTextClasses}>{helperText}</div>}
+        </div>
+      </CssInjection>
     )
   },
 )

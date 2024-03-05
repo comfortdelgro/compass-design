@@ -1,18 +1,11 @@
 import React from 'react'
 import Button from '../button/button'
 import {useIsDarkTheme} from '../theme'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {
-  SearchFieldVariantProps,
-  StyledSearchFieldBox,
-  StyledSearchFieldBoxWrapper,
-  StyledSearchFieldInput,
-  StyledTextFieldHelperText,
-  StyledTextFieldLabel,
-} from './searchfield.styles'
+import styles from './styles/searchfield.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   id?: string
   isErrored?: boolean
   isDisabled?: boolean
@@ -63,10 +56,11 @@ interface Props extends StyledComponentProps {
   'aria-details'?: string
   'aria-errormessage'?: string
   h5?: boolean
+  css?: unknown
+  className?: string
 }
 
 export type SearchFieldProps = Props &
-  SearchFieldVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
@@ -105,6 +99,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       maxLength,
       minLength,
       h5 = false,
+      className = '',
       ...delegated
     } = props
     const isDarkTheme = useIsDarkTheme()
@@ -159,90 +154,104 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
     }
 
     return (
-      <StyledSearchFieldBoxWrapper>
+      <div
+        className={`cdg-search-field-box-wrapper ${styles.searchFieldBoxWrapper} ${className}`}
+      >
         {label && (
-          <StyledTextFieldLabel htmlFor={id}>
+          <label
+            htmlFor={id}
+            className={`cdg-text-field-label ${styles.textFieldLabel}`}
+          >
             {label}
             {isRequired && <span className='asterisk'>*</span>}
-          </StyledTextFieldLabel>
+          </label>
         )}
-        <StyledSearchFieldBox
-          disabled={isDisabled}
-          css={css}
-          isErrored={isErrored}
-          ref={wrapperRef}
-          {...delegated}
-          isDarkTheme={isDarkTheme}
-          h5={h5}
-        >
-          <StyledSearchFieldInput
-            ref={searchFieldRef}
-            id={id}
-            autoFocus={autoFocus}
-            readOnly={isReadOnly}
-            required={isRequired}
-            disabled={isDisabled}
-            type='text'
-            placeholder={placeholder}
-            value={textValue}
-            onCut={onCut}
-            onCopy={onCopy}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            onPaste={onPaste}
-            onInput={onInput}
-            onKeyUp={onKeyUp}
-            onSelect={onSelect}
-            onChange={handleOnChange}
-            onKeyDown={handleOnKeyDown}
-            onBeforeInput={onBeforeInput}
-            onCompositionEnd={onCompositionEnd}
-            onCompositionStart={onCompositionStart}
-            onCompositionUpdate={onCompositionUpdate}
-            maxLength={maxLength}
-            minLength={minLength}
-          />
-          {textValue !== '' ? (
-            <Button
-              size='sm'
-              variant='ghost'
-              onPress={onClearButtonClick}
-              className='cdg-searchfield-button'
-            >
-              <svg className='icon' viewBox='0 0 384 512'>
-                <path
-                  fill='currentColor'
-                  d='M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z'
-                />
-              </svg>
-            </Button>
-          ) : (
-            <Button
-              isDisabled={!!isDisabled}
-              onPress={onSearchButtonClick}
-              className='cdg-searchfield-button'
-              size='sm'
-              variant='ghost'
-            >
-              {h5 ? (
-                <H5SearchIcon />
-              ) : (
-                <svg className='icon' viewBox='0 0 512 512'>
+        <CssInjection css={css} childrenRef={wrapperRef}>
+          <div
+            className={`cdg-search-field-box ${styles.searchFieldBox} ${
+              isDisabled ? styles.disabledTrue : ''
+            } ${isErrored ? styles.isErroredTrue : ''} ${
+              isDarkTheme ? styles.isDarkThemeTrue : styles.isDarkThemeFalse
+            }  ${h5 ? styles.h5True : styles.h5False}`}
+            ref={wrapperRef}
+            {...delegated}
+          >
+            <input
+              className={`cdg-search-field-input ${styles.searchFieldInput} ${
+                isDisabled ? styles.disabledTrue : ''
+              } ${isErrored ? styles.isErroredTrue : ''} ${
+                isDarkTheme ? styles.isDarkThemeTrue : ''
+              }  ${h5 ? styles.h5True : ''}`}
+              ref={searchFieldRef}
+              id={id}
+              autoFocus={autoFocus}
+              readOnly={isReadOnly}
+              required={isRequired}
+              disabled={isDisabled}
+              type='text'
+              placeholder={placeholder}
+              value={textValue}
+              onCut={onCut}
+              onCopy={onCopy}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              onPaste={onPaste}
+              onInput={onInput}
+              onKeyUp={onKeyUp}
+              onSelect={onSelect}
+              onChange={handleOnChange}
+              onKeyDown={handleOnKeyDown}
+              onBeforeInput={onBeforeInput}
+              onCompositionEnd={onCompositionEnd}
+              onCompositionStart={onCompositionStart}
+              onCompositionUpdate={onCompositionUpdate}
+              maxLength={maxLength}
+              minLength={minLength}
+            />
+            {textValue !== '' ? (
+              <Button
+                size='sm'
+                variant='ghost'
+                onPress={onClearButtonClick}
+                className='cdg-searchfield-button'
+              >
+                <svg className='icon' viewBox='0 0 384 512'>
                   <path
                     fill='currentColor'
-                    d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z'
+                    d='M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z'
                   />
                 </svg>
-              )}
-            </Button>
-          )}
-        </StyledSearchFieldBox>
+              </Button>
+            ) : (
+              <Button
+                isDisabled={!!isDisabled}
+                onPress={onSearchButtonClick}
+                className='cdg-searchfield-button'
+                size='sm'
+                variant='ghost'
+              >
+                {h5 ? (
+                  <H5SearchIcon />
+                ) : (
+                  <svg className='icon' viewBox='0 0 512 512'>
+                    <path
+                      fill='currentColor'
+                      d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z'
+                    />
+                  </svg>
+                )}
+              </Button>
+            )}
+          </div>
+        </CssInjection>
         {isErrored && errorMessage && (
-          <StyledTextFieldHelperText error>
+          <div
+            className={`cdg-text-field-helper-text ${styles.textFieldHelperText} ${styles.errorTrue}`}
+          >
             {errorMessage}
-          </StyledTextFieldHelperText>
+          </div>
         )}
-      </StyledSearchFieldBoxWrapper>
+      </div>
     )
   },
 )

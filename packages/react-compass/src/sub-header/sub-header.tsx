@@ -1,15 +1,20 @@
+'use client'
+
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
+import styles from './styles/sub-header.module.css'
 import SubHeaderBody from './sub-header-body'
 import SubHeaderDescription from './sub-header-description'
 import SubHeaderHeader from './sub-header-header'
 import SubHeaderImage from './sub-header-image'
 import SubHeaderTitle from './sub-header-title'
-import {StyledSubHeader, SubHeaderHeaderVariantProps} from './sub-header.style'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children: React.ReactNode
-  variant?: SubHeaderHeaderVariantProps['variant']
+  variant?: 'default' | 'h5'
+  css?: unknown
+  className?: string
 }
 
 export type SubHeaderProps = Props &
@@ -17,12 +22,26 @@ export type SubHeaderProps = Props &
 
 const SubHeader = React.forwardRef<HTMLDivElement, SubHeaderProps>(
   (props, ref) => {
-    const {children, css = {}, variant = 'default', ...delegated} = props
+    const {
+      children,
+      css = {},
+      className = '',
+      variant = 'default',
+      ...htmlProps
+    } = props
 
     return (
-      <StyledSubHeader ref={ref} css={css} variant={variant} {...delegated}>
-        {children}
-      </StyledSubHeader>
+      <CssInjection css={css} childrenRef={ref}>
+        <div
+          className={`cdg-sub-header ${className} ${styles.subHeader} ${
+            styles[`subHeader${capitalizeFirstLetter(variant)}`]
+          }`}
+          ref={ref}
+          {...htmlProps}
+        >
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

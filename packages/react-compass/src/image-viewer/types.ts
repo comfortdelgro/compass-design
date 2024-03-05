@@ -1,7 +1,7 @@
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core'
-import {ActionType} from './Icon'
+import {ActionTypeEnum} from './Icon'
 
-export interface IViewerCoreState {
+export type ImageViewerCoreState = {
   index: number
   visible: boolean
   activeIndex: number
@@ -19,45 +19,45 @@ export interface IViewerCoreState {
   startLoading: boolean
 }
 
-export enum ActionTypeEnum {
+export enum ActionEnum {
   setVisible = 'setVisible',
   setActiveIndex = 'setActiveIndex',
   update = 'update',
   clear = 'clear',
 }
 
-export interface IAction {
-  type: ActionTypeEnum
-  payload: Partial<IViewerCoreState>
+export type ActionType = {
+  type: ActionEnum
+  payload: Partial<ImageViewerCoreState>
 }
 
-export interface ViewerImageSize {
+export type ViewerImageSize = {
   width: number
   height: number
 }
 
-export interface ImageDecorator {
+export type ImageDecorator = {
   src: string
   alt?: string
   defaultSize?: ViewerImageSize
   srcPreview?: string
 }
 
-export interface ToolbarConfig {
+export type ToolbarConfig = {
   key: string
-  actionType: ActionType
+  actionType: ActionTypeEnum
   icon?: IconDefinition
   render?: React.ReactNode
   onClick?: (activeImage: ImageDecorator) => void
 }
 
-export interface ViewerDefaultImg {
+export type ViewerDefaultImg = {
   src: string
   width?: number
   height?: number
 }
 
-export interface IViewerProps {
+export type ImageViewerProps = {
   index?: number
   visible?: boolean
   onClose?: () => void

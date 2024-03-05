@@ -1,40 +1,51 @@
 import React, {memo, useCallback, useState} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import SingleInput from './SingleInput'
-import {
-  OtpInputContainerVariantProps,
-  StyledOtpInputContainer,
-} from './otpInput.styles'
+import styles from './styles/otpInput.module.css'
 
-export interface Props extends StyledComponentProps {
-  /** @default 6 */
+export interface Props {
+  otp?: string
+  css?: unknown
   length?: number
-  onChangeOTP: (otp: string) => void
-  autoFocus?: boolean
-  isNumberInput?: boolean
   disabled?: boolean
   isMobile?: boolean
+  autoFocus?: boolean
+  isErrored?: boolean
+  isNumberInput?: boolean
+  onChangeOTP: (otp: string) => void
 }
 export type OTPInputProps = Props &
-  OtpInputContainerVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+
+const DEFAULT_OTP_LENGTH = 6
 
 const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
   (props, ref) => {
     const {
+      otp,
       css = {},
-      length = 6,
-      isNumberInput,
-      autoFocus,
       disabled,
+      autoFocus,
+      className,
+      isNumberInput,
       isMobile = false,
+      isErrored = false,
+      length = DEFAULT_OTP_LENGTH,
       onChangeOTP,
-      ...delegated
+      ...htmlProps
     } = props
     const inputRef = useDOMRef<HTMLDivElement>(ref)
     const [activeInput, setActiveInput] = useState(0)
-    const [otpValues, setOTPValues] = useState(Array<string>(length).fill(''))
+    const [otpValues, setOTPValues] = useState(
+      otp ? otp.split('').slice(0, length) : Array<string>(length).fill(''),
+    )
+
+    React.useEffect(() => {
+      if (otp) {
+        setOTPValues(otp.split('').slice(0, length))
+      }
+    }, [length, otp])
 
     // Helper to return OTP from inputs
     const handleOtpChange = useCallback(
@@ -185,33 +196,42 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
       [activeInput, getRightValue, handleOtpChange, length, otpValues],
     )
 
+    const classNames = [
+      styles.inputContainer,
+      isMobile && styles.inputContainerIsMobile,
+      'cdg-otp-input',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledOtpInputContainer
-        css={css}
-        ref={inputRef}
-        isMobile={isMobile}
-        {...delegated}
-      >
-        {Array.from(Array(length).keys()).map((index) => (
-          <SingleInput
-            key={`SingleInput-${index}`}
-            focus={activeInput === index}
-            autoFocus={autoFocus}
-            index={index}
-            value={otpValues && otpValues[index]}
-            onFocus={handleOnFocus(index)}
-            onInput={handleOnInput}
-            onKeyDown={handleOnKeyDown}
-            onBlur={onBlur}
-            onPaste={handleOnPaste}
-            {...(isNumberInput
-              ? {type: 'number', pattern: 'd{1}', inputMode: 'numeric'}
-              : undefined)}
-            autoComplete='one-time-code'
-            disabled={disabled}
-          />
-        ))}
-      </StyledOtpInputContainer>
+      <CssInjection css={css}>
+        <div ref={inputRef} className={classNames} {...htmlProps}>
+          {Array.from(Array(length).keys()).map((index) => (
+            <SingleInput
+              index={index}
+              disabled={disabled}
+              isMobile={isMobile}
+              autoFocus={autoFocus}
+              isErrored={isErrored}
+              autoComplete='one-time-code'
+              key={`SingleInput-${index}`}
+              focus={activeInput === index}
+              isNumberInput={isNumberInput}
+              value={otpValues && otpValues[index]}
+              {...(isNumberInput
+                ? {type: 'number', pattern: 'd{1}', inputMode: 'numeric'}
+                : undefined)}
+              onBlur={onBlur}
+              onInput={handleOnInput}
+              onPaste={handleOnPaste}
+              onKeyDown={handleOnKeyDown}
+              onFocus={handleOnFocus(index)}
+            />
+          ))}
+        </div>
+      </CssInjection>
     )
   },
 )

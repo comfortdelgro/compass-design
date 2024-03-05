@@ -238,7 +238,6 @@ export function getFormatOptions(
   const opts: Intl.DateTimeFormatOptions = keys
     .slice(startIdx, endIdx + 1)
     .reduce((opts, key) => {
-      // @ts-expect-error
       opts[key] = fieldOptions[key]
       return opts
     }, {})

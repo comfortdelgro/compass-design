@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {SliderContainer, Thumb} from './volume-slider.styles'
+import styles from '../styles/volume-slider.module.css'
 
 interface VerticalSliderProps {
   value: number
@@ -9,8 +9,6 @@ interface VerticalSliderProps {
 interface ProgressProps {
   value: number
 }
-
-type Position = 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky'
 
 const VolumeSlider: React.FC<VerticalSliderProps> = ({value, onChange}) => {
   const [sliderValue, setSliderValue] = useState(value)
@@ -66,35 +64,30 @@ const VolumeSlider: React.FC<VerticalSliderProps> = ({value, onChange}) => {
 
   const Progress = ({value}: ProgressProps) => {
     const progressBarStyles = {
-      position: 'absolute' as Position,
-      bottom: '0',
-      width: '100%',
       height: `${value}%`,
-      background: '#ffffff',
-      borderRadius: '9999px',
     }
     return (
       <div>
-        <div style={progressBarStyles} />
+        <div className={styles.progressBar} style={progressBarStyles} />
       </div>
     )
   }
 
   return (
-    <SliderContainer
+    <div
       ref={sliderRef}
-      className='vertical-slider'
+      className={`cdg-video-vertical-slider ${styles.sliderContainer}`}
       onMouseDown={handleMouseDown}
       onClick={handleClick}
     >
-      <Thumb
-        className='slider-thumb'
+      <div
+        className={`cdg-video-slider-thumb ${styles.thumb}`}
         style={{
           top: `calc(${sliderValue}% - 8px)`,
         }}
-      ></Thumb>
+      ></div>
       <Progress value={sliderValue} />
-    </SliderContainer>
+    </div>
   )
 }
 

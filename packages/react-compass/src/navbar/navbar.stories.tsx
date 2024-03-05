@@ -8,20 +8,16 @@ import {
   faSearch,
 } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {StoryDecorator} from '@ladle/react'
-import React from 'react'
-import Avatar from '../avatar'
-import Button from '../button'
-import Icon from '../icon'
-import SearchField from '../searchfield'
-import {Column} from '../utils/components'
-import Navbar from './index'
+import {Meta} from '@storybook/react'
+import Navbar from '.'
+import {Avatar, Button, Icon, SearchField} from '..'
 import NavbarActions from './navbar-actions'
 import {NavbarLinks} from './navbar-links'
-import {NavbarSeperator} from './navbar-seperator.style'
+import {NavbarSeperator} from './navbar-seperator'
+
 const imageSrc = 'https://i.pravatar.cc/150?img=32'
 
-export const Variants: React.FC = () => {
+export const Basic = () => {
   const resetButtonStyle = {
     backgroundColor: 'transparent',
     border: 'none',
@@ -29,7 +25,15 @@ export const Variants: React.FC = () => {
   }
 
   return (
-    <Column>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        padding: '1rem',
+        backgroundColor: 'var(--cdg-color-gray30)',
+      }}
+    >
       <h2>Portal Navbar</h2>
       <h3>Blue color</h3>
       <Navbar>
@@ -53,33 +57,39 @@ export const Variants: React.FC = () => {
         </NavbarLinks>
         <NavbarSeperator />
         <NavbarActions>
-          <FontAwesomeIcon
-            icon={faQuestionCircle}
-            style={{
-              color: '#FFF',
-              width: '$5',
-              height: '$5',
-              cursor: 'pointer',
-            }}
-          />
-          <FontAwesomeIcon
-            icon={faBell}
-            style={{
-              color: '#FFF',
-              width: '$5',
-              height: '$5',
-              cursor: 'pointer',
-            }}
-          />
-          <FontAwesomeIcon
-            icon={faChartGantt}
-            style={{
-              color: '#FFF',
-              width: '$5',
-              height: '$5',
-              cursor: 'pointer',
-            }}
-          />
+          <button style={resetButtonStyle}>
+            <FontAwesomeIcon
+              icon={faQuestionCircle}
+              style={{
+                color: '#FFF',
+                width: '$5',
+                height: '$5',
+                cursor: 'pointer',
+              }}
+            />
+          </button>
+          <button style={resetButtonStyle}>
+            <FontAwesomeIcon
+              icon={faBell}
+              style={{
+                color: '#FFF',
+                width: '$5',
+                height: '$5',
+                cursor: 'pointer',
+              }}
+            />
+          </button>
+          <button style={resetButtonStyle}>
+            <FontAwesomeIcon
+              icon={faChartGantt}
+              style={{
+                color: '#FFF',
+                width: '$5',
+                height: '$5',
+                cursor: 'pointer',
+              }}
+            />
+          </button>
           <Avatar label='H' size='xs' image={imageSrc} />
         </NavbarActions>
       </Navbar>
@@ -91,45 +101,45 @@ export const Variants: React.FC = () => {
         <Navbar.Brand>Workbench Title</Navbar.Brand>
         <SearchField placeholder='Search' css={{minWidth: 'unset'}} />
         <NavbarLinks>
-          <Button variant='ghost' href='#'>
-            Home
-          </Button>
-          <Button variant='ghost' href='#'>
-            Services
-          </Button>
-          <Button variant='ghost' href='#'>
-            Products
-          </Button>
+          <Button variant='ghost'>Home</Button>
+          <Button variant='ghost'>Services</Button>
+          <Button variant='ghost'>Products</Button>
         </NavbarLinks>
         <NavbarSeperator />
         <NavbarActions>
-          <FontAwesomeIcon
-            icon={faQuestionCircle}
-            style={{
-              color: 'black',
-              width: '$5',
-              height: '$5',
-              cursor: 'pointer',
-            }}
-          />
-          <FontAwesomeIcon
-            icon={faBell}
-            style={{
-              color: 'black',
-              width: '$5',
-              height: '$5',
-              cursor: 'pointer',
-            }}
-          />
-          <FontAwesomeIcon
-            icon={faChartGantt}
-            style={{
-              color: 'black',
-              width: '$5',
-              height: '$5',
-              cursor: 'pointer',
-            }}
-          />
+          <button style={resetButtonStyle}>
+            <FontAwesomeIcon
+              icon={faQuestionCircle}
+              style={{
+                color: 'black',
+                width: '$5',
+                height: '$5',
+                cursor: 'pointer',
+              }}
+            />
+          </button>
+          <button style={resetButtonStyle}>
+            <FontAwesomeIcon
+              icon={faBell}
+              style={{
+                color: 'black',
+                width: '$5',
+                height: '$5',
+                cursor: 'pointer',
+              }}
+            />
+          </button>
+          <button style={resetButtonStyle}>
+            <FontAwesomeIcon
+              icon={faChartGantt}
+              style={{
+                color: 'black',
+                width: '$5',
+                height: '$5',
+                cursor: 'pointer',
+              }}
+            />
+          </button>
           <Avatar label='H' size='xs' image={imageSrc} />
         </NavbarActions>
       </Navbar>
@@ -157,9 +167,9 @@ export const Variants: React.FC = () => {
         <Navbar.Brand>Workbench Title</Navbar.Brand>
         <SearchField placeholder='Search' css={{minWidth: 'unset'}} />
         <NavbarLinks>
-          <Button href='#'>Home</Button>
-          <Button href='#'>Services</Button>
-          <Button href='#'>Products</Button>
+          <Button>Home</Button>
+          <Button>Services</Button>
+          <Button>Products</Button>
         </NavbarLinks>
         <NavbarSeperator />
         <NavbarActions
@@ -202,21 +212,19 @@ export const Variants: React.FC = () => {
           <Avatar label='H' size='xs' image={imageSrc} />
         </NavbarActions>
       </Navbar>
-    </Column>
+    </div>
   )
 }
 
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: var(--colors-gray30); }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
-}
+const meta = {
+  title: 'Example/Navbar',
+  component: Basic,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

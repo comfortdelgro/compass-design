@@ -48,7 +48,7 @@ export function getLocalTimeZone(): string {
 
 /** Returns whether the given date is on a weekend in the given locale. */
 export function isWeekend(date: DateValue, locale: string): boolean {
-  let julian = date.calendar.toJulianDay(date)
+  const julian = date.calendar.toJulianDay(date)
 
   // If julian is negative, then julian % 7 will be negative, so we adjust
   // accordingly.  Julian day 0 is Monday.
@@ -57,21 +57,23 @@ export function isWeekend(date: DateValue, locale: string): boolean {
     dayOfWeek += 7
   }
 
-  let region = getRegion(locale) as keyof typeof WEEKEND_DATA
+  const region = getRegion(locale) as keyof typeof WEEKEND_DATA
   // Use Intl.Locale for this once weekInfo is supported.
   // https://github.com/tc39/proposal-intl-locale-info
-  let [start, end] = WEEKEND_DATA[region] || [6, 0]
+  const [start, end] = WEEKEND_DATA[region] || [6, 0]
   return dayOfWeek === start || dayOfWeek === end
 }
 const cachedRegions = new Map<string, string>()
 
 function getRegion(locale: string) {
   // If the Intl.Locale API is available, use it to get the region for the locale.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   if (Intl.Locale) {
     // Constructing an Intl.Locale is expensive, so cache the result.
     let region = cachedRegions.get(locale) as string
     if (!region) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       region = new Intl.Locale(locale).maximize().region
       cachedRegions.set(locale, region)
@@ -83,7 +85,7 @@ function getRegion(locale: string) {
   // If the second part of the locale string is 'u',
   // then this is a unicode extension, so ignore it.
   // Otherwise, it should be the region.
-  let part = locale.split('-')[1]
+  const part = locale.split('-')[1]
   return part === 'u' ? null : part
 }
 function timeToMs(a: AnyTime): number {
@@ -165,7 +167,7 @@ export function isToday(date: DateValue, timeZone: string): boolean {
 
 /** Returns the number of weeks in the given month and locale. */
 export function getWeeksInMonth(date: DateValue, locale: string): number {
-  let days = date.calendar.getDaysInMonth(date)
+  const days = date.calendar.getDaysInMonth(date)
   return Math.ceil((getDayOfWeek(startOfMonth(date), locale) + days) / 7)
 }
 
@@ -175,7 +177,7 @@ export function getWeeksInMonth(date: DateValue, locale: string): number {
  * the first day of the week is Sunday, but in France it is Monday.
  */
 export function getDayOfWeek(date: DateValue, locale: string): number {
-  let julian = date.calendar.toJulianDay(date)
+  const julian = date.calendar.toJulianDay(date)
 
   // If julian is negative, then julian % 7 will be negative, so we adjust
   // accordingly.  Julian day 0 is Monday.
@@ -190,7 +192,7 @@ export function getDayOfWeek(date: DateValue, locale: string): number {
 function getWeekStart(locale: string) {
   // TODO: use Intl.Locale for this once browsers support the weekInfo property
   // https://github.com/tc39/proposal-intl-locale-info
-  let region = getRegion(locale) as keyof typeof weekStartData
+  const region = getRegion(locale) as keyof typeof weekStartData
   return weekStartData[region] || 0
 }
 /** Returns whether the given dates occur on the same day, and are of the same calendar system. */
@@ -213,7 +215,7 @@ export function startOfWeek(
 export function startOfWeek(date: CalendarDate, locale: string): CalendarDate
 export function startOfWeek(date: DateValue, locale: string): DateValue
 export function startOfWeek(date: DateValue, locale: string): DateValue {
-  let dayOfWeek = getDayOfWeek(date, locale)
+  const dayOfWeek = getDayOfWeek(date, locale)
   return date.subtract({days: dayOfWeek})
 }
 

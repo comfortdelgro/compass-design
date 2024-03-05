@@ -1,5 +1,4 @@
 import React, {Key} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
 import TabItem from './item'
 import Tabs, {TabsProps} from './tabs'
 interface ItemProps {
@@ -9,7 +8,7 @@ interface ItemProps {
 
 type TProps = Omit<TabsProps, 'children'>
 
-interface Props extends TProps, StyledComponentProps {
+interface Props extends TProps {
   items: ItemProps[]
 }
 

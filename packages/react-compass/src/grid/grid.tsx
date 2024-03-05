@@ -1,16 +1,26 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import GridItem from './grid-item'
-import {GridContainerVariantProps, StyledGridContainer} from './grid.styles'
+import styles from './styles/grid.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  spacing?: 'sm' | 'md' | 'lg'
+  justifyContent?:
+    | 'flexStart'
+    | 'flexEnd'
+    | 'center'
+    | 'spaceBetween'
+    | 'spaceAround'
+    | 'spaceEvenly'
+  alignItems?: 'flexStart' | 'flexEnd' | 'center' | 'stretch' | 'baseline'
 }
 
 export type GridContainerProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> &
-  GridContainerVariantProps
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Grid = React.forwardRef<HTMLDivElement, GridContainerProps>(
   (props, ref) => {
@@ -20,24 +30,40 @@ const Grid = React.forwardRef<HTMLDivElement, GridContainerProps>(
       spacing,
       justifyContent,
       alignItems,
-      ...delegated
+      className,
+      ...htmlProps
     } = props
-    const variantProps = {
-      spacing,
-      justifyContent,
-      alignItems,
-    } as GridContainerVariantProps
+
     const gridContainerRef = useDOMRef<HTMLDivElement>(ref)
 
+    const classNames = [
+      'cdg-grid',
+      className,
+      styles.container,
+      spacing && styles[`containerSpacing${capitalizeFirstLetter(spacing)}`],
+      justifyContent &&
+        styles[
+          `containerJustifyContent${capitalizeFirstLetter(justifyContent)}`
+        ],
+      alignItems &&
+        styles[`containerAlignItems${capitalizeFirstLetter(alignItems)}`],
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    // Loop children and for each element in children, pass prop spacing to the element
+    const clonedChildren = React.Children.map(children, (child) => {
+      return React.cloneElement(child as React.ReactElement, {
+        spacing: spacing,
+      })
+    })
+
     return (
-      <StyledGridContainer
-        css={css}
-        ref={gridContainerRef}
-        {...variantProps}
-        {...delegated}
-      >
-        {children}
-      </StyledGridContainer>
+      <CssInjection css={css}>
+        <div ref={gridContainerRef} className={classNames} {...htmlProps}>
+          {clonedChildren}
+        </div>
+      </CssInjection>
     )
   },
 )

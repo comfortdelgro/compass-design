@@ -1,8 +1,9 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledNavbarBrand} from './navbar-brand.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/navbar.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
   hiddenOnMobile?: boolean
 }
@@ -26,21 +27,26 @@ const NavbarBrand = React.forwardRef<HTMLDivElement, NavbarBrandProps>(
     // Render children as h1 tag if it's a string
     const renderChildren = () => {
       if (typeof children === 'string') {
-        return <h1 className='navbar-brand-title'>{children}</h1>
+        return <h1 className={styles.navbarBrandTitle}>{children}</h1>
       }
       return children
     }
 
+    const rootClasses = [
+      styles.navbarBrand,
+      hiddenOnMobile && styles.hiddenOnMobile,
+      className,
+      'cdg-navbar-brand',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledNavbarBrand
-        className={`${className} navbar-brand`}
-        css={css}
-        ref={ref}
-        hiddenOnMobile={hiddenOnMobile ? 'true' : 'false'}
-        {...delegated}
-      >
-        {renderChildren()}
-      </StyledNavbarBrand>
+      <CssInjection css={css} childrenRef={ref}>
+        <div className={rootClasses} ref={ref} {...delegated}>
+          {renderChildren()}
+        </div>
+      </CssInjection>
     )
   },
 )

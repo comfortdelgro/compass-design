@@ -1,13 +1,34 @@
 import CloseIcon from '@comfortdelgro/compass-icons/react/h5-close'
 import WarningIcon from '@comfortdelgro/compass-icons/react/warning-filled'
 import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
+import {Meta} from '@storybook/react'
 import React, {Key} from 'react'
 import Snackbar from '.'
 import Button from '../button/button'
 import Dropdown from '../dropdown'
 import {Icon} from '../icon'
-import {Column} from '../utils/components'
 import {SnackbarContextProvider, useSnackbar} from './service'
+
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  alignItems: string
+  justifyContent: string
+  height: string
+  width: string
+  padding: string
+  gap: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+  padding: '3rem',
+  gap: '0.5rem',
+}
+
 export const Default: React.FC = () => {
   const [type, setType] = React.useState<
     'default' | 'error' | 'success' | 'warning' | 'reminder' | 'ongoing'
@@ -15,9 +36,10 @@ export const Default: React.FC = () => {
   const [isDefaultOpen, setIsDefaultOpen] = React.useState(false)
 
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Default snackbar</h3>
       <Dropdown.Select
+        css={{width: '44rem'}}
         isRequired
         label='Please select type'
         placeholder='Choose a type'
@@ -62,7 +84,7 @@ export const Default: React.FC = () => {
           <Icon icon={faXmark} />
         </Snackbar.SuffixIcon>
       </Snackbar>
-    </Column>
+    </div>
   )
 }
 
@@ -154,11 +176,24 @@ const SubService = () => {
 
 export const Multiple: React.FC = () => {
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Snackbar as a service</h3>
       <SnackbarContextProvider>
         <SubService />
       </SnackbarContextProvider>
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Snackbar',
+  component: Multiple,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Multiple>
+
+export default meta

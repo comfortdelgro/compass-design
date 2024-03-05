@@ -1,9 +1,9 @@
+import {Meta} from '@storybook/react'
 import React from 'react'
-import {Column} from '../utils/components'
 import Link from './index'
 
 export const Default: React.FC = () => (
-  <Column>
+  <div>
     <section>
       <h3>Link</h3>
       The Link component is a TypeScript React component that renders a link to
@@ -38,5 +38,18 @@ export const Default: React.FC = () => (
         Go to Google
       </Link>
     </span>
-  </Column>
+  </div>
 )
+
+const meta = {
+  title: 'Example/Link',
+  component: Default,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Default>
+
+export default meta

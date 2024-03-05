@@ -1,6 +1,5 @@
 import React, {SyntheticEvent, useState} from 'react'
 import Slider from '../slider'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   NextIcon,
@@ -10,17 +9,12 @@ import {
   SettingIcon,
   VolumeIcon,
 } from './icon'
-import {
-  ErrorVariantProps,
-  StyledButtonWrapper,
-  StyledControllerWrapper,
-  StyledSlideBarWrapper,
-  StyledVideoPlayer,
-  StyledVolume,
-} from './video-player.styles'
+
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/video-player.module.css'
 import VolumeSlider from './volume-slider/volume-slider'
 
-interface Props extends StyledComponentProps {
+interface Props {
   src: string
   id?: string
   loop?: boolean
@@ -36,13 +30,13 @@ interface Props extends StyledComponentProps {
   'aria-describedby'?: string
   'aria-details'?: string
   className?: string
+  css?: unknown
   onNext?: () => void
   onPrev?: () => void
   onSetting?: () => void
 }
 
 export type VideoPlayerProps = Props &
-  ErrorVariantProps &
   Omit<React.ButtonHTMLAttributes<HTMLVideoElement>, keyof Props>
 
 const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
@@ -60,7 +54,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
     loop = false,
     muted = false,
     controls = true,
-    className,
+    className = '',
     onNext,
     onPrev,
     onSetting,
@@ -115,14 +109,6 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
 
   const handleError = () => {
     setLoadError(true)
-  }
-
-  const componentProps = () => {
-    return {
-      className,
-      css,
-      ...ariaSafeProps,
-    }
   }
 
   const handleKeyDown = (
@@ -199,58 +185,52 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
     }
   }
 
-  const delegateProps = componentProps()
-
   return (
-    <StyledVideoPlayer css={css} id={id} onKeyDown={handleWrapperKeyDown}>
+    <div
+      className={`cdg-video-player ${styles.videoPlayer}`}
+      id={id}
+      onKeyDown={handleWrapperKeyDown}
+    >
       {loadError && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            background: 'rgba(0, 0, 0, 0.5)',
-            color: '#fff',
-            fontSize: '24px',
-            fontWeight: 'bold',
-          }}
-        >
+        <div className={`cdg-load-error ${styles.videoLoadError}`}>
           Sorry, the video failed to load. Please try again later.
         </div>
       )}
-      <video
-        {...delegateProps}
-        src={src}
-        ref={videoRef}
-        loop={loop}
-        poster={poster}
-        preload={preload}
-        muted={muted}
-        controls={false}
-        autoPlay={autoPlay}
-        width={width}
-        height={height}
-        onLoadedData={onLoadedData}
-        onTimeUpdate={onTimeUpdate}
-        onClick={play}
-        onError={handleError}
-      />
+      <CssInjection css={css} childrenRef={videoRef}>
+        <video
+          className={`cdg-video ${styles.videoPlayerVideo} ${className}`}
+          {...ariaSafeProps}
+          src={src}
+          ref={videoRef}
+          loop={loop}
+          poster={poster}
+          preload={preload}
+          muted={muted}
+          controls={false}
+          autoPlay={autoPlay}
+          width={width}
+          height={height}
+          onLoadedData={onLoadedData}
+          onTimeUpdate={onTimeUpdate}
+          onClick={play}
+          onError={handleError}
+        />
+      </CssInjection>
       {controls && (
         <>
-          <StyledVolume tabIndex={0}>
+          <div className={`cdg-volume ${styles.volume}`} tabIndex={0}>
             <VolumeSlider value={volume} onChange={onToggleVolume} />
-            <div className='slider-bar-volume-icon'>
+            <div className={`cdg-volume-icon ${styles.volumeSliderBarIcon}`}>
               <VolumeIcon value={volume} onChange={onToggleVolume} />
             </div>
-          </StyledVolume>
-          <StyledControllerWrapper>
-            <StyledSlideBarWrapper>
-              <span>{formatTime(currentTime)}</span>
+          </div>
+          <div
+            className={`cdg-video-controller-wrapper ${styles.controllerWrapper}`}
+          >
+            <div className={`cdg-silde-bar-wrapper ${styles.slideBarWrapper}`}>
+              <span className={styles.slideBarWrapperSpan}>
+                {formatTime(currentTime)}
+              </span>
               <Slider
                 value={progress}
                 onChangeEnd={onToggleProgress}
@@ -260,13 +240,15 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
                   '.range-slider': {background: '#fff'},
                 }}
               />
-              <span>{formatTime(duration)}</span>
-            </StyledSlideBarWrapper>
-            <StyledButtonWrapper>
-              <div className='slider-bar-button-main'>
+              <span className={styles.slideBarWrapperSpan}>
+                {formatTime(duration)}
+              </span>
+            </div>
+            <div className={`cdg-video-button-wrapper ${styles.buttonWrapper}`}>
+              <div className={styles.sliderButtonMain}>
                 <div
                   tabIndex={0}
-                  className='slider-bar-button-prev'
+                  className={styles.sliderButtonPrev}
                   onClick={onPrev}
                   onKeyDown={(e) => handleKeyDown(e, onPrev)}
                 >
@@ -274,7 +256,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
                 </div>
                 <div
                   tabIndex={0}
-                  className='slider-bar-button-play'
+                  className={styles.sliderButtonPlay}
                   onClick={play}
                   onKeyDown={(e) => handleKeyDown(e, play)}
                 >
@@ -282,7 +264,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
                 </div>
                 <div
                   tabIndex={0}
-                  className='slider-bar-button-next'
+                  className={styles.sliderButtonNext}
                   onClick={onNext}
                   onKeyDown={(e) => handleKeyDown(e, onNext)}
                 >
@@ -290,18 +272,18 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
                 </div>
                 <div
                   tabIndex={0}
-                  className='slider-bar-button-setting'
+                  className={styles.sliderButtonSetting}
                   onClick={onSetting}
                   onKeyDown={(e) => handleKeyDown(e, onSetting)}
                 >
                   <SettingIcon />
                 </div>
               </div>
-            </StyledButtonWrapper>
-          </StyledControllerWrapper>
+            </div>
+          </div>
         </>
       )}
-    </StyledVideoPlayer>
+    </div>
   )
 })
 

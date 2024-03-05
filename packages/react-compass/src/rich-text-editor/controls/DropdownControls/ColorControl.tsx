@@ -1,6 +1,5 @@
 import React from 'react'
 import {useRichTextEditorContext} from '../../rich-text-editor.context'
-import {StyledColorItem} from '../../rich-text-editor.styles'
 import Select from '../../select'
 
 export type ColorControlProps = {
@@ -28,8 +27,11 @@ const defaultColors = [
 export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
   const {editor} = useRichTextEditorContext()
   const colorSet = new Set(colors)
+  const [selectedColor, setColor] = React.useState<React.Key>([...colorSet][0])
+
   const handleSelectionChange = (key: React.Key) => {
     if (editor?.isEditable) {
+      setColor(key)
       editor
         .chain()
         .focus()
@@ -39,25 +41,43 @@ export const ColorControl = ({colors = defaultColors}: ColorControlProps) => {
   }
   return (
     <Select
-      defaultSelectedKey={[...colorSet][0] as React.Key}
+      selectedKey={selectedColor}
       onSelectionChange={handleSelectionChange}
       type='color'
       css={{
-        width: '70px',
-        height: '28px',
-        float: 'left',
-        margin: '0 $2 $2',
         button: {
           color: '$gray110',
+          width: '60px',
+          height: '28px',
         },
       }}
     >
       {[...colorSet].map((color) => (
-        <Select.Item key={color}>
-          <StyledColorItem
-            style={{backgroundColor: color}}
-            active={editor?.isActive('color', color) ?? false}
-          ></StyledColorItem>
+        <Select.Item
+          key={color}
+          renderAs={
+            <div
+              className='colorItem'
+              style={{
+                boxSizing: 'border-box',
+                backgroundColor: color,
+                width: '20px',
+                height: '20px',
+                borderRadius: '4px',
+                border: '1px #323130 solid',
+              }}
+            />
+          }
+        >
+          <div
+            className='colorItem'
+            style={{
+              backgroundColor: color,
+              width: '24px',
+              height: '24px',
+              borderRadius: '4px',
+            }}
+          />
         </Select.Item>
       ))}
     </Select>

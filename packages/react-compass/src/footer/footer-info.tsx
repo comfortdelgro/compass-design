@@ -1,23 +1,31 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import FooterInfoDownload from './footer-info-download'
 import FooterInfoSocial from './footer-info-social'
-import {StyledFooterInfo} from './footer-info.styles'
-
-interface Props extends StyledComponentProps {
+import styles from './styles/footer-info.module.css'
+interface Props {
+  css?: unknown
   children?: React.ReactNode
 }
 
 export type FooterInfoProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
+// eslint-disable-next-line react-refresh/only-export-components
 const FooterInfo = React.forwardRef<HTMLDivElement, FooterInfoProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className, ...delegated} = props
+
+    const rootClasses = [styles.footerInfo, className, 'cdg-footer-info']
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledFooterInfo ref={ref} css={css} {...delegated}>
-        {children}
-      </StyledFooterInfo>
+      <CssInjection css={css} childrenRef={ref}>
+        <div className={rootClasses} ref={ref} {...delegated}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

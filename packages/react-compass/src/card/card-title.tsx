@@ -1,8 +1,8 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledCardTitle, StyledCardTitleContainer} from './card-title.styles'
-
-interface Props extends StyledComponentProps {
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/card.module.css'
+interface Props {
+  css?: unknown
   children?: React.ReactNode
 }
 
@@ -11,19 +11,25 @@ export type CardTitleProps = Props &
 
 const CardTitle = React.forwardRef<HTMLDivElement, CardTitleProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className, ...htmlProps} = props
 
     const renderTitle = () => {
       if (typeof children === 'string') {
-        return <StyledCardTitle>{children}</StyledCardTitle>
+        return <h3 className={styles.cardTitle}>{children}</h3>
       }
       return children
     }
 
     return (
-      <StyledCardTitleContainer css={css} ref={ref} {...delegated}>
-        {renderTitle()}
-      </StyledCardTitleContainer>
+      <CssInjection css={css} childrenRef={ref}>
+        <div
+          className={`${styles.cardTitleContainer} ${className}`}
+          ref={ref}
+          {...htmlProps}
+        >
+          {renderTitle()}
+        </div>
+      </CssInjection>
     )
   },
 )

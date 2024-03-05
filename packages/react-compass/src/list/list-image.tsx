@@ -1,10 +1,12 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {ListImageVariantProps, StyledListImage} from './list-image.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/list-image.module.css'
 
-interface Props extends StyledComponentProps, ListImageVariantProps {
-  children?: React.ReactNode
+interface Props {
+  css?: unknown
   isRounded?: boolean
+  children?: React.ReactNode
+  variant?: 'item' | 'interactive' | 'h5'
 }
 
 export type ListImageProps = Props &
@@ -12,14 +14,30 @@ export type ListImageProps = Props &
 
 const ListImage = React.forwardRef<HTMLImageElement, ListImageProps>(
   (props, ref) => {
-    const {isRounded = false, css = {}, ...delegated} = props
+    const {
+      isRounded = false,
+      css = {},
+      className,
+      variant,
+      ...htmlProps
+    } = props
+
+    const rootClass = React.useMemo(() => {
+      return [
+        styles.image,
+        isRounded && styles.isRounded,
+        variant === 'h5' && styles.variantH5,
+        'cdg-list-image',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [className, isRounded, variant])
+
     return (
-      <StyledListImage
-        ref={ref}
-        css={css}
-        isRounded={isRounded}
-        {...delegated}
-      />
+      <CssInjection css={css} childrenRef={ref}>
+        <img ref={ref} className={rootClass} {...htmlProps} />
+      </CssInjection>
     )
   },
 )

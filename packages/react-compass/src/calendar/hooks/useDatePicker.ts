@@ -145,6 +145,7 @@ export function useDatePicker<T extends DateValue>(
       'aria-labelledby': `${labelledBy} ${buttonId}`,
     },
     calendarProps: {
+      // @ts-ignore
       autoFocus: true,
       value: state.dateValue,
       // @ts-ignore

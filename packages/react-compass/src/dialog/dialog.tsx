@@ -1,29 +1,26 @@
 import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DialogActions from './dialog-actions'
 import DialogDescription from './dialog-description'
 import DialogIcon from './dialog-icon'
 import DialogTitle from './dialog-title'
 import DialogTrigger from './dialog-trigger'
-import {
-  DialogVariantProps,
-  StyledDialog,
-  StyledDialogContent,
-} from './dialog.styles'
+import styles from './styles/dialog.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   variant?: 'confirmation' | 'alert'
   onClick?: () => void
   onKeyDown?: (e: KeyboardEvent) => void
   triggerId?: string
   handleClose?: () => void
+  css?: unknown
 }
 
 export type DialogProps = Props &
-  DialogVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
@@ -39,11 +36,11 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     triggerId,
     // VariantProps
     variant = 'confirmation',
+    className,
     // html element props
-    ...delegated
+    ...htmlProps
   } = props
 
-  const variantProps = {variant} as DialogVariantProps
   const DialogRef = useDOMRef<HTMLDivElement>(ref)
   const FirstFocusableRef = React.useRef<HTMLElement | null>(null) // This is the Modal Content
   const SecondFocusableRef = React.useRef<HTMLElement | null>(null) // This is the Modal Close Icon
@@ -161,26 +158,39 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     }
   }, [DialogRef, FirstFocusableRef, LastFocusableRef])
 
+  const dialogClassNames = [
+    styles.dialog,
+    variant && styles['dialog' + capitalizeFirstLetter(variant)],
+    className,
+    'cdg-dialog-container',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const contentClassNames = [styles.content, 'cdg-dialog-content']
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledDialog
-      css={css}
-      ref={DialogRef}
-      tabIndex={0}
-      role='dialog'
-      aria-modal={true}
-      onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
-      onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
-      {...variantProps}
-      {...delegated}
-      className='cdg-dialog-container'
-    >
-      <StyledDialogContent tabIndex={0} className='cdg-dialog-content'>
-        {variant == 'alert' ? DialogIconElement : null}
-        {DialogTitleElement}
-        {DialogDescriptionElement}
-        {DialogActionsElement}
-      </StyledDialogContent>
-    </StyledDialog>
+    <CssInjection css={css}>
+      <div
+        ref={DialogRef}
+        tabIndex={0}
+        role='dialog'
+        aria-modal={true}
+        onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
+        onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
+        {...htmlProps}
+        className={dialogClassNames}
+      >
+        <div tabIndex={0} className={contentClassNames}>
+          {variant == 'alert' ? DialogIconElement : null}
+          {DialogTitleElement}
+          {DialogDescriptionElement}
+          {DialogActionsElement}
+        </div>
+      </div>
+    </CssInjection>
   )
 })
 

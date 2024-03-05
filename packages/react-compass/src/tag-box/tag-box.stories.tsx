@@ -1,8 +1,8 @@
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import type {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
 import Icon from '../icon'
-import {Column} from '../utils/components'
 import TagBox from './index'
 
 const items = [
@@ -112,7 +112,7 @@ export const TagBoxs: React.FC = () => {
     onEdit(id, value, setList)
 
   return (
-    <Column>
+    <div>
       <h3>Fully Functional</h3>
       <TagBox
         label='Text Label'
@@ -133,6 +133,7 @@ export const TagBoxs: React.FC = () => {
         label='Text Label'
         items={list}
         typeable
+        collaspable
         icon={<Icon icon={faExclamationTriangle} />}
         onAdd={addItem}
         onEdit={editItem}
@@ -190,7 +191,7 @@ export const TagBoxs: React.FC = () => {
         onEdit={editItem}
         onRemove={removeItem}
       />
-    </Column>
+    </div>
   )
 }
 
@@ -205,7 +206,7 @@ export const Collaspable: React.FC = () => {
     onEdit(id, value, setList)
 
   return (
-    <Column>
+    <div>
       <h3>Fully Functional</h3>
       <TagBox
         label='Text Label'
@@ -289,6 +290,17 @@ export const Collaspable: React.FC = () => {
         onEdit={editItem}
         onRemove={removeItem}
       />
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Tag Box',
+  component: TagBoxs,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof TagBoxs>
+
+export default meta

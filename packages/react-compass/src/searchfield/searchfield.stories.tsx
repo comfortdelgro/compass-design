@@ -1,18 +1,36 @@
-import type {StoryDecorator} from '@ladle/react'
+// import type {StoryDecorator} from '@ladle/react'
+import {Meta} from '@storybook/react'
 import React from 'react'
-import {Column} from '../utils/components'
 import SearchField from './index'
+
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  alignItems: string
+  justifyContent: string
+  height: string
+  width: string
+  padding: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+  padding: '3rem',
+}
 
 export const Variants: React.FC = () => {
   const [value, setValue] = React.useState('My initial value')
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Basic</h3>
       <SearchField
         placeholder='Search'
         onSubmit={(text) => console.log(text)}
         value={'Initial value'}
-        css={{width: '10rem'}}
+        css={{width: '15rem'}}
       />
 
       <h3>isErrored</h3>
@@ -22,7 +40,7 @@ export const Variants: React.FC = () => {
         onSubmit={(text) => console.log(text)}
         value={'Initial value'}
         isErrored={true}
-        css={{width: '10rem'}}
+        css={{width: '15rem'}}
         errorMessage='SearchField error message'
       />
 
@@ -30,14 +48,14 @@ export const Variants: React.FC = () => {
       <SearchField
         isDisabled
         placeholder='Search'
-        css={{width: '10rem'}}
+        css={{width: '15rem'}}
         onSubmit={(text) => console.log(text)}
       />
       <h3>isReadOnly</h3>
       <SearchField
         isReadOnly
         placeholder='Search'
-        css={{width: '10rem'}}
+        css={{width: '15rem'}}
         onSubmit={(text) => console.log(text)}
       />
 
@@ -46,20 +64,20 @@ export const Variants: React.FC = () => {
         placeholder='Search'
         value={value}
         onChange={(value) => setValue(value)}
-        css={{width: '10rem'}}
+        css={{width: '15rem'}}
       />
       <h3> Max Length</h3>
       <SearchField
         placeholder='Search'
         maxLength={10}
-        css={{width: '10rem'}}
+        css={{width: '15rem'}}
         onSubmit={(text) => console.log(text)}
       />
       <h3> Min Length</h3>
       <SearchField
         placeholder='Search'
         minLength={5}
-        css={{width: '10rem'}}
+        css={{width: '15rem'}}
         onSubmit={(text) => console.log(text)}
       />
 
@@ -85,21 +103,19 @@ export const Variants: React.FC = () => {
         h5
         onSubmit={(text) => console.log(text)}
       />
-    </Column>
+    </div>
   )
 }
 
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
-}
+const meta = {
+  title: 'Example/SearchField',
+  component: Variants,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Variants>
+
+export default meta

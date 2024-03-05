@@ -1,21 +1,35 @@
 import React, {memo, useLayoutEffect} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledOtpSingleInput} from './otpInput.styles'
+import styles from './styles/otpInput.module.css'
 import usePrevious from './usePrevious'
 
 export interface SingleOTPInputProps
-  extends StyledComponentProps,
-    React.InputHTMLAttributes<HTMLInputElement> {
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   index: number
   focus?: boolean
+  autoFocus?: boolean
+  css?: unknown
+  isNumberInput?: boolean
+  isMobile?: boolean
+  isErrored?: boolean
 }
 
 const SingleOTPInputComponent = React.forwardRef<
   HTMLInputElement,
   SingleOTPInputProps
 >((props, ref) => {
-  const {css = {}, index, focus, autoFocus, ...delegated} = props
+  const {
+    css = {},
+    className,
+    index,
+    focus,
+    autoFocus,
+    isErrored,
+    isNumberInput,
+    isMobile,
+    ...htmlProps
+  } = props
   const inputRef = useDOMRef<HTMLInputElement>(ref)
   const prevFocus = usePrevious(!!focus)
 
@@ -27,6 +41,7 @@ const SingleOTPInputComponent = React.forwardRef<
     if (index === 0) {
       if (focus && (autoFocus || focus !== prevFocus)) {
         inputRef.current.focus()
+
         inputRef.current.select()
       }
 
@@ -37,9 +52,24 @@ const SingleOTPInputComponent = React.forwardRef<
       inputRef.current.focus()
       inputRef.current.select()
     }
-  }, [autoFocus, focus, prevFocus])
+  }, [autoFocus, focus, index, inputRef, prevFocus])
 
-  return <StyledOtpSingleInput ref={inputRef} css={css} {...delegated} />
+  const classNames = [
+    styles.singleInput,
+    isNumberInput && styles.singleInputNumber,
+    isMobile && styles.singleInputIsMobile,
+    isErrored && styles.singleInputisErrored,
+    'cdg-otp-single-input',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  return (
+    <CssInjection css={css}>
+      <input {...htmlProps} ref={inputRef} className={classNames} />
+    </CssInjection>
+  )
 })
 
 const SingleOTPInput = memo(SingleOTPInputComponent)

@@ -3,7 +3,7 @@ import {
   ThemeStaticProvider,
   ToastContextProvider,
 } from '@comfortdelgro/react-compass'
-import {SSRProvider} from '@comfortdelgro/react-compass-old'
+import {SSRProvider} from '@comfortdelgro/react-compass'
 import '@comfortdelgro/react-compass/style.css'
 import 'components/common/bootstrap'
 import AppHeader from 'components/layouts/AppHeader'

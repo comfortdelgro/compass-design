@@ -115,13 +115,12 @@ export const HeadingsControl = () => {
       selectedKey={selectedHeadingLevel}
       type='heading'
       css={{
-        width: '124px',
-        height: '28px',
-        float: 'left',
-        margin: '0 $2 $2',
         button: {
-          color: '$gray110',
-        },
+          width: '124px',
+          height: '28px',
+          fontSize: 'var(--cdg-font-size-label1)',
+          fontWeight: 'var(--cdg-font-weight-semibold)',
+        }
       }}
     >
       {heading.map((h) => (

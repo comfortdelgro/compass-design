@@ -1,25 +1,16 @@
-import React from 'react'
-import {StyledHelperText} from '../dropdown/dropdown.styles'
+import React, {useMemo} from 'react'
 import {useIsDarkTheme} from '../theme'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   convertFileSizeToReadableNumber,
   DEFAULT_FILE_ACCEPT,
   DEFAULT_FILE_LIMIT,
 } from './common'
+import styles from './styles/upload.module.css'
 import UploadDragAndDrop from './upload-drag-and-drop'
-import {
-  StyledBrowseFile,
-  StyledLabel,
-  StyledUploadContainer,
-  StyledUploadContent,
-  StyledUploadError,
-  StyledUploadWrapper,
-  UploadVariantProps,
-} from './upload.styles'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   isDisabled?: boolean
   getFile?: (selectedFiles: File[]) => void
@@ -32,10 +23,10 @@ interface Props extends StyledComponentProps {
   label?: string
   onError?: (error: string) => void
   customErrorMessages?: React.ReactNode
+  css?: unknown
 }
 
 export type UploadProps = Props &
-  UploadVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
@@ -56,6 +47,7 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     isDisabled = false,
     onError,
     customErrorMessages,
+    className,
     // HTMLDiv Props
     ...delegated
   } = props
@@ -130,58 +122,87 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     }
     return customErrorMessages
   }
+  //  classes
+  const uploadWrapperClasses = useMemo(() => {
+    return [
+      styles.uploadWrapper,
+      isDisabled && styles.isDisabled,
+      isDarkTheme && styles.isDarkTheme,
+      className,
+      'cdg-upload-wrapper',
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [className, isDarkTheme, isDisabled])
+  const browseFileClasses = useMemo(() => {
+    return [
+      styles.browseFile,
+      isDisabled && styles.browseFileIsDisabled,
+      isDarkTheme && styles.browseFileIsDarkTheme,
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [isDarkTheme, isDisabled])
+  const uploadContentClasses = useMemo(() => {
+    return [
+      styles.uploadContent,
+      isDisabled && styles.uploadContentIsDisabled,
+      isDarkTheme && styles.uploadContentIsDarkTheme,
+      selectedFiles.length > 0 && styles.fileSelected,
+    ]
+      .filter(Boolean)
+      .join(' ')
+  }, [isDarkTheme, isDisabled, selectedFiles.length])
 
   return (
-    <StyledUploadWrapper
-      css={css}
-      ref={uploadRef}
-      isDisabled={isDisabled}
-      isDarkTheme={isDarkTheme}
-      {...delegated}
-    >
-      {label && (
-        <>
-          <StyledLabel>
-            <span className='cdg-label'> {label}</span>
-            <span className='cdg-isRequired-Sign'>
-              {isRequired ? ' *' : ''}
-            </span>
-          </StyledLabel>
-        </>
-      )}
-      <StyledUploadContainer>
-        <input
-          ref={uploadInputRef}
-          type='file'
-          accept={accept}
-          multiple={multiple}
-          onChange={handleFileFieldChange}
-        />
-        <StyledBrowseFile
-          onClick={onOpenUploadClick}
-          type='button'
-          role='button'
-        >
-          <span>Browse file</span>
-        </StyledBrowseFile>
-        <StyledUploadContent
-          onClick={onOpenUploadClick}
-          fileSelected={selectedFiles.length > 0}
-        >
-          {selectedFiles.length > 0 ? (
-            <p>{selectedFiles.map((file) => file.name).join(', ')}</p>
-          ) : (
-            placeholder
-          )}
-        </StyledUploadContent>
-      </StyledUploadContainer>
-      <StyledHelperText>
-        {helperText
-          ? helperText
-          : `Maximum size: ${convertFileSizeToReadableNumber(fileSizeLimit)}`}
-      </StyledHelperText>
-      <StyledUploadError>{handleErrorMessage(error)}</StyledUploadError>
-    </StyledUploadWrapper>
+    <CssInjection css={css} childrenRef={uploadRef}>
+      <div ref={uploadRef} className={uploadWrapperClasses} {...delegated}>
+        {label && (
+          <>
+            <label className={`${styles.label}`}>
+              <span className='cdg-label'> {label}</span>
+              <span className={`cdg-isRequired-Sign ${styles.isRequiredSign}`}>
+                {isRequired ? ' *' : ''}
+              </span>
+            </label>
+          </>
+        )}
+        <div className={`${styles.uploadContainer}`}>
+          <input
+            ref={uploadInputRef}
+            type='file'
+            accept={accept}
+            multiple={multiple}
+            onChange={handleFileFieldChange}
+          />
+          <button
+            onClick={onOpenUploadClick}
+            type='button'
+            role='button'
+            className={browseFileClasses}
+          >
+            <span className={`${styles.browseFileSpan}`}>Browse file</span>
+          </button>
+          <div onClick={onOpenUploadClick} className={uploadContentClasses}>
+            {selectedFiles.length > 0 ? (
+              <p className={`${styles.uploadContentText}`}>
+                {selectedFiles.map((file) => file.name).join(', ')}
+              </p>
+            ) : (
+              placeholder
+            )}
+          </div>
+        </div>
+        <div className={`${styles.helperText}`}>
+          {helperText
+            ? helperText
+            : `Maximum size: ${convertFileSizeToReadableNumber(fileSizeLimit)}`}
+        </div>
+        <div className={`${styles.uploadError}`}>
+          {handleErrorMessage(error)}
+        </div>
+      </div>
+    </CssInjection>
   )
 })
 

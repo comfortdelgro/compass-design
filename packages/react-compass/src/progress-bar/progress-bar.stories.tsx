@@ -1,12 +1,29 @@
 import React, {useEffect, useState} from 'react'
 import Button from '../button'
-import Divider from '../divider'
-import Typography from '../typography'
-import {Column, Row} from '../utils/components'
+
+import {Meta} from '@storybook/react'
 import ProgressBar from './index'
 
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  alignItems: string
+  justifyContent: string
+  height: string
+  width: string
+  padding: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '50%',
+  padding: '3rem',
+}
+
 export const Size: React.FC = () => (
-  <Column>
+  <div style={{...style}}>
     <div style={{width: '100%', marginBottom: '10px'}}>
       <ProgressBar value={20} size='sm' label='sm' />
     </div>
@@ -19,11 +36,11 @@ export const Size: React.FC = () => (
     <div style={{width: '100%', marginBottom: '10px'}}>
       <ProgressBar value={20} size='xl' label='xl' />
     </div>
-  </Column>
+  </div>
 )
 
 export const Color: React.FC = () => (
-  <Column>
+  <div style={{...style}}>
     <div style={{width: '100%', marginBottom: '10px'}}>
       <ProgressBar value={20} color='blue' label='blue' />
     </div>
@@ -37,13 +54,13 @@ export const Color: React.FC = () => (
       color='$cdgBlue'
       barColor='$blueShades10'
     />
-  </Column>
+  </div>
 )
 
 const INIT_VALUE = 5
 const MAX_VALUE = 100
 
-export const Variant = () => {
+export const Variants = () => {
   const [startProcess, setStartProcess] = useState(false)
   const [progressValue, setProgressValue] = useState(INIT_VALUE)
   const [isCompleted, setIsCompleted] = useState(false)
@@ -79,7 +96,7 @@ export const Variant = () => {
   }, [startProcess])
 
   return (
-    <Column>
+    <div style={{...style}}>
       <ProgressBar value={20} variant='normal' label='normal' />
       <ProgressBar
         css={{marginBlock: '$4'}}
@@ -88,7 +105,7 @@ export const Variant = () => {
         label='rounded'
       />
 
-      <Divider />
+      <br></br>
 
       <ProgressBar
         css={{marginBlock: '$4'}}
@@ -96,23 +113,21 @@ export const Variant = () => {
         maxValue={MAX_VALUE}
         size='md'
         label='H5'
-        color='$blueShades80'
-        barColor='$blueShades10'
+        color='#3468BF'
+        barColor='#E6ECF7'
         onComplete={() => setIsCompleted(true)}
       />
 
-      <Row>
+      <div style={{flexDirection: 'row', ...style}}>
         {isCompleted ? (
           <>
-            <Typography.Label>Completed</Typography.Label>
+            <h3>Completed</h3>
             <Button type='button' onClick={() => handleReset()}>
               Reset
             </Button>
           </>
         ) : (
-          <Typography.Label>
-            {Math.round((progressValue / MAX_VALUE) * 100)}%
-          </Typography.Label>
+          <h3>{Math.round((progressValue / MAX_VALUE) * 100)}%</h3>
         )}
 
         {isCompleted || startProcess || (
@@ -124,13 +139,13 @@ export const Variant = () => {
             Start
           </Button>
         )}
-      </Row>
-    </Column>
+      </div>
+    </div>
   )
 }
 
 export const LoadingState = () => (
-  <Column>
+  <div style={{...style}}>
     <ProgressBar variant='rounded' label='Loading' loading />
     <ProgressBar
       variant='rounded'
@@ -138,5 +153,18 @@ export const LoadingState = () => (
       barColor='$blueShades10'
       loading='stripes'
     />
-  </Column>
+  </div>
 )
+
+const meta = {
+  title: 'Example/Progress Bar',
+  component: Variants,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Variants>
+
+export default meta

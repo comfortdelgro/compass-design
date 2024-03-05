@@ -38,10 +38,10 @@ const I18nContext = React.createContext<Locale | null>(null)
  * Provides the locale for the application to all child components.
  */
 export function I18nProvider(props: I18nProviderProps) {
-  let {locale, children} = props
-  let defaultLocale = useDefaultLocale()
+  const {locale, children} = props
+  const defaultLocale = useDefaultLocale()
 
-  let value: Locale = locale
+  const value: Locale = locale
     ? {
         locale,
         direction: isRTL(locale) ? 'rtl' : 'ltr',
@@ -55,8 +55,8 @@ export function I18nProvider(props: I18nProviderProps) {
  * Returns the current locale and layout direction.
  */
 export function useLocale(): Locale {
-  let defaultLocale = useDefaultLocale()
-  let context = useContext(I18nContext)
+  const defaultLocale = useDefaultLocale()
+  const context = useContext(I18nContext)
   return context || defaultLocale
 }
 
@@ -64,8 +64,8 @@ export function useLocale(): Locale {
  * Returns the current browser/system language, and updates when it changes.
  */
 export function useDefaultLocale(): Locale {
-  let isSSR = useIsSSR()
-  let [defaultLocale, setDefaultLocale] = useState(currentLocale)
+  const isSSR = useIsSSR()
+  const [defaultLocale, setDefaultLocale] = useState(currentLocale)
 
   useEffect(() => {
     if (listeners.size === 0) {
@@ -135,15 +135,17 @@ const RTL_LANGS = new Set([
 export function isRTL(locale: string) {
   // If the Intl.Locale API is available, use it to get the script for the locale.
   // This is more accurate than guessing by language, since languages can be written in multiple scripts.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   if (Intl.Locale) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    let script = new Intl.Locale(locale).maximize().script as string
+    const script = new Intl.Locale(locale).maximize().script as string
     return RTL_SCRIPTS.has(script)
   }
 
   // If not, just guess by the language (first part of the locale)
-  let lang = locale.split('-')[0] as string
+  const lang = locale.split('-')[0] as string
   return RTL_LANGS.has(lang)
 }
 
@@ -156,7 +158,7 @@ const defaultContext: SSRContextValue = {
 const SSRContext = React.createContext<SSRContextValue>(defaultContext)
 
 export function useIsSSR(): boolean {
-  let cur = useContext(SSRContext)
+  const cur = useContext(SSRContext)
   return cur.isSSR
 }
 
@@ -164,12 +166,14 @@ export function useIsSSR(): boolean {
  * Gets the locale setting of the browser.
  */
 export function getDefaultLocale(): Locale {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   let locale =
     (typeof navigator !== 'undefined' &&
       (navigator.language || (navigator as NavigatorLanguage).userLanguage)) ||
     'en-US'
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     Intl.DateTimeFormat.supportedLocalesOf([locale])
   } catch (_err) {
@@ -182,10 +186,10 @@ export function getDefaultLocale(): Locale {
 }
 
 let currentLocale = getDefaultLocale()
-let listeners = new Set<(locale: Locale) => void>()
+const listeners = new Set<(locale: Locale) => void>()
 function updateLocale() {
   currentLocale = getDefaultLocale()
-  for (let listener of listeners) {
+  for (const listener of listeners) {
     listener(currentLocale)
   }
 }

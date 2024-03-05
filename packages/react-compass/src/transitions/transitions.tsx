@@ -1,9 +1,7 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledTransition} from './transitions.styles'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   effect?: 'collapse' | 'fade' | 'slide' | 'zoom'
   show?: boolean
@@ -22,49 +20,51 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
     const {
       effect = 'collapse',
       show = false,
-      css = {},
       children,
       speed = 0.3,
       collapsedSize,
       orientation = 'vertical',
       slideDirection = 'bottom',
       isLazyMounted = true,
-      ...delegated
+      ...htmlProps
     } = props
+
+    /** State and Ref **/
     const TransitionWrapperRef = useDOMRef<HTMLDivElement>(ref)
-    const collapseDirection = orientation === 'vertical' ? 'height' : 'width'
-    const determineSlideDirection = () => {
-      if (slideDirection === 'left') return 'translateX(-100vh)'
-      if (slideDirection === 'right') return 'translateX(100vh)'
-      if (slideDirection === 'top') return 'translateY(-100vh)'
-      return 'translateY(100vh)'
-    }
+    const ChildRef = useDOMRef<HTMLDivElement>(ref)
+    const [mountedChilren, setMountedChilren] =
+      React.useState<React.ReactNode>(null)
+    const [childrenHeight, setChildrenHeight] = React.useState<number | null>(
+      null,
+    )
+    const [styles, setStyles] = React.useState<React.CSSProperties>({})
+    /** End of State and Ref **/
 
-    const [unMountedChildren, setUnMountedChildren] =
-      React.useState<React.ReactNode>(children)
-    const [childrenHeight, setChildrenHeight] = React.useState<number>(1000)
-
-    const renderChildren = () => {
-      if (show) {
-        return children
-      } else {
-        return unMountedChildren
+    // This function is used to unmount children when it doesn't show. Get called on transition end
+    const childrenRender = () => {
+      if (isLazyMounted == true && show == false) {
+        setMountedChilren(null)
       }
     }
 
+    // This effect is used to mount children when it show. Get called on show change
     React.useEffect(() => {
-      if (isLazyMounted == false) return
-      if (show) {
-        setUnMountedChildren(children)
-      } else {
-        setTimeout(() => {
-          setUnMountedChildren(null)
-        }, speed * 1000)
+      if (show == true) {
+        setMountedChilren(children)
       }
-    }, [show, children, isLazyMounted])
+    }, [mountedChilren, show, children, effect])
 
+    // This effect is used to get children height
     React.useLayoutEffect(() => {
-      if (show && TransitionWrapperRef.current) {
+      if (ChildRef.current && !childrenHeight) {
+        console.log('get children height from ChildRef')
+        const element = ChildRef.current?.querySelector(':first-child')
+        if (element instanceof HTMLElement) {
+          // Check if element is an instance of HTMLElement
+          setChildrenHeight(element.offsetHeight)
+        }
+      } else if (TransitionWrapperRef.current && childrenHeight) {
+        console.log('get children height from TransitionWrapperRef')
         const element =
           TransitionWrapperRef.current?.querySelector(':first-child')
         if (element instanceof HTMLElement) {
@@ -72,26 +72,170 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
           setChildrenHeight(element.offsetHeight)
         }
       }
-    }, [show, children])
+    }, [show, mountedChilren, ChildRef, TransitionWrapperRef, childrenHeight])
+
+    // This effect is used to set transition styles
+    React.useEffect(() => {
+      const determineSlideDirection = () => {
+        if (slideDirection === 'left') return 'translateX(-100vh)'
+        if (slideDirection === 'right') return 'translateX(100vh)'
+        if (slideDirection === 'top') return 'translateY(-100vh)'
+        return 'translateY(100vh)'
+      }
+
+      const speedCss = `${speed}s`
+      const collapsedSizeCss = collapsedSize ?? `${childrenHeight}px`
+      const collapseDirectionCss =
+        orientation === 'vertical' ? 'height' : 'width'
+      const slideDirectionCss = determineSlideDirection()
+      const defaultCss = {
+        // reset
+        // boxSizing: 'border-box',
+        background: 'transparent',
+        border: 'none',
+        margin: '0px',
+        padding: '0px',
+        outline: 'none',
+        // custom
+        transitionDuration: speedCss,
+        transitionTimingFunction: 'ease',
+        overflow: 'hidden',
+      }
+
+      const collapseCss = {
+        overflow: 'hidden',
+        transition: `${collapseDirectionCss} ${speedCss}`,
+        MozTransition: `${collapseDirectionCss} ${speedCss}` /* Firefox 4 */,
+        WebkitTransition: `${collapseDirectionCss} ${speedCss}` /* Safari and Chrome */,
+        OTransition: `${collapseDirectionCss} ${speedCss}` /* Opera */,
+      }
+
+      const horizontalCss = {
+        width: '0px',
+      }
+
+      const verticalCss = {
+        height: '0px',
+      }
+
+      const collapseHorizontalCssShow = {
+        width: collapsedSizeCss,
+      }
+
+      const collapseVerticalCssShow = {
+        height: collapsedSizeCss,
+      }
+
+      const fadeCss = {
+        opacity: '0',
+        transition: `opacity ${speedCss}`,
+      }
+
+      const fadeCssShow = {
+        opacity: '1',
+      }
+
+      const slideCss = {
+        position: 'absolute',
+        transform: slideDirectionCss,
+        transition: `transform ${speedCss}`,
+      }
+
+      const slideCssShow = {
+        transform: 'translateX(0)',
+        position: 'static',
+      }
+
+      const zoomCss = {
+        transform: 'scale(0)',
+        transition: `transform ${speedCss}`,
+      }
+
+      const zoomCssShow = {
+        transform: 'scale(1)',
+      }
+      const transitionStylesHandler = () => {
+        let Styles = {...defaultCss}
+
+        if (effect === 'collapse') {
+          Styles = {...defaultCss, ...collapseCss}
+          setStyles(Styles)
+        }
+        if (effect === 'fade') {
+          Styles = {...defaultCss, ...fadeCss}
+          setStyles(Styles)
+        }
+        if (effect === 'slide') {
+          Styles = {...defaultCss, ...slideCss}
+          setStyles(Styles)
+        }
+        if (effect === 'zoom') {
+          Styles = {...defaultCss, ...zoomCss}
+          setStyles(Styles)
+        }
+        if (orientation === 'horizontal' && effect === 'collapse') {
+          Styles = {...Styles, ...horizontalCss}
+        }
+        if (orientation === 'vertical' && effect === 'collapse') {
+          Styles = {...Styles, ...verticalCss}
+          setStyles(Styles)
+        }
+        if (effect === 'collapse' && orientation === 'horizontal' && show) {
+          Styles = {...Styles, ...collapseHorizontalCssShow}
+          setStyles(Styles)
+        }
+        if (effect === 'collapse' && orientation === 'vertical' && show) {
+          Styles = {...Styles, ...collapseVerticalCssShow}
+          setStyles(Styles)
+        }
+        if (effect === 'fade' && show) {
+          Styles = {...Styles, ...fadeCssShow}
+          setStyles(Styles)
+        }
+        if (effect === 'slide' && show) {
+          Styles = {...Styles, ...slideCssShow}
+          setStyles(Styles)
+        }
+        if (effect === 'zoom' && show) {
+          Styles = {...Styles, ...zoomCssShow}
+          setStyles(Styles)
+        }
+        return setStyles(Styles)
+      }
+
+      transitionStylesHandler()
+    }, [
+      show,
+      children,
+      TransitionWrapperRef,
+      speed,
+      effect,
+      orientation,
+      slideDirection,
+      collapsedSize,
+      childrenHeight,
+    ])
 
     return (
       <>
-        <StyledTransition
-          css={{
-            $$speed: `${speed}s`,
-            $$collapsedSize: collapsedSize ?? `${childrenHeight}px`,
-            $$collapseDirection: collapseDirection,
-            $$slideDirection: determineSlideDirection(),
-            ...css,
-          }}
+        {/* We need this to calculate childrenHeight on mount when mountedChilren is still null*/}
+        {!childrenHeight ? (
+          <div
+            ref={ChildRef}
+            style={{visibility: 'hidden', position: 'absolute'}}
+          >
+            {children}
+          </div>
+        ) : null}
+
+        <div
+          style={styles}
           ref={TransitionWrapperRef}
-          effect={effect}
-          show={show}
-          orientation={effect === 'collapse' ? orientation : 'none'}
-          {...delegated}
+          onTransitionEnd={() => childrenRender()}
+          {...htmlProps}
         >
-          {renderChildren()}
-        </StyledTransition>
+          {mountedChilren}
+        </div>
       </>
     )
   },

@@ -12,7 +12,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/ban-types */
 
-import clsx from 'clsx'
 import {chain} from './chain'
 
 type Props = Record<string, any>
@@ -60,7 +59,7 @@ export default function mergeProps<T extends PropsArg[]>(
         typeof a === 'string' &&
         typeof b === 'string'
       ) {
-        result[key] = clsx(a, b)
+        result[key] = [a, b].filter(Boolean).join(' ')
       } else {
         result[key] = b !== undefined ? b : a
       }

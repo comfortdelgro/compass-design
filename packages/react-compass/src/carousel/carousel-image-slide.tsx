@@ -1,31 +1,36 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledCarouselSliderImageItem} from './content-slider.styles'
+import styles from './styles/carousel.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   imageUrl: string
-  className?: string
+  css?: unknown
   active: boolean
+  className?: string
 }
 
 export type CarouselImageSlideProps = Props &
   Omit<React.HTMLAttributes<HTMLImageElement>, keyof Props>
 
 const CarouselImageSlide = React.forwardRef<
-  HTMLImageElement,
+  HTMLDivElement,
   CarouselImageSlideProps
 >((props, ref) => {
-  const {imageUrl, className, active, css = {}, ...delegated} = props
-  const imageRef = useDOMRef<HTMLImageElement>(ref)
+  const {css = {}, imageUrl, active, className, ...htmlProps} = props
+
+  const buttonRef = useDOMRef<HTMLDivElement>(ref)
+
   return (
-    <StyledCarouselSliderImageItem
-      ref={imageRef}
-      css={css}
-      {...delegated}
-      className={`slider-slide ${className || ''} ${active ? ' active' : ''}`}
-      src={imageUrl}
-    />
+    <CssInjection css={css} childrenRef={buttonRef}>
+      <img
+        className={`slider-slide ${className ? className : ''} ${
+          styles.carouselImageSlide
+        } ${active ? styles.sliderSlideActive : ''}`}
+        src={imageUrl}
+        {...htmlProps}
+      />
+    </CssInjection>
   )
 })
 

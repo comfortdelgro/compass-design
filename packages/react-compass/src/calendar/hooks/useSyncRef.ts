@@ -10,6 +10,7 @@
 
 import {useLayoutEffect} from 'react'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useSyncRef(context: any, ref: any) {
   useLayoutEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

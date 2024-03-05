@@ -8,32 +8,36 @@ import {
   faPencil,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons'
-
-import {CellContext, HeaderContext} from '@tanstack/react-table'
-import React, {Key, MouseEvent, TouchEvent, useState} from 'react'
-import Table, {OptionType, TableColumnDef, TableSortingState} from '.'
-import Button from '../button'
-import Divider from '../divider'
-import Dropdown from '../dropdown'
-import Grid from '../grid'
-import {Icon} from '../icon'
-import Pagination from '../pagination'
-import SearchField from '../searchfield'
-import Spinner from '../spinner'
-import {TableColumnFiltersState} from '../table-v2'
-import StatusComponent from '../table-v2/for story/person-status'
+import { Meta } from '@storybook/react'
+import React, { Key, MouseEvent, TouchEvent, useState } from 'react'
+import Table, {
+  TableCellContext,
+  TableColumnDef,
+  TableHeaderContext,
+  TableSortingState,
+  useEditableCellContext,
+  TableColumnFiltersState,
+} from '.'
+import {
+  Button,
+  Dropdown,
+  Grid,
+  Icon,
+  Pagination,
+  SearchField,
+  Spinner,
+  TextField,
+} from '..'
+import StatusComponent from './for story/person-status'
 import {
   LimitRequestStatus,
   Person,
   makeData,
   makeRequestStatusData,
-} from '../table-v2/makeData'
-import ProgressPercentage from '../table-v2/table-v2-progress'
-import TextField from '../textfield'
-import {Column} from '../utils'
-import {useEditableCellContext} from './'
-
-export const FullFeatured: React.FC = () => {
+} from './makeData'
+import { OptionType } from './table'
+import ProgressPercentage from './table-progress'
+export const Basic: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data, setData] = useState<Person[]>(() => makeData(10))
   const options: OptionType<Person> = {
@@ -46,18 +50,22 @@ export const FullFeatured: React.FC = () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onSorting = (sortingField: TableSortingState) => {}
+  const onSorting = (sortingField: TableSortingState) => {
+    console.log(sortingField)
+  }
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onChangeRowSelection = (rowSelection: any) => {}
-
+  const onChangeRowSelection = (rowSelection: unknown) => {
+    console.log(rowSelection)
+  }
   const onFiltering = (filtering: TableColumnFiltersState) => {
     console.log(filtering)
   }
+
   const columns = React.useMemo<Array<TableColumnDef<Person>>>(
     () => [
       {
         id: 'select',
-        header: ({table}) => {
+        header: ({ table }) => {
           return (
             <div
               style={{
@@ -74,7 +82,7 @@ export const FullFeatured: React.FC = () => {
             </div>
           )
         },
-        cell: ({row}) => (
+        cell: ({ row }) => (
           <div
             style={{
               display: 'flex',
@@ -93,7 +101,7 @@ export const FullFeatured: React.FC = () => {
       },
       {
         id: 'name',
-        header: () => <div style={{textAlign: 'center'}}>Name</div>,
+        header: () => <div style={{ textAlign: 'center' }}>Name</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -105,7 +113,6 @@ export const FullFeatured: React.FC = () => {
             enableResizing: false,
             enableGrouping: false,
             enableColumnFilter: true,
-            sortDescriptor: 'asc',
             meta: {
               editable: true,
               updateData: (rowIndex: number, id: string, value: unknown) => {
@@ -137,7 +144,7 @@ export const FullFeatured: React.FC = () => {
       },
       {
         id: 'otherInfo',
-        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
+        header: () => <div style={{ textAlign: 'center' }}>Other info</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -176,15 +183,377 @@ export const FullFeatured: React.FC = () => {
     [],
   )
   return (
+    <Table
+      data={data}
+      columns={columns}
+      options={options}
+      onManualSorting={onSorting}
+      onManualFilter={onFiltering}
+      onChangeRowSelection={onChangeRowSelection}
+    >
+      <Table.Toolbar
+        css={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}
+      >
+        <SearchField placeholder='Search' />
+
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: '0.5rem',
+          }}
+        >
+          <Button variant='primary'>Button</Button>
+          <Button variant='secondary'>Button</Button>
+          <Button variant='ghost' aria-label='Delete'>
+            <Icon icon={faTrashAlt} />
+          </Button>
+          <Button variant='ghost' aria-label='Dashboard'>
+            <Icon icon={faDashboard} />
+          </Button>
+          <Button variant='ghost'>
+            <Icon icon={faFileLines} aria-label='File' />
+          </Button>
+        </div>
+      </Table.Toolbar>
+      <Table.Footer
+        css={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}
+      >
+        <div>{/* Todo: Dropdown */}</div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: '0.5rem',
+          }}
+        >
+          <div
+            style={{
+              fontWeight: '600',
+            }}
+          >
+            {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+          </div>
+          <Pagination
+            page={page}
+            onChange={(page) => setPage(page)}
+            total={10}
+          />
+        </div>
+      </Table.Footer>
+    </Table>
+  )
+}
+
+export const ExpandableRow: React.FC = () => {
+  const [data] = React.useState(() => makeRequestStatusData(10))
+  const [page, setPage] = useState(1)
+  const options: OptionType<LimitRequestStatus> = {
+    enableSorting: false,
+    enableMultiSort: false,
+    columnResizeMode: 'onChange',
+    manualSorting: false,
+  }
+
+  const columns = React.useMemo<Array<TableColumnDef<LimitRequestStatus>>>(
+    () => [
+      {
+        id: 'expander',
+        size: 40,
+        header: ({ table }: TableHeaderContext<LimitRequestStatus, unknown>) => (
+          <span
+            onClick={table.getToggleAllRowsExpandedHandler()}
+            style={{
+              cursor: 'pointer',
+              userSelect: 'none',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {table.getIsAllRowsExpanded() ? (
+              <Icon icon={faChevronDown} />
+            ) : (
+              <Icon icon={faChevronRight} />
+            )}
+          </span>
+        ),
+        cell: ({ row }: TableCellContext<LimitRequestStatus, unknown>) => (
+          <span
+            onClick={() => row.toggleExpanded()}
+            style={{
+              cursor: 'pointer',
+              userSelect: 'none',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {row.getIsExpanded() ? (
+              <Icon icon={faChevronDown} />
+            ) : (
+              <Icon icon={faChevronRight} />
+            )}
+          </span>
+        ),
+      },
+      {
+        id: 'accountName',
+        accessorKey: 'accountName',
+        header: () => <div style={{ textAlign: 'center' }}>Account Name</div>,
+        footer: (props: TableHeaderContext<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'code',
+        accessorKey: 'code',
+
+        header: () => <div style={{ textAlign: 'center' }}>Code</div>,
+        footer: (props: TableHeaderContext<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'requestLimit',
+        accessorKey: 'requestLimit',
+
+        header: () => (
+          <div style={{ textAlign: 'center' }}>New Request Limit</div>
+        ),
+        footer: (props: TableHeaderContext<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+      {
+        id: 'status',
+        size: 280,
+
+        accessorKey: 'status',
+        header: () => <div style={{ textAlign: 'center' }}>Status</div>,
+        footer: (props: TableHeaderContext<LimitRequestStatus, unknown>) =>
+          props.column.id,
+      },
+    ],
+    [],
+  )
+
+  const renderRowSubComponent = (rowData: LimitRequestStatus) => {
+    return (
+      <div
+        style={{
+          padding: '1em',
+          display: 'flex',
+          flexDirection: 'column',
+          rowGap: '1em',
+        }}
+      >
+        <h3>Current Status: {rowData.status}</h3>
+        {/* <Divider /> */}
+        <hr />
+        {rowData.progress?.map((processItem) => {
+          return (
+            <>
+              <p style={{ fontSize: '12px' }}>{processItem.remarks}</p>
+              <p style={{ fontSize: '11px', fontWeight: 200, color: '#878787' }}>
+                {processItem.createdAt.toDateString()}
+              </p>
+              {/* <Divider /> */}
+              <hr />
+            </>
+          )
+        })}
+      </div>
+    )
+  }
+  return (
     <div>
       <Table
         data={data}
         columns={columns}
         options={options}
-        onManualSorting={onSorting}
-        onManualFilter={onFiltering}
-        onChangeRowSelection={onChangeRowSelection}
+        renderRowSubComponent={renderRowSubComponent}
+        css={{
+          width: '65rem',
+          table: {
+            width: 'unset',
+          },
+        }}
       >
+        <Table.Footer
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <span style={{ width: 250 }}>Rows per page: </span>
+            <Dropdown.Select defaultSelectedKey='10'>
+              <Dropdown.Item key='10'>10 rows</Dropdown.Item>
+              <Dropdown.Item key='20'>20 rows</Dropdown.Item>
+              <Dropdown.Item key='50'>50 rows</Dropdown.Item>
+            </Dropdown.Select>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontWeight: '600',
+              }}
+            >
+              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+            </div>
+            <Pagination
+              page={page}
+              onChange={(page: number) => setPage(page)}
+              total={10}
+            />
+          </div>
+        </Table.Footer>
+      </Table>
+    </div>
+  )
+}
+
+export const EmptyState: React.FC = () => {
+  const [page, setPage] = useState(1)
+  const [data] = useState<Person[]>(() => [])
+  const options: OptionType<Person> = {
+    enableSorting: true,
+    enableMultiSort: true,
+    columnResizeMode: 'onChange',
+    manualSorting: false,
+    initialSortBy: [
+      { id: 'firstName', desc: true },
+      { id: 'lastName', desc: false },
+    ],
+  }
+
+  const columns = React.useMemo<Array<TableColumnDef<Person>>>(
+    () => [
+      {
+        id: 'select',
+        header: ({ table }) => {
+          return (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Table.CheckboxCell
+                {...{
+                  checked: table.getIsAllRowsSelected(),
+                  indeterminate: table.getIsSomeRowsSelected(),
+                  onChange: table.getToggleAllRowsSelectedHandler(),
+                }}
+              />
+            </div>
+          )
+        },
+        enableGrouping: false,
+        cell: ({ row }) => (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Table.CheckboxCell
+              {...{
+                disabled: !row.getCanSelect(),
+                checked: row.getIsSelected(),
+                indeterminate: row.getIsSomeSelected(),
+                onChange: row.getToggleSelectedHandler(),
+              }}
+            />
+          </div>
+        ),
+      },
+      {
+        id: 'name',
+        header: () => <div style={{ textAlign: 'center' }}>Name</div>,
+        footer: (props) => props.column.id,
+        enableGrouping: false,
+        columns: [
+          {
+            accessorKey: 'firstName',
+            cell: (info) => info.getValue<string>(),
+            footer: (props) => props.column.id,
+            enableResizing: false,
+            editable: true,
+          },
+          {
+            accessorFn: (row) => row.lastName,
+            id: 'lastName',
+            cell: (info) => info.getValue<string>(),
+            header: () => <span>Last Name</span>,
+            footer: (props) => props.column.id,
+            enableResizing: true,
+          },
+        ],
+      },
+      {
+        id: 'otherInfo',
+        header: () => <div style={{ textAlign: 'center' }}>Other info</div>,
+        footer: (props) => props.column.id,
+        enableGrouping: false,
+        columns: [
+          {
+            accessorKey: 'age',
+            header: () => 'Age',
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'visits',
+            header: () => <span>Visits</span>,
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'status',
+            header: 'Status',
+            cell: (info) => (
+              <StatusComponent
+                status={info.getValue<string>()}
+              ></StatusComponent>
+            ),
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'progress',
+            header: 'Profile Progress',
+            cell: (info) => (
+              <ProgressPercentage
+                progress={Number(info.getValue<string>())}
+              ></ProgressPercentage>
+            ),
+            footer: (info) => info.column.id,
+          },
+        ],
+      },
+    ],
+    [],
+  )
+
+  return (
+    <div>
+      <Table data={data} columns={columns} options={options}>
         <Table.Toolbar
           css={{
             display: 'flex',
@@ -204,14 +573,14 @@ export const FullFeatured: React.FC = () => {
           >
             <Button variant='primary'>Button</Button>
             <Button variant='secondary'>Button</Button>
-            <Button variant='ghost' aria-label='Delete'>
+            <Button variant='ghost'>
               <Icon icon={faTrashAlt} />
             </Button>
-            <Button variant='ghost' aria-label='Dashboard'>
+            <Button variant='ghost'>
               <Icon icon={faDashboard} />
             </Button>
             <Button variant='ghost'>
-              <Icon icon={faFileLines} aria-label='File' />
+              <Icon icon={faFileLines} />
             </Button>
           </div>
         </Table.Toolbar>
@@ -250,6 +619,207 @@ export const FullFeatured: React.FC = () => {
   )
 }
 
+export const Loading: React.FC = () => {
+  const [page, setPage] = useState(1)
+  const [data] = useState<Person[]>(() => [])
+  const options: OptionType<Person> = {
+    enableSorting: true,
+    enableMultiSort: true,
+    columnResizeMode: 'onChange',
+    manualSorting: false,
+    initialSortBy: [
+      { id: 'firstName', desc: true },
+      { id: 'lastName', desc: false },
+    ],
+  }
+
+  const columns = React.useMemo<Array<TableColumnDef<Person>>>(
+    () => [
+      {
+        id: 'select',
+        header: ({ table }) => {
+          return (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Table.CheckboxCell
+                {...{
+                  checked: table.getIsAllRowsSelected(),
+                  indeterminate: table.getIsSomeRowsSelected(),
+                  onChange: table.getToggleAllRowsSelectedHandler(),
+                }}
+              />
+            </div>
+          )
+        },
+        enableGrouping: false,
+        cell: ({ row }) => (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Table.CheckboxCell
+              {...{
+                disabled: !row.getCanSelect(),
+                checked: row.getIsSelected(),
+                indeterminate: row.getIsSomeSelected(),
+                onChange: row.getToggleSelectedHandler(),
+              }}
+            />
+          </div>
+        ),
+      },
+      {
+        id: 'name',
+        header: () => <div style={{ textAlign: 'center' }}>Name</div>,
+        footer: (props) => props.column.id,
+        enableGrouping: false,
+        columns: [
+          {
+            accessorKey: 'firstName',
+            cell: (info) => info.getValue<string>(),
+            footer: (props) => props.column.id,
+            enableResizing: false,
+            editable: true,
+          },
+          {
+            accessorFn: (row) => row.lastName,
+            id: 'lastName',
+            cell: (info) => info.getValue<string>(),
+            header: () => <span>Last Name</span>,
+            footer: (props) => props.column.id,
+            enableResizing: true,
+          },
+        ],
+      },
+      {
+        id: 'otherInfo',
+        header: () => <div style={{ textAlign: 'center' }}>Other info</div>,
+        footer: (props) => props.column.id,
+        enableGrouping: false,
+        columns: [
+          {
+            accessorKey: 'age',
+            header: () => 'Age',
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'visits',
+            header: () => <span>Visits</span>,
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'status',
+            header: 'Status',
+            cell: (info) => (
+              <StatusComponent
+                status={info.getValue<string>()}
+              ></StatusComponent>
+            ),
+            footer: (info) => info.column.id,
+          },
+          {
+            accessorKey: 'progress',
+            header: 'Profile Progress',
+            cell: (info) => (
+              <ProgressPercentage
+                progress={Number(info.getValue<string>())}
+              ></ProgressPercentage>
+            ),
+            footer: (info) => info.column.id,
+          },
+        ],
+      },
+    ],
+    [],
+  )
+
+  return (
+    <>
+      <h3>1. Default loading indicator</h3>
+      <Table data={data} columns={columns} options={options} isLoading>
+        <Table.Footer
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>{/* Todo: Dropdown */}</div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontWeight: '600',
+              }}
+            >
+              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+            </div>
+            <Pagination
+              page={page}
+              onChange={(page) => setPage(page)}
+              total={10}
+            />
+          </div>
+        </Table.Footer>
+      </Table>
+      <br />
+      <h3>2. Customized loading indicator</h3>
+      <Table
+        data={data}
+        columns={columns}
+        options={options}
+        isLoading
+        loadingIndicator={<Spinner />}
+      >
+        <Table.Footer
+          css={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>{/* Todo: Dropdown */}</div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+          >
+            <div
+              style={{
+                fontWeight: '600',
+              }}
+            >
+              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
+            </div>
+            <Pagination
+              page={page}
+              onChange={(page) => setPage(page)}
+              total={10}
+            />
+          </div>
+        </Table.Footer>
+      </Table>
+    </>
+  )
+}
+
 export const EditableTemplateCell: React.FC = () => {
   const [page, setPage] = useState(1)
   const personData = makeData(10)
@@ -260,17 +830,13 @@ export const EditableTemplateCell: React.FC = () => {
     enableMultiSort: true,
     columnResizeMode: 'onChange',
     manualSorting: false,
-    initialSortBy: [
-      {id: 'firstName', desc: true},
-      {id: 'lastName', desc: false},
-    ],
     enableRowSelection: (row) => row.original.age > 30,
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onSorting = (sortingField: TableSortingState) => {}
+  const onSorting = () => { }
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const onChangeRowSelection = (rowSelection: any) => {}
+  const onChangeRowSelection = () => { }
 
   const columns = React.useMemo<Array<TableColumnDef<Person>>>(
     () => [
@@ -291,7 +857,7 @@ export const EditableTemplateCell: React.FC = () => {
         meta: {
           editable: true,
           template: <PersonTemplateCell />,
-          updateData: (rowIndex: number, id: string, value: any) => {
+          updateData: (rowIndex: number, id: string, value: object) => {
             setData((old: Person[]) =>
               old.map((row, index) => {
                 if (index === rowIndex) {
@@ -331,7 +897,7 @@ export const EditableTemplateCell: React.FC = () => {
         footer: (info) => info.column.id,
       },
     ],
-    [],
+    [originalData],
   )
 
   return (
@@ -469,7 +1035,7 @@ const PersonTemplateCell = () => {
         md={2}
         lg={2}
         xl={2}
-        css={{display: 'flex', justifyContent: 'center', gap: 5}}
+        css={{ display: 'flex', justifyContent: 'center', gap: 5 }}
       >
         <Button onClick={handleConfirm} size='sm'>
           <Icon icon={faCheck} />
@@ -480,20 +1046,20 @@ const PersonTemplateCell = () => {
       </Grid.Item>
       <Grid.Item xs={3} sm={3} md={3} lg={3} xl={3}>
         <TextField
-          value={personData.firstName}
+          value={personData.firstName as string}
           onChange={handleFirstNameChange}
         />
       </Grid.Item>
       <Grid.Item xs={3} sm={3} md={3} lg={3} xl={3}>
         <TextField
           type='number'
-          value={personData.age}
+          value={personData.age as number}
           onChange={handleAgeChange}
         />
       </Grid.Item>
       <Grid.Item xs={3} sm={3} md={3} lg={3} xl={3}>
         <Dropdown.Select
-          selectedKey={personData.status}
+          selectedKey={personData.status as string}
           onSelectionChange={handleStatusChange}
         >
           <Dropdown.Item key={'relationship'}>In Relationship</Dropdown.Item>
@@ -505,574 +1071,6 @@ const PersonTemplateCell = () => {
   )
 }
 
-export const ExpandableRow: React.FC = () => {
-  const [data, setData] = React.useState(() => makeRequestStatusData(10))
-  const [page, setPage] = useState(1)
-  const options: OptionType<LimitRequestStatus> = {
-    enableSorting: false,
-    enableMultiSort: false,
-    columnResizeMode: 'onChange',
-    manualSorting: false,
-  }
-
-  const columns = React.useMemo<Array<TableColumnDef<LimitRequestStatus>>>(
-    () => [
-      {
-        id: 'expander',
-        size: 40,
-        header: ({table}: HeaderContext<LimitRequestStatus, unknown>) => (
-          <span
-            onClick={table.getToggleAllRowsExpandedHandler()}
-            style={{
-              cursor: 'pointer',
-              userSelect: 'none',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            {table.getIsAllRowsExpanded() ? (
-              <Icon icon={faChevronDown} />
-            ) : (
-              <Icon icon={faChevronRight} />
-            )}
-          </span>
-        ),
-        cell: ({row}: CellContext<LimitRequestStatus, unknown>) => (
-          <span
-            onClick={() => row.toggleExpanded()}
-            style={{
-              cursor: 'pointer',
-              userSelect: 'none',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            {row.getIsExpanded() ? (
-              <Icon icon={faChevronDown} />
-            ) : (
-              <Icon icon={faChevronRight} />
-            )}
-          </span>
-        ),
-      },
-      {
-        id: 'accountName',
-        accessorKey: 'accountName',
-        header: () => <div style={{textAlign: 'center'}}>Account Name</div>,
-        footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
-          props.column.id,
-      },
-      {
-        id: 'code',
-        accessorKey: 'code',
-
-        header: () => <div style={{textAlign: 'center'}}>Code</div>,
-        footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
-          props.column.id,
-      },
-      {
-        id: 'requestLimit',
-        accessorKey: 'requestLimit',
-
-        header: () => (
-          <div style={{textAlign: 'center'}}>New Request Limit</div>
-        ),
-        footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
-          props.column.id,
-      },
-      {
-        id: 'status',
-        size: 280,
-
-        accessorKey: 'status',
-        header: () => <div style={{textAlign: 'center'}}>Status</div>,
-        footer: (props: HeaderContext<LimitRequestStatus, unknown>) =>
-          props.column.id,
-      },
-    ],
-    [],
-  )
-
-  const renderRowSubComponent = (rowData: LimitRequestStatus) => {
-    return (
-      <div
-        style={{
-          padding: '1em',
-          display: 'flex',
-          flexDirection: 'column',
-          rowGap: '1em',
-        }}
-      >
-        <h3>Current Status: {rowData.status}</h3>
-        <Divider />
-        {rowData.progress?.map((processItem) => {
-          return (
-            <>
-              <p style={{fontSize: '12px'}}>{processItem.remarks}</p>
-              <p style={{fontSize: '11px', fontWeight: 200, color: '#878787'}}>
-                {processItem.createdAt.toDateString()}
-              </p>
-              <Divider />
-            </>
-          )
-        })}
-      </div>
-    )
-  }
-  return (
-    <div>
-      <Table
-        data={data}
-        columns={columns}
-        options={options}
-        renderRowSubComponent={renderRowSubComponent}
-        css={{
-          width: '65rem',
-          table: {
-            width: 'unset',
-          },
-        }}
-      >
-        <Table.Footer
-          css={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <div style={{display: 'flex', alignItems: 'center'}}>
-            <span style={{width: 250}}>Rows per page: </span>
-            <Dropdown.Select defaultSelectedKey='10'>
-              <Dropdown.Item key='10'>10 rows</Dropdown.Item>
-              <Dropdown.Item key='20'>20 rows</Dropdown.Item>
-              <Dropdown.Item key='50'>50 rows</Dropdown.Item>
-            </Dropdown.Select>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
-            <div
-              style={{
-                fontWeight: '600',
-              }}
-            >
-              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
-            </div>
-            <Pagination
-              page={page}
-              onChange={(page: number) => setPage(page)}
-              total={10}
-            />
-          </div>
-        </Table.Footer>
-      </Table>
-    </div>
-  )
-}
-
-export const EmptyState: React.FC = () => {
-  const [page, setPage] = useState(1)
-  const [data] = useState<Person[]>(() => [])
-  const options: OptionType<Person> = {
-    enableSorting: true,
-    enableMultiSort: true,
-    columnResizeMode: 'onChange',
-    manualSorting: false,
-    initialSortBy: [
-      {id: 'firstName', desc: true},
-      {id: 'lastName', desc: false},
-    ],
-  }
-
-  const columns = React.useMemo<Array<TableColumnDef<Person>>>(
-    () => [
-      {
-        id: 'select',
-        header: ({table}) => {
-          return (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Table.CheckboxCell
-                {...{
-                  checked: table.getIsAllRowsSelected(),
-                  indeterminate: table.getIsSomeRowsSelected(),
-                  onChange: table.getToggleAllRowsSelectedHandler(),
-                }}
-              />
-            </div>
-          )
-        },
-        enableGrouping: false,
-        cell: ({row}) => (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Table.CheckboxCell
-              {...{
-                disabled: !row.getCanSelect(),
-                checked: row.getIsSelected(),
-                indeterminate: row.getIsSomeSelected(),
-                onChange: row.getToggleSelectedHandler(),
-              }}
-            />
-          </div>
-        ),
-      },
-      {
-        id: 'name',
-        header: () => <div style={{textAlign: 'center'}}>Name</div>,
-        footer: (props) => props.column.id,
-        enableGrouping: false,
-        columns: [
-          {
-            accessorKey: 'firstName',
-            cell: (info) => info.getValue<string>(),
-            footer: (props) => props.column.id,
-            enableResizing: false,
-            editable: true,
-            sortDescriptor: 'asc',
-          },
-          {
-            accessorFn: (row) => row.lastName,
-            id: 'lastName',
-            cell: (info) => info.getValue<string>(),
-            header: () => <span>Last Name</span>,
-            footer: (props) => props.column.id,
-            enableResizing: true,
-          },
-        ],
-      },
-      {
-        id: 'otherInfo',
-        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
-        footer: (props) => props.column.id,
-        enableGrouping: false,
-        columns: [
-          {
-            accessorKey: 'age',
-            header: () => 'Age',
-            footer: (info) => info.column.id,
-          },
-          {
-            accessorKey: 'visits',
-            header: () => <span>Visits</span>,
-            footer: (info) => info.column.id,
-          },
-          {
-            accessorKey: 'status',
-            header: 'Status',
-            cell: (info) => (
-              <StatusComponent
-                status={info.getValue<string>()}
-              ></StatusComponent>
-            ),
-            footer: (info) => info.column.id,
-          },
-          {
-            accessorKey: 'progress',
-            header: 'Profile Progress',
-            cell: (info) => (
-              <ProgressPercentage
-                progress={Number(info.getValue<string>())}
-              ></ProgressPercentage>
-            ),
-            footer: (info) => info.column.id,
-          },
-        ],
-      },
-    ],
-    [],
-  )
-
-  return (
-    <div>
-      <Table data={data} columns={columns} options={options}>
-        <Table.Toolbar
-          css={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <SearchField placeholder='Search' />
-
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
-            <Button variant='primary'>Button</Button>
-            <Button variant='secondary'>Button</Button>
-            <Button variant='ghost'>
-              <Icon icon={faTrashAlt} />
-            </Button>
-            <Button variant='ghost'>
-              <Icon icon={faDashboard} />
-            </Button>
-            <Button variant='ghost'>
-              <Icon icon={faFileLines} />
-            </Button>
-          </div>
-        </Table.Toolbar>
-        <Table.Footer
-          css={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <div>{/* Todo: Dropdown */}</div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: '0.5rem',
-            }}
-          >
-            <div
-              style={{
-                fontWeight: '600',
-              }}
-            >
-              {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
-            </div>
-            <Pagination
-              page={page}
-              onChange={(page) => setPage(page)}
-              total={10}
-            />
-          </div>
-        </Table.Footer>
-      </Table>
-    </div>
-  )
-}
-
-export const Loading: React.FC = () => {
-  const [page, setPage] = useState(1)
-  const [data] = useState<Person[]>(() => [])
-  const options: OptionType<Person> = {
-    enableSorting: true,
-    enableMultiSort: true,
-    columnResizeMode: 'onChange',
-    manualSorting: false,
-    initialSortBy: [
-      {id: 'firstName', desc: true},
-      {id: 'lastName', desc: false},
-    ],
-  }
-
-  const columns = React.useMemo<Array<TableColumnDef<Person>>>(
-    () => [
-      {
-        id: 'select',
-        header: ({table}) => {
-          return (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Table.CheckboxCell
-                {...{
-                  checked: table.getIsAllRowsSelected(),
-                  indeterminate: table.getIsSomeRowsSelected(),
-                  onChange: table.getToggleAllRowsSelectedHandler(),
-                }}
-              />
-            </div>
-          )
-        },
-        enableGrouping: false,
-        cell: ({row}) => (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Table.CheckboxCell
-              {...{
-                disabled: !row.getCanSelect(),
-                checked: row.getIsSelected(),
-                indeterminate: row.getIsSomeSelected(),
-                onChange: row.getToggleSelectedHandler(),
-              }}
-            />
-          </div>
-        ),
-      },
-      {
-        id: 'name',
-        header: () => <div style={{textAlign: 'center'}}>Name</div>,
-        footer: (props) => props.column.id,
-        enableGrouping: false,
-        columns: [
-          {
-            accessorKey: 'firstName',
-            cell: (info) => info.getValue<string>(),
-            footer: (props) => props.column.id,
-            enableResizing: false,
-            editable: true,
-            sortDescriptor: 'asc',
-          },
-          {
-            accessorFn: (row) => row.lastName,
-            id: 'lastName',
-            cell: (info) => info.getValue<string>(),
-            header: () => <span>Last Name</span>,
-            footer: (props) => props.column.id,
-            enableResizing: true,
-          },
-        ],
-      },
-      {
-        id: 'otherInfo',
-        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
-        footer: (props) => props.column.id,
-        enableGrouping: false,
-        columns: [
-          {
-            accessorKey: 'age',
-            header: () => 'Age',
-            footer: (info) => info.column.id,
-          },
-          {
-            accessorKey: 'visits',
-            header: () => <span>Visits</span>,
-            footer: (info) => info.column.id,
-          },
-          {
-            accessorKey: 'status',
-            header: 'Status',
-            cell: (info) => (
-              <StatusComponent
-                status={info.getValue<string>()}
-              ></StatusComponent>
-            ),
-            footer: (info) => info.column.id,
-          },
-          {
-            accessorKey: 'progress',
-            header: 'Profile Progress',
-            cell: (info) => (
-              <ProgressPercentage
-                progress={Number(info.getValue<string>())}
-              ></ProgressPercentage>
-            ),
-            footer: (info) => info.column.id,
-          },
-        ],
-      },
-    ],
-    [],
-  )
-
-  return (
-    <>
-      <Column>
-        <h3>1. Default loading indicator</h3>
-        <Table data={data} columns={columns} options={options} isLoading>
-          <Table.Footer
-            css={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div>{/* Todo: Dropdown */}</div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: '0.5rem',
-              }}
-            >
-              <div
-                style={{
-                  fontWeight: '600',
-                }}
-              >
-                {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
-              </div>
-              <Pagination
-                page={page}
-                onChange={(page) => setPage(page)}
-                total={10}
-              />
-            </div>
-          </Table.Footer>
-        </Table>
-      </Column>
-      <br />
-      <Column>
-        <h3>2. Customized loading indicator</h3>
-        <Table
-          data={data}
-          columns={columns}
-          options={options}
-          isLoading
-          loadingIndicator={<Spinner />}
-        >
-          <Table.Footer
-            css={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div>{/* Todo: Dropdown */}</div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: '0.5rem',
-              }}
-            >
-              <div
-                style={{
-                  fontWeight: '600',
-                }}
-              >
-                {(page - 1) * 10 + 1} - {(page - 1) * 10 + 10} of 100
-              </div>
-              <Pagination
-                page={page}
-                onChange={(page) => setPage(page)}
-                total={10}
-              />
-            </div>
-          </Table.Footer>
-        </Table>
-      </Column>
-    </>
-  )
-}
 export const DataGrid: React.FC = () => {
   const [page, setPage] = useState(1)
   const [data] = useState<Person[]>(() => makeData(10))
@@ -1082,8 +1080,8 @@ export const DataGrid: React.FC = () => {
     columnResizeMode: 'onChange',
     manualSorting: false,
     initialSortBy: [
-      {id: 'firstName', desc: true},
-      {id: 'lastName', desc: false},
+      { id: 'firstName', desc: true },
+      { id: 'lastName', desc: false },
     ],
   }
 
@@ -1098,7 +1096,7 @@ export const DataGrid: React.FC = () => {
     () => [
       {
         id: 'select',
-        header: ({table}) => {
+        header: ({ table }) => {
           return (
             <div
               style={{
@@ -1118,7 +1116,7 @@ export const DataGrid: React.FC = () => {
           )
         },
         enableGrouping: false,
-        cell: ({row}) => (
+        cell: ({ row }) => (
           <div
             style={{
               display: 'flex',
@@ -1139,7 +1137,7 @@ export const DataGrid: React.FC = () => {
       },
       {
         id: 'name',
-        header: () => <div style={{textAlign: 'center'}}>Name</div>,
+        header: () => <div style={{ textAlign: 'center' }}>Name</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -1149,7 +1147,6 @@ export const DataGrid: React.FC = () => {
             footer: (props) => props.column.id,
             enableResizing: false,
             editable: true,
-            sortDescriptor: 'asc',
           },
           {
             accessorFn: (row) => row.lastName,
@@ -1163,7 +1160,7 @@ export const DataGrid: React.FC = () => {
       },
       {
         id: 'otherInfo',
-        header: () => <div style={{textAlign: 'center'}}>Other info</div>,
+        header: () => <div style={{ textAlign: 'center' }}>Other info</div>,
         footer: (props) => props.column.id,
         enableGrouping: false,
         columns: [
@@ -1259,3 +1256,16 @@ export const DataGrid: React.FC = () => {
     </div>
   )
 }
+
+const meta = {
+  title: 'Example/Table ',
+  component: Basic,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

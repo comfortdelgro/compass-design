@@ -1,9 +1,8 @@
 import React, {forwardRef} from 'react'
-import Control, {ButtonProps} from './Control/Control'
+import Control, {ButtonProps} from './Control'
 
 export interface RichTextEditorControlBaseProps extends ButtonProps {
   icon: React.FC
-  active: boolean
 }
 
 export const ControlBase = forwardRef<

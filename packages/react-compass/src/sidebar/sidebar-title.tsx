@@ -1,10 +1,14 @@
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledSidebarTitle} from './sidebar.styles'
+'use client'
 
-interface Props extends StyledComponentProps {
+import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/sidebar.module.css'
+
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type SidebarTitleProps = Props &
@@ -12,19 +16,33 @@ export type SidebarTitleProps = Props &
 
 const SidebarTitle = React.forwardRef<HTMLDivElement, SidebarTitleProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className = '', ...delegated} = props
 
     const renderTitle = () => {
       if (typeof children === 'string') {
-        return <StyledSidebarTitle>{children}</StyledSidebarTitle>
+        return (
+          <div
+            className={`cdg-sidebar-title ${styles.sidebarTitle} ${className}`}
+            ref={sidebarTitleRef}
+            {...delegated}
+          >
+            {children}
+          </div>
+        )
       }
       return children
     }
     const sidebarTitleRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledSidebarTitle css={css} ref={sidebarTitleRef} {...delegated}>
-        {renderTitle()}
-      </StyledSidebarTitle>
+      <CssInjection css={css} childrenRef={sidebarTitleRef}>
+        <div
+          className={`cdg-sidebar-title ${styles.sidebarTitle} ${className}`}
+          ref={sidebarTitleRef}
+          {...delegated}
+        >
+          {renderTitle()}
+        </div>
+      </CssInjection>
     )
   },
 )

@@ -30,7 +30,7 @@ import {Mutable} from './utils'
 
 export function epochFromDate(date: AnyDateTime) {
   date = toCalendar(date, new GregorianCalendar())
-  let year = getExtendedYear(date.era, date.year)
+  const year = getExtendedYear(date.era, date.year)
   return epochFromParts(
     year,
     date.month,
@@ -53,7 +53,7 @@ function epochFromParts(
 ) {
   // Note: Date.UTC() interprets one and two-digit years as being in the
   // 20th century, so don't use it
-  let date = new Date()
+  const date = new Date()
   date.setUTCHours(hour, minute, second, millisecond)
   date.setUTCFullYear(year, month - 1, day)
   return date.getTime()
@@ -70,8 +70,11 @@ export function getTimeZoneOffset(ms: number, timeZone: string) {
     return new Date(ms).getTimezoneOffset() * -60 * 1000
   }
 
-  let {year, month, day, hour, minute, second} = getTimeZoneParts(ms, timeZone)
-  let utc = epochFromParts(year, month, day, hour, minute, second, 0)
+  const {year, month, day, hour, minute, second} = getTimeZoneParts(
+    ms,
+    timeZone,
+  )
+  const utc = epochFromParts(year, month, day, hour, minute, second, 0)
   return utc - Math.floor(ms / 1000) * 1000
 }
 
@@ -95,9 +98,9 @@ function getTimeZoneParts(ms: number, timeZone: string) {
     formattersByTimeZone.set(timeZone, formatter)
   }
 
-  let parts = formatter.formatToParts(new Date(ms))
-  let namedParts: {[name: string]: string} = {}
-  for (let part of parts) {
+  const parts = formatter.formatToParts(new Date(ms))
+  const namedParts: {[name: string]: string} = {}
+  for (const part of parts) {
     if (part.type !== 'literal') {
       namedParts[part.type] = part.value
     }
@@ -123,9 +126,9 @@ export function possibleAbsolutes(
   date: CalendarDateTime,
   timeZone: string,
 ): number[] {
-  let ms = epochFromDate(date)
-  let earlier = ms - getTimeZoneOffset(ms - DAYMILLIS, timeZone)
-  let later = ms - getTimeZoneOffset(ms + DAYMILLIS, timeZone)
+  const ms = epochFromDate(date)
+  const earlier = ms - getTimeZoneOffset(ms - DAYMILLIS, timeZone)
+  const later = ms - getTimeZoneOffset(ms + DAYMILLIS, timeZone)
   return getValidWallTimes(date, timeZone, earlier, later)
 }
 
@@ -135,7 +138,7 @@ function getValidWallTimes(
   earlier: number,
   later: number,
 ): number[] {
-  let found = earlier === later ? [earlier] : [earlier, later]
+  const found = earlier === later ? [earlier] : [earlier, later]
   return found.filter((absolute) => isValidWallTime(date, timeZone, absolute))
 }
 
@@ -144,7 +147,7 @@ function isValidWallTime(
   timeZone: string,
   absolute: number,
 ) {
-  let parts = getTimeZoneParts(absolute, timeZone)
+  const parts = getTimeZoneParts(absolute, timeZone)
   return (
     date.year === parts.year &&
     date.month === parts.month &&
@@ -172,8 +175,8 @@ export function toAbsolute(
     dateTime = toCalendar(dateTime, new GregorianCalendar())
 
     // Don't use Date constructor here because two-digit years are interpreted in the 20th century.
-    let date = new Date()
-    let year = getExtendedYear(dateTime.era, dateTime.year)
+    const date = new Date()
+    const year = getExtendedYear(dateTime.era, dateTime.year)
     date.setFullYear(year, dateTime.month - 1, dateTime.day)
     date.setHours(
       dateTime.hour,
@@ -184,10 +187,10 @@ export function toAbsolute(
     return date.getTime()
   }
 
-  let ms = epochFromDate(dateTime)
-  let offsetBefore = getTimeZoneOffset(ms - DAYMILLIS, timeZone)
-  let offsetAfter = getTimeZoneOffset(ms + DAYMILLIS, timeZone)
-  let valid = getValidWallTimes(
+  const ms = epochFromDate(dateTime)
+  const offsetBefore = getTimeZoneOffset(ms - DAYMILLIS, timeZone)
+  const offsetAfter = getTimeZoneOffset(ms + DAYMILLIS, timeZone)
+  const valid = getValidWallTimes(
     dateTime,
     timeZone,
     ms - offsetBefore,
@@ -232,15 +235,15 @@ export function toDate(
 }
 
 export function fromAbsolute(ms: number, timeZone: string): ZonedDateTime {
-  let offset = getTimeZoneOffset(ms, timeZone)
-  let date = new Date(ms + offset)
-  let year = date.getUTCFullYear()
-  let month = date.getUTCMonth() + 1
-  let day = date.getUTCDate()
-  let hour = date.getUTCHours()
-  let minute = date.getUTCMinutes()
-  let second = date.getUTCSeconds()
-  let millisecond = date.getUTCMilliseconds()
+  const offset = getTimeZoneOffset(ms, timeZone)
+  const date = new Date(ms + offset)
+  const year = date.getUTCFullYear()
+  const month = date.getUTCMonth() + 1
+  const day = date.getUTCDate()
+  const hour = date.getUTCHours()
+  const minute = date.getUTCMinutes()
+  const second = date.getUTCSeconds()
+  const millisecond = date.getUTCMilliseconds()
 
   return new ZonedDateTime(
     year,
@@ -346,8 +349,8 @@ export function toCalendar<T extends AnyCalendarDate>(
     return date
   }
 
-  let calendarDate = calendar.fromJulianDay(date.calendar.toJulianDay(date))
-  let copy: Mutable<T> = date.copy()
+  const calendarDate = calendar.fromJulianDay(date.calendar.toJulianDay(date))
+  const copy: Mutable<T> = date.copy()
   copy.calendar = calendar
   copy.era = calendarDate.era
   copy.year = calendarDate.year
@@ -374,12 +377,12 @@ export function toZoned(
     return toTimeZone(date, timeZone)
   }
 
-  let ms = toAbsolute(date, timeZone, disambiguation)
+  const ms = toAbsolute(date, timeZone, disambiguation)
   return fromAbsolute(ms, timeZone)
 }
 
 export function zonedToDate(date: ZonedDateTime) {
-  let ms = epochFromDate(date) - date.offset
+  const ms = epochFromDate(date) - date.offset
   return new Date(ms)
 }
 
@@ -388,7 +391,7 @@ export function toTimeZone(
   date: ZonedDateTime,
   timeZone: string,
 ): ZonedDateTime {
-  let ms = epochFromDate(date) - date.offset
+  const ms = epochFromDate(date) - date.offset
   return toCalendar(fromAbsolute(ms, timeZone), date.calendar)
 }
 

@@ -1,16 +1,33 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Meta} from '@storybook/react'
 import React, {useState} from 'react'
-import Typography from '../typography'
-import {Column, Row} from '../utils/components'
 import Radio from './index'
+
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  alignItems: string
+  justifyContent: string
+  height: string
+  width: string
+  padding: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+  padding: '3rem',
+}
 
 export const Variants: React.FC = () => {
   const [value, setValue] = useState('1')
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Outlined</h3>
-      <Row>
+      <div style={{flexDirection: 'row', ...style}}>
         <Radio.Group>
           <Radio
             variant='outlined'
@@ -38,9 +55,9 @@ export const Variants: React.FC = () => {
             isDisabled
           />
         </Radio.Group>
-      </Row>
+      </div>
       <h3>Simple</h3>
-      <Row>
+      <div style={{flexDirection: 'row', ...style}}>
         <Radio.Group>
           <Radio
             variant='simple'
@@ -63,11 +80,11 @@ export const Variants: React.FC = () => {
             isDisabled
           />
         </Radio.Group>
-      </Row>
+      </div>
 
       <h3>Controlled</h3>
       <h4>Selected Value: {value}</h4>
-      <Row>
+      <div style={{flexDirection: 'row', ...style}}>
         <Radio.Group
           value={value}
           onChange={(value) => {
@@ -99,15 +116,15 @@ export const Variants: React.FC = () => {
             isDisabled
           />
         </Radio.Group>
-      </Row>
-    </Column>
+      </div>
+    </div>
   )
 }
 
 export const Orientation: React.FC = () => (
-  <Column>
+  <div style={{...style}}>
     <h3>Horizontal</h3>
-    <Row>
+    <div style={{flexDirection: 'row', ...style}}>
       <Radio.Group orientation='horizontal'>
         <Radio
           label='test'
@@ -121,9 +138,9 @@ export const Orientation: React.FC = () => (
           value='2'
         />
       </Radio.Group>
-    </Row>
+    </div>
     <h3>Vertical</h3>
-    <Row>
+    <div style={{flexDirection: 'row', ...style}}>
       <Radio.Group orientation='vertical'>
         <Radio
           label='test'
@@ -137,8 +154,8 @@ export const Orientation: React.FC = () => (
           value='2'
         />
       </Radio.Group>
-    </Row>
-  </Column>
+    </div>
+  </div>
 )
 
 const H5RadioData = [
@@ -153,20 +170,22 @@ const H5RadioData = [
 export const H5 = () => {
   return (
     <>
-      <Typography.Header variant='header4' css={{marginBottom: '$4'}}>
-        H5
-      </Typography.Header>
-      <Row>
+      <h3 style={{marginBottom: '$4'}}>H5</h3>
+      <div style={{flexDirection: 'row', ...style}}>
         <Radio.Group
-          css={{padding: 0}}
+          // begin fix and update later
+          css={{padding: '0.5rem'}}
           onChange={(value) => console.log(value)}
         >
           {H5RadioData.map(({label, disabled = false}, index) => (
             <Radio
               key={index}
+              // begin fix and update later
               css={{
-                '.radio-content-wrapper .radio-label': {
-                  fontWeight: '$normal',
+                '.cdg-radio-content-wrapper': {
+                  '.cdg-radio-label': {
+                    fontWeight: '400',
+                  },
                 },
               }}
               variant='h5'
@@ -176,14 +195,13 @@ export const H5 = () => {
             />
           ))}
         </Radio.Group>
-      </Row>
+      </div>
 
-      <Typography.Header variant='header4' css={{marginBlock: '$6 $4'}}>
-        H5 with inputPosition: right
-      </Typography.Header>
-      <Row>
+      <h3 style={{marginBlock: '$6 $4'}}>H5 with inputPosition: right</h3>
+      <div style={{flexDirection: 'row', ...style}}>
         <Radio.Group
-          css={{padding: 0}}
+          // begin fix and update later
+          css={{padding: '0.5rem'}}
           onChange={(value) => console.log(value)}
         >
           {H5RadioData.map(({label, disabled = false}, index) => (
@@ -201,7 +219,20 @@ export const H5 = () => {
             />
           ))}
         </Radio.Group>
-      </Row>
+      </div>
     </>
   )
 }
+
+const meta = {
+  title: 'Example/Radio',
+  component: Orientation,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Orientation>
+
+export default meta

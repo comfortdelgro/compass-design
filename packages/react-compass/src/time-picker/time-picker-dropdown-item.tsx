@@ -1,6 +1,7 @@
+'use client'
 import React, {useEffect, useRef} from 'react'
 import {TIME_PICKER_MARGIN_TOP} from './constant'
-import {TimePickerDropdownItemStyle} from './time-picker.styles'
+import styles from './styles/time-picker.module.css'
 import {SelectedKey, TimePickerDropdownSelectedDisplayList} from './types'
 
 interface TimePickerDropdownItemProps {
@@ -58,12 +59,12 @@ function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
   }
 
   return (
-    <TimePickerDropdownItemStyle
+    <button
       ref={ref}
       id={itemId}
       className={`cdg-timepicker-dropdown-item cdg-timepicker-dropdown-item__${itemId} ${
-        selectedTime === time ? 'active' : ''
-      }`}
+        selectedTime === time ? styles.active : ''
+      } ${styles.timePickerDropdownItem}`}
       onClick={onClickItem(time, displayDataType)}
       tabIndex={-1}
       disabled={
@@ -73,7 +74,7 @@ function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
       }
     >
       {time}
-    </TimePickerDropdownItemStyle>
+    </button>
   )
 }
 export default React.memo(TimePickerDropdownItem)

@@ -1,4 +1,3 @@
-import {isEmpty} from 'lodash'
 import React from 'react'
 import {pickChild} from '../utils/pick-child'
 import {DropdownItemKey} from './dropdown-context'
@@ -224,22 +223,22 @@ export const getDistanceBetweenElements = (
   return Math.hypot(aPosition - bPosition)
 }
 
-export function getDefaulValue(
-  defaulValue: string | number | undefined,
+export function getDefaultValue(
+  defaultValue: string[] | number | undefined,
   value: string | number | undefined,
   disableDefault?: boolean,
-): string | number | undefined {
+): string[] | number | undefined {
   let res = undefined
   if (
-    defaulValue !== undefined &&
-    defaulValue !== null &&
-    !isEmpty(defaulValue.toString()) &&
+    defaultValue !== undefined &&
+    defaultValue !== null &&
+    defaultValue.toString().trim() &&
     value !== '' &&
     !disableDefault
   ) {
-    res = defaulValue
+    res = defaultValue
   }
-  if (value !== undefined && value !== null && !isEmpty(value.toString())) {
+  if (value !== undefined && value !== null && defaultValue.toString().trim()) {
     res = value
   }
   return res

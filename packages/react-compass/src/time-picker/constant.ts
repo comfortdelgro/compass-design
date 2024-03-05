@@ -20,7 +20,7 @@ export const EMPTY_DISPLAY_TIME_DROPDOWN_LIST: TimePickerDropdownSelectedDisplay
     session: null,
   }
 
-export const DEFAULT_VIEWS: ViewType[] = ['hours12', 'minutes', 'sessions']
+export const DEFAULT_VIEWS: ViewType[] = ['hours24', 'minutes', 'sessions']
 
 export const TIME_PICKER_MARGIN_TOP = 4
 

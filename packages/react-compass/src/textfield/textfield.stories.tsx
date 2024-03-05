@@ -1,9 +1,21 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import type {StoryDecorator} from '@ladle/react'
+import type {Meta} from '@storybook/react'
 import React from 'react'
-import {Column, Row} from '../utils/components'
 import Textfield from './index'
+
+const style: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  height: '100%',
+  padding: '3rem',
+}
+const styleRow: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '8px',
+}
 
 const Select = (
   <input
@@ -24,11 +36,11 @@ const Select = (
   />
 )
 
-export const Variants: React.FC = () => {
+export const Basic: React.FC = () => {
   const [value, setValue] = React.useState('')
   return (
-    <Column>
-      <Row>
+    <div style={{...style}}>
+      <div style={{...styleRow}}>
         <Textfield
           type='number'
           placeholder='Enter your name'
@@ -38,9 +50,9 @@ export const Variants: React.FC = () => {
           className='my-class'
           onKeyDown={(e) => console.log('onKeyDownTest', e)}
         />
-      </Row>
+      </div>
       <h3>Controlled (min-max number input)</h3>
-      <Row>
+      <div style={{...styleRow}}>
         <Textfield
           placeholder='Pick a number from 1 - 100'
           value={value}
@@ -52,10 +64,10 @@ export const Variants: React.FC = () => {
             return
           }}
         />
-      </Row>
+      </div>
 
       <h3>With Label</h3>
-      <Row>
+      <div style={{...styleRow}}>
         <Textfield
           label={
             <>
@@ -65,19 +77,19 @@ export const Variants: React.FC = () => {
           placeholder='Enter your name'
           isRequired
         />
-      </Row>
+      </div>
 
       <h3>With Helper Text</h3>
-      <Row>
+      <div style={{...styleRow}}>
         <Textfield
           label='Name'
           placeholder='Enter your name'
           helperText='Helper Text'
         />
-      </Row>
+      </div>
 
       <h3>Error</h3>
-      <Row>
+      <div style={{...styleRow}}>
         <Textfield
           isErrored
           label='Name'
@@ -85,10 +97,10 @@ export const Variants: React.FC = () => {
           helperText='This is helpers text'
           errorMessage='Errror'
         />
-      </Row>
+      </div>
 
       <h3>With Icons</h3>
-      <Row>
+      <div style={{...styleRow}}>
         <Textfield
           label='Name'
           leftIcon={<FontAwesomeIcon icon={faBug} />}
@@ -105,10 +117,10 @@ export const Variants: React.FC = () => {
           rightIcon={<FontAwesomeIcon icon={faBug} />}
           placeholder='Enter your name'
         />
-      </Row>
+      </div>
 
       <h3>Disabled</h3>
-      <Row>
+      <div style={{...styleRow}}>
         <Textfield label='Name' placeholder='Enter your name' isDisabled />
         <Textfield
           label='Name'
@@ -129,15 +141,15 @@ export const Variants: React.FC = () => {
           placeholder='Enter your name'
           isDisabled
         />
-      </Row>
+      </div>
       <h3>Prefix</h3>
-      <Row>
+      <div style={{...styleRow}}>
         <Textfield
           label='Name'
           prefix={Select}
           placeholder='Enter your phone number'
         />
-      </Row>
+      </div>
       <h3>Password</h3>
       <Textfield
         css={{width: '16rem'}}
@@ -162,42 +174,37 @@ export const Variants: React.FC = () => {
         helperText='Your input should be equal or more than 5 characters.'
         minLength={5}
       />
-    </Column>
+    </div>
   )
 }
 
 export const ForH5Variant = () => {
-  const [value, setValue] = React.useState('')
   return (
-    <Column>
-      <Row>
-        <Textfield
-          type='text'
-          label='Name'
-          placeholder='Enter your name'
-          // isErrored
-          helperText='my helper text'
-          errorMessage='my error message'
-          className='my-class'
-          onKeyDown={(e) => console.log('onKeyDownTest', e)}
-          h5
-        />
-      </Row>
-    </Column>
+    <div style={{...style}}>
+      <Textfield
+        type='text'
+        label='Name'
+        placeholder='Enter your name'
+        // isErrored
+        helperText='my helper text'
+        errorMessage='my error message'
+        className='my-class'
+        onKeyDown={(e) => console.log('onKeyDownTest', e)}
+        h5
+      />
+    </div>
   )
 }
 
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
-}
+const meta = {
+  title: 'Example/Textfield ',
+  component: Basic,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

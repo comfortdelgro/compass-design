@@ -1,8 +1,9 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledPageHeaderHeader} from './page-header-header.style'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/page-header-description.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children: React.ReactNode
 }
 
@@ -13,12 +14,22 @@ const PageHeaderHeader = React.forwardRef<
   HTMLDivElement,
   PageHeaderHeaderProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const {children, css = {}, className, ...delegated} = props
+
+  const rootClasses = [
+    styles.pageHeaderHeader,
+    className,
+    'cdg-page-header-header',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
-    <StyledPageHeaderHeader ref={ref} css={css} {...delegated}>
-      {children}
-    </StyledPageHeaderHeader>
+    <CssInjection css={css} childrenRef={ref}>
+      <div className={rootClasses} ref={ref} {...delegated}>
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

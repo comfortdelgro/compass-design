@@ -1,6 +1,15 @@
+import type {Meta} from '@storybook/react'
 import React, {useEffect, useState} from 'react'
-import {Column} from '../utils/components'
 import TagBoxV2, {Tag} from './index'
+
+const style: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  padding: '3rem',
+}
 
 const mockApiCall = (): Promise<Tag[]> => {
   return new Promise((resolve) => {
@@ -42,7 +51,7 @@ const mockApiCall = (): Promise<Tag[]> => {
   })
 }
 
-export const WithErroredItems: React.FC = (props: any) => {
+export const WithErroredItems: React.FC = () => {
   const [tags, setTags] = useState<Tag[]>([])
 
   useEffect(() => {
@@ -59,14 +68,15 @@ export const WithErroredItems: React.FC = (props: any) => {
   }, [])
 
   return (
-    <Column>
+    <div style={{...style}}>
       <TagBoxV2
         tagBoxLabel='Attribute values'
         addTagPlaceholder='Please enter to add tag'
         tags={tags}
         isErrored={true}
+        css={{width: '100%'}}
       />
-    </Column>
+    </div>
   )
 }
 
@@ -96,7 +106,7 @@ export const Basic: React.FC = () => {
     setTags(updatedTags)
   }
   return (
-    <Column>
+    <div style={{...style}}>
       <TagBoxV2
         tagBoxLabel='Attribute values'
         addTagPlaceholder='Please enter to add tag'
@@ -112,6 +122,19 @@ export const Basic: React.FC = () => {
         }
         css={{width: '70%'}}
       />
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Tag box v2 ',
+  component: Basic,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

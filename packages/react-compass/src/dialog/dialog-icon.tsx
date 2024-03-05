@@ -1,10 +1,11 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDialogIconContainer} from './dialog.styles'
+import styles from './styles/dialog.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type DialogIconProps = Props &
@@ -12,12 +13,17 @@ export type DialogIconProps = Props &
 
 const DialogIcon = React.forwardRef<HTMLDivElement, DialogIconProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className, ...htmlProps} = props
     const dialogIconRef = useDOMRef<HTMLDivElement>(ref)
+    const classNames = [className, styles.iconContainer]
+      .filter(Boolean)
+      .join(' ')
     return (
-      <StyledDialogIconContainer css={css} ref={dialogIconRef} {...delegated}>
-        {children}
-      </StyledDialogIconContainer>
+      <CssInjection css={css}>
+        <div className={classNames} ref={dialogIconRef} {...htmlProps}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

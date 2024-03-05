@@ -1,7 +1,8 @@
 import React, {useRef} from 'react'
+import CssInjection from '../../utils/objectToCss/CssInjection'
 import {useSnackbar} from '../hooks/useSnackbar'
 import Snackbar from '../snackbar'
-import {StyledSnackbarItem} from './snackbar-item.styles'
+import styles from '../styles/snackbar-item.module.css'
 import {SnackbarItemType} from './types'
 
 export type SnackbarItemProps = SnackbarItemType & {
@@ -27,7 +28,7 @@ const SnackbarItem = ({
 
   const handleDismiss = () => {
     if (snackbarItemRef.current && id) {
-      snackbarItemRef.current.classList.add('cdg-snackbar-item-fade-out')
+      snackbarItemRef.current.classList.add(`${styles.snackbarItemFadeOut}`)
       setTimeout(() => {
         snackbar.remove(id)
       }, ANIMATION_TIME)
@@ -40,23 +41,33 @@ const SnackbarItem = ({
     }
   }
 
-  return (
-    <StyledSnackbarItem ref={snackbarItemRef}>
-      <Snackbar
-        isOpen
-        handleClose={handleDismiss}
-        className={snackbarItemClassName}
-        autoClose={autoClose}
-        type={type}
-        css={css}
-        onClick={handleClick}
-      >
-        {prefixIcon && <Snackbar.PrefixIcon>{prefixIcon}</Snackbar.PrefixIcon>}
-        {suffixIcon && <Snackbar.SuffixIcon>{suffixIcon}</Snackbar.SuffixIcon>}
+  const contentClasses = ['cdg-snackbar-item', styles.snackbarItem]
+    .filter(Boolean)
+    .join(' ')
 
-        {text && <Snackbar.Text>{text}</Snackbar.Text>}
-      </Snackbar>
-    </StyledSnackbarItem>
+  return (
+    <CssInjection>
+      <div className={contentClasses} ref={snackbarItemRef}>
+        <Snackbar
+          isOpen
+          handleClose={handleDismiss}
+          className={snackbarItemClassName}
+          autoClose={autoClose}
+          type={type}
+          css={css}
+          onClick={handleClick}
+        >
+          {prefixIcon && (
+            <Snackbar.PrefixIcon>{prefixIcon}</Snackbar.PrefixIcon>
+          )}
+          {suffixIcon && (
+            <Snackbar.SuffixIcon>{suffixIcon}</Snackbar.SuffixIcon>
+          )}
+
+          {text && <Snackbar.Text>{text}</Snackbar.Text>}
+        </Snackbar>
+      </div>
+    </CssInjection>
   )
 }
 

@@ -1,20 +1,30 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledCardImage} from './card-image.styles'
+import style from './styles/card.module.css'
 
-type Props = StyledComponentProps
+type Props = {
+  css?: unknown
+}
 
 export type CardImageProps = Props &
   Omit<React.ImgHTMLAttributes<HTMLImageElement>, keyof Props>
 
 const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>(
   (props, ref) => {
-    const {css = {}, ...delegated} = props
+    const {css = {}, className, ...htmlProps} = props
 
     const cardImageRef = useDOMRef<HTMLImageElement>(ref)
 
-    return <StyledCardImage css={css} {...delegated} ref={cardImageRef} />
+    return (
+      <CssInjection css={css} childrenRef={ref}>
+        <img
+          className={`${style.cardImage} ${className ?? ''}`}
+          {...htmlProps}
+          ref={cardImageRef}
+        />
+      </CssInjection>
+    )
   },
 )
 

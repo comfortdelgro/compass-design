@@ -5,19 +5,20 @@ import * as InternationalizedDate from '../internationalized/date'
 import {DateValue, createCalendar, parseDate} from '../internationalized/date'
 import * as i18n from '../internationalized/i18n'
 import {useLocale} from '../internationalized/i18n'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
 import CalendarMonthGrid from './calendar-month-grid'
 import CalendarYearGrid from './calendar-year-grid'
-import {StyledCalendar} from './calendar.style'
 import {useCalendar} from './hooks/useCalendar'
 import {useCalendarState} from './hooks/useCalendarState'
 import {MONTH_YEAR_STATE, useMonthYearCalendar} from './hooks/useMonthYearState'
+import styles from './styles/calendar.module.css'
 import {DatePickerState, ValueBase} from './types'
 import {isInvalid} from './utils'
-interface Props extends StyledComponentProps, ValueBase<DateValue> {
+interface Props extends ValueBase<DateValue> {
+  css?: unknown
   children?: React.ReactNode
   state?: DatePickerState
   hasFooter?: boolean
@@ -142,10 +143,10 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   }, [ctaButtonRender])
 
   return (
-    <>
-      <StyledCalendar
+    <CssInjection css={css} childrenRef={calendarRef}>
+      <div
+        className={styles.calendar}
         ref={calendarRef}
-        css={css}
         role='Calendar'
         aria-label='Calendar'
         aria-labelledby={ariaLabelledBy}
@@ -160,7 +161,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         />
         {renderBody()}
         {hasFooter && (
-          <div className='calendar-footer'>
+          <div className={`calendar-footer ${styles.calendarFooter}`}>
             <Button
               className='cdg-calendar-clear-btn'
               variant='ghost'
@@ -174,8 +175,8 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             {renderCTAButton()}
           </div>
         )}
-      </StyledCalendar>
-    </>
+      </div>
+    </CssInjection>
   )
 })
 

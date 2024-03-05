@@ -1,3 +1,4 @@
+import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
 import Drawer from '../drawer'
@@ -15,7 +16,7 @@ export const Variants = () => {
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false)
   const [drawerNoPUOpen, setDrawerNoPUOpen] = React.useState<boolean>(false)
   return (
-    <>
+    <div style={{padding: '1rem'}}>
       <h4>Confirm PU Point with specific location</h4>
       <Button
         onPress={() => {
@@ -24,6 +25,7 @@ export const Variants = () => {
       >
         Open Drawer
       </Button>
+
       <h4>Confirm PU Point without specific location</h4>
       <Button
         onPress={() => {
@@ -32,6 +34,7 @@ export const Variants = () => {
       >
         Open Drawer
       </Button>
+
       <Drawer
         variant='h5'
         disableResize
@@ -45,7 +48,7 @@ export const Variants = () => {
           puPointTitle={samplePickupPoint.name}
           puPointDescription={`${samplePickupPoint.address}, ${samplePickupPoint.city} ${samplePickupPoint.postalCode}`}
           specificPUPoint={samplePickupPoint.specificPUPoint}
-          onConfirmPickup={(pickupPoint) => {
+          onConfirmPickup={() => {
             alert('confirm the pickup point')
           }}
           onChangePUPoint={() => {
@@ -81,6 +84,17 @@ export const Variants = () => {
           css={{padding: 0, borderRadius: 0}}
         />
       </Drawer>
-    </>
+    </div>
   )
 }
+
+const meta: Meta<typeof Variants> = {
+  title: 'Example/Confirm Pickup',
+  tags: ['autodocs'],
+  component: Variants,
+  parameters: {
+    layout: 'fullscreen',
+  },
+}
+
+export default meta

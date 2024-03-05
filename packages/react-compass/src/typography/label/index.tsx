@@ -1,13 +1,14 @@
 import React from 'react'
-import {styled} from '../../theme'
-import {StyledComponentProps} from '../../utils/stitches.types'
+import CssInjection from '../../utils/objectToCss/CssInjection'
 import {Component} from '../utils'
+import styles from './label.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   variant?: 'label1' | 'label2' | 'label3'
   component?: Component
-  weight?: 'none' | 'bold' | 'semibold' | 'light'
+  weight?: 'bold' | 'semibold' | 'light'
   children: React.ReactNode
+  css?: unknown
 }
 
 export type labelTypographyProps = Props &
@@ -18,54 +19,35 @@ const Label: React.FC<labelTypographyProps> = (props) => {
     css = {},
     children,
     variant = 'label1',
-    weight = 'none',
+    weight,
     component,
-    ...delegated
+    className,
+    ...htmlProps
   } = props
-  const tag = React.useMemo(() => {
+  const Component = React.useMemo(() => {
     if (component) return component
     return 'label'
-  }, [variant])
+  }, [component])
 
-  const StyledLabel = styled(tag, {
-    width: '100%',
-    padding: 0,
-    margin: 0,
-    color: '$primaryText',
-    variants: {
-      weight: {
-        none: {},
-        bold: {
-          fontWeight: '$bold',
-        },
-        semibold: {
-          fontWeight: '$semibold',
-        },
-        light: {
-          fontWeight: '$light',
-        },
-      },
-      variant: {
-        label1: {
-          fontSize: '$label1',
-          lineHeight: '1.3125rem',
-        },
-        label2: {
-          fontSize: '$label2',
-          lineHeight: '1.125rem',
-        },
-        label3: {
-          fontSize: '$label3',
-          lineHeight: '0.9375rem',
-        },
-      },
-    },
-  })
+  const classNames = React.useMemo(() => {
+    const arr = [
+      styles.label,
+      variant && styles[variant],
+      weight && styles[weight],
+      className && className,
+      'cdg-label',
+    ]
+    return arr.filter(Boolean).join(' ')
+  }, [className, variant, weight])
 
   return (
-    <StyledLabel css={css} variant={variant} weight={weight} {...delegated}>
-      {children}
-    </StyledLabel>
+    <>
+      <CssInjection css={css}>
+        <Component {...htmlProps} className={classNames}>
+          {children}
+        </Component>
+      </CssInjection>
+    </>
   )
 }
 

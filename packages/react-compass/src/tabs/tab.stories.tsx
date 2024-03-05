@@ -1,6 +1,25 @@
+import type {Meta} from '@storybook/react'
 import React from 'react'
-import {Column, Row} from '../utils/components'
 import Tabs from './index'
+import styles from './styles/story.module.css'
+
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  alignItems: string
+  justifyContent: string
+  height: string
+  width: string
+  padding: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+  padding: '3rem',
+}
 
 interface Data {
   userId: number
@@ -22,9 +41,9 @@ const FetchList = ({id}: {id: React.Key}) => {
 
 export const ServerInteraction: React.FC = () => {
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Server Interaction</h3>
-      <Row>
+      <div style={{flexDirection: 'row', ...style}}>
         <Tabs icon='left'>
           <Tabs.Item key='1' title='Founding of Rome'>
             <FetchList id='1' />
@@ -36,8 +55,8 @@ export const ServerInteraction: React.FC = () => {
             <FetchList id='3' />
           </Tabs.Item>
         </Tabs>
-      </Row>
-    </Column>
+      </div>
+    </div>
   )
 }
 
@@ -49,9 +68,9 @@ export const Paneless: React.FC = () => {
     {key: '3', title: 'Empire'},
   ]
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Paneless</h3>
-      <Row>
+      <div style={{flexDirection: 'row', ...style}}>
         <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
           <Tabs.Paneless
             variant='simple'
@@ -63,8 +82,8 @@ export const Paneless: React.FC = () => {
           {value === '2' && <FetchList id='2' />}
           {value === '3' && <FetchList id='3' />}
         </div>
-      </Row>
-    </Column>
+      </div>
+    </div>
   )
 }
 
@@ -76,9 +95,9 @@ export const H5: React.FC = () => {
     {key: '3', title: 'Empire'},
   ]
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>H5</h3>
-      <Row>
+      <div style={{flexDirection: 'row', ...style}}>
         <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
           <Tabs.Paneless
             variant='h5'
@@ -90,15 +109,15 @@ export const H5: React.FC = () => {
           {value === '2' && <FetchList id='2' />}
           {value === '3' && <FetchList id='3' />}
         </div>
-      </Row>
-    </Column>
+      </div>
+    </div>
   )
 }
 
 export const Icon: React.FC = () => (
-  <Column>
+  <div style={{...style}}>
     <h3>With left icon</h3>
-    <Row>
+    <div style={{flexDirection: 'row', ...style}}>
       <Tabs icon='left'>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
@@ -110,10 +129,10 @@ export const Icon: React.FC = () => (
           Alea jacta est.
         </Tabs.Item>
       </Tabs>
-    </Row>
+    </div>
 
     <h3>With right icon</h3>
-    <Row>
+    <div style={{flexDirection: 'row', ...style}}>
       <Tabs icon='right' disabledKeys={['1']}>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
@@ -125,10 +144,10 @@ export const Icon: React.FC = () => (
           Alea jacta est.
         </Tabs.Item>
       </Tabs>
-    </Row>
+    </div>
 
     <h3>With top icon</h3>
-    <Row>
+    <div style={{flexDirection: 'row', ...style}}>
       <Tabs variant='simple' icon='top' disabledKeys={['1']}>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
@@ -140,14 +159,35 @@ export const Icon: React.FC = () => (
           Alea jacta est.
         </Tabs.Item>
       </Tabs>
-    </Row>
-  </Column>
+    </div>
+  </div>
+)
+
+export const CustomCssModule: React.FC = () => (
+  <div style={{...style}}>
+    <h3>
+      Users can customize the styling of the component by applying their own CSS
+    </h3>
+    <div style={{flexDirection: 'row', ...style}}>
+      <Tabs icon='left' className={styles.icon}>
+        <Tabs.Item key='1' title='Founding of Rome'>
+          Arma virumque cano, Troiae qui primus ab oris.
+        </Tabs.Item>
+        <Tabs.Item key='2' title='Monarchy and Republic'>
+          Senatus Populusque Romanus.
+        </Tabs.Item>
+        <Tabs.Item key='3' title='Empire'>
+          Alea jacta est.
+        </Tabs.Item>
+      </Tabs>
+    </div>
+  </div>
 )
 
 export const Orientation: React.FC = () => (
-  <Column>
+  <div style={{...style}}>
     <h3>Horizontal Rounded</h3>
-    <Row>
+    <div style={{flexDirection: 'row', ...style}}>
       <Tabs orientation='horizontal'>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
@@ -159,10 +199,10 @@ export const Orientation: React.FC = () => (
           Alea jacta est.
         </Tabs.Item>
       </Tabs>
-    </Row>
+    </div>
 
     <h3>Vertical Rounded</h3>
-    <Row>
+    <div style={{flexDirection: 'row', ...style}}>
       <Tabs orientation='vertical'>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
@@ -174,14 +214,14 @@ export const Orientation: React.FC = () => (
           Alea jacta est.
         </Tabs.Item>
       </Tabs>
-    </Row>
-  </Column>
+    </div>
+  </div>
 )
 
 export const Variants: React.FC = () => (
-  <Column>
+  <div style={{...style}}>
     <h3>Simple Style</h3>
-    <Row>
+    <div style={{flexDirection: 'row', ...style}}>
       <Tabs variant='simple' disabledKeys={['1']}>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
@@ -193,10 +233,10 @@ export const Variants: React.FC = () => (
           Alea jacta est.
         </Tabs.Item>
       </Tabs>
-    </Row>
+    </div>
 
     <h3>Rounded Style</h3>
-    <Row>
+    <div style={{flexDirection: 'row', ...style}}>
       <Tabs variant='rounded' disabledKeys={['1']}>
         <Tabs.Item key='1' title='Founding of Rome'>
           Arma virumque cano, Troiae qui primus ab oris.
@@ -208,6 +248,19 @@ export const Variants: React.FC = () => (
           Alea jacta est.
         </Tabs.Item>
       </Tabs>
-    </Row>
-  </Column>
+    </div>
+  </div>
 )
+
+const meta = {
+  title: 'Example/Tabs ',
+  component: Variants,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Variants>
+
+export default meta

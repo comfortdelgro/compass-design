@@ -1,10 +1,11 @@
 import React, {SyntheticEvent, useContext} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {MenuListContext} from './menu-list-context'
-import {StyledMenuListDropdownHeader} from './menu-list-dropdown-header.styles'
+import styles from './styles/menu-list-dropdown-item.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
   leftIcon?: React.ReactNode | false
   rightIcon?: React.ReactNode | true
@@ -46,77 +47,84 @@ const MenuListDropdownHeader = React.forwardRef<
   }
 
   const renderLeftIcon = () => {
+    const classes = [
+      styles.menuListDropdownChevronDownLeftIcon,
+      isOpen && `${styles.rotatedIcon} cdg-menu-list-rotated-icon`,
+      'cdg-menu-list-dropdown-chevron-down-left-icon',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     if (leftIcon === undefined) {
       return (
-        <div
-          className={`menu-list-dropdown-chevron-down-left-icon ${
-            isOpen ? 'rotated-icon' : ''
-          }`}
-        >
+        <div className={classes}>
           <ChevronIcon />
         </div>
       )
     } else if (leftIcon === false) {
       return null
     } else {
-      return (
-        <div
-          className={`menu-list-dropdown-chevron-down-left-icon ${
-            isOpen ? 'rotated-icon' : ''
-          }`}
-        >
-          {leftIcon}
-        </div>
-      )
+      return <div className={classes}>{leftIcon}</div>
     }
   }
 
   const renderRightIcon = () => {
+    const classes = [
+      styles.menuListDropdownChevronDownRightIcon,
+      isOpen && `${styles.rotatedIcon} cdg-menu-list-rotated-icon`,
+      'cdg-menu-list-dropdown-chevron-down-right-icon',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     if (rightIcon === true) {
       return (
-        <div
-          className={`menu-list-dropdown-chevron-down-right-icon ${
-            isOpen ? 'rotated-icon' : ''
-          }`}
-        >
+        <div className={classes}>
           <ChevronIcon />
         </div>
       )
     } else if (rightIcon === undefined) {
       return null
     } else {
-      return (
-        <div
-          className={`menu-list-dropdown-chevron-down-right-icon ${
-            isOpen ? 'rotated-icon' : ''
-          }`}
-        >
-          {rightIcon}
-        </div>
-      )
+      return <div className={classes}>{rightIcon}</div>
     }
   }
 
   const renderTitle = () => {
     if (typeof children === 'string') {
-      return <h2 className='menu-list-dropdown-title'>{children}</h2>
+      return (
+        <h2
+          className={`${styles.menuListDropdownTitle} cdg-menu-list-dropdown-title`}
+        >
+          {children}
+        </h2>
+      )
     }
     return children
   }
 
+  const rootClasses = [
+    styles.menuListDropdownHeader,
+    className,
+    'cdg-menu-list-dropdown-header',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledMenuListDropdownHeader
-      className={`${className} menu-list-dropdown-header`}
-      ref={buttonRef}
-      css={css}
-      onClick={handleOnClick}
-      aria-expanded={isOpen}
-      {...delegated}
-    >
-      {renderLeftIcon()}
-      {renderTitle()}
-      {renderRightIcon()}
-    </StyledMenuListDropdownHeader>
+    <CssInjection css={css} childrenRef={buttonRef}>
+      <button
+        className={rootClasses}
+        ref={buttonRef}
+        onClick={handleOnClick}
+        aria-expanded={isOpen}
+        {...delegated}
+      >
+        {renderLeftIcon()}
+        {renderTitle()}
+        {renderRightIcon()}
+      </button>
+    </CssInjection>
   )
 })
 

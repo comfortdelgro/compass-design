@@ -1,4 +1,3 @@
-import React from 'react'
 import {CalendarProps} from '../calendar'
 import {
   DateRangePickerState,
@@ -7,10 +6,7 @@ import {
   RangeValue,
 } from '../calendar/types'
 import {CalendarDate} from '../internationalized/date'
-import {
-  StyledRangeCalendarShorcuts,
-  StyledRangeCalendarShorcutsItem,
-} from './range-calendar-shortcuts.styles'
+import styles from './styles/range-calendar-shortcuts.module.css'
 import {useRangeCalendarShortcuts} from './useRangeCalendarShorcuts'
 
 export interface RangeCalendarShorcutItem {
@@ -52,23 +48,25 @@ const RangeCalendarShorcuts = (props: RangeCalendarShortcutsProps) => {
   }
 
   return (
-    <StyledRangeCalendarShorcuts>
+    <div className={styles.rangeCalendarShortcuts}>
       {shorcuts &&
         shorcuts.map((shorcut) => {
           return (
-            <StyledRangeCalendarShorcutsItem
+            <button
+              className={`${styles.rangeCalendarShortcutsItem} ${
+                selectedItem === shorcut.label ? styles.active : ''
+              }`}
               key={shorcut.label}
               aria-disabled={shorcut.isDisable}
               type='button'
-              variants={selectedItem === shorcut.label ? 'active' : 'inactive'}
               disabled={shorcut.isDisable}
               onClick={() => handleShortcutClick(shorcut)}
             >
               {shorcut.label}
-            </StyledRangeCalendarShorcutsItem>
+            </button>
           )
         })}
-    </StyledRangeCalendarShorcuts>
+    </div>
   )
 }
 
