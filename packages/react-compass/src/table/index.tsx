@@ -23,7 +23,8 @@ export {
   EditableCellContextProvider,
   useEditableCellContext,
 } from './editable/editable-cell'
-export type {OptionType, TableProps} from './table'
+export type {OptionType} from './types'
+export type {TableProps} from './table'
 export type {TableCheckboxProps as ReactTableCheckboxProps} from './table-checkbox'
 export type {TableFooterProps as ReactTableFooterProps} from './table-footer'
 export type {TableToolbarProps as ReactTableToolbarProps} from './table-toolbar'
