@@ -25,22 +25,23 @@ export function timeToString(time: Time): string {
 }
 
 export function dateToString(date: CalendarDate): string {
-  let gregorianDate = toCalendar(date, new GregorianCalendar())
+  const gregorianDate = toCalendar(date, new GregorianCalendar())
   return `${String(gregorianDate.year).padStart(4, '0')}-${String(
     gregorianDate.month,
   ).padStart(2, '0')}-${String(gregorianDate.day).padStart(2, '0')}`
 }
 
 export function dateTimeToString(date: AnyDateTime): string {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return `${dateToString(date)}T${timeToString(date)}`
 }
 
 function offsetToString(offset: number) {
-  let sign = Math.sign(offset) < 0 ? '-' : '+'
+  const sign = Math.sign(offset) < 0 ? '-' : '+'
   offset = Math.abs(offset)
-  let offsetHours = Math.floor(offset / (60 * 60 * 1000))
-  let offsetMinutes = (offset % (60 * 60 * 1000)) / (60 * 1000)
+  const offsetHours = Math.floor(offset / (60 * 60 * 1000))
+  const offsetMinutes = (offset % (60 * 60 * 1000)) / (60 * 1000)
   return `${sign}${String(offsetHours).padStart(2, '0')}:${String(
     offsetMinutes,
   ).padStart(2, '0')}`
@@ -54,12 +55,12 @@ export function zonedDateTimeToString(date: ZonedDateTime): string {
 
 /** Parses an ISO 8601 date string, with no time components. */
 export function parseDate(value: string): CalendarDate {
-  let m = value.match(DATE_RE)
+  const m = value.match(DATE_RE)
   if (!m) {
     throw new Error('Invalid ISO 8601 date string: ' + value)
   }
 
-  let date: Mutable<CalendarDate> = new CalendarDate(
+  const date: Mutable<CalendarDate> = new CalendarDate(
     parseNumber(m[1] as string, 0, 9999),
     parseNumber(m[2] as string, 1, 12),
     1,
@@ -70,7 +71,7 @@ export function parseDate(value: string): CalendarDate {
 }
 
 function parseNumber(value: string, min: number, max: number) {
-  let val = Number(value)
+  const val = Number(value)
   if (val < min || val > max) {
     throw new RangeError(`Value out of range: ${min} <= ${val} <= ${max}`)
   }

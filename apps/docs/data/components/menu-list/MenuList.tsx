@@ -1,4 +1,8 @@
-import {Column, MenuList, MenuListDropdown} from '@comfortdelgro/react-compass'
+import {
+  Column,
+  MenuList,
+  MenuListDropdown,
+} from '@comfortdelgro/react-compass'
 import {faUser} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 

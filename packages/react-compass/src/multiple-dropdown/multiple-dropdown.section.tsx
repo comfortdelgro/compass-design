@@ -1,24 +1,23 @@
-import React, {useContext} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import React, {useContext, useMemo} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   MultipleDropdownContext,
   SelectedItemDropdown,
 } from './multiple-dropdown-context'
 import {MultipleDropdownItemProps} from './multiple-dropdown-item'
-import {
-  DropdownItemVariantProps,
-  StyledDropdownSection,
-  StyledRightIcon,
-  StyledSectionContent,
-} from './multiple-dropdown.styles'
+import styles from './styles/multiple-dropdown.module.css'
 
-export interface DropdownSectionBase extends StyledComponentProps {
+export interface DropdownSectionBase {
   id?: number | string
   title?: React.ReactNode
   'aria-label'?: string
   children: React.ReactNode
   isClickable?: boolean
+  isChecked?: boolean
+  checkmark?: 'checkbox' | 'tick'
+  index?: number
+  css?: unknown
   onClick?: (title: React.ReactNode) => void
   onSectionClick?: (
     items: SelectedItemDropdown[],
@@ -26,13 +25,9 @@ export interface DropdownSectionBase extends StyledComponentProps {
     id: string | number,
     index: number,
   ) => void
-  isChecked?: boolean
-  checkmark?: 'checkbox' | 'tick'
-  index?: number
 }
 
 export type DropdownSectionProps = DropdownSectionBase &
-  DropdownItemVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof DropdownSectionBase>
 
 const MultipleDropdownSection = React.forwardRef<
@@ -112,31 +107,50 @@ const MultipleDropdownSection = React.forwardRef<
     setChecking(!checking)
   }
 
+  const contentRightIconClassName = useMemo(() => {
+    let className = `cdg-multiple-dropdown-section ${styles.multipleDropdownRightIcon}`
+    if (checking) {
+      className += ` ${styles.multipleDropdownRightIconSelected}`
+    }
+
+    if (checkmark === 'checkbox') {
+      className += ` ${styles.multipleDropdownRightIconCheckbox}`
+    } else if (checkmark === 'tick') {
+      className += ` ${styles.multipleDropdownRightIconTick}`
+    }
+
+    return className
+  }, [checkmark, checking])
+
   return (
-    <StyledDropdownSection css={css} ref={dropdownSectionRef} {...delegated}>
-      {title && (
-        <StyledSectionContent
-          isClickable={!!isClickable}
-          onClick={handleOnClick}
-        >
-          {title}
-          <StyledRightIcon
-            isSelected={checking}
-            checkmark={checkmark}
-            className='cdg-multiple-dropdown-section'
+    <CssInjection css={css} childrenRef={dropdownSectionRef}>
+      <div
+        className={`${styles.multipleDropdownSection}`}
+        ref={dropdownSectionRef}
+        {...delegated}
+      >
+        {title && (
+          <div
+            className={`${styles.multipleDropdownSectionContent} ${
+              isClickable ? styles.IsClickable : ''
+            }`}
+            onClick={handleOnClick}
           >
-            {checkmark === 'checkbox' ? (
-              <div>
-                <Tick />
-              </div>
-            ) : checkmark === 'tick' ? (
-              <BlueTick />
-            ) : null}
-          </StyledRightIcon>
-        </StyledSectionContent>
-      )}
-      {children}
-    </StyledDropdownSection>
+            {title}
+            <div className={contentRightIconClassName}>
+              {checkmark === 'checkbox' ? (
+                <div className={`${styles.multipleDropdownSectionCheckbox}`}>
+                  <Tick />
+                </div>
+              ) : checkmark === 'tick' ? (
+                <BlueTick />
+              ) : null}
+            </div>
+          </div>
+        )}
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

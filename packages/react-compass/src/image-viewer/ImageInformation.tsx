@@ -1,6 +1,4 @@
-import * as React from 'react'
-import Typography from '../typography'
-import {StyledImageInformationWrap} from './image-viewer.styles'
+import styles from './styles/image-viewer.module.css'
 import {ToolbarConfig} from './types'
 
 export interface ViewerToolbarProps {
@@ -15,12 +13,12 @@ export interface ViewerToolbarProps {
 
 export default function ImageInformation(props: ViewerToolbarProps) {
   return (
-    <StyledImageInformationWrap>
-      <Typography.Label css={{textAlign: 'center'}} variant='label1'>
+    <div className={styles.imageInformationWrap}>
+      <p style={{textAlign: 'center'}}>
         {props.alt && `${props.alt} `}
         {`(${props.width} x ${props.height}) `}
         <b>{`${props.activeIndex + 1} ${props.totalName} ${props.count}`}</b>
-      </Typography.Label>
-    </StyledImageInformationWrap>
+      </p>
+    </div>
   )
 }

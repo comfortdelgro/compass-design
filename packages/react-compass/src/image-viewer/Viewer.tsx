@@ -1,11 +1,11 @@
-import * as React from 'react'
+import {useEffect, useState} from 'react'
 import ViewerCore from './ViewerCore'
-import {IViewerProps} from './types'
+import {ImageViewerProps} from './types'
 
-export default (props: IViewerProps) => {
-  const [init, setInit] = React.useState(false)
+const Viewer = (props: ImageViewerProps) => {
+  const [init, setInit] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.visible && !init) {
       setInit(true)
     }
@@ -16,3 +16,5 @@ export default (props: IViewerProps) => {
   }
   return <ViewerCore {...props} />
 }
+
+export default Viewer

@@ -58,7 +58,7 @@ function findEraFromGregorianDate(date: AnyCalendarDate) {
 }
 
 function toGregorian(date: AnyCalendarDate) {
-  let eraAddend = ERA_ADDENDS[ERA_NAMES.indexOf(date.era)]
+  const eraAddend = ERA_ADDENDS[ERA_NAMES.indexOf(date.era)]
   if (!eraAddend) {
     throw new Error('Unknown era: ' + date.era)
   }
@@ -75,8 +75,8 @@ export class JapaneseCalendar extends GregorianCalendar {
   override identifier = 'japanese'
 
   override fromJulianDay(jd: number): CalendarDate {
-    let date = super.fromJulianDay(jd)
-    let era = findEraFromGregorianDate(date)
+    const date = super.fromJulianDay(jd)
+    const era = findEraFromGregorianDate(date)
 
     return new CalendarDate(
       this,
@@ -92,8 +92,8 @@ export class JapaneseCalendar extends GregorianCalendar {
   }
 
   override balanceDate(date: Mutable<AnyCalendarDate>) {
-    let gregorianDate = toGregorian(date)
-    let era = findEraFromGregorianDate(gregorianDate)
+    const gregorianDate = toGregorian(date)
+    const era = findEraFromGregorianDate(gregorianDate)
 
     if (ERA_NAMES[era] !== date.era) {
       date.era = ERA_NAMES[era] as string
@@ -105,14 +105,14 @@ export class JapaneseCalendar extends GregorianCalendar {
   }
 
   constrainDate(date: Mutable<AnyCalendarDate>) {
-    let idx = ERA_NAMES.indexOf(date.era)
-    let end = ERA_END_DATES[idx]
+    const idx = ERA_NAMES.indexOf(date.era)
+    const end = ERA_END_DATES[idx]
     if (end != null) {
-      let [endYear, endMonth, endDay] = end
+      const [endYear, endMonth, endDay] = end
 
       // Constrain the year to the maximum possible value in the era.
       // Then constrain the month and day fields within that.
-      let maxYear = endYear - (ERA_ADDENDS[idx] as number)
+      const maxYear = endYear - (ERA_ADDENDS[idx] as number)
       date.year = Math.max(1, Math.min(maxYear, date.year))
       if (date.year === maxYear) {
         date.month = Math.min(endMonth, date.month)
@@ -124,7 +124,7 @@ export class JapaneseCalendar extends GregorianCalendar {
     }
 
     if (date.year === 1 && idx >= 0) {
-      let [, startMonth, startDay] = ERA_START_DATES[idx] as [
+      const [, startMonth, startDay] = ERA_START_DATES[idx] as [
         number,
         number,
         number,
@@ -143,9 +143,9 @@ export class JapaneseCalendar extends GregorianCalendar {
 
   override getYearsInEra(date: AnyCalendarDate): number {
     // Get the number of years in the era, taking into account the date's month and day fields.
-    let era = ERA_NAMES.indexOf(date.era)
-    let cur = ERA_START_DATES[era]
-    let next = ERA_START_DATES[era + 1]
+    const era = ERA_NAMES.indexOf(date.era)
+    const cur = ERA_START_DATES[era]
+    const next = ERA_START_DATES[era + 1]
     if (next == null) {
       // 9999 gregorian is the maximum year allowed.
       return 9999 - (cur?.[0] as number) + 1
@@ -168,19 +168,19 @@ export class JapaneseCalendar extends GregorianCalendar {
   }
 
   getMinimumMonthInYear(date: AnyCalendarDate): number {
-    let start = getMinimums(date)
+    const start = getMinimums(date)
     return start ? start[1] : 1
   }
 
   getMinimumDayInMonth(date: AnyCalendarDate): number {
-    let start = getMinimums(date)
+    const start = getMinimums(date)
     return start && date.month === start[1] ? start[2] : 1
   }
 }
 
 function getMinimums(date: AnyCalendarDate) {
   if (date.year === 1) {
-    let idx = ERA_NAMES.indexOf(date.era)
+    const idx = ERA_NAMES.indexOf(date.era)
     return ERA_START_DATES[idx]
   }
   return

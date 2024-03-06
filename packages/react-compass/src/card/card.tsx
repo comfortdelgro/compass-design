@@ -1,24 +1,28 @@
 import React from 'react'
-import {useIsDarkTheme} from '../theme'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import CardAction from './card-action'
+import CardAction from './card-actions'
 import CardBody from './card-body'
 import CardImage from './card-image'
 import CardTitle from './card-title'
-import {CardVariantProps, StyledCard} from './card.styles'
+import styles from './styles/card.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
+  isDisabled?: boolean
+  isShadowless?: boolean
+  isClickable?: boolean
+  size?: 'lg' | 'full' | 'sm'
 }
 
 export type CardProps = Props &
-  CardVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
     children,
+    className,
     // StyledComponentProps
     css = {},
     // VariantProps
@@ -27,33 +31,34 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     isClickable = false,
     size = 'full',
     // HTMLDiv Props
-    ...delegated
+    ...htmlProps
   } = props
 
-  const isDarkTheme = useIsDarkTheme()
-
   const cardRef = useDOMRef<HTMLDivElement>(ref)
-
-  const variantProps = {
-    isDisabled,
-    isShadowless,
-    isClickable,
-  }
 
   const buttonProps = isClickable ? {tabIndex: 1, role: 'button'} : {}
 
   return (
-    <StyledCard
-      {...variantProps}
-      size={size}
-      css={css}
-      ref={cardRef}
-      isDarkTheme={isDarkTheme}
-      {...buttonProps}
-      {...delegated}
-    >
-      {children}
-    </StyledCard>
+    <CssInjection css={css} childrenRef={cardRef}>
+      <div
+        className={`${styles.card} ${isDisabled ? styles.disabled : ''} ${
+          isShadowless ? styles.shadowless : ''
+        } ${isClickable ? styles.clickable : ''} ${
+          size === 'full'
+            ? styles.full
+            : size === 'lg'
+            ? styles.lg
+            : size === 'sm'
+            ? styles.sm
+            : ''
+        } ${className ?? ''}`}
+        ref={cardRef}
+        {...buttonProps}
+        {...htmlProps}
+      >
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

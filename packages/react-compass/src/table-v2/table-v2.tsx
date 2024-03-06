@@ -7,7 +7,6 @@ import {
   getGroupedRowModel,
   getSortedRowModel,
   GroupingState,
-  Row,
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
@@ -15,172 +14,145 @@ import {
 import React, {useEffect, useState} from 'react'
 import Progress from '../progress'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {ExpandableRow} from './expandable/ExpandableRow'
-import LoadingComponent from './loading/loading-component'
-import TableV2Cell from './table-v2-cell'
-import TableV2Checkbox from './table-v2-checkbox'
-import TableV2CheckboxCell from './table-v2-checkbox-cell'
-import TableV2ColumnHeader from './table-v2-column-header'
-import TableV2Footer from './table-v2-footer'
-import TableV2HeaderRow from './table-v2-header-row'
-import {NoDataComponent} from './table-v2-nodata'
-import ProgressPercentage from './table-v2-progress'
-import TableV2Row from './table-v2-row'
-import TableV2RowGroup from './table-v2-row-group'
-import TableV2Toolbar from './table-v2-toolbar'
-import {StyledTableV2, StyledTableV2Wrapper} from './table-v2.styles'
 
-export interface Options<TData> {
-  enableSorting?: boolean
-  enableMultiSort?: boolean
-  manualSorting?: boolean
-  manualFiltering?: boolean
-  columnResizeMode?: 'onChange' | 'onEnd'
-  initialSortBy?: SortingState
-  enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
-}
+import ExpandableRow from '../table/expandable/expandable-row'
+import LoadingComponent from '../table/loading/loading-component'
+import styles from '../table/styles/table.module.css'
+import TableCell from '../table/table-cell'
+import TableColumnHeader from '../table/table-column-header'
+import TableFooter from '../table/table-footer'
+import TableHeaderRow from '../table/table-header-row'
+import {NoDataComponent} from '../table/table-nodata'
+import TableRow from '../table/table-row'
+import TableToolbar from '../table/table-toolbar'
+import {Props} from '../table/types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 
-export type OptionType<TData> = Options<TData>
-
-export interface Props<T> extends StyledComponentProps {
-  data: T[]
-  columns: Array<ColumnDef<T>>
-  options: OptionType<T>
-  onManualSorting?: (sortingField: SortingState) => void
-  onManualFilter?: (filter: ColumnFiltersState) => void
-  onChangeRowSelection?: (selectionRows: T[]) => void
-  children: React.ReactNode
-  onUpdateData?: (newData: object) => void
-  renderRowSubComponent?: (row: T) => React.JSX.Element
-  isLoading?: boolean
-  loadingIndicator?: React.ReactNode
-}
-
-export type ReactTableProps<T = any> = Props<T> &
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type TableProps<T = any> = Props<T> &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<T>>
 
-const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
-  (props, ref) => {
-    const [sorting, setSorting] = useState<SortingState>([])
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-    const [rowSelection, setRowSelection] = useState({})
-    const [grouping, setGrouping] = React.useState<GroupingState>([])
+const TableV2 = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
+  const [sorting, setSorting] = useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [rowSelection, setRowSelection] = useState({})
+  const [grouping, setGrouping] = React.useState<GroupingState>([])
+  const {
+    // StyledComponentProps
+    css = {},
+    data,
+    columns,
+    options,
+    onManualSorting,
+    onManualFilter,
+    onChangeRowSelection,
+    renderRowSubComponent,
+    isLoading,
+    emptyComponent,
+    loadingIndicator = <Progress.Circular variant='indeterminate' />,
+    children,
+    // HTMLDiv Props
+    ...htmlProps
+  } = props
 
-    const {
-      // StyledComponentProps
-      css = {},
-      data,
-      columns,
-      options,
-      onManualSorting,
-      onManualFilter,
-      onChangeRowSelection,
-      onUpdateData,
-      renderRowSubComponent,
-      isLoading,
-      loadingIndicator = <Progress.Circular variant='indeterminate' />,
-      children,
-      // HTMLDiv Props
-      ...delegated
-    } = props
+  const {child: toolbar, rest: childrenWithoutToolbar} = pickChild<
+    typeof TableToolbar
+  >(children, TableToolbar)
 
-    const {child: toolbar, rest: childrenWithoutToolbar} = pickChild<
-      typeof TableV2Toolbar
-    >(children, TableV2Toolbar)
+  const {child: footer} = pickChild<typeof TableFooter>(
+    childrenWithoutToolbar,
+    TableFooter,
+  )
 
-    const {child: footer} = pickChild<typeof TableV2Footer>(
-      childrenWithoutToolbar,
-      TableV2Footer,
-    )
+  const tableRef = useDOMRef<HTMLTableElement>(ref)
 
-    const tableRef = useDOMRef<HTMLTableElement>(ref)
+  const table = useReactTable({
+    data: data,
+    state: {
+      columnFilters,
+      grouping,
+      rowSelection,
+      sorting: options.initialSortBy ? options.initialSortBy : sorting,
+    },
+    columns: columns as ColumnDef<any, unknown>[],
+    isMultiSortEvent: () => true,
+    onSortingChange: setSorting,
+    onGroupingChange: setGrouping,
+    onRowSelectionChange: setRowSelection,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getGroupedRowModel: getGroupedRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    ...options,
+  })
 
-    const table = useReactTable({
-      state: {
-        columnFilters,
-        grouping,
-        rowSelection,
-        sorting: options.initialSortBy ? options.initialSortBy : sorting,
-      },
-      onColumnFiltersChange: setColumnFilters,
-      onGroupingChange: setGrouping,
-      getExpandedRowModel: getExpandedRowModel(),
-      getGroupedRowModel: getGroupedRowModel(),
-      onSortingChange: setSorting,
-      getCoreRowModel: getCoreRowModel(),
-      getSortedRowModel: getSortedRowModel(),
-      getFilteredRowModel: getFilteredRowModel(),
-      onRowSelectionChange: setRowSelection,
-      debugTable: true,
-      data: data,
-      columns: columns,
-      isMultiSortEvent: () => true,
-      //enable sorting
-      ...options,
+  useEffect(() => {
+    const selectedRowModel = table.getSelectedRowModel().rows
+    const selectedRowOriginals = selectedRowModel.map((item) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return item.original
     })
+    onChangeRowSelection?.(selectedRowOriginals)
+  }, [onChangeRowSelection, rowSelection, table])
 
-    useEffect(() => {
-      const selectedRowModel = table.getSelectedRowModel().rows
-      const selectedRowOriginals = selectedRowModel.map((item) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return item.original
-      })
-      onChangeRowSelection?.(selectedRowOriginals)
-    }, [rowSelection])
+  useEffect(() => {
+    if (options.resetSelectionWhenDataChanged) {
+      table.toggleAllRowsSelected(false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options.resetSelectionWhenDataChanged, table, JSON.stringify(data)])
 
-    useEffect(() => {
-      onManualSorting?.(sorting)
-    }, [sorting])
+  useEffect(() => {
+    onManualSorting?.(sorting)
+  }, [onManualSorting, sorting])
 
-    useEffect(() => {
-      onManualFilter?.(columnFilters)
-    }, [columnFilters])
+  useEffect(() => {
+    onManualFilter?.(columnFilters)
+  }, [columnFilters, onManualFilter])
 
-    const tableRows = table.getRowModel().rows ?? []
+  const tableRows = table.getRowModel().rows ?? []
 
-    return (
-      <StyledTableV2Wrapper css={css} {...delegated}>
+  return (
+    <CssInjection css={css} childrenRef={tableRef}>
+      <div {...htmlProps}>
         {toolbar && <>{toolbar}</>}
-        <StyledTableV2>
-          <table ref={tableRef} role='table'>
-            <TableV2RowGroup as='thead'>
+        <div className={styles.cdgTableContainer}>
+          <table ref={tableRef} role='table' className={styles.cdgTable}>
+            <thead>
               {table.getHeaderGroups().map((headerGroup) => (
-                <TableV2HeaderRow key={headerGroup.id}>
+                <TableHeaderRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
                     return (
-                      <TableV2ColumnHeader
+                      <TableColumnHeader
                         key={header.id}
                         headerProps={header}
                         tableOption={table}
                       />
                     )
                   })}
-                </TableV2HeaderRow>
+                </TableHeaderRow>
               ))}
-            </TableV2RowGroup>
+            </thead>
             {
-              <TableV2RowGroup as='tbody'>
+              <tbody>
                 {tableRows.length ? (
                   tableRows.map((row) => {
                     return (
                       <>
-                        <TableV2Row
+                        <TableRow
                           key={row.id}
                           isSelected={row.getIsSelected()}
                           isExpanded={row.getIsExpanded()}
                         >
                           {row.getVisibleCells().map((cell) => {
                             return (
-                              <TableV2Cell
-                                key={cell.id}
-                                cell={cell}
-                                row={row}
-                              />
+                              <TableCell key={cell.id} cell={cell} row={row} />
                             )
                           })}
-                        </TableV2Row>
+                        </TableRow>
                         <ExpandableRow
                           colSpan={table.getAllLeafColumns()?.length}
                           isExpanded={
@@ -201,22 +173,17 @@ const ReactTable = React.forwardRef<HTMLTableElement, ReactTableProps>(
                 ) : (
                   <NoDataComponent
                     colSpan={table.getAllLeafColumns()?.length}
+                    content={emptyComponent}
                   ></NoDataComponent>
                 )}
-              </TableV2RowGroup>
+              </tbody>
             }
           </table>
-        </StyledTableV2>
+        </div>
         {footer && <>{footer}</>}
-      </StyledTableV2Wrapper>
-    )
-  },
-)
+      </div>
+    </CssInjection>
+  )
+})
 
-export default ReactTable as typeof ReactTable & {
-  Toolbar: typeof TableV2Toolbar
-  Footer: typeof TableV2Footer
-  Checkbox: typeof TableV2Checkbox
-  CheckboxCell: typeof TableV2CheckboxCell
-  ProgressPercentage: typeof ProgressPercentage
-}
+export default TableV2

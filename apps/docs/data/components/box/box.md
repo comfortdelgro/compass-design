@@ -13,6 +13,7 @@ components: Box
 import {Box} from '@comfortdelgro/react-compass'
 ```
 
+
 ## Example
 
 ### Element mapping

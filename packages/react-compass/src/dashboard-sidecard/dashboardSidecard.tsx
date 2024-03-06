@@ -1,20 +1,16 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DashboardSidecardContent from './dashboardSidecardContent'
 import DashboardSidecardHeader from './dashboardSidecardHeader'
+import styles from './styles/dashboardSidecard.module.css'
 
-import {
-  DashboardSidecardVariantProps,
-  StyledDashboardSidecardContainer,
-} from './dashboardSidecard.styles'
-
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type DashboardSidecardProps = Props &
-  DashboardSidecardVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const DashboardSidecard = React.forwardRef<
@@ -27,19 +23,21 @@ const DashboardSidecard = React.forwardRef<
     css = {},
     // VariantProps
     // HTMLDiv Props
-    ...delegated
+    ...htmlProps
   } = props
 
   const dashboardSidecardRef = useDOMRef<HTMLDivElement>(ref)
 
   return (
-    <StyledDashboardSidecardContainer
-      css={css}
-      ref={dashboardSidecardRef}
-      {...delegated}
-    >
-      {children}
-    </StyledDashboardSidecardContainer>
+    <CssInjection css={css}>
+      <div
+        className={`${styles.container} cdg-dashboard-sidecard`}
+        ref={dashboardSidecardRef}
+        {...htmlProps}
+      >
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

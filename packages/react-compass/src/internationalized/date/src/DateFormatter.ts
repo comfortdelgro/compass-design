@@ -8,7 +8,8 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-let formatterCache = new Map<string, Intl.DateTimeFormat>()
+const formatterCache = new Map<string, Intl.DateTimeFormat>()
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 interface ResolvedDateTimeFormatOptions
   extends Intl.ResolvedDateTimeFormatOptions {
@@ -42,8 +43,10 @@ export class DateFormatter implements Intl.DateTimeFormat {
 
   /** Formats a date range as a string. */
   formatRange(start: Date, end: Date): string {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (typeof this.formatter.formatRange === 'function') {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       return this.formatter.formatRange(start, end)
     }
@@ -58,8 +61,10 @@ export class DateFormatter implements Intl.DateTimeFormat {
 
   /** Formats a date range as an array of parts. */
   formatRangeToParts(start: Date, end: Date): DateRangeFormatPart[] {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (typeof this.formatter.formatRangeToParts === 'function') {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       return this.formatter.formatRangeToParts(start, end)
     }
@@ -68,8 +73,8 @@ export class DateFormatter implements Intl.DateTimeFormat {
       throw new RangeError('End date must be >= start date')
     }
 
-    let startParts = this.formatter.formatToParts(start)
-    let endParts = this.formatter.formatToParts(end)
+    const startParts = this.formatter.formatToParts(start)
+    const endParts = this.formatter.formatToParts(end)
     return [
       ...startParts.map(
         (p) => ({...p, source: 'startRange'} as DateRangeFormatPart),
@@ -82,9 +87,10 @@ export class DateFormatter implements Intl.DateTimeFormat {
   }
 
   /** Returns the resolved formatting options based on the values passed to the constructor. */
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
   resolvedOptions(): ResolvedDateTimeFormatOptions {
-    let resolvedOptions =
+    const resolvedOptions =
       this.formatter.resolvedOptions() as ResolvedDateTimeFormatOptions
     if (hasBuggyResolvedHourCycle()) {
       if (!this.resolvedHourCycle) {
@@ -137,14 +143,15 @@ function getCachedDateFormatter(
   // Only apply the workaround if the issue is detected, because the hourCycle option is buggy in Safari.
   if (typeof options.hour12 === 'boolean' && hasBuggyHour12Behavior()) {
     options = {...options}
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    let pref = hour12Preferences[String(options.hour12)][locale.split('-')[0]]
-    let defaultHourCycle = options.hour12 ? 'h12' : 'h23'
+    const pref = hour12Preferences[String(options.hour12)][locale.split('-')[0]]
+    const defaultHourCycle = options.hour12 ? 'h12' : 'h23'
     options.hourCycle = pref ?? defaultHourCycle
     delete options.hour12
   }
 
-  let cacheKey =
+  const cacheKey =
     locale +
     (options
       ? Object.entries(options)
@@ -155,7 +162,7 @@ function getCachedDateFormatter(
     return formatterCache.get(cacheKey) as Intl.DateTimeFormat
   }
 
-  let numberFormatter = new Intl.DateTimeFormat(locale, options)
+  const numberFormatter = new Intl.DateTimeFormat(locale, options)
   formatterCache.set(cacheKey, numberFormatter)
   return numberFormatter
 }
@@ -200,18 +207,18 @@ function getResolvedHourCycle(
   // Format the minimum possible hour and maximum possible hour in a day and parse the results.
   locale = locale.replace(/(-u-)?-nu-[a-zA-Z0-9]+/, '')
   locale += (locale.includes('-u-') ? '' : '-u') + '-nu-latn'
-  let formatter = getCachedDateFormatter(locale, {
+  const formatter = getCachedDateFormatter(locale, {
     ...options,
     timeZone: undefined, // use local timezone
   })
 
-  let min = parseInt(
+  const min = parseInt(
     formatter
       .formatToParts(new Date(2020, 2, 3, 0))
       .find((p) => p.type === 'hour')?.value as string,
     10,
   )
-  let max = parseInt(
+  const max = parseInt(
     formatter
       .formatToParts(new Date(2020, 2, 3, 23))
       .find((p) => p.type === 'hour')?.value as string,

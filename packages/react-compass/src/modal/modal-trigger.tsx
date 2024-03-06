@@ -1,17 +1,18 @@
 import React from 'react'
 import Portal from '../portal'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Modal from './modal'
-import {StyledModalWrapper} from './modal.styles'
+import styles from './styles/modal.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   isOpen?: boolean
   handleClose?: () => void
   size?: 'sm' | 'md' | 'lg'
   id?: string
+  css?: unknown
 }
 
 export type ModalTriggerProps = Props &
@@ -30,8 +31,9 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
       id,
       // VariantProps
       size = 'md',
+      className,
       // HTMLDiv Props
-      ...delegated
+      ...htmlProps
     } = props
 
     const modalRef = useDOMRef<HTMLDivElement>(ref)
@@ -44,24 +46,29 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
       handleClose?.()
     }
 
+    const classNames = [className, 'cdg-modal-wrapper', styles.wrapper]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <Portal open={isOpen}>
-        <StyledModalWrapper
-          css={css}
-          ref={modalWrapperRef}
-          onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
-          className='modal-wrapper'
-          {...delegated}
-        >
-          {ModalElement &&
-            React.cloneElement(ModalElement as unknown as JSX.Element, {
-              onClose: () => handleClose?.(),
-              ref: modalRef,
-              size: size,
-              handleClose: () => handleClose?.(),
-              triggerId: id,
-            })}
-        </StyledModalWrapper>
+        <CssInjection css={css}>
+          <div
+            ref={modalWrapperRef}
+            onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
+            className={classNames}
+            {...htmlProps}
+          >
+            {ModalElement &&
+              React.cloneElement(ModalElement as unknown as JSX.Element, {
+                onClose: () => handleClose?.(),
+                ref: modalRef,
+                size: size,
+                handleClose: () => handleClose?.(),
+                triggerId: id,
+              })}
+          </div>
+        </CssInjection>
       </Portal>
     )
   },

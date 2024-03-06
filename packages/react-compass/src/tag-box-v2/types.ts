@@ -1,5 +1,4 @@
 import {IconDefinition} from '@fortawesome/free-solid-svg-icons'
-import {CSS} from '@stitches/react'
 
 export interface Tag {
   id: string | number
@@ -23,6 +22,8 @@ export interface TagBoxV2Props {
    * @description Default to false. If true, then it will allow editing tag in place
    */
   isEditable?: boolean
+
+  isErrored?: boolean
   tags?: Tag[]
   /**
    * @description Default to undefined. Placeholder text for add new tag input.
@@ -43,7 +44,7 @@ export interface TagBoxV2Props {
   customValidationHandler?: (tagValue: string) => boolean
 
   // css
-  css?: CSS
+  css?: unknown
 }
 
 export interface CustomTagBoxRef {

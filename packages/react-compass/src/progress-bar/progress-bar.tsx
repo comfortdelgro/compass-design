@@ -1,14 +1,8 @@
 import clampValue from 'lodash/clamp'
 import React, {useEffect, useMemo} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {
-  ProgressBarWrapperVariantProps,
-  StyledCurrentProgress,
-  StyledLoadingProgress,
-  StyledProgressBar,
-  StyledProgressBarWrapper,
-} from './progress-bar.styles'
+import styles from './styles/progress-bar.module.css'
 
 type Props = {
   rightLabel?: string
@@ -35,8 +29,9 @@ type Props = {
   maxValue?: number
   onComplete?: () => void
   loading?: 'stripes' | boolean
-} & StyledComponentProps &
-  ProgressBarWrapperVariantProps
+  css?: unknown
+  className?: string
+}
 
 export type ProgressBarProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
@@ -46,12 +41,13 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     const {
       // StyledComponentProps
       css = {},
+      className = '',
       // ComponentProps
       loading = false,
       label,
       rightLabel,
       size = 'lg',
-      barColor = '$gray30',
+      barColor = '#EDEBE9',
       color: inputColor = 'blue',
       variant = 'normal',
       value: inputValue = 0,
@@ -59,17 +55,17 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       maxValue: inputMaxValue = 100,
       onComplete,
       // html props
-      ...delegated
+      ...htmlProps
     } = props
 
     const color = useMemo(() => {
       // support the old color variants
       if (inputColor === 'blue') {
-        return '$info'
+        return '#009EDA'
       }
 
       if (inputColor === 'green') {
-        return '$success'
+        return '#107C10'
       }
 
       return inputColor
@@ -80,6 +76,8 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     const value = clampValue(inputValue, minValue, maxValue)
 
     const linkRef = useDOMRef<HTMLDivElement>(ref)
+    const loadingProgressRef = useDOMRef<HTMLDivElement>(ref)
+    const currentProgressRef = useDOMRef<HTMLDivElement>(ref)
     const labelProps = {
       role: 'progressbar',
       'aria-label': label ?? '',
@@ -104,51 +102,84 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     }, [progressPercentage, onComplete])
 
     return (
-      <StyledProgressBarWrapper
-        className='progress-bar-wrapper'
-        css={css}
-        ref={linkRef}
-        size={size}
-        {...{variant}}
-        {...labelProps}
-        {...delegated}
-      >
-        {(!!label || !!rightLabel) && (
-          <div className='progress-bar-label'>
-            <span {...labelProps}>{label ?? ''}</span>
-            {rightLabel && <span {...labelProps}>{rightLabel ?? ''}</span>}
-          </div>
-        )}
-
-        <StyledProgressBar
-          className='progress-bar'
-          css={{backgroundColor: barColor}}
+      <CssInjection css={css} childrenRef={linkRef}>
+        <div
+          className={`cdg-progress-bar-wrapper ${styles.progressBarWrapper} ${className}`}
+          ref={linkRef}
+          {...labelProps}
+          {...htmlProps}
         >
-          {!loading && (
-            <StyledCurrentProgress
-              className='progress-bar__current-state'
-              css={{width: `${progressPercentage}%`, backgroundColor: color}}
-            />
+          {(!!label || !!rightLabel) && (
+            <div
+              className={`cdg-progress-bar-label ${styles.progressBarLabel}`}
+            >
+              <span {...labelProps} className={styles.progressBarLabelSpan}>
+                {label}
+              </span>
+              {rightLabel && (
+                <span {...labelProps} className={styles.progressBarLabelSpan}>
+                  {rightLabel}
+                </span>
+              )}
+            </div>
           )}
 
-          <StyledLoadingProgress
-            className='progress-bar__loading'
-            css={{
-              ...(loading === 'stripes'
-                ? {
-                    backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 1.5%,${color} 1.5% 3%)`,
-                    '@sm': {
-                      backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 .8%,${color} .8% 1.6%)`,
-                    },
-                  }
-                : {
-                    backgroundColor: color,
-                  }),
-            }}
-            {...{loading}}
-          />
-        </StyledProgressBar>
-      </StyledProgressBarWrapper>
+          <div
+            className={`cdg-progress-bar ${styles.progressBar} ${
+              styles[
+                `variant${variant.charAt(0).toUpperCase() + variant.slice(1)}`
+              ]
+            } ${styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`]}`}
+            style={{backgroundColor: barColor}}
+          >
+            {!loading && (
+              <CssInjection
+                css={{
+                  width: `${progressPercentage}%`,
+                  backgroundColor: color,
+                }}
+                childrenRef={currentProgressRef}
+              >
+                <div
+                  className={`progress-bar__current-state ${styles.currentProgress}`}
+                  ref={currentProgressRef}
+                />
+              </CssInjection>
+            )}
+
+            {loading && (
+              <CssInjection
+                css={{
+                  ...(loading === 'stripes'
+                    ? {
+                        backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 1.5%,${color} 1.5% 3%)`,
+                        '@media (max-width: 600px)': {
+                          backgroundImage: `repeating-linear-gradient(-45deg,transparent 0 .8%,${color} .8% 1.6%)`,
+                        },
+                      }
+                    : {
+                        backgroundColor: color,
+                      }),
+                }}
+                childrenRef={currentProgressRef}
+              >
+                <div
+                  className={`progress-bar__loading ${styles.loadingProgress} ${
+                    styles[
+                      `loading${
+                        loading.toString().charAt(0).toUpperCase() +
+                        loading.toString().slice(1)
+                      }`
+                    ]
+                  }`}
+                  {...{loading}}
+                  ref={loadingProgressRef}
+                />
+              </CssInjection>
+            )}
+          </div>
+        </div>
+      </CssInjection>
     )
   },
 )

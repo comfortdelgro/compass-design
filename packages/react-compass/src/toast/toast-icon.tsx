@@ -1,10 +1,11 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledToastIcon} from './toast.styles'
+import styles from './styles/toast.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type ToastIconProps = Props &
@@ -12,12 +13,18 @@ export type ToastIconProps = Props &
 
 const ToastIcon = React.forwardRef<HTMLDivElement, ToastIconProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className = '', ...delegated} = props
     const toastIconRef = useDOMRef<HTMLDivElement>(ref)
     return (
-      <StyledToastIcon css={css} ref={toastIconRef} {...delegated}>
-        {children}
-      </StyledToastIcon>
+      <CssInjection css={css} childrenRef={toastIconRef}>
+        <div
+          ref={toastIconRef}
+          className={`${className} ${styles.toastIcon}`}
+          {...delegated}
+        >
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

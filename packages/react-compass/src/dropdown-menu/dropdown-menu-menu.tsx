@@ -1,10 +1,12 @@
+'use client'
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDropdownMenuMenu} from './dropdown-menu.styles'
+import styles from './styles/dropdown-menu.module.css'
 
-interface MenuProps extends StyledComponentProps {
+interface MenuProps {
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type DropdownMenuMenuProps = MenuProps &
@@ -21,14 +23,17 @@ const DropdownMenuMenu = React.forwardRef<
   const DropdownMenuMenuRef = useDOMRef<HTMLUListElement>(ref)
 
   return (
-    <StyledDropdownMenuMenu
-      css={css}
-      ref={DropdownMenuMenuRef}
-      className={`${className ?? ''} ${MULTILEVEL_MENU_CLASS_NAME}`}
-      {...delegated}
-    >
-      {children}
-    </StyledDropdownMenuMenu>
+    <CssInjection css={css} childrenRef={DropdownMenuMenuRef}>
+      <ul
+        ref={DropdownMenuMenuRef}
+        className={`${className ?? ''} ${MULTILEVEL_MENU_CLASS_NAME} ${
+          styles.dropdownMenuBoxshadow
+        }`}
+        {...delegated}
+      >
+        {children}
+      </ul>
+    </CssInjection>
   )
 })
 

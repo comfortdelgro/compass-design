@@ -1,6 +1,6 @@
 import {SearchField} from '@comfortdelgro/react-compass'
 import {useRouter} from 'next/navigation'
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 
 interface Props {
   component: React.ReactNode
@@ -13,9 +13,9 @@ const IconBox: React.FC<Props> = () => {
   const [debouncedValue, setDebouncedValue] = useState('')
   useEffect(() => {
     const delayInputTimeoutId = setTimeout(() => {
-      setDebouncedValue(searchValue)
-    }, 500)
-    return () => clearTimeout(delayInputTimeoutId)
+      setDebouncedValue(searchValue);
+    }, 500);
+    return () => clearTimeout(delayInputTimeoutId);
   }, [searchValue])
 
   useEffect(() => {

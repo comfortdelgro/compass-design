@@ -1,34 +1,25 @@
 import {faPowerOff} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import React, {useState} from 'react'
-import Button from '../button'
-import Modal from '../modal'
-import {styled} from '../theme'
+import {Meta} from '@storybook/react'
+import {useState} from 'react'
 import Typography from '../typography'
 import SlideAction from './slide-action'
+import classes from './styles/stories.module.css'
 
 export function Default() {
   const [slideStatus, setSlideStatus] = useState(false)
-  const [openConfirmModal, setOpenConfirmModal] = useState(false)
 
   return (
-    <div>
-      <Typography.Header variant='header3' css={{marginBottom: '$4'}}>
-        Slide Action | Swiper component
-      </Typography.Header>
-
-      <Typography.Body
-        variant='body2'
-        css={{color: '$grayShades60', marginBottom: '$4'}}
-      >
+    <div className={classes.sliderActionStories}>
+      <Typography.Body variant='body2' className={classes.description}>
         Component will be reset after 1000ms
       </Typography.Body>
-      <Typography.Body variant='body3' css={{marginBottom: '$4'}}>
+      <Typography.Body variant='body3'>
         Slide status: <strong>{`${slideStatus}`}</strong>
       </Typography.Body>
 
       <SlideAction
-        color='$cdgBlue'
+        color='--cdg-color-cdgBlue'
         onChange={(isSuccess) => setSlideStatus(isSuccess)}
         onSwipeEnd={(reset) => {
           console.log('success')
@@ -43,56 +34,6 @@ export function Default() {
         fugit reprehenderit minus beatae hic dolor rerum, labore architecto
         facere nam numquam?
       </SlideAction>
-
-      <Typography.Header variant='header3' css={{marginBlock: '$8 $4'}}>
-        Close a modal
-      </Typography.Header>
-      <Button
-        type='button'
-        variant='secondary'
-        onClick={() => setOpenConfirmModal(true)}
-      >
-        Open confirm modal
-      </Button>
-
-      <Modal.Trigger
-        isOpen={openConfirmModal}
-        handleClose={() => setOpenConfirmModal(false)}
-      >
-        <Modal
-          css={{
-            display: 'flex',
-            flexDirection: 'column',
-            maxWidth: '$88',
-            '&>div': {
-              width: '100%',
-            },
-          }}
-        >
-          <Modal.Description>
-            Our Driver is on the way. Any promo code that has been applied maybe
-            forfeited. Do you want to proceed?
-            <SlideAction
-              css={{marginBlock: '$4', maxWidth: 'unset', width: '100%'}}
-              onSwipeEnd={() => setOpenConfirmModal(false)}
-            >
-              Slide to cancel
-            </SlideAction>
-            <Button
-              variant='ghost'
-              onClick={() => setOpenConfirmModal(false)}
-              type='button'
-              css={{
-                display: 'block',
-                color: '$cdgBlue',
-                marginInline: 'auto',
-              }}
-            >
-              Close
-            </Button>
-          </Modal.Description>
-        </Modal>
-      </Modal.Trigger>
     </div>
   )
 }
@@ -102,30 +43,28 @@ const slideBgColors = [
   '#475569',
   '#ea580c',
   '#059669',
-  '$cdgBlue',
+  '--cdg-color-cdgBlue',
   '#0891b2',
   '#7c3aed',
   '#e11d48',
 ]
 
 export function Customize() {
-  const [colorBg, setColorBg] = useState(slideBgColors[0] || '$cdgBlue')
+  const [colorBg, setColorBg] = useState(
+    slideBgColors[0] || '--cdg-color-cdgBlue',
+  )
   const [turnedOff, setTurnedOff] = useState(false)
 
   return (
-    <>
-      <Typography.Header variant='header3' css={{marginBottom: '$4'}}>
-        Default
-      </Typography.Header>
-      <pre>color: $dangerShades</pre>
-      <SlideAction css={{marginTop: '$4'}}>
+    <div className={classes.sliderActionStories}>
+      <Typography.Header variant='header3'>Default</Typography.Header>
+      <pre>color: var(--cdg-color-dangerShades) // #E31617</pre>
+      <SlideAction css={{marginTop: 'var(--cdg-spacing-4)'}}>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque enim
         sint labore nesciunt
       </SlideAction>
 
-      <Typography.Header variant='header3' css={{marginBlock: '$8 $4'}}>
-        Compact
-      </Typography.Header>
+      <Typography.Header variant='header3'>Compact</Typography.Header>
       <SlideAction compact>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque enim
         sint labore nesciunt, excepturi et voluptates laudantium exercitationem
@@ -133,24 +72,24 @@ export function Customize() {
         inventore dolores hic.
       </SlideAction>
 
-      <Typography.Header variant='header3' css={{marginBlock: '$8 $4'}}>
-        More colors 🎨
-      </Typography.Header>
+      <Typography.Header variant='header3'>More colors 🎨</Typography.Header>
 
-      <StyledColorPickerWrapper>
+      <div className={classes.colorPickerWrapper}>
         {slideBgColors.map((color) => (
-          <StyledColorPicker
+          <button
             key={color}
+            className={classes.colorPicker}
             title={color}
-            css={{backgroundColor: color}}
+            style={{backgroundColor: color}}
             type='button'
             onClick={() => setColorBg(color)}
           />
         ))}
 
-        <StyledColorPicker
+        <button
+          className={classes.colorPicker}
           type='button'
-          css={{
+          style={{
             background:
               'linear-gradient(to right top, #fff6f2, #ffd4c1, #ffb194, #f98d6b, #f16645, #dc5135, #c63a26, #b12118, #8d2318, #6a2117, #481d15, #281713)',
           }}
@@ -159,17 +98,20 @@ export function Customize() {
           }
         >
           Random
-        </StyledColorPicker>
-      </StyledColorPickerWrapper>
-      <SlideAction css={{marginTop: '$4'}} color={colorBg}>
-        Slide background
-      </SlideAction>
+        </button>
+      </div>
 
-      <SlideAction css={{marginTop: '$4'}} color={colorBg} slideType='static'>
+      <SlideAction color={colorBg}>Slide background</SlideAction>
+
+      <SlideAction
+        css={{marginTop: 'var(--cdg-spacing-4)'}}
+        color={colorBg}
+        slideType='static'
+      >
         Fadein background
       </SlideAction>
 
-      <Typography.Header variant='header4' css={{marginBlock: '$8 $4'}}>
+      <Typography.Header variant='header5'>
         Label slide effect
       </Typography.Header>
 
@@ -180,98 +122,49 @@ export function Customize() {
         deleniti!
       </SlideAction>
 
-      <Typography.Header variant='header4' css={{marginBlock: '$8 $4'}}>
+      <Typography.Header variant='header5'>
         Default gradient background
       </Typography.Header>
       <SlideAction
-        css={{marginTop: '$4'}}
+        css={{marginTop: 'var(--cdg-spacing-4)'}}
         color='#e11d48'
         slideColor='gradient'
       >
         Slide to see bg color change
       </SlideAction>
 
-      <Typography.Header variant='header4' css={{marginTop: '$8'}}>
-        With custom icon
-      </Typography.Header>
-      <StyledIphoneCheap
-        css={{
-          ...(turnedOff
-            ? {background: '#000', '&>*': {display: 'none'}}
-            : undefined),
-        }}
-      >
-        <SlideAction
-          css={{
-            border: 'none',
-            backgroundColor: 'rgba(61, 127, 118, 0.5)',
-          }}
-          color='#fff'
-          icon={<FontAwesomeIcon icon={faPowerOff} color='red' size='lg' />}
-          labelType='slide'
-          onSwipeEnd={() => setTurnedOff(true)}
+      <Typography.Header variant='header5'>With custom icon</Typography.Header>
+      <div className={classes.iphoneFake}>
+        <div
+          className={[classes.showCase, turnedOff && classes.turnedOff]
+            .filter(Boolean)
+            .join(' ')}
         >
-          Slide to power off
-        </SlideAction>
-      </StyledIphoneCheap>
-    </>
+          <SlideAction
+            css={{
+              border: 'none',
+              backgroundColor: 'rgba(61, 127, 118, 0.5)',
+            }}
+            color='#fff'
+            icon={<FontAwesomeIcon icon={faPowerOff} color='red' size='lg' />}
+            labelType='slide'
+            onSwipeEnd={() => setTurnedOff(true)}
+          >
+            Slide to power off
+          </SlideAction>
+        </div>
+      </div>
+    </div>
   )
 }
 
-const StyledColorPickerWrapper = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-  flexWrap: 'wrap',
-  gap: '$2',
-})
-
-const StyledColorPicker = styled('button', {
-  height: '$10',
-  width: '$20',
-  fontWeight: '$semibold',
-  color: '$whiteText',
-  fontSize: '$label2',
-
-  border: 'none',
-  borderRadius: '$md',
-  opacity: 0.8,
-  transition: 'opacity .2s ease',
-  cursor: 'pointer',
-
-  '&:hover': {
-    opacity: 1,
+const meta: Meta<typeof Default> = {
+  title: 'Example/Slide Action | Swiper',
+  tags: ['autodocs'],
+  component: Default,
+  parameters: {
+    layout: 'fullscreen',
   },
-})
+}
 
-const StyledIphoneCheap = styled('div', {
-  position: 'relative',
-  marginBlock: '$8',
-  height: '780px',
-  width: '360px',
-  padding: '$4 $12',
-  paddingTop: '$20',
-
-  backgroundColor: 'rgb(34,193,195)',
-  background:
-    'linear-gradient(321deg, rgba(34,193,195,0.8) 0%, rgba(253,187,45,0.8) 100%)',
-
-  fontWeight: '$semibold',
-  textAlign: 'center',
-
-  outline: '10px solid #000',
-  borderRadius: '36px',
-
-  '&::before': {
-    content: '',
-    position: 'absolute',
-    top: '$2',
-    insetInline: 0,
-    marginInline: 'auto',
-
-    height: '$6',
-    width: '$20',
-
-    borderRadius: '9999px',
-    backgroundColor: '#000',
-  },
-})
+export default meta

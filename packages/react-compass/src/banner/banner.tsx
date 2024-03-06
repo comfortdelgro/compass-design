@@ -1,19 +1,20 @@
+'use client'
+
 import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import BannerDescription from './banner-description'
 import BannerImage from './banner-image'
 import BannerTitle from './banner-title'
-import {
-  BannerVariantProps,
-  StyledBanner,
-  StyledContentContainer,
-} from './banner.styles'
+import styles from './styles/banner.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   size?: 'sm' | 'md' | 'lg' | 'full'
+  css?: unknown
+  className?: string
 }
 
 export type BannerProps = Props &
@@ -25,10 +26,11 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
     children,
     // styled component props
     css = {},
+    className = '',
     // VariantProps
     size = 'md',
     // HTMLDiv Props
-    ...delegated
+    ...htmlProps
   } = props
 
   const bannerRef = useDOMRef<HTMLDivElement>(ref)
@@ -47,18 +49,24 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
     BannerDescription,
   )
 
-  const variantProps = {size} as BannerVariantProps
-
   return (
-    <>
-      <StyledBanner css={css} ref={bannerRef} {...variantProps} {...delegated}>
+    <CssInjection css={css} childrenRef={bannerRef}>
+      <div
+        className={`cdg-banner ${className} ${styles.banner} ${
+          styles[`bannerSize${capitalizeFirstLetter(size)}`]
+        }`}
+        ref={bannerRef}
+        {...htmlProps}
+      >
         {BannerImageElement}
-        <StyledContentContainer>
+        <div
+          className={`cdg-banner-content-container ${styles.contentContainer}`}
+        >
           {BannerTitleElement}
           {BannerDescriptionElement}
-        </StyledContentContainer>
-      </StyledBanner>
-    </>
+        </div>
+      </div>
+    </CssInjection>
   )
 })
 

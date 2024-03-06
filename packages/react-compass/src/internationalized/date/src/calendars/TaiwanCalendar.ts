@@ -26,7 +26,7 @@ function gregorianYear(date: AnyCalendarDate) {
 }
 
 function gregorianToTaiwan(year: number): [string, number] {
-  let y = year - TAIWAN_ERA_START
+  const y = year - TAIWAN_ERA_START
   if (y > 0) {
     return ['minguo', y]
   } else {
@@ -43,9 +43,9 @@ export class TaiwanCalendar extends GregorianCalendar {
   override identifier = 'roc' // Republic of China
 
   override fromJulianDay(jd: number): CalendarDate {
-    let date = super.fromJulianDay(jd)
-    let extendedYear = getExtendedYear(date.era, date.year)
-    let [era, year] = gregorianToTaiwan(extendedYear)
+    const date = super.fromJulianDay(jd)
+    const extendedYear = getExtendedYear(date.era, date.year)
+    const [era, year] = gregorianToTaiwan(extendedYear)
     return new CalendarDate(this, era, year, date.month, date.day)
   }
 
@@ -58,7 +58,7 @@ export class TaiwanCalendar extends GregorianCalendar {
   }
 
   override balanceDate(date: Mutable<AnyCalendarDate>) {
-    let [era, year] = gregorianToTaiwan(gregorianYear(date))
+    const [era, year] = gregorianToTaiwan(gregorianYear(date))
     date.era = era
     date.year = year
   }
@@ -77,6 +77,6 @@ export class TaiwanCalendar extends GregorianCalendar {
 }
 
 function toGregorian(date: AnyCalendarDate) {
-  let [era, year] = fromExtendedYear(gregorianYear(date))
+  const [era, year] = fromExtendedYear(gregorianYear(date))
   return new CalendarDate(era, year, date.month, date.day)
 }

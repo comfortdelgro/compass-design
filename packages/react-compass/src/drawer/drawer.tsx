@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
-import React, {
+import {
   forwardRef,
   MouseEvent,
   ReactEventHandler,
@@ -8,14 +9,15 @@ import React, {
   useEffect,
   useImperativeHandle,
   useMemo,
-  useRef,
   useState,
 } from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
 import DrawerExpander, {DrawerExpanderProps} from './drawer-expander'
 import DrawerFooter from './drawer-footer'
 import DrawerHeader from './drawer-header'
 import {drawerPickChild} from './drawer-pick-child'
-import {StyledDrawer, StyledDrawerBody} from './drawer.styles'
+import styles from './styles/drawer.module.css'
 import {DrawerProps, DrawerRef} from './types'
 
 const DEFAULT_EXPANDED_POINT = 100
@@ -51,12 +53,12 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     disableDragClose = false,
 
     // the rest
-    ...delegated
+    ...htmlDialogAttributes
   } = props
 
   const position: DrawerProps['position'] =
     variant === 'h5' ? 'bottom' : drawerPosition
-  const DrawerRef = useRef<DrawerRef>(null)
+  const DrawerRef = useDOMRef<DrawerRef>(ref)
   const DrawerElement = DrawerRef.current
 
   const [drawerInitHeight, setDrawerInitHeight] = useState(0)
@@ -272,7 +274,6 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
       if (preventFocus) {
         DrawerElement.setAttribute('inert', '')
       }
-
       drawerMode === 'modal' ? DrawerElement.showModal() : DrawerElement.show()
       DrawerElement.removeAttribute('inert')
       return
@@ -292,48 +293,55 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     setDrawerInitHeight(DrawerElement?.offsetHeight ?? 0)
   }, [DrawerElement])
 
+  const rootClasses = [
+    styles.drawer,
+    styles[drawerMode],
+    styles[variant],
+    styles[position],
+    isExpanded && `${styles.drawerExpanded} cdg-drawer-expanded`,
+    className,
+    'cdg-drawer',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledDrawer
-      ref={DrawerRef}
-      className={`${className} ${isExpanded ? 'drawer-expanded' : ''}`}
-      css={css}
-      {...{drawerMode}}
-      {...{variant}}
-      {...{position}}
-      {...delegated}
-      style={{
-        ...style,
-        height:
-          variant === 'h5' && drawerHeight
-            ? `${drawerHeight}px`
-            : style?.height,
-      }}
-      onMouseDown={handleMouseDown}
-      onClose={onClose}
-      onCancel={handleCancelDrawer}
-    >
-      {variant === 'h5' && !disableResize && (
-        <DrawerExpander
-          drawerOpen={open}
-          className='drawer-expander'
-          css={expanderCSS}
-          onDragStart={handleExpanderDragStart}
-          onDragPositionYChange={handleExpanderDrag}
-          onDragEnd={handleExpanderDragEnd}
-        />
-      )}
-      {DrawerHeaderElement}
+    <CssInjection css={css} childrenRef={DrawerRef}>
+      <dialog
+        ref={DrawerRef}
+        className={rootClasses}
+        {...htmlDialogAttributes}
+        style={{
+          ...style,
+          height:
+            variant === 'h5' && drawerHeight
+              ? `${drawerHeight}px`
+              : style?.height,
+        }}
+        onMouseDown={handleMouseDown}
+        onClose={onClose}
+        onCancel={handleCancelDrawer}
+      >
+        {variant === 'h5' && !disableResize && (
+          <DrawerExpander
+            drawerOpen={open}
+            css={expanderCSS}
+            onDragStart={handleExpanderDragStart}
+            onDragPositionYChange={handleExpanderDrag}
+            onDragEnd={handleExpanderDragEnd}
+          />
+        )}
 
-      <StyledDrawerBody className='drawer-content'>
-        {OtherElements}
-      </StyledDrawerBody>
+        {DrawerHeaderElement}
 
-      {DrawerFooterElement}
-    </StyledDrawer>
+        <article className={`${styles.drawerContent} cdg-drawer-content`}>
+          {OtherElements}
+        </article>
+
+        {DrawerFooterElement}
+      </dialog>
+    </CssInjection>
   )
 })
 
-export default Drawer as typeof Drawer & {
-  Header: typeof DrawerHeader
-  Footer: typeof DrawerFooter
-}
+export default Drawer

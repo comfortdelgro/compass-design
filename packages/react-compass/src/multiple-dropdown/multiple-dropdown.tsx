@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect} from 'react'
+import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import Chip from '../chip'
 import Popover from '../popover'
-import {CSS, StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownItemKey,
@@ -16,15 +16,7 @@ import MultipleDropdownHeader from './multiple-dropdown.header'
 import MultipleDropdownSection, {
   DropdownSectionProps,
 } from './multiple-dropdown.section'
-import {
-  DropdownVariantProps,
-  StyledDropdown,
-  StyledDropdownWrapper,
-  StyledHelperText,
-  StyledIcon,
-  StyledPopover,
-  StyledSelectedItemWrapper,
-} from './multiple-dropdown.styles'
+import styles from './styles/multiple-dropdown.module.css'
 import {
   getFirstItem,
   getItemAbove,
@@ -34,7 +26,7 @@ import {
   textContent,
 } from './utils'
 
-interface Props extends StyledComponentProps {
+interface Props {
   erroredKeys?: Array<string | number>
   selectedKeys?: Array<string | number>
   defaultSelectedKeys?: Array<string | number>
@@ -65,7 +57,8 @@ interface Props extends StyledComponentProps {
   description?: React.ReactNode
   noDataMessage?: string
   isLoadingMore?: boolean
-  popoverCSS?: CSS
+  popoverCSS?: React.CSSProperties
+  css?: unknown
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -75,16 +68,20 @@ interface Props extends StyledComponentProps {
 }
 
 export type MultipleDropdownProps = Props &
-  DropdownVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 export const Icon = () => (
-  <StyledIcon width='16' height='16' viewBox='0 0 16 16'>
+  <svg
+    width='16'
+    height='16'
+    viewBox='0 0 16 16'
+    className={`${styles.dropdownButtonIcon} cdg-dropdown-button-icon`}
+  >
     <path
       d='M8.33276 12.3334C8.02004 12.3334 7.70717 12.2125 7.46885 11.9707L1.35805 5.78022C0.880649 5.29658 0.880649 4.5131 1.35805 4.02947C1.83546 3.54584 2.60886 3.54584 3.08626 4.02947L8.33276 9.34651L13.5804 4.03044C14.0578 3.54681 14.8312 3.54681 15.3086 4.03044C15.786 4.51407 15.786 5.29755 15.3086 5.78118L9.19782 11.9717C8.95912 12.2135 8.64594 12.3334 8.33276 12.3334Z'
       fill='currentColor'
     />
-  </StyledIcon>
+  </svg>
 )
 
 const MultipleDropdown = React.forwardRef<
@@ -122,6 +119,7 @@ const MultipleDropdown = React.forwardRef<
     erroredValues,
     noDataMessage = '',
     isLoadingMore = false,
+    className = '',
     onLoadMore = () => {
       //Load more
     },
@@ -160,16 +158,18 @@ const MultipleDropdown = React.forwardRef<
   const [dropdownItemKeys, setDropdownItemKeys] = React.useState<
     DropdownItemKey[]
   >([])
-
   const [clonedChildren, setClonedChildren] =
     React.useState<React.ReactNode>(null)
-
-  const openStateInitialChangedRef = React.useRef(false)
+  const [triggerElementWidth, setTriggerElementWidth] = useState<
+    string | number
+  >('100%')
 
   // ====================================== REF ======================================
   const refDOM = useDOMRef<HTMLDivElement>(ref)
   const wrapperRef = useDOMRef<HTMLDivElement>(null)
   const inputRef = useDOMRef<HTMLInputElement>(null)
+
+  const openStateInitialChangedRef = React.useRef(false)
 
   const dropdownDisabledKeys = React.useMemo(
     () => (disabledValues.length ? disabledValues : disabledKeys),
@@ -235,6 +235,14 @@ const MultipleDropdown = React.forwardRef<
       return child
     })
   }
+
+  useEffect(() => {
+    if (open) {
+      setTriggerElementWidth(
+        popoverCSS.width ?? wrapperRef?.current?.clientWidth ?? '100%',
+      )
+    }
+  }, [open, popoverCSS.width, wrapperRef])
 
   useEffect(() => {
     setClonedChildren(recursivelyAddValueProp(children))
@@ -563,140 +571,189 @@ const MultipleDropdown = React.forwardRef<
     setIsPositioned(isPositioned)
   }, [])
 
+  const dropdownClassName = useMemo(() => {
+    let className = `dropdownContainer ${styles.multipleDropdownControl}`
+    if (open) {
+      className += ` ${styles.multipleDropdownControlIsOpen}`
+    }
+    if (isErrored) {
+      className += ` ${styles.multipleDropdownControlIsErrored}`
+    }
+    if (isDisabled) {
+      className += ` ${styles.multipleDropdownControlIsDisabled}`
+    }
+
+    return className
+  }, [isDisabled, isErrored, open])
+
+  const dropdownWrapperClassName = useMemo(() => {
+    let dropdownWrapperName = `cdg-multiple-dropdown-wrapper ${className} ${styles.multipleDropdownWrapper}`
+    if (displayedValue === 'string') {
+      dropdownWrapperName += ` ${styles.displayedValueString}`
+    } else if (displayedValue === 'chip') {
+      dropdownWrapperName += ` ${styles.displayedValueChip}`
+    }
+    if (variant === 'select') {
+      dropdownWrapperName += ` ${styles.variantSelect}`
+    } else if (variant === 'combobox') {
+      dropdownWrapperName += ` ${styles.variantCombobox}`
+    }
+
+    return dropdownWrapperName
+  }, [className, displayedValue, variant])
+
   return (
-    <StyledDropdownWrapper
-      css={css}
-      ref={refDOM}
-      onKeyDown={handleKeyDown}
-      {...delegated}
-      displayedValue={displayedValue}
-      variant={variant}
-    >
-      <MultipleDropdownContext.Provider
-        value={{
-          isLoadingMore,
-          open,
-          focusKey: focusKey ?? '',
-          selectedKeys: dropdownValues ?? [],
-          defaultSelectedKeys: defaultDropdownValues ?? [],
-          disabledKeys: dropdownDisabledKeys,
-          searchValue: search,
-          selectedItems,
-          labelId: `${id}-label`,
-          setSelectedItems,
-          dropdownItemKeys,
-          setDropdownItemKeys,
-          selectedSectionIndexes,
-          setSelectedSectionIndexes,
-          onItemClick: handleDropdownItemClick,
-          onSectionClick: handleDropdownSectionClick,
-          onHeaderClick: handleDropdownHeaderClick,
-          isPositioned,
-        }}
+    <CssInjection css={css} childrenRef={refDOM}>
+      <div
+        className={dropdownWrapperClassName}
+        ref={refDOM}
+        onKeyDown={handleKeyDown}
+        {...delegated}
       >
-        {label && (
-          <label onClick={handleOpen} htmlFor={id} id={`${id}-label`}>
-            {label}
-            {isRequired && <span>*</span>}
-          </label>
-        )}
-        <Popover
-          isOpen={open}
-          onPositionedChange={handlePositionedChange}
-          anchor={
-            <StyledDropdown
-              className='dropdownContainer'
-              isOpen={open}
-              ref={wrapperRef}
-              isErrored={!!isErrored}
-              isDisabled={!!isDisabled}
-              onClick={handleOpen}
-              onBlur={onBlur}
-              onFocus={onFocus}
-              role='button'
-            >
-              <StyledSelectedItemWrapper className='selectedItemWrapper'>
-                {selectedItems.length === 0 &&
-                  search === '' &&
-                  !open &&
-                  !focused && <p className='placeholder'>{placeholder}</p>}
-                {displayedValue === 'chip' &&
-                  selectedItems.length > 0 &&
-                  selectedItems.map((selectedItem) => (
-                    <Chip
-                      key={selectedItem.value}
-                      hasCloseButton={
-                        dropdownDisabledKeys.findIndex(
-                          (item) =>
-                            item.toString() === selectedItem.value.toString(),
-                        ) === -1
-                      }
-                      onCloseClick={handleCloseChipClick(selectedItem)}
-                      isErrored={checkIsError(selectedItem.value.toString())}
-                    >
-                      {selectedItem.displayValue instanceof Array
-                        ? selectedItem.displayValue
-                        : textContent(
-                            selectedItem.displayValue as React.ReactElement,
-                          )}
-                    </Chip>
-                  ))}
-                {displayedValue === 'string' && selectedItems.length > 0 ? (
-                  <div className='itemListString'>
-                    {customDisplayValue ?? convertSelectedNodeToString()}
-                  </div>
-                ) : null}
-                {!isDisabled && variant === 'combobox' && (
-                  <input
-                    id={id}
-                    type='text'
-                    ref={inputRef}
-                    value={search}
-                    onKeyDown={handleKeydownInput}
-                    onChange={handleInputChange}
-                    onBlur={() => setFocused(false)}
-                    onFocus={() => setFocused(true)}
-                    aria-autocomplete='list'
-                    role='combobox'
-                    aria-required={isRequired}
-                    aria-invalid={isErrored}
-                    aria-expanded={open}
-                  />
-                )}
-              </StyledSelectedItemWrapper>
-              <div className='dropdown-icon'>{icon}</div>
-            </StyledDropdown>
-          }
-          css={{width: '100%'}}
-          direction='bottom-left'
-          onClose={handleClosePopover}
+        <MultipleDropdownContext.Provider
+          value={{
+            isLoadingMore,
+            open,
+            focusKey: focusKey ?? '',
+            selectedKeys: dropdownValues ?? [],
+            defaultSelectedKeys: defaultDropdownValues ?? [],
+            disabledKeys: dropdownDisabledKeys,
+            searchValue: search,
+            selectedItems,
+            labelId: `${id}-label`,
+            setSelectedItems,
+            dropdownItemKeys,
+            setDropdownItemKeys,
+            selectedSectionIndexes,
+            setSelectedSectionIndexes,
+            onItemClick: handleDropdownItemClick,
+            onSectionClick: handleDropdownSectionClick,
+            onHeaderClick: handleDropdownHeaderClick,
+            isPositioned,
+          }}
         >
-          <StyledPopover
-            css={{
-              ...popoverCSS,
-              width:
-                popoverCSS.width ?? wrapperRef?.current?.clientWidth ?? '100%',
-            }}
+          {label && (
+            <label onClick={handleOpen} htmlFor={id} id={`${id}-label`}>
+              {label}
+              {isRequired && <span>*</span>}
+            </label>
+          )}
+          <Popover
+            isOpen={open}
+            onPositionedChange={handlePositionedChange}
+            anchor={
+              <div
+                className={dropdownClassName}
+                ref={wrapperRef}
+                onClick={handleOpen}
+                onBlur={onBlur}
+                onFocus={onFocus}
+                role='button'
+              >
+                <div
+                  className={`${styles.multipleDropdownSelectedItemWrapper} cdg-selectedItemWrapper`}
+                >
+                  {selectedItems.length === 0 &&
+                    search === '' &&
+                    !open &&
+                    !focused && (
+                      <p
+                        className={`${styles.placeholderSelectedItemWrapper} cdg-placeholder`}
+                      >
+                        {placeholder}
+                      </p>
+                    )}
+                  {displayedValue === 'chip' &&
+                    selectedItems.length > 0 &&
+                    selectedItems.map((selectedItem) => (
+                      <Chip
+                        key={selectedItem.value}
+                        hasCloseButton={
+                          dropdownDisabledKeys.findIndex(
+                            (item) =>
+                              item.toString() === selectedItem.value.toString(),
+                          ) === -1
+                        }
+                        onCloseClick={handleCloseChipClick(selectedItem)}
+                        isErrored={checkIsError(selectedItem.value.toString())}
+                      >
+                        {selectedItem.displayValue instanceof Array
+                          ? selectedItem.displayValue
+                          : textContent(
+                              selectedItem.displayValue as React.ReactElement,
+                            )}
+                      </Chip>
+                    ))}
+                  {displayedValue === 'string' && selectedItems.length > 0 ? (
+                    <div className={`${styles.itemListString}`}>
+                      {customDisplayValue ?? convertSelectedNodeToString()}
+                    </div>
+                  ) : null}
+                  {!isDisabled && variant === 'combobox' && (
+                    <input
+                      id={id}
+                      type='text'
+                      ref={inputRef}
+                      value={search}
+                      onKeyDown={handleKeydownInput}
+                      onChange={handleInputChange}
+                      onBlur={() => setFocused(false)}
+                      onFocus={() => setFocused(true)}
+                      aria-autocomplete='list'
+                      role='combobox'
+                      aria-required={isRequired}
+                      aria-invalid={isErrored}
+                      aria-expanded={open}
+                    />
+                  )}
+                </div>
+                <div
+                  className={`${styles.multipleDropdownControlIcon} dropdown-icon`}
+                >
+                  {icon}
+                </div>
+              </div>
+            }
+            css={{width: '100%'}}
+            direction='bottom-left'
+            onClose={handleClosePopover}
           >
-            <MultipleDropdownList
-              searchValue=''
-              isLoading={isLoading}
-              css={{
-                maxHeight: numberOfRows ? `${numberOfRows * 40}px` : '16rem',
+            <div
+              className={`${styles.dropdownPopover}`}
+              onClick={handleDropdownHeaderClick}
+              style={{
+                ...popoverCSS,
+                width: popoverCSS.width ?? triggerElementWidth,
               }}
-              onLoadMore={onLoadMore}
-              noDataMessage={noDataMessage}
             >
-              {clonedChildren}
-            </MultipleDropdownList>
-          </StyledPopover>
-        </Popover>
-      </MultipleDropdownContext.Provider>
-      {isErrored && errorMessage && (
-        <StyledHelperText error={!!isErrored}>{errorMessage}</StyledHelperText>
-      )}
-      {helperText && <StyledHelperText>{helperText}</StyledHelperText>}
-    </StyledDropdownWrapper>
+              <MultipleDropdownList
+                searchValue=''
+                isLoading={isLoading}
+                css={{
+                  maxHeight: numberOfRows ? `${numberOfRows * 40}px` : '16rem',
+                }}
+                onLoadMore={onLoadMore}
+                noDataMessage={noDataMessage}
+              >
+                {clonedChildren}
+              </MultipleDropdownList>
+            </div>
+          </Popover>
+        </MultipleDropdownContext.Provider>
+        {isErrored && errorMessage && (
+          <div
+            className={`${styles.dropdownHelperText} ${
+              isErrored ? styles.dropdownHelperIsErrored : ''
+            }`}
+          >
+            {errorMessage}
+          </div>
+        )}
+        {helperText && (
+          <div className={`${styles.dropdownHelperText}`}>{helperText}</div>
+        )}
+      </div>
+    </CssInjection>
   )
 })
 

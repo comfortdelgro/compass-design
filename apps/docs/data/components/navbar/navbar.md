@@ -13,6 +13,7 @@ components: Navbar
 import {Navbar} from '@comfortdelgro/react-compass'
 ```
 
+
 ## Example
 
 ### Full Features

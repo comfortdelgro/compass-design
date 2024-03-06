@@ -9,21 +9,21 @@ export default function PudoCompact() {
       <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
         <Pudo
           items={[
-            {name: 'item1', value: '', placeholder: 'item 1'},
-            {name: 'item2', value: '', placeholder: 'item 2'},
+            { name: 'item1', value: '', placeholder: 'item 1' },
+            { name: 'item2', value: '', placeholder: 'item 2' },
           ]}
           compact='sm'
         />
         <Pudo
           items={[
-            {name: 'item1', value: '', placeholder: 'item 1'},
-            {name: 'item2', value: '', placeholder: 'item 2'},
+            { name: 'item1', value: '', placeholder: 'item 1' },
+            { name: 'item2', value: '', placeholder: 'item 2' },
           ]}
           compact='md'
         />
       </div>
 
-      <Typography.Header variant='header5' css={{marginTop: '$4'}}>
+      <Typography.Header variant='header5' css={{ marginTop: '$4' }}>
         Type <code>custom</code>
       </Typography.Header>
       <Typography.Body variant='body3'>
@@ -43,7 +43,7 @@ export default function PudoCompact() {
           illo temporibus velit, beatae dolores accusantium quis vel corporis neque
           harum? Accusantium, voluptates consequuntur?`,
             },
-            {name: 'item2', title: 'Destination'},
+            { name: 'item2', title: 'Destination' },
           ]}
           type='custom'
           compact='sm'
@@ -56,7 +56,7 @@ export default function PudoCompact() {
               title:
                 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum assumenda officiis voluptates quam rem qui libero commodi veritatis?',
             },
-            {name: 'item2', title: 'Destination'},
+            { name: 'item2', title: 'Destination' },
           ]}
           type='custom'
           compact='md'

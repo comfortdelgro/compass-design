@@ -1,22 +1,19 @@
 import React, {KeyboardEvent} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/tag-box.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   wrapperRef: React.RefObject<HTMLDivElement>
   onEnter: (value: string) => void
 }
 
 const TagBoxInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   const {
-    // StyledComponentProps
-    // css = {},
-    // children,
     wrapperRef,
     onEnter = () => {
       // do nothing
     },
-    ...delegated
+    ...htmlProps
   } = props
 
   const tagBoxInputRef = useDOMRef<HTMLInputElement>(ref)
@@ -51,8 +48,10 @@ const TagBoxInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
 
   return (
     <input
-      ref={tagBoxInputRef}
+      {...htmlProps}
       type='text'
+      ref={tagBoxInputRef}
+      className={`${styles.bodyContentInput} cdg-tag-box-input`}
       onChange={onInputChange}
       onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
         const value = (e.target as HTMLInputElement).value
@@ -64,7 +63,6 @@ const TagBoxInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
           }
         }
       }}
-      {...delegated}
     />
   )
 })

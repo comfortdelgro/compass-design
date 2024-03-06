@@ -2,7 +2,8 @@ import React from 'react'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {useDateSegment} from '../hooks/useDateSegment'
 import {DateFieldState, DateSegment as IDateSegment} from '../types'
-import {StyledDateSegment} from './date-segment.style'
+import styles from './styles/date-segment.module.css'
+// import {StyledDateSegment} from './date-segment.style'
 
 interface Props {
   segment: IDateSegment
@@ -17,13 +18,15 @@ const DateSegment = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {segmentProps} = useDateSegment(segment, state, dateSegmentRef)
 
   return (
-    <StyledDateSegment
+    <div
       {...segmentProps}
       ref={dateSegmentRef}
-      className={`segment ${segment.isPlaceholder ? 'placeholder' : 'number'}`}
+      className={`${styles.dateSegment} ${
+        segment.isPlaceholder ? 'placeholder' : styles.number
+      }`}
     >
       {segment.text}
-    </StyledDateSegment>
+    </div>
   )
 })
 

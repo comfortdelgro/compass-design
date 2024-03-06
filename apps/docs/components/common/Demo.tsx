@@ -1,12 +1,12 @@
-import {Box, Button} from '@comfortdelgro/react-compass'
+import { Box, Button } from '@comfortdelgro/react-compass'
 import DemoEditor from 'components/common/DemoEditor'
 import DemoEditorError from 'components/common/DemoEditorError'
 import DemoSandbox from 'components/common/DemoSandbox'
 import HighlightedCode from 'components/common/HighlightedCode'
 import ReactRunner from 'components/common/ReactRunner'
-import {debounce, uniqueId} from 'lodash'
+import { debounce, uniqueId } from 'lodash'
 import * as React from 'react'
-import {useCodeVariant} from 'utils/codeVariant'
+import { useCodeVariant } from 'utils/codeVariant'
 import styles from './styles/DemoCodeViewer.module.css'
 
 function trimLeadingSpaces(input = '') {
@@ -84,9 +84,9 @@ function useDemoElement({
         code={
           editorCode.isPreview
             ? trimLeadingSpaces(demoData.raw).replace(
-                trimLeadingSpaces(demoData.jsxPreview),
-                editorCode.value,
-              )
+              trimLeadingSpaces(demoData.jsxPreview),
+              editorCode.value,
+            )
             : editorCode.value
         }
       />
@@ -102,7 +102,7 @@ function useDemoElement({
 }
 
 export default function Demo(props: any) {
-  const {demo, demoOptions, githubLocation} = props
+  const { demo, demoOptions, githubLocation } = props
 
   const codeVariant = useCodeVariant()
 

@@ -1,8 +1,4 @@
-import {
-  DateRangePicker,
-  isWeekend,
-  useLocale,
-} from '@comfortdelgro/react-compass'
+import {DateRangePicker, isWeekend, useLocale} from '@comfortdelgro/react-compass'
 
 function DateRangePickerNonContiguous() {
   const {locale} = useLocale()

@@ -1,11 +1,13 @@
 import {isNil} from 'lodash'
 import React, {HTMLAttributes, useCallback} from 'react'
 import Badge from '../badge'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledAppNavSection} from './appnav.styles'
+import styles from './styles/appnav.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   isActive?: boolean
   inactiveIcon: React.ReactNode
   activeIcon: React.ReactNode
@@ -29,6 +31,7 @@ export const AppNavSection = React.forwardRef<
     activeIcon,
     hasBadge = false,
     onChange,
+    className,
     index,
     label,
     css = {},
@@ -39,37 +42,44 @@ export const AppNavSection = React.forwardRef<
     if (!isNil(onChange) && !isNil(index)) {
       onChange(index)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
-    <StyledAppNavSection
-      type='button'
-      ref={itemRef}
-      isActive={isActive}
-      css={css}
-      onClick={handleClick}
-      tabIndex={0}
-      {...delegated}
-    >
-      <div className='icon'>
-        {hasBadge && (
-          <Badge
-            label=''
-            css={{
-              width: '$2',
-              height: '$2',
-              backgroundColor: '$danger',
-              padding: 0,
-              borderRadius: '50%',
-              position: 'absolute',
-              right: '-15px',
-              top: 0,
-            }}
-          />
+    <CssInjection css={css} childrenRef={itemRef}>
+      <button
+        type='button'
+        ref={itemRef}
+        className={classNames(
+          'cdg-appnav-section',
+          className,
+          styles.appNavSection,
+          isActive ? styles.isActive : styles.isInactive,
         )}
-        {isActive ? activeIcon : inactiveIcon}
-      </div>
-      <span>{label}</span>
-    </StyledAppNavSection>
+        onClick={handleClick}
+        tabIndex={0}
+        {...delegated}
+      >
+        <div className={styles.icon}>
+          {hasBadge && (
+            <Badge
+              label=''
+              css={{
+                width: 'var(--cdg-spacing-2)',
+                height: 'var(--cdg-spacing-2)',
+                backgroundColor: 'var(--cdg-color-danger)',
+                padding: 0,
+                borderRadius: '50%',
+                position: 'absolute',
+                right: '-15px',
+                top: 0,
+              }}
+            />
+          )}
+          {isActive ? activeIcon : inactiveIcon}
+        </div>
+        <span>{label}</span>
+      </button>
+    </CssInjection>
   )
 })

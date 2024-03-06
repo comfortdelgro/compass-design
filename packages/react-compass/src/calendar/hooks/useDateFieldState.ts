@@ -673,7 +673,6 @@ function getSegmentLimits(
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 function addSegment(
   value: DateValue,
   part: string,
@@ -707,7 +706,6 @@ function addSegment(
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 function setSegment(
   value: DateValue,
   part: string,

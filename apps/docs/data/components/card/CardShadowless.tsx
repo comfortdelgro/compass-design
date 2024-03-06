@@ -15,12 +15,7 @@ const Variants: React.FC = () => {
       <Card size='lg' isShadowless={true}>
         <Card.Body>
           <Card.Title style={{display: 'flex', alignItems: 'center'}}>
-            <h3
-              className='card-title'
-              style={{fontSize: 'inherit', margin: 0, width: '100%'}}
-            >
-              Card title
-            </h3>
+            <h3 className='card-title' style={{fontSize: 'inherit', margin: 0, width: '100%'}}>Card title</h3>
             <Button variant='ghost'>
               <Edit />
             </Button>

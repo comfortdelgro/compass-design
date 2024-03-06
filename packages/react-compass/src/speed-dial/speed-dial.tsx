@@ -6,25 +6,21 @@ import {
   useKeyboardNavigation,
   useKeyboardNavigationState,
 } from '../utils/hooks'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {SpeedDialAction} from './speed-dial-action'
 import {SpeedDialTrigger} from './speed-dial-trigger'
-import {
-  SpeedDialVariantProps,
-  StyledSpeedDial,
-  StyledSpeedDialActions,
-  StyledSpeedDialTriggerContent,
-} from './speed-dial.styles'
+import styles from './styles/speed-dial.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   actions: Array<{name: string; icon: string; onClick: () => void}>
   position?: 'up' | 'right' | 'down' | 'left'
   className?: string
+  css?: unknown
 }
 
 export type SpeedDialProps = Props &
-  SpeedDialVariantProps &
   Omit<React.ButtonHTMLAttributes<HTMLDivElement>, keyof Props>
 
 const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
@@ -34,9 +30,9 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
       css = {},
       className,
       actions,
-      position,
-      // AriaButtonProps
-      ...ariaSafeProps
+      position = 'up',
+      // htmlProps
+      ...htmlProps
     } = props
 
     const speedDialRef = useDOMRef<HTMLDivElement>(ref)
@@ -71,14 +67,6 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
       resetFocus?.()
     }
 
-    const componentProps = () => {
-      return {
-        className,
-        css,
-        ...ariaSafeProps,
-      }
-    }
-
     const {onKeyDown, nextFocus, prevFocus, resetFocus} =
       useKeyboardNavigation()
 
@@ -99,48 +87,69 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
       },
     })
 
-    const delegateProps = componentProps()
+    const rootClasses = [
+      styles.speedDial,
+      position && styles[`speedDial${capitalizeFirstLetter(position)}`],
+      className,
+      'cdg-speed-dial',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const triggerClasses = [
+      styles.speedDialTriggerContent,
+      isOpen ? styles.speedDialTriggerOpenSpan : styles.speedDialTriggerSpan,
+      'cdg-speed-dial-trigger-content',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const actionClasses = [
+      styles.speedDialActions,
+      position && styles[`speedDialActions${capitalizeFirstLetter(position)}`],
+      isOpen && styles.speedDialActionsOpen,
+      'cdg-speed-dial-actions',
+    ]
+      .filter(Boolean)
+      .join(' ')
 
     return (
-      <StyledSpeedDial
-        {...delegateProps}
-        ref={speedDialRef}
-        className={`speed-dial speed-dial--${position || 'up'} ${position}`}
-        role='presentation'
-        onMouseLeave={handleMouseLeave}
-        onKeyDown={handleKeyDown}
-      >
-        <SpeedDialTrigger
-          className={`speed-dial__trigger ${isOpen ? 'open' : ''}`}
-          onMouseEnter={handleMouseEnter}
-          onFocus={handleFocus}
-          onClick={toggleOpen}
-          aria-expanded={isOpen}
-          aria-haspopup={true}
+      <CssInjection css={css} childrenRef={speedDialRef}>
+        <div
+          {...htmlProps}
+          className={rootClasses}
+          ref={speedDialRef}
+          role='presentation'
+          onMouseLeave={handleMouseLeave}
+          onKeyDown={handleKeyDown}
         >
-          <StyledSpeedDialTriggerContent>
-            <FontAwesomeIcon icon={faPlus} />
-          </StyledSpeedDialTriggerContent>
-        </SpeedDialTrigger>
-        <StyledSpeedDialActions
-          className={`speed-dial__actions speed-dial__actions--${
-            position || 'up'
-          } ${isOpen ? 'open' : ''}`}
-          role='menu'
-        >
-          {actions.map(({name, icon, onClick}, index) => (
-            <SpeedDialAction
-              key={index}
-              onClick={() => handleActionClick(onClick)}
-              icon={icon}
-              name={name}
-              position={position}
-              isVisible={isOpen}
-              disabled={!isOpen}
-            />
-          ))}
-        </StyledSpeedDialActions>
-      </StyledSpeedDial>
+          <SpeedDialTrigger
+            isOpen={isOpen}
+            onMouseEnter={handleMouseEnter}
+            onFocus={handleFocus}
+            onClick={toggleOpen}
+            aria-expanded={isOpen}
+            aria-haspopup={true}
+          >
+            <span className={triggerClasses}>
+              <FontAwesomeIcon icon={faPlus} />
+            </span>
+          </SpeedDialTrigger>
+          <ul className={actionClasses} role='menu'>
+            {actions.map(({name, icon, onClick}, index) => (
+              <SpeedDialAction
+                key={index}
+                onClick={() => handleActionClick(onClick)}
+                icon={icon}
+                name={name}
+                position={position}
+                isVisible={isOpen}
+                disabled={!isOpen}
+              />
+            ))}
+          </ul>
+        </div>
+      </CssInjection>
     )
   },
 )
@@ -158,4 +167,7 @@ export const SpeedDialContextWrapper = React.forwardRef<
   )
 })
 
+/**
+ * @deprecate SpeedDial will be replaced by new SpeedDial2
+ */
 export default SpeedDialContextWrapper

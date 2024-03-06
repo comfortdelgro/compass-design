@@ -78,14 +78,14 @@ function getNumberParserImpl(
   value: string,
 ) {
   // First try the default numbering system for the provided locale
-  let defaultParser = getCachedNumberParser(locale, options)
+  const defaultParser = getCachedNumberParser(locale, options)
 
   // If that doesn't match, and the locale doesn't include a hard coded numbering system,
   // try each of the other supported numbering systems until we find one that matches.
   if (!locale.includes('-nu-') && !defaultParser.isValidPartialNumber(value)) {
-    for (let numberingSystem of NUMBERING_SYSTEMS) {
+    for (const numberingSystem of NUMBERING_SYSTEMS) {
       if (numberingSystem !== defaultParser.options.numberingSystem) {
-        let parser = getCachedNumberParser(
+        const parser = getCachedNumberParser(
           locale +
             (locale.includes('-u-') ? '-nu-' : '-u-nu-') +
             numberingSystem,
@@ -105,7 +105,7 @@ function getCachedNumberParser(
   locale: string,
   options: Intl.NumberFormatOptions,
 ) {
-  let cacheKey =
+  const cacheKey =
     locale +
     (options
       ? Object.entries(options)
@@ -246,15 +246,16 @@ function getSymbols(
   originalOptions: Intl.NumberFormatOptions,
 ): Symbols {
   // Note: some locale's don't add a group symbol until there is a ten thousands place
-  let allParts = formatter.formatToParts(-10000.111)
-  let posAllParts = formatter.formatToParts(10000.111)
-  let singularParts = formatter.formatToParts(1)
+  const allParts = formatter.formatToParts(-10000.111)
+  const posAllParts = formatter.formatToParts(10000.111)
+  const singularParts = formatter.formatToParts(1)
 
-  let minusSign = allParts.find((p) => p.type === 'minusSign')?.value ?? '-'
+  const minusSign = allParts.find((p) => p.type === 'minusSign')?.value ?? '-'
   let plusSign = posAllParts.find((p) => p.type === 'plusSign')?.value as string
 
   // Safari does not support the signDisplay option, but our number parser polyfills it.
   // If no plus sign was returned, but the original options contained signDisplay, default to the '+' character.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   if (
     !plusSign &&
@@ -264,41 +265,43 @@ function getSymbols(
     plusSign = '+'
   }
 
-  let decimal = allParts.find((p) => p.type === 'decimal')?.value as string
-  let group = allParts.find((p) => p.type === 'group')?.value as string
+  const decimal = allParts.find((p) => p.type === 'decimal')?.value as string
+  const group = allParts.find((p) => p.type === 'group')?.value as string
 
   // this set is also for a regex, it's all literals that might be in the string we want to eventually parse that
   // don't contribute to the numerical value
-  let pluralLiterals = allParts
+  const pluralLiterals = allParts
     .filter((p) => !nonLiteralParts.has(p.type))
     .map((p) => escapeRegex(p.value))
-  let singularLiterals = singularParts
+  const singularLiterals = singularParts
     .filter((p) => !nonLiteralParts.has(p.type))
     .map((p) => escapeRegex(p.value))
-  let sortedLiterals = [
+  const sortedLiterals = [
     ...new Set([...singularLiterals, ...pluralLiterals]),
   ].sort((a, b) => b.length - a.length)
-  let literals =
+  const literals =
     sortedLiterals.length === 0
       ? new RegExp('[\\p{White_Space}]', 'gu')
       : new RegExp(`${sortedLiterals.join('|')}|[\\p{White_Space}]`, 'gu')
 
   // These are for replacing non-latn characters with the latn equivalent
-  let numerals = [
+  const numerals = [
     ...new Intl.NumberFormat(intlOptions.locale, {useGrouping: false}).format(
       9876543210,
     ),
   ].reverse()
-  let indexes = new Map(numerals.map((d, i) => [d, i]))
-  let numeral = new RegExp(`[${numerals.join('')}]`, 'g')
-  let index = (d: string) => String(indexes.get(d))
+  const indexes = new Map(numerals.map((d, i) => [d, i]))
+  const numeral = new RegExp(`[${numerals.join('')}]`, 'g')
+  const index = (d: string) => String(indexes.get(d))
 
   return {minusSign, plusSign, decimal, group, literals, numeral, index}
 }
 
 function replaceAll(str: string, find: string, replace: string) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   if (str.replaceAll) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return str.replaceAll(find, replace)
   }

@@ -1,47 +1,63 @@
-import React from 'react'
-import {StyledPopover} from './index.styles'
+import React, {HTMLAttributes} from 'react'
+import CssInjection from '../../../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../../../utils/use-dom-ref'
+import styles from '../../styles/popover.module.css'
 
 interface Props {
   triggerRef: React.RefObject<HTMLDivElement>
   children: React.ReactNode
   isEmpty: boolean
   type: 'heading' | 'color' | 'alignment'
-  handleKeyDown: (e: KeyboardEvent) => void
+  handleKeyDown?: (e: KeyboardEvent) => void
   onFocus: () => void
   onBlur: () => void
 }
 
-function Popover({children, handleKeyDown, onFocus, onBlur, ...props}: Props) {
-  const {isEmpty = false, type} = props
+type PopoverProps = Props & Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
+const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
+  (
+    {children, handleKeyDown, onFocus, onBlur, type, isEmpty, className = ''},
+    ref,
+  ) => {
+    const popoverRef = useDOMRef(ref)
+    React.useEffect(() => {
+      document.addEventListener('keydown', handleKeyDown)
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown)
+      }
+    })
 
-  React.useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown)
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  })
+    React.useEffect(() => {
+      onFocus()
+      return () => {
+        onBlur()
+      }
+    }, [onBlur, onFocus])
 
-  React.useEffect(() => {
-    onFocus()
-    return () => {
-      onBlur()
-    }
-  }, [])
+    const popoverClasses = React.useMemo(() => {
+      return [
+        styles.rtePopover,
+        type === 'color' ? styles.typeColor : '',
+        type === 'heading' ? styles.typeHeading : '',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [className, type])
 
-  return (
-    <StyledPopover
-      type={type}
-      style={{
-        display: isEmpty ? 'none' : '',
-      }}
-      css={{
-        ul: {
-          maxHeight: '16rem',
-        },
-      }}
-    >
-      {children}
-    </StyledPopover>
-  )
-}
+    return (
+      <CssInjection childrenRef={popoverRef}>
+        <div
+          style={{
+            display: isEmpty ? 'none' : '',
+          }}
+          className={popoverClasses}
+        >
+          {children}
+        </div>
+      </CssInjection>
+    )
+  },
+)
+
 export default Popover

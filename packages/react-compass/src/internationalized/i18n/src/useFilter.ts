@@ -25,13 +25,13 @@ export interface Filter {
  * in a list. Options can be provided to adjust the sensitivity to case, diacritics, and other parameters.
  */
 export function useFilter(options?: Intl.CollatorOptions): Filter {
-  let collator = useCollator({
+  const collator = useCollator({
     usage: 'search',
     ...options,
   })
 
   // TODO(later): these methods don't currently support the ignorePunctuation option.
-  let startsWith = useCallback(
+  const startsWith = useCallback(
     (string, substring) => {
       if (substring.length === 0) {
         return true
@@ -48,7 +48,7 @@ export function useFilter(options?: Intl.CollatorOptions): Filter {
     [collator],
   )
 
-  let endsWith = useCallback(
+  const endsWith = useCallback(
     (string, substring) => {
       if (substring.length === 0) {
         return true
@@ -61,7 +61,7 @@ export function useFilter(options?: Intl.CollatorOptions): Filter {
     [collator],
   )
 
-  let contains = useCallback(
+  const contains = useCallback(
     (string, substring) => {
       if (substring.length === 0) {
         return true
@@ -71,9 +71,9 @@ export function useFilter(options?: Intl.CollatorOptions): Filter {
       substring = substring.normalize('NFC')
 
       let scan = 0
-      let sliceLen = substring.length
+      const sliceLen = substring.length
       for (; scan + sliceLen <= string.length; scan++) {
-        let slice = string.slice(scan, scan + sliceLen)
+        const slice = string.slice(scan, scan + sliceLen)
         if (collator.compare(substring, slice) === 0) {
           return true
         }

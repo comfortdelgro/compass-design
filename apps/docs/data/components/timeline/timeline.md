@@ -13,6 +13,7 @@ components: Timeline
 import {Timeline} from '@comfortdelgro/react-compass'
 ```
 
+
 ## Example
 
 ### Default

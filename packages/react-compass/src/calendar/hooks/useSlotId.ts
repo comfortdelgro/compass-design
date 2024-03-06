@@ -14,6 +14,7 @@
 import {useCallback, useLayoutEffect, useState} from 'react'
 import {useId} from './useId'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useSlotId(depArray: readonly any[] = []): string {
   const id = useId()
   const [resolvedId, setResolvedId] = useState<string | undefined>(id) // Adjust the type of resolvedId

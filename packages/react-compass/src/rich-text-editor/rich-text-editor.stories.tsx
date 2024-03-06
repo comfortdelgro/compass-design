@@ -1,11 +1,28 @@
-import React from 'react'
-import {Column} from '../utils/components'
+import type {Meta} from '@storybook/react'
 import RichTextEditor, {Content} from './index'
 
-export const Default: React.FC = () => {
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  alignItems: string
+  justifyContent: string
+  height: string
+  width: string
+  padding: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+  padding: '3rem',
+}
+
+export const Basic: React.FC = () => {
   return (
-    <Column>
-      <h3>Default Rich Text Editor</h3>
+    <div style={{...style}}>
+      <h3>Basic Rich Text Editor</h3>
       <RichTextEditor>
         <RichTextEditor.Toolbar>
           <RichTextEditor.ControlsGroup>
@@ -33,7 +50,7 @@ export const Default: React.FC = () => {
           <RichTextEditor.Blockquote />
         </RichTextEditor.Toolbar>
       </RichTextEditor>
-    </Column>
+    </div>
   )
 }
 
@@ -72,7 +89,7 @@ export const Variants: React.FC = () => {
         </ol>
   `
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>1. Default Content Rich Text Editor.</h3>
       <RichTextEditor content={content}>
         <RichTextEditor.Toolbar>
@@ -220,6 +237,17 @@ export const Variants: React.FC = () => {
           <RichTextEditor.Redo />
         </RichTextEditor.Toolbar>
       </RichTextEditor>
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Rich Text Editor',
+  component: Basic,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

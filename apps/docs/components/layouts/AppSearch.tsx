@@ -138,10 +138,7 @@ export default function AppSearch(props: any) {
               onClick={onOpen}
               placeholder='Search...'
             />
-            <div
-              className={styles.shortcut}
-              style={{position: 'absolute', top: 3, right: 3}}
-            >
+            <div className={styles.shortcut} style={{position: 'absolute', top: 3, right: 3}}>
               {macOS ? '⌘' : 'Ctrl+'}K
             </div>
           </>

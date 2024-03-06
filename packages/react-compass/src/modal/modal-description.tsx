@@ -1,11 +1,12 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledModalDescription} from './modal.styles'
+import styles from './styles/modal.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   h5?: boolean
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type ModalDescriptionProps = Props &
@@ -15,17 +16,22 @@ const ModalDescription = React.forwardRef<
   HTMLDivElement,
   ModalDescriptionProps
 >((props, ref) => {
-  const {children, css = {}, h5 = false, ...delegated} = props
+  const {children, css = {}, h5 = false, className, ...htmlProps} = props
   const modalDescriptionRef = useDOMRef<HTMLDivElement>(ref)
+  const classNames = [
+    className,
+    'cdg-modal-description',
+    styles.description,
+    h5 && styles.descriptionH5,
+  ]
+    .filter(Boolean)
+    .join(' ')
   return (
-    <StyledModalDescription
-      h5={h5}
-      css={css}
-      ref={modalDescriptionRef}
-      {...delegated}
-    >
-      {children}
-    </StyledModalDescription>
+    <CssInjection css={css}>
+      <div className={classNames} ref={modalDescriptionRef} {...htmlProps}>
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

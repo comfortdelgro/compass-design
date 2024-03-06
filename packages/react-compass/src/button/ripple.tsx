@@ -1,10 +1,11 @@
 import React, {MouseEvent, ReactNode} from 'react'
-import {keyframes} from '../theme/stitches.config'
+import styles from './styles/button.module.css'
 
 // Define the interface for the props expected by the Ripple component
 interface Props {
   children?: ReactNode // Child elements of the Ripple component
   isEnabled?: boolean // Flag to enable/disable the ripple effect
+  style?: React.CSSProperties // Style prop for the Ripple component
 }
 
 interface ButtonFocusEvent extends React.FocusEvent<HTMLButtonElement> {
@@ -37,15 +38,14 @@ const Ripple: React.FC<Props> = ({children, isEnabled = false}: Props) => {
     }px`
 
     // Add the 'ripple' styles to the circle element
-    circle.classList.add('ripple')
+    circle.classList.add(styles.ripple)
     circle.style.position = 'absolute'
     circle.style.borderRadius = '50%'
     circle.style.transform = 'scale(0)'
-    circle.style.animation = `${rippleKeyframes} 600ms linear`
     circle.style.backgroundColor = 'rgba(255, 255, 255, 0.7)'
 
     // Check if there is an existing element with the 'ripple' class within the button
-    const ripple = button.getElementsByClassName('ripple')[0]
+    const ripple = button.getElementsByClassName(styles.ripple)[0]
 
     // Remove the existing ripple element, if any
     if (ripple) {
@@ -65,19 +65,15 @@ const Ripple: React.FC<Props> = ({children, isEnabled = false}: Props) => {
   // Return the modified child element or t he original child element based on the isEnabled prop
   return isEnabled
     ? React.cloneElement(children as React.ReactElement, {
-        onMouseDown: createRipple, // Add createRipple function to onMouseDown event
-        onTouchStart: createRipple, // Add createRipple function to onTouchStart event
-        onFocus: createFocusRipple, // Add createFocusRipple function to onFocus event
-        css: {overflow: 'hidden', position: 'relative'}, // Add CSS styles to the child element
+        onMouseDown: createRipple,
+        onTouchStart: createRipple,
+        onFocus: createFocusRipple,
+        style: Object.assign(
+          {overflow: 'hidden', position: 'relative'}, // Additional styles for the Ripple component
+          (children as React.ReactElement).props.style, // Preserve child's existing styles
+        ),
       })
     : (children as React.ReactElement)
 }
-
-const rippleKeyframes = keyframes({
-  to: {
-    transform: 'scale(4)',
-    opacity: 0,
-  },
-})
 
 export default Ripple

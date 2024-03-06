@@ -1,5 +1,9 @@
 import BugIcon from '@comfortdelgro/compass-icons/react/bug'
-import {Column, MenuList, MenuListDropdown} from '@comfortdelgro/react-compass'
+import {
+  Column,
+  MenuList,
+  MenuListDropdown,
+} from '@comfortdelgro/react-compass'
 
 const DisabledItem: React.FC = () => {
   return (

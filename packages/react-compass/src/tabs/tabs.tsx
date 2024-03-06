@@ -5,16 +5,16 @@ import {
   useKeyboardNavigation,
   useKeyboardNavigationState,
 } from '../utils/hooks'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import TabItem from './item'
+import styles from './styles/tabs.module.css'
 import Tab from './tab'
 import TabPanel from './tab-panel'
 import TabsPaneless from './tabs-paneless'
-import {StyledTabs, StyledWrapper} from './tabs.styles'
 import {Icon, Variant, useTab} from './utils'
 
-interface Props extends StyledComponentProps {
+interface Props {
   id?: string
   icon?: Icon
   variant?: Variant
@@ -33,6 +33,8 @@ interface Props extends StyledComponentProps {
   'aria-labelledby'?: string
   'aria-describedby'?: string
   'aria-details'?: string
+  css?: unknown
+  className?: string
 }
 
 export type TabsProps = Props &
@@ -51,8 +53,9 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
     selectedKey,
     defaultSelectedKey,
     css = {},
+    className = '',
     onKeyDown: onKeyDownProps,
-    ...delegated
+    ...htmlProps
   } = props
 
   const tabRef = useDOMRef<HTMLDivElement>(ref)
@@ -106,41 +109,48 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const tabPanelId = `${id}_${selectedItem?.key}`
 
   return (
-    <StyledWrapper>
-      <StyledTabs
-        ref={tabRef}
-        css={css}
-        orientation={orientation}
-        variant={variant}
-        onKeyDown={handleKeyDown}
-        role='tablist'
-        aria-orientation={orientation}
-        {...delegated}
-      >
-        {[...collection].map((item) => (
-          <Tab
-            key={item.key}
-            icon={props.icon}
-            variant={props.variant}
-            disabledKeys={disabledKeys}
-            currentKey={currentKey}
-            textColor={textColor}
-            indicatorColor={indicatorColor}
-            item={item}
-            isDisabled={isDisabled}
-            onSelect={onSelect}
-            id={`${id}_${item.key}`}
+    <div className={`cdg-tab-wrapper ${styles.wrapper} ${className}`}>
+      <CssInjection css={css} childrenRef={tabRef}>
+        <div
+          ref={tabRef}
+          className={`cdg-tabs ${styles.tabs} ${styles[`${orientation}`]} ${
+            styles[`${variant}`]
+          } ${
+            styles[
+              variant +
+                `${orientation.charAt(0).toUpperCase() + orientation.slice(1)}`
+            ]
+          }`}
+          onKeyDown={handleKeyDown}
+          role='tablist'
+          aria-orientation={orientation}
+          {...htmlProps}
+        >
+          {[...collection].map((item) => (
+            <Tab
+              key={item.key}
+              icon={props.icon}
+              variant={props.variant}
+              disabledKeys={disabledKeys}
+              currentKey={currentKey}
+              textColor={textColor}
+              indicatorColor={indicatorColor}
+              item={item}
+              isDisabled={isDisabled}
+              onSelect={onSelect}
+              id={`${id}_${item.key}`}
+            />
+          ))}
+        </div>
+        {!hidePanel && (
+          <TabPanel
+            aria-labelledby={tabPanelId}
+            key={selectedItem?.key}
+            selectedItem={selectedItem}
           />
-        ))}
-      </StyledTabs>
-      {!hidePanel && (
-        <TabPanel
-          aria-labelledby={tabPanelId}
-          key={selectedItem?.key}
-          selectedItem={selectedItem}
-        />
-      )}
-    </StyledWrapper>
+        )}
+      </CssInjection>
+    </div>
   )
 })
 

@@ -4,6 +4,7 @@ import {PressEvents} from './event.types'
 import {AriaLabelingProps, DOMProps} from './label.types'
 
 export interface AriaButtonElementTypeProps<T extends ElementType = 'button'> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   elementType?: T | JSXElementConstructor<any>
 }
 

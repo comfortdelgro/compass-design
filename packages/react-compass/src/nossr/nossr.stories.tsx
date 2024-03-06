@@ -1,7 +1,6 @@
-import {StoryDecorator} from '@ladle/react'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import NoSsr from '.'
-import Box from '../box'
 
 export const Basic: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -80,7 +79,7 @@ export const Basic: React.FC = () => {
       </div>
       <br />
       <br />
-      <Box css={{width: 300, display: 'flex', flexWrap: 'wrap'}}>
+      <div style={{width: 300, display: 'flex', flexWrap: 'wrap'}}>
         {state.open ? (
           <React.Fragment>
             <div>Outside NoSsr</div>
@@ -90,22 +89,20 @@ export const Basic: React.FC = () => {
             </NoSsr>
           </React.Fragment>
         ) : null}
-      </Box>
+      </div>
     </div>
   )
 }
 
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
-}
+const meta = {
+  title: 'Example/No Ssr',
+  component: Basic,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

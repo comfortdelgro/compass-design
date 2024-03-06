@@ -1,5 +1,3 @@
-'use client'
-
 import isEqual from 'lodash/isEqual'
 import {DependencyList, EffectCallback, useEffect, useMemo, useRef} from 'react'
 

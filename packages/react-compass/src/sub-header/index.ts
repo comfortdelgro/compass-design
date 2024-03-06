@@ -1,3 +1,5 @@
+'use client'
+
 import SubHeader from './sub-header'
 import SubHeaderBody from './sub-header-body'
 import SubHeaderDescription from './sub-header-description'

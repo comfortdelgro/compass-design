@@ -1,12 +1,7 @@
-import React from 'react'
 import {CalendarDate} from '../internationalized/date'
-import {
-  StyledCalendarMonthGrid,
-  StyledCalendarMonthYearCell,
-} from './calendar-month-year-grid.style'
 import {MONTH_YEAR_STATE, useMonthYearCalendar} from './hooks/useMonthYearState'
+import styles from './styles/calendar-month-year-grid.module.css'
 import {CalendarState, DateValue, RangeCalendarState} from './types'
-
 interface Props {
   state: CalendarState | RangeCalendarState
   maxValue?: DateValue | null | undefined
@@ -34,20 +29,21 @@ const CalendarMonthGrid = (props: Props) => {
   }
 
   return (
-    <StyledCalendarMonthGrid>
+    <div className={styles.calendarMonthYearGrid}>
       {months.map((month) => {
         return (
-          <StyledCalendarMonthYearCell
+          <button
+            className={styles.calendarMonthYearCell}
             type='button'
             aria-label={month}
             onClick={handleMonthClick(month)}
             key={month}
           >
             {month}
-          </StyledCalendarMonthYearCell>
+          </button>
         )
       })}
-    </StyledCalendarMonthGrid>
+    </div>
   )
 }
 

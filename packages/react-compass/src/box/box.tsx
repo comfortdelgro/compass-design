@@ -1,14 +1,15 @@
 import React from 'react'
-import {styled} from '../theme'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-//import {BoxVariantProps, StyledBox, StyledContentContainer} from './Box.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import { useDOMRef } from '../utils/use-dom-ref'
+import styles from './styles/box.module.css'
 
 export type BoxProps = Props &
   Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
   as?: React.ElementType
   border?: string
   borderBottom?: string
@@ -92,21 +93,14 @@ interface Props extends StyledComponentProps {
   lineHeight?: string
   textAlign?: string
 }
-const StyledBox = styled('div', {
-  // reset
-  appearance: 'none',
-  border: 'none',
-  backgroundColor: 'transparent',
-  boxSizing: 'border-box',
-  margin: '0px',
-  padding: '0px',
-})
+
 const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
   const {
     // children props
     children,
     // styled component props
     css = {},
+    className = '',
     // custom props
     as: asProp = 'div',
     border,
@@ -190,103 +184,118 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
     letterSpacing,
     lineHeight,
     textAlign,
-    ...delegated
+    style = {},
+    ...htmlProps
   } = props
 
   const BoxRef = useDOMRef<HTMLElement>(ref)
 
+  const Component = asProp as React.ElementType
+
+  const rootClasses = [
+    styles.box,
+    className,
+    'cdg-box',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledBox
-      {...delegated}
-      ref={BoxRef}
-      as={asProp}
-      css={{
-        border,
-        borderBottom,
-        borderColor,
-        borderLeft,
-        borderRadius,
-        borderRight,
-        borderTop,
-        boxShadow,
-        displayPrint,
-        displayRaw,
-        alignContent,
-        alignItems,
-        alignSelf,
-        flex,
-        flexDirection,
-        flexGrow,
-        flexShrink,
-        flexWrap,
-        justifyContent,
-        order,
-        gap,
-        columnGap,
-        rowGap,
-        gridColumn,
-        gridRow,
-        gridAutoFlow,
-        gridAutoColumns,
-        gridAutoRows,
-        gridTemplateColumns,
-        gridTemplateRows,
-        gridTemplateAreas,
-        gridArea,
-        bgcolor,
-        color,
-        bottom,
-        left,
-        position,
-        right,
-        top,
-        zIndex,
-        height,
-        maxHeight,
-        maxWidth,
-        minHeight,
-        minWidth,
-        width,
-        boxSizing,
-        margin,
-        marginBottom,
-        marginLeft,
-        marginRight,
-        marginTop,
-        marginX,
-        marginY,
-        marginInline,
-        marginInlineStart,
-        marginInlineEnd,
-        marginBlock,
-        marginBlockStart,
-        marginBlockEnd,
-        padding,
-        paddingBottom,
-        paddingLeft,
-        paddingRight,
-        paddingTop,
-        paddingX,
-        paddingY,
-        paddingInline,
-        paddingInlineStart,
-        paddingInlineEnd,
-        paddingBlock,
-        paddingBlockStart,
-        paddingBlockEnd,
-        typography,
-        fontFamily,
-        fontSize,
-        fontStyle,
-        fontWeight,
-        letterSpacing,
-        lineHeight,
-        textAlign,
-        ...css,
-      }}
-    >
-      {children}
-    </StyledBox>
+    <>
+      <CssInjection css={css}>
+        <Component
+          {...htmlProps}
+          ref={BoxRef as never}
+          className={rootClasses}
+          style={{
+            border,
+            borderBottom,
+            borderColor,
+            borderLeft,
+            borderRadius,
+            borderRight,
+            borderTop,
+            boxShadow,
+            displayPrint,
+            displayRaw,
+            alignContent,
+            alignItems,
+            alignSelf,
+            flex,
+            flexDirection,
+            flexGrow,
+            flexShrink,
+            flexWrap,
+            justifyContent,
+            order,
+            gap,
+            columnGap,
+            rowGap,
+            gridColumn,
+            gridRow,
+            gridAutoFlow,
+            gridAutoColumns,
+            gridAutoRows,
+            gridTemplateColumns,
+            gridTemplateRows,
+            gridTemplateAreas,
+            gridArea,
+            bgcolor,
+            color,
+            bottom,
+            left,
+            position,
+            right,
+            top,
+            zIndex,
+            height,
+            maxHeight,
+            maxWidth,
+            minHeight,
+            minWidth,
+            width,
+            boxSizing,
+            margin,
+            marginBottom,
+            marginLeft,
+            marginRight,
+            marginTop,
+            marginX,
+            marginY,
+            marginInline,
+            marginInlineStart,
+            marginInlineEnd,
+            marginBlock,
+            marginBlockStart,
+            marginBlockEnd,
+            padding,
+            paddingBottom,
+            paddingLeft,
+            paddingRight,
+            paddingTop,
+            paddingX,
+            paddingY,
+            paddingInline,
+            paddingInlineStart,
+            paddingInlineEnd,
+            paddingBlock,
+            paddingBlockStart,
+            paddingBlockEnd,
+            typography,
+            fontFamily,
+            fontSize,
+            fontStyle,
+            fontWeight,
+            letterSpacing,
+            lineHeight,
+            textAlign,
+            ...style,
+          }}
+        >
+          {children}
+        </Component>
+      </CssInjection>
+    </>
   )
 })
 

@@ -1,2 +1,2 @@
-<ColorBox color={theme.colors.overlayLight} />
-<ColorBox color={theme.colors.overlayDark} />
+<ColorBox color={{token: 'overlayLight', value: lightThemeColors.overlayLight}} />
+<ColorBox color={{token: 'overlayDark', value: lightThemeColors.overlayDark}} />

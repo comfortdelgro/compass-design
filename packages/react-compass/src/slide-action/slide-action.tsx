@@ -1,15 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
-import React, {forwardRef, useCallback, useRef, useState} from 'react'
+import {CSSProperties, forwardRef, useCallback, useRef, useState} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {SLIDER_REDUCE_OPACITY} from './slide-action.const'
-import {
-  StyledSlideAction,
-  StyledSlideBg,
-  StyledSlideLabel,
-} from './slide-action.styles'
 import {SlideActionProps, SlideDraggerProps} from './slide-action.types'
 import SlideDragger from './slide-dragger'
+import classes from './styles/slide-action.module.css'
+
+const isValidColorVariable = (color: string): boolean => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return false
+  }
+
+  return !!window
+    .getComputedStyle(document.documentElement)
+    .getPropertyValue(color)
+    .trim()
+}
 
 /**
  * A Slide action or Swiper component that requires user to swipe to confirm an action.
@@ -22,7 +31,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
       css = {},
       className = '',
       icon,
-      color = '$dangerShades',
+      color = '--cdg-color-dangerShades',
       label = 'Slide',
       labelType = 'default',
       onChange,
@@ -33,7 +42,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
       compact = false,
       children,
 
-      ...delegated
+      ...htmlDivAttributes
     },
     ref,
   ) => {
@@ -57,7 +66,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
 
         slideBgRef.current.style.setProperty('width', `${width}px`)
       },
-      [slideBgRef.current, slideType],
+      [slideType],
     )
 
     const handleOnDrag = useCallback<NonNullable<SlideDraggerProps['onDrag']>>(
@@ -77,7 +86,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
           slideDragWidth + x,
         )
       },
-      [slideRef.current, slideLabelRef.current, handleUpdateSlideBg],
+      [handleUpdateSlideBg],
     )
 
     const handleOnDragEnd = useCallback<
@@ -113,61 +122,68 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
 
         resetPosition()
       },
-      [
-        slideRef.current,
-        slideLabelRef.current,
-        onChange,
-        onSwipeEnd,
-        handleUpdateSlideBg,
-      ],
+      [onChange, handleUpdateSlideBg, allowSwipeAfterEnd, onSwipeEnd],
     )
 
-    return (
-      <StyledSlideAction
-        ref={slideRef}
-        className={`${className} slide-action`}
-        css={{...css, borderColor: color}}
-        {...{compact}}
-        {...delegated}
-      >
-        <StyledSlideBg
-          className='slide-action__bg'
-          ref={slideBgRef}
-          css={{backgroundColor: color}}
-          {...{slideColor}}
-          {...{slideType}}
-        />
-        <SlideDragger
-          slideRef={slideRef}
-          color={color}
-          icon={icon}
-          onDrag={handleOnDrag}
-          onDragEnd={handleOnDragEnd}
-          disableDrag={disableDrag}
-        />
+    const rootClasses = [
+      classes.slideAction,
+      compact && classes.compact,
+      className,
+      'cdg-slide-action',
+    ]
+      .filter(Boolean)
+      .join(' ')
 
-        <StyledSlideLabel
-          ref={slideLabelRef}
-          css={{
-            color,
-            '@media (prefers-reduced-motion: no-preference)': {
-              color: labelType === 'slide' ? 'transparent' : color,
-              background: `linear-gradient(
-              to right,
-              ${color},
-              transparent,
-              ${color}
-            ) 0 0 / 400% 100%`,
-              backgroundClip: 'text',
-            },
-          }}
-          {...{labelType}}
-          className='slide-action__label'
-          title={typeof children === 'string' ? children : label}
+    const bgClasses = [
+      classes.slideActionBackground,
+      slideColor && classes[slideColor],
+      slideType && classes[slideType],
+      'cdg-slide-action__bg',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const labelClasses = [
+      classes.slideActionLabel,
+      labelType && classes[labelType],
+      'cdg-slide-action__label',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    return (
+      <CssInjection css={css} childrenRef={slideRef}>
+        <div
+          ref={slideRef}
+          className={rootClasses}
+          // data-color={color} // attr(data-color) is not widely supported yet, using inline style for now
+          style={
+            {
+              '--slide-action-theme': isValidColorVariable(color)
+                ? `var(${color})`
+                : color,
+            } as CSSProperties
+          }
+          {...htmlDivAttributes}
         >
-          {children || label}
-        </StyledSlideLabel>
-      </StyledSlideAction>
+          <div ref={slideBgRef} className={bgClasses} />
+          <SlideDragger
+            slideRef={slideRef}
+            icon={icon}
+            onDrag={handleOnDrag}
+            onDragEnd={handleOnDragEnd}
+            disableDrag={disableDrag}
+          />
+
+          <div
+            ref={slideLabelRef}
+            className={labelClasses}
+            title={typeof children === 'string' ? children : label}
+          >
+            {children || label}
+          </div>
+        </div>
+      </CssInjection>
     )
   },
 )

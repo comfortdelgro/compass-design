@@ -33,7 +33,7 @@ export class IndianCalendar extends GregorianCalendar {
 
   override fromJulianDay(jd: number): CalendarDate {
     // Gregorian date for Julian day
-    let date = super.fromJulianDay(jd)
+    const date = super.fromJulianDay(jd)
 
     // Year in Saka era
     let indianYear = date.year - INDIAN_ERA_START
@@ -76,8 +76,8 @@ export class IndianCalendar extends GregorianCalendar {
   }
 
   override toJulianDay(date: AnyCalendarDate) {
-    let extendedYear = date.year + INDIAN_ERA_START
-    let [era, year] = fromExtendedYear(extendedYear)
+    const extendedYear = date.year + INDIAN_ERA_START
+    const [era, year] = fromExtendedYear(extendedYear)
 
     let leapMonth: number
     let jd: number

@@ -121,22 +121,14 @@ export default function DocsAppToc(props: any) {
         className={styles.DocsTOC}
         dangerouslySetInnerHTML={{__html: item.text}}
         css={{
-          color:
-            activeState === item.hash
-              ? 'var(--cdg-color-gray80)'
-              : 'var(--cdg-color-gray70)',
-          background:
-            activeState === item.hash ? 'var(--cdg-color-gray30)' : 'none',
+          color: activeState === item.hash ? 'var(--cdg-color-gray80)' : 'var(--cdg-color-gray70)',
+          background: activeState === item.hash ? 'var(--cdg-color-gray30)' : 'none',
           borderRadius: 5,
           textDecoration: 'none',
           fontWeight: activeState === item.hash ? 'bold' : '600',
           fontSize: 14,
-          paddingTop: !children
-            ? 'var(--cdg-spacing-2)'
-            : 'var(--cdg-spacing-1)',
-          paddingBottom: !children
-            ? 'var(--cdg-spacing-1)'
-            : 'var(--cdg-spacing-1)',
+          paddingTop: !children ? 'var(--cdg-spacing-2)' : 'var(--cdg-spacing-1)',
+          paddingBottom: !children ? 'var(--cdg-spacing-1)' : 'var(--cdg-spacing-1)',
           paddingLeft: 'var(--cdg-spacing-2)',
         }}
       />

@@ -1,7 +1,9 @@
-import Pagination from './pagination'
+import ItemCounting from './components/ItemCounting'
+import ComposablePagination from './pagination'
 
 export type {PaginationProps} from './pagination'
 
-Pagination.displayName = 'Pagination'
+ComposablePagination.displayName = 'Pagination'
+ComposablePagination.ItemCounting = ItemCounting
 
-export default Pagination
+export default ComposablePagination

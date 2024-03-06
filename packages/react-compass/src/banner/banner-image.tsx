@@ -1,17 +1,21 @@
-/* eslint-disable prettier/prettier */
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledBannerImage, StyledBannerImageFallback} from './banner.styles'
+'use client'
 
-type Props = StyledComponentProps
+import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/banner.module.css'
+
+interface Props {
+  css?: unknown
+  className?: string
+}
 
 export type BannerImageProps = Props &
   Omit<React.ImgHTMLAttributes<HTMLImageElement>, keyof Props>
 
 const BannerImage = React.forwardRef<HTMLImageElement, BannerImageProps>(
   (props, ref) => {
-    const {css = {}, id = 'myId', onError, ...delegated} = props
+    const {css = {}, className = '', onError, ...delegated} = props
     const [imageError, setImageError] = React.useState(false)
     const bannerImageRef = useDOMRef<HTMLImageElement>(ref)
 
@@ -25,22 +29,23 @@ const BannerImage = React.forwardRef<HTMLImageElement, BannerImageProps>(
       console.log('error event', event)
     }
     return (
-      <>
+      <CssInjection css={css} childrenRef={bannerImageRef}>
         {!imageError ? (
-          <StyledBannerImage
-            css={css}
+          <img
+            className={`cdg-banner-image ${styles.bannerImage} ${className}`}
             ref={bannerImageRef}
-            id={id}
             alt='banner image'
             onError={handleImageError}
             {...delegated}
           />
         ) : (
-          <StyledBannerImageFallback>
+          <div
+            className={`cdg-banner-image-fallback ${styles.bannerImageFallback}`}
+          >
             Image failed to load. Please try again later.
-          </StyledBannerImageFallback>
+          </div>
         )}
-      </>
+      </CssInjection>
     )
   },
 )

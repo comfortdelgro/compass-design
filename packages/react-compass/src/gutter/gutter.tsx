@@ -1,75 +1,80 @@
-import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+/* eslint-disable react-refresh/only-export-components */
 import React, {CSSProperties, useEffect} from 'react'
-import Icon, {IconProp} from '../icon'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledGutter, StyledGutterCollapseButton} from './gutter.styles'
-import useGutter from './useGutter'
+import styles from './styles/gutter.module.css'
+import Icon from './utils/Icon'
+import useGutter from './utils/useGutter'
 
 export enum GutterSide {
   RIGHT = 'right',
   LEFT = 'left',
 }
 
-const iconStyles: CSSProperties = {
-  width: '14px',
-  height: '14px',
-}
-
-export interface GutterProps extends StyledComponentProps {
-  parentRef?: React.RefObject<HTMLDivElement> | null
-  side?: 'left' | 'right'
+export interface Props {
+  css?: unknown
   isExpand?: boolean
+  side?: `${GutterSide}`
   hasExpandButton?: boolean
-  minCollapse?: CSSProperties['width']
   maxExpand?: CSSProperties['width']
+  minCollapse?: CSSProperties['width']
+  parentRef?: React.RefObject<HTMLDivElement> | null
   onChange?: (width: CSSProperties['width']) => void
 }
 
+export type GutterProps = Props &
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
+
 const Gutter = React.forwardRef<HTMLDivElement, GutterProps>((props, ref) => {
-  const {onChange, hasExpandButton, side = GutterSide.RIGHT, css = {}} = props
-  const domRef = useDOMRef<HTMLDivElement>(ref)
+  const {
+    css = {},
+    onChange,
+    className,
+    hasExpandButton,
+    side = GutterSide.RIGHT,
+  } = props
+
+  const gutterRef = useDOMRef<HTMLDivElement>(ref)
   const {width, isExpand, toggleExpand, handlePointerDown} = useGutter(
     props,
-    domRef,
+    gutterRef,
   )
 
   useEffect(() => {
     onChange?.(width)
-  }, [width])
+  }, [onChange, width])
 
-  const renderCollapseSymbol = () => {
-    let icon: IconProp = faChevronLeft
-    if (side === GutterSide.RIGHT) {
-      icon = isExpand ? faChevronLeft : faChevronRight
-    } else {
-      icon = isExpand ? faChevronRight : faChevronLeft
-    }
-
-    return <Icon icon={icon} style={iconStyles} />
-  }
+  const gutterClasses = [
+    styles.gutter,
+    side === GutterSide.LEFT && styles.gutterVariantLeft,
+    side === GutterSide.RIGHT && styles.gutterVariantRight,
+    'cdg-gutter',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
-    <StyledGutter
-      css={css}
-      ref={domRef}
-      onPointerDown={handlePointerDown}
-      side={side}
-    >
-      {hasExpandButton ? (
-        <StyledGutterCollapseButton
-          onClick={(e) => {
-            e.stopPropagation()
-            toggleExpand()
-          }}
-          type='button'
-        >
-          {renderCollapseSymbol()}
-        </StyledGutterCollapseButton>
-      ) : (
-        <></>
-      )}
-    </StyledGutter>
+    <CssInjection css={css}>
+      <div
+        ref={gutterRef}
+        className={gutterClasses}
+        onPointerDown={handlePointerDown}
+      >
+        {hasExpandButton && (
+          <button
+            type='button'
+            onClick={(e) => {
+              e.stopPropagation()
+              toggleExpand()
+            }}
+            className={`${styles.collapse} cdg-gutter-collapse-button`}
+          >
+            <Icon side={side} isExpand={isExpand} />
+          </button>
+        )}
+      </div>
+    </CssInjection>
   )
 })
 

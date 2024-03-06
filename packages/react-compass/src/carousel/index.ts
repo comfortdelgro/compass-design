@@ -4,13 +4,12 @@ import CarouselPromotion from './carousel-promotion'
 import CarouselSlide from './carousel-slide'
 import CarouselSlider from './carousel-slider'
 
-CarouselSlider.Slide = CarouselSlide
-CarouselSlider.ImageSlide = CarouselImageSlide
-CarouselSlider.Promotion = CarouselPromotion
-CarouselSlider.Mobile = CarouselMobile
-
+export type {CarouselImageSlideProps} from './carousel-image-slide'
+export type {CarouselMobileProps} from './carousel-mobile'
+export type {CarouselPromotionProps} from './carousel-promotion'
+export type {CarouselSlideProps} from './carousel-slide'
+export type {CarouselSliderProps} from './carousel-slider'
 export type {
-  AnimationType,
   ButtonType,
   CarouselOptions,
   CarouselSliderButton,
@@ -18,6 +17,12 @@ export type {
   NavigationButtonType,
   NinePartAlignment,
   SocicalIcon,
-} from './content-slider.types'
+} from './carousel.const'
+
+CarouselSlider.displayName = 'CarouselSlider'
+CarouselSlider.Slide = CarouselSlide
+CarouselSlider.ImageSlide = CarouselImageSlide
+CarouselSlider.Promotion = CarouselPromotion
+CarouselSlider.Mobile = CarouselMobile
 
 export default CarouselSlider

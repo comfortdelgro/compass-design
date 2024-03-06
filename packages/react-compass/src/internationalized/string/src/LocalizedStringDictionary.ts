@@ -46,7 +46,7 @@ export class LocalizedStringDictionary<
       this.strings[locale] = strings
     }
 
-    let string = strings[key]
+    const string = strings[key]
     if (!string) {
       throw new Error(`Could not find intl message ${key} in ${locale} locale`)
     }
@@ -70,12 +70,12 @@ function getStringsForLocale<K extends string, T extends LocalizedString>(
   // an fr-FR (France) set of strings, use that.
   // This could be replaced with Intl.LocaleMatcher once it is supported.
   // https://github.com/tc39/proposal-intl-localematcher
-  let language = getLanguage(locale) as string
+  const language = getLanguage(locale) as string
   if (strings[language]) {
     return strings[language]
   }
 
-  for (let key in strings) {
+  for (const key in strings) {
     if (key.startsWith(language + '-')) {
       return strings[key]
     }
@@ -86,8 +86,10 @@ function getStringsForLocale<K extends string, T extends LocalizedString>(
 }
 
 function getLanguage(locale: string) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   if (Intl.Locale) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return new Intl.Locale(locale).language
   }

@@ -1,8 +1,9 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledMenuList} from './menu-list.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/menu-list.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
 }
 
@@ -21,15 +22,16 @@ const MenuList = React.forwardRef<HTMLDivElement, MenuListProps>(
       ...delegated
     } = props
 
+    const rootClasses = [styles.menuList, className, 'cdg-menu-list']
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledMenuList
-        className={`${className} menu-list`}
-        ref={ref}
-        css={css}
-        {...delegated}
-      >
-        {children}
-      </StyledMenuList>
+      <CssInjection css={css} childrenRef={ref}>
+        <div className={rootClasses} ref={ref} {...delegated}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

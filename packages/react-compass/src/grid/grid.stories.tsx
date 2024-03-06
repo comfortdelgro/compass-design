@@ -1,5 +1,5 @@
+import {Meta} from '@storybook/react'
 import React from 'react'
-import {Column} from '../utils/components'
 import Grid from './index'
 
 export const Default: React.FC = () => {
@@ -19,7 +19,7 @@ export const Default: React.FC = () => {
     </div>
   )
   return (
-    <Column>
+    <div style={{padding: '3rem'}}>
       <section>
         <h3>Fluid grids</h3>
         Fluid grids use columns that scale and resize content. A fluid grid's
@@ -53,7 +53,7 @@ export const Default: React.FC = () => {
         </ol>
       </section>
       <h3>Example: </h3>
-      <Grid spacing='sm' alignItems='center' style={{height: '100%'}}>
+      <Grid spacing='sm' alignItems='center'>
         <Grid.Item xs={12} sm={6} md={4} lg={3} xl={3}>
           {box}
         </Grid.Item>
@@ -67,6 +67,19 @@ export const Default: React.FC = () => {
           {box}
         </Grid.Item>
       </Grid>
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Grid',
+  component: Default,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Default>
+
+export default meta

@@ -1,11 +1,12 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledModalCloseIcon} from './modal.styles'
+import styles from './styles/modal.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   onClose?: () => void
+  css?: unknown
 }
 
 export type ModalCloseIconProps = Props &
@@ -13,20 +14,26 @@ export type ModalCloseIconProps = Props &
 
 const ModalCloseIcon = React.forwardRef<HTMLDivElement, ModalCloseIconProps>(
   (props, ref) => {
-    const {children, css = {}, onClose, ...delegated} = props
+    const {children, css = {}, onClose, className, ...htmlProps} = props
 
     const modalCloseIconRef = useDOMRef<HTMLDivElement>(ref)
 
+    const classNames = ['cdg-modal-close-icon', className, styles.closeIcon]
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledModalCloseIcon
-        css={css}
-        ref={modalCloseIconRef}
-        onClick={() => onClose?.()}
-        tabIndex={0}
-        {...delegated}
-      >
-        {children}
-      </StyledModalCloseIcon>
+      <CssInjection css={css}>
+        <div
+          ref={modalCloseIconRef}
+          onClick={() => onClose?.()}
+          tabIndex={0}
+          className={classNames}
+          {...htmlProps}
+        >
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

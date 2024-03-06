@@ -34,12 +34,12 @@ function islamicToJulianDay(
 }
 
 function julianDayToIslamic(calendar: Calendar, epoch: number, jd: number) {
-  let year = Math.floor((30 * (jd - epoch) + 10646) / 10631)
-  let month = Math.min(
+  const year = Math.floor((30 * (jd - epoch) + 10646) / 10631)
+  const month = Math.min(
     12,
     Math.ceil((jd - (29 + islamicToJulianDay(epoch, year, 1, 1))) / 29.5) + 1,
   )
-  let day = jd - islamicToJulianDay(epoch, year, month, 1) + 1
+  const day = jd - islamicToJulianDay(epoch, year, month, 1) + 1
 
   return new CalendarDate(calendar, year, month, day)
 }
@@ -125,15 +125,13 @@ let UMALQURA_YEAR_START_TABLE: Uint32Array
 
 function umalquraYearStart(year: number): number {
   return (
-    //@ts-ignore
     UMALQURA_START_DAYS + UMALQURA_YEAR_START_TABLE[year - UMALQURA_YEAR_START]
   )
 }
 
 function umalquraMonthLength(year: number, month: number): number {
-  let idx = year - UMALQURA_YEAR_START
-  let mask = 0x01 << (11 - (month - 1))
-  //@ts-ignore
+  const idx = year - UMALQURA_YEAR_START
+  const mask = 0x01 << (11 - (month - 1))
   if ((UMALQURA_MONTHLENGTH[idx] & mask) === 0) {
     return 29
   } else {
@@ -151,9 +149,7 @@ function umalquraMonthStart(year: number, month: number): number {
 
 function umalquraYearLength(year: number): number {
   return (
-    //@ts-ignore
     UMALQURA_YEAR_START_TABLE[year + 1 - UMALQURA_YEAR_START] -
-    //@ts-ignore
     UMALQURA_YEAR_START_TABLE[year - UMALQURA_YEAR_START]
   )
 }
@@ -192,9 +188,9 @@ export class IslamicUmalquraCalendar extends IslamicCivilCalendar {
   }
 
   override fromJulianDay(jd: number): CalendarDate {
-    let days = jd - CIVIL_EPOC
-    let startDays = umalquraYearStart(UMALQURA_YEAR_START)
-    let endDays = umalquraYearStart(UMALQURA_YEAR_END)
+    const days = jd - CIVIL_EPOC
+    const startDays = umalquraYearStart(UMALQURA_YEAR_START)
+    const endDays = umalquraYearStart(UMALQURA_YEAR_END)
     if (days < startDays || days > endDays) {
       return super.fromJulianDay(jd)
     } else {
@@ -204,7 +200,7 @@ export class IslamicUmalquraCalendar extends IslamicCivilCalendar {
       while (d > 0) {
         y++
         d = days - umalquraYearStart(y) + 1
-        let yearLength = umalquraYearLength(y)
+        const yearLength = umalquraYearLength(y)
         if (d === yearLength) {
           m = 12
           break

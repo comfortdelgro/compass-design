@@ -1,20 +1,15 @@
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import React, {useMemo} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {
-  StyledItemContainer,
-  StyledItemContentWrapper,
-  StyledItemDot,
-  StyledItemHeaderContainer,
-  StyledItemLabel,
-} from './timeline.styles'
+import styles from './styles/timeline.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   label?: React.ReactNode | string
   icon?: React.ReactNode
   dot?: React.ReactNode
   identifier?: number
+  css?: unknown
 }
 
 export type TimelineItemProps = Props &
@@ -29,38 +24,58 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
       identifier = 0,
       icon,
       dot,
-      ...delegated
+      ...htmlProps
     } = props
     const timelineItemRef = useDOMRef<HTMLDivElement>(ref)
 
     // classname for styling alternate
-    const className = (prefix: string) => {
+    const itemContainerClasses = () => {
       if (identifier % 2 === 0) {
-        return `${prefix}-even`
+        return styles.itemContainer + ' ' + styles['itemContainer-even']
       }
-      return `${prefix}-odd`
+      return styles.itemContainer + ' ' + styles['itemContainer-odd']
     }
+
+    const itemHeaderContainerClasses = () => {
+      if (identifier % 2 === 0) {
+        return styles.itemHeaderContainer + ' ' + styles['header-even']
+      }
+      return styles.itemHeaderContainer + ' ' + styles['header-odd']
+    }
+
+    const itemContentClasses = () => {
+      if (identifier % 2 === 0) {
+        return styles.content + ' ' + styles['content-even']
+      }
+      return styles.content
+    }
+
+    const itemDotClasses = useMemo(() => {
+      return [styles.itemDot].filter(Boolean).join(' ')
+    }, [])
+
+    const itemLabelClasses = useMemo(() => {
+      return [styles.itemLabel].filter(Boolean).join(' ')
+    }, [])
+
     return (
-      <>
-        <StyledItemContainer
-          css={css}
+      <CssInjection css={css}>
+        <div
           ref={timelineItemRef}
-          {...delegated}
-          className={className('itemContainer')}
+          {...htmlProps}
+          className={itemContainerClasses()}
         >
-          <StyledItemHeaderContainer className={className('header')}>
-            {!dot ? <StyledItemDot>{icon}</StyledItemDot> : dot}
+          <div className={itemHeaderContainerClasses()}>
+            {!dot ? <div className={itemDotClasses}>{icon}</div> : dot}
             {typeof label === 'string' ? (
-              <StyledItemLabel>{label}</StyledItemLabel>
+              <div className={itemLabelClasses}>{label}</div>
             ) : (
               label
             )}
-          </StyledItemHeaderContainer>
-          <StyledItemContentWrapper className={className('content')}>
-            {children}
-          </StyledItemContentWrapper>
-        </StyledItemContainer>
-      </>
+          </div>
+          <div className={itemContentClasses()}>{children}</div>
+        </div>
+      </CssInjection>
     )
   },
 )

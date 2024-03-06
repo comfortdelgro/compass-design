@@ -1,16 +1,12 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import WizardItem from './item'
+import styles from './styles/wizard.module.css'
 import {pickChilds, TickIcon} from './utils'
-import {
-  StyledItem,
-  StyledLine,
-  StyledTitle,
-  StyledWizard,
-  WizardVariantProps,
-} from './wizard.styles'
-interface Props extends StyledComponentProps {
+
+interface Props {
+  css?: unknown
   items?: string[]
   currentStep?: number
   erroredSteps?: number[]
@@ -19,20 +15,17 @@ interface Props extends StyledComponentProps {
 }
 
 export type WizardProps = Props &
-  WizardVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
   const {
-    // StyledComponentProps
     css = {},
-    // ComponentProps
+    children,
+    items = [],
     currentStep = 1,
     erroredSteps = [],
-    children,
-    items,
     onStepClick,
-    ...delegated
+    ...htmlProps
   } = props
 
   const wizardRef = useDOMRef<HTMLDivElement>(ref)
@@ -43,94 +36,120 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
   )
 
   const isControlled = !!children
+  const itemWidth = isControlled ? collection?.length : items?.length ?? 0
+  const list = isControlled ? collection : items
 
   return (
-    <StyledWizard
-      css={{
-        $$itemsLength: `${
-          isControlled ? collection?.length : items?.length ?? 0
-        }`,
-        ...css,
-      }}
-      ref={wizardRef}
-      {...delegated}
-    >
-      <div className='wizard-progress-wrapper'>
-        {!isControlled &&
-          items?.map((item: string, index: number) => (
-            <div className='item-wrapper' key={item}>
-              <StyledLine
+    <CssInjection css={css}>
+      <div
+        ref={wizardRef}
+        className={`${styles.wizard} cdg-wizard`}
+        {...htmlProps}
+      >
+        <div className={`${styles.track} cdg-wizard-track`}>
+          {list.map((item, index: number) => (
+            <div
+              key={`${isControlled ? item.props.title : item}-${index}`}
+              className={`${styles.trackItem} cdg-wizard-track-item`}
+              style={{width: `calc(100% / ${itemWidth})`}}
+            >
+              <Line
                 side='left'
                 bordered={index === 0}
                 active={currentStep > index + 1 || index + 1 === currentStep}
                 error={!!erroredSteps.includes(index + 1)}
               />
-              <StyledItem
-                tabIndex={0}
-                active={currentStep > index + 1 || index + 1 === currentStep}
-                onKeyDown={(event) => {
-                  const key = event.key
-                  if (key === 'Enter' || key === ' ') {
-                    onStepClick?.(index + 1)
-                  }
-                }}
-                error={!!erroredSteps.includes(index + 1)}
-                onClick={() => onStepClick?.(index + 1)}
-                css={{cursor: onStepClick ? 'pointer' : ''}}
-              >
-                {currentStep > index + 1 ? <TickIcon /> : index + 1}
-              </StyledItem>
-              <StyledLine
-                className='side-right'
-                bordered={index === items.length - 1}
-                active={currentStep > index + 1}
-                error={!!erroredSteps.includes(index + 1)}
-              />
-            </div>
-          ))}
-
-        {isControlled &&
-          collection?.map((item, index: number) => (
-            <div className='item-wrapper' key={`${item.props.title}-${index}`}>
-              <StyledLine
-                side='left'
-                bordered={index === 0}
-                active={currentStep > index + 1 || index + 1 === currentStep}
-                error={!!item.props.isErrored}
-              />
-              {item}
-              <StyledLine
-                className='side-right'
+              {isControlled ? (
+                item
+              ) : (
+                <Item
+                  onKeyDown={(event) => {
+                    const key = event.key
+                    if (key === 'Enter' || key === ' ') {
+                      onStepClick?.(index + 1)
+                    }
+                  }}
+                  onClick={() => onStepClick?.(index + 1)}
+                  error={!!erroredSteps.includes(index + 1)}
+                  style={{cursor: onStepClick ? 'pointer' : ''}}
+                  active={currentStep > index + 1 || index + 1 === currentStep}
+                >
+                  {currentStep > index + 1 ? <TickIcon /> : index + 1}
+                </Item>
+              )}
+              <Line
+                side='right'
                 bordered={index === collection.length - 1}
                 active={currentStep > index + 1}
-                error={!!item.props.isErrored}
+                error={!!erroredSteps.includes(index + 1)}
               />
             </div>
           ))}
-      </div>
-      <div className='wizard-title-wrapper'>
-        {!isControlled &&
-          items?.map((item: string, index: number) => (
-            <StyledTitle
+        </div>
+        <div className={`${styles.title}`}>
+          {list.map((item, index: number) => (
+            <Title
               key={index}
+              style={{width: `calc(100% / ${itemWidth})`}}
               active={currentStep > index + 1 || index + 1 === currentStep}
             >
-              {item}
-            </StyledTitle>
+              {isControlled ? item.props.title : item}
+            </Title>
           ))}
-        {isControlled &&
-          collection?.map((item, index: number) => (
-            <StyledTitle
-              key={index}
-              active={currentStep > index + 1 || index + 1 === currentStep}
-            >
-              {item.props.title}
-            </StyledTitle>
-          ))}
+        </div>
       </div>
-    </StyledWizard>
+    </CssInjection>
   )
 })
+
+const Line = ({side, bordered, active, error}) => (
+  <div
+    className={[
+      styles.line,
+      active && styles.lineIsActive,
+      bordered && side === 'left' && styles.lineSideLeftBordered,
+      bordered && side === 'right' && styles.lineSideRightBordered,
+      active && error && styles.lineIsActiveIsErrored,
+      'cdg-wizard-line',
+    ]
+      .filter(Boolean)
+      .join(' ')}
+  />
+)
+
+const Item = ({active, error, onKeyDown, onClick, style, children}) => (
+  <div
+    tabIndex={0}
+    className={[
+      styles.item,
+      active && styles.itemIsActive,
+      active && error && styles.itemIsActiveIsErrored,
+      'cdg-wizard-item',
+    ]
+      .filter(Boolean)
+      .join(' ')}
+    onKeyDown={onKeyDown}
+    onClick={onClick}
+    style={style}
+  >
+    {children}
+  </div>
+)
+
+const Title = ({active, style, children}) => (
+  <div
+    style={style}
+    className={[
+      styles.titleItem,
+      active && styles.titleItemIsActive,
+      'cdg-wizard-title-item',
+    ]
+      .filter(Boolean)
+      .join(' ')}
+  >
+    {children}
+  </div>
+)
 
 export default Wizard as typeof Wizard & {
   Item: typeof WizardItem

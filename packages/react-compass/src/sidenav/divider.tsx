@@ -1,9 +1,11 @@
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledDivider} from './divider.styles'
+'use client'
 
-interface Props extends StyledComponentProps {
+import React from 'react'
+import styles from './styles/divider.module.css'
+
+interface Props {
   children?: React.ReactNode
+  className?: string
 }
 
 export type DividerProps = Props &
@@ -18,8 +20,8 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
   } = props
 
   return (
-    <StyledDivider
-      className={`${className} cdg-sidenav-divider`}
+    <div
+      className={`${className} ${styles.divider} cdg-sidenav-divider`}
       ref={ref}
       {...delegated}
     />

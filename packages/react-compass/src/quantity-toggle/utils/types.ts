@@ -218,7 +218,8 @@ export interface AriaTextFieldProps
     AriaLabelingProps,
     FocusableDOMProps,
     TextInputDOMProps,
-    AriaValidationProps {
+    AriaValidationProps,
+    Omit<React.HTMLAttributes<HTMLInputElement>, keyof TextFieldProps> {
   'aria-activedescendant'?: string
   'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
   'aria-haspopup'?:

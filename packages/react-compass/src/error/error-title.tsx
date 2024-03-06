@@ -1,10 +1,13 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledErrorTitle} from './error.styles'
+import styles from './styles/error.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
+  variant?: 'primary' | 'secondary'
 }
 
 export type ErrorTitleProps = Props &
@@ -12,12 +15,30 @@ export type ErrorTitleProps = Props &
 
 const ErrorTitle = React.forwardRef<HTMLHeadingElement, ErrorTitleProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {
+      children,
+      css = {},
+      variant = 'primary',
+      className = '',
+      ...htmlProps
+    } = props
     const errorTitleRef = useDOMRef<HTMLHeadingElement>(ref)
+
+    const errorTitleClasses = [
+      `cdg-error-title`,
+      className,
+      variant && styles[`${variant}VariantErrorTitle`],
+      styles.errorTitle,
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledErrorTitle css={css} ref={errorTitleRef} {...delegated}>
-        {children}
-      </StyledErrorTitle>
+      <CssInjection css={css} childrenRef={errorTitleRef}>
+        <h3 className={errorTitleClasses} ref={errorTitleRef} {...htmlProps}>
+          {children}
+        </h3>
+      </CssInjection>
     )
   },
 )

@@ -1,7 +1,8 @@
+'use client'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Popover from '../popover'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMenuContext, {
   DropdownMenuContextType,
@@ -10,13 +11,15 @@ import DropdownMenuItem from './dropdown-menu-item'
 import DropdownMenuMenu from './dropdown-menu-menu'
 import DropdownMenuSubmenu from './dropdown-menu-submenu'
 import DropdownMenuToggle from './dropdown-menu-toggle'
-import {StyledDropdownMenu} from './dropdown-menu.styles'
-interface Props extends StyledComponentProps {
+import styles from './styles/dropdown-menu.module.css'
+
+interface Props {
   children?: React.ReactNode
   isOpen?: boolean
   onClose?: () => void
   onOpenChange?: (status: boolean) => void
   'aria-labelledby'?: string
+  css?: unknown
 }
 
 export type DropdownMenuProps = Props &
@@ -112,7 +115,6 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
             break
           case 'Enter':
             event.preventDefault()
-            console.log('Menu Enter')
             refs.current[selectedIndex]?.current?.click()
             break
           case 'Escape':
@@ -137,25 +139,27 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
     }
 
     return (
-      <StyledDropdownMenu
-        ref={dropdownRef}
-        onKeyDown={handleKeyDown}
-        css={css}
-        role='menu'
-        aria-labelledby={props['aria-labelledby']}
-        {...delegated}
-      >
-        <DropdownMenuContext.Provider value={contextValue}>
-          <Popover
-            isOpen={open}
-            anchor={DropdownMenuToggleElement}
-            direction='bottom-left'
-            onClose={handleClosePopover}
-          >
-            {DropdownMenuMenuElement}
-          </Popover>
-        </DropdownMenuContext.Provider>
-      </StyledDropdownMenu>
+      <CssInjection css={css} childrenRef={dropdownRef}>
+        <div
+          ref={dropdownRef}
+          onKeyDown={handleKeyDown}
+          role='menu'
+          aria-labelledby={props['aria-labelledby']}
+          className={`${styles.dropdownMenu} cdg-dropdown-menu`}
+          {...delegated}
+        >
+          <DropdownMenuContext.Provider value={contextValue}>
+            <Popover
+              isOpen={open}
+              anchor={DropdownMenuToggleElement}
+              direction='bottom-left'
+              onClose={handleClosePopover}
+            >
+              {DropdownMenuMenuElement}
+            </Popover>
+          </DropdownMenuContext.Provider>
+        </div>
+      </CssInjection>
     )
   },
 )

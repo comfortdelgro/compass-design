@@ -1,5 +1,4 @@
 import {CSSProperties, FocusEventHandler, ReactNode} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
 
 export type PudoValueChange<TItemKeys extends PropertyKey = string> = Array<{
   name: TItemKeys
@@ -16,6 +15,7 @@ export type PudoValueChange<TItemKeys extends PropertyKey = string> = Array<{
 
 export type PudoProps<TItemKeys extends PropertyKey> = {
   className?: string
+  css?: unknown
   style?: CSSProperties
   /**
    * PUDO's item list.
@@ -25,7 +25,7 @@ export type PudoProps<TItemKeys extends PropertyKey> = {
   items: Readonly<Array<PudoItemProps<TItemKeys>>>
   onValuesChange?: (values: PudoValueChange<TItemKeys>) => void
   /**
-   * @param focusingItem the name of the focused item.
+   * @param focusingItem the input name of the focused item.
    * If no items are focusing, the value will be `undefined`.
    */
   onItemFocusChange?: (focusingItem?: TItemKeys) => void
@@ -71,7 +71,7 @@ export type PudoProps<TItemKeys extends PropertyKey> = {
   addItems?: Readonly<Array<PudoItemProps<TItemKeys>>>
   /** @default "Add" */
   addItemsLabel?: string
-  compact?: 'sm' | 'md' | undefined
+  compact?: 'sm' | 'md'
   /**
    * if provided, `alignIcon` of all items will be overwritten
    */
@@ -83,7 +83,7 @@ export type PudoProps<TItemKeys extends PropertyKey> = {
    */
   bgColor?: string
   /** if provided, `isClearable` of all items will be overwritten */
-  isClearable?: boolean | undefined
+  isClearable?: boolean
 
   /**
    * ~ `[data-*]` - any data attributes are accepted.
@@ -93,7 +93,7 @@ export type PudoProps<TItemKeys extends PropertyKey> = {
    * - `data-background`: PUDO items wrapper's background color.
    */
   [key: `data-${string}`]: string
-} & StyledComponentProps
+}
 
 export type PudoItemProps<TName extends PropertyKey = string> = {
   name: TName
@@ -104,7 +104,7 @@ export type PudoItemProps<TName extends PropertyKey = string> = {
    * if provided in the PUDO component.
    * @default 'input'
    */
-  type?: 'input' | 'custom' | undefined
+  type?: 'input' | 'custom'
   /** `value` is used for `'input'` type item. */
   value?: string
   /** `placeholder` is used for `'input'` type item. */
@@ -120,10 +120,10 @@ export type PudoItemProps<TName extends PropertyKey = string> = {
   /** @default false */
   isRequired?: boolean
   /** @default "center" */
-  alignIcon?: 'top' | 'center' | undefined
+  alignIcon?: 'top' | 'center'
   /** @default false */
-  isClearable?: boolean | undefined
-} & StyledComponentProps
+  isClearable?: boolean
+}
 
 export type PudoItemPrivateProps<TName extends PropertyKey> = {
   index: number

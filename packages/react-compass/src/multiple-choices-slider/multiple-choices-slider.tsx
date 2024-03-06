@@ -1,26 +1,38 @@
-import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+/* eslint-disable react-refresh/only-export-components */
+'use client'
+
+import React, {
+  Children,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+  ReactElement,
+  useEffect,
+  useState,
+} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import MultipleChoicesSliderItem, {
   MultipleChoicesSliderItemProps,
 } from './multiple-choices-slider-item'
-import {StyledMultipleChoicesSlider} from './multiple-choices-slider.styles'
+import styles from './styles/multiple-choices-slider.module.css'
 
-interface Props extends StyledComponentProps {
-  children: React.ReactNode
+interface Props {
+  css?: unknown
   onChange?: (items: number[]) => void
+  children: React.ReactNode
 }
 
 export type MultipleChoicesSliderProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const MultipleChoicesSlider = React.forwardRef<
+const MultipleChoicesSlider = forwardRef<
   HTMLDivElement,
   MultipleChoicesSliderProps
->(({children, onChange, css = {}, ...delegated}, ref) => {
+>(({children, onChange, css = {}, ...htmlDivAttributes}, ref) => {
   const MultipleChoicesSliderRef = useDOMRef(ref)
 
-  const [selectedItems, setItems] = React.useState<number[]>([])
+  const [selectedItems, setItems] = useState<number[]>([])
 
   const onSliderItemChange = (index: number, isAdded: boolean) => {
     if (isAdded) {
@@ -30,33 +42,37 @@ const MultipleChoicesSlider = React.forwardRef<
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (onChange) {
       onChange(selectedItems)
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedItems.length])
 
   return (
-    <StyledMultipleChoicesSlider
-      ref={MultipleChoicesSliderRef}
-      css={css}
-      {...delegated}
-    >
-      {React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) {
-          return null
-        }
-        const clonedChild =
-          child as React.ReactElement<MultipleChoicesSliderItemProps>
-        const props = {} as MultipleChoicesSliderItemProps
-        props.isSelected = selectedItems.includes(clonedChild.props.index)
-        props.onChange = onSliderItemChange
-        return React.cloneElement(clonedChild, {
-          ...props,
-          ...clonedChild.props,
-        })
-      })}
-    </StyledMultipleChoicesSlider>
+    <CssInjection css={css} childrenRef={MultipleChoicesSliderRef}>
+      <div
+        ref={MultipleChoicesSliderRef}
+        className={`${styles.multipleChoicesSlider} cdg-multiple-choices-slider`}
+        {...htmlDivAttributes}
+      >
+        {Children.map(children, (child) => {
+          if (!isValidElement(child)) {
+            return null
+          }
+          const clonedChild =
+            child as ReactElement<MultipleChoicesSliderItemProps>
+          const props = {} as MultipleChoicesSliderItemProps
+          props.isSelected = selectedItems.includes(clonedChild.props.index)
+          props.onChange = onSliderItemChange
+          return cloneElement(clonedChild, {
+            ...props,
+            ...clonedChild.props,
+          })
+        })}
+      </div>
+    </CssInjection>
   )
 })
 

@@ -1,4 +1,4 @@
-import Drawer from './drawer'
+import DrawerComposable from './drawer'
 import DrawerFooter from './drawer-footer'
 import DrawerHeader from './drawer-header'
 
@@ -10,6 +10,11 @@ export type {
   DrawerProps,
   DrawerRef,
 } from './types'
+
+const Drawer = DrawerComposable as typeof DrawerComposable & {
+  Header: typeof DrawerHeader
+  Footer: typeof DrawerFooter
+}
 
 Drawer.Header = DrawerHeader
 Drawer.Footer = DrawerFooter

@@ -3,7 +3,7 @@ import {DateRangePicker} from '@comfortdelgro/react-compass'
 function DateRangePickerLabeling() {
   return (
     <div>
-      <DateRangePicker startDateLabel='Start Date' endDateLabel='End Date' />
+      <DateRangePicker startDateLabel='Start Date' endDateLabel='End Date'/>
       <br />
       <DateRangePicker
         startDateLabel='Start Date'

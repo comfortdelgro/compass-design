@@ -1,17 +1,17 @@
 import React from 'react'
-import {getCssText} from '../theme/stitches.config'
-import {preflightStyles} from './preflight.styles'
+import styles from './styles/preflight.module.css'
 
 type PreflightComponent = React.FC & {flush: () => React.ReactNode}
 
 const Preflight: PreflightComponent = () => {
-  preflightStyles()
-
   return <React.Fragment></React.Fragment>
 }
 
 Preflight.flush = () => (
-  <style id='stitches' dangerouslySetInnerHTML={{__html: getCssText()}} />
+  <style
+    id='cdg-preflight'
+    dangerouslySetInnerHTML={{__html: styles.toString()}}
+  />
 )
 
 export default Preflight

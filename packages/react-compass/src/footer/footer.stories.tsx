@@ -1,10 +1,7 @@
 import {faCamera, faGlobe} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {StoryDecorator} from '@ladle/react'
-import React from 'react'
-import Button from '../button'
-import Link from '../link'
-import {Column, Row} from '../utils'
+import {Meta} from '@storybook/react'
+import {Button} from '..'
 import Footer from './footer'
 import FooterHeader from './footer-header'
 import FooterInfo from './footer-info'
@@ -40,7 +37,7 @@ const zigLogo = (
   </svg>
 )
 
-export const Variants: React.FC = () => {
+export const Basic = () => {
   const navLinks = [
     {
       title: 'About us',
@@ -97,12 +94,20 @@ export const Variants: React.FC = () => {
   ]
 
   return (
-    <Column>
+    <div
+      style={{
+        display: 'flex',
+        width: '100%',
+        flexDirection: 'column',
+        gap: '1rem',
+        padding: '1rem',
+      }}
+    >
       <h3>White variant</h3>
       <Footer
         css={{
           '& a': {
-            color: '$gray70',
+            color: 'var(--cdg-color-gray70)',
             textDecoration: 'none',
             fontSize: '14px',
             fontWeight: '400',
@@ -114,8 +119,8 @@ export const Variants: React.FC = () => {
           css={{
             '& .logo': {
               fontSize: '60px',
-              color: '$cdgBlue',
-              margin: 0,
+              color: 'var(--cdg-color-cdgBlue)',
+              margin: '0px',
             },
           }}
         >
@@ -134,19 +139,27 @@ export const Variants: React.FC = () => {
           css={{
             '& .footer-nav-title': {
               fontSize: '16px',
-              fontWeight: 500,
-              margin: 0,
+              fontWeight: '500',
+              margin: '0px',
             },
           }}
         >
           {navLinks.map((navItem) => {
             return (
-              <div>
-                <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
+              <div
+                className='footer-column'
+                style={{
+                  flex: '1',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '24px',
+                }}
+              >
+                <h2 className='footer-nav-title' style={{fontWeight: 'bold'}}>
                   {navItem.title}
-                </h3>
+                </h2>
                 {navItem.children.map((child) => {
-                  return <Link href={child.link}>{child.name}</Link>
+                  return <a href={child.link}>{child.name}</a>
                 })}
               </div>
             )
@@ -154,7 +167,7 @@ export const Variants: React.FC = () => {
         </FooterNavigation>
         <FooterInfo
           css={{
-            '& span': {fontSize: '14px', fontWeight: 600, lineHeight: '21px'},
+            '& span': {fontSize: '14px', fontWeight: '600', lineHeight: '21px'},
           }}
         >
           <div>
@@ -179,14 +192,21 @@ export const Variants: React.FC = () => {
           </FooterInfoDownload>
         </FooterInfo>
         <FooterPolicy>
-          <p style={{margin: 0, lineHeight: '21px'}}>
+          <p style={{margin: '0px', lineHeight: '21px'}}>
             2022 ComfortDelGroTaxi. All rights reserved
           </p>
-          <Row css={{width: 'fit-content', gap: '16px', flexWrap: 'wrap'}}>
-            <Link href='#'>Privacy</Link>
-            <Link href='#'>Accessibility</Link>
-            <Link href='#'>Terms</Link>
-          </Row>
+          <div
+            style={{
+              display: 'flex',
+              width: 'fit-content',
+              gap: '16px',
+              flexWrap: 'wrap',
+            }}
+          >
+            <a href='#'>Privacy</a>
+            <a href='#'>Accessibility</a>
+            <a href='#'>Terms</a>
+          </div>
         </FooterPolicy>
       </Footer>
 
@@ -208,7 +228,7 @@ export const Variants: React.FC = () => {
             '& .logo': {
               fontSize: '60px',
               color: '$whiteText',
-              margin: 0,
+              margin: '0px',
             },
           }}
         >
@@ -227,19 +247,27 @@ export const Variants: React.FC = () => {
           css={{
             '& .footer-nav-title': {
               fontSize: '16px',
-              fontWeight: 500,
-              margin: 0,
+              fontWeight: '500',
+              margin: '0px',
             },
           }}
         >
           {navLinks.map((navItem) => {
             return (
-              <div>
+              <div
+                className='footer-column'
+                style={{
+                  flex: '1',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '24px',
+                }}
+              >
                 <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
                   {navItem.title}
                 </h3>
                 {navItem.children.map((child) => {
-                  return <Link href={child.link}>{child.name}</Link>
+                  return <a href={child.link}>{child.name}</a>
                 })}
               </div>
             )
@@ -247,7 +275,7 @@ export const Variants: React.FC = () => {
         </FooterNavigation>
         <FooterInfo
           css={{
-            '& span': {fontSize: '14px', fontWeight: 600, lineHeight: '21px'},
+            '& span': {fontSize: '14px', fontWeight: '600', lineHeight: '21px'},
           }}
         >
           <div>
@@ -272,14 +300,21 @@ export const Variants: React.FC = () => {
           </FooterInfoDownload>
         </FooterInfo>
         <FooterPolicy>
-          <p style={{margin: 0, lineHeight: '21px'}}>
+          <p style={{margin: '0px', lineHeight: '21px'}}>
             2022 ComfortDelGroTaxi. All rights reserved
           </p>
-          <Row css={{width: 'fit-content', gap: '16px', flexWrap: 'wrap'}}>
-            <Link href='#'>Privacy</Link>
-            <Link href='#'>Accessibility</Link>
-            <Link href='#'>Terms</Link>
-          </Row>
+          <div
+            style={{
+              display: 'flex',
+              width: 'fit-content',
+              gap: '16px',
+              flexWrap: 'wrap',
+            }}
+          >
+            <a href='#'>Privacy</a>
+            <a href='#'>Accessibility</a>
+            <a href='#'>Terms</a>
+          </div>
         </FooterPolicy>
       </Footer>
 
@@ -301,7 +336,7 @@ export const Variants: React.FC = () => {
             '& .logo': {
               fontSize: '60px',
               color: '$whiteText',
-              margin: 0,
+              margin: '0px',
             },
           }}
         >
@@ -320,19 +355,27 @@ export const Variants: React.FC = () => {
           css={{
             '& .footer-nav-title': {
               fontSize: '16px',
-              fontWeight: 500,
-              margin: 0,
+              fontWeight: '500',
+              margin: '0px',
             },
           }}
         >
           {navLinks.map((navItem) => {
             return (
-              <div>
-                <h3 className='footer-nav-title' style={{fontWeight: 'bold'}}>
+              <div
+                className='footer-column'
+                style={{
+                  flex: '1',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '24px',
+                }}
+              >
+                <h2 className='footer-nav-title' style={{fontWeight: 'bold'}}>
                   {navItem.title}
-                </h3>
+                </h2>
                 {navItem.children.map((child) => {
-                  return <Link href={child.link}>{child.name}</Link>
+                  return <a href={child.link}>{child.name}</a>
                 })}
               </div>
             )
@@ -340,7 +383,7 @@ export const Variants: React.FC = () => {
         </FooterNavigation>
         <FooterInfo
           css={{
-            '& span': {fontSize: '14px', fontWeight: 600, lineHeight: '21px'},
+            '& span': {fontSize: '14px', fontWeight: '600', lineHeight: '21px'},
           }}
         >
           <div>
@@ -365,31 +408,36 @@ export const Variants: React.FC = () => {
           </FooterInfoDownload>
         </FooterInfo>
         <FooterPolicy>
-          <p style={{margin: 0, lineHeight: '21px'}}>
+          <p style={{margin: '0px', lineHeight: '21px'}}>
             2022 ComfortDelGroTaxi. All rights reserved
           </p>
-          <Row css={{width: 'fit-content', gap: '16px', flexWrap: 'wrap'}}>
-            <Link href='#'>Privacy</Link>
-            <Link href='#'>Accessibility</Link>
-            <Link href='#'>Terms</Link>
-          </Row>
+          <div
+            style={{
+              display: 'flex',
+              width: 'fit-content',
+              gap: '16px',
+              flexWrap: 'wrap',
+            }}
+          >
+            <a href='#'>Privacy</a>
+            <a href='#'>Accessibility</a>
+            <a href='#'>Terms</a>
+          </div>
         </FooterPolicy>
       </Footer>
-    </Column>
+    </div>
   )
 }
 
-export default {
-  decorators: [
-    (Component) => (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `.ladle-main { background: #eee; }`,
-          }}
-        ></style>
-        <Component />
-      </div>
-    ),
-  ] as StoryDecorator[],
-}
+const meta = {
+  title: 'Example/Footer',
+  component: Basic,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta
