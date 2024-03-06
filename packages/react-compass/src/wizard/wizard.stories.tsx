@@ -1,9 +1,9 @@
+import type {Meta} from '@storybook/react'
 import React from 'react'
-import {Column} from '../utils/components'
 import Wizard from './index'
 
 export const Variants: React.FC = () => (
-  <Column>
+  <div>
     <h3>Default with items</h3>
     <Wizard
       items={['Value1', 'Value2', 'Value3', 'Value4']}
@@ -135,5 +135,18 @@ export const Variants: React.FC = () => (
       currentStep={3}
       onStepClick={(n) => console.log(n)}
     />
-  </Column>
+  </div>
 )
+
+const meta = {
+  title: 'Example/Wizard',
+  component: Variants,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Variants>
+
+export default meta

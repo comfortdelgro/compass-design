@@ -9,23 +9,12 @@ interface AppFooterProps {
 
 export default function AppFooter(props: AppFooterProps) {
   return (
-    <Box
-      css={{
-        padding: 'var(--cdg-spacing-6) 0',
-        background: 'var(--cdg-color-gray20)',
-      }}
-    >
-      <Container
-        css={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+    <Box css={{padding: 'var(--cdg-spacing-6) 0', background: 'var(--cdg-color-gray20)'}}>
+      <Container css={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
         <Box
           css={{
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           <Link href='/'>

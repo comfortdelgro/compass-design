@@ -1,5 +1,4 @@
-import React from 'react'
-import {createControl} from './create-controls'
+import {createControl} from './create-control'
 
 export const UndoControl = createControl({
   label: 'undo',
@@ -21,6 +20,7 @@ export const UndoControl = createControl({
   onClick: (editor) =>
     editor !== null ? editor.chain().focus().undo().run() : false,
 })
+
 export const RedoControl = createControl({
   label: 'redo',
   icon: () => (
@@ -41,6 +41,7 @@ export const RedoControl = createControl({
   onClick: (editor) =>
     editor !== null ? editor.chain().focus().redo().run() : false,
 })
+
 export const BoldControl = createControl({
   label: 'bold',
   icon: () => (
@@ -273,7 +274,7 @@ export const H4Control = createControl({
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
     >
-      <g clip-path='url(#clip0_7521_92123)'>
+      <g clipPath='url(#clip0_7521_92123)'>
         <path
           d='M0 4.58344C0 4.26078 0.260677 4.0001 0.583333 4.0001H2.33333C2.65599 4.0001 2.91667 4.26078 2.91667 4.58344C2.91667 4.90609 2.65599 5.16677 2.33333 5.16677H2.04167V7.20844H6.125V5.16677H5.83333C5.51068 5.16677 5.25 4.90609 5.25 4.58344C5.25 4.26078 5.51068 4.0001 5.83333 4.0001H7.58333C7.90599 4.0001 8.16667 4.26078 8.16667 4.58344C8.16667 4.90609 7.90599 5.16677 7.58333 5.16677H7.29167V11.0001H7.58333C7.90599 11.0001 8.16667 11.2608 8.16667 11.5834C8.16667 11.9061 7.90599 12.1668 7.58333 12.1668H5.83333C5.51068 12.1668 5.25 11.9061 5.25 11.5834C5.25 11.2608 5.51068 11.0001 5.83333 11.0001H6.125V8.3751H2.04167V11.0001H2.33333C2.65599 11.0001 2.91667 11.2608 2.91667 11.5834C2.91667 11.9061 2.65599 12.1668 2.33333 12.1668H0.583333C0.260677 12.1668 0 11.9061 0 11.5834C0 11.2608 0.260677 11.0001 0.583333 11.0001H0.875V5.16677H0.583333C0.260677 5.16677 0 4.90609 0 4.58344Z'
           fill='currentColor'

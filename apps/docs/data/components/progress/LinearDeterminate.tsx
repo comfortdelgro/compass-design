@@ -15,7 +15,9 @@ function LinearDeterminate() {
       clearInterval(timer)
     }
   }, [])
-  return <Progress.Linear variant='determinate' value={progress} />
+  return (
+    <Progress.Linear variant='determinate' value={progress} />
+  )
 }
 
 export default LinearDeterminate

@@ -1,20 +1,19 @@
-import {Box} from '@comfortdelgro/react-compass'
-import {theme} from '@comfortdelgro/react-compass-old'
+import {Box, lightThemeColors} from '@comfortdelgro/react-compass'
 import ColorBox from '../components/ColorBox'
 
 const DemoColors = () => {
   return (
     <Box css={{display: 'flex', flexWrap: 'wrap'}}>
-      <ColorBox color={theme.colors.infoBg} />
-      <ColorBox color={theme.colors.dangerBg} />
-      <ColorBox color={theme.colors.successBg} />
-      <ColorBox color={theme.colors.severeWarningBg} />
-      <ColorBox color={theme.colors.warningBg} />
-      <ColorBox color={theme.colors.info} />
-      <ColorBox color={theme.colors.danger} />
-      <ColorBox color={theme.colors.success} />
-      <ColorBox color={theme.colors.severeWarning} />
-      <ColorBox color={theme.colors.warning} />
+      <ColorBox color={{token: 'infoBg', value: lightThemeColors.infoBg}} />
+      <ColorBox color={{token: 'dangerBg', value: lightThemeColors.dangerBg}} />
+      <ColorBox color={{token: 'successBg', value: lightThemeColors.successBg}} />
+      <ColorBox color={{token: 'severeWarningBg', value: lightThemeColors.severeWarningBg}} />
+      <ColorBox color={{token: 'warningBg', value: lightThemeColors.warningBg}} />
+      <ColorBox color={{token: 'info', value: lightThemeColors.info}} />
+      <ColorBox color={{token: 'danger', value: lightThemeColors.danger}} />
+      <ColorBox color={{token: 'success', value: lightThemeColors.success}} />
+      <ColorBox color={{token: 'severeWarning', value: lightThemeColors.severeWarning}} />
+      <ColorBox color={{token: 'warning', value: lightThemeColors.warning}} />
     </Box>
   )
 }

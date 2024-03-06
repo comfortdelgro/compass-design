@@ -1,5 +1,5 @@
 import {useFocusRing} from '@react-aria/focus'
-import React from 'react'
+import React, {useRef} from 'react'
 import {
   CalendarDate,
   DateValue,
@@ -9,13 +9,14 @@ import {
   isToday as isTodayFunction,
   parseDate,
 } from '../internationalized/date'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledCalendarCell} from './calendar-cell.style'
 import {useCalendarCell} from './hooks/useCalendarCell'
+import styles from './styles/calendar-cell.module.css'
 import {CalendarState, RangeCalendarState} from './types'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   state: CalendarState | RangeCalendarState
   date: CalendarDate
   currentMonth: CalendarDate
@@ -60,13 +61,16 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
     }
 
     const classNameCombine = () => {
-      let className = ''
-      if (isFocusVisible) className += 'focused '
-      if (isSelected && isRangeCalendar) className += 'selected '
-      else if (isSelected && !isRangeCalendar) className += 'highlighted '
-      if (isSelectionStart || isSelectionEnd) className += 'highlighted '
-      if (isUnavailable) className += 'unavailable '
-      if (isToday) className += 'today '
+      let className = `${styles.calendarCell} `
+      if (isFocusVisible) className += `focused ${styles.focused} `
+      if (isSelected && isRangeCalendar)
+        className += `selected ${styles.selected} `
+      else if (isSelected && !isRangeCalendar)
+        className += `highlighted ${styles.highlighted} `
+      if (isSelectionStart || isSelectionEnd)
+        className += `highlighted ${styles.highlighted} `
+      if (isUnavailable) className += `unavailable ${styles.unavailable} `
+      if (isToday) className += `today ${styles.today} `
       return className
     }
 
@@ -80,49 +84,57 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
     const {focusProps, isFocusVisible} = useFocusRing()
 
+    const cellWrapperRef = useRef(null)
+
     return (
       <>
         {isDisabled ? (
-          <StyledCalendarCell
-            {...cellProps}
-            css={css}
-            className={classNameCombine()}
-            aria-selected={isSelected}
-            aria-disabled={isDisabled}
-          >
-            <div
-              ref={cellRef}
-              hidden={isOutsideMonth}
-              className={`calendar-cell-value  ${'disabled'} ${
-                isSelected ? 'selected' : ''
-              }`}
+          <CssInjection css={css} childrenRef={cellWrapperRef}>
+            <td
+              ref={cellWrapperRef}
+              {...cellProps}
+              className={classNameCombine()}
+              aria-selected={isSelected}
+              aria-disabled={isDisabled}
             >
-              {formattedDate}
-            </div>
-          </StyledCalendarCell>
+              <div
+                ref={cellRef}
+                hidden={isOutsideMonth}
+                className={`calendar-cell-value  ${'disabled'} ${
+                  isSelected ? 'selected' : ''
+                } ${styles.calendarCellValue} ${styles.disabled}`}
+              >
+                {formattedDate}
+              </div>
+            </td>
+          </CssInjection>
         ) : (
-          <StyledCalendarCell
-            {...cellProps}
-            css={css}
-            className={classNameCombine()}
-          >
-            <div
-              aria-label={buttonProps['aria-label']}
-              aria-disabled={buttonProps['aria-disabled']}
-              aria-invalid={buttonProps['aria-invalid']}
-              role={buttonProps['role']}
-              ref={cellRef}
-              hidden={isOutsideMonth}
-              className={`calendar-cell-value  ${
-                isDisabled ? 'disabled' : ''
-              } ${isSelected ? 'selected' : ''}`}
-              {...focusProps}
-              {...buttonProps}
-              tabIndex={buttonProps['tabIndex']}
+          <CssInjection css={css} childrenRef={cellWrapperRef}>
+            <td
+              ref={cellWrapperRef}
+              {...cellProps}
+              className={classNameCombine()}
             >
-              {formattedDate}
-            </div>
-          </StyledCalendarCell>
+              <div
+                aria-label={buttonProps['aria-label']}
+                aria-disabled={buttonProps['aria-disabled']}
+                aria-invalid={buttonProps['aria-invalid']}
+                role={buttonProps['role']}
+                ref={cellRef}
+                hidden={isOutsideMonth}
+                className={`calendar-cell-value  ${
+                  isDisabled ? 'disabled' : ''
+                } ${isSelected ? 'selected' : ''} ${styles.calendarCellValue} ${
+                  isDisabled ? styles.disabled : ''
+                }`}
+                {...focusProps}
+                {...buttonProps}
+                tabIndex={buttonProps['tabIndex']}
+              >
+                {formattedDate}
+              </div>
+            </td>
+          </CssInjection>
         )}
       </>
     )

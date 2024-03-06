@@ -1,12 +1,8 @@
-import React, {
-  HTMLAttributes,
-  PropsWithChildren,
-  useEffect,
-  useMemo,
-} from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import {HTMLAttributes, PropsWithChildren, useEffect, useMemo} from 'react'
 import useDrag, {DraggableOptions} from '../utils/hooks/useDrag'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledDrawerExpander} from './drawer.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/drawer-expander.module.css'
 
 type Props = PropsWithChildren<{
   drawerOpen: boolean
@@ -16,9 +12,10 @@ type Props = PropsWithChildren<{
   onDragEnd?: DraggableOptions['onEnd']
 }>
 
-export type DrawerExpanderProps = Props &
-  StyledComponentProps &
-  Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
+export type DrawerExpanderProps = Props & {css?: unknown} & Omit<
+    HTMLAttributes<HTMLDivElement>,
+    keyof Props
+  >
 
 /**
  * @note This component is draggable.
@@ -28,17 +25,17 @@ export type DrawerExpanderProps = Props &
  */
 const DrawerExpander = ({
   drawerOpen,
+  className,
   children,
   css = {},
   onDragPositionYChange,
   onDragStart,
   onDrag,
   onDragEnd,
-  ...delegated
+  ...htmlDivAttributes
 }: DrawerExpanderProps) => {
   const dragHookOptions = useMemo<DraggableOptions<HTMLDivElement>>(
     () => ({
-      // stepSize: 2,
       direction: 'vertical',
       setCSS: false,
       onStart(...params) {
@@ -68,10 +65,22 @@ const DrawerExpander = ({
     onDragPositionYChange?.(y)
   }, [y])
 
+  const rootClasses = [styles.drawerExpander, className, 'cdg-drawer-expander']
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledDrawerExpander css={css} ref={drawerExpanderRef} {...delegated}>
-      {children || <div className='expander-line'></div>}
-    </StyledDrawerExpander>
+    <CssInjection css={css} childrenRef={drawerExpanderRef}>
+      <div
+        ref={drawerExpanderRef}
+        className={rootClasses}
+        {...htmlDivAttributes}
+      >
+        {children || (
+          <div className={`${styles.expanderLine} cdg-drawer-expander-line`} />
+        )}
+      </div>
+    </CssInjection>
   )
 }
 

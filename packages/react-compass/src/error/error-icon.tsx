@@ -1,10 +1,12 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledErrorIcon} from './error.styles'
+import styles from './styles/error.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type ErrorIconProps = Props &
@@ -12,12 +14,19 @@ export type ErrorIconProps = Props &
 
 const ErrorIcon = React.forwardRef<HTMLDivElement, ErrorIconProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className = '', ...htmlProps} = props
     const errorIconRef = useDOMRef<HTMLDivElement>(ref)
+
+    const errorIconClasses = [`cdg-error-icon`, className, styles.errorIcon]
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledErrorIcon css={css} ref={errorIconRef} {...delegated}>
-        {children}
-      </StyledErrorIcon>
+      <CssInjection css={css} childrenRef={errorIconRef}>
+        <div className={errorIconClasses} ref={errorIconRef} {...htmlProps}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

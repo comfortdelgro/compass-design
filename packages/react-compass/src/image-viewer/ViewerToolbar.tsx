@@ -9,12 +9,12 @@ import {
   faRotateRight,
   faUpDown,
 } from '@fortawesome/free-solid-svg-icons'
-import * as React from 'react'
+import {useCallback} from 'react'
 import Button from '../button'
 import Icon from '../icon'
 import {useColors} from '../theme'
-import {ActionType} from './Icon'
-import {StyledToolbar, StyledToolbarWrap} from './image-viewer.styles'
+import {ActionTypeEnum} from './Icon'
+import styles from './styles/image-viewer.module.css'
 import {ToolbarConfig} from './types'
 
 export interface ViewerToolbarProps {
@@ -29,47 +29,47 @@ export interface ViewerToolbarProps {
 export const defaultToolbars: ToolbarConfig[] = [
   {
     key: 'zoomIn',
-    actionType: ActionType.zoomIn,
+    actionType: ActionTypeEnum.zoomIn,
     icon: faMagnifyingGlassPlus,
   },
   {
     key: 'reset',
-    actionType: ActionType.reset,
+    actionType: ActionTypeEnum.reset,
     icon: faMagnifyingGlass,
   },
   {
     key: 'zoomOut',
-    actionType: ActionType.zoomOut,
+    actionType: ActionTypeEnum.zoomOut,
     icon: faMagnifyingGlassMinus,
   },
   {
     key: 'prev',
-    actionType: ActionType.prev,
+    actionType: ActionTypeEnum.prev,
     icon: faBackward,
   },
   {
     key: 'next',
-    actionType: ActionType.next,
+    actionType: ActionTypeEnum.next,
     icon: faForward,
   },
   {
     key: 'rotateLeft',
-    actionType: ActionType.rotateLeft,
+    actionType: ActionTypeEnum.rotateLeft,
     icon: faRotateLeft,
   },
   {
     key: 'rotateRight',
-    actionType: ActionType.rotateRight,
+    actionType: ActionTypeEnum.rotateRight,
     icon: faRotateRight,
   },
   {
     key: 'scaleX',
-    actionType: ActionType.scaleX,
+    actionType: ActionTypeEnum.scaleX,
     icon: faLeftRight,
   },
   {
     key: 'scaleY',
-    actionType: ActionType.scaleY,
+    actionType: ActionTypeEnum.scaleY,
     icon: faUpDown,
   },
 ]
@@ -81,9 +81,12 @@ function deleteToolbarFromKey(toolbars: ToolbarConfig[], keys: string[]) {
 }
 
 export default function ViewerToolbar(props: ViewerToolbarProps) {
-  function handleAction(config: ToolbarConfig) {
-    props.onAction(config)
-  }
+  const handleAction = useCallback(
+    (config: ToolbarConfig) => {
+      props.onAction(config)
+    },
+    [props],
+  )
 
   const colors = useColors()
 
@@ -124,12 +127,12 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
     toolbars = deleteToolbarFromKey(toolbars, ['scaleX', 'scaleY'])
   }
   return (
-    <StyledToolbarWrap>
-      <StyledToolbar>
+    <div className={styles.toolbarWrap}>
+      <div className={styles.toolbar}>
         {toolbars.map((item) => {
           return renderAction(item)
         })}
-      </StyledToolbar>
-    </StyledToolbarWrap>
+      </div>
+    </div>
   )
 }

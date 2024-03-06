@@ -13,19 +13,16 @@ import {Content, EditorContent, JSONContent, useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import isEqual from 'lodash/isEqual'
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import * as controls from './controls'
-import Control from './controls/Control/Control'
-import ControlsGroup from './controls/ControlsGroup/ControlsGroup'
+import Control from './controls/Control'
+import ControlsGroup from './controls/ControlsGroup'
 import {RichTextEditorProvider} from './rich-text-editor.context'
-import {
-  StyledEditorContent,
-  StyledRichTextEditor,
-} from './rich-text-editor.styles'
-import Toolbar from './toolbar/Toolbar'
+import styles from './styles/rich-text-editor.module.css'
+import Toolbar from './toolbar'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   outputType?: 'html' | 'json'
   characterCount?: number | null
@@ -33,6 +30,8 @@ interface Props extends StyledComponentProps {
   isEditable?: boolean
   content?: Content
   placeholder?: string
+  className?: string
+  css?: unknown
 }
 interface StorageCount {
   characters: () => number
@@ -41,6 +40,7 @@ interface StorageCount {
 export type RichTextEditorProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
+// eslint-disable-next-line react-refresh/only-export-components
 const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
   (props, ref) => {
     const {
@@ -52,7 +52,8 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
       isEditable = true,
       content = null,
       placeholder,
-      ...delegated
+      className = '',
+      ...htmlProps
     } = props
 
     const editor = useEditor({
@@ -106,23 +107,32 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
 
     const textEditorRef = useDOMRef<HTMLDivElement>(ref)
 
+    const rootClasses = React.useMemo(() => {
+      return [styles.cdgRichTextEditor, className, 'cdg-rich-text-editor']
+        .filter(Boolean)
+        .join(' ')
+    }, [className])
+
     return (
       <RichTextEditorProvider
         value={{
           editor,
         }}
       >
-        <StyledRichTextEditor ref={textEditorRef} css={css} {...delegated}>
-          {children}
-          <StyledEditorContent>
-            <EditorContent editor={editor} />
-          </StyledEditorContent>
-          {characterCount && (
-            <div className='character-count'>
-              {CharacterCountFunc()}/{characterCount}
-            </div>
-          )}
-        </StyledRichTextEditor>
+        <CssInjection childrenRef={textEditorRef} css={css}>
+          <div {...htmlProps} ref={textEditorRef} className={rootClasses}>
+            {children}
+            <EditorContent
+              editor={editor}
+              className={`${styles.editorContent} cdg-rich-text-editor-content`}
+            />
+            {characterCount && (
+              <div className={`${styles.characterCount}`}>
+                {CharacterCountFunc()}/{characterCount}
+              </div>
+            )}
+          </div>
+        </CssInjection>
       </RichTextEditorProvider>
     )
   },
@@ -160,9 +170,4 @@ export default RichTextEditor as typeof RichTextEditor & {
   Hr: typeof controls.HrControl
   Undo: typeof controls.UndoControl
   Redo: typeof controls.RedoControl
-  // Code: typeof controls.CodeControl
-  // ColorPicker: typeof controls.ColorPickerControl
-  // Highlight: typeof controls.HighlightControl
-  // ClearFormatting: typeof controls.ClearFormattingControl
-  // UnsetColor: typeof controls.UnsetColorControl
 }

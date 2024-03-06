@@ -1,11 +1,13 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledSnackbarSuffixIcon} from './snackbar.styles'
+import styles from './styles/snackbar.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   onClose?: () => void
+  css?: unknown
+  className?: string
 }
 
 export type SnackbarSuffixIconProps = Props &
@@ -15,20 +17,22 @@ const SnackbarSuffixIcon = React.forwardRef<
   HTMLDivElement,
   SnackbarSuffixIconProps
 >((props, ref) => {
-  const {children, css = {}, onClose, ...delegated} = props
+  const {children, css = {}, className = '', onClose, ...htmlProps} = props
   const snackbarSuffixIconRef = useDOMRef<HTMLDivElement>(ref)
   return (
-    <StyledSnackbarSuffixIcon
-      css={css}
-      ref={snackbarSuffixIconRef}
-      {...delegated}
-      onClick={(e) => {
-        e.stopPropagation()
-        onClose?.()
-      }}
-    >
-      {children}
-    </StyledSnackbarSuffixIcon>
+    <CssInjection css={css} childrenRef={snackbarSuffixIconRef}>
+      <div
+        className={`cdg-snackbar-suffix-icon ${className} ${styles.snackbarSuffixIcon}`}
+        ref={snackbarSuffixIconRef}
+        {...htmlProps}
+        onClick={(e) => {
+          e.stopPropagation()
+          onClose?.()
+        }}
+      >
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

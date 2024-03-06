@@ -1,17 +1,11 @@
 import React, {useRef} from 'react'
 import Popover from '../popover'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {
-  AutoCompleteVariantProps,
-  StyledAutoComplete,
-  StyledEmptyMessage,
-  StyledOption,
-  StyledPopover,
-} from './autoComplete.styles'
+import styles from './styles/autoComplete.module.css'
 
 // Define the props interface
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   options?: string[]
   onSelect?: (selectedValue: string) => unknown
@@ -19,13 +13,13 @@ interface Props extends StyledComponentProps {
   searchedValue?: string
   notFoundContent?: string
   debounce?: number
+  css?: unknown
   onLoadMore?: () => unknown // Add the onLoadMore prop for loading more data
   isLoadingMore?: boolean // Add the isLoadingMore prop for loading more data
 }
 
 // Define the complete prop type for AutoComplete
 export type AutoCompleteProps = Props &
-  AutoCompleteVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 // AutoComplete component
@@ -43,7 +37,8 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       css = {},
       onLoadMore,
       isLoadingMore,
-      ...delegated
+      className,
+      ...htmlProps
     } = props
 
     // States and refs
@@ -52,10 +47,10 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
     const [selectedOption, setSelectedOption] = React.useState<string | null>(
       null,
     )
+
+    const [popoverWidth, setPopoverWidth] = React.useState<number | null>(null)
     const containerRef = useDOMRef<HTMLDivElement>(ref)
     const latestSearchedValueRef = React.useRef<unknown>(null)
-
-    const calculatedPopoverWidth = containerRef.current?.clientWidth
 
     // Clone children and add ref to the triggering element
     const triggerElementRef = React.useRef<HTMLDivElement>(null)
@@ -134,24 +129,24 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
         const firstOption = optionArray[0] as HTMLElement
         const lastOption = optionArray[optionArray.length - 1] as HTMLElement
         const hoveredOption = popoverContentElement.querySelector(
-          '.hover',
+          `.${styles.hover}`,
         ) as HTMLElement
 
         switch (event.key) {
           case 'ArrowUp':
             event.preventDefault()
             // If the first option is hovered, move the focus to the last option
-            if (firstOption.classList.contains('hover')) {
-              firstOption.classList.remove('hover')
-              lastOption.classList.add('hover')
+            if (firstOption.classList.contains(styles.hover)) {
+              firstOption.classList.remove(styles.hover)
+              lastOption.classList.add(styles.hover)
               ensureOptionInView(popoverContentElement, lastOption)
             } else {
               // Move the focus to the previous option
               const index = optionArray.findIndex((option) =>
-                option.classList.contains('hover'),
+                option.classList.contains(styles.hover),
               )
-              optionArray[index]?.classList.remove('hover')
-              optionArray[index - 1]?.classList.add('hover')
+              optionArray[index]?.classList.remove(styles.hover)
+              optionArray[index - 1]?.classList.add(styles.hover)
               ensureOptionInView(
                 popoverContentElement,
                 optionArray[index - 1] as HTMLElement,
@@ -162,20 +157,20 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
 
           case 'ArrowDown':
             event.preventDefault()
-            if (lastOption.classList.contains('hover')) {
+            if (lastOption.classList.contains(styles.hover)) {
               if (onLoadMore && !isLoadingMore) {
                 onLoadMore()
               } else {
-                lastOption.classList.remove('hover')
-                firstOption.classList.add('hover')
+                lastOption.classList.remove(styles.hover)
+                firstOption.classList.add(styles.hover)
                 ensureOptionInView(popoverContentElement, firstOption)
               }
             } else {
               const index = optionArray.findIndex((option) =>
-                option.classList.contains('hover'),
+                option.classList.contains(styles.hover),
               )
-              optionArray[index]?.classList.remove('hover')
-              optionArray[index + 1]?.classList.add('hover')
+              optionArray[index]?.classList.remove(styles.hover)
+              optionArray[index + 1]?.classList.add(styles.hover)
               ensureOptionInView(
                 popoverContentElement,
                 optionArray[index + 1] as HTMLElement,
@@ -257,10 +252,10 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
             '[role="option"]',
           ) as HTMLElement
           if (firstOption) {
-            // add class 'hover' to firstOption
-            firstOption.classList.add('hover')
+            // add class styles.hover to firstOption
+            firstOption.classList.add(styles.hover)
           } else {
-            popoverContentElement.classList.add('hover')
+            popoverContentElement.classList.add(styles.hover)
           }
         }
       }
@@ -283,51 +278,69 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       }
     }, [containerRef])
 
+    React.useEffect(() => {
+      const inputElement = containerRef.current
+      if (inputElement) {
+        const popoverWidth = inputElement.clientWidth
+        setPopoverWidth(popoverWidth)
+      }
+    }, [containerRef])
+
     return (
-      <StyledAutoComplete
-        ref={containerRef}
-        css={css}
-        {...delegated}
-        aria-haspopup='true'
-        aria-expanded={isOpenPopover ? 'true' : 'false'}
-        aria-controls='autocomplete-popover'
-        tabIndex={-1}
-      >
-        <Popover
-          isOpen={isOpenPopover}
-          anchor={clonedChildren}
-          direction='bottom-center'
-          isFloatingPortal={false}
-          attachToElement={
-            containerRef.current && containerRef.current.parentElement
-          }
-        >
-          <StyledPopover
-            ref={popoverContentRef}
-            css={{
-              width: calculatedPopoverWidth,
-            }}
-            onScroll={handleScroll}
-            tabIndex={-1} // Allow the popover to be focused programmatically
+      <>
+        <CssInjection css={css}>
+          <div
+            className={`${styles.autoComplete} ${className} cdg-auto-complete`}
+            ref={containerRef}
+            {...htmlProps}
+            aria-haspopup='true'
+            aria-expanded={isOpenPopover ? 'true' : 'false'}
+            aria-controls='autocomplete-popover'
+            tabIndex={-1}
           >
-            {options?.length === 0 ? (
-              <StyledEmptyMessage>{notFoundContent}</StyledEmptyMessage>
-            ) : (
-              options?.map((option) => (
-                <StyledOption
-                  key={option}
-                  data-value={option}
-                  onClick={() => handleSelectOption(option)}
-                  tabIndex={0} // Allow each option to be focused
-                  role='option'
-                >
-                  {option}
-                </StyledOption>
-              ))
-            )}
-          </StyledPopover>
-        </Popover>
-      </StyledAutoComplete>
+            <Popover
+              isOpen={isOpenPopover}
+              anchor={clonedChildren}
+              direction='bottom-center'
+              isFloatingPortal={false}
+              attachToElement={
+                containerRef.current && containerRef.current.parentElement
+              }
+            >
+              <div
+                className={`${styles.popover} cdg-auto-complete-popover`}
+                ref={popoverContentRef}
+                style={{
+                  width: popoverWidth ? `${popoverWidth}px` : 'auto',
+                }}
+                onScroll={handleScroll}
+                tabIndex={-1} // Allow the popover to be focused programmatically
+              >
+                {options?.length === 0 ? (
+                  <div
+                    className={`${styles.emptyMessage} cdg-auto-complete-empty-message`}
+                  >
+                    {notFoundContent}
+                  </div>
+                ) : (
+                  options?.map((option) => (
+                    <div
+                      className={`${styles.option} cdg-auto-complete-option`}
+                      key={option}
+                      data-value={option}
+                      onClick={() => handleSelectOption(option)}
+                      tabIndex={0} // Allow each option to be focused
+                      role='option'
+                    >
+                      {option}
+                    </div>
+                  ))
+                )}
+              </div>
+            </Popover>
+          </div>
+        </CssInjection>
+      </>
     )
   },
 )

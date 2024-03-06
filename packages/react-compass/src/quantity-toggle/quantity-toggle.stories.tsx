@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
-import {Column} from '../utils/components'
+import type {Meta} from '@storybook/react'
+import React from 'react'
 import QuantityToggle from './index'
 
 export const Variants: React.FC = () => {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = React.useState(0)
   return (
-    <Column>
+    <div>
       <h3>Controlled</h3>
       <QuantityToggle
         placeholder='Price'
@@ -74,8 +74,22 @@ export const Variants: React.FC = () => {
         label='Errored'
         defaultValue={2}
         isErrored
+        errorMessage='asdasdasd'
         helperText='Bla Bla Bla'
       />
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Quantity Toggle',
+  component: Variants,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Variants>
+
+export default meta

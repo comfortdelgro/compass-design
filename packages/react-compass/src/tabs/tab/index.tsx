@@ -4,10 +4,11 @@ import {
   useKeyboardNavigation,
   useKeyboardNavigationState,
 } from '../../utils/hooks'
+import CssInjection from '../../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {TabItemProps} from '../item'
+import styles from '../styles/tab.module.css'
 import {Icon, Variant} from '../utils'
-import {StyledTab} from './index.styles'
 
 interface Props {
   textColor: string
@@ -20,6 +21,7 @@ interface Props {
   currentKey: React.Key | undefined
   item: React.DetailedReactHTMLElement<TabItemProps, HTMLElement>
   onSelect: (key: React.Key) => void
+  css?: unknown
 }
 
 type TabProps = Props & Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
@@ -37,6 +39,8 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       icon = 'none',
       id,
       onSelect,
+      css = {},
+      ...htmlProps
     },
     ref,
   ) => {
@@ -73,31 +77,97 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
     }
 
     const mergeRef = useMergeRefs([tabRef, register])
+    const tabClassName = [
+      `cdg-tab-item-wrapper`,
+      styles.tab,
+      styles[`icon${icon.charAt(0).toUpperCase() + icon.slice(1)}`],
+      styles[`${variant}`],
+      styles[`active${isSelected ? 'True' : 'False'}`],
+      styles[`disabled${!!disabledState ? 'True' : 'False'}`],
+      styles[variant + `Disabled${!!disabledState ? 'True' : 'False'}`],
+      styles[variant + `Active${!!isSelected ? 'True' : 'False'}`],
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const tabIconClassName = [
+      `cdg-tab-icon`,
+      styles.icon,
+      styles[`icon${icon.charAt(0).toUpperCase() + icon.slice(1)}Icon`],
+      variant && styles[variant + `Icon`],
+      variant &&
+        disabledState &&
+        styles[variant + `Disabled${!!disabledState ? 'True' : 'False'}Icon`],
+      variant &&
+        isSelected &&
+        styles[variant + `Active${!!isSelected ? 'True' : 'False'}Icon`],
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    // legacy, users are advised to use className styling for customization
+    const customCss = {
+      [styles.simple]: {
+        '&:focus-visible': {
+          boxShadow: `0px -2px ${indicatorColor}`,
+          color: `${textColor}`,
+        },
+        '&:hover': {
+          color: `${textColor}`,
+        },
+      },
+      [styles.h5]: {
+        '&:focus-visible': {
+          boxShadow: `0px -2px ${indicatorColor}`,
+        },
+      },
+      [styles.simpleActiveTrue]: {
+        borderBottom: `${indicatorColor} 2px solid`,
+        color: `${textColor}`,
+      },
+      [styles.simpleActiveTrueIcon]: {
+        backgroundColor: `${textColor}`,
+        '& path': {
+          fill: `${textColor}`,
+        },
+      },
+      [styles.h5ActiveTrueIcon]: {
+        backgroundColor: `${textColor}`,
+      },
+      [styles.rounded]: {
+        color: `${textColor}`,
+      },
+      [styles.icon]: {
+        backgroundColor: `${textColor}`,
+      },
+      [styles.activeTrue]: {
+        backgroundColor: `${textColor}`,
+      },
+      ...(css as Object),
+    }
 
     return (
-      <StyledTab
-        id={id}
-        icon={icon}
-        ref={mergeRef}
-        tabIndex={isSelected && !disabledState ? 0 : -1}
-        variant={variant}
-        active={isSelected}
-        disabled={!!disabledState}
-        className='tab-item-wrapper'
-        css={{$$textColor: textColor, $$indicatorColor: indicatorColor}}
-        onClick={handleSelect}
-        onKeyDown={handleKeyDown}
-        onFocus={handleOnFocus}
-        role='tab'
-        aria-selected={isSelected}
-      >
-        {title}
-        {icon !== 'none' && (
-          <div className='icon'>
-            {disabledState ? <DisableIcon /> : <TickIcon />}
-          </div>
-        )}
-      </StyledTab>
+      <CssInjection css={customCss} childrenRef={mergeRef}>
+        <div
+          className={tabClassName}
+          id={id}
+          ref={mergeRef}
+          tabIndex={isSelected && !disabledState ? 0 : -1}
+          onClick={handleSelect}
+          onKeyDown={handleKeyDown}
+          onFocus={handleOnFocus}
+          role='tab'
+          aria-selected={isSelected}
+          {...htmlProps}
+        >
+          {title}
+          {icon !== 'none' && (
+            <div className={`${tabIconClassName}`}>
+              {disabledState ? <DisableIcon /> : <TickIcon />}
+            </div>
+          )}
+        </div>
+      </CssInjection>
     )
   },
 )

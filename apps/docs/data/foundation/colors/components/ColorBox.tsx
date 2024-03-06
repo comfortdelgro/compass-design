@@ -1,5 +1,5 @@
-import {useToast} from '@comfortdelgro/react-compass'
-import {useEffect, useState} from 'react'
+import { useToast } from '@comfortdelgro/react-compass'
+import { useEffect, useState } from 'react'
 
 interface Props {
   color: {
@@ -11,15 +11,14 @@ interface Props {
 
 function rgba2hex(color: string) {
   var a,
-    isPercent,
     rgb = color
       .replace(/\s/g, '')
       .match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
     alpha = ((rgb && rgb[4]) || '').trim(),
     hex = rgb
       ? (Number(rgb[1]) | (1 << 8)).toString(16).slice(1) +
-        (Number(rgb[2]) | (1 << 8)).toString(16).slice(1) +
-        (Number(rgb[3]) | (1 << 8)).toString(16).slice(1)
+      (Number(rgb[2]) | (1 << 8)).toString(16).slice(1) +
+      (Number(rgb[3]) | (1 << 8)).toString(16).slice(1)
       : color
 
   if (alpha !== '') {
@@ -83,7 +82,7 @@ const getResolvedColor = (color: string) => {
   return color
 }
 
-const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
+const ColorBox: React.FC<Props> = ({ color, gradient = false }) => {
   const [resolvedColor, setResolvedColor] = useState<string | null>(null)
   const [resolvedColorOpacity, setResolvedColorOpacity] = useState<number>(1)
 
@@ -97,13 +96,13 @@ const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
   const toast = useToast()
 
   const handleColorClick = () => {
-    console.log(toast)
     navigator && navigator.clipboard.writeText(resolvedColor || '')
     toast.show({
       color: 'positive',
       title: 'Copy successfully',
     })
   }
+
 
   return (
     <div
@@ -124,7 +123,7 @@ const ColorBox: React.FC<Props> = ({color, gradient = false}) => {
         transitionProperty: 'all',
         transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
         transitionDuration: '150ms',
-        backgroundColor: !gradient ? color.value : 'transparent',
+        backgroundColor: !gradient ? `var(--cdg-color-${color.token})` : 'transparent',
         backgroundImage: gradient
           ? `linear-gradient(to right, ${color.value})`
           : 'none',

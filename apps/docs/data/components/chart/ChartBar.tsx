@@ -3,7 +3,15 @@ import {Chart} from '@comfortdelgro/react-compass'
 function ChartBar() {
   return (
     <Chart.Bar
-      labels={['January', 'February', 'March', 'April', 'May', 'June', 'July']}
+      labels={[
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+      ]}
       data={[
         {
           label: 'Dataset 1',

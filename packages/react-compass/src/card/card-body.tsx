@@ -1,8 +1,8 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledCardBody} from './card-body.styles'
-
-interface Props extends StyledComponentProps {
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/card.module.css'
+interface Props {
+  css?: unknown
   children?: React.ReactNode
 }
 
@@ -11,12 +11,18 @@ export type CardBodyProps = Props &
 
 const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className, ...htmlProps} = props
 
     return (
-      <StyledCardBody css={css} ref={ref} {...delegated}>
-        {children}
-      </StyledCardBody>
+      <CssInjection css={css} childrenRef={ref}>
+        <div
+          className={`${styles.cardBody} ${className ?? ''}`}
+          ref={ref}
+          {...htmlProps}
+        >
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

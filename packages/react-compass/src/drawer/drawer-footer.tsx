@@ -1,19 +1,25 @@
-import React, {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDrawerFooter} from './drawer.styles'
+import styles from './styles/drawer.module.css'
 
-export type DrawerFooterProps = PropsWithChildren<StyledComponentProps> &
-  HTMLAttributes<HTMLDivElement>
+export type DrawerFooterProps = PropsWithChildren<{css?: unknown}> &
+  HTMLAttributes<HTMLElement>
 
-const DrawerFooter = forwardRef<HTMLDivElement, DrawerFooterProps>(
-  ({children, css = {}, ...delegated}, ref) => {
-    const drawerFooterRef = useDOMRef<HTMLDivElement>(ref)
+const DrawerFooter = forwardRef<HTMLElement, DrawerFooterProps>(
+  ({children, css = {}, ...htmlAttributes}, ref) => {
+    const drawerFooterRef = useDOMRef<HTMLElement>(ref)
 
     return (
-      <StyledDrawerFooter css={css} ref={drawerFooterRef} {...delegated}>
-        {children}
-      </StyledDrawerFooter>
+      <CssInjection css={css} childrenRef={drawerFooterRef}>
+        <footer
+          ref={drawerFooterRef}
+          className={`${styles.drawerFooter} cdg-drawer-footer`}
+          {...htmlAttributes}
+        >
+          {children}
+        </footer>
+      </CssInjection>
     )
   },
 )

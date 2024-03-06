@@ -1,11 +1,12 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDialogActionsContainer} from './dialog.styles'
+import styles from './styles/dialog.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   isMobile?: boolean
+  css?: unknown
 }
 
 export type DialogActionsProps = Props &
@@ -13,17 +14,28 @@ export type DialogActionsProps = Props &
 
 const DialogActions = React.forwardRef<HTMLDivElement, DialogActionsProps>(
   (props, ref) => {
-    const {children, css = {}, isMobile = false, ...delegated} = props
+    const {
+      children,
+      css = {},
+      isMobile = false,
+      className,
+      ...htmlProps
+    } = props
     const dialogActionRef = useDOMRef<HTMLDivElement>(ref)
+
+    const classNames = [
+      styles.actionsContainer,
+      isMobile && styles.actionsContainerResponsive,
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
     return (
-      <StyledDialogActionsContainer
-        css={css}
-        ref={dialogActionRef}
-        responsive={isMobile}
-        {...delegated}
-      >
-        {children}
-      </StyledDialogActionsContainer>
+      <CssInjection css={css}>
+        <div className={classNames} ref={dialogActionRef} {...htmlProps}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

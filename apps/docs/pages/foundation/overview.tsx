@@ -1,6 +1,6 @@
 import {Box, Grid, Typography} from '@comfortdelgro/react-compass'
 import DocsAppCustomLayout from 'components/layouts/DocsAppCustomLayout'
-import {usePageProps} from 'contexts/PageProps'
+import { usePageProps } from 'contexts/PageProps'
 import Image from 'next/image'
 import Link from 'next/link'
 import {useEffect} from 'react'
@@ -52,7 +52,7 @@ const introduces = [
 ]
 
 export default function Page() {
-  const {setPageProps} = usePageProps()
+  const { setPageProps } = usePageProps()
 
   // Overview not using any data of context, so clear it before loading
   useEffect(() => {
@@ -105,19 +105,11 @@ export default function Page() {
       >
         <Grid spacing='sm' alignItems='center' css={{width: '100%'}}>
           {introduces.map((introduce, index) => (
-            <Grid.Item
-              xs={12}
-              sm={6}
-              md={4}
-              lg={4}
-              xl={4}
-              key={index}
-              css={{
-                flexGrow: 1,
-                minWidth: 0,
-              }}
-            >
-              <Link href={introduce.url} style={{textDecoration: 'none'}}>
+            <Grid.Item xs={12} sm={6} md={4} lg={4} xl={4} key={index} css={{
+              flexGrow: 1,
+              minWidth: 0,
+            }}>
+              <Link href={introduce.url} style={{ textDecoration: 'none' }}>
                 <Box
                   css={{backgroundImage: `url('${introduce.image}')`}}
                   className={styles.box}
@@ -136,12 +128,10 @@ export default function Page() {
                       height: '40%',
                     }}
                   >
-                    <Box
-                      css={{
-                        flexGrow: 1,
-                        minWidth: 0,
-                      }}
-                    >
+                    <Box css={{
+                      flexGrow: 1,
+                      minWidth: 0,
+                    }}>
                       <Typography.Header
                         variant='header5'
                         css={{

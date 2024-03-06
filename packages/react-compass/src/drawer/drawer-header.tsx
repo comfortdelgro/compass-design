@@ -1,19 +1,25 @@
-import React, {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledDrawerHeader} from './drawer.styles'
+import styles from './styles/drawer.module.css'
 
-export type DrawerHeaderProps = PropsWithChildren<StyledComponentProps> &
+export type DrawerHeaderProps = PropsWithChildren<{css?: unknown}> &
   HTMLAttributes<HTMLElement>
 
 const DrawerHeader = forwardRef<HTMLElement, DrawerHeaderProps>(
-  ({children, css = {}, ...delegated}, ref) => {
+  ({children, css = {}, ...htmlAttributes}, ref) => {
     const drawerHeaderRef = useDOMRef<HTMLElement>(ref)
 
     return (
-      <StyledDrawerHeader css={css} ref={drawerHeaderRef} {...delegated}>
-        {children}
-      </StyledDrawerHeader>
+      <CssInjection css={css} childrenRef={drawerHeaderRef}>
+        <header
+          ref={drawerHeaderRef}
+          className={`${styles.drawerHeader} cdg-drawer-header`}
+          {...htmlAttributes}
+        >
+          {children}
+        </header>
+      </CssInjection>
     )
   },
 )

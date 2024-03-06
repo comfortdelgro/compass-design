@@ -13,6 +13,7 @@ components: Rating
 import {Rating} from '@comfortdelgro/react-compass'
 ```
 
+
 ## Example
 
 ### Default

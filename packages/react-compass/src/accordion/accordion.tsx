@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import Transitions from '../transitions'
+import React, {useMemo, useState} from 'react'
+import {Transitions} from '..'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import AccordionContext from './accordion-context'
 import AccordionExpandIcon, {
@@ -9,8 +9,10 @@ import AccordionExpandIcon, {
 } from './accordion-expandIcon'
 import AccordionTable from './accordion-table'
 import AccordionTitle, {AccordionTitleProps} from './accordion-title'
-import {StyledAccordion} from './accordion.styles'
-interface Props extends StyledComponentProps {
+import styles from './styles/accordion.module.css'
+
+interface Props {
+  css?: unknown
   expand?: boolean
   defaultExpand?: boolean
   children: React.ReactNode
@@ -21,6 +23,7 @@ interface Props extends StyledComponentProps {
 export type AccordionProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
+// eslint-disable-next-line react-refresh/only-export-components
 const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
   (props, ref) => {
     const {
@@ -30,27 +33,29 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       expand: controlledExpand, //map the prop to a different name
       defaultExpand = false,
       children,
+      className,
       onExpandChange,
       // HTML Div props
       ...delegated
     } = props
 
     const [uncontrolledExpand, setUncontrolledExpand] = useState(defaultExpand)
+    const accordionRef = useDOMRef<HTMLDivElement>(ref)
     const accordionBodyRef = useDOMRef<HTMLDivElement>(null)
 
-    // Component expansion state managed by its own or by user
-    const expand: boolean = (() => {
+    const expand: boolean = useMemo(() => {
       if (controlledExpand !== undefined) {
         return controlledExpand
       }
       return uncontrolledExpand
-    })()
+    }, [controlledExpand, uncontrolledExpand])
 
     // Toggle expansion state only when user doesnt control the component
     const setExpandIfUncontrolled = React.useCallback(() => {
       if (!controlledExpand !== undefined) {
         setUncontrolledExpand((prevState) => !prevState)
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const contextValue = React.useMemo(
@@ -58,9 +63,6 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       [expand, setExpandIfUncontrolled, onExpandChange],
     )
 
-    const accordionRef = useDOMRef<HTMLDivElement>(ref)
-
-    // pick accordion title from children
     const {child: AccordionTitleElement, rest: NotAccordionaTitleElement} =
       pickChild<React.ReactElement<AccordionTitleProps>>(
         children,
@@ -74,7 +76,6 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         AccordionExpandIcon,
       )
 
-    // Render the AccordionTitleElement with the AccordionExpandIconElement as its children
     const AccordionTitleWithIcon =
       AccordionTitleElement && AccordionExpandIconElement
         ? React.cloneElement(AccordionTitleElement, {
@@ -83,20 +84,28 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         : AccordionTitleElement
 
     return (
-      <StyledAccordion {...delegated} css={css} ref={accordionRef}>
-        <AccordionContext.Provider value={contextValue}>
-          {AccordionTitleWithIcon}
-          <Transitions
-            role='region'
-            aria-labelledby={props['aria-labelledby']}
-            ref={accordionBodyRef}
-            isLazyMounted={true}
-            show={expand}
-          >
-            <div className='accordion-body-inner'>{AccordionContent}</div>
-          </Transitions>
-        </AccordionContext.Provider>
-      </StyledAccordion>
+      <CssInjection css={css} childrenRef={accordionRef}>
+        <div
+          className={`${styles.accordion} ${className}`}
+          {...delegated}
+          ref={accordionRef}
+        >
+          <AccordionContext.Provider value={contextValue}>
+            {AccordionTitleWithIcon}
+            <Transitions
+              role='region'
+              aria-labelledby={props['aria-labelledby']}
+              ref={accordionBodyRef}
+              isLazyMounted={true}
+              show={expand}
+            >
+              <div className={`${styles.accordionBodyInner}`}>
+                {AccordionContent}
+              </div>
+            </Transitions>
+          </AccordionContext.Provider>
+        </div>
+      </CssInjection>
     )
   },
 )

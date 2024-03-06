@@ -1,6 +1,4 @@
-import React, {createContext, useEffect, useState} from 'react'
-import {theme} from './stitches.config'
-import {darkTheme} from './theme'
+import React, {createContext, useCallback, useEffect, useState} from 'react'
 
 export enum ETheme {
   Light = 'light',
@@ -9,8 +7,6 @@ export enum ETheme {
 type ColourMode = ETheme | undefined
 type ColourModeProviderType = [ColourMode, (newMode: ETheme) => void]
 type ThemeProviderProps = {
-  lightThemeCustom?: typeof theme | undefined
-  darkThemeCustom?: typeof theme | undefined
   changeBy?: unknown | undefined
   children?: React.ReactNode
   isCSR?: boolean
@@ -49,8 +45,6 @@ const getSavedColorModePreference = (): ETheme => {
 }
 
 function useColorMode({
-  lightThemeCustom,
-  darkThemeCustom,
   changeBy,
   isCSR,
 }: ThemeProviderProps): ColourModeProviderType {
@@ -61,27 +55,18 @@ function useColorMode({
 
   const savedColorMode = getSavedColorModePreference()
 
-  const applyColorMode = (newMode: ETheme) => {
-    if (newMode === ETheme.Light) {
-      lightThemeCustom?.className &&
-        body?.classList.add(lightThemeCustom?.className)
-      darkThemeCustom?.className &&
-        body?.classList.remove(darkThemeCustom?.className)
-      body?.classList.remove(darkTheme.className)
-    } else {
-      body?.classList.add(darkTheme.className) //
-      darkThemeCustom?.className &&
-        body?.classList.add(darkThemeCustom?.className)
-      lightThemeCustom?.className &&
-        body?.classList.remove(lightThemeCustom?.className)
-    }
-    setColorMode(newMode)
-    saveColorMode(newMode)
-  }
+  const applyColorMode = useCallback(
+    (newMode: ETheme) => {
+      body?.setAttribute('data-cdg-theme', newMode)
+      setColorMode(newMode)
+      saveColorMode(newMode)
+    },
+    [body],
+  )
 
   useEffect(() => {
     applyColorMode(savedColorMode)
-  }, [savedColorMode])
+  }, [applyColorMode, savedColorMode])
 
   useEffect(() => {
     if (!body) {
@@ -90,21 +75,17 @@ function useColorMode({
     if (!!changeBy && (changeBy === ETheme.Light || changeBy === ETheme.Dark)) {
       applyColorMode(changeBy as ETheme)
     }
-  }, [changeBy, body])
+  }, [changeBy, body, applyColorMode])
 
   return [colorMode, applyColorMode]
 }
 
-const ThemeProvider = ({
+const ThemeStaticProvider = ({
   children,
-  lightThemeCustom,
-  darkThemeCustom,
   changeBy,
   isCSR = false,
 }: ThemeProviderProps) => {
   const [colorMode, applyColorMode] = useColorMode({
-    lightThemeCustom,
-    darkThemeCustom,
     changeBy,
     isCSR,
   })
@@ -120,4 +101,4 @@ const ThemeProvider = ({
   )
 }
 
-export default ThemeProvider
+export default ThemeStaticProvider

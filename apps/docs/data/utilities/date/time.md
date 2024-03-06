@@ -158,7 +158,10 @@ date.toString() // '09:45:00'
 A `Time` can be combined with a `CalendarDate` to produce a `CalendarDateTime` object using the `toCalendarDateTime` function.
 
 ```tsx
-import {CalendarDate, toCalendarDateTime} from '@comfortdelgro/react-compass'
+import {
+  CalendarDate,
+  toCalendarDateTime,
+} from '@comfortdelgro/react-compass'
 
 let date = new CalendarDate(2022, 2, 3)
 let time = new Time(8, 30)

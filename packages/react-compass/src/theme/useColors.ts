@@ -1,18 +1,17 @@
 import {useEffect, useState} from 'react'
-import {config, theme} from './stitches.config'
+import {Colors, lightThemeColors} from './theme'
 
 export function useColors() {
-  const [colorsConfig, setColorsConfig] = useState<Record<string, string>>({})
+  const [colorsConfig, setColorsConfig] = useState<Colors>(lightThemeColors)
 
   function updateColorsConfig() {
     const configs: Record<string, string> = {}
-    Object.keys(theme.colors).forEach(
+    const documentStyle = getComputedStyle(document.body)
+    Object.keys(lightThemeColors).forEach(
       (key) =>
-        (configs[key] = getComputedStyle(document.body).getPropertyValue(
-          `--colors-${key}`,
-        )),
+        (configs[key] = documentStyle.getPropertyValue(`--cdg-color-${key}`)),
     )
-    setColorsConfig(configs)
+    setColorsConfig(configs as Colors)
   }
 
   useEffect(() => {
@@ -21,5 +20,5 @@ export function useColors() {
     mutationObserver.observe(document.body, {attributes: true})
   }, [])
 
-  return colorsConfig as unknown as typeof config.theme.colors
+  return colorsConfig
 }

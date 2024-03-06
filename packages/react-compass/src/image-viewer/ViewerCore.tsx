@@ -1,29 +1,29 @@
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import {noop} from 'lodash'
-import * as React from 'react'
-import Box from '../box'
+import {useCallback, useEffect, useReducer, useRef} from 'react'
 import Button from '../button'
 import Icon from '../icon'
-import * as constants from './constants'
-import {Z_INDEX} from './constants'
-import {ActionType} from './Icon'
-import {StyledImageViewerWrap} from './image-viewer.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {ActionTypeEnum} from './Icon'
 import ImageInformation from './ImageInformation'
-import {
-  ActionTypeEnum,
-  IAction,
-  ImageDecorator,
-  IViewerCoreState,
-  IViewerProps,
-  ToolbarConfig,
-} from './types'
 import ViewerCanvas from './ViewerCanvas'
 import ViewerNav from './ViewerNav'
 import ViewerToolbar, {defaultToolbars} from './ViewerToolbar'
+import * as constants from './constants'
+import {Z_INDEX} from './constants'
+import styles from './styles/image-viewer.module.css'
+import {
+  ActionEnum,
+  ActionType,
+  ImageDecorator,
+  ImageViewerCoreState,
+  ImageViewerProps,
+  ToolbarConfig,
+} from './types'
 
 function createAction(
-  type: ActionTypeEnum,
-  payload: Partial<IViewerCoreState>,
+  type: ActionEnum,
+  payload: Partial<ImageViewerCoreState>,
 ) {
   return {
     type,
@@ -31,7 +31,7 @@ function createAction(
   }
 }
 
-export default (props: IViewerProps) => {
+const ViewCore = (props: ImageViewerProps) => {
   const {
     visible = false,
     onClose = noop,
@@ -58,7 +58,8 @@ export default (props: IViewerProps) => {
     minScale = 0.1,
   } = props
 
-  const initialState: IViewerCoreState = {
+  const footerHeight = constants.FOOTER_HEIGHT
+  const initialState: ImageViewerCoreState = {
     index: 0,
     visible: false,
     activeIndex: props.activeIndex ?? 0,
@@ -76,7 +77,7 @@ export default (props: IViewerProps) => {
     startLoading: false,
   }
 
-  function setContainerWidthHeight() {
+  const setContainerWidthHeight = useCallback(() => {
     let width = window.innerWidth
     let height = window.innerHeight
     if (props.container) {
@@ -87,29 +88,32 @@ export default (props: IViewerProps) => {
       width,
       height,
     }
-  }
-  const containerSize = React.useRef(setContainerWidthHeight())
-  const footerHeight = constants.FOOTER_HEIGHT
+  }, [props.container])
 
-  function reducer(s: IViewerCoreState, action: IAction): typeof initialState {
+  const containerSize = useRef(setContainerWidthHeight())
+
+  function reducer(
+    s: ImageViewerCoreState,
+    action: ActionType,
+  ): typeof initialState {
     switch (action.type) {
-      case ActionTypeEnum.setVisible:
+      case ActionEnum.setVisible:
         return {
           ...s,
           visible: Boolean(action.payload.visible),
         }
-      case ActionTypeEnum.setActiveIndex:
+      case ActionEnum.setActiveIndex:
         return {
           ...s,
           activeIndex: Number(action.payload.index),
           startLoading: true,
         }
-      case ActionTypeEnum.update:
+      case ActionEnum.update:
         return {
           ...s,
           ...action.payload,
         }
-      case ActionTypeEnum.clear:
+      case ActionEnum.clear:
         return {
           ...s,
           width: 0,
@@ -130,15 +134,15 @@ export default (props: IViewerProps) => {
     return s
   }
 
-  const viewerCore = React.useRef<HTMLDivElement>(null)
-  const init = React.useRef(false)
-  const currentLoadIndex = React.useRef(0)
+  const viewerCore = useRef<HTMLDivElement>(null)
+  const init = useRef(false)
+  const currentLoadIndex = useRef(0)
 
-  const [state, dispatch] = React.useReducer<
-    (s: IViewerCoreState, a: any) => IViewerCoreState
+  const [state, dispatch] = useReducer<
+    (s: ImageViewerCoreState, a: unknown) => ImageViewerCoreState
   >(reducer, initialState)
 
-  React.useEffect(() => {
+  useEffect(() => {
     init.current = true
 
     return () => {
@@ -146,15 +150,16 @@ export default (props: IViewerProps) => {
     }
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     containerSize.current = setContainerWidthHeight()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.container])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (visible) {
       if (init.current) {
         dispatch(
-          createAction(ActionTypeEnum.setVisible, {
+          createAction(ActionEnum.setVisible, {
             visible: true,
           }),
         )
@@ -162,7 +167,7 @@ export default (props: IViewerProps) => {
     }
   }, [visible])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!disableKeyboardSupport) {
       document.addEventListener('keydown', handleKeydown, true)
     }
@@ -172,8 +177,8 @@ export default (props: IViewerProps) => {
 
     return () => {
       document.removeEventListener('keydown', handleKeydown, true)
-      if (viewerCore.current) {
-        viewerCore.current.removeEventListener(
+      if (viewerCore!.current) {
+        viewerCore!.current.removeEventListener(
           'wheel',
           handleMouseScroll,
           false,
@@ -182,19 +187,19 @@ export default (props: IViewerProps) => {
     }
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (visible) {
       dispatch(
-        createAction(ActionTypeEnum.setActiveIndex, {
+        createAction(ActionEnum.setActiveIndex, {
           index: activeIndex,
         }),
       )
     }
   }, [activeIndex, visible, images])
 
-  function loadImg(currentActiveIndex: number, isReset = false) {
+  const loadImg = (currentActiveIndex: number, isReset = false) => {
     dispatch(
-      createAction(ActionTypeEnum.update, {
+      createAction(ActionEnum.update, {
         loading: true,
         loadFailed: false,
       }),
@@ -222,7 +227,7 @@ export default (props: IViewerProps) => {
       }
       if (props.defaultImg) {
         dispatch(
-          createAction(ActionTypeEnum.update, {
+          createAction(ActionEnum.update, {
             loading: false,
             loadFailed: true,
             startLoading: false,
@@ -235,7 +240,7 @@ export default (props: IViewerProps) => {
         loadImgSuccess(defaultImgWidth, defaultImgHeight, false)
       } else {
         dispatch(
-          createAction(ActionTypeEnum.update, {
+          createAction(ActionEnum.update, {
             loading: false,
             loadFailed: false,
             startLoading: false,
@@ -276,7 +281,7 @@ export default (props: IViewerProps) => {
         scaleY = state.scaleY
       }
       dispatch(
-        createAction(ActionTypeEnum.update, {
+        createAction(ActionEnum.update, {
           width: width,
           height: height,
           left: left,
@@ -294,17 +299,18 @@ export default (props: IViewerProps) => {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (state.startLoading) {
       currentLoadIndex.current = state.activeIndex
       loadImg(state.activeIndex)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.startLoading, state.activeIndex])
 
-  function getImgWidthHeight(
+  const getImgWidthHeight = (
     imgWidth: number,
     imgHeight: number,
-  ): [number, number] {
+  ): [number, number] => {
     let width = 0
     let height = 0
     const maxWidth = containerSize.current.width * 0.8
@@ -322,7 +328,7 @@ export default (props: IViewerProps) => {
     return [width, height]
   }
 
-  function handleChangeImg(newIndex: number) {
+  const handleChangeImg = (newIndex: number) => {
     if (!loop && (newIndex >= images.length || newIndex < 0)) {
       return
     }
@@ -340,13 +346,13 @@ export default (props: IViewerProps) => {
       props.onChange(activeImage, newIndex)
     }
     dispatch(
-      createAction(ActionTypeEnum.setActiveIndex, {
+      createAction(ActionEnum.setActiveIndex, {
         index: newIndex,
       }),
     )
   }
 
-  function getActiveImage(activeIndex2?: number) {
+  const getActiveImage = (activeIndex2?: number) => {
     let activeImg2: ImageDecorator = {
       src: '',
       alt: '',
@@ -365,61 +371,61 @@ export default (props: IViewerProps) => {
     return activeImg2
   }
 
-  function handleScaleX(newScale: 1 | -1) {
+  const handleScaleX = (newScale: 1 | -1) => {
     dispatch(
-      createAction(ActionTypeEnum.update, {
+      createAction(ActionEnum.update, {
         scaleX: state.scaleX * newScale,
       }),
     )
   }
 
-  function handleScaleY(newScale: 1 | -1) {
+  const handleScaleY = (newScale: 1 | -1) => {
     dispatch(
-      createAction(ActionTypeEnum.update, {
+      createAction(ActionEnum.update, {
         scaleY: state.scaleY * newScale,
       }),
     )
   }
 
-  function handleRotate(isRight = false) {
+  const handleRotate = (isRight = false) => {
     dispatch(
-      createAction(ActionTypeEnum.update, {
+      createAction(ActionEnum.update, {
         rotate: state.rotate + 90 * (isRight ? 1 : -1),
       }),
     )
   }
 
-  function handleDefaultAction(type: ActionType) {
+  const handleDefaultAction = (type: ActionTypeEnum) => {
     switch (type) {
-      case ActionType.prev:
+      case ActionTypeEnum.prev:
         handleChangeImg(state.activeIndex - 1)
         break
-      case ActionType.next:
+      case ActionTypeEnum.next:
         handleChangeImg(state.activeIndex + 1)
         break
-      case ActionType.zoomIn:
+      case ActionTypeEnum.zoomIn:
         // eslint-disable-next-line no-case-declarations
         const imgCenterXY = getImageCenterXY()
         handleZoom(imgCenterXY.x, imgCenterXY.y, 1, zoomSpeed)
         break
-      case ActionType.zoomOut:
+      case ActionTypeEnum.zoomOut:
         // eslint-disable-next-line no-case-declarations
         const imgCenterXY2 = getImageCenterXY()
         handleZoom(imgCenterXY2.x, imgCenterXY2.y, -1, zoomSpeed)
         break
-      case ActionType.rotateLeft:
+      case ActionTypeEnum.rotateLeft:
         handleRotate()
         break
-      case ActionType.rotateRight:
+      case ActionTypeEnum.rotateRight:
         handleRotate(true)
         break
-      case ActionType.reset:
+      case ActionTypeEnum.reset:
         loadImg(state.activeIndex, true)
         break
-      case ActionType.scaleX:
+      case ActionTypeEnum.scaleX:
         handleScaleX(-1)
         break
-      case ActionType.scaleY:
+      case ActionTypeEnum.scaleY:
         handleScaleY(-1)
         break
       default:
@@ -427,7 +433,7 @@ export default (props: IViewerProps) => {
     }
   }
 
-  function handleAction(config: ToolbarConfig) {
+  const handleAction = (config: ToolbarConfig) => {
     handleDefaultAction(config.actionType)
 
     if (config.onClick) {
@@ -436,14 +442,14 @@ export default (props: IViewerProps) => {
     }
   }
 
-  function handleChangeImgState(
+  const handleChangeImgState = (
     width: number,
     height: number,
     top: number,
     left: number,
-  ) {
+  ) => {
     dispatch(
-      createAction(ActionTypeEnum.update, {
+      createAction(ActionEnum.update, {
         width: width,
         height: height,
         top: top,
@@ -452,14 +458,14 @@ export default (props: IViewerProps) => {
     )
   }
 
-  function handleResize() {
+  const handleResize = () => {
     containerSize.current = setContainerWidthHeight()
     if (visible) {
       const left = (containerSize.current.width - state.width) / 2
       const top =
         (containerSize.current.height - state.height - footerHeight) / 2
       dispatch(
-        createAction(ActionTypeEnum.update, {
+        createAction(ActionEnum.update, {
           left: left,
           top: top,
         }),
@@ -467,11 +473,11 @@ export default (props: IViewerProps) => {
     }
   }
 
-  function handleCanvasMouseDown(e: React.MouseEvent<HTMLDivElement>) {
+  const handleCanvasMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     onMaskClick(e)
   }
 
-  function handleKeydown(e: KeyboardEvent) {
+  const handleKeydown = (e: KeyboardEvent) => {
     const keyCode = e.keyCode || e.which || e.charCode
     let isFeature = false
     switch (keyCode) {
@@ -483,29 +489,29 @@ export default (props: IViewerProps) => {
       // key: ←
       case 37:
         if (e.ctrlKey) {
-          handleDefaultAction(ActionType.rotateLeft)
+          handleDefaultAction(ActionTypeEnum.rotateLeft)
         } else {
-          handleDefaultAction(ActionType.prev)
+          handleDefaultAction(ActionTypeEnum.prev)
         }
         isFeature = true
         break
       // key: →
       case 39:
         if (e.ctrlKey) {
-          handleDefaultAction(ActionType.rotateRight)
+          handleDefaultAction(ActionTypeEnum.rotateRight)
         } else {
-          handleDefaultAction(ActionType.next)
+          handleDefaultAction(ActionTypeEnum.next)
         }
         isFeature = true
         break
       // key: ↑
       case 38:
-        handleDefaultAction(ActionType.zoomIn)
+        handleDefaultAction(ActionTypeEnum.zoomIn)
         isFeature = true
         break
       // key: ↓
       case 40:
-        handleDefaultAction(ActionType.zoomOut)
+        handleDefaultAction(ActionTypeEnum.zoomOut)
         isFeature = true
         break
       // key: Ctrl + 1
@@ -524,7 +530,7 @@ export default (props: IViewerProps) => {
     }
   }
 
-  function handleMouseScroll(e: WheelEvent) {
+  const handleMouseScroll = (e: WheelEvent) => {
     if (disableMouseZoom) {
       return
     }
@@ -551,19 +557,19 @@ export default (props: IViewerProps) => {
     }
   }
 
-  function getImageCenterXY() {
+  const getImageCenterXY = () => {
     return {
       x: state.left + state.width / 2,
       y: state.top + state.height / 2,
     }
   }
 
-  function handleZoom(
+  const handleZoom = (
     targetX: number,
     targetY: number,
     direct: number,
     scale: number,
-  ) {
+  ) => {
     const imgCenterXY = getImageCenterXY()
     const diffX = targetX - imgCenterXY.x
     const diffY = targetY - imgCenterXY.y
@@ -608,7 +614,7 @@ export default (props: IViewerProps) => {
       height = state.height
     }
     dispatch(
-      createAction(ActionTypeEnum.update, {
+      createAction(ActionEnum.update, {
         width: width,
         scaleX: scaleX,
         scaleY: scaleY,
@@ -636,18 +642,20 @@ export default (props: IViewerProps) => {
   }
 
   return (
-    <>
+    <CssInjection>
       {visible && (
-        <StyledImageViewerWrap>
+        <div className={styles.imageViewerWrap}>
           {props.noClose || (
             <Button
               variant='primary'
-              css={{
+              style={{
                 right: 15,
                 top: 10,
                 width: 32,
                 display: 'flex',
-                padding: '5px 0',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '5px',
                 borderRadius: 16,
                 position: 'absolute',
                 zIndex: Z_INDEX + 5,
@@ -657,11 +665,11 @@ export default (props: IViewerProps) => {
               <Icon icon={faXmark} color='white' />
             </Button>
           )}
-          <Box
+          <div
             onTransitionEnd={() => {
               if (!visible) {
                 dispatch(
-                  createAction(ActionTypeEnum.setVisible, {
+                  createAction(ActionEnum.setVisible, {
                     visible: false,
                   }),
                 )
@@ -669,7 +677,7 @@ export default (props: IViewerProps) => {
             }}
             ref={viewerCore}
           >
-            <Box css={{zIndex: Z_INDEX}} />
+            <div style={{zIndex: Z_INDEX}} />
 
             <ViewerCanvas
               imgSrc={
@@ -693,7 +701,7 @@ export default (props: IViewerProps) => {
               container={props.container as HTMLElement}
               onCanvasMouseDown={handleCanvasMouseDown}
             />
-            <Box css={{zIndex: Z_INDEX + 5}}>
+            <div style={{zIndex: Z_INDEX + 5}}>
               {isShowToolbar && (
                 <ViewerToolbar
                   onAction={handleAction}
@@ -722,10 +730,12 @@ export default (props: IViewerProps) => {
                   onChangeImg={handleChangeImg}
                 />
               )}
-            </Box>
-          </Box>
-        </StyledImageViewerWrap>
+            </div>
+          </div>
+        </div>
       )}
-    </>
+    </CssInjection>
   )
 }
+
+export default ViewCore

@@ -1,9 +1,10 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledDashboardContent} from './dashboardSidecard.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/dashboardSidecard.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
 }
 
 export type DashboardSidecardContentProps = Props &
@@ -13,12 +14,18 @@ const DashboardSidecardContent = React.forwardRef<
   HTMLDivElement,
   DashboardSidecardContentProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const {children, css = {}, ...htmlProps} = props
 
   return (
-    <StyledDashboardContent css={css} ref={ref} {...delegated}>
-      {children}
-    </StyledDashboardContent>
+    <CssInjection css={css}>
+      <div
+        ref={ref}
+        className={`${styles.content} cdg-dashboard-sidecard-content`}
+        {...htmlProps}
+      >
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

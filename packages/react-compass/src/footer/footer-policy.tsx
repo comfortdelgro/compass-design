@@ -1,8 +1,9 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledFooterPolicy} from './footer-policy.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/footer-policy.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
 }
 
@@ -11,11 +12,18 @@ export type FooterPolicyProps = Props &
 
 const FooterPolicy = React.forwardRef<HTMLDivElement, FooterPolicyProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {children, css = {}, className, ...delegated} = props
+
+    const rootClasses = [styles.footerPolicy, className, 'cdg-footer-policy']
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledFooterPolicy ref={ref} css={css} {...delegated}>
-        {children}
-      </StyledFooterPolicy>
+      <CssInjection css={css} childrenRef={ref}>
+        <div className={rootClasses} ref={ref} {...delegated}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

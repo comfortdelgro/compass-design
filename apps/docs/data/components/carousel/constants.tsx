@@ -5,7 +5,7 @@ import {
 } from '@comfortdelgro/react-compass'
 
 // static doesn't have it yet
-import {SocicalIcon} from '@comfortdelgro/react-compass-old'
+import {SocicalIcon} from '@comfortdelgro/react-compass'
 
 export const socials: SocicalIcon[] = [
   {

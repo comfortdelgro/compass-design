@@ -1,7 +1,6 @@
 import React from 'react'
-import {StyledComponentProps} from '../../utils/stitches.types'
 
-export interface Props extends StyledComponentProps {
+export interface Props {
   key: React.Key
   title: string
   textValue?: string

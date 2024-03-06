@@ -1,4 +1,4 @@
-import {File, Icon} from '@comfortdelgro/react-compass'
+import {Icon, File} from '@comfortdelgro/react-compass'
 import {faVirus} from '@fortawesome/free-solid-svg-icons'
 
 function FileCustomStyling() {

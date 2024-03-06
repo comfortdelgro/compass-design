@@ -36,9 +36,9 @@ function ceToJulianDay(
 }
 
 function julianDayToCE(epoch: number, jd: number): [number, number, number] {
-  let year = Math.floor((4 * (jd - epoch)) / 1461)
-  let month = 1 + Math.floor((jd - ceToJulianDay(epoch, year, 1, 1)) / 30)
-  let day = jd + 1 - ceToJulianDay(epoch, year, month, 1)
+  const year = Math.floor((4 * (jd - epoch)) / 1461)
+  const month = 1 + Math.floor((jd - ceToJulianDay(epoch, year, 1, 1)) / 30)
+  const day = jd + 1 - ceToJulianDay(epoch, year, month, 1)
   return [year, month, day]
 }
 
@@ -70,6 +70,7 @@ export class EthiopicCalendar implements Calendar {
   identifier = 'ethiopic'
 
   fromJulianDay(jd: number): CalendarDate {
+    // eslint-disable-next-line prefer-const
     let [year, month, day] = julianDayToCE(ETHIOPIC_EPOCH, jd)
     let era = 'AM'
     if (year <= 0) {
@@ -121,6 +122,7 @@ export class EthiopicAmeteAlemCalendar extends EthiopicCalendar {
   override identifier = 'ethioaa' // also known as 'ethiopic-amete-alem' in ICU
 
   override fromJulianDay(jd: number): CalendarDate {
+    // eslint-disable-next-line prefer-const
     let [year, month, day] = julianDayToCE(ETHIOPIC_EPOCH, jd)
     year += AMETE_MIHRET_DELTA
     return new CalendarDate(this, 'AA', year, month, day)
@@ -145,6 +147,7 @@ export class CopticCalendar extends EthiopicCalendar {
   override identifier = 'coptic'
 
   override fromJulianDay(jd: number): CalendarDate {
+    // eslint-disable-next-line prefer-const
     let [year, month, day] = julianDayToCE(COPTIC_EPOCH, jd)
     let era = 'CE'
     if (year <= 0) {

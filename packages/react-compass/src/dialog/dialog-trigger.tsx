@@ -1,20 +1,21 @@
 import React from 'react'
 import Portal from '../portal'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Dialog from './dialog'
-import {DialogVariantProps, StyledDialogWrapper} from './dialog.styles'
+import styles from './styles/dialog.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   isOpen?: boolean
   handleClose?: () => void
   id?: string
+  variant?: 'confirmation' | 'alert'
+  css?: unknown
 }
 
 export type DialogTriggerProps = Props &
-  DialogVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
@@ -30,8 +31,9 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
       id,
       // VariantProps
       variant = 'confirmation',
+      className,
       // HTMLDiv Props
-      ...delegated
+      ...htmlProps
     } = props
 
     const {child: DialogElement} = pickChild<typeof Dialog>(children, Dialog)
@@ -45,23 +47,28 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
       handleClose?.()
     }
 
+    const classNames = [styles.wrapper, className, 'cdg-dialog-wrapper']
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <Portal open={isOpen}>
-        <StyledDialogWrapper
-          css={css}
-          ref={dialogWrapperRef}
-          onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
-          className='cdg-dialog-wrapper'
-          {...delegated}
-        >
-          {DialogElement &&
-            React.cloneElement(DialogElement as unknown as JSX.Element, {
-              ref: dialogRef,
-              variant: variant,
-              triggerId: id,
-              handleClose: () => handleClose?.(),
-            })}
-        </StyledDialogWrapper>
+        <CssInjection css={css}>
+          <div
+            ref={dialogWrapperRef}
+            onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
+            className={classNames}
+            {...htmlProps}
+          >
+            {DialogElement &&
+              React.cloneElement(DialogElement as unknown as JSX.Element, {
+                ref: dialogRef,
+                variant: variant,
+                triggerId: id,
+                handleClose: () => handleClose?.(),
+              })}
+          </div>
+        </CssInjection>
       </Portal>
     )
   },

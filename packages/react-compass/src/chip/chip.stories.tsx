@@ -1,19 +1,46 @@
+import type {Meta} from '@storybook/react'
 import React from 'react'
-import {Column} from '../utils/components'
 import Chip from './index'
 
-export const Default: React.FC = () => {
+const style: {
+  display: string
+  flexDirection: 'column' | 'row'
+  alignItems: string
+  justifyContent: string
+  height: string
+  width: string
+  padding: string
+} = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+  padding: '3rem',
+}
+
+export const Basic: React.FC = () => {
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Basic Chip</h3>
       <Chip>Basic Chip</Chip>
+    </div>
+  )
+}
+
+export const Variants: React.FC = () => {
+  return (
+    <div style={{...style}}>
       <h3>Close button</h3>
       <Chip
         hasCloseButton
+        onClick={() => {
+          console.log('Chip click...')
+        }}
         onCloseClick={() => {
           console.log('Close button click')
         }}
-        onClick={() => console.log('clicked...')}
       >
         Close button
       </Chip>
@@ -22,14 +49,7 @@ export const Default: React.FC = () => {
         Errored Chip
       </Chip>
       <h3>Large content</h3>
-      <Chip
-        hasCloseButton
-        onCloseClick={() => {
-          console.log('Close button click')
-        }}
-        onClick={() => console.log('clicked...')}
-        style={{maxWidth: '350px'}}
-      >
+      <Chip hasCloseButton css={{maxWidth: '350px'}}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
         mollitia, molestiae quas vel sint commodi repudiandae consequuntur
         voluptatum laborum numquam blanditiis harum quisquam eius sed odit
@@ -42,6 +62,45 @@ export const Default: React.FC = () => {
         modi at sunt excepturi expedita sint? Sed quibusdam recusandae alias
         error harum maxime adipisci amet laborum.
       </Chip>
-    </Column>
+    </div>
   )
 }
+
+export const CustomStyling: React.FC = () => {
+  return (
+    <div style={{...style}}>
+      <h3>Custom Styling</h3>
+      <Chip
+        hasCloseButton
+        css={{
+          border: '1px solid purple',
+          '&:hover': {color: '$success'},
+          '& > div:first-child': {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            '& svg': {
+              height: '2rem',
+              width: '2rem',
+            },
+          },
+        }}
+      >
+        Close button
+      </Chip>
+    </div>
+  )
+}
+
+const meta = {
+  title: 'Example/Chip',
+  component: Basic,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

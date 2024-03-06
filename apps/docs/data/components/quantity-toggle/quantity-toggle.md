@@ -13,6 +13,7 @@ components: QuantityToggle
 import {QuantityToggle} from '@comfortdelgro/react-compass'
 ```
 
+
 ## Support
 
 Support for internationalized number formatting and parsing including decimals, percentages, currency values, and units

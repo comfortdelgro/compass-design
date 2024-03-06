@@ -1,13 +1,11 @@
-import {faCar} from '@fortawesome/free-solid-svg-icons'
+import type {Meta} from '@storybook/react'
 import React, {CSSProperties, useRef, useState} from 'react'
 import Button from '../button'
-import Icon from '../icon'
-import Sidenav from '../sidenav'
-import Gutter from './gutter'
+import Gutter from './index'
 
 export const Default: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null)
-  const [width, setWidth] = useState<CSSProperties['width']>(undefined)
+  const [width, setWidth] = useState(undefined)
 
   return (
     <div style={{display: 'flex', height: '100%', minHeight: '400px'}}>
@@ -68,7 +66,9 @@ export const BothSide: React.FC = () => {
     useState<CSSProperties['width']>(undefined)
 
   return (
-    <div style={{display: 'flex', height: '100%', minHeight: '400px'}}>
+    <div
+      style={{display: 'flex', height: '100%', minHeight: '400px', margin: 50}}
+    >
       <div
         ref={rightGutterRef}
         style={{
@@ -113,7 +113,9 @@ export const ControlledCollapse: React.FC = () => {
   const [isExpand, setIsExpand] = useState(false)
 
   return (
-    <div style={{display: 'flex', height: '100%', minHeight: '400px'}}>
+    <div
+      style={{display: 'flex', height: '100%', minHeight: '400px', margin: 50}}
+    >
       <div
         ref={ref}
         style={{
@@ -174,47 +176,13 @@ export const Advanced: React.FC = () => {
   )
 }
 
-export const OtherComponent: React.FC = () => {
-  const ref = useRef<HTMLDivElement>(null)
-  const [width, setWidth] = useState<CSSProperties['width']>(undefined)
+const meta = {
+  title: 'Example/Gutter',
+  component: Default,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Default>
 
-  return (
-    <div style={{display: 'flex', height: '100%', minHeight: '400px'}}>
-      <div
-        ref={ref}
-        style={{
-          position: 'relative',
-          width: width,
-        }}
-      >
-        <Sidenav expand={false} css={{width: '100%', height: '100%'}}>
-          <Sidenav.Item>
-            <Icon icon={faCar}></Icon>
-            Item 1
-          </Sidenav.Item>
-          <Sidenav.Item>
-            <Icon icon={faCar}></Icon>
-            Item 2
-          </Sidenav.Item>
-          <Sidenav.Item>
-            <Icon icon={faCar}></Icon>
-            Item 3
-          </Sidenav.Item>
-          <Sidenav.Item>
-            <Icon icon={faCar}></Icon>
-            Item 4
-          </Sidenav.Item>
-          <Sidenav.Item>
-            <Icon icon={faCar}></Icon>
-            Item 5
-          </Sidenav.Item>
-        </Sidenav>
-        <Gutter parentRef={ref} onChange={setWidth} hasExpandButton />
-      </div>
-      <div style={{flex: 1}}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </div>
-    </div>
-  )
-}
+export default meta

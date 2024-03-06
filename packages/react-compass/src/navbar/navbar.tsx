@@ -1,19 +1,22 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import NavbarActions from './navbar-actions'
 import NavbarBrand from './navbar-brand'
 import {NavbarLinks} from './navbar-links'
-import {NavbarSeperator} from './navbar-seperator.style'
-import {NavbarVariantProps, StyledNavbar} from './navbar.styles'
+import {NavbarSeperator} from './navbar-seperator'
+import styles from './styles/navbar.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
+  variant?: 'portal' | 'website'
+  color?: 'blue' | 'white'
 }
 
 export type NavbarProps = Props &
-  NavbarVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
+// eslint-disable-next-line react-refresh/only-export-components
 const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
   const {
     // ComponentProps
@@ -27,22 +30,29 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
     ...delegated
   } = props
 
-  const variantProps = {
-    color: color,
-    variant: variant,
-  } as NavbarVariantProps
+  // const variantProps = {
+  //   color: color,
+  //   variant: variant,
+  // }
+
+  const rootClasses = [
+    styles.navbar,
+    color === 'blue' && styles.blue,
+    color === 'white' && styles.white,
+    variant === 'website' && styles.website,
+    `cdg-navbar-${color}`,
+    className,
+    'cdg-navbar',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
-    <StyledNavbar
-      className={`${className} navbar-${color}`}
-      css={css}
-      ref={ref}
-      role='navigation'
-      {...variantProps}
-      {...delegated}
-    >
-      {children}
-    </StyledNavbar>
+    <CssInjection css={css} childrenRef={ref}>
+      <nav className={rootClasses} ref={ref} role='navigation' {...delegated}>
+        {children}
+      </nav>
+    </CssInjection>
   )
 })
 

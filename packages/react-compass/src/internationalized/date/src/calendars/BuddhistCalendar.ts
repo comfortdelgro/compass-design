@@ -27,8 +27,8 @@ export class BuddhistCalendar extends GregorianCalendar {
   override identifier = 'buddhist'
 
   override fromJulianDay(jd: number): CalendarDate {
-    let gregorianDate = super.fromJulianDay(jd)
-    let year = getExtendedYear(gregorianDate.era, gregorianDate.year)
+    const gregorianDate = super.fromJulianDay(jd)
+    const year = getExtendedYear(gregorianDate.era, gregorianDate.year)
     return new CalendarDate(
       this,
       year - BUDDHIST_ERA_START,
@@ -53,6 +53,6 @@ export class BuddhistCalendar extends GregorianCalendar {
 }
 
 function toGregorian(date: AnyCalendarDate) {
-  let [era, year] = fromExtendedYear(date.year + BUDDHIST_ERA_START)
+  const [era, year] = fromExtendedYear(date.year + BUDDHIST_ERA_START)
   return new CalendarDate(era, year, date.month, date.day)
 }

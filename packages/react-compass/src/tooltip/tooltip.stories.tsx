@@ -1,3 +1,4 @@
+import {Meta} from '@storybook/react'
 import React, {useState} from 'react'
 import Button from '../button'
 import {Placement} from './index'
@@ -9,7 +10,7 @@ export const Controlled: React.FC = () => {
   const [isOpenSimple, setIsOpenSimple] = useState(false)
 
   return (
-    <>
+    <div style={{marginLeft: '1.5rem'}}>
       <h3>Tooltip State: {isOpen ? 'opened' : 'closed'}</h3>
       <TooltipTrigger
         isOpen={isOpen}
@@ -36,7 +37,7 @@ export const Controlled: React.FC = () => {
         <Button>Trigger</Button>
         <Tooltip>This is simple tooltip</Tooltip>
       </TooltipTrigger>
-    </>
+    </div>
   )
 }
 
@@ -58,7 +59,7 @@ export const Placements: React.FC = () => {
   const [currentPlacement, setCurrentPlacement] = useState<Placement>('bottom')
 
   return (
-    <>
+    <div style={{marginLeft: '1.5rem'}}>
       <h3>Select direction for testing</h3>
       <select
         onChange={(e) => {
@@ -92,7 +93,7 @@ export const Placements: React.FC = () => {
           </Tooltip>
         </TooltipTrigger>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -101,7 +102,7 @@ export const Offset: React.FC = () => {
   const [mainAxis, setMainAxis] = useState(0)
 
   return (
-    <>
+    <div style={{marginLeft: '1.5rem'}}>
       <h3>Offset</h3>
       <div
         style={{
@@ -156,14 +157,14 @@ export const Offset: React.FC = () => {
           </Tooltip>
         </TooltipTrigger>
       </div>
-    </>
+    </div>
   )
 }
 
 export const Delay: React.FC = () => {
   const [delayTime, setDelayTime] = useState(0)
   return (
-    <>
+    <div style={{marginLeft: '1.5rem'}}>
       <h3>Delay</h3>
       <div
         style={{
@@ -196,6 +197,19 @@ export const Delay: React.FC = () => {
           Tempora, sit?
         </Tooltip>
       </TooltipTrigger>
-    </>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Tooltip ',
+  component: Controlled,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Controlled>
+
+export default meta

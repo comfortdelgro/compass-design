@@ -1,3 +1,4 @@
+'use client'
 import {cloneDeep} from 'lodash'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Button from '../button'
@@ -7,13 +8,8 @@ import {
   HALF_TIME_AM,
   HALF_TIME_LIST,
 } from './constant'
+import styles from './styles/time-picker.module.css'
 import TimePickerDropdownItem from './time-picker-dropdown-item'
-import {
-  TimePickerDropdownContent,
-  TimePickerDropdownControl,
-  TimePickerDropdownFooter,
-  TimePickerDropdownWrapper,
-} from './time-picker.styles'
 import {
   SelectedKey,
   TimePickerDropdownDisplayList,
@@ -298,11 +294,17 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
   }
 
   return (
-    <TimePickerDropdownWrapper onKeyDown={handleWrapperKeyDown} ref={ref}>
-      <TimePickerDropdownContent>
+    <div
+      onKeyDown={handleWrapperKeyDown}
+      ref={ref}
+      className={`cdg-time-picker-dropdown-wrapper ${styles.timePickerDropdownWrapper}`}
+    >
+      <div
+        className={`cdg-time-picker-dropdown-wrapper ${styles.timePickerDropdownContent}`}
+      >
         {displayList.map((displayData, index) => (
-          <TimePickerDropdownControl
-            className='time-picker-dropdown-control'
+          <div
+            className={`${styles.timePickerDropdownControl} cdg-time-picker-dropdown-control`}
             key={index}
           >
             {displayData.items.map(
@@ -321,11 +323,11 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
                 />
               ),
             )}
-          </TimePickerDropdownControl>
+          </div>
         ))}
-      </TimePickerDropdownContent>
+      </div>
       {hasFooter && (
-        <TimePickerDropdownFooter>
+        <div className={`${styles.timePickerDropdownFooter}`}>
           <Button
             variant='ghost'
             onClick={handleButtonOkClick}
@@ -334,9 +336,9 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
           >
             OK
           </Button>
-        </TimePickerDropdownFooter>
+        </div>
       )}
-    </TimePickerDropdownWrapper>
+    </div>
   )
 }
 export default React.memo(TimePickerDropdown)

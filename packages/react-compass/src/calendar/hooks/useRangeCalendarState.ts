@@ -151,7 +151,6 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
   const highlightedRange = anchorDate
     ? makeRange(anchorDate, calendar.focusedDate as CalendarDate)
     : value && makeRange(value.start!, value.end!)
-
   const selectDate = (date: CalendarDate) => {
     if (props.isReadOnly) {
       return
@@ -219,18 +218,15 @@ export function useRangeCalendarState<T extends DateValue = DateValue>(
   const validationState =
     props.validationState || (isInvalidSelection ? 'invalid' : null)
 
+  // @ts-ignore
   return {
     ...calendar,
-    // @ts-ignore
     value,
     shouldOnChangeTriggerOnSameDate,
-    // @ts-ignore
     setValue,
     anchorDate,
     setAnchorDate,
-    // @ts-ignore
     highlightedRange,
-    // @ts-ignore
     validationState,
     selectFocusedDate() {
       selectDate(calendar.focusedDate as CalendarDate)

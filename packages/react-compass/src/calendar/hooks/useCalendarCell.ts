@@ -10,14 +10,7 @@
 
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import {
-  MouseEvent,
-  PointerEvent,
-  RefObject,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react'
+import {MouseEvent, RefObject, useEffect, useMemo, useRef} from 'react'
 import {
   CalendarDate,
   DateFormatter,
@@ -326,7 +319,7 @@ export function useCalendarCell(
         ]
           .filter(Boolean)
           .join(' ') || undefined,
-      onPointerEnter(e: PointerEvent<FocusableElement>) {
+      onPointerEnter(e: React.PointerEvent<FocusableElement>) {
         // Highlight the date on hover or drag over a date when selecting a range.
         if (
           'highlightDate' in state &&

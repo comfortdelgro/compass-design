@@ -36,7 +36,10 @@ function Default() {
       <Typography.Label css={{justifyContent: 'center', display: 'flex'}}>
         Controlled
       </Typography.Label>
-      <OTPInput otp={value} onChangeOTP={(otp) => setValue(otp)} />
+      <OTPInput
+        otp={value}
+        onChangeOTP={(otp) => setValue(otp)}
+      />
 
       <Typography.Label css={{justifyContent: 'center', display: 'flex'}}>
         Error

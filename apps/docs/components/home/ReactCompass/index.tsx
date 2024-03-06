@@ -22,10 +22,7 @@ function ReactCompass() {
       <Container>
         <Box>
           <Typography.Header>Usage</Typography.Header>
-          <Typography.Body
-            variant='body2'
-            style={{padding: 'var(--cdg-spacing-5) 0 var(--cdg-spacing-3) 0'}}
-          >
+          <Typography.Body variant='body2' style={{padding: 'var(--cdg-spacing-5) 0 var(--cdg-spacing-3) 0'}}>
             There are three parts of the package: CSS, Javascript, and Icon or
             Image resource. We are fetching icon and images from cdn by default.
           </Typography.Body>

@@ -1,4 +1,4 @@
-import {File, Icon} from '@comfortdelgro/react-compass'
+import {Icon, File} from '@comfortdelgro/react-compass'
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
 
 function FileErrored() {

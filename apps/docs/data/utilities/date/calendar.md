@@ -62,7 +62,10 @@ createCalendar(calendarIdentifier) // new IndianCalendar()
 **Note**: importing `createCalendar` into your project will result in all available calendars being included in your bundle. If you wish to limit the supported calendars to reduce bundle sizes, you can create your own implementation that only imports the desired classes. This way, your bundler can tree-shake the unused calendar implementations.
 
 ```tsx
-import {GregorianCalendar, JapaneseCalendar} from '@comfortdelgro/react-compass'
+import {
+  GregorianCalendar,
+  JapaneseCalendar,
+} from '@comfortdelgro/react-compass'
 
 function createCalendar(identifier) {
   switch (identifier) {

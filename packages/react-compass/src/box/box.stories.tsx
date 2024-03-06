@@ -1,12 +1,10 @@
-import React, {useState} from 'react'
-import TextField from '../textfield'
-import {Column} from '../utils/components'
+import {Meta} from '@storybook/react'
+import React from 'react'
 import Box from './index'
 
 export const ElementMapping: React.FC = () => {
-  const [inputValue, setInputValue] = useState<string | number>('')
   return (
-    <Column>
+    <div>
       <section>
         <h3>'as' prop</h3>
         The 'as' prop refers to the HTML element that the Box component should
@@ -16,34 +14,31 @@ export const ElementMapping: React.FC = () => {
       </section>
       <h3>Box as 'div' Element - default option</h3>
       <Box
-        css={{
-          backgroundColor: 'grey',
+        style={{
+          backgroundColor: 'red',
           width: '8rem',
           textAlign: 'center',
         }}
       >
-        <TextField
-          value={inputValue}
-          onChange={(value) => setInputValue(value)}
-        />
+        My div
       </Box>
       <h3>Box as 'h2' Element</h3>
       <Box as='h2' color='red'>
-        <p>My 'div' box</p>
+        My 'div' box
       </Box>
-    </Column>
+    </div>
   )
 }
 
 export const DynamicStyling: React.FC = () => {
   return (
-    <Column>
+    <div>
       <h3>
         To style the Box component, you can use both 'css' and 'style' props.
       </h3>
       <h3>
         1. Styling with 'css' prop, giving you much more power than the regular
-        'style' prop.
+        'style' prop. But it is suitable for client side rendering only.
       </h3>
       <Box
         css={{
@@ -68,6 +63,19 @@ export const DynamicStyling: React.FC = () => {
       >
         <p>My box</p>
       </Box>
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Box',
+  component: ElementMapping,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof ElementMapping>
+
+export default meta

@@ -1,15 +1,23 @@
+import type {Meta} from '@storybook/react'
 import React from 'react'
-import {Column} from '../utils/components'
-import Upload from './index'
+import Upload from '.'
+
+const style: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  height: '100%',
+  padding: '3rem',
+}
 
 const getFileFunc = (file: File[]) => {
   if (file.length < 1) return
   console.log(file)
 }
 
-export const Default: React.FC = () => {
+export const Basic: React.FC = () => {
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>
         Default file upload is click-to-upload variant which allows only 1
         uploaded file
@@ -19,14 +27,14 @@ export const Default: React.FC = () => {
         accept='image/*, .docs, .docx'
         fileSizeLimit={30000}
       />
-    </Column>
+    </div>
   )
 }
 
 export const ClickToUpload: React.FC = () => {
   const [customError, setCustomError] = React.useState<string>('')
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Click-to-upload</h3>
       <Upload
         getFile={getFileFunc}
@@ -90,14 +98,14 @@ export const ClickToUpload: React.FC = () => {
         fileSizeLimit={9990000}
         multiple
       />
-    </Column>
+    </div>
   )
 }
 
 export const DragAndDrop: React.FC = () => {
   const [customError, setCustomError] = React.useState<string>('')
   return (
-    <Column>
+    <div style={{...style}}>
       <h3>Primary drag-and-drop</h3>
       <Upload.DragAndDrop
         getFile={getFileFunc}
@@ -161,6 +169,19 @@ export const DragAndDrop: React.FC = () => {
         label='Custom label'
         isDisabled
       />
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Upload ',
+  component: Basic,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Basic>
+
+export default meta

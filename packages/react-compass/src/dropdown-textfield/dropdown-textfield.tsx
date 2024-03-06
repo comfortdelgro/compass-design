@@ -1,15 +1,11 @@
-import React, {Key, useEffect} from 'react'
+import React, {Key} from 'react'
 import Dropdown from '../dropdown'
 import TextField from '../textfield'
-import {StyledTextFieldLabel} from '../textfield/textfield.styles'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {
-  InputWrapper,
-  StyledDropdownTextfield,
-} from './dropdown-textfield.styles'
+import styles from './styles/dropdown-textfield.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   id?: string
   inputType?: 'text' | 'numeric' | 'email' | 'password'
   options: DropdownOptions[]
@@ -59,6 +55,7 @@ interface Props extends StyledComponentProps {
   'aria-details'?: string
   'aria-errormessage'?: string
   h5?: boolean
+  css?: unknown
 }
 
 export type DropdownTextfieldProps = Props &
@@ -79,7 +76,7 @@ const DropdownTextfield = React.forwardRef<
     className,
     options,
     defaultSelectedKey,
-    defaultInputValue = '',
+    defaultInputValue,
     isErrored = false,
     isReadOnly = false,
     isRequired = false,
@@ -107,18 +104,14 @@ const DropdownTextfield = React.forwardRef<
     onCompositionStart,
     onCompositionUpdate,
     h5 = false,
+    css = {},
   } = props
   const componentRef = useDOMRef(ref)
 
   const [selectedDropdownKey, setDropdownKey] = React.useState<Key>('')
-  const [textfieldValue, setTextfieldValue] = React.useState<string | number>(
-    '',
+  const [textfieldValue, setTextfieldValue] = React.useState<Key>(
+    defaultInputValue ?? '',
   )
-
-  useEffect(() => {
-    setDropdownKey(defaultSelectedKey as Key)
-    setTextfieldValue(defaultInputValue)
-  }, [defaultSelectedKey, defaultInputValue])
 
   const handleDropdownChange = (newValue: Key) => {
     setDropdownKey(newValue)
@@ -129,88 +122,106 @@ const DropdownTextfield = React.forwardRef<
     onDropdownInputChange?.(String(selectedDropdownKey), value)
   }
 
+  React.useEffect(() => {
+    setDropdownKey(defaultSelectedKey as Key)
+    setTextfieldValue(defaultInputValue)
+  }, [defaultSelectedKey, defaultInputValue])
+
   return (
-    <StyledDropdownTextfield ref={componentRef} className={className}>
-      {label && (
-        <StyledTextFieldLabel htmlFor={id} h5={h5}>
-          {label}
-          {isRequired && <span className='asterisk'>*</span>}
-        </StyledTextFieldLabel>
-      )}
-      <InputWrapper className='input-wrapper'>
-        <Dropdown.Select
-          className='cdg-dropdown-textfield-select'
-          aria-label={label}
-          selectedKey={selectedDropdownKey}
-          defaultSelectedKey={defaultSelectedKey as Key}
-          onSelectionChange={handleDropdownChange}
-          isErrored={isErrored}
-          isReadOnly={isReadOnly}
-          isRequired={isRequired}
-          isDisabled={isDisabled}
-          placeholder={dropdownPlaceholder}
-          h5={h5}
-          css={{
-            width: '25%',
-          }}
+    <CssInjection css={css} childrenRef={componentRef}>
+      <div
+        ref={componentRef}
+        className={`${className} ${styles.dropdownTextfield}`}
+      >
+        {label && (
+          <label
+            htmlFor={id}
+            className={`${styles.textFieldLabel} ${
+              h5 ? styles.textFieldLabelH5 : ''
+            }`}
+          >
+            {label}
+            {isRequired && <span className={`${styles.asterisk}`}>*</span>}
+          </label>
+        )}
+        <div
+          className={`${styles.inputWrapper} input-wrapper cdg-input-wrapper`}
         >
-          {options.map((option) => (
-            <Dropdown.Item
-              key={option.value}
-              textValue={option.label}
-              css={{
-                'div:first-child': {
-                  gap: '$2',
-                  alignItems: 'center',
-                },
-              }}
-            >
-              {option.icon} {option.label}
-            </Dropdown.Item>
-          ))}
-        </Dropdown.Select>
-        <TextField
-          id={id}
-          className='cdg-dropdown-textfield-input'
-          aria-label={label}
-          type={inputType}
-          onChange={handleInputChange}
-          value={textfieldValue}
-          errorMessage={errorMessage}
-          isErrored={isErrored}
-          isReadOnly={isReadOnly}
-          isRequired={isRequired}
-          placeholder={textfieldPlaceholder}
-          isDisabled={isDisabled}
-          minLength={minLength ?? 0}
-          maxLength={maxLength ?? 524288}
-          h5={h5}
-          autoFocus={autoFocus}
-          onCut={onCut ?? (() => null)}
-          onCopy={onCopy ?? (() => null)}
-          onBlur={onBlur ?? (() => null)}
-          onFocus={onFocus ?? (() => null)}
-          onPaste={onPaste ?? (() => null)}
-          onInput={onInput ?? (() => null)}
-          onKeyUp={onKeyUp ?? (() => null)}
-          onSelect={onSelect ?? (() => null)}
-          onKeyDown={onKeyDown ?? (() => null)}
-          onBeforeInput={onBeforeInput ?? (() => null)}
-          onCompositionEnd={onCompositionEnd ?? (() => null)}
-          onCompositionStart={onCompositionStart ?? (() => null)}
-          onCompositionUpdate={onCompositionUpdate ?? (() => null)}
-          css={{
-            width: '75%',
-            'div:nth-child(2)': {
-              display: 'none',
-            },
-          }}
-        />
-      </InputWrapper>
-      {isErrored && (
-        <div className='dropdown-textfield__error'>{errorMessage}</div>
-      )}
-    </StyledDropdownTextfield>
+          <Dropdown.Select
+            className={`${styles.dropdownTextfieldSelect} cdg-dropdown-textfield-select`}
+            aria-label={label}
+            selectedKey={selectedDropdownKey}
+            defaultSelectedKey={defaultSelectedKey as Key}
+            onSelectionChange={handleDropdownChange}
+            isErrored={isErrored}
+            isReadOnly={isReadOnly}
+            isRequired={isRequired}
+            isDisabled={isDisabled}
+            placeholder={dropdownPlaceholder}
+            h5={h5}
+          >
+            {options.map((option) => (
+              <Dropdown.Item
+                key={option.value}
+                textValue={option.label}
+                css={{
+                  'div:first-child': {
+                    gap: '$2',
+                    alignItems: 'center',
+                  },
+                }}
+              >
+                {option.icon} {option.label}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Select>
+          <TextField
+            id={id}
+            className='cdg-dropdown-textfield-input'
+            aria-label={label}
+            type={inputType}
+            onChange={handleInputChange}
+            value={textfieldValue}
+            errorMessage={errorMessage}
+            isErrored={isErrored}
+            isReadOnly={isReadOnly}
+            isRequired={isRequired}
+            placeholder={textfieldPlaceholder}
+            isDisabled={isDisabled}
+            minLength={minLength ?? 0}
+            maxLength={maxLength ?? 524288}
+            h5={h5}
+            autoFocus={autoFocus}
+            onCut={onCut}
+            onCopy={onCopy}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            onPaste={onPaste}
+            onInput={onInput}
+            onKeyUp={onKeyUp}
+            onSelect={onSelect}
+            onKeyDown={onKeyDown}
+            onBeforeInput={onBeforeInput}
+            onCompositionEnd={onCompositionEnd}
+            onCompositionStart={onCompositionStart}
+            onCompositionUpdate={onCompositionUpdate}
+            css={{
+              width: '75%',
+              'div:nth-child(2)': {
+                display: 'none',
+              },
+            }}
+          />
+        </div>
+        {isErrored && (
+          <div
+            className={`${styles.dropdownTextfieldError} dropdown-textfield__error`}
+          >
+            {errorMessage}
+          </div>
+        )}
+      </div>
+    </CssInjection>
   )
 })
 

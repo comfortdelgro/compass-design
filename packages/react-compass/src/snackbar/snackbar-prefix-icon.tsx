@@ -1,10 +1,12 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledSnackbarIcon} from './snackbar.styles'
+import styles from './styles/snackbar.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
 }
 
 export type SnackbarPrefixIconProps = Props &
@@ -14,12 +16,18 @@ const SnackbarPrefixIcon = React.forwardRef<
   HTMLDivElement,
   SnackbarPrefixIconProps
 >((props, ref) => {
-  const {children, css = {}, ...delegated} = props
+  const {children, css = {}, className = '', ...htmlProps} = props
   const snackbarIconRef = useDOMRef<HTMLDivElement>(ref)
   return (
-    <StyledSnackbarIcon css={css} ref={snackbarIconRef} {...delegated}>
-      {children}
-    </StyledSnackbarIcon>
+    <CssInjection css={css} childrenRef={snackbarIconRef}>
+      <div
+        className={`cdg-snackbar-prefix-icon ${className} ${styles.snackbarIcon}`}
+        ref={snackbarIconRef}
+        {...htmlProps}
+      >
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

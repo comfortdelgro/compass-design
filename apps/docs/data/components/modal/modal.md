@@ -13,6 +13,8 @@ components: Modal
 import {Modal} from '@comfortdelgro/react-compass'
 ```
 
+
+
 ## Example
 
 ### Basic

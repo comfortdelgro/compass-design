@@ -8,83 +8,30 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  ChangeEvent,
-  DOMFactory,
-  HTMLAttributes,
-  ReactDOM,
-  RefObject,
-} from 'react'
+import {ChangeEvent, RefObject} from 'react'
 import mergeProps from '../../mergeProps'
 import {AriaTextFieldProps} from '../../types'
 import useFocusable from '../../useFocusable'
 
-type IntrinsicHTMLElements = {
-  [K in keyof IntrinsicHTMLAttributes]: IntrinsicHTMLAttributes[K] extends HTMLAttributes<
-    infer T
-  >
-    ? T
-    : never
+export interface TextFieldAria {
+  inputProps: AriaTextFieldProps
 }
 
-type IntrinsicHTMLAttributes = {
-  [K in keyof ReactDOM]: ReactDOM[K] extends DOMFactory<infer T, any>
-    ? T
-    : never
-}
-
-type DefaultElementType = 'input'
-
-type TextFieldIntrinsicElements = keyof Pick<
-  IntrinsicHTMLElements,
-  'input' | 'textarea'
->
-
-type TextFieldHTMLElementType = Pick<
-  IntrinsicHTMLElements,
-  TextFieldIntrinsicElements
->
-
-type TextFieldHTMLAttributesType = Pick<
-  IntrinsicHTMLAttributes,
-  TextFieldIntrinsicElements
->
-
-type TextFieldInputProps<T extends TextFieldIntrinsicElements> =
-  TextFieldHTMLAttributesType[T]
-
-export interface AriaTextFieldOptions<T extends TextFieldIntrinsicElements>
-  extends AriaTextFieldProps {
-  inputElementType?: T
-}
-
-type TextFieldRefObject<T extends TextFieldIntrinsicElements> = RefObject<
-  TextFieldHTMLElementType[T]
->
-
-export interface TextFieldAria<
-  T extends TextFieldIntrinsicElements = DefaultElementType,
-> {
-  inputProps: TextFieldInputProps<T>
-}
-
-export function useTextField<
-  T extends TextFieldIntrinsicElements = DefaultElementType,
->(
-  props: AriaTextFieldOptions<T>,
-  ref: TextFieldRefObject<T>,
-): TextFieldAria<T> {
+export function useTextField(
+  props: AriaTextFieldProps,
+  ref: RefObject<HTMLElement>,
+): TextFieldAria {
   const {
+    type = 'text',
+    validationState,
     isDisabled = false,
     isRequired = false,
     isReadOnly = false,
-    validationState,
-    type = 'text',
     onChange = () => {
       //
     },
-  }: AriaTextFieldOptions<TextFieldIntrinsicElements> = props
+  } = props
+
   const {focusableProps} = useFocusable(props, ref)
 
   return {

@@ -1,22 +1,21 @@
-import {Box} from '@comfortdelgro/react-compass'
-import {theme} from '@comfortdelgro/react-compass-old'
+import {Box, lightThemeColors} from '@comfortdelgro/react-compass'
 import ColorBox from '../components/ColorBox'
 
 const DemoColors = () => {
   return (
     <Box css={{display: 'flex', flexWrap: 'wrap'}}>
       <ColorBox color={{token: 'white', value: '#FFFFFF'}} />
-      <ColorBox color={theme.colors.gray10} />
-      <ColorBox color={theme.colors.gray20} />
-      <ColorBox color={theme.colors.gray30} />
-      <ColorBox color={theme.colors.gray40} />
-      <ColorBox color={theme.colors.gray50} />
-      <ColorBox color={theme.colors.gray60} />
-      <ColorBox color={theme.colors.gray70} />
-      <ColorBox color={theme.colors.gray80} />
-      <ColorBox color={theme.colors.gray90} />
-      <ColorBox color={theme.colors.gray100} />
-      <ColorBox color={theme.colors.gray110} />
+      <ColorBox color={{token: 'gray10', value: lightThemeColors.gray10}} />
+      <ColorBox color={{token: 'gray20', value: lightThemeColors.gray20}} />
+      <ColorBox color={{token: 'gray30', value: lightThemeColors.gray30}} />
+      <ColorBox color={{token: 'gray40', value: lightThemeColors.gray40}} />
+      <ColorBox color={{token: 'gray50', value: lightThemeColors.gray50}} />
+      <ColorBox color={{token: 'gray60', value: lightThemeColors.gray60}} />
+      <ColorBox color={{token: 'gray70', value: lightThemeColors.gray70}} />
+      <ColorBox color={{token: 'gray80', value: lightThemeColors.gray80}} />
+      <ColorBox color={{token: 'gray90', value: lightThemeColors.gray90}} />
+      <ColorBox color={{token: 'gray100', value: lightThemeColors.gray100}} />
+      <ColorBox color={{token: 'gray110', value: lightThemeColors.gray110}} />
     </Box>
   )
 }

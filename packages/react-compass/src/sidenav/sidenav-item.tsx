@@ -1,11 +1,15 @@
+'use client'
+
 import {ExtendedRefs, ReferenceType} from '@floating-ui/react'
 import React, {useState} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {StyledSidenavItem} from './sidenav-item.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/sidenav-item.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children: React.ReactNode
   isActive?: boolean
+  css?: unknown
+  className?: string
 }
 
 export type SidenavItemProps = Props &
@@ -64,25 +68,35 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
     }
 
     return (
-      <StyledSidenavItem
-        ref={mergeRefs}
-        css={css}
-        className={`cdg-sidenav-item ${className} ${
-          isActive ? 'sidenav-item-active' : ''
-        }`}
-        active={isActive ? 'active' : 'default'}
-        onMouseEnter={() => {
-          setOpenMenu(true)
-        }}
-        {...delegated}
-        {...menuParenProps?.getReferenceProps()}
-      >
-        <div className='cdg-sidenav-item-icon'>
-          <div className='cdg-sidenav-item-icon-wrapper'>{icon}</div>
+      <CssInjection css={css} childrenRef={mergeRefs}>
+        <div
+          ref={mergeRefs}
+          className={`cdg-sidenav-item ${className} ${styles.sidenavItem} ${
+            isActive
+              ? `${styles.sidenavItemActive} sidenav-item-active`
+              : 'default'
+          }`}
+          onMouseEnter={() => {
+            setOpenMenu(true)
+          }}
+          {...delegated}
+          {...menuParenProps?.getReferenceProps()}
+        >
+          <div
+            className={`cdg-sidenav-item-icon ${styles.cdgSidenavItemIcon} ${
+              isActive ? `${styles.cdgSidenavItemActiveIcon}` : ''
+            }`}
+          >
+            {icon}
+          </div>
+          <div
+            className={`cdg-sidenav-item-title ${styles.cdgSidenavItemTitle}`}
+          >
+            {title}
+          </div>
+          {clonedMenu}
         </div>
-        <div className='cdg-sidenav-item-title'>{title}</div>
-        {clonedMenu}
-      </StyledSidenavItem>
+      </CssInjection>
     )
   },
 )

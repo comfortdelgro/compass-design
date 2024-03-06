@@ -1,18 +1,23 @@
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import Avatar, {AvatarProps} from '.'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {AvatarGroupVariantProps, StyledAvatarGroup} from './avatar-group.styles'
-import {StyledAvatar} from './avatar.styles'
+import {AvatarSize, OFFSET_LEFT_MAP} from './avatar.const'
+import styles from './styles/avatar.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   display?: number
   children?: React.ReactNode
-  size?: 'lg' | 'md' | 'sm' | 'xs' | 'xxs'
+  size?: AvatarSize
   disabledAnimation?: boolean
+  useAddMore?: boolean
+  css?: unknown
+  onAddMoreClick?: () => void
 }
 
 export type AvatarGroupProps = Props &
-  AvatarGroupVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
@@ -25,39 +30,50 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
       children,
       size = 'md',
       disabledAnimation = false,
+      useAddMore = false,
       ...delegated
     } = props
 
     const avatarGroupRef = useDOMRef<HTMLDivElement>(ref)
     const avatars = React.Children.toArray(children)
 
-    const determineFontSize = () => {
-      if (size == 'lg' || size == 'md') return '1rem'
-      if (size == 'sm' && avatars.length - display > 9) return '0.8rem'
-      if (size == 'xs' && avatars.length - display < 10) return '0.8rem'
-      if (size == 'xs' && avatars.length - display > 9) return '0.5rem'
-      if (size == 'xxs') return '0.5rem'
-      return '1rem'
-    }
-
     return (
-      <StyledAvatarGroup
-        css={css}
-        size={size}
+      <div
+        className={`${styles.avatarGroup}`}
         ref={avatarGroupRef}
-        disabledAnimation={disabledAnimation}
         {...delegated}
       >
-        {avatars.slice(0, display).map((avatar) => avatar)}
+        {avatars.slice(0, display).map((avatar) => {
+          if (React.isValidElement(avatar)) {
+            return React.cloneElement(avatar, {
+              size,
+              style: {
+                marginLeft: OFFSET_LEFT_MAP[size],
+              },
+            } as AvatarProps)
+          }
+          return avatar
+        })}
         {display < avatars.length && (
-          <StyledAvatar
+          <Avatar
+            label={`+${avatars.length - display}`}
+            cutOffText={false}
             size={size}
-            css={{'.initials': {fontSize: determineFontSize()}}}
-          >
-            <span className='initials count'>+{avatars.length - display}</span>
-          </StyledAvatar>
+            style={{
+              marginLeft: OFFSET_LEFT_MAP[size],
+            }}
+          ></Avatar>
         )}
-      </StyledAvatarGroup>
+        {useAddMore && (
+          <button
+            className={`${styles.avatarAddMore} ${
+              styles['addMoreSize' + capitalizeFirstLetter(size)]
+            }`}
+          >
+            <FontAwesomeIcon icon={faPlus} />
+          </button>
+        )}
+      </div>
     )
   },
 )

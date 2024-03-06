@@ -8,10 +8,11 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-let formatterCache = new Map<string, Intl.NumberFormat>()
+const formatterCache = new Map<string, Intl.NumberFormat>()
 
 let supportsSignDisplay = false
 try {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   supportsSignDisplay =
     new Intl.NumberFormat('de-DE', {
@@ -22,6 +23,7 @@ try {
 
 let supportsUnit = false
 try {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   supportsUnit =
     new Intl.NumberFormat('de-DE', {
@@ -87,7 +89,7 @@ export class NumberFormatter implements Intl.NumberFormat {
       const unitDisplay =
         (resolvedOptions.unitDisplay as keyof typeof UNITS.degree) ?? 'short'
       const locale = resolvedOptions.locale as keyof typeof UNITS.degree.narrow
-      let values = UNITS[unit]?.[unitDisplay]
+      const values = UNITS[unit]?.[unitDisplay]
       res += values[locale] || values.default
     }
 
@@ -97,14 +99,17 @@ export class NumberFormatter implements Intl.NumberFormat {
   /** Formats a number to an array of parts such as separators, digits, punctuation, and more. */
   formatToParts(value: number): Intl.NumberFormatPart[] {
     // TODO: implement signDisplay for formatToParts
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return this.numberFormatter.formatToParts(value)
   }
 
   /** Formats a number range as a string. */
   formatRange(start: number, end: number): string {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (typeof this.numberFormatter.formatRange === 'function') {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       return this.numberFormatter.formatRange(start, end)
     }
@@ -119,8 +124,10 @@ export class NumberFormatter implements Intl.NumberFormat {
 
   /** Formats a number range as an array of parts. */
   formatRangeToParts(start: number, end: number): NumberRangeFormatPart[] {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (typeof this.numberFormatter.formatRangeToParts === 'function') {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       return this.numberFormatter.formatRangeToParts(start, end)
     }
@@ -129,8 +136,8 @@ export class NumberFormatter implements Intl.NumberFormat {
       throw new RangeError('End date must be >= start date')
     }
 
-    let startParts = this.numberFormatter.formatToParts(start)
-    let endParts = this.numberFormatter.formatToParts(end)
+    const startParts = this.numberFormatter.formatToParts(start)
+    const endParts = this.numberFormatter.formatToParts(end)
     return [
       ...startParts.map(
         (p) => ({...p, source: 'startRange'} as NumberRangeFormatPart),
@@ -166,7 +173,7 @@ function getCachedNumberFormatter(
   locale: string,
   options: NumberFormatOptions = {},
 ): Intl.NumberFormat {
-  let {numberingSystem} = options
+  const {numberingSystem} = options
   if (numberingSystem && locale.indexOf('-u-nu-') === -1) {
     locale = `${locale}-u-nu-${numberingSystem}`
   }
@@ -187,7 +194,7 @@ function getCachedNumberFormatter(
     options = {...options, style: 'decimal'}
   }
 
-  let cacheKey =
+  const cacheKey =
     locale +
     (options
       ? Object.entries(options)
@@ -198,7 +205,7 @@ function getCachedNumberFormatter(
     return formatterCache.get(cacheKey) as Intl.NumberFormat
   }
 
-  let numberFormatter = new Intl.NumberFormat(locale, options)
+  const numberFormatter = new Intl.NumberFormat(locale, options)
   formatterCache.set(cacheKey, numberFormatter)
   return numberFormatter
 }
@@ -226,16 +233,16 @@ export function numberFormatSignDisplayPolyfill(
     }
 
     if (needsPositiveSign) {
-      let negative = numberFormat.format(-num)
-      let noSign = numberFormat.format(num)
+      const negative = numberFormat.format(-num)
+      const noSign = numberFormat.format(num)
       // ignore RTL/LTR marker character
-      let minus = negative.replace(noSign, '').replace(/\u200e|\u061C/, '')
+      const minus = negative.replace(noSign, '').replace(/\u200e|\u061C/, '')
       if ([...minus].length !== 1) {
         console.warn(
           '@react-aria/i18n polyfill for NumberFormat signDisplay: Unsupported case',
         )
       }
-      let positive = negative
+      const positive = negative
         .replace(noSign, '!!!')
         .replace(minus, '+')
         .replace('!!!', noSign)

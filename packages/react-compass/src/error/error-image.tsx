@@ -1,10 +1,13 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {StyledErrorImage} from './error.styles'
+import styles from './styles/error.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
+  css?: unknown
+  className?: string
+  variant?: 'primary' | 'secondary'
 }
 
 export type ErrorImageProps = Props &
@@ -12,12 +15,30 @@ export type ErrorImageProps = Props &
 
 const ErrorImage = React.forwardRef<HTMLDivElement, ErrorImageProps>(
   (props, ref) => {
-    const {children, css = {}, ...delegated} = props
+    const {
+      children,
+      css = {},
+      variant = 'primary',
+      className = '',
+      ...htmlProps
+    } = props
     const errorImageRef = useDOMRef<HTMLDivElement>(ref)
+
+    const errorImageClasses = [
+      `cdg-error-image`,
+      className,
+      variant && styles[`${variant}VariantErrorImage`],
+      styles.errorImage,
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledErrorImage css={css} ref={errorImageRef} {...delegated}>
-        {children}
-      </StyledErrorImage>
+      <CssInjection css={css} childrenRef={errorImageRef}>
+        <div className={errorImageClasses} ref={errorImageRef} {...htmlProps}>
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )

@@ -1,28 +1,27 @@
+'use client'
+
 import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import SidebarActions from './sidebar-actions'
 import SidebarContent from './sidebar-content'
 import SidebarTitle from './sidebar-title'
-import {
-  SidebarVariantProps,
-  StyledSidebar,
-  StyledSidebarCloseIcon,
-  StyledSidebarHeader,
-  StyledSidebarWrapper,
-} from './sidebar.styles'
+import styles from './styles/sidebar.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   isOpen?: boolean
   handleClose?: () => void
   onClick?: (event: MouseEvent) => void
   position?: 'left' | 'right'
+  css?: unknown
+  variant?: 'primary' | 'secondary'
+  className?: string
 }
 
 export type SidebarProps = Props &
-  SidebarVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
@@ -33,12 +32,13 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
     // VariantProps
     variant = 'primary',
     position = 'left',
+    className = '',
     // Component props
     isOpen = false,
     handleClose,
     onClick,
     // HTMLDiv Props
-    ...delegated
+    ...htmlProps
   } = props
 
   const sidebarRef = useDOMRef<HTMLDivElement>(ref)
@@ -76,38 +76,46 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
   }, [isOpen])
 
   return (
-    <>
+    <CssInjection css={css} childrenRef={sidebarRef}>
       {isOpen && (
-        <StyledSidebarWrapper
-          css={css}
+        <div
+          className={`cdg-sidebar-wrapper ${styles.sidebarWrapper} ${className}`}
           onClick={(e) => handleClickBackDrop(e as unknown as MouseEvent)}
         >
-          <StyledSidebar
-            variant={variant}
-            position={position}
+          <div
+            className={`cdg-sidebar ${styles.sidebar} ${
+              variant ? styles[`sidebar${capitalizeFirstLetter(variant)}`] : ''
+            } ${
+              position
+                ? styles[`sidebar${capitalizeFirstLetter(position)}`]
+                : ''
+            }`}
             ref={sidebarRef}
             onClick={(e) => handleClickSidebar(e as unknown as MouseEvent)}
-            {...delegated}
+            {...htmlProps}
           >
             {variant == 'primary' && (
-              <StyledSidebarHeader>
+              <div className={`cdg-sidebar-header ${styles.sidebarHeader}`}>
                 {SidebarTitleElement}
-                <StyledSidebarCloseIcon onClick={() => handleClose?.()}>
+                <div
+                  className={`cdg-sidebar-close-icon ${styles.sidebarCloseIcon}`}
+                  onClick={() => handleClose?.()}
+                >
                   <svg viewBox='0 0 384 512'>
                     <path
                       fill='currentColor'
                       d='M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z'
                     />
                   </svg>
-                </StyledSidebarCloseIcon>
-              </StyledSidebarHeader>
+                </div>
+              </div>
             )}
             {SidebarContentElement}
             {SidebarActionsElement}
-          </StyledSidebar>
-        </StyledSidebarWrapper>
+          </div>
+        </div>
       )}
-    </>
+    </CssInjection>
   )
 })
 

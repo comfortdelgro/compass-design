@@ -1,21 +1,19 @@
-/* eslint-disable prettier/prettier */
-import React from 'react'
-import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {useDOMRef} from '../utils/use-dom-ref'
-import SubBannerDescription from './subBanner-description'
-import SubBannerImage from './subBanner-image'
-import SubBannerTitle from './subBanner-title'
-import {
-  StyledBottomContentContainer,
-  StyledSubBanner,
-  StyledSubBannerBottom,
-  SubBannerVariantProps,
-} from './subBanner.styles'
+'use client'
 
-interface Props extends StyledComponentProps {
+import React from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {pickChild} from '../utils/pick-child'
+import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/subBanner.module.css'
+import SubBannerDescription from './subBanner-description'
+import SubBannerImage, {SubBannerImageProps} from './subBanner-image'
+import SubBannerTitle from './subBanner-title'
+
+interface Props {
   children?: React.ReactNode
   variant?: 'primary' | 'secondary'
+  css?: unknown
+  className?: string
 }
 
 export type SubBannerProps = Props &
@@ -27,10 +25,11 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
       children,
       // styled component props
       css = {},
+      className = '',
       // VariantProps
       variant = 'primary',
       // HTMLDiv Props
-      ...delegated
+      ...htmlProps
     } = props
 
     const subBannerRef = useDOMRef<HTMLDivElement>(ref)
@@ -38,6 +37,14 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
       children,
       SubBannerImage,
     )
+
+    const SubBannerImageElementCloned = () => {
+      if (React.isValidElement(SubBannerImageElement)) {
+        return React.cloneElement(SubBannerImageElement, {
+          variant: variant,
+        } as SubBannerImageProps)
+      }
+    }
 
     const {child: SubBannerTitleElement} = pickChild<typeof SubBannerTitle>(
       children,
@@ -48,41 +55,41 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
       typeof SubBannerDescription
     >(children, SubBannerDescription)
 
-    const variantProps = {variant} as SubBannerVariantProps
-
     return (
-      <>
+      <CssInjection css={css} childrenRef={subBannerRef}>
         {variant == 'primary' ? (
-          <StyledSubBanner
-            css={css}
+          <div
+            className={`cdg-sub-banner ${className} ${styles.subBanner} `}
             ref={subBannerRef}
-            {...variantProps}
-            {...delegated}
+            {...htmlProps}
           >
-            {SubBannerImageElement}
-            <StyledSubBannerBottom>
-              <StyledBottomContentContainer>
+            {SubBannerImageElementCloned()}
+            <div className={`cdg-sub-banner-bottom ${styles.subBannerBottom} `}>
+              <div
+                className={`cdg-bottom-content-container ${styles.bottomContentContainer} `}
+              >
                 {SubBannerTitleElement}
                 {SubBannerDescriptionElement}
-              </StyledBottomContentContainer>
-            </StyledSubBannerBottom>
-          </StyledSubBanner>
+              </div>
+            </div>
+          </div>
         ) : (
-          <StyledSubBanner
-            css={css}
+          <div
+            className={`cdg-sub-banner ${className} ${styles.subBanner} ${styles.subBannerSecondary}`}
             ref={subBannerRef}
-            {...variantProps}
-            {...delegated}
+            {...htmlProps}
           >
-            {SubBannerImageElement}
+            {SubBannerImageElementCloned()}
 
-            <StyledBottomContentContainer>
+            <div
+              className={`cdg-bottom-content-container ${styles.bottomContentContainer} ${styles.bottomContentContainerSecondary}`}
+            >
               {SubBannerTitleElement}
               {SubBannerDescriptionElement}
-            </StyledBottomContentContainer>
-          </StyledSubBanner>
+            </div>
+          </div>
         )}
-      </>
+      </CssInjection>
     )
   },
 )

@@ -13,6 +13,7 @@ components: Checkbox
 import {Checkbox} from '@comfortdelgro/react-compass'
 ```
 
+
 ## Example
 
 ### Controlled

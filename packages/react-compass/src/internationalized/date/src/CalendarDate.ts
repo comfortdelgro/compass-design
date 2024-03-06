@@ -49,21 +49,21 @@ import {
   TimeFields,
 } from './types'
 
-function shiftArgs(args: any[]) {
-  let calendar: Calendar =
+function shiftArgs(args: never[]) {
+  const calendar: Calendar =
     typeof args[0] === 'object' ? args.shift() : new GregorianCalendar()
 
   let era: string
   if (typeof args[0] === 'string') {
     era = args.shift()
   } else {
-    let eras = calendar.getEras()
+    const eras = calendar.getEras()
     era = eras[eras.length - 1] as string
   }
 
-  let year = args.shift()
-  let month = args.shift()
-  let day = args.shift()
+  const year = args.shift()
+  const month = args.shift()
+  const day = args.shift()
 
   return [calendar, era, year, month, day]
 }
@@ -73,6 +73,7 @@ export class CalendarDate {
   // This prevents TypeScript from allowing other types with the same fields to match.
   // i.e. a ZonedDateTime should not be be passable to a parameter that expects CalendarDate.
   // If that behavior is desired, use the AnyCalendarDate interface instead.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   #type
   /** The calendar system associated with this date, e.g. Gregorian. */
@@ -100,13 +101,13 @@ export class CalendarDate {
     month: number,
     day: number,
   )
-  constructor(...args: any[]) {
-    let [calendar, era, year, month, day] = shiftArgs(args)
-    this.calendar = calendar
-    this.era = era
-    this.year = year
-    this.month = month
-    this.day = day
+  constructor(...args: never[]) {
+    const [calendar, era, year, month, day] = shiftArgs(args)
+    this.calendar = calendar as Calendar
+    this.era = era as string
+    this.year = year as unknown as number
+    this.month = month as unknown as number
+    this.day = day as unknown as number
 
     constrain(this)
   }
@@ -172,6 +173,7 @@ export class CalendarDate {
 /** A Time represents a clock time without any date components. */
 export class Time {
   // This prevents TypeScript from allowing other types with the same fields to match.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   #type
   /** The hour, numbered from 0 to 23. */
@@ -238,6 +240,7 @@ export class Time {
 /** A CalendarDateTime represents a date and time without a time zone, in a specific calendar system. */
 export class CalendarDateTime {
   // This prevents TypeScript from allowing other types with the same fields to match.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   #type
   /** The calendar system associated with this date, e.g. Gregorian. */
@@ -303,13 +306,13 @@ export class CalendarDateTime {
     second?: number,
     millisecond?: number,
   )
-  constructor(...args: any[]) {
-    let [calendar, era, year, month, day] = shiftArgs(args)
-    this.calendar = calendar
-    this.era = era
-    this.year = year
-    this.month = month
-    this.day = day
+  constructor(...args: never[]) {
+    const [calendar, era, year, month, day] = shiftArgs(args)
+    this.calendar = calendar as Calendar
+    this.era = era as string
+    this.year = year as unknown as number
+    this.month = month as unknown as number
+    this.day = day as unknown as number
     this.hour = args.shift() || 0
     this.minute = args.shift() || 0
     this.second = args.shift() || 0
@@ -393,7 +396,7 @@ export class CalendarDateTime {
 
   /** Compares this date with another. A negative result indicates that this date is before the given one, and a positive date indicates that it is after. */
   compare(b: CalendarDate | CalendarDateTime | ZonedDateTime): number {
-    let res = compareDate(this, b)
+    const res = compareDate(this, b)
     if (res === 0) {
       return compareTime(this, toCalendarDateTime(b))
     }
@@ -405,6 +408,7 @@ export class CalendarDateTime {
 /** A ZonedDateTime represents a date and time in a specific time zone and calendar system. */
 export class ZonedDateTime {
   // This prevents TypeScript from allowing other types with the same fields to match.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   #type
   /** The calendar system associated with this date, e.g. Gregorian. */
@@ -482,15 +486,15 @@ export class ZonedDateTime {
     second?: number,
     millisecond?: number,
   )
-  constructor(...args: any[]) {
-    let [calendar, era, year, month, day] = shiftArgs(args)
-    let timeZone = args.shift()
-    let offset = args.shift()
-    this.calendar = calendar
-    this.era = era
-    this.year = year
-    this.month = month
-    this.day = day
+  constructor(...args: never[]) {
+    const [calendar, era, year, month, day] = shiftArgs(args)
+    const timeZone = args.shift()
+    const offset = args.shift()
+    this.calendar = calendar as Calendar
+    this.era = era as string
+    this.year = year as unknown as number
+    this.month = month as unknown as number
+    this.day = day as unknown as number
     this.timeZone = timeZone
     this.offset = offset
     this.hour = args.shift() || 0

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * This file contains code adapted from the React Spectrum project.
  *
@@ -12,7 +13,6 @@ import {
   DragEvent,
   KeyboardEvent,
   MouseEvent,
-  PointerEvent,
   TouchEvent,
   useEffect,
   useMemo,
@@ -122,6 +122,7 @@ export function usePress(props: PressHookProps): PressResult {
     preventFocusOnPress,
     shouldCancelOnPointerExit,
     allowTextSelectionOnPress,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ref: _,
     ...domProps
   } = usePressResponderContext(props)
@@ -374,7 +375,7 @@ export function usePress(props: PressHookProps): PressResult {
     }
 
     if (typeof PointerEvent !== 'undefined') {
-      pressProps.onPointerDown = (e: PointerEvent<FocusableElement>) => {
+      pressProps.onPointerDown = (e: React.PointerEvent<FocusableElement>) => {
         // Only handle left clicks, and ignore events that bubbled through portals.
         if (e.button !== 0 || !e.currentTarget.contains(e.target as Element)) {
           return
@@ -436,7 +437,7 @@ export function usePress(props: PressHookProps): PressResult {
         }
       }
 
-      pressProps.onPointerUp = (e: PointerEvent<FocusableElement>) => {
+      pressProps.onPointerUp = (e: React.PointerEvent<FocusableElement>) => {
         // iOS fires pointerup with zero width and height, so check the pointerType recorded during pointerdown.
         if (
           !e.currentTarget.contains(e.target as Element) ||
@@ -456,7 +457,7 @@ export function usePress(props: PressHookProps): PressResult {
       // Safari on iOS < 13.2 does not implement pointerenter/pointerleave events correctly.
       // Use pointer move events instead to implement our own hit testing.
       // See https://bugs.webkit.org/show_bug.cgi?id=199803
-      const onPointerMove = (e: PointerEvent<FocusableElement>) => {
+      const onPointerMove = (e: React.PointerEvent<FocusableElement>) => {
         if (e.pointerId !== state.activePointerId) {
           return
         }
@@ -479,7 +480,7 @@ export function usePress(props: PressHookProps): PressResult {
         }
       }
 
-      const onPointerUp = (e: PointerEvent<FocusableElement>) => {
+      const onPointerUp = (e: React.PointerEvent<FocusableElement>) => {
         if (
           e.pointerId === state.activePointerId &&
           state.isPressed &&
@@ -506,7 +507,7 @@ export function usePress(props: PressHookProps): PressResult {
         }
       }
 
-      const onPointerCancel = (e: PointerEvent<FocusableElement>) => {
+      const onPointerCancel = (e: React.PointerEvent<FocusableElement>) => {
         cancel(e)
       }
 

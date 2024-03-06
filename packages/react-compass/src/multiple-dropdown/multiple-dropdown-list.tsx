@@ -1,23 +1,20 @@
 import React, {useMemo} from 'react'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {pickChild} from '../utils/pick-child'
-import {StyledComponentProps} from '../utils/stitches.types'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useIsInViewport} from './hooks/useInViewport'
 import {MultipleDropdownContext} from './multiple-dropdown-context'
 import DropdownLoading from './multiple-dropdown-loading'
 import MultipleDropdownHeader from './multiple-dropdown.header'
-import {
-  StyledDropdownList,
-  StyledDropdownListItem,
-  StyledEmptyData,
-} from './multiple-dropdown.styles'
+import styles from './styles/multiple-dropdown.module.css'
 import {getDistanceBetweenElements, textContent} from './utils'
 
-interface Props extends StyledComponentProps {
+interface Props {
   searchValue?: string
   isLoading?: boolean
   children?: React.ReactNode
   noDataMessage?: string
+  css?: unknown
   onLoadMore?: () => void
 }
 
@@ -66,26 +63,29 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
     }
   }, [isInViewport])
 
-  return useMemo(
-    () => (
-      <>
-        {DropdownHeaderElement && DropdownHeaderElement}
-        <StyledDropdownList css={css} aria-labelledby={labelId}>
-          {isLoading ? (
-            <DropdownLoading />
-          ) : displayedItemsCount === 0 ? (
-            <StyledEmptyData>{noDataMessage || 'No data'}</StyledEmptyData>
-          ) : (
-            dropdownItems
-          )}
-          {React.Children.toArray(dropdownItems).length > 0 && (
-            <StyledDropdownListItem ref={lastEl} />
-          )}
-          <StyledDropdownListItem ref={standEl} />
-        </StyledDropdownList>
-      </>
-    ),
-    [css, isLoading, dropdownItems],
+  return (
+    <CssInjection css={css}>
+      {DropdownHeaderElement && DropdownHeaderElement}
+      <ul
+        role='listbox'
+        aria-labelledby={labelId}
+        className={`${styles.multipleDropdownList} cdg-multiple-dropdown-list`}
+      >
+        {isLoading ? (
+          <DropdownLoading />
+        ) : displayedItemsCount === 0 ? (
+          <div className={`${styles.multipleDropdownListEmptyData}`}>
+            {noDataMessage || 'No data'}
+          </div>
+        ) : (
+          dropdownItems
+        )}
+        {React.Children.toArray(dropdownItems).length > 0 && (
+          <div className={`${styles.multipleDropdownListItem}`} ref={lastEl} />
+        )}
+        <div className={`${styles.multipleDropdownListItem}`} ref={standEl} />
+      </ul>
+    </CssInjection>
   )
 }
 

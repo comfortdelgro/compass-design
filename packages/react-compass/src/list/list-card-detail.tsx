@@ -1,14 +1,14 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
-import {
-  ListCardDetailVariantProps,
-  StyledListCardDetail,
-} from './list-card-detail.styles'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import styles from './styles/list-card-detail.module.css'
 
-interface Props extends StyledComponentProps, ListCardDetailVariantProps {
+interface Props {
+  css?: unknown
   title?: string
+  isDisabled?: boolean
   description?: string
   avatar?: React.ReactNode
+  variant?: 'item' | 'interactive' | 'h5'
 }
 
 export type ListCardDetailProps = Props &
@@ -16,24 +16,59 @@ export type ListCardDetailProps = Props &
 
 const ListCardDetail = React.forwardRef<HTMLDivElement, ListCardDetailProps>(
   (props, ref) => {
-    const {title, description, avatar, css = {}, ...delegated} = props
+    const {
+      title,
+      avatar,
+      css = {},
+      className,
+      description,
+      isDisabled = false,
+      ...htmlProps
+    } = props
+
+    const rootClass = React.useMemo(() => {
+      return [
+        styles.cardDetail,
+        isDisabled && styles.isDisabled,
+        'cdg-list-card-detail',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [className, isDisabled])
 
     return (
-      <StyledListCardDetail ref={ref} css={css} {...delegated}>
-        {title ? <h3 className='list-card-detail-title'>{title}</h3> : <></>}
-        <div className='list-card-detail-footer'>
-          {avatar ? (
-            <div className='list-card-detail-avatars'>{avatar}</div>
-          ) : (
-            <></>
+      <CssInjection css={css} childrenRef={ref}>
+        <div ref={ref} className={rootClass} {...htmlProps}>
+          {title && (
+            <h3
+              className={`${styles.cardDetailTitle} cdg-list-card-detail-title`}
+            >
+              {title}
+            </h3>
           )}
-          {description ? (
-            <span className='list-card-detail-description'>{description}</span>
-          ) : (
-            <></>
-          )}
+          <div
+            className={`${styles.cardDetailFooter} cdg-list-card-detail-footer`}
+          >
+            {avatar && (
+              <div
+                className={`${styles.cardDetailAvatar} cdg-list-card-detail-avatar`}
+              >
+                {React.cloneElement(avatar as React.ReactElement, {
+                  size: 'xxs',
+                })}
+              </div>
+            )}
+            {description && (
+              <span
+                className={`${styles.cardDetailDescription} cdg-list-card-detail-description`}
+              >
+                {description}
+              </span>
+            )}
+          </div>
         </div>
-      </StyledListCardDetail>
+      </CssInjection>
     )
   },
 )

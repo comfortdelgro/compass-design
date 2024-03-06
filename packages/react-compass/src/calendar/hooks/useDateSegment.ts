@@ -15,7 +15,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // Reference: https://github.com/adobe/react-spectrum/blob/98cad3f064c5302c04a1140d12a2cacc3ee921a2/packages/%40react-aria/datepicker/src/useDateSegment.ts
 /* eslint-disable prefer-const */
-import {NumberParser} from '@internationalized/number'
 import React, {
   KeyboardEvent,
   RefObject,
@@ -29,6 +28,7 @@ import {
   useFilter,
   useLocale,
 } from '../../internationalized/i18n'
+import {NumberParser} from '../../internationalized/number'
 import {
   DOMAttributes,
   DateFieldState,
@@ -359,7 +359,6 @@ export function useDateSegment(
 
         // Safari gets stuck in a composition state unless we also assign to the value here.
         // eslint-disable-next-line no-self-assign, @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
         // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
         ref.current.textContent = ref.current?.textContent as string
         break
@@ -377,7 +376,6 @@ export function useDateSegment(
       case 'insertCompositionText':
         // Reset the DOM to how it was in the beforeinput event.
         // eslint-disable-next-line no-self-assign, @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
         ref.current.textContent = compositionRef.current
 
         // Android sometimes fires key presses of letters as composition events. Need to handle am/pm keys here too.

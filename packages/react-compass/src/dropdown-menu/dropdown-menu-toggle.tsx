@@ -1,12 +1,13 @@
+'use client'
 import React, {useContext} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMenuContext from './dropdown-menu-context'
-import {StyledDropdownMenuToggle} from './dropdown-menu.styles'
 
-interface Props extends StyledComponentProps {
+interface Props {
   children?: React.ReactNode
   'aria-haspopup'?: boolean
+  css?: unknown
 }
 
 export type DropdownMenuToggleProps = Props &
@@ -31,15 +32,16 @@ const DropdownMenuToggle = React.forwardRef<
   }
 
   return (
-    <StyledDropdownMenuToggle
-      css={css}
-      ref={DropdownMenuToggleRef}
-      onClick={handleButtonClick}
-      aria-haspopup={props['aria-haspopup']}
-      {...delegated}
-    >
-      {children}
-    </StyledDropdownMenuToggle>
+    <CssInjection css={css} childrenRef={DropdownMenuToggleRef}>
+      <div
+        ref={DropdownMenuToggleRef}
+        onClick={handleButtonClick}
+        aria-haspopup={props['aria-haspopup']}
+        {...delegated}
+      >
+        {children}
+      </div>
+    </CssInjection>
   )
 })
 

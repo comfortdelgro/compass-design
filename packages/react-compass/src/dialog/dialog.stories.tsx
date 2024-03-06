@@ -1,14 +1,13 @@
 import {faBug} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
 import Checkbox from '../checkbox'
-import DatePicker from '../date-picker'
-import Textarea from '../textarea'
 import TextField from '../textfield'
 import Typography from '../typography'
-import Upload from '../upload'
-import {Column} from '../utils/components'
+import DatePicker from './../date-picker'
+import Textarea from './../textarea'
 import Dialog from './index'
 
 export const Default: React.FC = () => {
@@ -16,12 +15,8 @@ export const Default: React.FC = () => {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. pariatur.'
   const [defaultOpen, setDefaultOpen] = React.useState(false)
 
-  const getFileFunc = (file: File[]) => {
-    if (file.length < 1) return
-    console.log(file)
-  }
   return (
-    <Column>
+    <div>
       <h3>Default dialog is confirmation variant</h3>
       <Button css={{width: '7.8rem'}} onPress={() => setDefaultOpen(true)}>
         Open Dialog
@@ -40,12 +35,6 @@ export const Default: React.FC = () => {
               name='avatar'
               accept='image/png, image/jpeg'
             />
-            <Upload
-              css={{marginTop: '1rem'}}
-              getFile={getFileFunc}
-              accept='image/*, .docs, .docx'
-              fileSizeLimit={30000}
-            />
           </Dialog.Description>
           <Dialog.Actions>
             <Button onPress={() => setDefaultOpen(false)}>Cancel</Button>
@@ -53,7 +42,7 @@ export const Default: React.FC = () => {
           </Dialog.Actions>
         </Dialog>
       </Dialog.Trigger>
-    </Column>
+    </div>
   )
 }
 
@@ -95,7 +84,7 @@ export const NestedDialog: React.FC = () => {
   const [defaultOpen, setDefaultOpen] = React.useState(false)
 
   return (
-    <Column>
+    <div>
       <h3>Nested Dialog</h3>
       <Button
         variant='secondary'
@@ -121,7 +110,7 @@ export const NestedDialog: React.FC = () => {
           </Dialog.Actions>
         </Dialog>
       </Dialog.Trigger>
-    </Column>
+    </div>
   )
 }
 
@@ -133,7 +122,7 @@ export const Variants: React.FC = () => {
   const [customOpen, setCustomOpen] = React.useState(false)
 
   return (
-    <Column>
+    <div>
       <h3>Confirmation dialog</h3>
       <Button css={{width: '7.8rem'}} onPress={() => setConfirmationOpen(true)}>
         Open Dialog
@@ -191,7 +180,7 @@ export const Variants: React.FC = () => {
           {/* css above is to set the border-radius of the scroll bar  */}
           <Dialog.Title>My title</Dialog.Title>
           <Dialog.Description>
-            <Column css={{gap: '$4'}}>
+            <div style={{gap: '$4'}}>
               <DatePicker css={{width: '100%'}} label='Date picker' />
               <TextField label='Text field' />
               <Textarea
@@ -230,7 +219,7 @@ export const Variants: React.FC = () => {
                 molestiae consequatur, vel illum qui dolorem eum fugiat quo
                 voluptas nulla pariatur?
               </Typography.Label>
-            </Column>
+            </div>
           </Dialog.Description>
           <Dialog.Actions isMobile>
             <Button onPress={() => setAlertOpen(false)} variant='ghost'>
@@ -243,6 +232,19 @@ export const Variants: React.FC = () => {
           </Dialog.Icon>
         </Dialog>
       </Dialog.Trigger>
-    </Column>
+    </div>
   )
 }
+
+const meta = {
+  title: 'Example/Dialog',
+  component: Default,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Default>
+
+export default meta

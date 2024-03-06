@@ -18,7 +18,7 @@
 
 import {RefObject, useEffect, useRef} from 'react'
 import mergeProps from '../../mergeProps'
-import {AriaTextFieldProps, DOMAttributes} from '../../types'
+import {AriaTextFieldProps} from '../../types'
 import {useTextField} from './useTextField'
 
 interface FormattedTextFieldState {
@@ -38,7 +38,7 @@ export default function useFormattedTextField(
   props: AriaTextFieldProps,
   state: FormattedTextFieldState,
   inputRef: RefObject<HTMLInputElement> | any,
-): DOMAttributes {
+) {
   const stateRef = useRef(state)
   stateRef.current = state
 
@@ -120,6 +120,7 @@ export default function useFormattedTextField(
   const {inputProps: textFieldProps} = useTextField(props, inputRef)
 
   const compositionStartState = useRef<any>(null)
+
   return {
     ...mergeProps(textFieldProps, {
       onBeforeInput,

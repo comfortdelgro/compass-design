@@ -1,11 +1,11 @@
 import React, {useContext} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import {EKeyboardKey} from '../utils/keyboard.enum'
 import AccordionButton from './accordion-button'
 import AccordionContext, {AccordionContextType} from './accordion-context'
-import {StyledAccordionTitleWrapper} from './accordion-title.styles'
-import {KeyBoard} from './constants'
+import styles from './styles/accordion-title.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  css?: unknown
   icon?: false | React.ReactNode
   children?: string | React.ReactNode
   expandIcon?: React.ReactNode
@@ -17,15 +17,17 @@ export type AccordionTitleProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
-  (props: AccordionTitleProps, ref) => {
+  (props, ref) => {
     const {
       icon = <DefaultIcon />,
       children,
       expandIcon,
       css = {},
+      className,
       'aria-controls': ariaControls,
       ...delegated
     } = props
+
     const contextValue = useContext(AccordionContext) as AccordionContextType
 
     const {expand, onExpandChange, setExpand} = contextValue
@@ -36,6 +38,22 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
         return <h1>{children}</h1>
       }
       return children
+    }
+
+    const handleKeyDown = (e?: unknown) => {
+      const event = e as React.KeyboardEvent<HTMLElement>
+      const {key} = event
+      switch (key) {
+        case EKeyboardKey.Spacebar:
+        case EKeyboardKey.Enter:
+          setExpand()
+          if (onExpandChange) {
+            onExpandChange(event)
+          }
+          break
+        default:
+          break
+      }
     }
 
     const handleOnClick = (e?: unknown) => {
@@ -49,25 +67,9 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
       }
     }
 
-    const handleKeyDown = (e?: unknown) => {
-      const event = e as React.KeyboardEvent<HTMLElement>
-      const {key} = event
-      switch (key) {
-        case KeyBoard.Space:
-        case KeyBoard.Enter:
-          setExpand()
-          if (onExpandChange) {
-            onExpandChange(event)
-          }
-          break
-        default:
-          break
-      }
-    }
-
     const renderLeftIcon = () => {
       if (icon === false) return null
-      return <div className='accordion-left-icon-container'>{icon}</div>
+      return <div className={styles.accordionLeftIconContainer}>{icon}</div>
     }
 
     return (
@@ -75,34 +77,26 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
         aria-controls={ariaControls}
         ref={ref}
         css={css}
-        className={`accordion-title-container ${expand ? 'open' : 'close'}`}
-        expand={expand ? 'open' : 'close'}
+        className={`accordion-title-container ${
+          expand ? styles.open : ''
+        } ${className}`}
+        expand={expand}
         onMouseDown={(e) => handleOnClick(e)}
         onKeyDown={(e) => handleKeyDown(e)}
       >
-        <StyledAccordionTitleWrapper
-          expand={expand ? 'open' : 'close'}
-          {...delegated}
-        >
+        <div className={`${styles.accordionTitleWrapper}`} {...delegated}>
           {renderLeftIcon()}
-          <div className='accordion-title'>{renderTitle()}</div>
-          <div className='accordion-chevron-container'>
-            {expandIcon ? (
-              expandIcon
-            ) : (
-              <svg viewBox='0 0 512 512' className='accordion-chevron-icon'>
-                <path
-                  fill='currentColor'
-                  d='M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z'
-                />
-              </svg>
-            )}
+          <div className={`${styles.accordionTitle}`}>{renderTitle()}</div>
+          <div className={styles.accordionChevronContainer}>
+            {expandIcon ? expandIcon : <ChevronIcon />}
           </div>
-        </StyledAccordionTitleWrapper>
+        </div>
       </AccordionButton>
     )
   },
 )
+
+export default AccordionTitle
 
 const DefaultIcon = () => (
   <svg viewBox='0 0 512 512'>
@@ -113,4 +107,13 @@ const DefaultIcon = () => (
   </svg>
 )
 
-export default AccordionTitle
+const ChevronIcon = () => {
+  return (
+    <svg viewBox='0 0 512 512' className={styles.accordionChevronIcon}>
+      <path
+        fill='currentColor'
+        d='M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z'
+      />
+    </svg>
+  )
+}

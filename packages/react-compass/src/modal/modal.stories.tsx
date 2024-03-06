@@ -1,9 +1,9 @@
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
 import Icon from '../icon'
-import {Column} from '../utils/components'
 import Modal from './index'
 
 export const Default: React.FC = () => {
@@ -14,7 +14,7 @@ export const Default: React.FC = () => {
     setDefaultOpen(false)
   }
   return (
-    <Column>
+    <div>
       <h3>Default Modal is Medium sized</h3>
       <Button css={{width: '7.8rem'}} onPress={() => setDefaultOpen(true)}>
         Open Modal
@@ -36,7 +36,7 @@ export const Default: React.FC = () => {
           </Modal.Actions>
         </Modal>
       </Modal.Trigger>
-    </Column>
+    </div>
   )
 }
 
@@ -56,7 +56,7 @@ export const Variants: React.FC = () => {
     setLargeOpen(false)
   }
   return (
-    <Column>
+    <div>
       <h3>Small sized modal</h3>
       <Button css={{width: '7.8rem'}} onPress={() => setSmallOpen(true)}>
         Open Modal
@@ -123,7 +123,7 @@ export const Variants: React.FC = () => {
           </Modal.Actions>
         </Modal>
       </Modal.Trigger>
-    </Column>
+    </div>
   )
 }
 
@@ -174,7 +174,7 @@ export const NestedModal: React.FC = () => {
     setParentOpen(false)
   }
   return (
-    <Column>
+    <div>
       <h3>Nested Modal</h3>
       <Button
         variant='secondary'
@@ -204,7 +204,7 @@ export const NestedModal: React.FC = () => {
           </Modal.Actions>
         </Modal>
       </Modal.Trigger>
-    </Column>
+    </div>
   )
 }
 
@@ -220,7 +220,7 @@ export const H5: React.FC = () => {
 
   return (
     <>
-      <Column>
+      <div>
         <h3>Default</h3>
         <Button css={{width: '7.8rem'}} onPress={() => setIsOpenModal(true)}>
           Open Modal
@@ -234,17 +234,17 @@ export const H5: React.FC = () => {
               Are you sure that you want to remove “Starbucks, Junction 8”?
             </Modal.Title>
             <Modal.Description h5>
-              <Column>
+              <div>
                 <Button h5>Remove</Button>
                 <Button h5 variant='danger'>
                   Cancel
                 </Button>
-              </Column>
+              </div>
             </Modal.Description>
           </Modal>
         </Modal.Trigger>
-      </Column>
-      <Column>
+      </div>
+      <div>
         <h3>Open Modal with icon close</h3>
         <Button css={{width: '7.8rem'}} onPress={() => setIsOpenModal2(true)}>
           Open Modal
@@ -262,7 +262,20 @@ export const H5: React.FC = () => {
             <Modal.Description h5>{lorem}</Modal.Description>
           </Modal>
         </Modal.Trigger>
-      </Column>
+      </div>
     </>
   )
 }
+
+const meta = {
+  title: 'Example/Modal',
+  component: Default,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Default>
+
+export default meta

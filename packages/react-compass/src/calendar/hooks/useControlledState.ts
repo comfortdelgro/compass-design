@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * This file contains code adapted from the React Spectrum project.
  *
@@ -82,6 +83,5 @@ export function useControlledState<T>(
     value = stateValue
   }
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   return [value, setValue]
 }

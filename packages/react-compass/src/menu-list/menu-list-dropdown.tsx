@@ -1,14 +1,12 @@
 import React, {useState} from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {MenuListContext} from './menu-list-context'
 import MenuListDropdownHeader from './menu-list-dropdown-header'
 import MenuListDropdownItem from './menu-list-dropdown-item'
-import {
-  StyledMenuListDropdown,
-  StyledMenuListDropdownBody,
-} from './menu-list-dropdown.styles'
+import styles from './styles/menu-list-dropdown.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
+  css?: unknown
   children?: React.ReactNode
   isOpen?: boolean
   defaultOpen?: boolean
@@ -23,6 +21,7 @@ enum EBodyOpenState {
   CLOSE = 'close',
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 const MenuListDropdown = React.forwardRef<
   HTMLDivElement,
   MenuListDropdownProps
@@ -58,20 +57,31 @@ const MenuListDropdown = React.forwardRef<
 
   const bodyOpenState = isOpen ? EBodyOpenState.OPEN : EBodyOpenState.CLOSE
 
+  const rootClasses = [
+    styles.menuListDropdown,
+    className,
+    'cdg-menu-list-dropdown',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const bodyClasses = [
+    styles.menuListDropdownBody,
+    styles[bodyOpenState],
+    'cdg-menu-list-dropdown-body',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledMenuListDropdown
-      className={`${className} menu-list-dropdown`}
-      ref={ref}
-      css={css}
-      {...delegated}
-    >
-      <MenuListContext.Provider value={{isOpen: isOpen, toggleOpen}}>
-        {title}
-        <StyledMenuListDropdownBody openState={bodyOpenState}>
-          {body}
-        </StyledMenuListDropdownBody>
-      </MenuListContext.Provider>
-    </StyledMenuListDropdown>
+    <CssInjection css={css} childrenRef={ref}>
+      <div className={rootClasses} ref={ref} {...delegated}>
+        <MenuListContext.Provider value={{isOpen: isOpen, toggleOpen}}>
+          {title}
+          <div className={bodyClasses}>{body}</div>
+        </MenuListContext.Provider>
+      </div>
+    </CssInjection>
   )
 })
 

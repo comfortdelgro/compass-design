@@ -57,8 +57,8 @@ export function add(
   date: CalendarDate | CalendarDateTime,
   duration: DateTimeDuration,
 ) {
-  let mutableDate: Mutable<AnyCalendarDate | AnyDateTime> = date.copy()
-  let days = 'hour' in mutableDate ? addTimeFields(mutableDate, duration) : 0
+  const mutableDate: Mutable<AnyCalendarDate | AnyDateTime> = date.copy()
+  const days = 'hour' in mutableDate ? addTimeFields(mutableDate, duration) : 0
 
   addYears(mutableDate, duration.years || 0)
   if (mutableDate['calendar'].balanceYearMonth) {
@@ -90,9 +90,9 @@ export function add(
     mutableDate['day'] = 1
   }
 
-  let maxYear = mutableDate['calendar'].getYearsInEra(mutableDate)
+  const maxYear = mutableDate['calendar'].getYearsInEra(mutableDate)
   if (mutableDate['year'] > maxYear) {
-    let isInverseEra = mutableDate['calendar'].isInverseEra?.(mutableDate)
+    const isInverseEra = mutableDate['calendar'].isInverseEra?.(mutableDate)
     mutableDate['year'] = maxYear
     mutableDate['month'] = isInverseEra
       ? 1
@@ -107,7 +107,7 @@ export function add(
     mutableDate['day'] = 1
   }
 
-  let maxMonth = mutableDate['calendar'].getMonthsInYear(mutableDate)
+  const maxMonth = mutableDate['calendar'].getMonthsInYear(mutableDate)
   if (mutableDate['month'] > maxMonth) {
     mutableDate['month'] = maxMonth
     mutableDate['day'] = mutableDate['calendar'].getDaysInMonth(mutableDate)
@@ -179,10 +179,12 @@ export function constrain(date: Mutable<AnyCalendarDate>) {
 }
 
 export function invertDuration(duration: DateTimeDuration): DateTimeDuration {
-  let inverseDuration = {}
-  for (let key in duration) {
+  const inverseDuration = {}
+  for (const key in duration) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (typeof duration[key] === 'number') {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       inverseDuration[key] = -duration[key]
     }
@@ -212,7 +214,7 @@ export function set(
 ): CalendarDateTime
 export function set(date: CalendarDate, fields: DateFields): CalendarDate
 export function set(date: CalendarDate | CalendarDateTime, fields: DateFields) {
-  let mutableDate: Mutable<AnyCalendarDate> = date.copy()
+  const mutableDate: Mutable<AnyCalendarDate> = date.copy()
 
   if (fields.era != null) {
     mutableDate.era = fields.era
@@ -240,7 +242,7 @@ export function setTime(
 ): CalendarDateTime
 export function setTime(value: Time, fields: TimeFields): Time
 export function setTime(value: Time | CalendarDateTime, fields: TimeFields) {
-  let mutableValue: Mutable<Time | CalendarDateTime> = value.copy()
+  const mutableValue: Mutable<Time | CalendarDateTime> = value.copy()
 
   if (fields.hour != null) {
     mutableValue.hour = fields.hour
@@ -272,7 +274,7 @@ function balanceTime(time: Mutable<AnyTime>): number {
   time.hour += Math.floor(time.minute / 60)
   time.minute = nonNegativeMod(time.minute, 60)
 
-  let days = Math.floor(time.hour / 24)
+  const days = Math.floor(time.hour / 24)
   time.hour = nonNegativeMod(time.hour, 24)
 
   return days
@@ -302,7 +304,7 @@ function addTimeFields(time: Mutable<AnyTime>, duration: TimeDuration): number {
 }
 
 export function addTime(time: Time, duration: TimeDuration): Time {
-  let res = time.copy()
+  const res = time.copy()
   addTimeFields(res, duration)
   return res
 }
@@ -329,11 +331,11 @@ export function cycleDate(
   amount: number,
   options?: CycleOptions,
 ) {
-  let mutable: Mutable<CalendarDate | CalendarDateTime> = value.copy()
+  const mutable: Mutable<CalendarDate | CalendarDateTime> = value.copy()
 
   switch (field) {
     case 'era': {
-      let eras = value.calendar.getEras()
+      const eras = value.calendar.getEras()
       let eraIndex = eras.indexOf(value.era)
       if (eraIndex < 0) {
         throw new Error('Invalid era: ' + value.era)
@@ -423,15 +425,15 @@ export function cycleTime(
   amount: number,
   options?: CycleTimeOptions,
 ) {
-  let mutable: Mutable<Time | CalendarDateTime> = value.copy()
+  const mutable: Mutable<Time | CalendarDateTime> = value.copy()
 
   switch (field) {
     case 'hour': {
-      let hours = value.hour
+      const hours = value.hour
       let min = 0
       let max = 23
       if (options?.hourCycle === 12) {
-        let isPM = hours >= 12
+        const isPM = hours >= 12
         min = isPM ? 12 : 0
         max = isPM ? 23 : 11
       }
@@ -474,7 +476,7 @@ function cycleValue(
       value = max
     }
 
-    let div = Math.abs(amount)
+    const div = Math.abs(amount)
     if (amount > 0) {
       value = Math.ceil(value / div) * div
     } else {
@@ -506,7 +508,7 @@ export function addZoned(
     (duration.months != null && duration.months !== 0) ||
     (duration.days != null && duration.days !== 0)
   ) {
-    let res = add(toCalendarDateTime(dateTime), {
+    const res = add(toCalendarDateTime(dateTime), {
       years: duration.years as number,
       months: duration.months as number,
       days: duration.days as number,
@@ -528,7 +530,7 @@ export function addZoned(
   ms += (duration.minutes || 0) * 60 * 1000
   ms += (duration.hours || 0) * 60 * 60 * 1000
 
-  let res = fromAbsolute(ms, dateTime.timeZone)
+  const res = fromAbsolute(ms, dateTime.timeZone)
   return toCalendar(res, dateTime.calendar)
 }
 
@@ -553,7 +555,7 @@ export function cycleZoned(
       let min = 0
       let max = 23
       if (options?.hourCycle === 12) {
-        let isPM = dateTime.hour >= 12
+        const isPM = dateTime.hour >= 12
         min = isPM ? 12 : 0
         max = isPM ? 23 : 11
       }
@@ -563,23 +565,23 @@ export function cycleZoned(
       // Or it might end at midnight and repeat the 11pm hour. To handle this, we get
       // the possible absolute times for the min and max, and find the maximum range
       // that is within the current day.
-      let plainDateTime = toCalendarDateTime(dateTime)
-      let minDate = toCalendar(
+      const plainDateTime = toCalendarDateTime(dateTime)
+      const minDate = toCalendar(
         setTime(plainDateTime, {hour: min}),
         new GregorianCalendar(),
       )
-      let minAbsolute = [
+      const minAbsolute = [
         toAbsolute(minDate, dateTime.timeZone, 'earlier'),
         toAbsolute(minDate, dateTime.timeZone, 'later'),
       ].filter(
         (ms) => fromAbsolute(ms, dateTime.timeZone).day === minDate.day,
       )[0] as number
 
-      let maxDate = toCalendar(
+      const maxDate = toCalendar(
         setTime(plainDateTime, {hour: max}),
         new GregorianCalendar(),
       )
-      let maxAbsolute = [
+      const maxAbsolute = [
         toAbsolute(maxDate, dateTime.timeZone, 'earlier'),
         toAbsolute(maxDate, dateTime.timeZone, 'later'),
       ]
@@ -590,8 +592,8 @@ export function cycleZoned(
       // This is done in hours from the Unix epoch so that cycleValue works correctly,
       // and then converted back to milliseconds.
       let ms = epochFromDate(dateTime) - dateTime.offset
-      let hours = Math.floor(ms / ONE_HOUR)
-      let remainder = ms % ONE_HOUR
+      const hours = Math.floor(ms / ONE_HOUR)
+      const remainder = ms % ONE_HOUR
       ms =
         cycleValue(
           hours,
@@ -609,14 +611,20 @@ export function cycleZoned(
     case 'minute':
     case 'second':
     case 'millisecond':
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       return cycleTime(dateTime, field, amount, options)
     case 'era':
     case 'year':
     case 'month':
     case 'day': {
-      let res = cycleDate(toCalendarDateTime(dateTime), field, amount, options)
-      let ms = toAbsolute(res, dateTime.timeZone)
+      const res = cycleDate(
+        toCalendarDateTime(dateTime),
+        field,
+        amount,
+        options,
+      )
+      const ms = toAbsolute(res, dateTime.timeZone)
       return toCalendar(fromAbsolute(ms, dateTime.timeZone), dateTime.calendar)
     }
     default:
@@ -631,8 +639,8 @@ export function setZoned(
 ): ZonedDateTime {
   // Set the date/time fields, and recompute the UTC offset to account for DST changes.
   // We also need to validate by converting back to a local time in case hours are skipped during forward DST transitions.
-  let plainDateTime = toCalendarDateTime(dateTime)
-  let res = setTime(set(plainDateTime, fields), fields)
+  const plainDateTime = toCalendarDateTime(dateTime)
+  const res = setTime(set(plainDateTime, fields), fields)
 
   // If the resulting plain date time values are equal, return the original time.
   // We don't want to change the offset when setting the time to the same value.
@@ -640,6 +648,6 @@ export function setZoned(
     return dateTime
   }
 
-  let ms = toAbsolute(res, dateTime.timeZone, disambiguation)
+  const ms = toAbsolute(res, dateTime.timeZone, disambiguation)
   return toCalendar(fromAbsolute(ms, dateTime.timeZone), dateTime.calendar)
 }

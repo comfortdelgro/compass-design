@@ -15,6 +15,7 @@ components: Badges
 import {Badge} from '@comfortdelgro/react-compass'
 ```
 
+
 ## Example
 
 ### Basic

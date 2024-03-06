@@ -16,5 +16,5 @@ export function useEvent<K extends keyof GlobalEventHandlersEventMap>(
         element.removeEventListener(event, handler, options)
       }
     }
-  }, [ref, event, options])
+  }, [ref, event, options, handler])
 }

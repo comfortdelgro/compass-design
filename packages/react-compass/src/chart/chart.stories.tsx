@@ -1,5 +1,5 @@
+import type {Meta} from '@storybook/react'
 import React from 'react'
-import {Column} from '../utils/components'
 import Chart from './index'
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
@@ -23,7 +23,7 @@ const data2 = [
 ]
 
 export const Areas: React.FC = () => (
-  <Column>
+  <>
     <h3>Basic usage</h3>
     <Chart.Area labels={labels} data={data} title='Area Chart' />
     <h3>With unit</h3>
@@ -35,32 +35,27 @@ export const Areas: React.FC = () => (
       title='Area Chart'
       legendPosition='bottom'
     />
-  </Column>
+  </>
 )
 
 export const Columns: React.FC = () => (
-  <Column>
+  <>
     <h3>Basic usage</h3>
-    <Chart.Column labels={labels} data={data} title='Column Chart' />
+    <Chart.Column labels={labels} data={data} title=' Chart' />
     <h3>With unit</h3>
-    <Chart.Column
-      labels={labels}
-      data={data}
-      title='Column Chart'
-      unit='unit'
-    />
+    <Chart.Column labels={labels} data={data} title=' Chart' unit='unit' />
     <h3>Positioned legends</h3>
     <Chart.Column
       labels={labels}
       data={data}
-      title='Column Chart'
+      title=' Chart'
       legendPosition='bottom'
     />
-  </Column>
+  </>
 )
 
 export const Doughnut: React.FC = () => (
-  <Column>
+  <>
     <h3>Basic usage</h3>
     <Chart.Doughnut labels={labels} data={data2} title='Doughnut Chart' />
     <h3>Positioned legends</h3>
@@ -70,11 +65,11 @@ export const Doughnut: React.FC = () => (
       title='Area Chart'
       legendPosition='bottom'
     />
-  </Column>
+  </>
 )
 
 export const Lines: React.FC = () => (
-  <Column>
+  <>
     <h3>Basic usage</h3>
     <Chart.Line labels={labels} data={data} title='Line Chart' />
     <h3>With unit</h3>
@@ -87,11 +82,11 @@ export const Lines: React.FC = () => (
       legendPosition='bottom'
     />
     <Chart.Line labels={labels} data={data} title='Line Chart' />
-  </Column>
+  </>
 )
 
 export const Bars: React.FC = () => (
-  <Column>
+  <>
     <h3>Basic usage</h3>
     <Chart.Bar labels={labels} data={data} title='Bar Chart' />
     <h3>With unit</h3>
@@ -104,5 +99,18 @@ export const Bars: React.FC = () => (
       legendPosition='bottom'
     />
     <Chart.Line labels={labels} data={data} title='Line Chart' />
-  </Column>
+  </>
 )
+
+const meta = {
+  title: 'Example/Chart',
+  component: Areas,
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} satisfies Meta<typeof Areas>
+
+export default meta

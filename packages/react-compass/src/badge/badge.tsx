@@ -1,19 +1,26 @@
 import {toUpper} from 'lodash'
 import React from 'react'
 import {getIconFromColor} from '../utils/get-icon-from-color'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
+import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {BadgeVariantProps, StyledBadge} from './badge.styles'
+import styles from './styles/badge.module.css'
 
-interface Props extends StyledComponentProps {
+interface Props {
   label?: string
   icon?: boolean | React.ReactNode
   destination?: string
+  css?: unknown
+  variant?: 'outline' | 'h5' | 'primary' | 'secondary' | 'rounded'
+  color?: 'info' | 'danger' | 'success' | 'warning'
+  status?: 'online' | 'away' | 'busy' | 'offline'
+  statusSize?: '8' | '12' | '16' | '20' | '24' | '28'
+  isDisabled?: boolean
+  size?: 'sm' | 'lg'
   isRevert?: boolean
 }
 
 export type BadgeProps = Omit<Props, 'children'> &
-  BadgeVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
@@ -24,24 +31,70 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     destination,
     variant = 'primary',
     color = 'info',
-    ...delegates
+    isDisabled = false,
+    status,
+    statusSize,
+    isRevert = false,
+    size,
+    className,
+    ...htmlProps
   } = props
 
-  const variantProps = {variant, color} as BadgeVariantProps
   const badgeRef = useDOMRef<HTMLDivElement>(ref)
 
+  const classNames = [
+    styles.badge,
+    variant && styles[variant],
+    color && styles[color],
+    color && variant && styles[`${color}${capitalizeFirstLetter(variant)}`],
+    color &&
+      variant &&
+      isDisabled &&
+      styles[`${color}${capitalizeFirstLetter(variant)}isDisabled}`],
+    status && styles[status],
+    status && variant && styles[`${status}${capitalizeFirstLetter(variant)}`],
+    statusSize && styles[`statusSize${statusSize}`],
+    size && styles[size],
+    isRevert && styles.revert,
+    isDisabled && styles.isDisabled,
+    className,
+    'cdg-badge',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const iconClassNames = [
+    styles.icon,
+    statusSize && styles[`statusSize${statusSize}Icon`],
+    status && icon && styles.statusIcon,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <StyledBadge css={css} ref={badgeRef} {...variantProps} {...delegates}>
-      {icon ? (
-        <div className='icon'>
-          {typeof icon === 'boolean' ? getIconFromColor(color) : icon}
+    <>
+      <CssInjection css={css}>
+        <div ref={badgeRef} className={classNames} {...htmlProps}>
+          {icon ? (
+            <div className={iconClassNames}>
+              {typeof icon === 'boolean' ? getIconFromColor(color) : icon}
+            </div>
+          ) : null}
+          {destination ? (
+            <span className={variant ? styles[variant + 'Destination'] : ''}>
+              {toUpper(destination)}
+            </span>
+          ) : null}
+          <span
+            className={`${styles.label} ${
+              variant ? styles[variant + 'Label'] : ''
+            }`}
+          >
+            {label}
+          </span>
         </div>
-      ) : null}
-      {destination ? (
-        <span className='destination'>{toUpper(destination)}</span>
-      ) : null}
-      <span className='label'>{label}</span>
-    </StyledBadge>
+      </CssInjection>
+    </>
   )
 })
 

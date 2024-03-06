@@ -1,13 +1,9 @@
 import React from 'react'
-import {StyledComponentProps} from '../utils/stitches.types'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {
-  DropdownSectionVariantProps,
-  StyledDropdownSection,
-  StyledSectionContent,
-} from './dropdown.styles'
+import styles from './styles/dropdown.module.css'
 
-export interface DropdownSectionBase extends StyledComponentProps {
+export interface DropdownSectionBase {
   title?: React.ReactNode
   'aria-label'?: string
   children: React.ReactNode
@@ -15,10 +11,10 @@ export interface DropdownSectionBase extends StyledComponentProps {
   onClick?: () => void
   isChecked?: boolean
   checkmark?: 'checkbox' | 'tick'
+  css?: unknown
 }
 
 export type DropdownSectionProps = DropdownSectionBase &
-  DropdownSectionVariantProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof DropdownSectionBase>
 
 const DropdownSection = React.forwardRef<HTMLDivElement, DropdownSectionProps>(
@@ -27,6 +23,7 @@ const DropdownSection = React.forwardRef<HTMLDivElement, DropdownSectionProps>(
       children,
       title,
       isClickable,
+      className,
       css = {},
       onClick,
       ...delegated
@@ -41,18 +38,33 @@ const DropdownSection = React.forwardRef<HTMLDivElement, DropdownSectionProps>(
       onClick?.()
     }
 
+    const rootClasses = [
+      styles.dropdownSection,
+      className,
+      'cdg-dropdown-section',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const titleClasses = [
+      styles.dropdownSectionContent,
+      isClickable && styles.dropdownSectionContentClickable,
+      'cdg-dropdown-section-title',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <StyledDropdownSection css={css} ref={DropdownSectionRef} {...delegated}>
-        {title && (
-          <StyledSectionContent
-            isClickable={!!isClickable}
-            onClick={handleOnClick}
-          >
-            {title}
-          </StyledSectionContent>
-        )}
-        {children}
-      </StyledDropdownSection>
+      <CssInjection css={css} childrenRef={DropdownSectionRef}>
+        <div {...delegated} className={rootClasses} ref={DropdownSectionRef}>
+          {title && (
+            <div className={titleClasses} onClick={handleOnClick}>
+              {title}
+            </div>
+          )}
+          {children}
+        </div>
+      </CssInjection>
     )
   },
 )
