@@ -1,4 +1,5 @@
 export type Person = {
+  id: string;
   firstName: string
   lastName: string
   age: number
@@ -37,6 +38,7 @@ const getRandomDate = (startDate: Date, endDate: Date) => {
 
 const newPerson = (): Person => {
   return {
+    id: makeid(10),
     firstName: makeid(5),
     lastName: makeid(5),
     age: Math.floor(Math.random() * 40),
@@ -81,7 +83,7 @@ export type Progress = {
 
 export const newRequestStatus = (): LimitRequestStatus => {
   return {
-    id: makeid(5),
+    id: makeid(10),
     accountName: generateAccountName(),
     code: makeid(3),
     requestLimit: Math.floor(Math.random() * 1000),

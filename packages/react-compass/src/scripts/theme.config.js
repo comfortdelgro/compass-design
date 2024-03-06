@@ -241,6 +241,8 @@ export const lightThemeColors = {
   greenShades: '#159A00',
   badgeWarningBg: '#95711F',
   snackbarWarning: '#95711F',
+
+  checkbox: '#FFFFFF',
 }
 
 export const darkThemeColors = {
@@ -332,4 +334,6 @@ export const darkThemeColors = {
   greenShades: '#159A00',
   badgeWarningBg: '#95711F',
   snackbarWarning: '#95711F',
+
+  checkbox: '#2B3041',
 }

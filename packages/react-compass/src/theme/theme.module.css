@@ -200,6 +200,7 @@
   --cdg-color-greenShades : #159A00;
   --cdg-color-badgeWarningBg : #95711F;
   --cdg-color-snackbarWarning : #95711F;
+  --cdg-color-checkbox : #FFFFFF;
   
 }
 /* Dark Theme Colors */
@@ -271,4 +272,5 @@
   --cdg-color-greenShades : #159A00;
   --cdg-color-badgeWarningBg : #95711F;
   --cdg-color-snackbarWarning : #95711F;
+  --cdg-color-checkbox : #2B3041;
 }

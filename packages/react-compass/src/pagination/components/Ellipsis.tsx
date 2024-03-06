@@ -3,9 +3,9 @@
 import React from 'react'
 import styles from '../styles/pagination.module.css'
 
-export type Props = React.HTMLAttributes<HTMLDivElement>
+export type EllipsisProps = React.HTMLAttributes<HTMLDivElement>
 
-const Ellipsis: React.FC<Props> = ({...props}) => {
+const Ellipsis: React.FC<EllipsisProps> = ({...props}) => {
   const svgIcon = (
     <svg
       width='18'

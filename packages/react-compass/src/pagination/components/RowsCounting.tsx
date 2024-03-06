@@ -4,7 +4,7 @@ import React from 'react'
 import Dropdown from '../../dropdown'
 import styles from '../styles/pagination.module.css'
 
-export type Props = React.HTMLAttributes<HTMLDivElement>
+export type RowsCountingProps = React.HTMLAttributes<HTMLDivElement>
 
 const RowsCounting: React.FC<{
   rowsPerPage: number

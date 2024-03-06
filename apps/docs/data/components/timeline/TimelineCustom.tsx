@@ -1,4 +1,4 @@
-import {Column, Icon, Typography, TimeLine} from '@comfortdelgro/react-compass'
+import {Column, Icon, TimeLine, Typography} from '@comfortdelgro/react-compass'
 import {faCalendarDay} from '@fortawesome/free-solid-svg-icons'
 
 const Variants: React.FC = () => {
