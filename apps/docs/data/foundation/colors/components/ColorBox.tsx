@@ -11,7 +11,6 @@ interface Props {
 
 function rgba2hex(color: string) {
   var a,
-    isPercent,
     rgb = color
       .replace(/\s/g, '')
       .match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
@@ -97,7 +96,6 @@ const ColorBox: React.FC<Props> = ({ color, gradient = false }) => {
   const toast = useToast()
 
   const handleColorClick = () => {
-    console.log(toast)
     navigator && navigator.clipboard.writeText(resolvedColor || '')
     toast.show({
       color: 'positive',
@@ -125,7 +123,7 @@ const ColorBox: React.FC<Props> = ({ color, gradient = false }) => {
         transitionProperty: 'all',
         transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
         transitionDuration: '150ms',
-        backgroundColor: !gradient ? color.value : 'transparent',
+        backgroundColor: !gradient ? `var(--cdg-color-${color.token})` : 'transparent',
         backgroundImage: gradient
           ? `linear-gradient(to right, ${color.value})`
           : 'none',

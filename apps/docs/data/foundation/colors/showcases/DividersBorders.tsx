@@ -1,13 +1,12 @@
-import {Box} from '@comfortdelgro/react-compass'
-import {theme} from '@comfortdelgro/react-compass'
+import {Box, lightThemeColors} from '@comfortdelgro/react-compass'
 import ColorBox from '../components/ColorBox'
 
 const DemoColors = () => {
   return (
     <Box css={{display: 'flex', flexWrap: 'wrap'}}>
-      <ColorBox color={theme.colors.divider} />
-      <ColorBox color={theme.colors.border} />
-      <ColorBox color={theme.colors.activeBorder} />
+      <ColorBox color={{token: 'divider', value: lightThemeColors.divider}} />
+      <ColorBox color={{token: 'border', value: lightThemeColors.border}} />
+      <ColorBox color={{token: 'activeBorder', value: lightThemeColors.activeBorder}} />
     </Box>
   )
 }
