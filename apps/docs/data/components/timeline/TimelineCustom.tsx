@@ -1,4 +1,4 @@
-import {Column, Icon, Timeline, Typography} from '@comfortdelgro/react-compass'
+import {Column, Icon, TimeLine, Typography} from '@comfortdelgro/react-compass'
 import {faCalendarDay} from '@fortawesome/free-solid-svg-icons'
 
 const Variants: React.FC = () => {
@@ -17,7 +17,7 @@ const Variants: React.FC = () => {
     date: string
   }) => {
     return (
-      <Timeline.Item
+      <TimeLine.Item
         label={
           <span
             style={{
@@ -96,16 +96,16 @@ const Variants: React.FC = () => {
             Confirmation: #123456
           </div>
         </div>
-      </Timeline.Item>
+      </TimeLine.Item>
     )
   }
   return (
     <Column>
       <Typography.Header variant='header4' css={{marginBottom: '10px'}}>
-        Vertical timeline with left-side labels and left-side items
+        Vertical TimeLine with left-side labels and left-side items
       </Typography.Header>
-      <Timeline mode='vertical' labelAlignment='left' itemAlignment='left'>
-        <Timeline.Item
+      <TimeLine mode='vertical' labelAlignment='left' itemAlignment='left'>
+        <TimeLine.Item
           label='June'
           icon={
             <Icon
@@ -116,8 +116,8 @@ const Variants: React.FC = () => {
         >
           <div style={itemStyle}>reminder 2</div>
           <div style={itemStyle}>reminder 2</div>
-        </Timeline.Item>
-        <Timeline.Item
+        </TimeLine.Item>
+        <TimeLine.Item
           label='July'
           icon={
             <Icon icon={faCalendarDay} style={{color: 'red', height: '50%'}} />
@@ -125,8 +125,8 @@ const Variants: React.FC = () => {
         >
           <div style={itemStyle}>reminder 3</div>
           <div style={itemStyle}>reminder 4</div>
-        </Timeline.Item>
-        <Timeline.Item
+        </TimeLine.Item>
+        <TimeLine.Item
           label='August'
           icon={
             <Icon
@@ -138,10 +138,10 @@ const Variants: React.FC = () => {
           <div style={itemStyle}>reminder 5</div>
           <div style={itemStyle}>reminder 6</div>
           <div style={itemStyle}>reminder 7</div>
-        </Timeline.Item>
-      </Timeline>
+        </TimeLine.Item>
+      </TimeLine>
       <Typography.Header variant='header4' css={{marginBottom: '10px'}}>
-        Vertical timeline with left-side labels and right-side items
+        Vertical TimeLine with left-side labels and right-side items
       </Typography.Header>
       <div
         style={{
@@ -150,8 +150,8 @@ const Variants: React.FC = () => {
           width: 'fit-content',
         }}
       >
-        <Timeline mode='vertical' labelAlignment='left' itemAlignment='right'>
-          <Timeline.Item
+        <TimeLine mode='vertical' labelAlignment='left' itemAlignment='right'>
+          <TimeLine.Item
             label='June'
             icon={
               <Icon
@@ -162,8 +162,8 @@ const Variants: React.FC = () => {
           >
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
-          </Timeline.Item>
-          <Timeline.Item
+          </TimeLine.Item>
+          <TimeLine.Item
             label='July'
             icon={
               <Icon
@@ -174,8 +174,8 @@ const Variants: React.FC = () => {
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
-          </Timeline.Item>
-          <Timeline.Item
+          </TimeLine.Item>
+          <TimeLine.Item
             label='August'
             icon={
               <Icon
@@ -187,16 +187,16 @@ const Variants: React.FC = () => {
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>
             <div style={itemStyle}>reminder 7</div>
-          </Timeline.Item>
-        </Timeline>
+          </TimeLine.Item>
+        </TimeLine>
       </div>
 
       <Typography.Header variant='header4' css={{marginBottom: '10px'}}>
-        Vertical timeline with right-side labels and left-side items
+        Vertical TimeLine with right-side labels and left-side items
       </Typography.Header>
 
-      <Timeline mode='vertical' labelAlignment='right' itemAlignment='left'>
-        <Timeline.Item
+      <TimeLine mode='vertical' labelAlignment='right' itemAlignment='left'>
+        <TimeLine.Item
           label='June'
           icon={
             <Icon
@@ -207,8 +207,8 @@ const Variants: React.FC = () => {
         >
           <div style={itemStyle}>reminder 2</div>
           <div style={itemStyle}>reminder 2</div>
-        </Timeline.Item>
-        <Timeline.Item
+        </TimeLine.Item>
+        <TimeLine.Item
           label='July'
           icon={
             <Icon icon={faCalendarDay} style={{color: 'red', height: '50%'}} />
@@ -216,8 +216,8 @@ const Variants: React.FC = () => {
         >
           <div style={itemStyle}>reminder 3</div>
           <div style={itemStyle}>reminder 4</div>
-        </Timeline.Item>
-        <Timeline.Item
+        </TimeLine.Item>
+        <TimeLine.Item
           label='August'
           icon={
             <Icon
@@ -229,11 +229,11 @@ const Variants: React.FC = () => {
           <div style={itemStyle}>reminder 5</div>
           <div style={itemStyle}>reminder 6</div>
           <div style={itemStyle}>reminder 7</div>
-        </Timeline.Item>
-      </Timeline>
+        </TimeLine.Item>
+      </TimeLine>
 
       <Typography.Header variant='header4' css={{marginBottom: '10px'}}>
-        Vertical timeline with alternate alignment
+        Vertical TimeLine with alternate alignment
       </Typography.Header>
       <div
         style={{
@@ -242,12 +242,12 @@ const Variants: React.FC = () => {
           height: 'fit-content',
         }}
       >
-        <Timeline
+        <TimeLine
           mode='vertical'
           labelAlignment='alternate'
           itemAlignment='alternate'
         >
-          <Timeline.Item
+          <TimeLine.Item
             identifier={0}
             label='June'
             icon={
@@ -259,8 +259,8 @@ const Variants: React.FC = () => {
           >
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
-          </Timeline.Item>
-          <Timeline.Item
+          </TimeLine.Item>
+          <TimeLine.Item
             identifier={1}
             label='July'
             icon={
@@ -272,8 +272,8 @@ const Variants: React.FC = () => {
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
-          </Timeline.Item>
-          <Timeline.Item
+          </TimeLine.Item>
+          <TimeLine.Item
             identifier={2}
             label='August'
             icon={
@@ -286,11 +286,11 @@ const Variants: React.FC = () => {
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>
             <div style={itemStyle}>reminder 7</div>
-          </Timeline.Item>
-        </Timeline>
+          </TimeLine.Item>
+        </TimeLine>
       </div>
       <Typography.Header variant='header4' css={{marginBottom: '10px'}}>
-        Horizontal timeline with top label and bottom items
+        Horizontal TimeLine with top label and bottom items
       </Typography.Header>
       <div
         style={{
@@ -300,8 +300,8 @@ const Variants: React.FC = () => {
           width: 'fit-content',
         }}
       >
-        <Timeline mode='horizontal' labelAlignment='top' itemAlignment='bottom'>
-          <Timeline.Item
+        <TimeLine mode='horizontal' labelAlignment='top' itemAlignment='bottom'>
+          <TimeLine.Item
             identifier={0}
             label='June'
             icon={
@@ -313,8 +313,8 @@ const Variants: React.FC = () => {
           >
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
-          </Timeline.Item>
-          <Timeline.Item
+          </TimeLine.Item>
+          <TimeLine.Item
             identifier={1}
             label='July'
             icon={
@@ -326,8 +326,8 @@ const Variants: React.FC = () => {
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
-          </Timeline.Item>
-          <Timeline.Item
+          </TimeLine.Item>
+          <TimeLine.Item
             identifier={2}
             label='August'
             icon={
@@ -340,13 +340,13 @@ const Variants: React.FC = () => {
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>
             <div style={itemStyle}>reminder 7</div>
-          </Timeline.Item>
-        </Timeline>
+          </TimeLine.Item>
+        </TimeLine>
       </div>
       <br />
 
       <Typography.Header variant='header4' css={{marginBottom: '10px'}}>
-        Horizontal timeline with bottom label and top items
+        Horizontal TimeLine with bottom label and top items
       </Typography.Header>
       <div
         style={{
@@ -357,8 +357,8 @@ const Variants: React.FC = () => {
           width: 'fit-content',
         }}
       >
-        <Timeline mode='horizontal' labelAlignment='bottom' itemAlignment='top'>
-          <Timeline.Item
+        <TimeLine mode='horizontal' labelAlignment='bottom' itemAlignment='top'>
+          <TimeLine.Item
             identifier={0}
             label='June'
             icon={
@@ -370,8 +370,8 @@ const Variants: React.FC = () => {
           >
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
-          </Timeline.Item>
-          <Timeline.Item
+          </TimeLine.Item>
+          <TimeLine.Item
             identifier={1}
             label='July'
             icon={
@@ -383,8 +383,8 @@ const Variants: React.FC = () => {
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
-          </Timeline.Item>
-          <Timeline.Item
+          </TimeLine.Item>
+          <TimeLine.Item
             identifier={2}
             label='August'
             icon={
@@ -397,12 +397,12 @@ const Variants: React.FC = () => {
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>
             <div style={itemStyle}>reminder 7</div>
-          </Timeline.Item>
-        </Timeline>
+          </TimeLine.Item>
+        </TimeLine>
       </div>
 
       <Typography.Header variant='header4' css={{marginBottom: '10px'}}>
-        Horizontal timeline with alternate items and label
+        Horizontal TimeLine with alternate items and label
       </Typography.Header>
       <div
         style={{
@@ -413,12 +413,12 @@ const Variants: React.FC = () => {
           width: 'fit-content',
         }}
       >
-        <Timeline
+        <TimeLine
           mode='horizontal'
           labelAlignment='alternate'
           itemAlignment='alternate'
         >
-          <Timeline.Item
+          <TimeLine.Item
             identifier={0}
             label='June'
             icon={
@@ -431,8 +431,8 @@ const Variants: React.FC = () => {
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 3</div>
-          </Timeline.Item>
-          <Timeline.Item
+          </TimeLine.Item>
+          <TimeLine.Item
             identifier={1}
             label='July'
             icon={
@@ -444,8 +444,8 @@ const Variants: React.FC = () => {
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
-          </Timeline.Item>
-          <Timeline.Item
+          </TimeLine.Item>
+          <TimeLine.Item
             identifier={2}
             label='August'
             icon={
@@ -458,11 +458,11 @@ const Variants: React.FC = () => {
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>
             <div style={itemStyle}>reminder 7</div>
-          </Timeline.Item>
-        </Timeline>
+          </TimeLine.Item>
+        </TimeLine>
       </div>
       <Typography.Header variant='header4' css={{marginBottom: '10px'}}>
-        Custom Timeline
+        Custom TimeLine
       </Typography.Header>
       <div
         style={{
@@ -471,11 +471,11 @@ const Variants: React.FC = () => {
           width: 'fit-content',
         }}
       >
-        <Timeline mode='vertical' labelAlignment='left' itemAlignment='right'>
+        <TimeLine mode='vertical' labelAlignment='left' itemAlignment='right'>
           <CustomItemComponent dotColor='grey' date='18 June 2023' />
           <CustomItemComponent dotColor='red' date='20 July 2023' />
           <CustomItemComponent dotColor='grey' date='22 August 2023' />
-        </Timeline>
+        </TimeLine>
       </div>
     </Column>
   )

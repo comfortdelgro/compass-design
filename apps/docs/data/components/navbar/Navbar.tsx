@@ -37,7 +37,7 @@ const Variants: React.FC = () => {
           <Button href='#'>Services</Button>
           <Button href='#'>Products</Button>
         </Navbar.Links>
-        <Navbar.Seperator />
+        <Navbar.Separator />
         <Navbar.Actions>
           <FontAwesomeIcon
             icon={faQuestionCircle}
