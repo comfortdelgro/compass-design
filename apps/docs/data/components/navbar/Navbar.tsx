@@ -5,9 +5,6 @@ import {
   Navbar,
   SearchField,
 } from '@comfortdelgro/react-compass'
-import NavbarActions from '@comfortdelgro/react-compass/navbar/navbar-actions'
-import {NavbarLinks} from '@comfortdelgro/react-compass/navbar/navbar-links'
-import {NavbarSeperator} from '@comfortdelgro/react-compass/navbar/navbar-seperator.style'
 import {
   faBars,
   faBell,
@@ -35,13 +32,13 @@ const Variants: React.FC = () => {
         </a>
         <Navbar.Brand>Workbench Title</Navbar.Brand>
         <SearchField placeholder='Search' css={{minWidth: 'unset'}} />
-        <NavbarLinks>
+        <Navbar.Links>
           <Button href='#'>Home</Button>
           <Button href='#'>Services</Button>
           <Button href='#'>Products</Button>
-        </NavbarLinks>
-        <NavbarSeperator />
-        <NavbarActions>
+        </Navbar.Links>
+        <Navbar.Seperator />
+        <Navbar.Actions>
           <FontAwesomeIcon
             icon={faQuestionCircle}
             style={{
@@ -70,7 +67,7 @@ const Variants: React.FC = () => {
             }}
           />
           <Avatar label='H' size='xs' image={imageSrc} />
-        </NavbarActions>
+        </Navbar.Actions>
       </Navbar>
     </Column>
   )

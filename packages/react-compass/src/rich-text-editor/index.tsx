@@ -1,7 +1,7 @@
 import * as controls from './controls'
 import Control from './controls/Control'
 import ControlsGroup from './controls/ControlsGroup'
-import RichTextEditor from './rich-text-editor'
+import ComposableRTE from './rich-text-editor'
 import Toolbar from './toolbar'
 // export {Blockquote} from '@tiptap/extension-blockquote'
 // export {CharacterCount} from '@tiptap/extension-character-count'
@@ -20,41 +20,6 @@ import Toolbar from './toolbar'
 export type {Content, JSONContent} from '@tiptap/react'
 // export {StarterKit} from '@tiptap/starter-kit'
 export type {RichTextEditorProps} from './rich-text-editor'
-
-const ComposableRTE = RichTextEditor as typeof RichTextEditor & {
-    Control: typeof Control
-    ControlsGroup: typeof ControlsGroup
-    Toolbar: typeof Toolbar
-    Bold: typeof controls.BoldControl
-    Italic: typeof controls.ItalicControl
-    Strikethrough: typeof controls.StrikeThroughControl
-    Underline: typeof controls.UnderlineControl
-    H1: typeof controls.H1Control
-    H2: typeof controls.H2Control
-    H3: typeof controls.H3Control
-    H4: typeof controls.H4Control
-    H5: typeof controls.H5Control
-    H6: typeof controls.H6Control
-    BulletList: typeof controls.BulletListControl
-    OrderedList: typeof controls.OrderedListControl
-    Link: typeof controls.LinkControl
-    Unlink: typeof controls.UnlinkControl
-    Image: typeof controls.ImageControl
-    Blockquote: typeof controls.BlockquoteControl
-    AlignLeft: typeof controls.AlignLeftControl
-    AlignRight: typeof controls.AlignRightControl
-    AlignCenter: typeof controls.AlignCenterControl
-    AlignJustify: typeof controls.AlignJustifyControl
-    Superscript: typeof controls.SuperscriptControl
-    Subscript: typeof controls.SubscriptControl
-    CodeBlock: typeof controls.CodeBlockControl
-    ColorControl: typeof controls.ColorControl
-    HeadingsControl: typeof controls.HeadingsControl
-    TextAlginmentSelector: typeof controls.TextAlignmentSelectorControl
-    Hr: typeof controls.HrControl
-    Undo: typeof controls.UndoControl
-    Redo: typeof controls.RedoControl
-}
 
 ComposableRTE.displayName = 'RichTextEditor'
 ComposableRTE.Control = Control
@@ -92,4 +57,4 @@ ComposableRTE.Redo = controls.RedoControl
 // RichTextEditor.ClearFormatting = controls.ClearFormattingControl
 // RichTextEditor.Highlight = controls.HighlightControl
 
-export default ComposableRTE 
+export default ComposableRTE
