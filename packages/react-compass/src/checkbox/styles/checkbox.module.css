@@ -42,6 +42,11 @@
     position: absolute;
   }
 
+  .input:disabled ~ .box {
+    border-color: var(--cdg-color-gray50);
+    background-color: var(--cdg-color-background);
+  }
+
   .input:checked ~ .box {
     border-color: var(--cdg-color-cdgBlue);
     background-color: var(--cdg-color-cdgBlue);
@@ -58,9 +63,9 @@
     height: var(--cdg-spacing-4);
     transition: var(--cdg-transition-button);
     border-radius: var(--cdg-border-radius-md);
-    border-width: var(--cdg-border-width-light);
-    border-color: var(--cdg-color-activeBorder);
-    background-color: var(--cdg-color-whiteText);
+    border-width: var(--cdg-spacing-0_25);
+    border-color: var(--cdg-color-gray100);
+    background-color: var(--cdg-color-checkbox);
   }
 
   .checkmark {

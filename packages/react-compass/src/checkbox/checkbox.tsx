@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import CssInjection from '../utils/objectToCss/CssInjection'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/checkbox.module.css'
+import {useIsDarkTheme} from '../theme/useCurrentTheme'
 
 interface Props {
   id?: string
@@ -42,6 +43,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       ...ariaSafeProps
     } = props
 
+    const isDarkTheme = useIsDarkTheme()
+    
     const [checked, setChecked] = useState<boolean>(
       isSelected || defaultSelected,
     )
@@ -93,13 +96,15 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const boxClass = React.useMemo(() => {
       return [
         styles.box,
+        isDarkTheme && styles.boxDarkTheme,
         variant === 'rounded' && styles.rounded,
         'cdg-checkbox-box',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [variant])
+    }, [isDarkTheme, variant])
 
+    console.log(isDarkTheme)
     return (
       <CssInjection css={css} childrenRef={checkboxRef}>
         <div className={rootClass} {...htmlProps}>
@@ -128,9 +133,11 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               aria-checked={checked}
               onKeyDown={handleKeyDown}
             >
-              <span className={`${styles.checkmark} cdg-checkbox-checkmark`}>
-                {isIndeterminate ? <InterminateIcon /> : <TickIcon />}
-              </span>
+              {checked && (
+                <span className={`${styles.checkmark} cdg-checkbox-checkmark`}>
+                  {isIndeterminate ? <InterminateIcon /> : <TickIcon />}
+                </span>
+              )}
             </div>
 
             {children && <span>{children}</span>}
