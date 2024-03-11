@@ -25,6 +25,12 @@ export const routes: TSideNavItem[] = [
         description:
           'Learn the basics of working with React Compass components.',
       },
+      {
+        pathname: '/upgrading',
+        title: 'Upgrading',
+        description:
+          'How to upgrade package version.',
+      },
     ],
   },
   {
