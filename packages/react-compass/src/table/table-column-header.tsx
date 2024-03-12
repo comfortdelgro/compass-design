@@ -6,7 +6,7 @@ import CssInjection from '../utils/objectToCss/CssInjection'
 import { useDOMRef } from '../utils/use-dom-ref'
 import styles from './styles/table-column-header.module.css'
 import HeaderColumnFilter from './table-column-header-filter'
-import TableV2Resizer from './table-resizer'
+import TableResizer from './table-resizer'
 
 interface Props<TData, TValue> {
   headerProps: Header<TData, TValue>
@@ -14,15 +14,15 @@ interface Props<TData, TValue> {
   css?: unknown
   className?: string
 }
-export type TableV2ColumnHeaderProps<TData = unknown, TValue = unknown> = Props<
+export type TableColumnHeaderProps<TData = unknown, TValue = unknown> = Props<
   TData,
   TValue
 > &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
-const TableV2ColumnHeader = React.forwardRef<
+const TableColumnHeader = React.forwardRef<
   HTMLTableCellElement,
-  TableV2ColumnHeaderProps
+  TableColumnHeaderProps
 >(({ headerProps, tableOption, css = {}, onKeyDown }, ref) => {
   const enableResizing = headerProps?.column?.columnDef?.enableResizing
   const isFilterableColumn =
@@ -124,7 +124,7 @@ const TableV2ColumnHeader = React.forwardRef<
           </div>
         )}
         {enableResizing && (
-          <TableV2Resizer resizeHandler={
+          <TableResizer resizeHandler={
             headerProps.getResizeHandler()
           } />
         )}
@@ -163,4 +163,4 @@ const ArrowUpIcon = () => (
     </svg>
   </span>
 )
-export default TableV2ColumnHeader
+export default TableColumnHeader

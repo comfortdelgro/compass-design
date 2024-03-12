@@ -11,7 +11,7 @@ interface Props {
   className?: string
 }
 
-const TableV2Row = React.forwardRef<HTMLTableRowElement, Props>(
+const TableRow = React.forwardRef<HTMLTableRowElement, Props>(
   ({children, isSelected, isExpanded, css = {}, className}, ref) => {
     const tableRowRef = useDOMRef<HTMLTableRowElement>(ref)
     const rowClasses = [
@@ -32,4 +32,4 @@ const TableV2Row = React.forwardRef<HTMLTableRowElement, Props>(
   },
 )
 
-export default TableV2Row
+export default TableRow
