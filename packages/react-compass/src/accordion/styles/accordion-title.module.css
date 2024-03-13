@@ -55,11 +55,6 @@
 }
 
 @layer variant {
-  .open {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
   .open .accordionChevronIcon {
     transform: rotate(180deg);
   }
