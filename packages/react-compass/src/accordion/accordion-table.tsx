@@ -17,11 +17,19 @@ const AccordionTable = React.forwardRef<HTMLDivElement, AccordionTableProps>(
 
     const accordionTableRef = useDOMRef<HTMLDivElement>(ref)
 
+    const rootClasses = [
+      styles.accordionTable,
+      className,
+      'cdg-accordion-table',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={accordionTableRef}>
         <div
-          className={`${styles.accordionTable} ${className}`}
           {...htmlProps}
+          className={rootClasses}
           ref={accordionTableRef}
         >
           {children}
