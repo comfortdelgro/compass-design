@@ -29,7 +29,8 @@ const DropdownList: React.FC<DropdownItemListProps> = (
   const standEl = useDOMRef<HTMLDivElement>(null)
 
   const isInViewport = useIsInViewport(lastEl)
-  const {searchValue, labelId, isLoadingMore} = useContext(DropdownContext)
+  const {searchValue, labelId, isLoadingMore, disabledAutofill} =
+    useContext(DropdownContext)
 
   const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild<
     typeof DropdownHeader
@@ -41,13 +42,13 @@ const DropdownList: React.FC<DropdownItemListProps> = (
       if (
         textContent(child)
           .toLocaleLowerCase()
-          .includes(searchValue.toLocaleLowerCase())
+          .includes(disabledAutofill ? '' : searchValue.toLocaleLowerCase())
       ) {
         currentCount++
       }
     })
     return currentCount
-  }, [dropdownItems, searchValue])
+  }, [disabledAutofill, dropdownItems, searchValue])
 
   useEffect(() => {
     if (lastEl.current && standEl.current) {
@@ -73,7 +74,9 @@ const DropdownList: React.FC<DropdownItemListProps> = (
           {isLoading ? (
             <DropdownLoading />
           ) : displayedItemsCount === 0 ? (
-            <div className={`${styles.dropdownListEmptyData} cdg-dropdown-list-empty-data`}>
+            <div
+              className={`${styles.dropdownListEmptyData} cdg-dropdown-list-empty-data`}
+            >
               {noDataMessage || 'No data'}
             </div>
           ) : (
