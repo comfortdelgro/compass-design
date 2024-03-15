@@ -16,7 +16,7 @@ export interface Options<TData> {
   debugTable?: boolean
   resetSelectionWhenDataChanged?: boolean
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
-  getRowId?: (originalRow: TData, index?: number, parent?: Row<TData>) => any
+  getRowId?: (originalRow: TData, index?: number, parent?: Row<TData>) => string
 }
 
 export type OptionType<TData> = Options<TData>

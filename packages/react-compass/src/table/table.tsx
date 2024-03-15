@@ -97,7 +97,8 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
       return item.original
     })
     onChangeRowSelection?.(selectedRowOriginals)
-  }, [onChangeRowSelection, rowSelection, table])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rowSelection])
 
   useEffect(() => {
     if (options.resetSelectionWhenDataChanged) {
