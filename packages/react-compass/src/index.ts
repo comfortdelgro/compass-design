@@ -333,6 +333,7 @@ export type {
   TableRow,
   TableSortingState,
   TableType,
+  TableProps as ReactTableProps,
 } from './table'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'
