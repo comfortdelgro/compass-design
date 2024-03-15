@@ -14,15 +14,15 @@ export interface Props<TData, TValue> {
   onChangeCell?: (newData: object) => void
 }
 
-export type TableV2CellProps<TData = unknown, TValue = unknown> = Props<
+export type TableCellProps<TData = unknown, TValue = unknown> = Props<
   TData,
   TValue
 > &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
-const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
+const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
   ({cell, row, className, css = {}}, ref) => {
-    const TableV2CellRef = useDOMRef<HTMLTableCellElement>(ref)
+    const TableCellRef = useDOMRef<HTMLTableCellElement>(ref)
     const {
       getValue,
       row: {index},
@@ -49,7 +49,7 @@ const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
       <CssInjection css={css}>
         <td
           className={cellClasses}
-          ref={TableV2CellRef}
+          ref={TableCellRef}
           key={cell.id}
           style={{
             width: cell.column.getSize(),
@@ -114,4 +114,4 @@ const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
   },
 )
 
-export default TableV2Cell
+export default TableCell
