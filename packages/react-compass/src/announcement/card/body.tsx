@@ -1,18 +1,19 @@
 import React from 'react'
 import CssInjection from '../../utils/objectToCss/CssInjection'
+import styles from '../styles/card.module.css'
 
 interface Props {
   css?: unknown
 }
 
-export type BannerLeftProps = Props &
+export type CardBodyProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const BannerLeft = React.forwardRef<HTMLDivElement, BannerLeftProps>(
+const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
   (props, ref) => {
     const {css = {}, className, children} = props
 
-    const rootClasses = [className, 'cdg-announcement-banner-left']
+    const rootClasses = [styles.body, className, 'cdg-announcement-card-body']
       .filter(Boolean)
       .join(' ')
 
@@ -26,4 +27,4 @@ const BannerLeft = React.forwardRef<HTMLDivElement, BannerLeftProps>(
   },
 )
 
-export default BannerLeft
+export default CardBody

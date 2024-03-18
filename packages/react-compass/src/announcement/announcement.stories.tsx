@@ -1,15 +1,8 @@
-// import {
-//   faBars,
-//   faBell,
-//   faChevronDown,
-//   faClose,
-//   faExclamationTriangle,
-//   faMapMarkerAlt,
-//   faUserEdit,
-// } from '@fortawesome/free-solid-svg-icons'
+import {faClose, faImage} from '@fortawesome/free-solid-svg-icons'
 import type {Meta} from '@storybook/react'
 import React from 'react'
-// import Icon from '../icon'
+import Button from '../button'
+import Icon from '../icon'
 import Announcement from './index'
 
 const Style: React.CSSProperties = {
@@ -22,26 +15,203 @@ const Style: React.CSSProperties = {
   marginBottom: '2rem',
 }
 
-export const Basic: React.FC = () => (
-  <div style={{width: '100%', height: '100%', padding: '2rem'}}>
-    <h3>1. Variants</h3>
-    <div style={{...Style}}>
-      <Announcement.Banner variant='primary-dark'>
-        <Announcement.Banner.Body>
-          12312321
-        </Announcement.Banner.Body>
-      </Announcement.Banner>
+const Left = () => (
+  <div
+    style={{
+      width: '48px',
+      height: '48px',
+      background: '#FFF',
+      borderRadius: '99999px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <Icon icon={faImage} width={22} />
+  </div>
+)
+
+const Header = () => (
+  <div
+    style={{
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-between',
+    }}
+  >
+    <div
+      style={{
+        width: '48px',
+        height: '48px',
+        background: '#FFF',
+        borderRadius: '99999px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Icon icon={faImage} width={22} />
     </div>
+    <Button variant='ghost' css={{width: 24, height: 24, span: {padding: 0}}}>
+      <Icon icon={faClose} width={22} />
+    </Button>
+  </div>
+)
+
+const Body = () => (
+  <>
+    <h5
+      style={{
+        margin: 0,
+        fontSize: '16px',
+        fontWeight: 600,
+        lineHeight: '24px',
+      }}
+    >
+      Stay up to date with the latest news and updates
+    </h5>
+    <p
+      style={{
+        margin: 0,
+        fontSize: '16px',
+        fontWeight: 400,
+        lineHeight: '24px',
+      }}
+    >
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+  </>
+)
+
+const Right = () => (
+  <Button variant='secondary' css={{background: 'white'}}>
+    Button
+  </Button>
+)
+
+export const Variant: React.FC = () => (
+  <div style={Style}>
+    <Announcement.Banner>
+      <Announcement.Banner.Left>
+        <Left />
+      </Announcement.Banner.Left>
+      <Announcement.Banner.Body>
+        <Body />
+      </Announcement.Banner.Body>
+      <Announcement.Banner.Right>
+        <Right />
+      </Announcement.Banner.Right>
+    </Announcement.Banner>
+
+    <Announcement.Banner variant='primary-dark'>
+      <Announcement.Banner.Left>
+        <Left />
+      </Announcement.Banner.Left>
+      <Announcement.Banner.Body>
+        <Body />
+      </Announcement.Banner.Body>
+      <Announcement.Banner.Right>
+        <Right />
+      </Announcement.Banner.Right>
+    </Announcement.Banner>
+
+    <Announcement.Banner variant='gray-light'>
+      <Announcement.Banner.Left>
+        <Left />
+      </Announcement.Banner.Left>
+      <Announcement.Banner.Body>
+        <Body />
+      </Announcement.Banner.Body>
+      <Announcement.Banner.Right>
+        <Right />
+      </Announcement.Banner.Right>
+    </Announcement.Banner>
+
+    <Announcement.Card css={{width: '300px'}}>
+      <Announcement.Card.Header>
+        <Header />
+      </Announcement.Card.Header>
+      <Announcement.Card.Body>
+        <Body />
+      </Announcement.Card.Body>
+      <Announcement.Card.Footer>
+        <Right />
+      </Announcement.Card.Footer>
+    </Announcement.Card>
+
+    <Announcement.Card variant='primary-dark' css={{width: '300px'}}>
+      <Announcement.Card.Header>
+        <Header />
+      </Announcement.Card.Header>
+      <Announcement.Card.Body>
+        <Body />
+      </Announcement.Card.Body>
+      <Announcement.Card.Footer>
+        <Right />
+      </Announcement.Card.Footer>
+    </Announcement.Card>
+
+    <Announcement.Card variant='gray-light' css={{width: '300px'}}>
+      <Announcement.Card.Header>
+        <Header />
+      </Announcement.Card.Header>
+      <Announcement.Card.Body>
+        <Body />
+      </Announcement.Card.Body>
+      <Announcement.Card.Footer>
+        <Right />
+      </Announcement.Card.Footer>
+    </Announcement.Card>
+  </div>
+)
+
+export const Align: React.FC = () => (
+  <div style={Style}>
+    <Announcement.Banner>
+      <Announcement.Banner.Left>
+        <Left />
+      </Announcement.Banner.Left>
+      <Announcement.Banner.Body align='left'>
+        <Body />
+      </Announcement.Banner.Body>
+      <Announcement.Banner.Right>
+        <Right />
+      </Announcement.Banner.Right>
+    </Announcement.Banner>
+
+    <Announcement.Banner>
+      <Announcement.Banner.Left>
+        <Left />
+      </Announcement.Banner.Left>
+      <Announcement.Banner.Body align='center'>
+        <Body />
+      </Announcement.Banner.Body>
+      <Announcement.Banner.Right>
+        <Right />
+      </Announcement.Banner.Right>
+    </Announcement.Banner>
+
+    <Announcement.Banner>
+      <Announcement.Banner.Left>
+        <Left />
+      </Announcement.Banner.Left>
+      <Announcement.Banner.Body align='right'>
+        <Body />
+      </Announcement.Banner.Body>
+      <Announcement.Banner.Right>
+        <Right />
+      </Announcement.Banner.Right>
+    </Announcement.Banner>
   </div>
 )
 
 const meta = {
   title: 'Example/Announcement',
-  component: Basic,
+  component: Variant,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof Basic>
+} satisfies Meta<typeof Variant>
 
 export default meta

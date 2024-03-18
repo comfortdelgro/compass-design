@@ -7,6 +7,17 @@ export type {
 } from './accordion'
 export {default as Alert} from './alert'
 export type {AlertProps} from './alert'
+export {default as Announcement} from './announcement'
+export type {
+  AnnouncementBannerBodyProps,
+  AnnouncementBannerLeftProps,
+  AnnouncementBannerProps,
+  AnnouncementBannerRightProps,
+  AnnouncementCardBodyProps,
+  AnnouncementCardFooterProps,
+  AnnouncementCardHeaderProps,
+  AnnouncementCardProps,
+} from './announcement'
 export {default as AppNav} from './appnav'
 export type {AppNavProps} from './appnav'
 export {default as AutoComplete} from './auto-complete'

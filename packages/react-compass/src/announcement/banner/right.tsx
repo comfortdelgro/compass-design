@@ -1,13 +1,28 @@
 import React from 'react'
+import CssInjection from '../../utils/objectToCss/CssInjection'
 
-export interface BannerRightProps {
-  children: React.ReactChild
+interface Props {
+  css?: unknown
 }
 
+export type BannerRightProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+
 const BannerRight = React.forwardRef<HTMLDivElement, BannerRightProps>(
-  (props: BannerRightProps, ref) => {
-    const {children} = props
-    return <div ref={ref}>{children}</div>
+  (props, ref) => {
+    const {css = {}, className, children} = props
+
+    const rootClasses = [className, 'cdg-announcement-banner-right']
+      .filter(Boolean)
+      .join(' ')
+
+    return (
+      <CssInjection css={css}>
+        <div ref={ref} className={rootClasses}>
+          {children}
+        </div>
+      </CssInjection>
+    )
   },
 )
 

@@ -1,13 +1,37 @@
 import React from 'react'
+import CssInjection from '../../utils/objectToCss/CssInjection'
+import styles from '../styles/banner.module.css'
 
-export interface BannerBodyProps {
-  children: React.ReactChild
+interface Props {
+  css?: unknown
+  align?: 'left' | 'center' | 'right'
 }
+
+export type BannerBodyProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const BannerBody = React.forwardRef<HTMLDivElement, BannerBodyProps>(
   (props, ref) => {
-    const {children} = props
-    return <div ref={ref} className="asdaskdljaslkd">{children}</div>
+    const {css = {}, align = 'left', children, className} = props
+
+    const rootClasses = [
+      styles.body,
+      align === 'left' && styles.bodyAlignLeft,
+      align === 'center' && styles.bodyAlignCenter,
+      align === 'right' && styles.bodyAlignRight,
+      className,
+      'cdg-announcement-banner-body',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    return (
+      <CssInjection css={css}>
+        <div ref={ref} className={rootClasses}>
+          {children}
+        </div>
+      </CssInjection>
+    )
   },
 )
 

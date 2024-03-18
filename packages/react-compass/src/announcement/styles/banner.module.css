@@ -1,16 +1,23 @@
 /* Importing the theme module */
 @import '../../theme/theme.module.css';
 
-@layer default, variant, compoundVariant, custom;
+@layer default, variant;
 
 @layer default {
-  .announcement {
+  .banner {
+    box-sizing: border-box;
     padding: var(--cdg-spacing-3);
     border-radius: var(--cdg-border-radius-lg);
     display: flex;
+    gap: var(--cdg-spacing-4);
     flex-direction: row;
     align-items: center;
     width: 100%;
+  }
+
+  .body {
+    flex-grow: 1;
+    display: flex;
   }
 }
 
@@ -29,7 +36,14 @@
     background-color: var(--cdg-color-primaryBg);
     box-shadow: 0px 8px 8px 0px #01215824;
   }
-}
 
-@layer compoundVariant {
+  .bodyAlignLeft {
+    justify-content: left;
+  }
+  .bodyAlignCenter {
+    justify-content: center;
+  }
+  .bodyAlignRight {
+    justify-content: right;
+  }
 }
