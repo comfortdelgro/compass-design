@@ -490,7 +490,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (!clonedChildren || (!valueDropdown && !defaultValueDropdown)) {
       setSelectedItem(null)
       setSearchValue('')
-      if (!allowsCustomValue && inputFieldRef.current) {
+      if (!allowsCustomValue && inputFieldRef.current && !disabledAutofill) {
         inputFieldRef.current.value = ''
       }
       setFocusKey((oldFocusKey) => oldFocusKey ?? null)
