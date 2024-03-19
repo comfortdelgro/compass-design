@@ -7,23 +7,23 @@ export interface Props {
   css?: unknown
 }
 
-export type TableV2ResizerProps = Props
+export type TableResizerProps = Props
 
-const TableV2Resizer = React.forwardRef<
+const TableResizer = React.forwardRef<
   HTMLTableCellElement,
-  TableV2ResizerProps
+  TableResizerProps
 >(({ resizeHandler, css = {} }, ref) => {
-  const TableV2ResizerRef = useDOMRef<HTMLDivElement>(ref)
+  const TableResizerRef = useDOMRef<HTMLDivElement>(ref)
   return (
     <CssInjection css={css} childrenRef={ref}>
       <div
         className={styles.cdgTableResizer}
         onMouseDown={resizeHandler}
         onTouchStart={resizeHandler}
-        ref={TableV2ResizerRef}
+        ref={TableResizerRef}
       ></div>
     </CssInjection>
   )
 })
 
-export default TableV2Resizer
+export default TableResizer

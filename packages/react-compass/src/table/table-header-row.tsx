@@ -8,12 +8,12 @@ interface Props {
   css?: unknown
 }
 
-const TableV2HeaderRow = React.forwardRef<HTMLTableRowElement, Props>(
+const TableHeaderRow = React.forwardRef<HTMLTableRowElement, Props>(
   ({children, css = {}}, ref) => {
-    const TableV2HeaderRowRef = useDOMRef<HTMLTableRowElement>(ref)
+    const TableHeaderRowRef = useDOMRef<HTMLTableRowElement>(ref)
 
     return (
-      <CssInjection css={css} childrenRef={TableV2HeaderRowRef}>
+      <CssInjection css={css} childrenRef={TableHeaderRowRef}>
         <tr role='row' className={styles.cdgTableHeaderRow}>
           {children}
         </tr>
@@ -22,4 +22,4 @@ const TableV2HeaderRow = React.forwardRef<HTMLTableRowElement, Props>(
   },
 )
 
-export default TableV2HeaderRow
+export default TableHeaderRow
