@@ -194,8 +194,8 @@ export default function AppSearch(props: any) {
                     width: '100%',
                     '.cdg-button-content-children': {
                       flexGrow: 1,
+                      justifyContent: 'center'
                     },
-                    // height: 'var(--cdg-spacing-10)',
                   }}
                 >
                   {route.title}
