@@ -12,9 +12,10 @@ import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import routes from 'constants/routes'
 import {useIsTabletScreen} from 'hooks'
-import {map, toLower, uniqBy} from 'lodash'
+import {chain, toLower} from 'lodash'
 import {useRouter} from 'next/router'
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import {TSearchItem} from 'types/common'
 import {getDataSearch} from 'utils'
 import styles from './styles/Shortcut.module.css'
 
@@ -66,37 +67,43 @@ export default function AppSearch(props: any) {
   }, [isOpen])
 
   const searchRecommend = useMemo(() => {
-    const keywordLower = toLower(keyword)
-    const titleIncludeKeyword = dataSearch.filter((item) =>
-      toLower(item.title).includes(keywordLower),
-    )
-    const descriptionIncludeKeyword = dataSearch.filter((item) =>
-      toLower(item.description).includes(keywordLower),
-    )
-    const listRecommended = uniqBy(
-      [...titleIncludeKeyword, ...descriptionIncludeKeyword],
-      'title',
-    )
+    if (keyword) {
+      const transform = (item: TSearchItem) => {
+        const highlight = (str: string) =>
+          str.replace(
+            new RegExp(keyword, 'gi'),
+            '<span style="color: red; text-decoration: underline">$&</span>',
+          )
+        return {
+          ...item,
+          title: highlight(item.title),
+          description: highlight(item.description ?? ''),
+        }
+      }
 
-    return map(listRecommended, (item) => {
-      function highlight(str: string) {
-        const regex = new RegExp(keyword, 'gi')
-        let text = str
-        text = text.replace(
-          /(<span style="color: red; text-decoration: underline">|<\/span>)/gim,
-          '',
-        )
-        return text.replace(
-          regex,
-          '<span style="color: red; text-decoration: underline">$&</span>',
-        )
-      }
-      return {
-        ...item,
-        title: highlight(item.title),
-        description: highlight(item.description ?? ''),
-      }
-    })
+      const keywordLower = toLower(keyword)
+      const titleIncludeKeyword = dataSearch.reduce(
+        (res: TSearchItem[], item) => {
+          if (toLower(item.title).includes(keywordLower))
+            res.push(transform(item))
+          return res
+        },
+        [],
+      )
+      const descriptionIncludeKeyword = dataSearch.reduce(
+        (res: TSearchItem[], item) => {
+          if (toLower(item.description).includes(keywordLower))
+          res.push(transform(item))
+          return res
+        },
+        [],
+      )
+      return chain([...titleIncludeKeyword, ...descriptionIncludeKeyword])
+        .unionBy('pathname')
+        .groupBy('parent')
+        .value()
+    }
+    return []
   }, [keyword])
 
   const handleClickItemSearch = async (pathname: string) => {
@@ -194,7 +201,7 @@ export default function AppSearch(props: any) {
                     width: '100%',
                     '.cdg-button-content-children': {
                       flexGrow: 1,
-                      justifyContent: 'center'
+                      justifyContent: 'center',
                     },
                   }}
                 >
@@ -214,57 +221,63 @@ export default function AppSearch(props: any) {
                 gap: 'var(--cdg-spacing-4)',
               }}
             >
-              {searchRecommend.map((searchItem, index) => {
-                return (
-                  <Button
-                    size='lg'
-                    variant='secondary'
-                    key={searchItem.pathname}
-                    onClick={() => handleClickItemSearch(searchItem.pathname)}
-                    rightIcon={<FontAwesomeIcon icon={faChevronRight} />}
-                    css={{
-                      width: '100%',
-                      '.cdg-button-content-children': {
-                        flexGrow: 1,
-                      },
-                    }}
-                  >
-                    <Box
+              {Object.entries(searchRecommend).map(([groupName, children]) => (
+                <>
+                  <Typography.Header variant='header4'>
+                    {groupName}
+                  </Typography.Header>
+                  {children.map((item: any) => (
+                    <Button
+                      size='lg'
+                      variant='secondary'
+                      key={item.pathname}
+                      onClick={() => handleClickItemSearch(item.pathname)}
+                      rightIcon={<FontAwesomeIcon icon={faChevronRight} />}
                       css={{
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        flexDirection: 'column',
+                        width: '100%',
+                        '.cdg-button-content-children': {
+                          flexGrow: 1,
+                          justifyContent: 'flex-start',
+                        },
                       }}
                     >
-                      {/* @ts-ignore */}
-                      <Typography.Header
-                        variant='header5'
+                      <Box
                         css={{
-                          textAlign: 'left',
-                          cursor: 'pointer'
+                          display: 'flex',
+                          justifyContent: 'flex-start',
+                          flexDirection: 'column',
                         }}
-                        dangerouslySetInnerHTML={{__html: searchItem.title}}
-                      />
-                      {/* @ts-ignore */}
-                      <Typography.Label
-                        variant='label1'
-                        css={{
-                          textAlign: 'left',
-                          color: 'var(--cdg-color-gray80)',
-                          fontSize: '14px',
-                          lineHeight: '1.3125rem',
-                          fontWeight: 400,
-                          marginTop: 'var(--cdg-spacing-gray80)',
-                          cursor: 'pointer'
-                        }}
-                        dangerouslySetInnerHTML={{
-                          __html: searchItem.description,
-                        }}
-                      />
-                    </Box>
-                  </Button>
-                )
-              })}
+                      >
+                        {/* @ts-ignore */}
+                        <Typography.Header
+                          variant='header5'
+                          css={{
+                            textAlign: 'left',
+                            cursor: 'pointer',
+                          }}
+                          dangerouslySetInnerHTML={{__html: item.title}}
+                        />
+                        {/* @ts-ignore */}
+                        <Typography.Label
+                          variant='label1'
+                          css={{
+                            textAlign: 'left',
+                            color: 'var(--cdg-color-gray80)',
+                            fontSize: '14px',
+                            lineHeight: '1.3125rem',
+                            fontWeight: 400,
+                            marginTop: 'var(--cdg-spacing-gray80)',
+                            cursor: 'pointer',
+                          }}
+                          dangerouslySetInnerHTML={{
+                            __html: item.description,
+                          }}
+                        />
+                      </Box>
+                    </Button>
+                  ))}
+                </>
+              ))}
             </Modal.Description>
           )}
         </Modal>
