@@ -2,18 +2,20 @@ import Search from '@comfortdelgro/compass-icons/react/search'
 import {
   Box,
   Button,
-  Column,
+  Icon,
   Modal,
   SearchField,
   TextField,
   Typography,
 } from '@comfortdelgro/react-compass'
-import {faChevronRight, faClose} from '@fortawesome/free-solid-svg-icons'
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import routes from 'constants/routes'
 import {useIsTabletScreen} from 'hooks'
-import {map, replace, toLower, uniqBy} from 'lodash'
+import {chain, toLower} from 'lodash'
 import {useRouter} from 'next/router'
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import {TSearchItem} from 'types/common'
 import {getDataSearch} from 'utils'
 import styles from './styles/Shortcut.module.css'
 
@@ -21,7 +23,6 @@ const dataSearch = getDataSearch()
 
 export default function AppSearch(props: any) {
   const searchInputRef = useRef(null)
-  const firstItemRef = useRef<HTMLInputElement>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [keyword, setKeyword] = useState('')
   const isTabletScreen = useIsTabletScreen()
@@ -42,11 +43,6 @@ export default function AppSearch(props: any) {
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.keyCode === 75 && e.metaKey) {
       setIsOpen(true)
-    } else if (isOpen) {
-      if (e.keyCode === 40) {
-        // arrow down
-        firstItemRef.current && firstItemRef.current?.focus()
-      }
     }
   }
 
@@ -71,32 +67,43 @@ export default function AppSearch(props: any) {
   }, [isOpen])
 
   const searchRecommend = useMemo(() => {
-    const keywordLower = toLower(keyword)
-    const titleIncludeKeyword = dataSearch.filter((item) =>
-      toLower(item.title).includes(keywordLower),
-    )
-    const descriptionIncludeKeyword = dataSearch.filter((item) =>
-      toLower(item.description).includes(keywordLower),
-    )
-    const listRecommended = uniqBy(
-      [...titleIncludeKeyword, ...descriptionIncludeKeyword],
-      'title',
-    )
-    return map(listRecommended, (item) => {
-      return {
-        ...item,
-        title: replace(
-          toLower(item.title),
-          keywordLower,
-          `<span style="color: var(--cdg-colors-cdgBlue80)">${keywordLower}</span>`,
-        ),
-        description: replace(
-          toLower(item.description),
-          keywordLower,
-          `<span style="color: var(--cdg-colors-cdgBlue80)">${keywordLower}</span>`,
-        ),
+    if (keyword) {
+      const transform = (item: TSearchItem) => {
+        const highlight = (str: string) =>
+          str.replace(
+            new RegExp(keyword, 'gi'),
+            '<span style="color: red; text-decoration: underline">$&</span>',
+          )
+        return {
+          ...item,
+          title: highlight(item.title),
+          description: highlight(item.description ?? ''),
+        }
       }
-    })
+
+      const keywordLower = toLower(keyword)
+      const titleIncludeKeyword = dataSearch.reduce(
+        (res: TSearchItem[], item) => {
+          if (toLower(item.title).includes(keywordLower))
+            res.push(transform(item))
+          return res
+        },
+        [],
+      )
+      const descriptionIncludeKeyword = dataSearch.reduce(
+        (res: TSearchItem[], item) => {
+          if (toLower(item.description).includes(keywordLower))
+          res.push(transform(item))
+          return res
+        },
+        [],
+      )
+      return chain([...titleIncludeKeyword, ...descriptionIncludeKeyword])
+        .unionBy('pathname')
+        .groupBy('parent')
+        .value()
+    }
+    return []
   }, [keyword])
 
   const handleClickItemSearch = async (pathname: string) => {
@@ -138,7 +145,10 @@ export default function AppSearch(props: any) {
               onClick={onOpen}
               placeholder='Search...'
             />
-            <div className={styles.shortcut} style={{position: 'absolute', top: 3, right: 3}}>
+            <div
+              className={styles.shortcut}
+              style={{position: 'absolute', color: '#FFF', top: 3, right: 3}}
+            >
               {macOS ? '⌘' : 'Ctrl+'}K
             </div>
           </>
@@ -146,77 +156,130 @@ export default function AppSearch(props: any) {
       </Box>
       <Modal.Trigger isOpen={isOpen} handleClose={() => onClose?.()} size='lg'>
         <Modal>
-          <Modal.Title>
-            <Typography.Header variant='header4'>Search Box</Typography.Header>
-          </Modal.Title>
-          <Modal.CloseIcon>
-            <FontAwesomeIcon icon={faClose} />
-          </Modal.CloseIcon>
-          <Modal.Description>
+          <Modal.Title css={{width: '100%'}}>
             <SearchField
               autoFocus={true}
               onChange={handleChangeKeyword}
               placeholder='Enter the keyword you want to search...'
               value={keyword}
-              css={{width: '100%'}}
+              css={{
+                width: '100%',
+                height: 'var(--cdg-spacing-12)',
+                '.cdg-searchfield-button': {
+                  height: 'var(--cdg-spacing-8)',
+                  width: 'var(--cdg-spacing-8)',
+                },
+              }}
               ref={searchInputRef}
             />
-            <Column
-              css={{height: '50vh', overflowY: 'scroll', marginTop: '$3'}}
+          </Modal.Title>
+          {keyword === '' ? (
+            <Modal.Description
+              css={{
+                maxHeight: '50vh',
+                overflowY: 'auto',
+                overflowX: 'hidden',
+                display: 'grid',
+                flex: 'initial',
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                gridAutoRows: 'var(--cdg-spacing-14)',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                gap: 'var(--cdg-spacing-4)',
+              }}
             >
-              {searchRecommend.map((searchItem, index) => {
-                return (
-                  <Box
-                    key={searchItem.pathname}
-                    as={'button'}
-                    {...(index === 0 ? {ref: firstItemRef} : {})}
-                    css={{
-                      background: 'var(--cdg-color-gray10)',
-                      padding: 'var(--cdg-spacing-3)',
-                      margin: 1,
-                      borderRadius: 8,
-                      cursor: 'pointer',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      '&:hover': {
-                        background: 'var(--cdg-color-cdgBlue10)',
-                      },
-                    }}
-                    onClick={() => handleClickItemSearch(searchItem.pathname)}
-                  >
-                    <Box
+              {routes.map((route) => (
+                <Button
+                  size='lg'
+                  onClick={() =>
+                    handleClickItemSearch(
+                      route.pathname + route.children?.[0].pathname,
+                    )
+                  }
+                  leftIcon={<Icon icon={route.icon ?? faChevronRight} />}
+                  css={{
+                    width: '100%',
+                    '.cdg-button-content-children': {
+                      flexGrow: 1,
+                      justifyContent: 'center',
+                    },
+                  }}
+                >
+                  {route.title}
+                </Button>
+              ))}
+            </Modal.Description>
+          ) : (
+            <Modal.Description
+              css={{
+                height: '50vh',
+                overflowY: 'auto',
+                overflowX: 'hidden',
+                display: 'flex',
+                flex: 'initial',
+                flexDirection: 'column',
+                gap: 'var(--cdg-spacing-4)',
+              }}
+            >
+              {Object.entries(searchRecommend).map(([groupName, children]) => (
+                <>
+                  <Typography.Header variant='header4'>
+                    {groupName}
+                  </Typography.Header>
+                  {children.map((item: any) => (
+                    <Button
+                      size='lg'
+                      variant='secondary'
+                      key={item.pathname}
+                      onClick={() => handleClickItemSearch(item.pathname)}
+                      rightIcon={<FontAwesomeIcon icon={faChevronRight} />}
                       css={{
-                        display: 'flex',
-                        flexDirection: 'column',
+                        width: '100%',
+                        '.cdg-button-content-children': {
+                          flexGrow: 1,
+                          justifyContent: 'flex-start',
+                        },
                       }}
                     >
-                      {/* @ts-ignore */}
-                      <Typography.Header
-                        variant='header5'
-                        css={{textAlign: 'left', textTransform: 'capitalize'}}
-                        dangerouslySetInnerHTML={{__html: searchItem.title}}
-                      />
-                      {/* @ts-ignore */}
-                      <Typography.Label
-                        variant='label1'
+                      <Box
                         css={{
-                          textAlign: 'left',
-                          color: 'var(--cdg-color-gray80)',
-                          marginTop: 'var(--cdg-spacing-gray80)',
-                          textTransform: 'capitalize',
+                          display: 'flex',
+                          justifyContent: 'flex-start',
+                          flexDirection: 'column',
                         }}
-                        dangerouslySetInnerHTML={{
-                          __html: searchItem.description,
-                        }}
-                      />
-                    </Box>
-                    <FontAwesomeIcon icon={faChevronRight} />
-                  </Box>
-                )
-              })}
-            </Column>
-          </Modal.Description>
+                      >
+                        {/* @ts-ignore */}
+                        <Typography.Header
+                          variant='header5'
+                          css={{
+                            textAlign: 'left',
+                            cursor: 'pointer',
+                          }}
+                          dangerouslySetInnerHTML={{__html: item.title}}
+                        />
+                        {/* @ts-ignore */}
+                        <Typography.Label
+                          variant='label1'
+                          css={{
+                            textAlign: 'left',
+                            color: 'var(--cdg-color-gray80)',
+                            fontSize: '14px',
+                            lineHeight: '1.3125rem',
+                            fontWeight: 400,
+                            marginTop: 'var(--cdg-spacing-gray80)',
+                            cursor: 'pointer',
+                          }}
+                          dangerouslySetInnerHTML={{
+                            __html: item.description,
+                          }}
+                        />
+                      </Box>
+                    </Button>
+                  ))}
+                </>
+              ))}
+            </Modal.Description>
+          )}
         </Modal>
       </Modal.Trigger>
     </>
