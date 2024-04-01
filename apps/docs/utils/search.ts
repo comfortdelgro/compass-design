@@ -7,6 +7,7 @@ export const getDataSearch = (): TSearchItem[] => {
     if (route.children) {
       const childrenRoutes = route.children.map((childrenRoute) => {
         return {
+          parent: route.title,
           title: childrenRoute.title,
           pathname: `${route.pathname}${childrenRoute.pathname}`,
           description: childrenRoute.description,

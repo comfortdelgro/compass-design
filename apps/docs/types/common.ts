@@ -13,6 +13,7 @@ export type TSideNavItem = {
 export type TSearchItem = {
   pathname: string
   title: string
+  parent: string
   description?: string
 }
 
