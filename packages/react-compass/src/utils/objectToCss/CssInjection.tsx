@@ -1,10 +1,10 @@
 import React from 'react'
-import {objectToCSS} from '.'
+import {CSS, objectToCSS} from '.'
 import generateRandomString from '../generateRandomString'
 
 export interface Props {
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
   childrenRef?: React.Ref<HTMLElement>
 }
 

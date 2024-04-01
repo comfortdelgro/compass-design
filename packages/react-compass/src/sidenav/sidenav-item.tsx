@@ -2,13 +2,13 @@
 
 import {ExtendedRefs, ReferenceType} from '@floating-ui/react'
 import React, {useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/sidenav-item.module.css'
 
 interface Props {
   children: React.ReactNode
   isActive?: boolean
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

@@ -9,37 +9,37 @@
 */
 @layer default, variant, compoundVariant;
 
-  .navbar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
-    gap: var(--cdg-spacing-4);
-    container-name: navbar;
-    container-type: inline-size;
-  }
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: var(--cdg-spacing-2) var(--cdg-spacing-4);
+  gap: var(--cdg-spacing-4);
+  container-name: navbar;
+  container-type: inline-size;
+}
 
-  .navbar * {
-    box-sizing: border-box;
-  }
+.navbar * {
+  box-sizing: border-box;
+}
 
-  .navbarBrand {
-    color: var(--cdg-color-whiteText);
-  }
+.navbarBrand {
+  color: var(--cdg-color-whiteText);
+}
 
-  .navbarBrandTitle {
-    font-size: var(--cdg-spacing-4);
-    font-weight: var(--cdg-font-weight-semibold);
-    color: inherit;
-    margin: 0;
-  }
+.navbarBrandTitle {
+  font-size: var(--cdg-spacing-4);
+  font-weight: var(--cdg-font-weight-semibold);
+  color: inherit;
+  margin: 0;
+}
 
-  @media screen and (max-width: 1199px) {
-    .hiddenOnMobile.navbarBrand {
-      display: none;
-    }
+@media screen and (max-width: 1199px) {
+  .hiddenOnMobile.navbarBrand {
+    display: none;
   }
+}
 
 @layer variant {
   .white {

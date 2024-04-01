@@ -1,10 +1,10 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/circular.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   size?: number
   color?: string
   value?: number

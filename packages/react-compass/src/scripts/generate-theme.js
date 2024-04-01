@@ -1,6 +1,6 @@
 import fs from 'fs'
-import path, { dirname } from 'path'
-import { fileURLToPath } from 'url'
+import path, {dirname} from 'path'
+import {fileURLToPath} from 'url'
 import {
   borderWidths,
   darkThemeColors,

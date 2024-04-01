@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ModalActions from './modal-actions'
@@ -17,7 +17,7 @@ interface Props {
   onClick?: () => void
   onKeyDown?: (e: KeyboardEvent) => void
   triggerId?: string
-  css?: unknown
+  css?: CSS
 }
 
 export type ModalProps = Props &

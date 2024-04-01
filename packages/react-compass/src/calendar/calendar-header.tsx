@@ -5,7 +5,7 @@ import React from 'react'
 import Button, {ButtonProps} from '../button'
 import {DateValue} from '../internationalized/date'
 import {useDateFormatter} from '../internationalized/i18n'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {MONTH_YEAR_STATE, MonthYearState} from './hooks/useMonthYearState'
 import styles from './styles/calendar-header.module.css'
 import {AriaLabelingProps, DOMProps} from './types'
@@ -16,7 +16,7 @@ import {
 } from './types/calendar.types'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   variant?: 'default' | 'range'
   state: CalendarState | RangeCalendarState

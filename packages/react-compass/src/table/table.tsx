@@ -18,7 +18,7 @@ import Progress from '../progress'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CssInjection} from '../utils/objectToCss'
 import ExpandableRow from './expandable/expandable-row'
 import LoadingComponent from './loading/loading-component'
 import styles from './styles/table.module.css'

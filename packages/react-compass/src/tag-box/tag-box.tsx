@@ -1,5 +1,5 @@
 import React, {createRef, RefObject} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import stylesItem from './styles/tag-box-item.module.css'
@@ -20,7 +20,7 @@ type Item = {
 interface Props {
   id?: string
   items: Item[]
-  css?: unknown
+  css?: CSS
   typeable?: boolean
   helperText?: string
   isErrored?: boolean

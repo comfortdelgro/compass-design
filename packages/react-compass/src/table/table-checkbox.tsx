@@ -1,14 +1,14 @@
 import React from 'react'
 
 import checkboxStyles from '../checkbox/styles/checkbox.module.css'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-checkbox.module.css'
 
 interface Props {
   children?: React.ReactNode
   indeterminate?: boolean
-  css?: unknown
+  css?: CSS
   className: string
   disabled?: boolean
 }

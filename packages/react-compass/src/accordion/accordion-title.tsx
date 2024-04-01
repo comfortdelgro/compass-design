@@ -1,11 +1,12 @@
 import React, {useContext} from 'react'
 import {EKeyboardKey} from '../utils/keyboard.enum'
+import {CSS} from '../utils/objectToCss'
 import AccordionButton from './accordion-button'
 import AccordionContext, {AccordionContextType} from './accordion-context'
 import styles from './styles/accordion-title.module.css'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  css?: unknown
+  css?: CSS
   icon?: false | React.ReactNode
   children?: string | React.ReactNode
   expandIcon?: React.ReactNode

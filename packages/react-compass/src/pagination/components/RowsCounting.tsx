@@ -17,9 +17,7 @@ const RowsCounting: React.FC<{
       <Dropdown.Select
         style={{width: '138px', gap: '4px'}}
         defaultValue={rowsPerPage.toString()}
-        onValueChange={(k) =>
-          onRowsPerPageChange?.(Number(k))
-        }
+        onValueChange={(k) => onRowsPerPageChange?.(Number(k))}
       >
         {rowsOptions.map((option, index) => (
           <Dropdown.Item key={index} value={option.toString()}>

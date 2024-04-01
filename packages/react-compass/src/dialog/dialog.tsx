@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -17,7 +17,7 @@ interface Props {
   onKeyDown?: (e: KeyboardEvent) => void
   triggerId?: string
   handleClose?: () => void
-  css?: unknown
+  css?: CSS
 }
 
 export type DialogProps = Props &

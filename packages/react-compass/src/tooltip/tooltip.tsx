@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import React, {useContext} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/tooltip.module.css'
 import {TooltipContext} from './tooltip-context'
 
@@ -9,7 +9,7 @@ interface Props {
   children?: React.ReactNode
   dismissible?: boolean
   className?: string
-  css?: unknown
+  css?: CSS
 }
 
 export type TooltipProps = Props &

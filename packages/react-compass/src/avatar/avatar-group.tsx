@@ -2,6 +2,7 @@ import {faPlus} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React from 'react'
 import Avatar, {AvatarProps} from '.'
+import {CSS} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {AvatarSize, OFFSET_LEFT_MAP} from './avatar.const'
@@ -13,7 +14,7 @@ interface Props {
   size?: AvatarSize
   disabledAnimation?: boolean
   useAddMore?: boolean
-  css?: unknown
+  css?: CSS
   onAddMoreClick?: () => void
 }
 

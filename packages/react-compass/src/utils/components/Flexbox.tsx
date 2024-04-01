@@ -1,11 +1,11 @@
 import React from 'react'
-import CssInjection from '../objectToCss/CssInjection'
+import {CSS, CssInjection} from '../objectToCss'
 import {useDOMRef} from '../use-dom-ref'
 import styles from './components.module.css'
 
 interface FlexboxProps {
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

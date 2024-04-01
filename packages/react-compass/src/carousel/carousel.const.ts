@@ -1,3 +1,5 @@
+import {CSS} from '../utils/objectToCss'
+
 export type NinePartAlignment =
   | 'start-start'
   | 'center-start'
@@ -41,6 +43,6 @@ export interface CarouselOptions {
   useNavigation?: boolean
   useDotIndicator?: boolean
   navigationButtonType?: NavigationButtonType
-  css?: unknown
+  css?: CSS
   onSwitchSlide?: (index: number) => void
 }

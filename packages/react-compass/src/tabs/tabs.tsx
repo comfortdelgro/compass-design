@@ -5,7 +5,7 @@ import {
   useKeyboardNavigation,
   useKeyboardNavigationState,
 } from '../utils/hooks'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import TabItem from './item'
 import styles from './styles/tabs.module.css'
@@ -33,7 +33,7 @@ interface Props {
   'aria-labelledby'?: string
   'aria-describedby'?: string
   'aria-details'?: string
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

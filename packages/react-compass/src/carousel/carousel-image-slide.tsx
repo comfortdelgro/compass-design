@@ -1,11 +1,11 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/carousel.module.css'
 
 interface Props {
   imageUrl: string
-  css?: unknown
+  css?: CSS
   active: boolean
   className?: string
 }

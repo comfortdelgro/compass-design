@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import type AvatarGroup from './avatar-group'
 import {AVATAR_SIZE_MAP, AvatarSize} from './avatar.const'
@@ -20,7 +20,7 @@ interface Props {
   label?: string
   icon?: React.ReactNode
   image?: string
-  css?: React.CSSProperties
+  css?: CSS
   size?: AvatarSize
   className?: string
   cutOffText?: boolean

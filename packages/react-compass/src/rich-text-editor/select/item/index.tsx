@@ -1,10 +1,11 @@
 import React from 'react'
+import {CSS} from '../../../utils/objectToCss'
 export interface Props {
   key: React.Key
   renderAs?: React.ReactNode
   children: React.ReactNode
   'aria-label'?: string
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

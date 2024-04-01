@@ -3,7 +3,6 @@
 @layer default, variant;
 
 @layer default {
-
   /* ErrorImage.module.css */
   .errorImage {
     /* reset */
@@ -147,7 +146,8 @@
   /* Primary variant */
   .primaryVariant {
     max-width: var(--cdg-spacing-138);
-    box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
+    box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.1),
+      0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
     background-color: var(--cdg-color-background);
     color: var(--cdg-color-primaryText);
   }
@@ -158,7 +158,8 @@
     min-height: var(--cdg-spacing-96);
     padding: var(--cdg-spacing-8);
     background-color: transparent;
-    border-radius: 0px var(--cdg-border-radius-md) var(--cdg-border-radius-md) 0px;
+    border-radius: 0px var(--cdg-border-radius-md) var(--cdg-border-radius-md)
+      0px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

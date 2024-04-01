@@ -4,6 +4,7 @@ import {
   Row,
   SortingState,
 } from '@tanstack/react-table'
+import {CSS} from '../utils/objectToCss'
 
 export interface Options<TData> {
   enableSorting?: boolean
@@ -35,5 +36,5 @@ export interface Props<T> {
   loadingIndicator?: React.ReactNode
   emptyComponent?: React.ReactNode
   className?: string
-  css?: unknown
+  css?: CSS
 }

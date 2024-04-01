@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/dropdown.module.css'
 
@@ -11,7 +11,7 @@ export interface DropdownSectionBase {
   onClick?: () => void
   isChecked?: boolean
   checkmark?: 'checkbox' | 'tick'
-  css?: unknown
+  css?: CSS
 }
 
 export type DropdownSectionProps = DropdownSectionBase &

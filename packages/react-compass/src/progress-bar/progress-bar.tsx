@@ -1,6 +1,6 @@
 import clampValue from 'lodash/clamp'
 import React, {useEffect, useMemo} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/progress-bar.module.css'
 
@@ -29,7 +29,7 @@ type Props = {
   maxValue?: number
   onComplete?: () => void
   loading?: 'stripes' | boolean
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

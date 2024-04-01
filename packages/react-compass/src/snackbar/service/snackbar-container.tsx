@@ -1,5 +1,6 @@
 import React from 'react'
 import Portal from '../../portal'
+import {CSS} from '../../utils/objectToCss'
 import styles from '../styles/snackbar-item.module.css'
 import SnackbarItem from './snackbar-item'
 import {SnackbarItemType} from './types'
@@ -7,7 +8,7 @@ import {SnackbarItemType} from './types'
 interface Props {
   snackbars: SnackbarItemType[]
   snackbarItemClassName?: string
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

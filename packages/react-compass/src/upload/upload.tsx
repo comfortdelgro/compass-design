@@ -1,11 +1,11 @@
 import React, {useMemo} from 'react'
 import {useIsDarkTheme} from '../theme'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
-  convertFileSizeToReadableNumber,
   DEFAULT_FILE_ACCEPT,
   DEFAULT_FILE_LIMIT,
+  convertFileSizeToReadableNumber,
 } from './common'
 import styles from './styles/upload.module.css'
 import UploadDragAndDrop from './upload-drag-and-drop'
@@ -23,7 +23,7 @@ interface Props {
   label?: string
   onError?: (error: string) => void
   customErrorMessages?: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
 export type UploadProps = Props &

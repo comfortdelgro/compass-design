@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {Pointer, Position} from '../utils/pointer'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -16,7 +16,7 @@ import {
 import styles from './styles/carousel.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   style?: React.CSSProperties
   children: React.ReactNode[]
   autoSwitch?: boolean

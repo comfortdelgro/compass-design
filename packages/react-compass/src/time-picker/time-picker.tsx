@@ -3,7 +3,7 @@ import {cloneDeep} from 'lodash'
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import Popover from '../popover'
 import TextField, {TextFieldProps} from '../textfield'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DEFAULT_VIEWS,
@@ -20,7 +20,7 @@ import {
 import {getSelectionOnFocus, replaceBetween, splitTimeFormat} from './utils'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   className?: string
   isErrored?: boolean
   isReadOnly?: boolean

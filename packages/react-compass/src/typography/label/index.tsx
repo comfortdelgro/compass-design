@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {Component} from '../utils'
 import styles from './label.module.css'
 
@@ -8,7 +8,7 @@ interface Props {
   component?: Component
   weight?: 'bold' | 'semibold' | 'light'
   children: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
 export type labelTypographyProps = Props &
