@@ -1,3 +1,4 @@
+import {CSS} from './types'
 import {
   comma,
   toCamelCase,
@@ -10,7 +11,6 @@ import {
   toStringOfObject,
   unitlessProps,
 } from './utils'
-import {CSS} from './types'
 
 const toCssRules = (
   style: CSS,
@@ -105,7 +105,7 @@ const toCssRules = (
                   ? String(data) + 'px'
                   : String(data)
                 : // replace tokens with stringified primitive values
-                  toSizingValue(camelName, data == null ? '' : data as string)
+                  toSizingValue(camelName, data == null ? '' : (data as string))
 
             currentRule[0].push(
               `${isAtRuleLike ? `${name} ` : `${toHyphenCase(name)}:`}${data}`,

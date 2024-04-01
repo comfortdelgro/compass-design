@@ -1,6 +1,6 @@
 import React from 'react'
-import generateRandomString from '../generateRandomString'
 import {objectToCSS} from '.'
+import generateRandomString from '../generateRandomString'
 
 export interface Props {
   children?: React.ReactNode
@@ -19,22 +19,25 @@ const CssInjection = React.forwardRef<HTMLElement, Props>((props) => {
     setAdditionalClasses(childClassName)
   }, [childrenRef])
 
-  const modifiedChildren: React.ReactNode = React.Children.map(children, (child) => {
-    if (React.isValidElement(child)) {
-      // Cast child to include className property
-      const childWithClassName = child as React.DetailedReactHTMLElement<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >
-      // Clone the child element and add additional classes
-      return React.cloneElement(childWithClassName, {
-        className: `${
-          childWithClassName.props.className || ''
-        } ${additionalClasses}`,
-      })
-    }
-    return child as React.ReactNode
-  })
+  const modifiedChildren: React.ReactNode = React.Children.map(
+    children,
+    (child) => {
+      if (React.isValidElement(child)) {
+        // Cast child to include className property
+        const childWithClassName = child as React.DetailedReactHTMLElement<
+          React.HTMLAttributes<HTMLElement>,
+          HTMLElement
+        >
+        // Clone the child element and add additional classes
+        return React.cloneElement(childWithClassName, {
+          className: `${
+            childWithClassName.props.className || ''
+          } ${additionalClasses}`,
+        })
+      }
+      return child as React.ReactNode
+    },
+  )
 
   // should have used useInsertionEffect() but it needs typescript 5 as dependency, not sure if it works for all cdg's projects.
   React.useEffect(() => {

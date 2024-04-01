@@ -10,12 +10,12 @@ export const Basic: React.FC = () => {
         onSubmit={(text) => console.log(text)}
         value={'Initial value'}
         css={{
-          '*': { margin: 0, padding: 0 },
-          button:{
+          '*': {margin: 0, padding: 0},
+          button: {
             backgroundColor: 'Orange',
-            '&:hover':{
+            '&:hover': {
               backgroundColor: 'green',
-            }
+            },
           },
           '& .cdg-search-field-input': {
             backgroundColor: 'OrangeRed',
@@ -23,7 +23,8 @@ export const Basic: React.FC = () => {
           '&::after': {
             content: `''`,
             display: 'block',
-            backgroundImage: 'linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb)',
+            backgroundImage:
+              'linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb)',
             position: 'absolute',
             top: '0',
             right: '0',
@@ -33,13 +34,13 @@ export const Basic: React.FC = () => {
             zIndex: -1,
           },
           '@media (min-width: 320px)': {
-            width: '100px'
+            width: '100px',
           },
           '@media (min-width: 768px)': {
-            width: '200px'
+            width: '200px',
           },
           '@media (min-width: 1024px)': {
-            width: '300px'
+            width: '300px',
           },
         }}
       />
