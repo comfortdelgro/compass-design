@@ -73,7 +73,7 @@ const TableColumnHeader = React.forwardRef<
     }
   }, [sortDirection])
 
-  const headerContentClass = [headerProps.column.getCanSort() && styles.canSort]
+  const headerContentClass = [styles.cdgTableContent, headerProps.column.getCanSort() && styles.canSort]
     .filter(Boolean)
     .join(' ')
 
