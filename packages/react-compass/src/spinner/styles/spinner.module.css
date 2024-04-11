@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .ring {
     position: relative;
     aspect-ratio: 1/1;
@@ -15,13 +15,13 @@
     outline: none;
     box-sizing: border-box;
   }
-  
+
   .ring:focus,
   .ring:focus-within {
     border: none;
     outline: none;
   }
-  
+
   .bg,
   .segment {
     box-sizing: border-box;
@@ -29,11 +29,11 @@
     border-style: solid;
     border-radius: var(--cdg-border-radius-full);
   }
-  
+
   .bg {
     border-color: var(--cdg-color-gray30);
   }
-  
+
   @keyframes spin {
     0% {
       transform: rotate(0deg);
@@ -42,31 +42,31 @@
       transform: rotate(360deg);
     }
   }
-  
+
   .segment {
     border-color: var(--cdg-color-cdgBlue) transparent transparent transparent;
     animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
-  
+
   .segment1 {
     animation-delay: -0.45s;
   }
-  
+
   .segment2 {
     animation-delay: -0.3s;
   }
-  
+
   .segment3 {
     animation-delay: -0.15s;
   }
-  
+
   .label {
     color: var(--cdg-color-cdgBlue);
     font-family: var(--cdg-font-sans);
     margin-top: var(--cdg-spacing-2);
     margin-bottom: var(--cdg-spacing-2);
   }
-  
+
   /* 2xl */
   .ring2xl,
   .bg2xl,
@@ -75,11 +75,11 @@
     height: var(--cdg-spacing-16);
     border-width: 0.625rem;
   }
-  
+
   .label2xl {
     font-size: var(--cdg-font-size-body2);
   }
-  
+
   /* xl */
   .ringXl,
   .bgXl,
@@ -88,7 +88,7 @@
     height: var(--cdg-spacing-12);
     border-width: 0.625rem;
   }
-  
+
   .labelXl {
     font-size: var(--cdg-font-size-body2);
   }
@@ -100,13 +100,13 @@
     height: var(--cdg-spacing-10);
     border-width: 0.5rem;
   }
-  
+
   .labelLg {
     font-size: var(--cdg-font-size-label1);
   }
-  
+
   /* md styles */
-  
+
   .ringMd,
   .bgMd,
   .segmentMd {
@@ -114,11 +114,11 @@
     height: var(--cdg-spacing-8);
     border-width: 0.375rem;
   }
-  
+
   .labelMd {
     font-size: var(--cdg-font-size-label2);
   }
-  
+
   /* sm styles */
   .ringSm,
   .bgSm,
@@ -127,9 +127,8 @@
     height: var(--cdg-spacing-6);
     border-width: 0.25rem;
   }
-  
+
   .labelSm {
     font-size: var(--cdg-font-size-label3);
   }
-  
 }

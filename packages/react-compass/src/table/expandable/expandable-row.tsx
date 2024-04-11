@@ -1,6 +1,6 @@
 import React from 'react'
 import Transitions from '../../transitions'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './expandable-row.module.css'
 
@@ -8,7 +8,7 @@ interface Props {
   isExpanded: boolean
   children: React.ReactNode
   colSpan: number
-  css?: unknown
+  css?: CSS
 }
 
 export type ExpandableRowProps = Props &

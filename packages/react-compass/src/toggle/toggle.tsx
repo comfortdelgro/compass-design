@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useId} from '../utils/useId'
@@ -32,7 +32,7 @@ interface Props {
   'aria-details'?: string
   'aria-errormessage'?: string
   className?: string
-  css?: unknown
+  css?: CSS
   variant?: 'h5'
 }
 

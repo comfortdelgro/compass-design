@@ -1,13 +1,13 @@
 'use client'
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/dropdown-menu.module.css'
 
 interface SubmenuProps {
   children?: React.ReactNode
   'aria-labelledby'?: string
-  css?: unknown
+  css?: CSS
 }
 export const MULTILEVEL_SUBMENU_CLASS_NAME = 'cdg-dropdown-multilevel-submenu'
 

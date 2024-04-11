@@ -1,11 +1,11 @@
 .icon {
-    color: red;
+  color: red;
 }
 
-.icon path{
-    fill: green;
+.icon path {
+  fill: green;
 }
 
-.icon :global(.cdg-tab-icon){
-    background-color: red;
+.icon :global(.cdg-tab-icon) {
+  background-color: red;
 }

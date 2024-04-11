@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from 'react'
-import {Transitions} from '..'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import Transitions from '../transitions'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import AccordionContext from './accordion-context'
@@ -12,7 +12,7 @@ import AccordionTitle, {AccordionTitleProps} from './accordion-title'
 import styles from './styles/accordion.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   expand?: boolean
   defaultExpand?: boolean
   children: React.ReactNode

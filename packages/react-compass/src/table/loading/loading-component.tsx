@@ -1,12 +1,12 @@
 import React, {HTMLAttributes} from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './loading-component.module.css'
 
 interface Props {
   colSpan: number
   loadingIndicator: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
 export type LoadingComponentProps = Props &

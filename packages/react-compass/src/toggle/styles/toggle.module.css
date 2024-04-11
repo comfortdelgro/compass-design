@@ -61,7 +61,7 @@
     background-color: var(--cdg-color-gray50);
     pointer-events: none;
   }
-  .toggleActive{
+  .toggleActive {
     background-color: var(--cdg-color-success);
     justify-content: flex-end;
   }

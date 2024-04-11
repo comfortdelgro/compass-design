@@ -1,11 +1,11 @@
 import React, {CSSProperties} from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './styles/action-bar.module.css'
 
 export interface Props {
   title?: React.ReactNode
-  css?: unknown
+  css?: CSS
   className?: string
   description: string
   style?: CSSProperties

@@ -1,7 +1,7 @@
 import {Cell, ColumnMeta, flexRender, RowData} from '@tanstack/react-table'
 import React, {SetStateAction, useEffect} from 'react'
 import {createSafeContext} from '../../utils/create-safe-context'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './editable-cell.module.css'
 
@@ -10,7 +10,7 @@ interface CellProps {
   cell: Cell<unknown, unknown>
   row: number
   column: string
-  css?: unknown
+  css?: CSS
 }
 
 export interface CellMetaProps<TData extends RowData, TValue>

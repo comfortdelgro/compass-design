@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef, useState } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import Spinner from '../spinner'
 
 export interface ViewerCanvasProps {
@@ -144,8 +144,9 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
   const imgStyle: React.CSSProperties = {
     width: `${props.width}px`,
     height: `${props.height}px`,
-    transform: `translateX(${props.left !== null ? `${props.left}px` : 'auto'
-      }) translateY(${props.top}px)
+    transform: `translateX(${
+      props.left !== null ? `${props.left}px` : 'auto'
+    }) translateY(${props.top}px)
     rotate(${props.rotate}deg) scaleX(${props.scaleX}) scaleY(${props.scaleY})`,
   }
 
@@ -171,7 +172,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
   }
 
   return (
-    <div onMouseDown={handleCanvasMouseDown} style={{ zIndex: props.zIndex }}>
+    <div onMouseDown={handleCanvasMouseDown} style={{zIndex: props.zIndex}}>
       {imgNode}
     </div>
   )

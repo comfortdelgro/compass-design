@@ -120,7 +120,7 @@ export const HeadingsControl = () => {
           height: '28px',
           fontSize: 'var(--cdg-font-size-label1)',
           fontWeight: 'var(--cdg-font-weight-semibold)',
-        }
+        },
       }}
     >
       {heading.map((h) => (

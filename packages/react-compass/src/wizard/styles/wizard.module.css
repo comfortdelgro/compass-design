@@ -36,7 +36,6 @@
     font-weight: var(--cdg-font-weight-medium);
   }
 
-
   .line {
     z-index: 0;
     flex-grow: 1;
@@ -71,7 +70,7 @@
     color: var(--cdg-color-whiteText);
     background-color: var(--cdg-color-cdgBlue100);
   }
-  
+
   .itemIsActive:hover::after {
     width: var(--cdg-spacing-7);
     height: var(--cdg-spacing-7);
@@ -104,7 +103,8 @@
     border-bottom-right-radius: var(--cdg-border-radius-full);
   }
 
-  .lineIsActiveIsErrored, .itemIsActiveIsErrored {
+  .lineIsActiveIsErrored,
+  .itemIsActiveIsErrored {
     background-color: var(--cdg-color-danger);
   }
 }

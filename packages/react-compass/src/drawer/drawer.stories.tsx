@@ -110,7 +110,7 @@ export function Default() {
               top: '-1rem',
               paddingBlock: '1rem',
               marginBlock: 0,
-              color: "var(--cdg-color-primaryText)",
+              color: 'var(--cdg-color-primaryText)',
               backgroundColor: 'var(--cdg-color-background)',
             }}
           >
@@ -133,7 +133,7 @@ export function Default() {
               top: '-1rem',
               paddingBlock: '1rem',
               marginBlock: 0,
-              color: "var(--cdg-color-primaryText)",
+              color: 'var(--cdg-color-primaryText)',
               backgroundColor: 'var(--cdg-color-background)',
             }}
           >

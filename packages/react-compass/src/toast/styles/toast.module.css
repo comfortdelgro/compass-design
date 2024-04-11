@@ -344,7 +344,7 @@
   .toastWithHeader {
     padding: 0;
   }
-  .headerWithHeader{
+  .headerWithHeader {
     background-color: var(--cdg-color-background);
     padding: var(--cdg-spacing-4);
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import NavbarActions from './navbar-actions'
 import NavbarBrand from './navbar-brand'
 import {NavbarLinks} from './navbar-links'
@@ -7,7 +7,7 @@ import {NavbarSeperator} from './navbar-seperator'
 import styles from './styles/navbar.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   variant?: 'portal' | 'website'
   color?: 'blue' | 'white'

@@ -1,10 +1,10 @@
 import React, {useContext} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
 interface Props {
   children: React.ReactNode
-  css?: unknown
+  css?: CSS
   onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 

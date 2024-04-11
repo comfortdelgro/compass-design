@@ -1,6 +1,6 @@
 import {Document} from '@contentful/rich-text-types'
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import RenderDocument from './renderDocument'
 import styles from './styles/richtextRender.module.css'
@@ -8,7 +8,7 @@ import styles from './styles/richtextRender.module.css'
 interface Props {
   document?: Document
   platform?: 'react' | 'html'
-  css?: unknown
+  css?: CSS
 }
 
 export type RichTextRenderProps = Props &

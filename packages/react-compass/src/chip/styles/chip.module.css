@@ -18,16 +18,16 @@
     height: fit-content;
     font-family: var(--cdg-font-sans);
   }
-  
+
   .chip.isErrored {
     border-color: var(--cdg-color-danger);
     background-color: var(--cdg-color-dangerBg);
   }
-  
+
   .close-icon-container {
     cursor: pointer;
   }
-  
+
   .cdgChipContent {
     text-overflow: ellipsis;
     white-space: nowrap;

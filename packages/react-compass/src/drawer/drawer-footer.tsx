@@ -1,9 +1,9 @@
 import {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/drawer.module.css'
 
-export type DrawerFooterProps = PropsWithChildren<{css?: unknown}> &
+export type DrawerFooterProps = PropsWithChildren<{css?: CSS}> &
   HTMLAttributes<HTMLElement>
 
 const DrawerFooter = forwardRef<HTMLElement, DrawerFooterProps>(

@@ -104,7 +104,6 @@
     z-index: 49;
   }
 
-
   .sidebar {
     /* reset */
     appearance: none;
@@ -142,7 +141,7 @@
     cursor: pointer;
   }
 
-  .sidebarCloseIcon>* {
+  .sidebarCloseIcon > * {
     height: 100%;
   }
 }

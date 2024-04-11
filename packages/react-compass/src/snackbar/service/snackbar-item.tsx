@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CssInjection} from '../../utils/objectToCss'
 import {useSnackbar} from '../hooks/useSnackbar'
 import Snackbar from '../snackbar'
 import styles from '../styles/snackbar-item.module.css'

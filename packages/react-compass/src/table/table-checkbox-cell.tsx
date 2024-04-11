@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/table-checkbox-cell.module.css'
 import TableCheckbox from './table-checkbox'
 
@@ -9,7 +9,7 @@ interface Props {
   className?: string
   disabled?: boolean
   checked?: boolean
-  css?: unknown
+  css?: CSS
 }
 
 export type TableCheckboxCellProps = Props &

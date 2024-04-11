@@ -1,7 +1,7 @@
 'use client'
 
 import React, {useRef, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import Divider from './divider'
 import {SidenavContext} from './sidenav-context'
 import SidenavItem from './sidenav-item'
@@ -12,7 +12,7 @@ interface Props {
   children: React.ReactNode
   expand?: boolean
   delay?: number
-  css?: unknown
+  css?: CSS
   className?: string
   onExpandChange?: (expand: boolean) => void
 }

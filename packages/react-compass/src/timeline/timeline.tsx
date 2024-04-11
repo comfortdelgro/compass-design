@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/timeline.module.css'
 import TimelineItem from './timeline-item'
@@ -10,7 +10,7 @@ interface Props {
   mode?: 'vertical' | 'horizontal'
   labelAlignment?: 'left' | 'right' | 'top' | 'bottom' | 'alternate'
   itemAlignment?: 'left' | 'right' | 'top' | 'bottom' | 'alternate'
-  css?: unknown
+  css?: CSS
 }
 
 export type TimelineProps = Props &

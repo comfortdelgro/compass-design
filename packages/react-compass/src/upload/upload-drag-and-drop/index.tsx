@@ -1,10 +1,10 @@
 import React, {useMemo} from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {
-  convertFileSizeToReadableNumber,
   DEFAULT_FILE_ACCEPT,
   DEFAULT_FILE_LIMIT,
+  convertFileSizeToReadableNumber,
 } from '../common'
 import styles from './upload-drag-and-drop.module.css'
 
@@ -20,7 +20,7 @@ interface Props {
   isDisabled?: boolean
   onError?: (error: string) => void
   customErrorMessages?: React.ReactNode
-  css?: unknown
+  css?: CSS
   variant?: 'area' | 'field'
 }
 

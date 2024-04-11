@@ -307,9 +307,9 @@ export type {
   SubHeaderTitleProps,
 } from './sub-header'
 export {default as SubBanner} from './subBanner'
-export {default as Table} from './table'
-export {default as ReactTable} from './table'
+export {default as ReactTable, default as Table} from './table'
 export type {
+  TableProps as ReactTableProps,
   TableAccessorColumnDef,
   TableCell,
   TableCellContext,
@@ -322,7 +322,6 @@ export type {
   TableRow,
   TableSortingState,
   TableType,
-  TableProps as ReactTableProps,
 } from './table'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'

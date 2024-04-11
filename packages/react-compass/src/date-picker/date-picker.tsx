@@ -16,19 +16,19 @@ import {
   SpectrumDatePickerProps,
 } from '../calendar/types'
 import {DateValue, parseDate} from '../internationalized/date'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DatePickerProvider from './date-picker-context'
 import styles from './styles/date-picker.module.css'
 interface Props extends SpectrumDatePickerProps<DateValue> {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   label?: string | React.ReactNode
   isInvalid?: boolean
   isMobile?: boolean
   shouldCloseOnSelect?: boolean
   maxValue?: DateValue | null | undefined
-  calendarCSS?: unknown
+  calendarCSS?: CSS
   helperText?: React.ReactNode
   ctaButtonRender?: React.ReactNode
 }
@@ -168,7 +168,7 @@ interface DatePickerCalendarWrapperProps {
   onCancel?: (() => void) | undefined
   maxValue?: DateValue | null | undefined
   ctaButtonRender?: React.ReactNode
-  css?: unknown | undefined
+  css?: CSS
 }
 
 const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {

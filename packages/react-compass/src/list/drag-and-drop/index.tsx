@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './index.module.css'
 import DragAndDropListItem from './item'
@@ -8,7 +8,7 @@ import {pickChilds} from './utils'
 import List from './utils/List'
 
 export interface Props {
-  css?: unknown
+  css?: CSS
   children: React.ReactNode
   onReorderByKeys?: (keys: React.Key[]) => void
 }

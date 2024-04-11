@@ -15,7 +15,7 @@ import {
   useRole,
 } from '@floating-ui/react'
 import React, {HTMLAttributes, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/popover.module.css'
 
 type OffsetValue =
@@ -76,7 +76,7 @@ interface Props {
   isFloatingPortal?: boolean
   onPositionedChange?: (isPositioned: boolean) => void
   className?: string
-  css?: unknown
+  css?: CSS
 }
 
 export type PopoverProps = Props &

@@ -4,7 +4,7 @@ import {
   useKeyboardNavigation,
   useKeyboardNavigationState,
 } from '../../utils/hooks'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {TabItemProps} from '../item'
 import styles from '../styles/tab.module.css'
@@ -21,7 +21,7 @@ interface Props {
   currentKey: React.Key | undefined
   item: React.DetailedReactHTMLElement<TabItemProps, HTMLElement>
   onSelect: (key: React.Key) => void
-  css?: unknown
+  css?: CSS
 }
 
 type TabProps = Props & Omit<HTMLAttributes<HTMLDivElement>, keyof Props>

@@ -1,10 +1,10 @@
 import React from 'react'
+import {CSS, objectToCSS} from '.'
 import generateRandomString from '../generateRandomString'
-import objectToCSS, {StyleObject} from './object-to-css'
 
 export interface Props {
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
   childrenRef?: React.Ref<HTMLElement>
 }
 
@@ -19,28 +19,31 @@ const CssInjection = React.forwardRef<HTMLElement, Props>((props) => {
     setAdditionalClasses(childClassName)
   }, [childrenRef])
 
-  const modifiedChildren = React.Children.map(children, (child) => {
-    if (React.isValidElement(child)) {
-      // Cast child to include className property
-      const childWithClassName = child as React.DetailedReactHTMLElement<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >
-      // Clone the child element and add additional classes
-      return React.cloneElement(childWithClassName, {
-        className: `${
-          childWithClassName.props.className || ''
-        } ${additionalClasses}`,
-      })
-    }
-    return child
-  })
+  const modifiedChildren: React.ReactNode = React.Children.map(
+    children,
+    (child) => {
+      if (React.isValidElement(child)) {
+        // Cast child to include className property
+        const childWithClassName = child as React.DetailedReactHTMLElement<
+          React.HTMLAttributes<HTMLElement>,
+          HTMLElement
+        >
+        // Clone the child element and add additional classes
+        return React.cloneElement(childWithClassName, {
+          className: `${
+            childWithClassName.props.className || ''
+          } ${additionalClasses}`,
+        })
+      }
+      return child as React.ReactNode
+    },
+  )
 
   // should have used useInsertionEffect() but it needs typescript 5 as dependency, not sure if it works for all cdg's projects.
   React.useEffect(() => {
     if (additionalClasses === '') return
     if (!css) return
-    const cssString = objectToCSS(css as StyleObject, `.${additionalClasses}`)
+    const cssString = objectToCSS(css, [`.${additionalClasses}`])
     const styleElement = document.createElement('style')
     styleElement.setAttribute('data-cdg', 'css')
     styleElement.textContent = cssString

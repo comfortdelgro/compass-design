@@ -1,9 +1,9 @@
 import {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/drawer.module.css'
 
-export type DrawerHeaderProps = PropsWithChildren<{css?: unknown}> &
+export type DrawerHeaderProps = PropsWithChildren<{css?: CSS}> &
   HTMLAttributes<HTMLElement>
 
 const DrawerHeader = forwardRef<HTMLElement, DrawerHeaderProps>(

@@ -1,6 +1,6 @@
 import {Cell, flexRender, Row} from '@tanstack/react-table'
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {CellMetaProps, EditableCell} from './editable/editable-cell'
 
@@ -9,7 +9,7 @@ import styles from './styles/table-cell.module.css'
 export interface Props<TData, TValue> {
   cell: Cell<TData, TValue>
   row: Row<TData>
-  css?: unknown
+  css?: CSS
   className?: string
   onChangeCell?: (newData: object) => void
 }

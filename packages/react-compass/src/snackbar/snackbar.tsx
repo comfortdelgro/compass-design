@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import SnackbarPrefixIcon from './snackbar-prefix-icon'
@@ -16,7 +16,7 @@ interface Props {
   handleClose?: () => void
   onClick?: (e: React.MouseEvent, id: number | string | undefined) => void
   autoClose?: false | number
-  css?: unknown
+  css?: CSS
   className?: string
   type?: 'success' | 'warning' | 'default' | 'error' | 'reminder' | 'ongoing'
 }

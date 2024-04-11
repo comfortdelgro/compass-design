@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-row.module.css'
 
@@ -7,7 +7,7 @@ interface Props {
   children: React.ReactNode
   isSelected: boolean
   isExpanded: boolean
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

@@ -13,7 +13,7 @@ import {Content, EditorContent, JSONContent, useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import isEqual from 'lodash/isEqual'
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import * as controls from './controls'
 import Control from './controls/Control'
@@ -31,7 +31,7 @@ interface Props {
   content?: Content
   placeholder?: string
   className?: string
-  css?: unknown
+  css?: CSS
 }
 interface StorageCount {
   characters: () => number

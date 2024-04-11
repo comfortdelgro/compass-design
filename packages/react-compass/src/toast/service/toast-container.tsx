@@ -1,6 +1,6 @@
 import React from 'react'
 import Portal from '../../portal'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import styles from '../styles/toast.module.css'
 import {Anchor} from './toast-context'
 import ToastItem from './toast-item'
@@ -10,7 +10,7 @@ interface Props {
   toasts: ToastItemType[]
   toastItemClassName?: string
   anchorOrigin: Anchor
-  css?: unknown
+  css?: CSS
 }
 
 export type ToastsContainerProps = Props &

@@ -1,13 +1,13 @@
 'use client'
 import React from 'react'
 import {useIsDarkTheme} from '../theme'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useId} from '../utils/useId'
 import styles from './styles/textarea.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   id?: string
   label?: React.ReactNode
   cols?: number

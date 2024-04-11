@@ -1,4 +1,5 @@
 import {ReactNode} from 'react'
+import {CSS} from '../../utils/objectToCss'
 
 export interface SnackbarItemType {
   id?: number
@@ -8,7 +9,7 @@ export interface SnackbarItemType {
   autoClose?: false | number
   type?: 'default' | 'error' | 'success' | 'warning' | 'reminder' | 'ongoing'
   onClick?: (e: React.MouseEvent, id: number | undefined) => void
-  css?: unknown
+  css?: CSS
 }
 
 export interface SnackbarState {
