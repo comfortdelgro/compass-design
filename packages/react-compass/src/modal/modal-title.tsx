@@ -1,12 +1,12 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/modal.module.css'
 
 interface Props {
   children?: React.ReactNode
   h5?: boolean
-  css?: unknown
+  css?: CSS
 }
 
 export type ModalTitleProps = Props &

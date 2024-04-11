@@ -1,6 +1,6 @@
 import React, {useRef} from 'react'
 import Popover from '../popover'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/autoComplete.module.css'
 
@@ -13,7 +13,7 @@ interface Props {
   searchedValue?: string
   notFoundContent?: string
   debounce?: number
-  css?: unknown
+  css?: CSS
   onLoadMore?: () => unknown // Add the onLoadMore prop for loading more data
   isLoadingMore?: boolean // Add the isLoadingMore prop for loading more data
 }

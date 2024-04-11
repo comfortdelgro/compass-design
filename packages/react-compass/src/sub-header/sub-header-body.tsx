@@ -1,12 +1,12 @@
 'use client'
 
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/sub-header-body.module.css'
 
 interface Props {
   children: React.ReactNode
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

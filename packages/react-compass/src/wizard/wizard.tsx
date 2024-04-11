@@ -1,12 +1,12 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import WizardItem from './item'
 import styles from './styles/wizard.module.css'
-import {pickChilds, TickIcon} from './utils'
+import {TickIcon, pickChilds} from './utils'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   items?: string[]
   currentStep?: number
   erroredSteps?: number[]

@@ -1,5 +1,5 @@
 import React, {memo, useLayoutEffect} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/otpInput.module.css'
 import usePrevious from './usePrevious'
@@ -9,7 +9,7 @@ export interface SingleOTPInputProps
   index: number
   focus?: boolean
   autoFocus?: boolean
-  css?: unknown
+  css?: CSS
   isNumberInput?: boolean
   isMobile?: boolean
   isErrored?: boolean

@@ -11,7 +11,7 @@ import {
   useMemo,
   useState,
 } from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DrawerExpander, {DrawerExpanderProps} from './drawer-expander'
 import DrawerFooter from './drawer-footer'

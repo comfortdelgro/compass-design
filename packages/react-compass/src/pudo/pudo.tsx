@@ -12,7 +12,7 @@ import {
 } from 'react'
 import Button from '../button'
 import {useDeepCompareEffect} from '../utils/hooks'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useStateWithCallback} from './hooks/useStateWithCallback'
 import PudoItem from './pudo-item'

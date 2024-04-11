@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {Component} from '../utils'
 import styles from './header.module.css'
 
@@ -13,7 +13,7 @@ interface Props {
     | 'header5'
   component?: Component
   children: React.ReactNode
-  css?: unknown
+  css?: CSS
   weight?: 'semibold' | 'bold'
 }
 

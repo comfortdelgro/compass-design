@@ -111,7 +111,7 @@ export const FullFeatured: React.FC = () => {
           onInput={(event: React.ChangeEvent<HTMLInputElement>) =>
             setInputValue(event.target.value)
           }
-          onClear={() => setInputValue('')}  
+          onClear={() => setInputValue('')}
           value={inputValue}
         />
       </AutoComplete>

@@ -2,7 +2,7 @@
 'use client'
 
 import {CSSProperties, forwardRef, useCallback, useRef, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {SLIDER_REDUCE_OPACITY} from './slide-action.const'
 import {SlideActionProps, SlideDraggerProps} from './slide-action.types'

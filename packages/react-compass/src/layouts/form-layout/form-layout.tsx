@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import FormLayoutExplaination from './form-layout-explaination'
 import FormLayoutGroup from './form-layout-group'
@@ -8,7 +8,7 @@ import styles from './styles/action-bar.module.css'
 
 export interface Props {
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
   className?: string
   style?: React.CSSProperties
 }

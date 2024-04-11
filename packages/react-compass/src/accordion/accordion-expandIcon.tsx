@@ -1,9 +1,10 @@
 import React from 'react'
+import {CSS} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/accordion-title.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
 }
 

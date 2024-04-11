@@ -1,9 +1,9 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/list-interactive.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   groupLabel?: React.ReactNode
   avatar?: React.ReactNode
   title?: string

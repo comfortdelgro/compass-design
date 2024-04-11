@@ -1,7 +1,7 @@
 import {toUpper} from 'lodash'
 import React from 'react'
 import {getIconFromColor} from '../utils/get-icon-from-color'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/badge.module.css'
@@ -10,7 +10,7 @@ interface Props {
   label?: string
   icon?: boolean | React.ReactNode
   destination?: string
-  css?: unknown
+  css?: CSS
   variant?: 'outline' | 'h5' | 'primary' | 'secondary' | 'rounded'
   color?: 'info' | 'danger' | 'success' | 'warning'
   status?: 'online' | 'away' | 'busy' | 'offline'

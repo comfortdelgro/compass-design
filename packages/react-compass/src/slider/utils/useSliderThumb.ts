@@ -12,10 +12,10 @@ import {useKeyboard} from '../../quantity-toggle/utils/useFocusable/useKeyboard'
 import mergeProps from '../../utils/mergeProps'
 import {clamp} from './number'
 import {
-  SliderThumbBaseProps,
   DOMAttributes,
   KeyboardEvent,
   SliderState,
+  SliderThumbBaseProps,
 } from './types'
 import {useFormReset} from './useFormReset'
 import {useGlobalListeners} from './useGlobalListeners'

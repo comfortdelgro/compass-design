@@ -1,5 +1,5 @@
 import React, {HTMLAttributes} from 'react'
-import CssInjection from '../../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../../utils/objectToCss'
 import {useDOMRef} from '../../../utils/use-dom-ref'
 import styles from '../../styles/control.module.css'
 
@@ -22,12 +22,12 @@ interface Props {
   onTouchEnd?: (e: React.TouchEvent<HTMLButtonElement>) => void
   tabIndex?: number
   type?: 'button' | 'reset' | 'submit' | undefined
-  css?: unknown
+  css?: CSS
 }
 export interface PremadeControlProps {
   icon?: React.FC
   controltype?: string
-  css?: unknown
+  css?: CSS
 }
 export type ButtonProps = Props &
   Omit<HTMLAttributes<HTMLButtonElement>, keyof Props>

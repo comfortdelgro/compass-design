@@ -15,7 +15,6 @@
   .dateSegment:focus {
     box-shadow: none;
   }
-  
 }
 
 @layer variant {

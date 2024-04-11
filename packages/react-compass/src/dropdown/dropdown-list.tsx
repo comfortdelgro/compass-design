@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useMemo} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
@@ -15,7 +15,7 @@ interface Props {
   children?: React.ReactNode
   noDataMessage?: string
   onLoadMore?: () => void
-  css?: unknown
+  css?: CSS
 }
 
 export type DropdownItemListProps = Props
@@ -73,7 +73,9 @@ const DropdownList: React.FC<DropdownItemListProps> = (
           {isLoading ? (
             <DropdownLoading />
           ) : displayedItemsCount === 0 ? (
-            <div className={`${styles.dropdownListEmptyData} cdg-dropdown-list-empty-data`}>
+            <div
+              className={`${styles.dropdownListEmptyData} cdg-dropdown-list-empty-data`}
+            >
               {noDataMessage || 'No data'}
             </div>
           ) : (

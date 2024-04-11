@@ -4,14 +4,14 @@ import {Typography} from '..'
 import Button from '../button'
 import Popover from '../popover'
 import TextField from '../textfield'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-column-header-filter.module.css'
 
 interface Props<TData, TValue> {
   column: Column<TData, TValue>
   table: Table<TData>
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

@@ -1,7 +1,7 @@
 import React, {Key} from 'react'
 import Dropdown from '../dropdown'
 import TextField from '../textfield'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/dropdown-textfield.module.css'
 
@@ -55,7 +55,7 @@ interface Props {
   'aria-details'?: string
   'aria-errormessage'?: string
   h5?: boolean
-  css?: unknown
+  css?: CSS
 }
 
 export type DropdownTextfieldProps = Props &

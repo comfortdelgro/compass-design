@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {useIsDarkTheme} from '../theme/useCurrentTheme'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/checkbox.module.css'
-import {useIsDarkTheme} from '../theme/useCurrentTheme'
 
 interface Props {
   id?: string
-  css?: unknown
+  css?: CSS
   name?: string
   value?: string
   autoFocus?: boolean
@@ -15,7 +15,7 @@ interface Props {
   isSelected?: boolean
   defaultSelected?: boolean
   isIndeterminate?: boolean
-  cssCheckBoxInput?: unknown
+  cssCheckBoxInput?: CSS
   children?: React.ReactNode
   validationState?: 'valid' | 'invalid'
   variant?: 'default' | 'rounded' | 'h5'
@@ -44,7 +44,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     } = props
 
     const isDarkTheme = useIsDarkTheme()
-    
+
     const [checked, setChecked] = useState<boolean>(
       isSelected || defaultSelected,
     )

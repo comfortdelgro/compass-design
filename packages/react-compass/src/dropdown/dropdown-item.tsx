@@ -4,7 +4,7 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
 import {textContent} from './utils'
 
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/dropdown.module.css'
 
 const Tick = () => (
@@ -41,7 +41,7 @@ interface Props {
   checkmark?: 'none' | 'checkbox' | 'tick'
   flagName?: string
   children: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
 export type DropdownItemProps = Props &

@@ -1,6 +1,5 @@
 @import '../../theme/theme.module.css';
 
-
 @layer default {
   .rtePopover {
     margin: 0;
@@ -14,7 +13,7 @@
       0px 3.2px 7.2px rgba(0, 0, 0, 0.13);
     box-sizing: border-box;
   }
-  
+
   .rtePopover ul {
     max-height: 16rem;
   }
@@ -33,7 +32,7 @@
   .rtePopover.typeColor li {
     padding: 0;
   }
-  
+
   .rtePopover ul {
     overscroll-behavior: contain;
     max-height: var(--cdg-spacing-64);

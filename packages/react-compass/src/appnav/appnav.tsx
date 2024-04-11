@@ -1,12 +1,12 @@
 import React, {HTMLAttributes} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {AppNavSection, AppNavSectionProps} from './appnav-section'
 import styles from './styles/appnav.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children: React.ReactNode
   position?: 'top' | 'bottom'
   index: number

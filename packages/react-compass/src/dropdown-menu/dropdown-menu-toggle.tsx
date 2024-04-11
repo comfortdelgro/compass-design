@@ -1,13 +1,13 @@
 'use client'
 import React, {useContext} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMenuContext from './dropdown-menu-context'
 
 interface Props {
   children?: React.ReactNode
   'aria-haspopup'?: boolean
-  css?: unknown
+  css?: CSS
 }
 
 export type DropdownMenuToggleProps = Props &

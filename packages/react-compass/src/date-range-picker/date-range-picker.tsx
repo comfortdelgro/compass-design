@@ -19,13 +19,13 @@ import DatePickerProvider from '../date-picker/date-picker-context'
 import {DateValue, parseDate} from '../internationalized/date'
 import RangeCalendar from '../range-calendar/range-calendar'
 import {CustomShortcutsProps} from '../range-calendar/range-calendar-shortcuts'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useMediaQuery} from '../utils/use-media-query'
 import styles from './styles/date-range-picker.module.css'
 
 interface Props extends SpectrumDateRangePickerProps<DateValue> {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   label?: string | React.ReactNode
   isInvalid?: boolean
@@ -33,7 +33,7 @@ interface Props extends SpectrumDateRangePickerProps<DateValue> {
   endDateLabel?: string | React.ReactNode
   shouldCloseOnSelect?: boolean
   isMobile?: boolean
-  calendarCSS?: unknown
+  calendarCSS?: CSS
   helperText?: React.ReactNode
   maxValue?: DateValue | null | undefined
   hasShortcuts?: boolean
@@ -241,7 +241,7 @@ interface DateRangeCalendarWrapperProps {
   dialogProps: AriaDialogProps
   calendarProps: RangeCalendarProps<DateValue | null>
   maxValue?: DateValue | null | undefined
-  css?: unknown | undefined
+  css?: CSS
   hasShortcuts?: boolean | undefined
   ctaButtonRender?: React.ReactNode | undefined
   visibleMonths?: 1 | 2 | undefined

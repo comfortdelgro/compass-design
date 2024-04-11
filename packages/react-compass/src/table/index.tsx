@@ -4,12 +4,12 @@ import {
   Cell,
   CellContext,
   ColumnDef,
+  ColumnFiltersState,
   DisplayColumnDef,
   GroupColumnDef,
   HeaderContext,
   Row,
   SortingState,
-  ColumnFiltersState,
   Table as TanstackTable,
 } from '@tanstack/react-table'
 import TableCheckbox from './table-checkbox'
@@ -23,11 +23,11 @@ export {
   EditableCellContextProvider,
   useEditableCellContext,
 } from './editable/editable-cell'
-export type {OptionType} from './types'
 export type {TableProps} from './table'
 export type {TableCheckboxProps as ReactTableCheckboxProps} from './table-checkbox'
 export type {TableFooterProps as ReactTableFooterProps} from './table-footer'
 export type {TableToolbarProps as ReactTableToolbarProps} from './table-toolbar'
+export type {OptionType} from './types'
 
 const Table = _Table as typeof Table & {
   Toolbar: typeof TableToolbar

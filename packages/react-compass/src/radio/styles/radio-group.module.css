@@ -8,14 +8,12 @@
     display: flex;
     gap: var(--cdg-spacing-4);
   }
-  
+
   .radioGroupHorizontal {
     flex-direction: row;
   }
-  
+
   .radioGroupVertical {
     flex-direction: column;
   }
 }
-
-

@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {MenuListContext} from './menu-list-context'
 import MenuListDropdownHeader from './menu-list-dropdown-header'
 import MenuListDropdownItem from './menu-list-dropdown-item'
 import styles from './styles/menu-list-dropdown.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   isOpen?: boolean
   defaultOpen?: boolean

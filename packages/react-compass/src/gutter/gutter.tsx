@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, {CSSProperties, useEffect} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/gutter.module.css'
 import Icon from './utils/Icon'
@@ -12,7 +12,7 @@ export enum GutterSide {
 }
 
 export interface Props {
-  css?: unknown
+  css?: CSS
   isExpand?: boolean
   side?: `${GutterSide}`
   hasExpandButton?: boolean

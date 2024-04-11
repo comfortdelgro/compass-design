@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ColumnDef,
@@ -17,7 +18,7 @@ import Progress from '../progress'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CssInjection} from '../utils/objectToCss'
 import ExpandableRow from './expandable/expandable-row'
 import LoadingComponent from './loading/loading-component'
 import styles from './styles/table.module.css'
@@ -30,8 +31,7 @@ import TableRow from './table-row'
 import TableToolbar from './table-toolbar'
 import {Props} from './types'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type TableProps<T = any> = Props<T> &
+export type TableProps<T = unknown> = Props<T> &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<T>>
 
 const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
@@ -76,7 +76,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
       rowSelection,
       sorting: options.initialSortBy ? options.initialSortBy : sorting,
     },
-    columns: columns as ColumnDef<any, unknown>[],
+    columns: columns as ColumnDef<unknown, any>[],
     isMultiSortEvent: () => true,
     onSortingChange: setSorting,
     onGroupingChange: setGrouping,
@@ -93,18 +93,15 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   useEffect(() => {
     const selectedRowModel = table.getSelectedRowModel().rows
     const selectedRowOriginals = selectedRowModel.map((item) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return item.original
     })
     onChangeRowSelection?.(selectedRowOriginals)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rowSelection])
 
   useEffect(() => {
     if (options.resetSelectionWhenDataChanged) {
       table.toggleAllRowsSelected(false)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options.resetSelectionWhenDataChanged, table, JSON.stringify(data)])
 
   useEffect(() => {
