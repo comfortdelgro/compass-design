@@ -20,6 +20,7 @@ interface Props {
   validationState?: 'valid' | 'invalid'
   variant?: 'default' | 'rounded' | 'h5'
   onChange?: (isSelected: boolean) => void
+  onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export type CheckboxProps = Props &
@@ -40,6 +41,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       defaultSelected = false,
       cssCheckBoxInput = {},
       onChange,
+      onChangeEvent,
       ...ariaSafeProps
     } = props
 
@@ -54,7 +56,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       keyof Props
     >
 
-    const handleCheckboxChange = () => {
+    const handleCheckboxChange = (event?: React.ChangeEvent<HTMLInputElement>) => {
+      onChangeEvent(event)
       if (isDisabled || isReadOnly) return
       if (onChange) {
         onChange(!checked)
@@ -104,7 +107,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         .join(' ')
     }, [isDarkTheme, variant])
 
-    console.log(isDarkTheme)
     return (
       <CssInjection css={css} childrenRef={checkboxRef}>
         <div className={rootClass} {...htmlProps}>

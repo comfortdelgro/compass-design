@@ -3,30 +3,28 @@
 import {
   ColumnDef,
   ColumnFiltersState,
+  ExpandedState,
+  GroupingState,
+  SortingState,
   getCoreRowModel,
   getExpandedRowModel,
   getFilteredRowModel,
   getGroupedRowModel,
   getSortedRowModel,
-  GroupingState,
-  SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-
 import React, {useEffect, useState} from 'react'
-import Progress from '../progress'
+import {CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
-
-import {CssInjection} from '../utils/objectToCss'
 import ExpandableRow from './expandable/expandable-row'
-import LoadingComponent from './loading/loading-component'
 import styles from './styles/table.module.css'
 import TableCell from './table-cell'
 import TableColumnHeader from './table-column-header'
+import EmptyDataComponent from './table-empty-data'
 import TableFooter from './table-footer'
 import TableHeaderRow from './table-header-row'
-import {NoDataComponent} from './table-nodata'
+import TableLoading from './table-loading'
 import TableRow from './table-row'
 import TableToolbar from './table-toolbar'
 import {Props} from './types'
@@ -39,21 +37,22 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [rowSelection, setRowSelection] = useState({})
   const [grouping, setGrouping] = React.useState<GroupingState>([])
+  const [expanded, setExpanded] = React.useState<ExpandedState>({})
   const {
-    // StyledComponentProps
     css = {},
     data,
     columns,
     options,
-    onManualSorting,
-    onManualFilter,
-    onChangeRowSelection,
-    renderRowSubComponent,
+    children,
     isLoading,
     emptyComponent,
-    loadingIndicator = <Progress.Circular variant='indeterminate' />,
-    children,
-    // HTMLDiv Props
+    loadingIndicator,
+    onManualSorting,
+    onManualFilter,
+    onManualExpanded,
+    onManualGrouping,
+    onChangeRowSelection,
+    renderRowSubComponent,
     ...htmlProps
   } = props
 
@@ -71,15 +70,17 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   const table = useReactTable({
     data: data,
     state: {
-      columnFilters,
       grouping,
       rowSelection,
+      columnFilters,
       sorting: options.initialSortBy ? options.initialSortBy : sorting,
+      expanded: options.initialExpanded ? options.initialExpanded : expanded,
     },
     columns: columns as ColumnDef<unknown, any>[],
     isMultiSortEvent: () => true,
     onSortingChange: setSorting,
     onGroupingChange: setGrouping,
+    onExpandedChange: setExpanded,
     onRowSelectionChange: setRowSelection,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -105,12 +106,20 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   }, [options.resetSelectionWhenDataChanged, table, JSON.stringify(data)])
 
   useEffect(() => {
+    onManualExpanded?.(expanded)
+  }, [onManualExpanded, expanded])
+
+  useEffect(() => {
     onManualSorting?.(sorting)
   }, [onManualSorting, sorting])
 
   useEffect(() => {
+    onManualGrouping?.(grouping)
+  }, [onManualGrouping, grouping])
+
+  useEffect(() => {
     onManualFilter?.(columnFilters)
-  }, [columnFilters, onManualFilter])
+  }, [onManualFilter, columnFilters])
 
   const tableRows = table.getRowModel().rows ?? []
 
@@ -138,13 +147,18 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
             {
               <tbody>
                 {tableRows.length ? (
-                  tableRows.map((row) => {
+                  tableRows.map((row, index) => {
+                    const expended =
+                      row.getIsExpanded() && renderRowSubComponent !== undefined
                     return (
-                      <>
+                      <React.Fragment>
                         <TableRow
                           key={row.id}
                           isSelected={row.getIsSelected()}
                           isExpanded={row.getIsExpanded()}
+                          className={`cdg-table-row-${
+                            (index + 1) % 2 === 0 ? 'even' : 'odd'
+                          }`}
                         >
                           {row.getVisibleCells().map((cell) => {
                             return (
@@ -152,28 +166,27 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
                             )
                           })}
                         </TableRow>
-                        <ExpandableRow
-                          colSpan={table.getAllLeafColumns()?.length}
-                          isExpanded={
-                            row.getIsExpanded() &&
-                            renderRowSubComponent !== undefined
-                          }
-                        >
-                          {renderRowSubComponent?.(row.original)}
-                        </ExpandableRow>
-                      </>
+                        {expended && (
+                          <ExpandableRow
+                            colSpan={table.getAllLeafColumns()?.length}
+                            isExpanded={expended}
+                          >
+                            {renderRowSubComponent?.(row.original)}
+                          </ExpandableRow>
+                        )}
+                      </React.Fragment>
                     )
                   })
                 ) : isLoading ? (
-                  <LoadingComponent
+                  <TableLoading
                     colSpan={table.getAllLeafColumns()?.length}
                     loadingIndicator={loadingIndicator}
                   />
                 ) : (
-                  <NoDataComponent
+                  <EmptyDataComponent
                     colSpan={table.getAllLeafColumns()?.length}
                     content={emptyComponent}
-                  ></NoDataComponent>
+                  />
                 )}
               </tbody>
             }

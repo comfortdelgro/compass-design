@@ -9,10 +9,9 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-column-header-filter.module.css'
 
 interface Props<TData, TValue> {
-  column: Column<TData, TValue>
-  table: Table<TData>
   css?: CSS
-  className?: string
+  table: Table<TData>
+  column: Column<TData, TValue>
 }
 
 export type HeaderColumnFilterProps<TData = unknown, TValue = unknown> = Props<
@@ -33,6 +32,14 @@ const HeaderColumnFilter = forwardRef<
 
   const columnFilterValue = column.getFilterValue()
 
+  const rootClasses = [
+    styles.cdgTableHeaderFilter,
+    className,
+    'cdg-table-column-header-filter',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={filterRef}>
       <Popover
@@ -52,10 +59,7 @@ const HeaderColumnFilter = forwardRef<
         }
         direction='bottom-end'
       >
-        <div
-          className={`${styles.cdgTableHeaderFilter} ${className}`}
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className={rootClasses} onClick={(e) => e.stopPropagation()}>
           {typeof firstValue === 'number' ? (
             <div className={styles.numberContainer}>
               <TextField
@@ -68,7 +72,7 @@ const HeaderColumnFilter = forwardRef<
                     old?.[1],
                   ])
                 }
-                placeholder={`Min`}
+                placeholder='Min'
                 autoFocus
               />
 
@@ -86,7 +90,7 @@ const HeaderColumnFilter = forwardRef<
                     value,
                   ])
                 }
-                placeholder={`Max`}
+                placeholder='Max'
               />
             </div>
           ) : (
@@ -94,7 +98,7 @@ const HeaderColumnFilter = forwardRef<
               ref={ref}
               value={(columnFilterValue ?? '') as string}
               onChange={(value) => column.setFilterValue(value)}
-              placeholder={`Search...`}
+              placeholder='Search...'
               autoFocus
             />
           )}

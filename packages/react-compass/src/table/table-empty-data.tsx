@@ -1,3 +1,5 @@
+import React from 'react'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-nodata.module.css'
 
 interface Props {
@@ -5,14 +7,31 @@ interface Props {
   content?: React.ReactNode
 }
 
-export const NoDataComponent = ({colSpan, content}: Props) => {
+export type TableEmptyDataProps = Props &
+  Omit<React.HTMLAttributes<HTMLTableCellElement>, keyof Props>
+
+const EmptyDataComponent = React.forwardRef<
+  HTMLTableCellElement,
+  TableEmptyDataProps
+>((props, ref) => {
+  const {colSpan, className, content} = props
+  const emptyDataRef = useDOMRef<HTMLTableCellElement>(ref)
+
+  const rootClasses = [
+    styles.cdgTableEmptyData,
+    className,
+    'cdg-table-empty-data',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <tr>
-      <td colSpan={colSpan}>
+      <td colSpan={colSpan} ref={emptyDataRef}>
         {content ? (
           content
         ) : (
-          <div className={styles.cdgTableNoData}>
+          <div className={rootClasses}>
             <svg
               width='165'
               height='69'
@@ -68,7 +87,7 @@ export const NoDataComponent = ({colSpan, content}: Props) => {
                 stroke-linejoin='round'
               />
             </svg>
-            <div className={styles.cdgTableNoDataDesciption}>
+            <div className={styles.cdgTableEmptyDataDesciption}>
               Your list is empty.
             </div>
           </div>
@@ -76,4 +95,6 @@ export const NoDataComponent = ({colSpan, content}: Props) => {
       </td>
     </tr>
   )
-}
+})
+
+export default EmptyDataComponent

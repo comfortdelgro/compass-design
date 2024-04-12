@@ -12,7 +12,6 @@ import {
   SortingState,
   Table as TanstackTable,
 } from '@tanstack/react-table'
-import TableCheckbox from './table-checkbox'
 import TableToolbar from './table-toolbar'
 
 import _Table from './table'
@@ -24,7 +23,6 @@ export {
   useEditableCellContext,
 } from './editable/editable-cell'
 export type {TableProps} from './table'
-export type {TableCheckboxProps as ReactTableCheckboxProps} from './table-checkbox'
 export type {TableFooterProps as ReactTableFooterProps} from './table-footer'
 export type {TableToolbarProps as ReactTableToolbarProps} from './table-toolbar'
 export type {OptionType} from './types'
@@ -32,14 +30,12 @@ export type {OptionType} from './types'
 const Table = _Table as typeof Table & {
   Toolbar: typeof TableToolbar
   Footer: typeof TableFooter
-  Checkbox: typeof TableCheckbox
   CheckboxCell: typeof TableCheckboxCell
   ProgressPercentage: typeof ProgressPercentage
 }
 
 Table.Toolbar = TableToolbar
 Table.Footer = TableFooter
-Table.Checkbox = TableCheckbox
 Table.CheckboxCell = TableCheckboxCell
 Table.ProgressPercentage = ProgressPercentage
 Table.ProgressPercentage.displayName = 'ProgressPercentage'
