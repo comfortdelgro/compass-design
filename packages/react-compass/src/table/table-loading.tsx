@@ -14,15 +14,23 @@ export type TableLoadingProps = Props &
   Omit<HTMLAttributes<HTMLTableRowElement>, keyof Props>
 
 const TableLoading = React.forwardRef<HTMLTableRowElement, TableLoadingProps>(
-  ({css = {}, loadingIndicator = <Spinner />, colSpan, ...htmlProps}, ref) => {
+  (props, ref) => {
+    const {
+      css = {},
+      loadingIndicator = <Spinner />,
+      colSpan,
+      className,
+      ...htmlProps
+    } = props
     const tableLoadingRef = useDOMRef(ref)
+
+    const rootClasses = [styles.cdgTableLoading, className, 'cdg-table-loading']
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css}>
-        <tr
-          className={styles.cdgTableLoading}
-          ref={tableLoadingRef}
-          {...htmlProps}
-        >
+        <tr {...htmlProps} ref={tableLoadingRef} className={rootClasses}>
           <td colSpan={colSpan}>{loadingIndicator}</td>
         </tr>
       </CssInjection>
