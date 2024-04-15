@@ -1,4 +1,4 @@
-import {isNil} from 'lodash'
+import isNil from 'lodash/isNil'
 import React, {HTMLAttributes, useCallback} from 'react'
 import Badge from '../badge'
 import {CSS, CssInjection} from '../utils/objectToCss'
