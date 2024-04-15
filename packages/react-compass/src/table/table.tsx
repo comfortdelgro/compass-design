@@ -5,6 +5,7 @@ import {
   ColumnFiltersState,
   ExpandedState,
   GroupingState,
+  RowSelectionState,
   SortingState,
   getCoreRowModel,
   getExpandedRowModel,
@@ -33,11 +34,6 @@ export type TableProps<T = unknown> = Props<T> &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<T>>
 
 const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
-  const [sorting, setSorting] = useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-  const [rowSelection, setRowSelection] = useState({})
-  const [grouping, setGrouping] = React.useState<GroupingState>([])
-  const [expanded, setExpanded] = React.useState<ExpandedState>({})
   const {
     css = {},
     data,
@@ -55,6 +51,17 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     renderRowSubComponent,
     ...htmlProps
   } = props
+  const [grouping, setGrouping] = React.useState<GroupingState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [sorting, setSorting] = useState<SortingState>(
+    options.initialSortBy ?? [],
+  )
+  const [expanded, setExpanded] = React.useState<ExpandedState>(
+    options.initialExpanded ?? {},
+  )
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>(
+    options.initialRowSelection ?? {},
+  )
 
   const {child: toolbar, rest: childrenWithoutToolbar} = pickChild<
     typeof TableToolbar
@@ -73,8 +80,8 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
       grouping,
       rowSelection,
       columnFilters,
-      sorting: options.initialSortBy ? options.initialSortBy : sorting,
-      expanded: options.initialExpanded ? options.initialExpanded : expanded,
+      sorting: sorting,
+      expanded: expanded,
     },
     columns: columns as ColumnDef<unknown, any>[],
     isMultiSortEvent: () => true,
@@ -120,6 +127,19 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   useEffect(() => {
     onManualFilter?.(columnFilters)
   }, [onManualFilter, columnFilters])
+
+  useEffect(() => {
+    if (options.initialSortBy) setSorting(options.initialSortBy)
+  }, [options.initialSortBy])
+
+  useEffect(() => {
+    if (options.initialExpanded) setExpanded(options.initialExpanded)
+  }, [options.initialExpanded])
+
+  useEffect(() => {
+    if (options.initialRowSelection)
+      setRowSelection(options.initialRowSelection)
+  }, [options.initialRowSelection])
 
   const tableRows = table.getRowModel().rows ?? []
 

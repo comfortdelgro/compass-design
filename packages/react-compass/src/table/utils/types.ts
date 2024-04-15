@@ -4,6 +4,7 @@ import {
   ExpandedState,
   GroupingState,
   Row,
+  RowSelectionState,
   SortingState,
 } from '@tanstack/react-table'
 import {CSS} from '../../utils/objectToCss'
@@ -17,6 +18,7 @@ export interface Options<TData> {
   manualPagination?: boolean
   initialSortBy?: SortingState
   initialExpanded?: ExpandedState
+  initialRowSelection?: RowSelectionState
   debugTable?: boolean
   resetSelectionWhenDataChanged?: boolean
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean)

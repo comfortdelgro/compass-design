@@ -82,6 +82,7 @@ const TableColumnHeader = React.forwardRef<
     .join(' ')
 
   const headerContentClass = [
+    styles.cdgTableContent,
     headerProps.column.getCanSort() && styles.canSort,
     'cdg-table-column-header-content',
   ]
