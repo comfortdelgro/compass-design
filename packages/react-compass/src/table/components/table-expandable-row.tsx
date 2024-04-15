@@ -2,7 +2,7 @@ import React from 'react'
 import Transitions from '../../transitions'
 import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import styles from '../styles/expandable-row.module.css'
+import styles from '../styles/table-expandable-row.module.css'
 
 interface Props {
   css?: CSS

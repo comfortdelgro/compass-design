@@ -3,7 +3,7 @@ import React, {SetStateAction, useEffect} from 'react'
 import {createSafeContext} from '../../utils/create-safe-context'
 import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import styles from '../styles/editable-cell.module.css'
+import styles from '../styles/table-editable-cell.module.css'
 
 interface CellProps {
   getValue: () => unknown
