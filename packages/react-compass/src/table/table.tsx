@@ -17,7 +17,7 @@ import React, {useEffect, useState} from 'react'
 import {CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
-import ExpandableRow from './expandable/expandable-row'
+import ExpandableRow from './components/table-expandable-row'
 import styles from './styles/table.module.css'
 import TableCell from './table-cell'
 import TableColumnHeader from './table-column-header'
@@ -27,7 +27,7 @@ import TableHeaderRow from './table-header-row'
 import TableLoading from './table-loading'
 import TableRow from './table-row'
 import TableToolbar from './table-toolbar'
-import {Props} from './types'
+import {Props} from './utils/types'
 
 export type TableProps<T = unknown> = Props<T> &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<T>>

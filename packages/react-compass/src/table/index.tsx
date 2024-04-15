@@ -21,11 +21,11 @@ import ProgressPercentage from './table-progress'
 export {
   EditableCellContextProvider,
   useEditableCellContext,
-} from './editable/editable-cell'
+} from './components/table-editable-cell'
 export type {TableProps} from './table'
 export type {TableFooterProps as ReactTableFooterProps} from './table-footer'
 export type {TableToolbarProps as ReactTableToolbarProps} from './table-toolbar'
-export type {OptionType} from './types'
+export type {OptionType} from './utils/types'
 
 const Table = _Table as typeof Table & {
   Toolbar: typeof TableToolbar
@@ -34,26 +34,28 @@ const Table = _Table as typeof Table & {
   ProgressPercentage: typeof ProgressPercentage
 }
 
-Table.Toolbar = TableToolbar
 Table.Footer = TableFooter
+Table.Toolbar = TableToolbar
 Table.CheckboxCell = TableCheckboxCell
 Table.ProgressPercentage = ProgressPercentage
-Table.ProgressPercentage.displayName = 'ProgressPercentage'
-Table.Toolbar.displayName = 'Table.Toolbar'
+
 Table.Footer.displayName = 'Table.Footer'
+Table.Toolbar.displayName = 'Table.Toolbar'
+Table.CheckboxCell.displayName = 'Table.CheckboxCell'
+Table.ProgressPercentage.displayName = 'Table.ProgressPercentage'
 
 Table.displayName = 'Table'
 
-export type TableColumnDef<T> = ColumnDef<T>
-export type TableAccessorColumnDef<T> = AccessorColumnDef<T>
-export type TableDisplayColumnDef<T> = DisplayColumnDef<T>
-export type TableSortingState = SortingState
-export type TableColumnFiltersState = ColumnFiltersState
-export type TableGroupColumnDef<T> = GroupColumnDef<T>
 export type TableRow<T> = Row<T>
-export type TableCell<TData, TValue> = Cell<TData, TValue>
-export type TableHeaderContext<TData, TValue> = HeaderContext<TData, TValue>
-export type TableCellContext<TData, TValue> = CellContext<TData, TValue>
 export type TableType<T> = TanstackTable<T>
+export type TableColumnDef<T> = ColumnDef<T>
+export type TableSortingState = SortingState
+export type TableGroupColumnDef<T> = GroupColumnDef<T>
+export type TableColumnFiltersState = ColumnFiltersState
+export type TableDisplayColumnDef<T> = DisplayColumnDef<T>
+export type TableCell<TData, TValue> = Cell<TData, TValue>
+export type TableAccessorColumnDef<T> = AccessorColumnDef<T>
+export type TableCellContext<TData, TValue> = CellContext<TData, TValue>
+export type TableHeaderContext<TData, TValue> = HeaderContext<TData, TValue>
 
 export default Table

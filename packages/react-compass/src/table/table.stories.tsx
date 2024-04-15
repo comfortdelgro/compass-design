@@ -37,9 +37,9 @@ import {
   Person,
   makeData,
   makeRequestStatusData,
-} from './makeData'
+} from './utils/makeData'
 import ProgressPercentage from './table-progress'
-import {OptionType} from './types'
+import {OptionType} from './utils/types'
 
 export const Basic: React.FC = () => {
   const [page, setPage] = useState(1)

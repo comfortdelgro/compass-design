@@ -2,7 +2,7 @@ import {Cell, flexRender, Row} from '@tanstack/react-table'
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {CellMetaProps, EditableCell} from './editable/editable-cell'
+import {CellMetaProps, EditableCell} from './components/table-editable-cell'
 import styles from './styles/table-cell.module.css'
 
 export interface Props<TData, TValue> {

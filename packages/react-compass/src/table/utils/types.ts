@@ -6,7 +6,7 @@ import {
   Row,
   SortingState,
 } from '@tanstack/react-table'
-import {CSS} from '../utils/objectToCss'
+import {CSS} from '../../utils/objectToCss'
 
 export interface Options<TData> {
   enableSorting?: boolean
