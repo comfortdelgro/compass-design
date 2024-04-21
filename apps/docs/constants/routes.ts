@@ -95,6 +95,12 @@ export const routes: TSideNavItem[] = [
           'Auto-complete is a text input with a list of suggestions that users can select from.',
       },
       {
+        title: 'Announcement',
+        pathname: '/announcement',
+        description:
+          'An announcement banner displays an important, succinct message.',
+      },
+      {
         title: 'Autocomplete',
         pathname: '/autocomplete',
         description:
