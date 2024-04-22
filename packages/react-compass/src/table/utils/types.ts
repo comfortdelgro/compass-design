@@ -1,10 +1,13 @@
 import {
   ColumnDef,
   ColumnFiltersState,
+  ExpandedState,
+  GroupingState,
   Row,
+  RowSelectionState,
   SortingState,
 } from '@tanstack/react-table'
-import {CSS} from '../utils/objectToCss'
+import {CSS} from '../../utils/objectToCss'
 
 export interface Options<TData> {
   enableSorting?: boolean
@@ -14,6 +17,8 @@ export interface Options<TData> {
   columnResizeMode?: 'onChange' | 'onEnd'
   manualPagination?: boolean
   initialSortBy?: SortingState
+  initialExpanded?: ExpandedState
+  initialRowSelection?: RowSelectionState
   debugTable?: boolean
   resetSelectionWhenDataChanged?: boolean
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean)
@@ -26,8 +31,10 @@ export interface Props<T> {
   data: unknown[]
   columns: Array<ColumnDef<T>>
   options: OptionType<T>
+  onManualExpanded?: (expanded: ExpandedState) => void
   onManualSorting?: (sortingField: SortingState) => void
   onManualFilter?: (filter: ColumnFiltersState) => void
+  onManualGrouping?: (filter: GroupingState) => void
   onChangeRowSelection?: (selectionRows: T[]) => void
   children: React.ReactNode
   onUpdateData?: (newData: object) => void
@@ -37,4 +44,9 @@ export interface Props<T> {
   emptyComponent?: React.ReactNode
   className?: string
   css?: CSS
+}
+export interface TableConfig {
+  hasFilter: boolean
+  hasSorted: boolean
+  hasMultipleSorted: boolean
 }
