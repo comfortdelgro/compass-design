@@ -90,7 +90,7 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
           height: 'calc(100vh - 54px)',
           overflow: 'hidden',
           background: 'var(--cdg-color-background)',
-          transition: 'background 0.25s'
+          transition: 'background 0.25s',
         }}
       >
         <Box css={{width: '100%', display: 'flex'}}>

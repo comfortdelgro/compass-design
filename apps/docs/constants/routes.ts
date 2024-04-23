@@ -28,8 +28,7 @@ export const routes: TSideNavItem[] = [
       {
         pathname: '/upgrading',
         title: 'Upgrading',
-        description:
-          'How to upgrade package version.',
+        description: 'How to upgrade package version.',
       },
     ],
   },
@@ -93,6 +92,12 @@ export const routes: TSideNavItem[] = [
         pathname: '/accordions',
         description:
           'Auto-complete is a text input with a list of suggestions that users can select from.',
+      },
+      {
+        title: 'Announcement',
+        pathname: '/announcement',
+        description:
+          'An announcement banner displays an important, succinct message.',
       },
       {
         title: 'Autocomplete',

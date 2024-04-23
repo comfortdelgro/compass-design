@@ -9,11 +9,11 @@ import HeaderColumnFilter from './table-column-header-filter'
 import TableResizer from './table-resizer'
 
 interface Props<TData, TValue> {
-  headerProps: Header<TData, TValue>
-  tableOption: Table<TData>
   css?: CSS
-  className?: string
+  tableOption: Table<TData>
+  headerProps: Header<TData, TValue>
 }
+
 export type TableColumnHeaderProps<TData = unknown, TValue = unknown> = Props<
   TData,
   TValue
@@ -23,7 +23,7 @@ export type TableColumnHeaderProps<TData = unknown, TValue = unknown> = Props<
 const TableColumnHeader = React.forwardRef<
   HTMLTableCellElement,
   TableColumnHeaderProps
->(({headerProps, tableOption, css = {}, onKeyDown}, ref) => {
+>(({headerProps, tableOption, className, css = {}, onKeyDown}, ref) => {
   const enableResizing = headerProps?.column?.columnDef?.enableResizing
   const isFilterableColumn =
     headerProps.column.columnDef.enableColumnFilter === true &&
@@ -73,7 +73,19 @@ const TableColumnHeader = React.forwardRef<
     }
   }, [sortDirection])
 
-  const headerContentClass = [styles.cdgTableContent, headerProps.column.getCanSort() && styles.canSort]
+  const rootClasses = [
+    styles.cdgTableColumnHeader,
+    className,
+    'cdg-table-column-header',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const headerContentClass = [
+    styles.cdgTableContent,
+    headerProps.column.getCanSort() && styles.canSort,
+    'cdg-table-column-header-content',
+  ]
     .filter(Boolean)
     .join(' ')
 
@@ -81,7 +93,7 @@ const TableColumnHeader = React.forwardRef<
     <CssInjection css={css} childrenRef={tableColumnHeaderRef}>
       <th
         ref={tableColumnHeaderRef}
-        className={styles.cdgTableColumnHeader}
+        className={rootClasses}
         key={headerProps.id}
         colSpan={headerProps.colSpan}
         onClick={headerProps.column.getToggleSortingHandler()}
@@ -130,6 +142,7 @@ const TableColumnHeader = React.forwardRef<
     </CssInjection>
   )
 })
+
 const ArrowDownIcon = () => {
   const isDarkTheme = useIsDarkTheme()
   return (
@@ -147,6 +160,7 @@ const ArrowDownIcon = () => {
     </span>
   )
 }
+
 const ArrowUpIcon = () => (
   <span aria-hidden='true' className={styles.cdgTableSortingIndicator}>
     <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
@@ -161,4 +175,5 @@ const ArrowUpIcon = () => (
     </svg>
   </span>
 )
+
 export default TableColumnHeader

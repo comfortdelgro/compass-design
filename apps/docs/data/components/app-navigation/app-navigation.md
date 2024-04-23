@@ -13,7 +13,6 @@ components: AppNav
 import {AppNav} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 {{"demo": "AppNav.tsx"}}

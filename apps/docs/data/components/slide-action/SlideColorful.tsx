@@ -23,7 +23,7 @@ export default function SliderColorfulDocs() {
     <Column>
       <Typography.Header variant='header4'>Default color</Typography.Header>
       <code>$dangerShades - #E31617</code>
-      <SlideAction css={{ marginBlock: '$4' }}>
+      <SlideAction css={{marginBlock: '$4'}}>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque enim
         sint labore nesciunt
       </SlideAction>
@@ -56,7 +56,7 @@ export default function SliderColorfulDocs() {
 
       <SlideAction color={colorBg}>Slide background</SlideAction>
 
-      <SlideAction css={{ marginBlock: '$4' }} color={colorBg} slideType='static'>
+      <SlideAction css={{marginBlock: '$4'}} color={colorBg} slideType='static'>
         Fadein background
       </SlideAction>
 
@@ -67,7 +67,7 @@ export default function SliderColorfulDocs() {
         deleniti!
       </SlideAction>
 
-      <Divider css={{ marginBlock: '$4' }} />
+      <Divider css={{marginBlock: '$4'}} />
 
       <Typography.Header variant='header4'>
         Default gradient background

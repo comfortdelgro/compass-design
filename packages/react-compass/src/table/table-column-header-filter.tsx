@@ -9,10 +9,9 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-column-header-filter.module.css'
 
 interface Props<TData, TValue> {
-  column: Column<TData, TValue>
-  table: Table<TData>
   css?: CSS
-  className?: string
+  table: Table<TData>
+  column: Column<TData, TValue>
 }
 
 export type HeaderColumnFilterProps<TData = unknown, TValue = unknown> = Props<
@@ -33,6 +32,14 @@ const HeaderColumnFilter = forwardRef<
 
   const columnFilterValue = column.getFilterValue()
 
+  const rootClasses = [
+    styles.cdgTableHeaderFilter,
+    className,
+    'cdg-table-column-header-filter',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={filterRef}>
       <Popover
@@ -40,22 +47,25 @@ const HeaderColumnFilter = forwardRef<
         anchor={
           <Button
             variant='ghost'
+            type='button'
+            isSquare
+            size='sm'
             onClick={(e) => {
               e.stopPropagation()
               setIsFiltering(!isFiltering)
             }}
           >
-            <svg width='24' height='26' viewBox='0 0 28 23' fill='currentColor'>
-              <path d='M4.25 5.61C6.27 8.2 10 13 10 13v6c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-6s3.72-4.8 5.74-7.39c.51-.66.04-1.61-.79-1.61H5.04c-.83 0-1.3.95-.79 1.61z'></path>
+            <svg width='16' height='16' viewBox='0 0 16 16' fill='currentColor'>
+              <path
+                d='M1.33337 3.58335C1.33337 3.07632 1.75897 2.66669 2.28575 2.66669H13.7143C14.2411 2.66669 14.6667 3.07632 14.6667 3.58335C14.6667 4.09038 14.2411 4.50002 13.7143 4.50002H2.28575C1.75897 4.50002 1.33337 4.09038 1.33337 3.58335ZM3.23814 8.16669C3.23814 7.65966 3.66373 7.25002 4.19052 7.25002H11.8096C12.3364 7.25002 12.7619 7.65966 12.7619 8.16669C12.7619 8.67372 12.3364 9.08335 11.8096 9.08335H4.19052C3.66373 9.08335 3.23814 8.67372 3.23814 8.16669ZM9.9048 12.75C9.9048 13.2571 9.47921 13.6667 8.95242 13.6667H7.04766C6.52087 13.6667 6.09528 13.2571 6.09528 12.75C6.09528 12.243 6.52087 11.8334 7.04766 11.8334H8.95242C9.47921 11.8334 9.9048 12.243 9.9048 12.75Z'
+                fill='currentColor'
+              />
             </svg>
           </Button>
         }
         direction='bottom-end'
       >
-        <div
-          className={`${styles.cdgTableHeaderFilter} ${className}`}
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className={rootClasses} onClick={(e) => e.stopPropagation()}>
           {typeof firstValue === 'number' ? (
             <div className={styles.numberContainer}>
               <TextField
@@ -68,7 +78,7 @@ const HeaderColumnFilter = forwardRef<
                     old?.[1],
                   ])
                 }
-                placeholder={`Min`}
+                placeholder='Min'
                 autoFocus
               />
 
@@ -86,7 +96,7 @@ const HeaderColumnFilter = forwardRef<
                     value,
                   ])
                 }
-                placeholder={`Max`}
+                placeholder='Max'
               />
             </div>
           ) : (
@@ -94,7 +104,7 @@ const HeaderColumnFilter = forwardRef<
               ref={ref}
               value={(columnFilterValue ?? '') as string}
               onChange={(value) => column.setFilterValue(value)}
-              placeholder={`Search...`}
+              placeholder='Search...'
               autoFocus
             />
           )}

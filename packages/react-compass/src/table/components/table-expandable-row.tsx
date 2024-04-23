@@ -2,13 +2,12 @@ import React from 'react'
 import Transitions from '../../transitions'
 import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import styles from './expandable-row.module.css'
+import styles from '../styles/table-expandable-row.module.css'
 
 interface Props {
-  isExpanded: boolean
-  children: React.ReactNode
-  colSpan: number
   css?: CSS
+  colSpan: number
+  isExpanded: boolean
 }
 
 export type ExpandableRowProps = Props &
@@ -16,13 +15,21 @@ export type ExpandableRowProps = Props &
 
 const ExpandableRow = React.forwardRef<HTMLTableRowElement, ExpandableRowProps>(
   (props, ref) => {
-    const {colSpan, isExpanded, children, css = {}} = props
+    const {colSpan, className, isExpanded, children, css = {}} = props
 
     const rowRef = useDOMRef<HTMLTableRowElement>(ref)
 
+    const rootClasses = [
+      styles.cdgTableExpandableRow,
+      className,
+      'cdg-table-expandable-cell',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css}>
-        <tr ref={rowRef} className={styles.cdgTableExpandableRow}>
+        <tr ref={rowRef} className={rootClasses}>
           <td colSpan={colSpan}>
             <Transitions effect='collapse' show={isExpanded} speed={0.5}>
               {children}

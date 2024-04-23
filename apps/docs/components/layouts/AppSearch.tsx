@@ -93,7 +93,7 @@ export default function AppSearch(props: any) {
       const descriptionIncludeKeyword = dataSearch.reduce(
         (res: TSearchItem[], item) => {
           if (toLower(item.description).includes(keywordLower))
-          res.push(transform(item))
+            res.push(transform(item))
           return res
         },
         [],

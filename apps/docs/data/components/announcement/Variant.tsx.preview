@@ -1,0 +1,71 @@
+<Announcement.Banner>
+    <Announcement.Banner.Left>
+    <Left />
+    </Announcement.Banner.Left>
+    <Announcement.Banner.Body>
+    <Body />
+    </Announcement.Banner.Body>
+    <Announcement.Banner.Right>
+    <Right />
+    </Announcement.Banner.Right>
+</Announcement.Banner>
+
+<Announcement.Banner variant='primary-dark'>
+    <Announcement.Banner.Left>
+    <Left />
+    </Announcement.Banner.Left>
+    <Announcement.Banner.Body>
+    <Body />
+    </Announcement.Banner.Body>
+    <Announcement.Banner.Right>
+    <Right />
+    </Announcement.Banner.Right>
+</Announcement.Banner>
+
+<Announcement.Banner variant='gray-light'>
+    <Announcement.Banner.Left>
+    <Left />
+    </Announcement.Banner.Left>
+    <Announcement.Banner.Body>
+    <Body />
+    </Announcement.Banner.Body>
+    <Announcement.Banner.Right>
+    <Right />
+    </Announcement.Banner.Right>
+</Announcement.Banner>
+
+<Announcement.Card css={{width: '300px'}}>
+    <Announcement.Card.Header>
+    <Header />
+    </Announcement.Card.Header>
+    <Announcement.Card.Body>
+    <Body />
+    </Announcement.Card.Body>
+    <Announcement.Card.Footer>
+    <Right />
+    </Announcement.Card.Footer>
+</Announcement.Card>
+
+<Announcement.Card variant='primary-dark' css={{width: '300px'}}>
+    <Announcement.Card.Header>
+    <Header />
+    </Announcement.Card.Header>
+    <Announcement.Card.Body>
+    <Body />
+    </Announcement.Card.Body>
+    <Announcement.Card.Footer>
+    <Right />
+    </Announcement.Card.Footer>
+</Announcement.Card>
+
+<Announcement.Card variant='gray-light' css={{width: '300px'}}>
+    <Announcement.Card.Header>
+    <Header />
+    </Announcement.Card.Header>
+    <Announcement.Card.Body>
+    <Body />
+    </Announcement.Card.Body>
+    <Announcement.Card.Footer>
+    <Right />
+    </Announcement.Card.Footer>
+</Announcement.Card>

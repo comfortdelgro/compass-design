@@ -4,8 +4,12 @@ import ColorBox from '../components/ColorBox'
 const DemoColors = () => {
   return (
     <Box css={{display: 'flex', flexWrap: 'wrap'}}>
-      <ColorBox color={{token: 'primaryBg', value: lightThemeColors.primaryBg}} />
-      <ColorBox color={{token: 'secondaryBg', value: lightThemeColors.secondaryBg}} />
+      <ColorBox
+        color={{token: 'primaryBg', value: lightThemeColors.primaryBg}}
+      />
+      <ColorBox
+        color={{token: 'secondaryBg', value: lightThemeColors.secondaryBg}}
+      />
       <ColorBox color={{token: 'darkerBg', value: lightThemeColors.darkerBg}} />
     </Box>
   )

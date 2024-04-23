@@ -2,7 +2,9 @@ import {Column, Divider, Typography} from '@comfortdelgro/react-compass'
 
 const Align: React.FC = () => {
   return (
-    <Column css={{background: 'var(--cdg-color-background)', padding: '1.6rem'}}>
+    <Column
+      css={{background: 'var(--cdg-color-background)', padding: '1.6rem'}}
+    >
       <Divider textAlign='left'>
         <Typography.Label>Left</Typography.Label>
       </Divider>
