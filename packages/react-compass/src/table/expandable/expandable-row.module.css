@@ -1,9 +1,0 @@
-@import '../../theme/theme.module.css';
-
-@layer default, variant;
-
-@layer default {
-  .cdgTableExpandableRow {
-    height: 'fit-content';
-  }
-}
