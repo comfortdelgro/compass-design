@@ -13,7 +13,6 @@ components: VideoPlayer
 import {VideoPlayer, VideoPlayerProps} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 {{"demo": "VideoPlayer.tsx"}}

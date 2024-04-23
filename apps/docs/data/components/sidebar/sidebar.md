@@ -13,7 +13,6 @@ components: Sidebar
 import {Sidebar} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Variant

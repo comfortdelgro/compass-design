@@ -32,13 +32,13 @@ import {
   Spinner,
   TextField,
 } from '..'
+import ProgressPercentage from './table-progress'
 import {
   LimitRequestStatus,
   Person,
   makeData,
   makeRequestStatusData,
 } from './utils/makeData'
-import ProgressPercentage from './table-progress'
 import {OptionType} from './utils/types'
 
 export const Basic: React.FC = () => {

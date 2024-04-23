@@ -13,7 +13,6 @@ components: Spinner
 import {Spinner} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Basic
 
 {{"demo": "SpinnerBasic.tsx"}}
