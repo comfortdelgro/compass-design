@@ -4,8 +4,12 @@ import ColorBox from '../components/ColorBox'
 const DemoColors = () => {
   return (
     <Box css={{display: 'flex', flexWrap: 'wrap'}}>
-      <ColorBox color={{token: 'overlayLight', value: lightThemeColors.overlayLight}} />
-      <ColorBox color={{token: 'overlayDark', value: lightThemeColors.overlayDark}} />
+      <ColorBox
+        color={{token: 'overlayLight', value: lightThemeColors.overlayLight}}
+      />
+      <ColorBox
+        color={{token: 'overlayDark', value: lightThemeColors.overlayDark}}
+      />
     </Box>
   )
 }

@@ -13,7 +13,6 @@ components: Popover
 import {Popover} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Default

@@ -1,6 +1,6 @@
-import { Radio } from '@comfortdelgro/react-compass'
-import { faBug } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {Radio} from '@comfortdelgro/react-compass'
+import {faBug} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 function RadioBasic() {
   return (

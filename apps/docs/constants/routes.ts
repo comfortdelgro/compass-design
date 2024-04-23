@@ -28,8 +28,7 @@ export const routes: TSideNavItem[] = [
       {
         pathname: '/upgrading',
         title: 'Upgrading',
-        description:
-          'How to upgrade package version.',
+        description: 'How to upgrade package version.',
       },
     ],
   },

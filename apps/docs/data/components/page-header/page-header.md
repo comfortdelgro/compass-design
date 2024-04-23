@@ -13,7 +13,6 @@ components: PageHeader
 import {PageHeader} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic features

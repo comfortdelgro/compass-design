@@ -16,7 +16,6 @@ The File component allows you to display state and preview of the file uploaded.
 import {File} from '@comfortdelgro/react-compass'
 ```
 
-
 ### Basic States
 
 {{"demo": "FileBasic.tsx"}}

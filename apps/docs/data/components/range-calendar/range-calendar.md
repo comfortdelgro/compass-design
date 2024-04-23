@@ -50,7 +50,6 @@ const {
 import {RangeCalendar} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic
