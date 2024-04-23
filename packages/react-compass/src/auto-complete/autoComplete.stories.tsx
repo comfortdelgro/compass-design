@@ -89,7 +89,6 @@ export const FullFeatured: React.FC = () => {
   const onSelectHandler = (value: string): void => {
     setInputValue(value)
     // You can do anything you want with the selected value here
-    console.log('Selected value:', value)
   }
 
   return (

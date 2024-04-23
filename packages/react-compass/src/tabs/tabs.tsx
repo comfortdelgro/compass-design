@@ -88,7 +88,6 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
       },
       ArrowRight: (e) => {
         e.preventDefault()
-        console.log('go right')
         orientation === 'horizontal' && nextFocus?.()
       },
       ArrowUp: (e) => {
