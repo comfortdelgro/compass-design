@@ -1,8 +1,9 @@
 import React from 'react'
+import {CSS} from '../../utils'
 import CssInjection from '../../utils/objectToCss/CssInjection'
 
 interface Props {
-  css?: unknown
+  css?: CSS
 }
 
 export type BannerRightProps = Props &

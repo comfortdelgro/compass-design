@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 'use client'
 import React from 'react'
+import {CSS} from '../../utils'
 import CssInjection from '../../utils/objectToCss/CssInjection'
 import {pickChild} from '../../utils/pick-child'
 import {useDOMRef} from '../../utils/use-dom-ref'
@@ -10,7 +11,7 @@ import CardFooter, {CardFooterProps} from './footer'
 import CardHeader, {CardHeaderProps} from './header'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   variant?: 'primary-light' | 'primary-dark' | 'gray-light'
 }
 
