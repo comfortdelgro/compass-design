@@ -5,12 +5,12 @@ import {
   useEffect,
   useState,
 } from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/natural-drawer.module.css'
 
 export type DrawerContentProps = PropsWithChildren<{
-  css?: unknown
+  css?: CSS
   header?: React.ReactChild
   setOffsetTop: (offset: number) => void
 }> &

@@ -13,7 +13,6 @@ components: Skeleton
 import {Skeleton} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Variant

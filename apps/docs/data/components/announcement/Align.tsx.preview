@@ -1,0 +1,35 @@
+<Announcement.Banner>
+    <Announcement.Banner.Left>
+    <Left />
+    </Announcement.Banner.Left>
+    <Announcement.Banner.Body align='left'>
+    <Body />
+    </Announcement.Banner.Body>
+    <Announcement.Banner.Right>
+    <Right />
+    </Announcement.Banner.Right>
+</Announcement.Banner>
+
+<Announcement.Banner>
+    <Announcement.Banner.Left>
+    <Left />
+    </Announcement.Banner.Left>
+    <Announcement.Banner.Body align='center'>
+    <Body />
+    </Announcement.Banner.Body>
+    <Announcement.Banner.Right>
+    <Right />
+    </Announcement.Banner.Right>
+</Announcement.Banner>
+
+<Announcement.Banner>
+    <Announcement.Banner.Left>
+    <Left />
+    </Announcement.Banner.Left>
+    <Announcement.Banner.Body align='right'>
+    <Body />
+    </Announcement.Banner.Body>
+    <Announcement.Banner.Right>
+    <Right />
+    </Announcement.Banner.Right>
+</Announcement.Banner>

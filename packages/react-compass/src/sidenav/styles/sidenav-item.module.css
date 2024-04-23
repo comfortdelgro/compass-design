@@ -39,7 +39,7 @@
 
 /* level 2 css */
 @layer variant {
-  .cdgSidenavItemTitle>* {
+  .cdgSidenavItemTitle > * {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

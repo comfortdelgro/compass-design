@@ -1,12 +1,12 @@
 'use client'
 
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/banner.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   className?: string
 }
 
@@ -26,7 +26,6 @@ const BannerImage = React.forwardRef<HTMLImageElement, BannerImageProps>(
       if (typeof onError === 'function') {
         onError(event)
       }
-      console.log('error event', event)
     }
     return (
       <CssInjection css={css} childrenRef={bannerImageRef}>

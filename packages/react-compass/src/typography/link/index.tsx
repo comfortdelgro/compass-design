@@ -1,12 +1,12 @@
 import React from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import styles from './link.module.css'
 
 interface Props {
   variant?: 'link1' | 'link2' | 'link3'
   weight?: 'semibold' | 'bold'
   children: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
 export type linkTypographyProps = Props &

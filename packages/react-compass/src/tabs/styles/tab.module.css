@@ -27,7 +27,7 @@
   .icon path {
     fill: var(--cdg-color-cdgBlue140);
   }
-  
+
   .icon {
     background-color: var(--cdg-color-background);
     box-sizing: border-box;
@@ -43,7 +43,6 @@
   .icon svg {
     display: none;
   }
-
 }
 
 @layer variant {
@@ -72,7 +71,7 @@
     color: var(--cdg-color-cdgBlue);
   }
   .simple:hover {
-    color: var(--cdg-color-cdgBlue)
+    color: var(--cdg-color-cdgBlue);
   }
 
   .simpleIcon svg {
@@ -87,7 +86,6 @@
     background-color: var(--cdg-color-cdgBlue);
     border: none;
   }
-
 
   .h5 {
     background: transparent;
@@ -241,8 +239,6 @@
     fill: var(--cdg-color-whiteText);
   }
 
- 
-
   .roundedDisabledTrue {
     color: var(--cdg-color-gray50);
     background: transparent;
@@ -315,7 +311,7 @@
     border-radius: 1px;
     bottom: -4px;
     left: -1px;
-    content: "";
+    content: '';
     width: calc(100% + 2px);
     height: 2px;
     background: var(--cdg-color-blueShades100);

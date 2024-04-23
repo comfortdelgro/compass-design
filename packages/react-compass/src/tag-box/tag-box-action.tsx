@@ -1,9 +1,9 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
 }
 

@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {MultipleDropdownContext} from './multiple-dropdown-context'
 import styles from './styles/multiple-dropdown.module.css'
@@ -10,7 +10,7 @@ export interface StyledMultipleDropdownItemProps {
   textValue?: string
   checkmark?: 'none' | 'checkbox' | 'tick'
   children: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
 export type MultipleDropdownItemProps = StyledMultipleDropdownItemProps

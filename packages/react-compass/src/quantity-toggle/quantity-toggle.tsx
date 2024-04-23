@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useId} from '../utils/useId'
 import styles from './styles/quantity-toggle.module.css'
@@ -9,7 +9,7 @@ import useNumberField from './utils/useNumberField'
 import useNumberFieldState from './utils/useNumberFieldState'
 
 interface Props extends AriaNumberFieldProps {
-  css?: unknown
+  css?: CSS
   helperText?: string
   isErrored?: boolean
   isReadOnly?: boolean

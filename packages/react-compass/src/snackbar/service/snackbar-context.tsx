@@ -1,4 +1,5 @@
 import {createContext, ReactNode, useReducer} from 'react'
+import {CSS} from '../../utils/objectToCss'
 import SnackbarsContainer from './snackbar-container'
 import {snackbarReducer} from './snackbar-reducer'
 import {SnackbarItemType} from './types'
@@ -21,7 +22,7 @@ const initialState = {
 
 interface SnackbarContextProviderProps {
   children: ReactNode
-  containerCSS?: unknown
+  containerCSS?: CSS
 }
 
 export interface SnackbarContextValue {

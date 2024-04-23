@@ -1,6 +1,6 @@
 import React from 'react'
 import Portal from '../portal'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Dialog from './dialog'
@@ -12,7 +12,7 @@ interface Props {
   handleClose?: () => void
   id?: string
   variant?: 'confirmation' | 'alert'
-  css?: unknown
+  css?: CSS
 }
 
 export type DialogTriggerProps = Props &

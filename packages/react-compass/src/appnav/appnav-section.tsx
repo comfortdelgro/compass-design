@@ -1,13 +1,13 @@
 import {isNil} from 'lodash'
 import React, {HTMLAttributes, useCallback} from 'react'
 import Badge from '../badge'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/appnav.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   isActive?: boolean
   inactiveIcon: React.ReactNode
   activeIcon: React.ReactNode

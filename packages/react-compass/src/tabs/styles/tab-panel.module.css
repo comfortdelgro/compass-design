@@ -2,7 +2,6 @@
 
 @layer default, variant, compoundVariant;
 
-
 @layer default {
   .tab {
     position: relative;

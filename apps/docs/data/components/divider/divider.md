@@ -15,7 +15,6 @@ import {Divider} from '@comfortdelgro/react-compass'
 
 or
 
-
 ## Example
 
 ### Basic

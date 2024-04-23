@@ -1,11 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, {useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import ListH5 from './h5'
 import ListImage from './list-image'
 import styles from './styles/list.module.css'
 interface Props {
-  css?: unknown
+  css?: CSS
   variant?: 'item' | 'interactive' | 'h5'
   isDisabled?: boolean
   size?: 'sm' | 'md'

@@ -3,8 +3,8 @@ import {Box} from '@comfortdelgro/react-compass'
 import * as React from 'react'
 import SimpleCodeEditor from 'react-simple-code-editor'
 import {useCodeCopy} from 'utils/CodeCopy'
-import simpleCodeStyles from './styles/SimpleCodeEditor.module.css'
 import styles from './styles/DemoEditor.module.css'
+import simpleCodeStyles from './styles/SimpleCodeEditor.module.css'
 interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   id: string

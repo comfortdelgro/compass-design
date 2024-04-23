@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import Chip from '../chip'
 import Popover from '../popover'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownItemKey,
@@ -58,7 +58,7 @@ interface Props {
   noDataMessage?: string
   isLoadingMore?: boolean
   popoverCSS?: React.CSSProperties
-  css?: unknown
+  css?: CSS
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void

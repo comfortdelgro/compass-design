@@ -14,7 +14,7 @@ import {
   parseDate,
 } from '../internationalized/date'
 import {useDateFormatter, useLocale} from '../internationalized/i18n'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useMediaQuery} from '../utils/use-media-query'
 import RangeCalendarShorcuts, {
@@ -23,7 +23,7 @@ import RangeCalendarShorcuts, {
 import styles from './styles/range-calendar.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   value?: RangeValue<DateValue | null>
   children?: React.ReactNode
   state?: DateRangePickerState

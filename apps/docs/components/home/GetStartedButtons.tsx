@@ -21,7 +21,7 @@ export default function GetStartedButtons() {
         href='/getting-started/installation/'
         size='md'
         variant='primary'
-        css={{ marginRight: 10, marginTop: 10 }}
+        css={{marginRight: 10, marginTop: 10}}
         rightIcon={<ArrowRightFilled />}
       >
         Get started

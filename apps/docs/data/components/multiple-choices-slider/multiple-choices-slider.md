@@ -15,7 +15,6 @@ components: MultipleChoicesSlider
 import {MultipleChoicesSlider} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 {{"demo": "MultipleChoicesSlider.tsx"}}

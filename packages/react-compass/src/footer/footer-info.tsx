@@ -1,10 +1,10 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import FooterInfoDownload from './footer-info-download'
 import FooterInfoSocial from './footer-info-social'
 import styles from './styles/footer-info.module.css'
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
 }
 

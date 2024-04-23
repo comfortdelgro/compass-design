@@ -1,28 +1,27 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-footer.module.css'
+
 interface Props {
-  children?: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
-export type TableFooterProps = Props
+export type TableFooterProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
 const TableFooter = React.forwardRef<HTMLDivElement, TableFooterProps>(
   (props, ref) => {
-    const {
-      // StyledComponentProps
-      css = {},
-      // ComponentProps
-      children,
-    } = props
-
+    const {css = {}, className, children} = props
     const TableFooterRef = useDOMRef<HTMLDivElement>(ref)
+
+    const rootClasses = [styles.cdgTableFooter, className, 'cdg-table-footer']
+      .filter(Boolean)
+      .join(' ')
 
     return (
       <CssInjection css={css} childrenRef={TableFooterRef}>
-        <div className={styles.cdgTableFooter}>{children}</div>
+        <div className={rootClasses}>{children}</div>
       </CssInjection>
     )
   },

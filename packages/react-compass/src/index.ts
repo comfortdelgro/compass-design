@@ -7,6 +7,17 @@ export type {
 } from './accordion'
 export {default as Alert} from './alert'
 export type {AlertProps} from './alert'
+export {default as Announcement} from './announcement'
+export type {
+  AnnouncementBannerBodyProps,
+  AnnouncementBannerLeftProps,
+  AnnouncementBannerProps,
+  AnnouncementBannerRightProps,
+  AnnouncementCardBodyProps,
+  AnnouncementCardFooterProps,
+  AnnouncementCardHeaderProps,
+  AnnouncementCardProps,
+} from './announcement'
 export {default as AppNav} from './appnav'
 export type {AppNavProps} from './appnav'
 export {default as AutoComplete} from './auto-complete'
@@ -307,8 +318,9 @@ export type {
   SubHeaderTitleProps,
 } from './sub-header'
 export {default as SubBanner} from './subBanner'
-export {default as Table} from './table'
+export {default as ReactTable, default as Table} from './table'
 export type {
+  TableProps as ReactTableProps,
   TableAccessorColumnDef,
   TableCell,
   TableCellContext,
@@ -322,21 +334,6 @@ export type {
   TableSortingState,
   TableType,
 } from './table'
-export {default as ReactTable} from './table-v2'
-export type {
-  ReactTableProps,
-  TableV2AccessorColumnDef,
-  TableV2Cell,
-  TableV2CellContext,
-  TableV2ColumnDef,
-  TableV2DisplayColumnDef,
-  TableV2GroupColumnDef,
-  TableV2HeaderContext,
-  OptionType as TableV2Options,
-  TableV2Row,
-  TableV2SortingState,
-  TableV2Table,
-} from './table-v2'
 export {default as Tabs} from './tabs'
 export type {TabsProps} from './tabs'
 export {default as TagBox} from './tag-box'

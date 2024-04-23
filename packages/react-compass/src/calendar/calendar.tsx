@@ -5,7 +5,7 @@ import * as InternationalizedDate from '../internationalized/date'
 import {DateValue, createCalendar, parseDate} from '../internationalized/date'
 import * as i18n from '../internationalized/i18n'
 import {useLocale} from '../internationalized/i18n'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
@@ -18,7 +18,7 @@ import styles from './styles/calendar.module.css'
 import {DatePickerState, ValueBase} from './types'
 import {isInvalid} from './utils'
 interface Props extends ValueBase<DateValue> {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   state?: DatePickerState
   hasFooter?: boolean

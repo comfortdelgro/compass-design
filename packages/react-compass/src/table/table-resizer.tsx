@@ -1,29 +1,36 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {CSS, CssInjection} from '../utils/objectToCss'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-resizer.module.css'
+
 export interface Props {
+  css?: CSS
   resizeHandler: (e: unknown) => void
-  css?: unknown
 }
 
-export type TableV2ResizerProps = Props
+export type TableResizerProps = Props &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const TableV2Resizer = React.forwardRef<
-  HTMLTableCellElement,
-  TableV2ResizerProps
->(({ resizeHandler, css = {} }, ref) => {
-  const TableV2ResizerRef = useDOMRef<HTMLDivElement>(ref)
-  return (
-    <CssInjection css={css} childrenRef={ref}>
-      <div
-        className={styles.cdgTableResizer}
-        onMouseDown={resizeHandler}
-        onTouchStart={resizeHandler}
-        ref={TableV2ResizerRef}
-      ></div>
-    </CssInjection>
-  )
-})
+const TableResizer = React.forwardRef<HTMLTableCellElement, TableResizerProps>(
+  (props, ref) => {
+    const {css = {}, className, resizeHandler} = props
+    const tableResizerRef = useDOMRef<HTMLDivElement>(ref)
 
-export default TableV2Resizer
+    const rootClasses = [styles.cdgTableResizer, className, 'cdg-table-resizer']
+      .filter(Boolean)
+      .join(' ')
+
+    return (
+      <CssInjection css={css} childrenRef={ref}>
+        <div
+          ref={tableResizerRef}
+          className={rootClasses}
+          onMouseDown={resizeHandler}
+          onTouchStart={resizeHandler}
+        />
+      </CssInjection>
+    )
+  },
+)
+
+export default TableResizer

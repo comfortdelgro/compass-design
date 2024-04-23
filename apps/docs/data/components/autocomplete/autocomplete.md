@@ -13,7 +13,6 @@ components: TextField
 import {AutoComplete} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Combo box
 
 The value must be chosen from a predefined set of allowed values.

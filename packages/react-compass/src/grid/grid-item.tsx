@@ -1,12 +1,12 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/grid.module.css'
 
 interface Props {
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
   spacing?: 'sm' | 'md' | 'lg'
   xs?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
   sm?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12

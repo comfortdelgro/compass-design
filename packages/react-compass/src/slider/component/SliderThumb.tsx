@@ -1,6 +1,6 @@
 import {RefObject, useRef} from 'react'
 import styles from '../styles/slider.module.css'
-import {SliderThumbBaseProps, SliderState} from '../utils/types'
+import {SliderState, SliderThumbBaseProps} from '../utils/types'
 import {useSliderThumb} from '../utils/useSliderThumb'
 
 interface SliderThumbProps extends SliderThumbBaseProps {
@@ -24,7 +24,8 @@ export function SliderThumb(props: SliderThumbProps) {
 
   const rootClasses = [
     styles.thumb,
-    props.state.tooltip && `${styles.thumbShowToolip} cdg-slider-thumb-tooltips`,
+    props.state.tooltip &&
+      `${styles.thumbShowToolip} cdg-slider-thumb-tooltips`,
     props.state.tooltip && isDragging && styles.thumbIsDragging,
     props.state.orientation === 'vertical' && styles.thumbVertical,
     props.state.isDisabled && styles.thumbIsDisabled,

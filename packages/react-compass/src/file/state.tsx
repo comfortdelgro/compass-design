@@ -1,11 +1,11 @@
 import React from 'react'
 import Spinner from '../spinner'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/state.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   fileName: string
   imageIcon?: React.ReactNode
   onIconPress?: () => void

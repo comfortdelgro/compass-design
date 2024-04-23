@@ -10,7 +10,7 @@ import React, {
   useEffect,
   useState,
 } from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import MultipleChoicesSliderItem, {
   MultipleChoicesSliderItemProps,
@@ -18,7 +18,7 @@ import MultipleChoicesSliderItem, {
 import styles from './styles/multiple-choices-slider.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   onChange?: (items: number[]) => void
   children: React.ReactNode
 }

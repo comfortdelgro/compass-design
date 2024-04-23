@@ -1,4 +1,5 @@
 import {CSSProperties, FocusEventHandler, ReactNode} from 'react'
+import {CSS} from '../utils/objectToCss'
 
 export type PudoValueChange<TItemKeys extends PropertyKey = string> = Array<{
   name: TItemKeys
@@ -15,7 +16,7 @@ export type PudoValueChange<TItemKeys extends PropertyKey = string> = Array<{
 
 export type PudoProps<TItemKeys extends PropertyKey> = {
   className?: string
-  css?: unknown
+  css?: CSS
   style?: CSSProperties
   /**
    * PUDO's item list.

@@ -39,7 +39,7 @@ const options: TableOptions = {
   enableMultiSort: true,
   columnResizeMode: 'onChange',
   manualSorting: true,
-  onManualFilter: false
+  onManualFilter: false,
 }
 ```
 
@@ -68,7 +68,7 @@ const options: TableOptions = {
   enableSorting: true,
   enableMultiSort: true,
   columnResizeMode: 'onChange',
-  manualFiltering: true
+  manualFiltering: true,
 }
 ```
 
@@ -85,7 +85,8 @@ const onFiltering = (filtering: TableColumnFiltersState) => {
 ```js
  <Table data={data} columns={columns} options={options} onManualFilter={onFiltering}>
 ```
-\*noted: using `TableColumnFiltersState` type for prevent for TypeError 
+
+\*noted: using `TableColumnFiltersState` type for prevent for TypeError
 
 ### ColumnConfig
 
@@ -188,14 +189,14 @@ By default, the Table V2 uses the circular Progress component as the default loa
 
 ## Props
 
-| Name                     | Type                                | Default             | Description                       |
-| :----------------------- | :---------------------------------- | :------------------ | :-------------------------------- |
-| `data`                   | `Array`                             | `[]`                | `Data for show.`                  |
-| `columns`                | `Array<ColumnDef<T>>`               | `[]`                | `column with custom config.`      |
-| `options`                | `OptionType`                        | `{}`                | `Table option.`                   |
-| `children`               | `React.ReactNode`                   | —                   | `Child elements.`                 |
-| `css`                    | `CSS`                               | `{}`                | `Additional style.`               |
-| `renderRowSubComponent ` | `(rowData: T) => React.JSX.Element` | —                   | `Callback after expanding row.`   |
-| `isLoading `             | `boolean`                           | `false`             | `Loading status of the table.`    |
-| `loadingIndicator `      | `React.ReactNode`                   | `Progress.Circular` | `Loading indicator of the table.` |
-| `emptyComponent`         | `React.ReactNode`                   | -                   | `Empty state for state component.`|
+| Name                     | Type                                | Default             | Description                        |
+| :----------------------- | :---------------------------------- | :------------------ | :--------------------------------- |
+| `data`                   | `Array`                             | `[]`                | `Data for show.`                   |
+| `columns`                | `Array<ColumnDef<T>>`               | `[]`                | `column with custom config.`       |
+| `options`                | `OptionType`                        | `{}`                | `Table option.`                    |
+| `children`               | `React.ReactNode`                   | —                   | `Child elements.`                  |
+| `css`                    | `CSS`                               | `{}`                | `Additional style.`                |
+| `renderRowSubComponent ` | `(rowData: T) => React.JSX.Element` | —                   | `Callback after expanding row.`    |
+| `isLoading `             | `boolean`                           | `false`             | `Loading status of the table.`     |
+| `loadingIndicator `      | `React.ReactNode`                   | `Progress.Circular` | `Loading indicator of the table.`  |
+| `emptyComponent`         | `React.ReactNode`                   | -                   | `Empty state for state component.` |

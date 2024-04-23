@@ -1,11 +1,12 @@
 import React, {useContext} from 'react'
 import {EKeyboardKey} from '../utils/keyboard.enum'
+import {CSS} from '../utils/objectToCss'
 import AccordionButton from './accordion-button'
 import AccordionContext, {AccordionContextType} from './accordion-context'
 import styles from './styles/accordion-title.module.css'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  css?: unknown
+  css?: CSS
   icon?: false | React.ReactNode
   children?: string | React.ReactNode
   expandIcon?: React.ReactNode
@@ -72,22 +73,35 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
       return <div className={styles.accordionLeftIconContainer}>{icon}</div>
     }
 
+    const rootClasses = [
+      expand ? styles.open : '',
+      className,
+      'cdg-accordion-title-container',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <AccordionButton
-        aria-controls={ariaControls}
-        ref={ref}
         css={css}
-        className={`accordion-title-container ${
-          expand ? styles.open : ''
-        } ${className}`}
+        ref={ref}
         expand={expand}
-        onMouseDown={(e) => handleOnClick(e)}
-        onKeyDown={(e) => handleKeyDown(e)}
+        className={rootClasses}
+        aria-controls={ariaControls}
+        onMouseDown={handleOnClick}
+        onKeyDown={handleKeyDown}
       >
-        <div className={`${styles.accordionTitleWrapper}`} {...delegated}>
+        <div
+          {...delegated}
+          className={`${styles.accordionTitleWrapper} cdg-accordion-title-wrapper`}
+        >
           {renderLeftIcon()}
-          <div className={`${styles.accordionTitle}`}>{renderTitle()}</div>
-          <div className={styles.accordionChevronContainer}>
+          <div className={`${styles.accordionTitle} cdg-accordion-title`}>
+            {renderTitle()}
+          </div>
+          <div
+            className={`${styles.accordionChevronContainer} cdg-accordion-title-chevron-container`}
+          >
             {expandIcon ? expandIcon : <ChevronIcon />}
           </div>
         </div>

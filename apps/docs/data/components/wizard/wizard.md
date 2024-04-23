@@ -13,7 +13,6 @@ components: Wizard
 import {Wizard} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Content
 
 The TooltipTrigger accepts exactly two children: the element which triggers the display of the Tooltip and the Tooltip itself. The trigger element must be the first child passed into the TooltipTrigger. All content should be internationalized.

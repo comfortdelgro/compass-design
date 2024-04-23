@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CardAction from './card-actions'
 import CardBody from './card-body'
@@ -8,7 +8,7 @@ import CardTitle from './card-title'
 import styles from './styles/card.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   isDisabled?: boolean
   isShadowless?: boolean

@@ -1,8 +1,9 @@
 import {HTMLAttributes, ReactNode, RefObject} from 'react'
 import {DraggableOptions} from '../utils/hooks'
+import {CSS} from '../utils/objectToCss'
 
 type Props = {
-  css?: unknown
+  css?: CSS
   icon?: ReactNode
   label?: string
   color?: string

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {
   SliderControls,
   SliderControlsChildArguments,
@@ -11,8 +11,10 @@ import {SliderThumb} from './component/SliderThumb'
 import styles from './styles/slider.module.css'
 import {FocusableRef, InputDOMProps} from './utils/types'
 
-export interface SliderProps extends SliderControlsProps<number>, InputDOMProps {
-  css?: unknown
+export interface SliderProps
+  extends SliderControlsProps<number>,
+    InputDOMProps {
+  css?: CSS
   tooltip?: boolean
 }
 
@@ -68,7 +70,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
                 style={
                   orientation === 'horizontal'
                     ? {width: `${state.getThumbPercent(0) * 100}%`}
-                    : {height: `${(1 - state.getThumbPercent(0)) * 100}%`, backgroundColor: 'transparent'}
+                    : {
+                        height: `${(1 - state.getThumbPercent(0)) * 100}%`,
+                        backgroundColor: 'transparent',
+                      }
                 }
               />
               <SliderThumb
@@ -83,7 +88,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
                 className={lowerTrackClasses}
                 style={
                   orientation === 'horizontal'
-                    ? {width: `${(1 - state.getThumbPercent(0)) * 100}%`, backgroundColor: 'transparent'}
+                    ? {
+                        width: `${(1 - state.getThumbPercent(0)) * 100}%`,
+                        backgroundColor: 'transparent',
+                      }
                     : {height: `${state.getThumbPercent(0) * 100}%`}
                 }
               />

@@ -64,6 +64,6 @@
   }
 
   .itemIsErrored {
-    border: 1px solid var(--cdg-color-danger)
+    border: 1px solid var(--cdg-color-danger);
   }
 }

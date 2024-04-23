@@ -46,7 +46,9 @@ const ToastItem = ({
       horizontal === 'left' ? styles.toastItemHorizontalLeft : false,
       horizontal === 'right' ? styles.toastItemHorizontalRight : false,
       horizontal === 'center' ? styles.toastItemHorizontalCenter : false,
-      vertical === 'bottom' && horizontal === 'center' ? styles.toastItemBottomCenter : false,
+      vertical === 'bottom' && horizontal === 'center'
+        ? styles.toastItemBottomCenter
+        : false,
     ]
       .filter(Boolean)
       .join(' ')
