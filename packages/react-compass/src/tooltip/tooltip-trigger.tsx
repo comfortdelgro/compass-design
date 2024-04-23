@@ -102,7 +102,7 @@ const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
       }
     }
 
-    const { x, y, refs, strategy, context, middlewareData, placement } =
+    const {x, y, refs, strategy, context, middlewareData, placement} =
       useFloating({
         open: isOpenProp != null ? isOpenProp : isOpen,
         onOpenChange: onOpenChange ? onOpenChange : setIsOpen,
@@ -129,10 +129,10 @@ const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
     const focus = useFocus(context)
     const dismiss = useDismiss(context)
     // Role props for screen readers
-    const role = useRole(context, { role: 'tooltip' })
+    const role = useRole(context, {role: 'tooltip'})
 
     // Merge all the interactions into prop getters
-    const { getReferenceProps, getFloatingProps } = useInteractions([
+    const {getReferenceProps, getFloatingProps} = useInteractions([
       hover,
       focus,
       dismiss,
@@ -196,7 +196,7 @@ const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
       <>
         {clonedTriggerElement}
         {(isOpenProp != null ? isOpenProp : isOpen) && (
-          <FloatingPortal >
+          <FloatingPortal>
             <TooltipContext.Provider
               value={{
                 tooltipRef: refs.setFloating,

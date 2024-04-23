@@ -18,8 +18,8 @@ function GutterBasic() {
         <Gutter parentRef={ref} onChange={setWidth} />
       </div>
       <div style={{flex: 1}}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
       </div>
     </div>
   )

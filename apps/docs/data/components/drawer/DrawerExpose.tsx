@@ -61,7 +61,7 @@ export default function DrawerExposeDocs() {
                 padding: '0.5rem',
                 width: '100%',
                 borderRadius: '8px',
-                color: "initial",
+                color: 'initial',
                 backgroundColor: '#FAF9F8',
                 whiteSpace: 'pre-wrap',
                 overflowWrap: 'anywhere',

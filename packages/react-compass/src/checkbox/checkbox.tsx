@@ -46,7 +46,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     } = props
 
     const isDarkTheme = useIsDarkTheme()
-    
+
     const [checked, setChecked] = useState<boolean>(
       isSelected || defaultSelected,
     )
@@ -56,7 +56,9 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       keyof Props
     >
 
-    const handleCheckboxChange = (event?: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCheckboxChange = (
+      event?: React.ChangeEvent<HTMLInputElement>,
+    ) => {
       onChangeEvent(event)
       if (isDisabled || isReadOnly) return
       if (onChange) {

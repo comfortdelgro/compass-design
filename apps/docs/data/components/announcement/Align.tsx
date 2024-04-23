@@ -1,5 +1,5 @@
+import {Announcement, Button, Column, Icon} from '@comfortdelgro/react-compass'
 import {faImage} from '@fortawesome/free-solid-svg-icons'
-import {Announcement, Button,Column, Icon} from '@comfortdelgro/react-compass'
 
 const Left = () => (
   <div
