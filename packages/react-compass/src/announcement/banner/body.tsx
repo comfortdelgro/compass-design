@@ -1,9 +1,10 @@
 import React from 'react'
+import {CSS} from '../../utils'
 import CssInjection from '../../utils/objectToCss/CssInjection'
 import styles from '../styles/banner.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   align?: 'left' | 'center' | 'right'
 }
 
