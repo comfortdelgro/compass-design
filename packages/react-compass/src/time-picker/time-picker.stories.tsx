@@ -54,7 +54,6 @@ export const Basic: React.FC = () => {
           views={['hours12', 'minutes', 'seconds', 'sessions']}
           value={value}
           onTimeChange={(value: string) => {
-            console.log('Value 12-hours changed: ', value)
             setValue(value)
           }}
         />
@@ -76,7 +75,6 @@ export const Basic: React.FC = () => {
           hasFooter
           value={value24H}
           onTimeChange={(value: string) => {
-            console.log('Value 24-hours changed: ', value24H)
             setValue24H(value)
           }}
         />
@@ -89,7 +87,6 @@ export const Basic: React.FC = () => {
           hasFooter
           value={valueMinTime}
           onTimeChange={(value: string) => {
-            console.log('Value 24-hours changed: ', value)
             setValueMinTime(value)
           }}
           minTime='07:30 AM'
