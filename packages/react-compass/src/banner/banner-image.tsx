@@ -26,7 +26,6 @@ const BannerImage = React.forwardRef<HTMLImageElement, BannerImageProps>(
       if (typeof onError === 'function') {
         onError(event)
       }
-      console.log('error event', event)
     }
     return (
       <CssInjection css={css} childrenRef={bannerImageRef}>
