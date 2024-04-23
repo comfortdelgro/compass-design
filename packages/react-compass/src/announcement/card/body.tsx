@@ -1,9 +1,10 @@
 import React from 'react'
+import {CSS} from '../../utils'
 import CssInjection from '../../utils/objectToCss/CssInjection'
 import styles from '../styles/card.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
 }
 
 export type CardBodyProps = Props &
