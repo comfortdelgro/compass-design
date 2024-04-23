@@ -1,162 +1,129 @@
-import {useCallback, useMemo, useRef, useState} from 'react'
-import {clamp, snapValueToStep} from './number'
-import {SliderProps, SliderState} from './types'
-import {useControlledState} from './useControlledState'
 
-const DEFAULT_MIN_VALUE = 0
-const DEFAULT_MAX_VALUE = 100
-const DEFAULT_STEP_VALUE = 1
+import {useCallback, useMemo, useRef, useState} from 'react';
+import { SliderProps, SliderState } from './types';
+import { clamp, snapValueToStep } from './number';
+import { useControlledState } from './useControlledState';
+
+const DEFAULT_MIN_VALUE = 0;
+const DEFAULT_MAX_VALUE = 100;
+const DEFAULT_STEP_VALUE = 1;
 
 export interface SliderStateOptions<T> extends SliderProps<T> {}
 
-export function useSliderState<T extends number | number[]>(
-  props: SliderStateOptions<T>,
-): SliderState {
+export function useSliderState<T extends number | number[]>(props: SliderStateOptions<T>): SliderState {
   const {
     tooltip = true,
     isDisabled = false,
     minValue = DEFAULT_MIN_VALUE,
     maxValue = DEFAULT_MAX_VALUE,
     step = DEFAULT_STEP_VALUE,
-    orientation = 'horizontal',
-  } = props
+    orientation = 'horizontal'
+  } = props;
 
   const pageSize = useMemo(() => {
-    let calcPageSize = (maxValue - minValue) / 10
-    calcPageSize = snapValueToStep(calcPageSize, 0, calcPageSize + step, step)
-    return Math.max(calcPageSize, step)
-  }, [step, maxValue, minValue])
+    let calcPageSize = (maxValue - minValue) / 10;
+    calcPageSize = snapValueToStep(calcPageSize, 0, calcPageSize + step, step);
+    return Math.max(calcPageSize, step);
+  }, [step, maxValue, minValue]);
 
-  const restrictValues = useCallback(
-    (values: number[]) =>
-      values?.map((val, idx) => {
-        const min = idx === 0 ? minValue : val[idx - 1]
-        const max = idx === values.length - 1 ? maxValue : val[idx + 1]
-        return snapValueToStep(val, min, max, step)
-      }),
-    [minValue, maxValue, step],
-  )
+  const restrictValues = useCallback((values: number[]) => values?.map((val, idx) => {
+    const min = idx === 0 ? minValue : val[idx - 1];
+    const max = idx === values.length - 1 ? maxValue : val[idx + 1];
+    return snapValueToStep(val, min, max, step);
+  }), [minValue, maxValue, step]);
 
-  const value = useMemo(
-    () => restrictValues(convertValue(props.value)),
-    [props.value, restrictValues],
-  )
-  const defaultValue = useMemo(
-    () => restrictValues(convertValue(props.defaultValue) ?? [minValue]),
-    [restrictValues, props.defaultValue, minValue],
-  )
-  const onChange = createOnChange(
-    props.value,
-    props.defaultValue,
-    props.onChange,
-  )
-  const onChangeEnd = createOnChange(
-    props.value,
-    props.defaultValue,
-    props.onChangeEnd,
-  )
+  const value = useMemo(() => restrictValues(convertValue(props.value)), [props.value, restrictValues]);
+  const defaultValue = useMemo(() => restrictValues(convertValue(props.defaultValue) ?? [minValue]), [restrictValues, props.defaultValue, minValue]);
+  const onChange = createOnChange(props.value, props.defaultValue, props.onChange);
+  const onChangeEnd = createOnChange(props.value, props.defaultValue, props.onChangeEnd);
 
   const [values, setValuesState] = useControlledState<number[]>(
     value,
     defaultValue,
-    onChange,
-  )
-  const [isDraggings, setDraggingsState] = useState<boolean[]>(
-    new Array(values.length).fill(false),
-  )
-  const isEditablesRef = useRef<boolean[]>(new Array(values.length).fill(true))
-  const [focusedIndex, setFocusedIndex] = useState<number | undefined>(
-    undefined,
-  )
+    onChange
+  );
+  const [isDraggings, setDraggingsState] = useState<boolean[]>(new Array(values.length).fill(false));
+  const isEditablesRef = useRef<boolean[]>(new Array(values.length).fill(true));
+  const [focusedIndex, setFocusedIndex] = useState<number | undefined>(undefined);
 
-  const valuesRef = useRef<number[]>(values)
-  const isDraggingsRef = useRef<boolean[]>(isDraggings)
+  const valuesRef = useRef<number[]>(values);
+  const isDraggingsRef = useRef<boolean[]>(isDraggings);
   const setValues = (values: number[]) => {
-    valuesRef.current = values
-    setValuesState(values)
-  }
+    valuesRef.current = values;
+    setValuesState(values);
+  };
 
   const setDraggings = (draggings: boolean[]) => {
-    isDraggingsRef.current = draggings
-    setDraggingsState(draggings)
-  }
+    isDraggingsRef.current = draggings;
+    setDraggingsState(draggings);
+  };
 
   function getValuePercent(value: number) {
-    return (value - minValue) / (maxValue - minValue)
+    return (value - minValue) / (maxValue - minValue);
   }
 
   function getThumbMinValue(index: number) {
-    return index === 0 ? minValue : values[index - 1]
+    return index === 0 ? minValue : values[index - 1];
   }
   function getThumbMaxValue(index: number) {
-    return index === values.length - 1 ? maxValue : values[index + 1]
+    return index === values.length - 1 ? maxValue : values[index + 1];
   }
 
   function isThumbEditable(index: number) {
-    return isEditablesRef.current[index]
+    return isEditablesRef.current[index];
   }
 
   function setThumbEditable(index: number, editable: boolean) {
-    isEditablesRef.current[index] = editable
+    isEditablesRef.current[index] = editable;
   }
 
   function updateValue(index: number, value: number) {
     if (isDisabled || !isThumbEditable(index)) {
-      return
+      return;
     }
-    const thisMin = getThumbMinValue(index)
-    const thisMax = getThumbMaxValue(index)
+    const thisMin = getThumbMinValue(index);
+    const thisMax = getThumbMaxValue(index);
 
-    value = snapValueToStep(value, thisMin, thisMax, step)
-    const newValues = replaceIndex(valuesRef.current, index, value)
-    setValues(newValues)
+    value = snapValueToStep(value, thisMin, thisMax, step);
+    const newValues = replaceIndex(valuesRef.current, index, value);
+    setValues(newValues);
   }
 
   function updateDragging(index: number, dragging: boolean) {
     if (isDisabled || !isThumbEditable(index)) {
-      return
+      return;
     }
 
-    const wasDragging = isDraggingsRef.current[index]
-    isDraggingsRef.current = replaceIndex(
-      isDraggingsRef.current,
-      index,
-      dragging,
-    )
-    setDraggings(isDraggingsRef.current)
+    const wasDragging = isDraggingsRef.current[index];
+    isDraggingsRef.current = replaceIndex(isDraggingsRef.current, index, dragging);
+    setDraggings(isDraggingsRef.current);
 
     if (onChangeEnd && wasDragging && !isDraggingsRef.current.some(Boolean)) {
-      onChangeEnd(valuesRef.current)
+      onChangeEnd(valuesRef.current);
     }
   }
 
   function setThumbPercent(index: number, percent: number) {
-    updateValue(index, getPercentValue(percent))
+    updateValue(index, getPercentValue(percent));
   }
 
   function getRoundedValue(value: number) {
-    return Math.round((value - minValue) / step) * step + minValue
+    return Math.round((value - minValue) / step) * step + minValue;
   }
 
   function getPercentValue(percent: number) {
-    const val = percent * (maxValue - minValue) + minValue
-    return clamp(getRoundedValue(val), minValue, maxValue)
+    const val = percent * (maxValue - minValue) + minValue;
+    return clamp(getRoundedValue(val), minValue, maxValue);
   }
 
   function incrementThumb(index: number, stepSize: number = 1) {
-    const s = Math.max(stepSize, step)
-    updateValue(
-      index,
-      snapValueToStep(values[index] + s, minValue, maxValue, step),
-    )
+    const s = Math.max(stepSize, step);
+    updateValue(index, snapValueToStep(values[index] + s, minValue, maxValue, step));
   }
 
   function decrementThumb(index: number, stepSize: number = 1) {
-    const s = Math.max(stepSize, step)
-    updateValue(
-      index,
-      snapValueToStep(values[index] - s, minValue, maxValue, step),
-    )
+    const s = Math.max(stepSize, step);
+    updateValue(index, snapValueToStep(values[index] - s, minValue, maxValue, step));
   }
 
   return {
@@ -181,32 +148,32 @@ export function useSliderState<T extends number | number[]>(
     tooltip,
     pageSize,
     orientation,
-    isDisabled,
-  }
+    isDisabled
+  };
 }
 
 function replaceIndex<T>(array: T[], index: number, value: T) {
   if (array[index] === value) {
-    return array
+    return array;
   }
 
-  return [...array.slice(0, index), value, ...array.slice(index + 1)]
+  return [...array.slice(0, index), value, ...array.slice(index + 1)];
 }
 
 function convertValue(value: number | number[]) {
   if (value == null) {
-    return undefined
+    return undefined;
   }
 
-  return Array.isArray(value) ? value : [value]
+  return Array.isArray(value) ? value : [value];
 }
 
 function createOnChange(value, defaultValue, onChange) {
   return (newValue: number[]) => {
     if (typeof value === 'number' || typeof defaultValue === 'number') {
-      onChange?.(newValue[0])
+      onChange?.(newValue[0]);
     } else {
-      onChange?.(newValue)
+      onChange?.(newValue);
     }
-  }
+  };
 }

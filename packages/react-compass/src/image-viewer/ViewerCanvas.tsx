@@ -144,9 +144,8 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
   const imgStyle: React.CSSProperties = {
     width: `${props.width}px`,
     height: `${props.height}px`,
-    transform: `translateX(${
-      props.left !== null ? `${props.left}px` : 'auto'
-    }) translateY(${props.top}px)
+    transform: `translateX(${props.left !== null ? `${props.left}px` : 'auto'
+      }) translateY(${props.top}px)
     rotate(${props.rotate}deg) scaleX(${props.scaleX}) scaleY(${props.scaleY})`,
   }
 

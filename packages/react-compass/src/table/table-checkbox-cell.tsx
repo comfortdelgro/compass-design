@@ -1,35 +1,29 @@
 import React from 'react'
-import Checkbox from '../checkbox'
-import {CSS, CssInjection} from '../utils/objectToCss'
-import {useDOMRef} from '../utils/use-dom-ref'
+import {CSS} from '../utils'
+import CssInjection from '../utils/objectToCss/CssInjection'
 import styles from './styles/table-checkbox-cell.module.css'
+import TableCheckbox from './table-checkbox'
 
 interface Props {
-  css?: CSS
+  children?: React.ReactNode
+  indeterminate?: boolean
+  className?: string
   disabled?: boolean
   checked?: boolean
-  indeterminate?: boolean
+  css?: CSS
 }
 
 export type TableCheckboxCellProps = Props &
-  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-const TableCheckboxCell = React.forwardRef<
-  HTMLInputElement,
-  TableCheckboxCellProps
->((props, ref) => {
-  const {
-    css = {},
-    className,
-    checked = false,
-    disabled = false,
-    indeterminate = false,
-    onChange,
-    ...rest
-  } = props
-  const tableCheckboxCellRef = useDOMRef<HTMLInputElement>(ref)
-
-  const rootClasses = [
+const TableCheckboxCell = ({
+  indeterminate = false,
+  className,
+  disabled = false,
+  css = {},
+  ...rest
+}: TableCheckboxCellProps) => {
+  const checkboxCellClasses = [
     styles.cdgTableCheckboxCell,
     className,
     'cdg-table-checkbox-cell',
@@ -38,18 +32,17 @@ const TableCheckboxCell = React.forwardRef<
     .join(' ')
 
   return (
-    <CssInjection css={css} childrenRef={tableCheckboxCellRef}>
-      <Checkbox
-        {...rest}
-        ref={tableCheckboxCellRef}
-        isSelected={checked}
-        isDisabled={disabled}
-        className={rootClasses}
-        isIndeterminate={indeterminate}
-        onChangeEvent={onChange}
-      />
+    <CssInjection css={css}>
+      <span className={checkboxCellClasses}>
+        <TableCheckbox
+          disabled={disabled}
+          indeterminate={indeterminate}
+          className={className}
+          {...rest}
+        />
+      </span>
     </CssInjection>
   )
-})
+}
 
 export default TableCheckboxCell

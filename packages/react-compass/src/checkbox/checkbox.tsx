@@ -46,7 +46,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     } = props
 
     const isDarkTheme = useIsDarkTheme()
-
+    
     const [checked, setChecked] = useState<boolean>(
       isSelected || defaultSelected,
     )
@@ -107,6 +107,35 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         .join(' ')
     }, [isDarkTheme, variant])
 
+    const rootClass = React.useMemo(() => {
+      return [styles.checkbox, 'cdg-checkbox', className]
+        .filter(Boolean)
+        .join(' ')
+    }, [className])
+
+    const labelClass = React.useMemo(() => {
+      return [
+        styles.label,
+        variant === 'h5' && styles.labelVariantH5,
+        variant === 'h5' && checked && styles.labelVariantH5Checked,
+        'cdg-checkbox-label',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [checked, variant])
+
+    const boxClass = React.useMemo(() => {
+      return [
+        styles.box,
+        isDarkTheme && styles.boxDarkTheme,
+        variant === 'rounded' && styles.rounded,
+        'cdg-checkbox-box',
+      ]
+        .filter(Boolean)
+        .join(' ')
+    }, [isDarkTheme, variant])
+
+    console.log(isDarkTheme)
     return (
       <CssInjection css={css} childrenRef={checkboxRef}>
         <div className={rootClass} {...htmlProps}>

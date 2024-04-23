@@ -1,0 +1,23 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .cdgTableEditableCell {
+    cursor: text;
+    position: absolute;
+    inset: 0;
+  }
+  .editableCellContent {
+    padding: 0 1em;
+    margin: 1em 0;
+  }
+  .editableCellInput {
+    padding: 0 1em;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    outline-color: var(--cdg-color-cdgBlue);
+  }
+}
