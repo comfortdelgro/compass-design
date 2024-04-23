@@ -1,9 +1,4 @@
-import {
-  Checkbox,
-  Column,
-  Row,
-  Typography,
-} from '@comfortdelgro/react-compass'
+import {Checkbox, Column, Row, Typography} from '@comfortdelgro/react-compass'
 
 const Variants: React.FC = () => (
   <Column>

@@ -3,17 +3,16 @@ import {
   ThemeStaticProvider,
   ToastContextProvider,
 } from '@comfortdelgro/react-compass'
-import {SSRProvider} from '@comfortdelgro/react-compass'
 import '@comfortdelgro/react-compass/style.css'
 import 'components/common/bootstrap'
 import AppHeader from 'components/layouts/AppHeader'
-import { ETheme } from 'constants/index'
+import {ETheme} from 'constants/index'
 import PagePropsProvider from 'contexts/PageProps'
 import ThemeContext from 'contexts/Theme'
 import NextHead from 'next/head'
 import * as React from 'react'
-import { getStaticPath } from 'utils'
-import { CodeCopyProvider } from 'utils/CodeCopy'
+import {getStaticPath} from 'utils'
+import {CodeCopyProvider} from 'utils/CodeCopy'
 import useLazyCSS from 'utils/useLazyCSS'
 import '../styles/code-editor.css'
 import './global.css'
@@ -38,7 +37,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
   )
 }
 function AppWrapper(props: any) {
-  const { children } = props
+  const {children} = props
 
   const [mode, setMode] = React.useState<ETheme>(ETheme.Light)
 
@@ -59,7 +58,7 @@ function AppWrapper(props: any) {
       </NextHead>
       <ThemeContext.Provider value={mode}>
         <ToastContextProvider
-          anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <ThemeStaticProvider changeBy={mode}>
             {/* <ThemeProvider changeBy={mode}> */}
@@ -77,7 +76,7 @@ function AppWrapper(props: any) {
 }
 
 export default function MyApp(props: any) {
-  const { Component, pageProps } = props
+  const {Component, pageProps} = props
   const getLayout = Component.getLayout ?? ((page: any) => page)
 
   return (
@@ -89,7 +88,7 @@ export default function MyApp(props: any) {
   )
 }
 
-MyApp.getInitialProps = async ({ ctx, Component }: any) => {
+MyApp.getInitialProps = async ({ctx, Component}: any) => {
   let pageProps = {}
 
   if (Component.getInitialProps) {
@@ -108,7 +107,7 @@ MyApp.getInitialProps = async ({ ctx, Component }: any) => {
 // Filter sessions instead of individual events so that we can track multiple metrics per device.
 // See https://github.com/GoogleChromeLabs/web-vitals-report to use this data
 const disableWebVitalsReporting = Math.random() > 0.0001
-export function reportWebVitals({ id, name, label, delta, value }: any) {
+export function reportWebVitals({id, name, label, delta, value}: any) {
   if (disableWebVitalsReporting) {
     return
   }

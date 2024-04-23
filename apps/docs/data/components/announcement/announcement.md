@@ -22,6 +22,7 @@ import {Announcement} from '@comfortdelgro/react-compass'
 ### Align
 
 {{"demo": "Align.tsx"}}
+
 ## Props
 
 ### AnnouncementBannerProps & AnnouncementCardProps

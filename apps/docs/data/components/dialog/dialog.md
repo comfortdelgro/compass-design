@@ -14,7 +14,6 @@ components: Dialog
 import {Dialog} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Basic

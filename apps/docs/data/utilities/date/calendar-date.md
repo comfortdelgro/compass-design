@@ -231,11 +231,7 @@ A <TypeLink links={docs.links} type={docs.exports.ZonedDateTime} /> represents a
 Use the <TypeLink links={docs.links} type={docs.exports.toZoned} /> function to convert a `CalendarDate` to a `ZonedDateTime`. The time will be set to midnight in the given time zone. If you need to set a specific time, convert the `CalendarDate` to a `CalendarDateTime` first as described above, and pass the result to `toZoned`.
 
 ```tsx
-import {
-  Time,
-  toCalendarDateTime,
-  toZoned,
-} from '@comfortdelgro/react-compass'
+import {Time, toCalendarDateTime, toZoned} from '@comfortdelgro/react-compass'
 
 let date = new CalendarDate(2022, 2, 3)
 toZoned(date, 'America/Los_Angeles') // 2021-02-03T00:00-07:00[America/Los_Angeles]

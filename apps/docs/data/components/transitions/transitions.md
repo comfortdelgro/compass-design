@@ -13,7 +13,6 @@ components: Transitions
 import {Transitions} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Fade
 
 {{"demo": "TransitionsFade.tsx"}}
