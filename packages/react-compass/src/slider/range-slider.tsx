@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import {CSS} from '../utils/objectToCss'
 import {
   SliderControls,
   SliderControlsChildArguments,
@@ -12,7 +13,7 @@ import styles from './styles/slider.module.css'
 
 export interface RangeSliderProps
   extends SliderControlsProps<RangeValue<number>> {
-  css?: unknown
+  css?: CSS
   tooltip?: boolean
 }
 

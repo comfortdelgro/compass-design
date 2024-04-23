@@ -1,12 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
 import React from 'react'
 import Button from '../button'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import ListCardDetail, {ListCardDetailProps} from './list-card-detail'
 import styles from './styles/list-card.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   title?: string
   isDisabled?: boolean
   description?: string

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import styles from './styles/sub-header.module.css'
 import SubHeaderBody from './sub-header-body'
@@ -13,7 +13,7 @@ import SubHeaderTitle from './sub-header-title'
 interface Props {
   children: React.ReactNode
   variant?: 'default' | 'h5'
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

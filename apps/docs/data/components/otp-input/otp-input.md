@@ -13,7 +13,6 @@ components: OTPInput
 import {OTPInput} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Examples
 
 {{"demo": "OTPInput.tsx"}}

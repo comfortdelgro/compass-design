@@ -1,12 +1,12 @@
 import React, {memo, useCallback, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import SingleInput from './SingleInput'
 import styles from './styles/otpInput.module.css'
 
 export interface Props {
   otp?: string
-  css?: unknown
+  css?: CSS
   length?: number
   disabled?: boolean
   isMobile?: boolean

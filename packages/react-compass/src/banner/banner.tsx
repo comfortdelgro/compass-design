@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -13,7 +13,7 @@ import styles from './styles/banner.module.css'
 interface Props {
   children?: React.ReactNode
   size?: 'sm' | 'md' | 'lg' | 'full'
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

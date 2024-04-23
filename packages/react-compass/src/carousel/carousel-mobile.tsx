@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Button from '../button'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CarouselSlider from './carousel-slider'
 import {

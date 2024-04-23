@@ -13,7 +13,6 @@ components: Snackbar
 import {Snackbar} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Examples
 
 ### Default

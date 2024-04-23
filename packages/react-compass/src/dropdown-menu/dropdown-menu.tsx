@@ -1,7 +1,7 @@
 'use client'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Popover from '../popover'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMenuContext, {
@@ -19,7 +19,7 @@ interface Props {
   onClose?: () => void
   onOpenChange?: (status: boolean) => void
   'aria-labelledby'?: string
-  css?: unknown
+  css?: CSS
 }
 
 export type DropdownMenuProps = Props &

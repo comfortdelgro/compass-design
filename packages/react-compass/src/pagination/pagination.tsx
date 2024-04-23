@@ -1,7 +1,7 @@
 'use client'
 
 import React, {useCallback} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Ellipsis from './components/Ellipsis'
 import ItemCounting from './components/ItemCounting'
@@ -18,7 +18,7 @@ interface Props {
   rowsPerPage?: number
   rowsOptions?: number[]
   onRowsPerPageChange?: (rows: number) => void
-  css?: unknown
+  css?: CSS
 }
 
 export type PaginationProps = Props &

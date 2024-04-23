@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
   }
-  
+
   .tooltipContent {
     position: absolute;
     left: var(--cdg-spacing-6);
@@ -21,7 +21,7 @@
     background: var(--cdg-color-background);
     width: max-content;
   }
-  
+
   .tooltip:hover .tooltipContent {
     display: block;
   }

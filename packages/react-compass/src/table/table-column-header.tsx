@@ -1,29 +1,29 @@
-import { flexRender, Header, Table } from '@tanstack/react-table'
-import React, { useMemo } from 'react'
-import { useIsDarkTheme } from '../theme'
-import { EKeyboardKey } from '../utils/keyboard.enum'
-import CssInjection from '../utils/objectToCss/CssInjection'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {flexRender, Header, Table} from '@tanstack/react-table'
+import React, {useMemo} from 'react'
+import {useIsDarkTheme} from '../theme'
+import {EKeyboardKey} from '../utils/keyboard.enum'
+import {CSS, CssInjection} from '../utils/objectToCss'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-column-header.module.css'
 import HeaderColumnFilter from './table-column-header-filter'
-import TableV2Resizer from './table-resizer'
+import TableResizer from './table-resizer'
 
 interface Props<TData, TValue> {
-  headerProps: Header<TData, TValue>
+  css?: CSS
   tableOption: Table<TData>
-  css?: unknown
-  className?: string
+  headerProps: Header<TData, TValue>
 }
-export type TableV2ColumnHeaderProps<TData = unknown, TValue = unknown> = Props<
+
+export type TableColumnHeaderProps<TData = unknown, TValue = unknown> = Props<
   TData,
   TValue
 > &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
-const TableV2ColumnHeader = React.forwardRef<
+const TableColumnHeader = React.forwardRef<
   HTMLTableCellElement,
-  TableV2ColumnHeaderProps
->(({ headerProps, tableOption, css = {}, onKeyDown }, ref) => {
+  TableColumnHeaderProps
+>(({headerProps, tableOption, className, css = {}, onKeyDown}, ref) => {
   const enableResizing = headerProps?.column?.columnDef?.enableResizing
   const isFilterableColumn =
     headerProps.column.columnDef.enableColumnFilter === true &&
@@ -73,7 +73,19 @@ const TableV2ColumnHeader = React.forwardRef<
     }
   }, [sortDirection])
 
-  const headerContentClass = [headerProps.column.getCanSort() && styles.canSort]
+  const rootClasses = [
+    styles.cdgTableColumnHeader,
+    className,
+    'cdg-table-column-header',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const headerContentClass = [
+    styles.cdgTableContent,
+    headerProps.column.getCanSort() && styles.canSort,
+    'cdg-table-column-header-content',
+  ]
     .filter(Boolean)
     .join(' ')
 
@@ -81,7 +93,7 @@ const TableV2ColumnHeader = React.forwardRef<
     <CssInjection css={css} childrenRef={tableColumnHeaderRef}>
       <th
         ref={tableColumnHeaderRef}
-        className={styles.cdgTableColumnHeader}
+        className={rootClasses}
         key={headerProps.id}
         colSpan={headerProps.colSpan}
         onClick={headerProps.column.getToggleSortingHandler()}
@@ -124,14 +136,13 @@ const TableV2ColumnHeader = React.forwardRef<
           </div>
         )}
         {enableResizing && (
-          <TableV2Resizer resizeHandler={
-            headerProps.getResizeHandler()
-          } />
+          <TableResizer resizeHandler={headerProps.getResizeHandler()} />
         )}
       </th>
     </CssInjection>
   )
 })
+
 const ArrowDownIcon = () => {
   const isDarkTheme = useIsDarkTheme()
   return (
@@ -149,6 +160,7 @@ const ArrowDownIcon = () => {
     </span>
   )
 }
+
 const ArrowUpIcon = () => (
   <span aria-hidden='true' className={styles.cdgTableSortingIndicator}>
     <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
@@ -163,4 +175,5 @@ const ArrowUpIcon = () => (
     </svg>
   </span>
 )
-export default TableV2ColumnHeader
+
+export default TableColumnHeader

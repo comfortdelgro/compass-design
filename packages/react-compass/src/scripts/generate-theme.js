@@ -1,6 +1,6 @@
 import fs from 'fs'
-import path, { dirname } from 'path'
-import { fileURLToPath } from 'url'
+import path, {dirname} from 'path'
+import {fileURLToPath} from 'url'
 import {
   borderWidths,
   darkThemeColors,
@@ -91,7 +91,6 @@ const cssData = `/* THIS FILE IS AUTO GENERATED. DO NOT MODIFY!  */
 
 writeToFile(themeModuleCssPath, cssData)
 
-console.log('Generate theme.module.scss success!')
 
 fs.readFile(themeConfigPath, 'utf8', (err, data) => {
   if (err) {
@@ -120,7 +119,6 @@ export default theme
     'export type Colors = typeof lightThemeColors',
   ].join('\n')
 
-  console.log('Generate theme.ts success!')
 
   writeToFile(themePath, themeData)
 })

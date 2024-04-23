@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 
 import styles from './styles/carousel.module.css'
@@ -7,7 +7,7 @@ import styles from './styles/carousel.module.css'
 export interface Props {
   length: number
   current: number
-  css?: unknown
+  css?: CSS
   style?: React.CSSProperties
   dotClick?: (index: number) => void
 }

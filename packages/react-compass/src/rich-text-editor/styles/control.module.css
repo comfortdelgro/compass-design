@@ -17,29 +17,29 @@
     padding: 0;
     color: var(--cdg-color-gray110);
   }
-  
+
   .rteControl:hover {
     background-color: var(--cdg-color-gray40);
     color: var(--cdg-color-gray110);
   }
-  
+
   .rteControl svg {
     height: var(--cdg-spacing-4);
     width: var(--cdg-spacing-4);
   }
-  
+
   .rteControl:disabled {
     background-color: var(--cdg-color-divider);
     color: var(--cdg-color-disabledText);
     border-color: var(--cdg-color-divider);
     cursor: not-allowed;
   }
-  
+
   .active {
     background-color: var(--cdg-color-gray80);
     color: var(--cdg-color-white);
   }
-  
+
   .active:hover {
     background-color: var(--cdg-color-gray80);
     color: var(--cdg-color-white);

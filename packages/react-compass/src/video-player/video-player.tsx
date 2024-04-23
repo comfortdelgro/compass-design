@@ -10,7 +10,7 @@ import {
   VolumeIcon,
 } from './icon'
 
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/video-player.module.css'
 import VolumeSlider from './volume-slider/volume-slider'
 
@@ -30,7 +30,7 @@ interface Props {
   'aria-describedby'?: string
   'aria-details'?: string
   className?: string
-  css?: unknown
+  css?: CSS
   onNext?: () => void
   onPrev?: () => void
   onSetting?: () => void

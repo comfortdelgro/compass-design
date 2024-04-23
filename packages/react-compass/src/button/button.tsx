@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Ripple from './ripple'
@@ -44,7 +44,7 @@ interface Props {
   enableEventsOnDisabled?: boolean
   enableEventsOnLoading?: boolean
   isSquare?: boolean
-  css?: unknown
+  css?: CSS
   variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'danger'
   size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean

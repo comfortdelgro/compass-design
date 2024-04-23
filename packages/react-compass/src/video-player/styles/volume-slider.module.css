@@ -22,11 +22,11 @@
     opacity: 0;
   }
 
-  .progressBar{
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      background: var(--cdg-color-background);
-      border-radius: var(--cdg-border-radius-full);
+  .progressBar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: var(--cdg-color-background);
+    border-radius: var(--cdg-border-radius-full);
   }
 }

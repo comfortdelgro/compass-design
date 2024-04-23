@@ -1,12 +1,12 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/spinner.module.css'
 
 interface Props {
   label?: boolean | string
-  css?: unknown
+  css?: CSS
   className?: string
   size?: '2xl' | 'xl' | 'lg' | 'md' | 'sm'
 }

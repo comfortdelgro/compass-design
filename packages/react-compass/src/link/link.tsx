@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/link.module.css'
 
@@ -8,7 +8,7 @@ interface Props {
   target?: string
   external?: boolean
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
 export type LinkProps = Props &

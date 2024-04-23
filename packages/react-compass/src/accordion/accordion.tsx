@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from 'react'
-import {Transitions} from '..'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import Transitions from '../transitions'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import AccordionContext from './accordion-context'
@@ -12,7 +12,7 @@ import AccordionTitle, {AccordionTitleProps} from './accordion-title'
 import styles from './styles/accordion.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   expand?: boolean
   defaultExpand?: boolean
   children: React.ReactNode
@@ -83,23 +83,25 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
           })
         : AccordionTitleElement
 
+    const rootClasses = [styles.accordion, className, 'cdg-accordion']
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={accordionRef}>
-        <div
-          className={`${styles.accordion} ${className}`}
-          {...delegated}
-          ref={accordionRef}
-        >
+        <div {...delegated} ref={accordionRef} className={rootClasses}>
           <AccordionContext.Provider value={contextValue}>
             {AccordionTitleWithIcon}
             <Transitions
               role='region'
-              aria-labelledby={props['aria-labelledby']}
-              ref={accordionBodyRef}
-              isLazyMounted={true}
               show={expand}
+              isLazyMounted={true}
+              ref={accordionBodyRef}
+              aria-labelledby={props['aria-labelledby']}
             >
-              <div className={`${styles.accordionBodyInner}`}>
+              <div
+                className={`${styles.accordionBodyInner} cdg-accordion-body`}
+              >
                 {AccordionContent}
               </div>
             </Transitions>

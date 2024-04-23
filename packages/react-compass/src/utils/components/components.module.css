@@ -3,7 +3,6 @@
 @layer default;
 
 @layer default {
-
   .flexbox {
     display: flex;
     width: 100%;

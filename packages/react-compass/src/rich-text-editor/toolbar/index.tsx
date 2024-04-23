@@ -1,11 +1,11 @@
 import React, {HTMLAttributes, useState} from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Control from '../controls/Control'
 import styles from '../styles/toolbar.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children: React.ReactNode
   className?: string
 }

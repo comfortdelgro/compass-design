@@ -6,7 +6,7 @@ import {
   useKeyboardNavigation,
   useKeyboardNavigationState,
 } from '../utils/hooks'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {SpeedDialAction} from './speed-dial-action'
@@ -17,7 +17,7 @@ interface Props {
   actions: Array<{name: string; icon: string; onClick: () => void}>
   position?: 'up' | 'right' | 'down' | 'left'
   className?: string
-  css?: unknown
+  css?: CSS
 }
 
 export type SpeedDialProps = Props &

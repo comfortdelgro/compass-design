@@ -12,7 +12,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CssInjection} from '../utils/objectToCss'
 import styles from './styles/tag-box-v2.module.css'
 import {CustomTagBoxRef, Tag, TagBoxV2Props} from './types'
 

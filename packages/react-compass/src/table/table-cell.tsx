@@ -1,28 +1,27 @@
 import {Cell, flexRender, Row} from '@tanstack/react-table'
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {CellMetaProps, EditableCell} from './editable/editable-cell'
-
+import {CellMetaProps, EditableCell} from './components/table-editable-cell'
 import styles from './styles/table-cell.module.css'
 
 export interface Props<TData, TValue> {
-  cell: Cell<TData, TValue>
+  css?: CSS
   row: Row<TData>
-  css?: unknown
-  className?: string
+  cell: Cell<TData, TValue>
   onChangeCell?: (newData: object) => void
 }
 
-export type TableV2CellProps<TData = unknown, TValue = unknown> = Props<
+export type TableCellProps<TData = unknown, TValue = unknown> = Props<
   TData,
   TValue
 > &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
-const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
-  ({cell, row, className, css = {}}, ref) => {
-    const TableV2CellRef = useDOMRef<HTMLTableCellElement>(ref)
+const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
+  (props, ref) => {
+    const {css = {}, cell, row, className} = props
+    const tableCellRef = useDOMRef<HTMLTableCellElement>(ref)
     const {
       getValue,
       row: {index},
@@ -34,7 +33,7 @@ const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
     >
     const isCellEditable = tableMeta?.editable
 
-    const cellClasses = [
+    const rootClasses = [
       styles.cdgTableCell,
       cell.getIsGrouped() && styles.isGrouped,
       cell.getIsAggregated() && styles.isAggregated,
@@ -48,8 +47,8 @@ const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
     return (
       <CssInjection css={css}>
         <td
-          className={cellClasses}
-          ref={TableV2CellRef}
+          className={rootClasses}
+          ref={tableCellRef}
           key={cell.id}
           style={{
             width: cell.column.getSize(),
@@ -114,4 +113,4 @@ const TableV2Cell = React.forwardRef<HTMLTableCellElement, TableV2CellProps>(
   },
 )
 
-export default TableV2Cell
+export default TableCell

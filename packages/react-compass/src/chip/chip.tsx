@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/chip.module.css'
 
@@ -7,7 +7,7 @@ export interface Props {
   children?: React.ReactNode
   hasCloseButton?: boolean
   isErrored?: boolean
-  css?: unknown
+  css?: CSS
   className?: string
   tabIndex?: number
   onClose?: (event: React.MouseEvent<HTMLDivElement>) => void

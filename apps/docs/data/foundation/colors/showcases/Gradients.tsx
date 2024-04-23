@@ -4,9 +4,27 @@ import ColorBox from '../components/ColorBox'
 const DemoColors = () => {
   return (
     <Box css={{display: 'flex', flexWrap: 'wrap'}}>
-      <ColorBox color={{token: 'gradientOrange', value: lightThemeColors.gradientOrange}} gradient />
-      <ColorBox color={{token: 'gradientRainbow', value: lightThemeColors.gradientRainbow}} gradient />
-      <ColorBox color={{token: 'gradientOrangeBlue', value: lightThemeColors.gradientOrangeBlue}} gradient />
+      <ColorBox
+        color={{
+          token: 'gradientOrange',
+          value: lightThemeColors.gradientOrange,
+        }}
+        gradient
+      />
+      <ColorBox
+        color={{
+          token: 'gradientRainbow',
+          value: lightThemeColors.gradientRainbow,
+        }}
+        gradient
+      />
+      <ColorBox
+        color={{
+          token: 'gradientOrangeBlue',
+          value: lightThemeColors.gradientOrangeBlue,
+        }}
+        gradient
+      />
     </Box>
   )
 }

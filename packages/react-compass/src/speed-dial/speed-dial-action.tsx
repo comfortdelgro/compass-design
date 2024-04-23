@@ -1,7 +1,7 @@
 import {useMergeRefs} from '@floating-ui/react'
 import React from 'react'
 import {useKeyboardNavigation, useKeyboardNavigationState} from '../utils/hooks'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/speed-dial.module.css'
@@ -11,7 +11,7 @@ interface Props {
   name?: string
   position?: 'up' | 'right' | 'down' | 'left' | undefined
   isVisible?: boolean
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

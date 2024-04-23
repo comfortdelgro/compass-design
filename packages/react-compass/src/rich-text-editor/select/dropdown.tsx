@@ -8,7 +8,7 @@ import {
   useInteractions,
 } from '@floating-ui/react'
 import React from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from '../styles/dropdown.module.css'
 import DropdownItem, {DropdownItemProps} from './item'
@@ -34,7 +34,7 @@ interface Props {
   defaultSelectedKey?: React.Key
   shouldDeselect?: boolean
   onSelectionChange?: (key: React.Key) => void
-  css?: unknown
+  css?: CSS
 }
 
 export type DropdownProps = Props &

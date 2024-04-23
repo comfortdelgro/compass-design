@@ -9,14 +9,14 @@ import {
   isToday as isTodayFunction,
   parseDate,
 } from '../internationalized/date'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useCalendarCell} from './hooks/useCalendarCell'
 import styles from './styles/calendar-cell.module.css'
 import {CalendarState, RangeCalendarState} from './types'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   state: CalendarState | RangeCalendarState
   date: CalendarDate
   currentMonth: CalendarDate

@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {LAYOUT_ALIGNMENT_MAP, LAYOUT_DIRECTION_MAP} from './layout.const'
@@ -18,7 +18,7 @@ export type LayoutAlignment =
 
 export interface Props {
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
   direction?: 'row' | 'column'
   flex?: number
   align?: LayoutAlignment

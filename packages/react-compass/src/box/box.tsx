@@ -1,6 +1,6 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
-import { useDOMRef } from '../utils/use-dom-ref'
+import {CSS, CssInjection} from '../utils/objectToCss'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/box.module.css'
 
 export type BoxProps = Props &
@@ -8,7 +8,7 @@ export type BoxProps = Props &
 
 interface Props {
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
   className?: string
   as?: React.ElementType
   border?: string
@@ -192,11 +192,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
 
   const Component = asProp as React.ElementType
 
-  const rootClasses = [
-    styles.box,
-    className,
-    'cdg-box',
-  ]
+  const rootClasses = [styles.box, className, 'cdg-box']
     .filter(Boolean)
     .join(' ')
 

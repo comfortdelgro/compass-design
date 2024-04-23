@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {useIsDarkTheme} from '../theme/useCurrentTheme'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/checkbox.module.css'
-import {useIsDarkTheme} from '../theme/useCurrentTheme'
 
 interface Props {
   id?: string
-  css?: unknown
+  css?: CSS
   name?: string
   value?: string
   autoFocus?: boolean
@@ -15,11 +15,12 @@ interface Props {
   isSelected?: boolean
   defaultSelected?: boolean
   isIndeterminate?: boolean
-  cssCheckBoxInput?: unknown
+  cssCheckBoxInput?: CSS
   children?: React.ReactNode
   validationState?: 'valid' | 'invalid'
   variant?: 'default' | 'rounded' | 'h5'
   onChange?: (isSelected: boolean) => void
+  onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export type CheckboxProps = Props &
@@ -40,11 +41,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       defaultSelected = false,
       cssCheckBoxInput = {},
       onChange,
+      onChangeEvent,
       ...ariaSafeProps
     } = props
 
     const isDarkTheme = useIsDarkTheme()
-    
+
     const [checked, setChecked] = useState<boolean>(
       isSelected || defaultSelected,
     )
@@ -54,7 +56,10 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       keyof Props
     >
 
-    const handleCheckboxChange = () => {
+    const handleCheckboxChange = (
+      event?: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+      onChangeEvent(event)
       if (isDisabled || isReadOnly) return
       if (onChange) {
         onChange(!checked)
@@ -104,7 +109,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         .join(' ')
     }, [isDarkTheme, variant])
 
-    console.log(isDarkTheme)
     return (
       <CssInjection css={css} childrenRef={checkboxRef}>
         <div className={rootClass} {...htmlProps}>

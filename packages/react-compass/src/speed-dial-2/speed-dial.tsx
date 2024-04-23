@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {SpeedDialActions} from './speed-dial-actions'
 import {SpeedDialButton} from './speed-dial-button'
@@ -10,7 +10,7 @@ interface Props {
   children?: React.ReactNode
   showing?: boolean
   actions?: React.ReactNode
-  css?: unknown
+  css?: CSS
   style?: React.CSSProperties
 }
 

@@ -1,12 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import FooterHeader from './footer-header'
 import FooterNavigation from './footer-nav'
 import FooterPolicy from './footer-policy'
 import styles from './styles/footer.module.css'
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   color?: 'white' | 'black' | 'blue'
 }

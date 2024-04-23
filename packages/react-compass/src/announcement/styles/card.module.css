@@ -1,0 +1,37 @@
+/* Importing the theme module */
+@import '../../theme/theme.module.css';
+
+@layer default, variant;
+
+@layer default {
+  .card {
+    box-sizing: border-box;
+    padding: var(--cdg-spacing-4);
+    border-radius: var(--cdg-border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--cdg-spacing-3);
+    align-items: center;
+  }
+
+  .header, .body, .footer {
+    width: 100%;
+  }
+}
+
+@layer variant {
+  .primaryLightVariant {
+    border: var(--cdg-color-cdgBlue60) 1px solid;
+    background-color: var(--cdg-color-cdgBlue20);
+    box-shadow: 0px 8px 8px 0px #01215824;
+  }
+  .primaryDarkVariant {
+    background-color: var(--cdg-color-cdgBlue);
+    box-shadow: 0px 8px 8px 0px #01215824;
+  }
+  .grayLightVariant {
+    border: var(--cdg-color-divider) 1px solid;
+    background-color: var(--cdg-color-primaryBg);
+    box-shadow: 0px 8px 8px 0px #01215824;
+  }
+}

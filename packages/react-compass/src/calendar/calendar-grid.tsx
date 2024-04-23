@@ -7,14 +7,14 @@ import {
   parseDate,
 } from '../internationalized/date'
 import {useLocale} from '../internationalized/i18n'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import CalendarCell from './calendar-cell'
 import {useCalendarGrid} from './hooks/useCalendarGrid'
 import styles from './styles/calendar-grid.module.css'
 import {CalendarState, DateDuration, RangeCalendarState} from './types'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   state: CalendarState | RangeCalendarState
   offset?: DateDuration

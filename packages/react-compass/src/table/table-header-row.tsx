@@ -1,25 +1,37 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-header-row.module.css'
 
 interface Props {
-  children: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
-const TableV2HeaderRow = React.forwardRef<HTMLTableRowElement, Props>(
-  ({children, css = {}}, ref) => {
-    const TableV2HeaderRowRef = useDOMRef<HTMLTableRowElement>(ref)
+export type TableHeaderRowProps = Props &
+  Omit<React.HTMLAttributes<HTMLTableRowElement>, keyof Props>
 
-    return (
-      <CssInjection css={css} childrenRef={TableV2HeaderRowRef}>
-        <tr role='row' className={styles.cdgTableHeaderRow}>
-          {children}
-        </tr>
-      </CssInjection>
-    )
-  },
-)
+const TableHeaderRow = React.forwardRef<
+  HTMLTableRowElement,
+  TableHeaderRowProps
+>((props, ref) => {
+  const {children, className, css = {}} = props
+  const tableHeaderRowRef = useDOMRef<HTMLTableRowElement>(ref)
 
-export default TableV2HeaderRow
+  const rootClasses = [
+    styles.cdgTableHeaderRow,
+    className,
+    'cdg-table-header-row',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  return (
+    <CssInjection css={css} childrenRef={tableHeaderRowRef}>
+      <tr role='row' ref={tableHeaderRowRef} className={rootClasses}>
+        {children}
+      </tr>
+    </CssInjection>
+  )
+})
+
+export default TableHeaderRow

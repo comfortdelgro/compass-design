@@ -14,7 +14,6 @@ components: Slide Action
 import {SlideAction} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Usage
 
 ### Basic
