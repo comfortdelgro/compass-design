@@ -23,6 +23,7 @@ export interface DropdownContextType {
   defaultSelectedKey?: string | number
   dropdownItemKeys?: DropdownItemKey[]
   labelId: string
+  disabledAutofill?: boolean
   setDropdownItemKeys?: React.Dispatch<React.SetStateAction<DropdownItemKey[]>>
   setSelectedItem: React.Dispatch<
     React.SetStateAction<SelectedItemDropdown | null>
@@ -42,6 +43,7 @@ export const DropdownContext = createContext<DropdownContextType>({
   disabledKeys: [],
   selectedKey: '',
   defaultSelectedKey: '',
+  disabledAutofill: false,
   setSelectedItem: () => {
     //
   },
