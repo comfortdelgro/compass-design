@@ -1,5 +1,5 @@
 import {faXmark} from '@fortawesome/free-solid-svg-icons'
-import {noop} from 'lodash'
+import noop from 'lodash/noop'
 import {useCallback, useEffect, useReducer, useRef} from 'react'
 import Button from '../button'
 import Icon from '../icon'

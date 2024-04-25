@@ -29,7 +29,7 @@ export default defineConfig({
     },
     cssCodeSplit: false,
     rollupOptions: {
-      external: ['react'],
+      external: ['react', 'react-dom', 'chart.js', 'react-chartjs-2'],
       output: {
         globals: {
           react: 'React',
