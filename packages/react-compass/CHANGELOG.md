@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 2.0.1
+
+### Patch Changes
+
+- 8ad4a1e: Optimize bundle size
+
 ## 2.0.0
 
 ### Major Changes
