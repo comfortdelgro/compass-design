@@ -1,16 +1,14 @@
 import {Cell, flexRender, Row} from '@tanstack/react-table'
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
-import {CellMetaProps, EditableCell} from './editable/editable-cell'
-
+import {CellMetaProps, EditableCell} from './components/table-editable-cell'
 import styles from './styles/table-cell.module.css'
 
 export interface Props<TData, TValue> {
-  cell: Cell<TData, TValue>
+  css?: CSS
   row: Row<TData>
-  css?: unknown
-  className?: string
+  cell: Cell<TData, TValue>
   onChangeCell?: (newData: object) => void
 }
 
@@ -21,8 +19,9 @@ export type TableCellProps<TData = unknown, TValue = unknown> = Props<
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
 const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
-  ({cell, row, className, css = {}}, ref) => {
-    const TableCellRef = useDOMRef<HTMLTableCellElement>(ref)
+  (props, ref) => {
+    const {css = {}, cell, row, className} = props
+    const tableCellRef = useDOMRef<HTMLTableCellElement>(ref)
     const {
       getValue,
       row: {index},
@@ -34,7 +33,7 @@ const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
     >
     const isCellEditable = tableMeta?.editable
 
-    const cellClasses = [
+    const rootClasses = [
       styles.cdgTableCell,
       cell.getIsGrouped() && styles.isGrouped,
       cell.getIsAggregated() && styles.isAggregated,
@@ -48,8 +47,8 @@ const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
     return (
       <CssInjection css={css}>
         <td
-          className={cellClasses}
-          ref={TableCellRef}
+          className={rootClasses}
+          ref={tableCellRef}
           key={cell.id}
           style={{
             width: cell.column.getSize(),

@@ -2,7 +2,7 @@
 
 @layer default;
 
-@layer default{
+@layer default {
   .subHeaderSubtitle {
     color: inherit;
     font-size: var(--cdg-font-size-label1);

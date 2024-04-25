@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {STATUS_SIZE_MAP, StatusSize, StatusType} from './status.const'
 import Offline from './status/offline'
@@ -10,7 +10,7 @@ import styles from './styles/status.module.css'
 
 interface Props {
   label?: boolean | string
-  css?: unknown
+  css?: CSS
   className?: string
   size?: StatusSize
   type?: StatusType

@@ -1,7 +1,4 @@
-import {
-  Card,
-  DashboardSidecard,
-} from '@comfortdelgro/react-compass'
+import {Card, DashboardSidecard} from '@comfortdelgro/react-compass'
 
 const lorem = ` Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste
   corrupti esse qui earum dolorum nulla assumenda excepturi, a

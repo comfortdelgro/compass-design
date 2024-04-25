@@ -1,9 +1,9 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/menu-list-dropdown-item.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   isActive?: boolean
   icon?: React.ReactNode

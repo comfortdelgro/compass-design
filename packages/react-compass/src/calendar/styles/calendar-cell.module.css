@@ -22,13 +22,12 @@
     outline: var(--cdg-color-cdgBlue100) solid 2px;
     border-radius: var(--cdg-border-radius-md);
   }
-
 }
 
 @layer variant {
   /* Level 2 */
 
-  .today .calendar-cell-value{
+  .today .calendar-cell-value {
     color: var(--cdg-color-cdgBlue);
     font-weight: bold;
   }

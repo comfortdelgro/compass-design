@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import PageHeaderDescription from './page-header-description'
 import PageHeaderHeader from './page-header-header'
 import PageHeaderSubtitle from './page-header-subtitle'
@@ -7,7 +7,7 @@ import PageHeaderTitle from './page-header-title'
 import styles from './styles/page-header-description.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   color?: 'white' | 'blue'
 }

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {HTMLAttributes, PropsWithChildren, useEffect, useMemo} from 'react'
 import useDrag, {DraggableOptions} from '../utils/hooks/useDrag'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/drawer-expander.module.css'
 
 type Props = PropsWithChildren<{
@@ -12,7 +12,7 @@ type Props = PropsWithChildren<{
   onDragEnd?: DraggableOptions['onEnd']
 }>
 
-export type DrawerExpanderProps = Props & {css?: unknown} & Omit<
+export type DrawerExpanderProps = Props & {css?: CSS} & Omit<
     HTMLAttributes<HTMLDivElement>,
     keyof Props
   >

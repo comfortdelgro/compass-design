@@ -4,12 +4,12 @@ import {forwardRef, HTMLAttributes, memo, useCallback, useState} from 'react'
 import Button from '../button'
 import Divider from '../divider'
 import TextField from '../textfield'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import classes from './styles/confirm-pickup.module.css'
 
 export type ConfirmPUPointProps = {
-  css?: unknown
+  css?: CSS
   h5?: boolean
   onConfirmPickup: (specificPUPoint?: string) => void
   onChangePUPoint?: () => void

@@ -1,11 +1,11 @@
 import React, {SyntheticEvent, useContext} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {MenuListContext} from './menu-list-context'
 import styles from './styles/menu-list-dropdown-item.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   leftIcon?: React.ReactNode | false
   rightIcon?: React.ReactNode | true

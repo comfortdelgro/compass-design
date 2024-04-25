@@ -1,11 +1,11 @@
 import React, {useContext} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {MultipleDropdownContext} from './multiple-dropdown-context'
 
 interface Props {
   children: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
 export type MultipleDropdownHeaderProps = Props &

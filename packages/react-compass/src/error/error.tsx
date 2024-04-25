@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ErrorAction, {ErrorActionProps} from './error-action'
@@ -11,7 +11,7 @@ import styles from './styles/error.module.css'
 
 interface Props {
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
   variant?: 'primary' | 'secondary'
   className?: string
 }

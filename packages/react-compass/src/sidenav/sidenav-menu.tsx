@@ -18,7 +18,7 @@ import {
   useRole,
 } from '@floating-ui/react'
 import React, {useContext, useEffect, useMemo, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/sidenav-menu.module.css'
 
 interface Props {
@@ -38,7 +38,7 @@ interface Props {
       userProps?: React.HTMLProps<Element> | undefined,
     ) => Record<string, unknown>,
   ) => void
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DashboardSidecardContent from './dashboardSidecardContent'
 import DashboardSidecardHeader from './dashboardSidecardHeader'
@@ -7,7 +7,7 @@ import styles from './styles/dashboardSidecard.module.css'
 
 interface Props {
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
 export type DashboardSidecardProps = Props &

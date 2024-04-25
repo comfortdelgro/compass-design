@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/timeline.module.css'
 
@@ -9,7 +9,7 @@ interface Props {
   icon?: React.ReactNode
   dot?: React.ReactNode
   identifier?: number
-  css?: unknown
+  css?: CSS
 }
 
 export type TimelineItemProps = Props &

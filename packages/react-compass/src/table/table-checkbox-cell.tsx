@@ -1,28 +1,35 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import Checkbox from '../checkbox'
+import {CSS, CssInjection} from '../utils/objectToCss'
+import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-checkbox-cell.module.css'
-import TableCheckbox from './table-checkbox'
 
 interface Props {
-  children?: React.ReactNode
-  indeterminate?: boolean
-  className?: string
+  css?: CSS
   disabled?: boolean
   checked?: boolean
-  css?: unknown
+  indeterminate?: boolean
 }
 
 export type TableCheckboxCellProps = Props &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
+  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
 
-const TableCheckboxCell = ({
-  indeterminate = false,
-  className,
-  disabled = false,
-  css = {},
-  ...rest
-}: TableCheckboxCellProps) => {
-  const checkboxCellClasses = [
+const TableCheckboxCell = React.forwardRef<
+  HTMLInputElement,
+  TableCheckboxCellProps
+>((props, ref) => {
+  const {
+    css = {},
+    className,
+    checked = false,
+    disabled = false,
+    indeterminate = false,
+    onChange,
+    ...rest
+  } = props
+  const tableCheckboxCellRef = useDOMRef<HTMLInputElement>(ref)
+
+  const rootClasses = [
     styles.cdgTableCheckboxCell,
     className,
     'cdg-table-checkbox-cell',
@@ -31,17 +38,18 @@ const TableCheckboxCell = ({
     .join(' ')
 
   return (
-    <CssInjection css={css}>
-      <span className={checkboxCellClasses}>
-        <TableCheckbox
-          disabled={disabled}
-          indeterminate={indeterminate}
-          className={className}
-          {...rest}
-        />
-      </span>
+    <CssInjection css={css} childrenRef={tableCheckboxCellRef}>
+      <Checkbox
+        {...rest}
+        ref={tableCheckboxCellRef}
+        isSelected={checked}
+        isDisabled={disabled}
+        className={rootClasses}
+        isIndeterminate={indeterminate}
+        onChangeEvent={onChange}
+      />
     </CssInjection>
   )
-}
+})
 
 export default TableCheckboxCell

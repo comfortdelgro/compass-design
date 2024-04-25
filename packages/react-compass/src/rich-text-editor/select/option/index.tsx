@@ -1,5 +1,5 @@
 import React, {HTMLAttributes, Key} from 'react'
-import CssInjection from '../../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../../utils/objectToCss'
 import {useDOMRef} from '../../../utils/use-dom-ref'
 import styles from '../../styles/option.module.css'
 import {DropdownItemProps} from '../item'
@@ -13,7 +13,7 @@ interface Props {
   item: React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>
   onSelect: (key: React.Key) => void
   className?: string
-  css?: unknown
+  css?: CSS
 }
 
 export type OptionProps = Props &

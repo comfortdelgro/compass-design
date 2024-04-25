@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import GridItem from './grid-item'
@@ -7,7 +7,7 @@ import styles from './styles/grid.module.css'
 
 interface Props {
   children?: React.ReactNode
-  css?: unknown
+  css?: CSS
   spacing?: 'sm' | 'md' | 'lg'
   justifyContent?:
     | 'flexStart'

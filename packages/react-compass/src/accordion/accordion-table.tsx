@@ -1,10 +1,10 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/accordion-table.module.css'
 
 interface Props {
-  css?: unknown
+  css?: CSS
   children: React.ReactNode
 }
 
@@ -17,13 +17,17 @@ const AccordionTable = React.forwardRef<HTMLDivElement, AccordionTableProps>(
 
     const accordionTableRef = useDOMRef<HTMLDivElement>(ref)
 
+    const rootClasses = [
+      styles.accordionTable,
+      className,
+      'cdg-accordion-table',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={accordionTableRef}>
-        <div
-          className={`${styles.accordionTable} ${className}`}
-          {...htmlProps}
-          ref={accordionTableRef}
-        >
+        <div {...htmlProps} className={rootClasses} ref={accordionTableRef}>
           {children}
         </div>
       </CssInjection>

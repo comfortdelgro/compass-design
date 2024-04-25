@@ -1,5 +1,5 @@
 export type Person = {
-  id: string;
+  id: string
   firstName: string
   lastName: string
   age: number
@@ -56,7 +56,7 @@ const newPerson = (): Person => {
 export function makeData(...lens: number[]) {
   const makeDataLevel = (depth = 0): Person[] => {
     const len = lens[depth]!
-    return range(len).map((d): Person => {
+    return range(len).map((): Person => {
       return {
         ...newPerson(),
         subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : null,
@@ -106,7 +106,7 @@ export const newRequestStatus = (): LimitRequestStatus => {
 export function makeRequestStatusData(...lens: number[]) {
   const makeDataLevel = (depth = 0): LimitRequestStatus[] => {
     const len = lens[depth]!
-    return range(len).map((d): LimitRequestStatus => {
+    return range(len).map((): LimitRequestStatus => {
       return {
         ...newRequestStatus(),
       }

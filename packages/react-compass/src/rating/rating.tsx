@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Button from '../button'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   FaceFrown,
@@ -19,7 +19,7 @@ interface Props {
   value?: number
   readOnly?: boolean
   disabled?: boolean
-  css?: unknown
+  css?: CSS
 }
 export type RatingProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>

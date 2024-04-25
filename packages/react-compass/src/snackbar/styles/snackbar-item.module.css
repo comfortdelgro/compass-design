@@ -23,7 +23,6 @@
 @layer default;
 
 @layer default {
-
   /* SnackbarContainer.module.css */
   .snackbarContainer {
     box-sizing: border-box;
@@ -47,7 +46,6 @@
   }
 
   @media (max-width: 600px) {
-
     .snackbarContainer {
       gap: var(--cdg-spacing-2);
       width: 100%;

@@ -1,12 +1,12 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/modal.module.css'
 
 interface Props {
   children?: React.ReactNode
   onClose?: () => void
-  css?: unknown
+  css?: CSS
 }
 
 export type ModalCloseIconProps = Props &

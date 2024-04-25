@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import RadioGroup, {RadioContext} from './radio-group'
 import styles from './styles/radio.module.css'
@@ -17,7 +17,7 @@ interface Props {
   value: string
   id?: string
   name?: string
-  css?: unknown
+  css?: CSS
 }
 
 export type RadioProps = Props

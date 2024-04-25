@@ -13,7 +13,7 @@
     width: 100vw;
     height: 100vh;
   }
-  
+
   .toolbarWrap {
     z-index: 52;
     position: fixed;
@@ -26,7 +26,7 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .imageInformationWrap {
     z-index: 52;
     position: fixed;
@@ -37,19 +37,19 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .imageInformationWrap {
     text-align: center;
     color: var(--cdg-color-primaryText);
   }
-  
+
   .toolbar {
     display: flex;
     width: 100vw;
     align-items: center;
     justify-content: center;
   }
-  
+
   .navbar {
     z-index: 52;
     position: fixed;
@@ -61,7 +61,7 @@
     justify-content: center;
     width: 100vw;
   }
-  
+
   .navbarItem {
     background: none;
     border: none;
@@ -71,7 +71,7 @@
     height: 50px;
     margin-bottom: 10px;
   }
-  
+
   .navbarItem img {
     width: 60px;
     height: 50px;
@@ -80,10 +80,9 @@
     margin-left: 2px;
     border-radius: 4px;
   }
-  
+
   .navbarItemActive {
     opacity: 1 !important;
     border: 2px solid var(--cdg-color-cdgBlue80);
   }
-  
 }

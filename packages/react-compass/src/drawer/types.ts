@@ -1,4 +1,5 @@
 import {DialogHTMLAttributes, ReactNode} from 'react'
+import {CSS} from '../utils/objectToCss'
 
 type DrawerSharedProps = {
   /**
@@ -67,7 +68,7 @@ type H5DrawerChildrenAsFunctionOptions = {
 type H5DrawerProps = {
   variant: 'h5'
   position?: never
-  expanderCSS?: unknown
+  expanderCSS?: CSS
   onExpandChange?: (isExpand: boolean) => void
 
   /**
@@ -118,7 +119,7 @@ export type DrawerH5Props = DrawerSharedProps & H5DrawerProps
 export type DrawerDefaultProps = DrawerSharedProps & DefaultDrawerProps
 
 type Props = DrawerSharedProps &
-  (DefaultDrawerProps | H5DrawerProps) & {css?: unknown}
+  (DefaultDrawerProps | H5DrawerProps) & {css?: CSS}
 
 export type DrawerProps = Props &
   Omit<

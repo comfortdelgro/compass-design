@@ -105,7 +105,8 @@
     cursor: default;
   }
 
-  .thumbShowToolip:focus-visible::before, .thumbIsDragging.thumbShowToolip::before {
+  .thumbShowToolip:focus-visible::before,
+  .thumbIsDragging.thumbShowToolip::before {
     content: '';
 
     position: absolute;
@@ -118,7 +119,8 @@
     z-index: 9999;
   }
 
-  .thumbShowToolip:focus-visible::after, .thumbIsDragging.thumbShowToolip::after {
+  .thumbShowToolip:focus-visible::after,
+  .thumbIsDragging.thumbShowToolip::after {
     content: attr(data-value);
     position: absolute;
     bottom: 1.688rem;

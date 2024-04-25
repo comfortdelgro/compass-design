@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../button/button'
 import {getIconFromColor} from '../utils/get-icon-from-color'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/alert.module.css'
 
@@ -10,7 +10,7 @@ interface Props {
   icon?: false | React.ReactNode
   dismissible?: boolean
   onDismiss?: () => void
-  css?: unknown
+  css?: CSS
   color?: 'info' | 'success' | 'warning' | 'danger'
 }
 

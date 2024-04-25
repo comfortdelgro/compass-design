@@ -32,14 +32,14 @@ import {
   Spinner,
   TextField,
 } from '..'
+import ProgressPercentage from './table-progress'
 import {
   LimitRequestStatus,
   Person,
   makeData,
   makeRequestStatusData,
-} from './makeData'
-import ProgressPercentage from './table-progress'
-import {OptionType} from './types'
+} from './utils/makeData'
+import {OptionType} from './utils/types'
 
 export const Basic: React.FC = () => {
   const [page, setPage] = useState(1)

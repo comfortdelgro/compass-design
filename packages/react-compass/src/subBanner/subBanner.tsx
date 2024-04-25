@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/subBanner.module.css'
@@ -12,7 +12,7 @@ import SubBannerTitle from './subBanner-title'
 interface Props {
   children?: React.ReactNode
   variant?: 'primary' | 'secondary'
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

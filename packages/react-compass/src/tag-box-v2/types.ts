@@ -1,4 +1,5 @@
 import {IconDefinition} from '@fortawesome/free-solid-svg-icons'
+import {CSS} from '../utils/objectToCss'
 
 export interface Tag {
   id: string | number
@@ -44,7 +45,7 @@ export interface TagBoxV2Props {
   customValidationHandler?: (tagValue: string) => boolean
 
   // css
-  css?: unknown
+  css?: CSS
 }
 
 export interface CustomTagBoxRef {

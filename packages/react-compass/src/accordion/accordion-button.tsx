@@ -1,10 +1,10 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/accordion-button.module.css'
 
 interface Props {
-  css: unknown
+  css: CSS
   children?: React.ReactNode
   className?: string
   expand?: boolean
@@ -31,19 +31,26 @@ const AccordionButton = React.forwardRef<
 
   const buttonRef = useDOMRef<HTMLButtonElement>(ref)
 
+  const rootClasses = [
+    styles.accordionButton,
+    expand ? styles.open : styles.close,
+    className,
+    'cdg-accordion-button',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={buttonRef}>
       <button
+        {...delegated}
+        type='button'
+        ref={buttonRef}
+        className={rootClasses}
         aria-expanded={expand}
         aria-controls={props['aria-controls']}
-        ref={buttonRef}
-        className={`${styles.accordionButton} ${
-          expand ? styles.open : styles.close
-        } ${className}`}
-        onMouseDown={onMouseDown}
         onKeyDown={onKeyDown}
-        type='button'
-        {...delegated}
+        onMouseDown={onMouseDown}
       >
         {children}
       </button>

@@ -1,5 +1,5 @@
 import React from 'react'
-import CssInjection from '../../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import {Component} from '../utils'
 import styles from './display.module.css'
 
@@ -8,7 +8,7 @@ interface Props {
   weight?: 'bold' | 'semibold'
   component?: Component
   children: React.ReactNode
-  css?: unknown
+  css?: CSS
 }
 
 export type displayTypographyProps = Props &

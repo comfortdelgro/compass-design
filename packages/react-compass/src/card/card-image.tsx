@@ -1,10 +1,10 @@
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import style from './styles/card.module.css'
 
 type Props = {
-  css?: unknown
+  css?: CSS
 }
 
 export type CardImageProps = Props &

@@ -1,5 +1,5 @@
 import React, {useContext, useMemo} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   MultipleDropdownContext,
@@ -17,7 +17,7 @@ export interface DropdownSectionBase {
   isChecked?: boolean
   checkmark?: 'checkbox' | 'tick'
   index?: number
-  css?: unknown
+  css?: CSS
   onClick?: (title: React.ReactNode) => void
   onSectionClick?: (
     items: SelectedItemDropdown[],

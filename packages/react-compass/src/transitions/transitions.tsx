@@ -57,14 +57,12 @@ const Transitions = React.forwardRef<HTMLDivElement, TransitionsProps>(
     // This effect is used to get children height
     React.useLayoutEffect(() => {
       if (ChildRef.current && !childrenHeight) {
-        console.log('get children height from ChildRef')
         const element = ChildRef.current?.querySelector(':first-child')
         if (element instanceof HTMLElement) {
           // Check if element is an instance of HTMLElement
           setChildrenHeight(element.offsetHeight)
         }
       } else if (TransitionWrapperRef.current && childrenHeight) {
-        console.log('get children height from TransitionWrapperRef')
         const element =
           TransitionWrapperRef.current?.querySelector(':first-child')
         if (element instanceof HTMLElement) {

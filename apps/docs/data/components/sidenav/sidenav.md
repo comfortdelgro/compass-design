@@ -13,7 +13,6 @@ components: Sidenav
 import {Sidenav} from '@comfortdelgro/react-compass'
 ```
 
-
 ## Example
 
 ### Sidenav

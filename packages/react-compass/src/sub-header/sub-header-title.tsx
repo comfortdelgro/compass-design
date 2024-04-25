@@ -1,13 +1,13 @@
 'use client'
 
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/sub-header-title.module.css'
 
 interface Props {
   children: React.ReactNode
   variant?: 'default' | 'h5'
-  css?: unknown
+  css?: CSS
   className?: string
 }
 

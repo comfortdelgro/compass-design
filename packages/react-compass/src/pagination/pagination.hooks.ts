@@ -22,10 +22,13 @@ export const usePagination = ({
     if (page) setActive(page)
   }, [page])
 
-  const setActivePage = useCallback((newPage: number) => {
-    setActive(newPage)
-    onChange?.(newPage)
-  }, [onChange])
+  const setActivePage = useCallback(
+    (newPage: number) => {
+      setActive(newPage)
+      onChange?.(newPage)
+    },
+    [onChange],
+  )
 
   const setPage = useCallback(
     (newPage: number) => {

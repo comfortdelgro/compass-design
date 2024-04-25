@@ -18,7 +18,7 @@ import {
 } from './utils'
 
 import Popover from '../popover'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useId} from '../utils/useId'
 import DropdownComboBox from './dropdown.combobox'
 import DropdownSection from './dropdown.section'
@@ -56,7 +56,7 @@ export interface Props {
   isCloseOnSelect?: boolean
   isLoadingMore?: boolean
   popoverCSS?: React.CSSProperties
-  css?: unknown
+  css?: CSS
   inputRef?: React.RefObject<HTMLInputElement>
   buttonRef?: React.RefObject<HTMLButtonElement>
   disabledAutofill?: boolean

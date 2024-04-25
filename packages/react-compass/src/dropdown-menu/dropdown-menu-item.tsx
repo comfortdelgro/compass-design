@@ -1,6 +1,6 @@
 'use client'
 import React, {useCallback, useContext, useEffect, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMenuContext from './dropdown-menu-context'
@@ -16,7 +16,7 @@ interface Props {
   isActived?: boolean
   eventKey?: string
   onSelect?: (event: React.MouseEvent<HTMLLIElement>, eventKey?: string) => void
-  css?: unknown
+  css?: CSS
 }
 export const MULTILEVEL_ITEM_CLASS_NAME = 'cdg-dropdown-multilevel-item'
 

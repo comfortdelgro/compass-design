@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, {useCallback, useEffect, useState} from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/radio-group.module.css'
@@ -26,7 +26,7 @@ interface Props {
   'aria-labelledby'?: string
   groupName?: string
   orientation?: 'vertical' | 'horizontal'
-  css?: unknown
+  css?: CSS
 }
 
 export type RadioGroupProps = Props &

@@ -12,11 +12,11 @@
     gap: var(--cdg-spacing-2);
     color: var(--cdg-color-gray100);
   }
-  
+
   .rteOption:hover {
     background-color: var(--cdg-color-gray20);
   }
-  
+
   .rteOption.isFocused {
     background-color: var(--cdg-color-gray20);
   }
@@ -30,7 +30,7 @@
   .rteOption.isColor {
     position: relative;
   }
-  
+
   .rightIcon {
     display: flex;
     align-items: center;
@@ -39,7 +39,7 @@
     width: var(--cdg-spacing-6);
     height: var(--cdg-spacing-6);
   }
-  
+
   .rightIcon.isUnselected > svg {
     display: none;
   }
@@ -51,17 +51,16 @@
   .rightIcon.typeHeading {
     color: var(--cdg-color-cdgBlue);
   }
-  
+
   .optionContent {
     display: flex;
     align-items: center;
     flex-grow: 1;
   }
-  
+
   .colorItem {
     border-radius: 4px;
     width: 24px;
     height: 24px;
   }
-  
 }

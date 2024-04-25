@@ -1,12 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
 import React from 'react'
-import CssInjection from '../utils/objectToCss/CssInjection'
+import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import BreadcrumbItem from './breadcrumb-item'
 import styles from './styles/breadscrumbs.module.css'
 
 export interface Props {
-  css?: unknown
+  css?: CSS
   children?: React.ReactNode
   dividerIcon?: React.ReactNode
   isCurrent?: (item: number) => boolean
