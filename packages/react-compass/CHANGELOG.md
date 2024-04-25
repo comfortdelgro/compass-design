@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 2.0.0
+
+### Major Changes
+
+- ec5f9d5: New static version for react-compass
+
 ## 4.4.0
 
 ### Minor Changes
