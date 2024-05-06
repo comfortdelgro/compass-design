@@ -81,6 +81,7 @@ import {MultipleDropdown} from '@comfortdelgro/react-compass'
 | onOpenChange       | `(isOpen: boolean) => void`             | —       | Method that is called when the open state of the menu changes. Returns the new open state and the action that caused the opening of the menu.             |
 | isLoadingMore      | `boolean`                               | 'false' | Prevent to fire function `onLoadMore`.                                                                                                                    |
 | popoverCSS         | `CSS`                                   | —       | The system prop that allows defining system overrides as well as additional CSS styles of Popover.                                                        |
+| isFloatingPortal   | `boolean`                               | `true`  | If true, it would render the popover outside of the current React Tree, just like createPortal from React                                                 |
 
 #### `<MultipleDropdown.Item/>`
 
