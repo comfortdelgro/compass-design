@@ -6,7 +6,7 @@ import {
 // import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight'
 import {Meta} from '@storybook/react'
 import {FormEventHandler, useRef, useState} from 'react'
-import {Divider, Modal, Typography} from '..'
+import {Divider, Dropdown, Modal, Typography} from '..'
 import Button from '../button'
 import Icon from '../icon'
 import Drawer, {DrawerH5Props, DrawerProps, DrawerRef} from './index'
@@ -48,6 +48,7 @@ export function Default() {
     setDrawerPosition(position)
     setOpenDrawerPosition(true)
   }
+  const [value, setValue] = useState<string>('cat')
 
   return (
     <div className={storiesStyles.drawerStories}>

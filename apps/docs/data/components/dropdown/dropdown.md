@@ -85,6 +85,7 @@ We provide 2 type of dropdown that can be used to select: `Dropdown.Select` and 
 | isLoadingMore    | `boolean`                        | `false` | Prevent to fire function `onLoadMore`.                                                                                                                    |
 | popoverCSS       | `CSS`                            | —       | The system prop that allows defining system overrides as well as additional CSS styles of Popover.                                                        |
 | disableClearable | `boolean`                        | `false` | If `true`, the input can't be cleared.                                                                                                                    |
+| isFloatingPortal | `boolean`                        | `true`  | If true, it would render the popover outside of the current React Tree, just like createPortal from React                                                 |
 
 ### `<Dropdown.Item/>` :
 

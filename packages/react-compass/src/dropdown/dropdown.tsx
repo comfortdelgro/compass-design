@@ -66,6 +66,7 @@ export interface Props {
   onSelectionChange?: (key: string | number) => void
   onValueChange?: (key: string | number) => void
   h5?: boolean
+  isFloatingPortal?: boolean
 }
 
 export const Icon = () => (
@@ -181,6 +182,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onCompositionStart,
     onCompositionUpdate,
     h5 = false,
+    isFloatingPortal = true,
     ...ariaSafeProps
   } = props
 
@@ -838,6 +840,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             direction='bottom-left'
             onClose={handleClosePopover}
             onPositionedChange={handlePositionedChange}
+            isFloatingPortal={isFloatingPortal}
           >
             <div
               className={`${styles.dropdownPopover} cdg-dropdown-popover`}
