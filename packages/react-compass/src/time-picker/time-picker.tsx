@@ -1,5 +1,5 @@
 'use client'
-import {cloneDeep} from 'lodash'
+import cloneDeep from 'lodash/cloneDeep'
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import Popover from '../popover'
 import TextField, {TextFieldProps} from '../textfield'
