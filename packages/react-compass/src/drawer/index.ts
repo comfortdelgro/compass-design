@@ -1,4 +1,4 @@
-import DrawerComposable from './drawer'
+import DrawerComposable from './drawer-variants'
 import DrawerFooter from './drawer-footer'
 import DrawerHeader from './drawer-header'
 

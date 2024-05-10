@@ -115,11 +115,31 @@ type H5DrawerProps = {
     | ((options: H5DrawerChildrenAsFunctionOptions) => ReactNode)
 }
 
+type MobileDrawerProps = Omit<H5DrawerProps, 'variant'> & {
+  /**
+   * A variant that utilizes modern web technologies to replicate the iOS drawer (sheets) experience on the web.
+   *
+   * https://developer.apple.com/design/human-interface-guidelines/sheets#iOS-iPadOS
+   * ___
+   * ⚠️ **Browser compatibility warning**: this variant experiments with the latest web technology concepts and CSS features
+   * such as view transitions, transitioning discrete animations, the `inert` attribute, etc...
+   *
+   * Consider using the `Drawer`'s `h5` variant or the `Dialog` component for a more stable and widely browser supported experience.
+   */
+  variant: 'mobile'
+  css?: CSS
+
+  scaleOffset?: number
+  disableScaleBg?: boolean
+  bgScaleClassName?: string
+}
+
 export type DrawerH5Props = DrawerSharedProps & H5DrawerProps
+export type DrawerMobileProps = DrawerSharedProps & MobileDrawerProps
 export type DrawerDefaultProps = DrawerSharedProps & DefaultDrawerProps
 
 type Props = DrawerSharedProps &
-  (DefaultDrawerProps | H5DrawerProps) & {css?: CSS}
+  (DefaultDrawerProps | H5DrawerProps | MobileDrawerProps) & {css?: CSS}
 
 export type DrawerProps = Props &
   Omit<

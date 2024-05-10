@@ -1,6 +1,8 @@
 .drawerStories {
   position: relative;
   padding: var(--cdg-spacing-4);
+  background-color: var(--cdg-color-background);
+  min-height: 100dvh;
 
   > h4 {
     margin-block: 0 var(--cdg-spacing-2);
@@ -42,6 +44,12 @@
 
   & label + input[type='search'] {
     margin-left: var(--cdg-spacing-2);
+  }
+}
+
+.bgScaleOverride {
+  body {
+    background: black !important;
   }
 }
 

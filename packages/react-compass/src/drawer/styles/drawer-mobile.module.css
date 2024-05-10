@@ -1,0 +1,126 @@
+@import '../../theme/theme.module.css';
+
+@layer default, variant, compoundVariant, keyframes;
+
+:global(.cdg-webpage-drawer-scale) {
+  background: initial !important;
+  overflow: hidden;
+
+  body {
+    background: black;
+  }
+}
+
+:global(.cdg-drawer-bg-scale) {
+  transition-property: border-radius, transform;
+  transition-duration: 500ms;
+  transition-timing-function: var(--cdg-drawer-animation-timing-fn);
+  transform-origin: center top;
+}
+
+:global(.cdg-drawer-bg-scale-open) {
+  --cdg-drawer-scale-offset: 16px;
+  --cdg-drawer-scale: 1;
+
+  border-radius: var(--cdg-border-radius-lg, 8px);
+  transform: scale(var(--cdg-drawer-scale))
+    translate(
+      0,
+      calc(env(safe-area-inset-top) + var(--cdg-drawer-scale-offset))
+    );
+  overflow: hidden;
+}
+
+@layer default {
+  html {
+    --cdg-drawer-animation-timing-fn: cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .drawer,
+  .drawerHeader,
+  .drawerContent,
+  .drawerFooter {
+    box-sizing: border-box;
+  }
+
+  .drawer {
+    --cdg-drawer-open-animation-duration: 500ms;
+    --cdg-drawer-close-animation-duration: 200ms;
+
+    margin-block: auto 0;
+    padding: 0;
+    max-height: 100%;
+    max-width: unset;
+    max-block-size: 100%;
+    max-inline-size: unset;
+
+    flex-direction: column;
+
+    border: none;
+    border-radius: var(--cdg-border-radius-xl) var(--cdg-border-radius-xl) 0 0;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    pointer-events: none;
+    background-color: var(--cdg-color-background);
+    color: var(--cdg-color-primaryText);
+  }
+
+  .drawer:focus-visible {
+    outline: none;
+  }
+
+  .drawer::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .drawer[open] {
+    display: flex;
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .drawer,
+    .drawer::backdrop {
+      transition: opacity var(--cdg-drawer-close-animation-duration),
+        display var(--cdg-drawer-close-animation-duration) allow-discrete,
+        overlay var(--cdg-drawer-close-animation-duration) allow-discrete;
+      opacity: 0;
+    }
+
+    .drawer {
+      animation: slideOutUp var(--cdg-drawer-close-animation-duration)
+        var(--cdg-drawer-animation-timing-fn) forwards;
+    }
+
+    .drawer[open],
+    .drawer[open]::backdrop {
+      opacity: 1;
+    }
+
+    .drawer[open] {
+      animation: slideInUp var(--cdg-drawer-open-animation-duration)
+        var(--cdg-drawer-animation-timing-fn) forwards;
+    }
+  }
+}
+
+@layer keyframes {
+  @keyframes slideInUp {
+    from {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes slideOutUp {
+    to {
+      transform: translateY(100%);
+    }
+  }
+}
+
+@starting-style {
+  .drawer[open],
+  .drawer[open]::backdrop {
+    opacity: 0;
+  }
+}

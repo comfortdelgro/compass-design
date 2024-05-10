@@ -54,7 +54,7 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
     addItemsLabel = 'Add',
     compact,
     alignIcon,
-    bgColor,
+    bgColor = '--cdg-color-background',
     isClearable,
     style,
     ...htmlDataAttributes
