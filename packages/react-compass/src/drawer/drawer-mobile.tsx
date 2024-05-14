@@ -3,7 +3,6 @@
 import {
   DialogHTMLAttributes,
   MouseEvent,
-  ReactEventHandler,
   forwardRef,
   useCallback,
   useEffect,
@@ -16,10 +15,10 @@ import DrawerHeader from './drawer-header'
 import {drawerPickChild} from './drawer-pick-child'
 import drawerExpanderStyles from './styles/drawer-expander.module.css'
 import drawerMobileStyles from './styles/drawer-mobile.module.css'
-
 import {DrawerMobileProps, DrawerRef} from './types'
 import {updateElementStyles} from './utils'
 
+const DRAWER_SCALE_TARGET_SIGNAL = 'data-cdg-drawer-scalable-bg'
 const DRAWER_SCALE_OFFSET = 16 // px
 
 const DrawerMobile = forwardRef<
@@ -35,9 +34,9 @@ const DrawerMobile = forwardRef<
     preventClose,
     preventFocus,
 
-    scaleOffset = DRAWER_SCALE_OFFSET,
     disableScaleBg = false,
-    bgScaleClassName = 'cdg-webpage-drawer-scale',
+    scaleBgOffset = DRAWER_SCALE_OFFSET,
+    scaleBgClassName = 'cdg-webpage-drawer-scale',
     onMouseDown,
 
     children,
@@ -53,11 +52,7 @@ const DrawerMobile = forwardRef<
   >(OtherElementsExceptHeader, DrawerFooter)
   const handleCloseDrawer = useCallback(
     (dialogReturnValue?: string) => {
-      if (
-        typeof document === 'undefined' ||
-        !DrawerElement ||
-        !dialogReturnValue
-      ) {
+      if (typeof document === 'undefined' || !DrawerElement) {
         return
       }
 
@@ -87,18 +82,18 @@ const DrawerMobile = forwardRef<
     [DrawerElement, preventClose, onMouseDown, handleCloseDrawer],
   )
 
-  const handleCancelDrawer = useCallback<ReactEventHandler<HTMLDialogElement>>(
-    (e) => preventClose && e.preventDefault(),
-    [preventClose],
-  )
-
   const scaleBackground = useCallback(() => {
-    if (disableScaleBg || typeof document === 'undefined' || !DrawerElement) {
+    if (
+      typeof document === 'undefined' ||
+      disableScaleBg ||
+      !DrawerElement ||
+      drawerMode !== 'modal'
+    ) {
       return
     }
 
     const scaleElement =
-      document.querySelector<HTMLElement>('[data-cdg-drawer-scalable-bg]') ||
+      document.querySelector<HTMLElement>(`[${DRAWER_SCALE_TARGET_SIGNAL}]`) ||
       document.body
     if (!scaleElement) {
       return
@@ -109,12 +104,12 @@ const DrawerMobile = forwardRef<
     if (open) {
       document.documentElement.classList.add(
         'cdg-webpage-drawer-scale',
-        bgScaleClassName,
+        scaleBgClassName,
       )
       updateElementStyles(scaleElement, {
-        '--cdg-drawer-scale-offset': `${scaleOffset}px`,
+        '--cdg-drawer-scale-offset': `${scaleBgOffset}px`,
         '--cdg-drawer-scale': `${(
-          (window.innerWidth - scaleOffset * 2) /
+          (window.innerWidth - scaleBgOffset * 2) /
           window.innerWidth
         ).toFixed(2)}`,
       })
@@ -124,10 +119,17 @@ const DrawerMobile = forwardRef<
 
     document.documentElement.classList.remove(
       'cdg-webpage-drawer-scale',
-      bgScaleClassName,
+      scaleBgClassName,
     )
     scaleElement.classList.remove('cdg-drawer-bg-scale-open')
-  }, [DrawerElement, bgScaleClassName, disableScaleBg, open, scaleOffset])
+  }, [
+    disableScaleBg,
+    DrawerElement,
+    drawerMode,
+    open,
+    scaleBgClassName,
+    scaleBgOffset,
+  ])
 
   useEffect(() => {
     if (typeof document === 'undefined' || !DrawerElement) {
@@ -163,11 +165,12 @@ const DrawerMobile = forwardRef<
         {...dialogHTMLAttributes}
         className={classNames(
           drawerMobileStyles.drawer,
+          drawerMobileStyles[drawerMode],
           className,
           'cdg-drawer',
         )}
         onMouseDown={handleMouseDown}
-        onCancel={handleCancelDrawer}
+        onCancel={preventClose ? (e) => e.preventDefault() : undefined}
       >
         {!disableResize && (
           <div

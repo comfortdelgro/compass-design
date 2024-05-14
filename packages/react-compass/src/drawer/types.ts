@@ -129,9 +129,16 @@ type MobileDrawerProps = Omit<H5DrawerProps, 'variant'> & {
   variant: 'mobile'
   css?: CSS
 
-  scaleOffset?: number
+  /**
+   * Should disable the drawer's background scale effect?
+   * ___
+   * The scale background effect will be **disabled** if `drawerMode` is set to `non-modal`.
+   * @default false
+   */
   disableScaleBg?: boolean
-  bgScaleClassName?: string
+  /** @default 16 (px) */
+  scaleBgOffset?: number
+  scaleBgClassName?: string
 }
 
 export type DrawerH5Props = DrawerSharedProps & H5DrawerProps

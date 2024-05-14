@@ -47,7 +47,9 @@
     --cdg-drawer-open-animation-duration: 500ms;
     --cdg-drawer-close-animation-duration: 200ms;
 
+    width: 100%;
     margin-block: auto 0;
+    margin-inline: unset;
     padding: 0;
     max-height: 100%;
     max-width: unset;
@@ -101,6 +103,14 @@
       animation: slideInUp var(--cdg-drawer-open-animation-duration)
         var(--cdg-drawer-animation-timing-fn) forwards;
     }
+  }
+}
+
+@layer variant {
+  .drawer.non-modal {
+    bottom: 0;
+    box-shadow: none;
+    overflow: hidden;
   }
 }
 

@@ -29,6 +29,39 @@
   }
 }
 
+.nonModalBlock {
+  position: relative;
+  padding: 2rem 1rem;
+  margin-block: 1rem;
+  min-height: 40vh;
+  background: linear-gradient(
+    -25deg,
+    var(--cdg-color-cdgBlue10) 0%,
+    #ffffff 100%
+  );
+  outline: 2px solid var(--cdg-color-cdgBlue10);
+  border-radius: var(--cdg-border-radius-lg);
+
+  :global(.cdg-drawer) {
+    border-end-start-radius: var(--cdg-border-radius-lg);
+    border-end-end-radius: var(--cdg-border-radius-lg);
+  }
+
+  .nonModalBlockDesc {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.2rem 0.4rem;
+
+    font-size: var(--cdg-font-size-label2);
+    font-weight: var(--cdg-font-weight-semibold);
+    color: var(--cdg-color-cdgBlue40);
+
+    outline: 2px solid var(--cdg-color-cdgBlue10);
+    border-radius: var(--cdg-border-radius-lg) 0 var(--cdg-border-radius-md) 0;
+  }
+}
+
 .drawerExample {
   & h2 {
     margin-block: 0;
