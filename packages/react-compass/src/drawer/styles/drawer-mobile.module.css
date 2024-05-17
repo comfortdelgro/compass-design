@@ -3,7 +3,7 @@
 @layer default, variant, compoundVariant, keyframes;
 
 :global(.cdg-webpage-drawer-scale) {
-  background: initial !important;
+  background: initial;
   overflow: hidden;
 
   body {

@@ -34,7 +34,7 @@ const DrawerMobile = forwardRef<
     preventClose,
     preventFocus,
 
-    disableScaleBg = false,
+    enableScaleBg = false,
     scaleBgOffset = DRAWER_SCALE_OFFSET,
     scaleBgClassName = 'cdg-webpage-drawer-scale',
     onMouseDown,
@@ -50,14 +50,13 @@ const DrawerMobile = forwardRef<
   const {child: DrawerFooterElement, rest: OtherElements} = drawerPickChild<
     typeof DrawerFooter
   >(OtherElementsExceptHeader, DrawerFooter)
+
   const handleCloseDrawer = useCallback(
     (dialogReturnValue?: string) => {
       if (typeof document === 'undefined' || !DrawerElement) {
         return
       }
 
-      // setDrawerHeight(drawerInitHeight)
-      // setDrawerStartingHeight(drawerInitHeight)
       DrawerElement.close(dialogReturnValue)
     },
     [DrawerElement],
@@ -84,10 +83,10 @@ const DrawerMobile = forwardRef<
 
   const scaleBackground = useCallback(() => {
     if (
+      !enableScaleBg ||
+      drawerMode !== 'modal' ||
       typeof document === 'undefined' ||
-      disableScaleBg ||
-      !DrawerElement ||
-      drawerMode !== 'modal'
+      !DrawerElement
     ) {
       return
     }
@@ -123,7 +122,7 @@ const DrawerMobile = forwardRef<
     )
     scaleElement.classList.remove('cdg-drawer-bg-scale-open')
   }, [
-    disableScaleBg,
+    enableScaleBg,
     DrawerElement,
     drawerMode,
     open,

@@ -54,6 +54,7 @@ export function Mobile() {
         open={openDrawer}
         variant='mobile'
         onClose={() => setOpenDrawer(false)}
+        enableScaleBg
         scaleBgClassName={storiesStyles.bgScaleOverride}
         scaleBgOffset={16}
       >
