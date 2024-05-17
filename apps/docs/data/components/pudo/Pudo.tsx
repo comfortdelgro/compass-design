@@ -5,21 +5,7 @@ import {
   Typography,
 } from '@comfortdelgro/react-compass'
 import {useState} from 'react'
-
-const exampleItems = [
-  {name: 'item1', value: '', placeholder: 'item1'},
-  {
-    name: 'item2',
-    value: '',
-    placeholder: 'item2',
-    allowSwap: true,
-  },
-  {
-    name: 'item3',
-    value: '',
-    placeholder: 'item3',
-  },
-] as const
+import pudoDocsClasses from './styles/pudo-docs.module.css'
 
 export default function PudoDocs() {
   const [exampleValues, setExampleValues] = useState<PudoValueChange>()
@@ -33,32 +19,25 @@ export default function PudoDocs() {
         Default config: Minlength <strong>2</strong>, Maxlength{' '}
         <strong>3</strong>, Input&#39;s maxlength <strong>255</strong>
       </Typography.Body>
+
       <Pudo
-        items={exampleItems}
+        items={[
+          {name: 'pickUp', value: '', placeholder: 'Pick up from'},
+          {name: 'des1', value: '', placeholder: 'Where to?', allowSwap: true},
+        ]}
         onValuesChange={(value) => setExampleValues(value)}
+        addItems={[{name: 'des2', value: '', placeholder: 'Where to?'}]}
+        addItemsLabel='Add extra destination'
+        removableItems={['des2']}
+        removableLabel='Remove extra destination'
+        isClearable
       />
 
       {exampleValues && (
         <>
-          <Typography.Body variant='body3' css={{marginTop: '1rem'}}>
-            Values:
-          </Typography.Body>
-          <pre
-            style={{
-              padding: '0.5rem',
-              margin: '0',
-
-              width: '100%',
-              minHeight: '1.25rem',
-              borderRadius: '8px',
-
-              backgroundColor: '#FAF9F8',
-              fontSize: '0.875rem',
-              whiteSpace: 'pre-wrap',
-              overflowWrap: 'anywhere',
-            }}
-          >
-            {JSON.stringify(exampleValues, null, 2)}
+          <Typography.Body variant='body3'>Values:</Typography.Body>
+          <pre className={pudoDocsClasses.previewCode}>
+            {JSON.stringify(exampleValues, null, 4)}
           </pre>
         </>
       )}

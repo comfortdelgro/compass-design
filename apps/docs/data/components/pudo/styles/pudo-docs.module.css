@@ -1,27 +1,31 @@
 .compactExampleContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--cdg-spacing-4);
 }
 
 .previewCode {
-  padding: var(--space-2);
+  padding: var(--cdg-spacing-2);
   margin: 0;
+
   width: 100%;
-  min-height: var(--space-5);
-  border-radius: var(----radii-lg);
+  min-height: var(--cdg-spacing-5);
+  border-radius: var(--cdg-border-radius-lg);
+
   background-color: var(--cdg-color-gray10);
-  font-size: var(--fontSizes-label1);
+  font-size: var(--cdg-font-size-body3);
+  line-height: 1.5;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 
-@media screen and (max-width: 768px) {
+@media (width > 768px) {
   .compactExampleContainer {
     flex-direction: row;
   }
 
-  .compactExampleContainer > .cdg-pudo-container {
-    width: calc(100% / 2 - var(--space-4));
+  .compactExampleContainer :global(.cdg-pudo-container) {
+    flex-basis: 50%;
+    min-width: 0;
   }
 }

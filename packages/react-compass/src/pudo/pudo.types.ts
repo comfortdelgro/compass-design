@@ -1,17 +1,9 @@
-import {CSSProperties, FocusEventHandler, ReactNode} from 'react'
+import {CSSProperties, FocusEvent, FocusEventHandler, ReactNode} from 'react'
 import {CSS} from '../utils/objectToCss'
 
 export type PudoValueChange<TItemKeys extends PropertyKey = string> = Array<{
   name: TItemKeys
   value: string
-  /**
-   * @deprecated `isFocusing` will be removed on next major release (`@comfortdelgro/react-compass@4.x`)
-   *
-   * Why? **Bad decision!** Tracking focus status should be seperated from `onValuesChange`.
-   * ___
-   * `isFocusing` still works as expected but consider using `onItemFocusChange` prop instead to track item's focus status.
-   */
-  isFocusing?: boolean
 }>
 
 export type PudoProps<TItemKeys extends PropertyKey> = {
@@ -29,7 +21,10 @@ export type PudoProps<TItemKeys extends PropertyKey> = {
    * @param focusingItem the input name of the focused item.
    * If no items are focusing, the value will be `undefined`.
    */
-  onItemFocusChange?: (focusingItem?: TItemKeys) => void
+  onItemFocusChange?: (
+    focusingItem?: TItemKeys,
+    event?: FocusEvent<HTMLInputElement, Element>,
+  ) => void
   /** @param pairItemSwapped a pair of item names that have just swapped their values. */
   onItemSwap?: (pairItemSwapped: [itemA: TItemKeys, itemB: TItemKeys]) => void
   /**
@@ -56,26 +51,24 @@ export type PudoProps<TItemKeys extends PropertyKey> = {
   maxLength?: number
   /**
    * Remove all items by its `name` according to provided keys.
+   * This prop will be ignored if PUDO's `type` is `'custom'`.
    * ___
-   * This array will be de-duplicated automatically and will be ignored
-   * if PUDO's `type` is `'custom'`.
+   * This array will be de-duplicated automatically.
    */
   removableItems?: TItemKeys[]
   /** @default "Remove" */
   removableLabel?: string
   /**
    * Add all provided items to the existing item list.
+   * This prop will be ignored if PUDO's `type` is `'custom'`.
    * ___
-   * This array will be de-duplicated automatically (by `name`) and will be ignored
-   * if PUDO's `type` is `'custom'`.
+   * This array will be de-duplicated automatically (by `name`).
    */
   addItems?: Readonly<Array<PudoItemProps<TItemKeys>>>
   /** @default "Add" */
   addItemsLabel?: string
   compact?: 'sm' | 'md'
-  /**
-   * if provided, `alignIcon` of all items will be overwritten
-   */
+  /** If provided, `alignIcon` of all items will be overwritten */
   alignIcon?: PudoItemProps['alignIcon']
   /**
    * Background color of PUDO items wrapper.
