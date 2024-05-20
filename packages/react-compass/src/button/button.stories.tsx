@@ -1,15 +1,12 @@
-import {
-  faBars,
-  faBell,
-  faChevronDown,
-  faClose,
-  faExclamationTriangle,
-  faMapMarkerAlt,
-  faUserEdit,
-} from '@fortawesome/free-solid-svg-icons'
+import ArrowDown from '@comfortdelgro/compass-icons/react/arrow-down'
+import Cross from '@comfortdelgro/compass-icons/react/cross'
+import Exclamation from '@comfortdelgro/compass-icons/react/exclamation-filled'
+import MapMarker from '@comfortdelgro/compass-icons/react/map-marker'
+import Menu from '@comfortdelgro/compass-icons/react/menu'
+import Notification from '@comfortdelgro/compass-icons/react/notification-filled'
+import Pencil from '@comfortdelgro/compass-icons/react/pencil-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
-import Icon from '../icon'
 import Button from './index'
 import styles from './styles/stories.module.css'
 
@@ -114,38 +111,38 @@ export const Variations: React.FC = () => (
     </div>
     <h3>4. Left Icons</h3>
     <div style={{...Style}}>
-      <Button variant='primary' leftIcon={<Icon icon={faChevronDown} />}>
+      <Button variant='primary' leftIcon={<ArrowDown />}>
         Primary
       </Button>
-      <Button variant='secondary' leftIcon={<Icon icon={faChevronDown} />}>
+      <Button variant='secondary' leftIcon={<ArrowDown />}>
         Secondary
       </Button>
-      <Button variant='danger' leftIcon={<Icon icon={faChevronDown} />}>
+      <Button variant='danger' leftIcon={<ArrowDown />}>
         Danger
       </Button>
-      <Button variant='ghost' leftIcon={<Icon icon={faChevronDown} />}>
+      <Button variant='ghost' leftIcon={<ArrowDown />}>
         Ghost
       </Button>
-      <Button isDisabled leftIcon={<Icon icon={faChevronDown} />}>
+      <Button isDisabled leftIcon={<ArrowDown />}>
         Disabled
       </Button>
     </div>
 
     <h3>5. Right Icons</h3>
     <div style={{...Style}}>
-      <Button variant='primary' rightIcon={<Icon icon={faChevronDown} />}>
+      <Button variant='primary' rightIcon={<ArrowDown />}>
         Primary
       </Button>
-      <Button variant='secondary' rightIcon={<Icon icon={faChevronDown} />}>
+      <Button variant='secondary' rightIcon={<ArrowDown />}>
         Secondary
       </Button>
-      <Button variant='danger' rightIcon={<Icon icon={faChevronDown} />}>
+      <Button variant='danger' rightIcon={<ArrowDown />}>
         Danger
       </Button>
-      <Button variant='ghost' rightIcon={<Icon icon={faChevronDown} />}>
+      <Button variant='ghost' rightIcon={<ArrowDown />}>
         Ghost
       </Button>
-      <Button isDisabled rightIcon={<Icon icon={faChevronDown} />}>
+      <Button isDisabled rightIcon={<ArrowDown />}>
         Disabled
       </Button>
     </div>
@@ -154,37 +151,33 @@ export const Variations: React.FC = () => (
     <div style={{...Style}}>
       <Button
         variant='primary'
-        leftIcon={<Icon icon={faChevronDown} />}
-        rightIcon={<Icon icon={faMapMarkerAlt} />}
+        leftIcon={<ArrowDown />}
+        rightIcon={<MapMarker />}
       >
         Primary
       </Button>
       <Button
         variant='secondary'
-        leftIcon={<Icon icon={faChevronDown} />}
-        rightIcon={<Icon icon={faMapMarkerAlt} />}
+        leftIcon={<ArrowDown />}
+        rightIcon={<MapMarker />}
       >
         Secondary
       </Button>
       <Button
         variant='danger'
-        leftIcon={<Icon icon={faChevronDown} />}
-        rightIcon={<Icon icon={faMapMarkerAlt} />}
+        leftIcon={<ArrowDown />}
+        rightIcon={<MapMarker />}
       >
         Danger
       </Button>
       <Button
         variant='ghost'
-        leftIcon={<Icon icon={faChevronDown} />}
-        rightIcon={<Icon icon={faMapMarkerAlt} />}
+        leftIcon={<ArrowDown />}
+        rightIcon={<MapMarker />}
       >
         Ghost
       </Button>
-      <Button
-        isDisabled
-        leftIcon={<Icon icon={faChevronDown} />}
-        rightIcon={<Icon icon={faMapMarkerAlt} />}
-      >
+      <Button isDisabled leftIcon={<ArrowDown />} rightIcon={<MapMarker />}>
         Disabled
       </Button>
     </div>
@@ -192,19 +185,19 @@ export const Variations: React.FC = () => (
     <h3>7. With only Icons</h3>
     <div style={{...Style}}>
       <Button variant='primary'>
-        <Icon icon={faBars} />
+        <Menu />
       </Button>
       <Button variant='secondary'>
-        <Icon icon={faClose} />
+        <Cross />
       </Button>
       <Button variant='danger'>
-        <Icon icon={faExclamationTriangle} />
+        <Exclamation />
       </Button>
       <Button variant='ghost'>
-        <Icon icon={faBell} />
+        <Notification />
       </Button>
       <Button isDisabled>
-        <Icon icon={faUserEdit} />
+        <Pencil />
       </Button>
     </div>
     <h3>8. Loading</h3>
@@ -218,11 +211,7 @@ export const Variations: React.FC = () => (
 
     <h3>9. Act as a link</h3>
     <div style={{...Style}}>
-      <Button
-        href='/#page'
-        variant='primary'
-        leftIcon={<Icon icon={faChevronDown} />}
-      >
+      <Button href='/#page' variant='primary' leftIcon={<ArrowDown />}>
         Click me
       </Button>
       <Button href='https://google.com' hrefExternal variant='secondary'>
@@ -272,19 +261,19 @@ export const Variations: React.FC = () => (
     </div>
     <div style={{...Style}}>
       <Button variant='primary' isSquare={true}>
-        <Icon icon={faBars} />
+        <Menu />
       </Button>
       <Button variant='secondary' isSquare={true}>
-        <Icon icon={faClose} />
+        <Cross />
       </Button>
       <Button variant='danger' isSquare={true}>
-        <Icon icon={faExclamationTriangle} />
+        <Exclamation />
       </Button>
       <Button variant='ghost' isSquare={true}>
-        <Icon icon={faBell} />
+        <Notification />
       </Button>
       <Button isDisabled isSquare={true}>
-        <Icon icon={faUserEdit} />
+        <Pencil />
       </Button>
     </div>
   </div>

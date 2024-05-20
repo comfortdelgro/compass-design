@@ -1,5 +1,4 @@
-import {faBug} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import Textfield from './index'
@@ -71,7 +70,7 @@ export const Basic: React.FC = () => {
         <Textfield
           label={
             <>
-              Name <FontAwesomeIcon icon={faBug} />
+              Name <HeartFilled />
             </>
           }
           placeholder='Enter your name'
@@ -103,18 +102,18 @@ export const Basic: React.FC = () => {
       <div style={{...styleRow}}>
         <Textfield
           label='Name'
-          leftIcon={<FontAwesomeIcon icon={faBug} />}
+          leftIcon={<HeartFilled />}
           placeholder='Enter your name'
         />
         <Textfield
           label='Name'
-          rightIcon={<FontAwesomeIcon icon={faBug} />}
+          rightIcon={<HeartFilled />}
           placeholder='Enter your name'
         />
         <Textfield
           label='Name'
-          leftIcon={<FontAwesomeIcon icon={faBug} />}
-          rightIcon={<FontAwesomeIcon icon={faBug} />}
+          leftIcon={<HeartFilled />}
+          rightIcon={<HeartFilled />}
           placeholder='Enter your name'
         />
       </div>
@@ -124,20 +123,20 @@ export const Basic: React.FC = () => {
         <Textfield label='Name' placeholder='Enter your name' isDisabled />
         <Textfield
           label='Name'
-          leftIcon={<FontAwesomeIcon icon={faBug} />}
+          leftIcon={<HeartFilled />}
           placeholder='Enter your name'
           isDisabled
         />
         <Textfield
           label='Name'
-          rightIcon={<FontAwesomeIcon icon={faBug} />}
+          rightIcon={<HeartFilled />}
           placeholder='Enter your name'
           isDisabled
         />
         <Textfield
           label='Name'
-          leftIcon={<FontAwesomeIcon icon={faBug} />}
-          rightIcon={<FontAwesomeIcon icon={faBug} />}
+          leftIcon={<HeartFilled />}
+          rightIcon={<HeartFilled />}
           placeholder='Enter your name'
           isDisabled
         />

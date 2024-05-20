@@ -1,5 +1,4 @@
-import {faBug} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
@@ -158,7 +157,7 @@ export const Variants: React.FC = () => {
             <Button onPress={() => setAlertOpen(false)}>Ok</Button>
           </Dialog.Actions>
           <Dialog.Icon>
-            <FontAwesomeIcon icon={faBug} />
+            <HeartFilled />
           </Dialog.Icon>
         </Dialog>
       </Dialog.Trigger>
@@ -228,7 +227,7 @@ export const Variants: React.FC = () => {
             <Button onPress={() => setAlertOpen(false)}>Ok</Button>
           </Dialog.Actions>
           <Dialog.Icon>
-            <FontAwesomeIcon icon={faBug} />
+            <HeartFilled />
           </Dialog.Icon>
         </Dialog>
       </Dialog.Trigger>

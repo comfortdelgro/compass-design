@@ -1,8 +1,8 @@
-import {faClose, faImage} from '@fortawesome/free-solid-svg-icons'
+import Cross from '@comfortdelgro/compass-icons/react/cross'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
-import Icon from '../icon'
 import Announcement from './index'
 
 const Style: React.CSSProperties = {
@@ -27,7 +27,7 @@ const Left = () => (
       alignItems: 'center',
     }}
   >
-    <Icon icon={faImage} width={22} />
+    <HeartFilled width={22} />
   </div>
 )
 
@@ -50,10 +50,10 @@ const Header = () => (
         alignItems: 'center',
       }}
     >
-      <Icon icon={faImage} width={22} />
+      <HeartFilled width={22} />
     </div>
     <Button variant='ghost' css={{width: 24, height: 24, span: {padding: 0}}}>
-      <Icon icon={faClose} width={22} />
+      <Cross width={22} />
     </Button>
   </div>
 )

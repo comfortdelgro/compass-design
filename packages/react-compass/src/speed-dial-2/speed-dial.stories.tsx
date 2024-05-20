@@ -1,6 +1,4 @@
-import {faBagShopping, faPlus} from '@fortawesome/free-solid-svg-icons'
-import {faChair} from '@fortawesome/free-solid-svg-icons/faChair'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import React, {useState} from 'react'
 import SpeedDial2 from '.'
@@ -81,10 +79,10 @@ export const Positions: React.FC = () => {
           actions={
             <SpeedDial2.Actions position={position}>
               <SpeedDial2.Button>
-                <FontAwesomeIcon icon={faBagShopping} />
+                <HeartFilled />
               </SpeedDial2.Button>
               <SpeedDial2.Button>
-                <FontAwesomeIcon icon={faChair} />
+                <HeartFilled />
               </SpeedDial2.Button>
             </SpeedDial2.Actions>
           }
@@ -111,8 +109,7 @@ export const Positions: React.FC = () => {
               setShowing(true)
             }}
           >
-            <FontAwesomeIcon
-              icon={faPlus}
+            <HeartFilled
               style={{
                 ...(showing && {transform: 'rotate(45deg)'}),
                 ...{transition: 'all 0.2s'},

@@ -1,5 +1,4 @@
-import {faBaby, faBridge, faBug} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React, {useEffect, useState} from 'react'
 import CarouselSlider from '.'
@@ -14,15 +13,15 @@ import styles from './styles/stories.module.css'
 
 const socials: SocicalIcon[] = [
   {
-    icon: <FontAwesomeIcon icon={faBaby} />,
+    icon: <HeartFilled />,
     url: 'https://www.pinterest.com.au/',
   },
   {
-    icon: <FontAwesomeIcon icon={faBridge} />,
+    icon: <HeartFilled />,
     url: 'https://www.tiktok.com/',
   },
   {
-    icon: <FontAwesomeIcon icon={faBug} />,
+    icon: <HeartFilled />,
     url: 'https://telegram.org/',
   },
 ]
@@ -95,7 +94,6 @@ const slideData: CarouselSliderItem[] = [
 
 export const Multiple: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [count, setCount] = useState(3)
 
   const handleSwitchSlide = (index: number) => {
     setActiveIndex(index)
@@ -108,7 +106,7 @@ export const Multiple: React.FC = () => {
         onSwitchSlide={handleSwitchSlide}
         effect={'slide'}
         className='my-multiple-slides-slider'
-        itemPerPage={count}
+        itemPerPage={3}
       >
         {Array.from({length: 9}).map((item, index) => (
           <CarouselSlider.Slide
@@ -214,12 +212,6 @@ export const Images: React.FC = () => {
 
 export const AnyContent: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
-
-  const imageUrls = [
-    'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp',
-    'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(22).webp',
-    'https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(23).webp',
-  ]
 
   const handleSwitchSlide = (index: number) => {
     setActiveIndex(index)

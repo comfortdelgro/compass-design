@@ -1,5 +1,4 @@
-import {faBook} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React, {useState} from 'react'
 import Textarea from './index'
@@ -40,7 +39,7 @@ export const Basic: React.FC = () => {
         label={
           <>
             My custom label &nbsp;
-            <FontAwesomeIcon icon={faBook} style={{fontSize: '0.9em'}} />
+            <HeartFilled style={{fontSize: '0.9em'}} />
           </>
         }
         placeholder='Enter your message'

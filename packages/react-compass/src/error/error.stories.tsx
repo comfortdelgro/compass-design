@@ -1,5 +1,4 @@
-import {faBug} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
@@ -33,7 +32,7 @@ export const Default: React.FC = () => {
 
       <Error>
         <Error.Icon>
-          <FontAwesomeIcon icon={faBug} />
+          <HeartFilled />
         </Error.Icon>
         <Error.Title>Error: some bugs</Error.Title>
         <Error.Description>{lorem}</Error.Description>
@@ -60,7 +59,7 @@ export const Variant: React.FC = () => {
       <h3>Primary variant</h3>
       <Error variant='primary'>
         <Error.Icon>
-          <FontAwesomeIcon icon={faBug} />
+          <HeartFilled />
         </Error.Icon>
         <Error.Title>Error: some bugs</Error.Title>
         <Error.Description>{lorem}</Error.Description>
@@ -78,7 +77,7 @@ export const Variant: React.FC = () => {
       <h3>Secondary variant</h3>
       <Error variant='secondary'>
         <Error.Image>
-          <FontAwesomeIcon icon={faBug} style={{height: 'inherit'}} />
+          <HeartFilled style={{height: 'inherit'}} />
         </Error.Image>
         <Error.Title>Error: some bugs</Error.Title>
         <Error.Description>{lorem}</Error.Description>
