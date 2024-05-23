@@ -1,16 +1,9 @@
 import Workbench from '@comfortdelgro/compass-icons/react/colorful/workbench'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import MenuIcon from '@comfortdelgro/compass-icons/react/menu'
-import {
-  faBars,
-  faBell,
-  faChartGantt,
-  faQuestionCircle,
-  faSearch,
-} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {Meta} from '@storybook/react'
 import Navbar from '.'
-import {Avatar, Button, Icon, SearchField} from '..'
+import {Avatar, Button, SearchField} from '..'
 import NavbarActions from './navbar-actions'
 import {NavbarLinks} from './navbar-links'
 import {NavbarSeperator} from './navbar-seperator'
@@ -38,8 +31,7 @@ export const Basic = () => {
       <h3>Blue color</h3>
       <Navbar>
         <a href='#'>
-          <FontAwesomeIcon
-            icon={faBars}
+          <HeartFilled
             style={{
               color: '#FFF',
               width: '$5',
@@ -58,8 +50,7 @@ export const Basic = () => {
         <NavbarSeperator />
         <NavbarActions>
           <button style={resetButtonStyle}>
-            <FontAwesomeIcon
-              icon={faQuestionCircle}
+            <HeartFilled
               style={{
                 color: '#FFF',
                 width: '$5',
@@ -69,8 +60,7 @@ export const Basic = () => {
             />
           </button>
           <button style={resetButtonStyle}>
-            <FontAwesomeIcon
-              icon={faBell}
+            <HeartFilled
               style={{
                 color: '#FFF',
                 width: '$5',
@@ -80,8 +70,7 @@ export const Basic = () => {
             />
           </button>
           <button style={resetButtonStyle}>
-            <FontAwesomeIcon
-              icon={faChartGantt}
+            <HeartFilled
               style={{
                 color: '#FFF',
                 width: '$5',
@@ -96,7 +85,7 @@ export const Basic = () => {
       <h3>White color</h3>
       <Navbar color='white'>
         <a href='#'>
-          <FontAwesomeIcon icon={faBars} />
+          <HeartFilled />
         </a>
         <Navbar.Brand>Workbench Title</Navbar.Brand>
         <SearchField placeholder='Search' css={{minWidth: 'unset'}} />
@@ -108,8 +97,7 @@ export const Basic = () => {
         <NavbarSeperator />
         <NavbarActions>
           <button style={resetButtonStyle}>
-            <FontAwesomeIcon
-              icon={faQuestionCircle}
+            <HeartFilled
               style={{
                 color: 'black',
                 width: '$5',
@@ -119,8 +107,7 @@ export const Basic = () => {
             />
           </button>
           <button style={resetButtonStyle}>
-            <FontAwesomeIcon
-              icon={faBell}
+            <HeartFilled
               style={{
                 color: 'black',
                 width: '$5',
@@ -130,8 +117,7 @@ export const Basic = () => {
             />
           </button>
           <button style={resetButtonStyle}>
-            <FontAwesomeIcon
-              icon={faChartGantt}
+            <HeartFilled
               style={{
                 color: 'black',
                 width: '$5',
@@ -147,7 +133,7 @@ export const Basic = () => {
       <Navbar color='white' variant='website'>
         <Workbench width={'40px'} height={'40px'} />
         <NavbarSeperator />
-        <NavbarActions alternativeElement={<Icon icon={faBars} />}>
+        <NavbarActions alternativeElement={<HeartFilled />}>
           <NavbarLinks>
             <Button variant='primary'>Home</Button>
             <Button variant='ghost'>Services</Button>
@@ -156,7 +142,7 @@ export const Basic = () => {
               Feedback
             </Button>
           </NavbarLinks>
-          <Icon icon={faSearch} size='lg' />
+          <HeartFilled />
         </NavbarActions>
       </Navbar>
       <h3>With alternative element (change screen size to less than 768px)</h3>
@@ -180,8 +166,7 @@ export const Basic = () => {
           }
         >
           <button style={resetButtonStyle}>
-            <FontAwesomeIcon
-              icon={faQuestionCircle}
+            <HeartFilled
               style={{
                 color: '#FFF',
                 width: '$5',
@@ -190,8 +175,7 @@ export const Basic = () => {
             />
           </button>
           <button style={resetButtonStyle}>
-            <FontAwesomeIcon
-              icon={faBell}
+            <HeartFilled
               style={{
                 color: '#FFF',
                 width: '$5',
@@ -200,8 +184,7 @@ export const Basic = () => {
             />
           </button>
           <button style={resetButtonStyle}>
-            <FontAwesomeIcon
-              icon={faChartGantt}
+            <HeartFilled
               style={{
                 color: '#FFF',
                 width: '$5',

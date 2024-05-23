@@ -1,5 +1,5 @@
-import {faChevronRight, faFaceSmile} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import Avatar from '../avatar'
@@ -23,7 +23,7 @@ export const Variants: React.FC = () => {
           leftInfo={<ListImage src={imgSrc} alt='singapore' />}
           rightInfo={{
             text: 'Details',
-            icon: <FontAwesomeIcon icon={faChevronRight} />,
+            icon: <ArrowRight />,
           }}
         />
       </div>
@@ -37,7 +37,7 @@ export const Variants: React.FC = () => {
           leftInfo={<Avatar label='A' />}
           rightInfo={{
             text: 'Details',
-            icon: <FontAwesomeIcon icon={faChevronRight} />,
+            icon: <ArrowRight />,
           }}
         />
       </div>
@@ -48,10 +48,7 @@ export const Variants: React.FC = () => {
           title='ComfortRIDE'
           description='Car or Taxi, Flat Fare'
           descriptionIcon={
-            <FontAwesomeIcon
-              style={{width: 14, height: 14, color: '#0142AF'}}
-              icon={faFaceSmile}
-            />
+            <HeartFilled style={{width: 14, height: 14, color: '#0142AF'}} />
           }
           variant='h5'
           leftInfo={
@@ -60,7 +57,7 @@ export const Variants: React.FC = () => {
           rightInfo={{
             text: '$9.90',
             description: 'Fees may apply',
-            icon: <FontAwesomeIcon icon={faChevronRight} />,
+            icon: <ArrowRight />,
           }}
         />
       </div>
@@ -74,7 +71,7 @@ export const Variants: React.FC = () => {
           leftInfo={<ListImage src={imgSrc} alt='singapore' />}
           rightInfo={{
             text: 'Details',
-            icon: <FontAwesomeIcon icon={faChevronRight} />,
+            icon: <ArrowRight />,
           }}
         />
       </div>
@@ -89,7 +86,7 @@ export const Variants: React.FC = () => {
           leftInfo={<Avatar label='A' />}
           rightInfo={{
             text: 'Details',
-            icon: <FontAwesomeIcon icon={faChevronRight} />,
+            icon: <ArrowRight />,
           }}
         />
       </div>
@@ -101,10 +98,7 @@ export const Variants: React.FC = () => {
           title='ComfortRIDE'
           description='Car or Taxi, Flat Fare'
           descriptionIcon={
-            <FontAwesomeIcon
-              style={{width: 14, height: 14, color: '#0142AF'}}
-              icon={faFaceSmile}
-            />
+            <HeartFilled style={{width: 14, height: 14, color: '#0142AF'}} />
           }
           variant='h5'
           leftInfo={
@@ -113,7 +107,7 @@ export const Variants: React.FC = () => {
           rightInfo={{
             text: '$9.90',
             description: 'Fees may apply',
-            icon: <FontAwesomeIcon icon={faChevronRight} />,
+            icon: <ArrowRight />,
           }}
         />
       </div>
@@ -127,7 +121,7 @@ export const Size: React.FC = () => {
       <h3>SM</h3>
       <List
         size='sm'
-        leftInfo={<FontAwesomeIcon icon={faChevronRight} />}
+        leftInfo={<ArrowRight />}
         title='Title'
         description='Lorem Ipsum'
         css={{maxWidth: '198px'}}
@@ -135,7 +129,7 @@ export const Size: React.FC = () => {
       <List
         size='sm'
         isDisabled
-        leftInfo={<FontAwesomeIcon icon={faChevronRight} />}
+        leftInfo={<ArrowRight />}
         title='Title'
         description='Lorem Ipsum'
         css={{maxWidth: '198px'}}
@@ -262,10 +256,7 @@ export const H5: React.FC = () => {
         title='ComfortRIDE'
         description='Car or Taxi, Flat Fare'
         descriptionIcon={
-          <FontAwesomeIcon
-            style={{width: 14, height: 14, color: '#0142AF'}}
-            icon={faFaceSmile}
-          />
+          <HeartFilled style={{width: 14, height: 14, color: '#0142AF'}} />
         }
         variant='h5'
         leftInfo={
@@ -274,7 +265,7 @@ export const H5: React.FC = () => {
         rightInfo={{
           text: '$9.90',
           description: 'Fees may apply',
-          icon: <FontAwesomeIcon icon={faChevronRight} />,
+          icon: <ArrowRight />,
         }}
       />
       <List
@@ -295,10 +286,7 @@ export const H5: React.FC = () => {
         }
         rightInfo={{text: '$9.90', description: 'Fees may apply'}}
         descriptionIcon={
-          <FontAwesomeIcon
-            style={{width: 14, height: 14, color: '#0142AF'}}
-            icon={faFaceSmile}
-          />
+          <HeartFilled style={{width: 14, height: 14, color: '#0142AF'}} />
         }
       />
       <List

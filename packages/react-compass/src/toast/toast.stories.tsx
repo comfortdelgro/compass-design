@@ -1,7 +1,8 @@
-import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
+import Cross from '@comfortdelgro/compass-icons/react/cross'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React, {Key} from 'react'
-import {Button, Dropdown, Icon, Toast, ToastContextProvider, useToast} from '..'
+import {Button, Dropdown, Toast, ToastContextProvider, useToast} from '..'
 import './stories.css'
 
 const style: React.CSSProperties = {
@@ -61,12 +62,12 @@ export const Basic: React.FC = () => {
         anchorOrigin={{horizontal, vertical}}
       >
         <Toast.Icon>
-          <Icon icon={faImage} />
+          <HeartFilled />
         </Toast.Icon>
         <Toast.Title>My Title</Toast.Title>
         <Toast.Label>a few minutes ago</Toast.Label>
         <Toast.CloseIcon>
-          <Icon icon={faXmark} />
+          <Cross />
         </Toast.CloseIcon>
         <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
         <Toast.Actions>
@@ -98,12 +99,12 @@ export const Colors: React.FC = () => {
         anchorOrigin={{horizontal: 'left', vertical: 'top'}}
       >
         <Toast.Icon>
-          <Icon icon={faImage} />
+          <HeartFilled />
         </Toast.Icon>
         <Toast.Title>My Title</Toast.Title>
         <Toast.Label>a few minutes ago</Toast.Label>
         <Toast.CloseIcon>
-          <Icon icon={faXmark} />
+          <Cross />
         </Toast.CloseIcon>
         <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
         <Toast.Actions>
@@ -123,12 +124,12 @@ export const Colors: React.FC = () => {
         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
       >
         <Toast.Icon>
-          <Icon icon={faImage} />
+          <HeartFilled />
         </Toast.Icon>
         <Toast.Title>My Title</Toast.Title>
         <Toast.Label>a few minutes ago</Toast.Label>
         <Toast.CloseIcon>
-          <Icon icon={faXmark} />
+          <Cross />
         </Toast.CloseIcon>
         <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
         <Toast.Actions>
@@ -148,12 +149,12 @@ export const Colors: React.FC = () => {
         anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
       >
         <Toast.Icon>
-          <Icon icon={faImage} />
+          <HeartFilled />
         </Toast.Icon>
         <Toast.Title>My Title</Toast.Title>
         <Toast.Label>a few minutes ago</Toast.Label>
         <Toast.CloseIcon>
-          <Icon icon={faXmark} />
+          <Cross />
         </Toast.CloseIcon>
         <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
         <Toast.Actions>
@@ -173,12 +174,12 @@ export const Colors: React.FC = () => {
         anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
       >
         <Toast.Icon>
-          <Icon icon={faImage} />
+          <HeartFilled />
         </Toast.Icon>
         <Toast.Title>My Title</Toast.Title>
         <Toast.Label>a few minutes ago</Toast.Label>
         <Toast.CloseIcon>
-          <Icon icon={faXmark} />
+          <Cross />
         </Toast.CloseIcon>
         <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
         <Toast.Actions>
@@ -206,12 +207,12 @@ export const WithHeader: React.FC = () => {
         anchorOrigin={{horizontal: 'center', vertical: 'center'}}
       >
         <Toast.Icon>
-          <Icon icon={faImage} />
+          <HeartFilled />
         </Toast.Icon>
         <Toast.Title>My Title</Toast.Title>
         <Toast.Label>a few minutes ago</Toast.Label>
         <Toast.CloseIcon>
-          <Icon icon={faXmark} />
+          <Cross />
         </Toast.CloseIcon>
         <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
         <Toast.Actions>
@@ -239,12 +240,12 @@ export const AutoClose: React.FC = () => {
         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
       >
         <Toast.Icon>
-          <Icon icon={faImage} />
+          <HeartFilled />
         </Toast.Icon>
         <Toast.Title>My Title</Toast.Title>
         <Toast.Label>a few minutes ago</Toast.Label>
         <Toast.CloseIcon>
-          <Icon icon={faXmark} />
+          <Cross />
         </Toast.CloseIcon>
         <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
         <Toast.Actions>
@@ -271,12 +272,12 @@ export const Portal: React.FC = () => {
         color='informative'
       >
         <Toast.Icon>
-          <Icon icon={faImage} />
+          <HeartFilled />
         </Toast.Icon>
         <Toast.Title>My Title</Toast.Title>
         <Toast.Label>a few minutes ago</Toast.Label>
         <Toast.CloseIcon>
-          <Icon icon={faXmark} />
+          <Cross />
         </Toast.CloseIcon>
         <Toast.Message>Lorem ipsum dolor, sit amet consectetur.</Toast.Message>
         <Toast.Actions>
@@ -345,7 +346,7 @@ const SubService2 = () => {
           toast.show({
             autoClose: false,
             message: 'Lorem ipsum dolor, sit amet consectetur.',
-            icon: <Icon icon={faImage} />,
+            icon: <HeartFilled />,
             title: 'My Title',
             actions: (
               <>
