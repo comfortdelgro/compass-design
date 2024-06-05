@@ -39,10 +39,7 @@ export type EditableCellContextType = {
   column: string
 }
 
-export const EditableCell = React.forwardRef<
-  HTMLTableCellElement,
-  EditableCellProps
->((props: EditableCellProps) => {
+export const EditableCell: React.FC<EditableCellProps> = (props) => {
   const {css = {}, className, cell, row, column, getValue} = props
   const initialValue = getValue()
   const inputRef = useDOMRef<HTMLInputElement>(null)
@@ -142,4 +139,4 @@ export const EditableCell = React.forwardRef<
       </div>
     </CssInjection>
   )
-})
+}

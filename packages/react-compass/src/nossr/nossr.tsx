@@ -1,11 +1,11 @@
-import React, {forwardRef, useEffect, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 
 interface NoSsrProps {
   children: React.ReactNode
   defer?: boolean
 }
 
-const NoSsr = forwardRef<HTMLDivElement, NoSsrProps>((props) => {
+const NoSsr: FC<NoSsrProps> = (props) => {
   const {children, defer = false} = props
   const [shouldRender, setShouldRender] = useState(!defer)
 
@@ -16,6 +16,6 @@ const NoSsr = forwardRef<HTMLDivElement, NoSsrProps>((props) => {
   }, [defer])
 
   return shouldRender ? <>{children}</> : null
-})
+}
 
 export default NoSsr

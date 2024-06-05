@@ -206,7 +206,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
 
   return (
     <>
-      <CssInjection css={css} ref={refs.setReference}>
+      <CssInjection css={css} childrenRef={refs.setReference}>
         <div
           ref={refs.setReference}
           {...getReferenceProps()}
