@@ -1,13 +1,10 @@
 name: Release
-
 on:
   push:
     branches:
       - feature/h5-optimization
   workflow_dispatch:
-
 concurrency: ${{ github.workflow }}-${{ github.ref }}
-
 jobs:
   release:
     name: Release
@@ -15,29 +12,23 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-
       - name: Setup Bot
         run: |
           git config --global user.email "services.shared@zig.live"
           git config --global user.name "CDG Zig Bot"
-
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
           version: 8.9.2
-
       - name: Setup NodeJS 16
         uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'pnpm'
-
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
-
       - name: Build
         run: pnpm run --filter=@comfortdelgro/react-compass build
-
       - name: Bump version to 3.3.0-h5
         if: github.event_name == 'workflow_dispatch'
         run: |
@@ -45,18 +36,15 @@ jobs:
           echo "Custom version: $CUSTOM_VERSION"
           # Update the version in package.json
           npm version $CUSTOM_VERSION --no-git-tag-version
-
       - name: Commit version change
         if: github.event_name == 'workflow_dispatch'
         run: |
           git add package.json
           git commit -m "chore: bump version to 3.3.0-h5"
-
       - name: Push changes
         if: github.event_name == 'workflow_dispatch'
         run: |
-          git push origin HEAD:main
-
+          git push origin HEAD:feature/h5-optimization
       - name: Publish to NPM
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
