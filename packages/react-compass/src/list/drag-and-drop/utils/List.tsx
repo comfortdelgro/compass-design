@@ -52,10 +52,6 @@ class List extends React.Component<IProps> {
   schdOnPointerMove: {(e: PointerEvent): void; cancel(): void}
   schdOnEnd: {(e: PointerEvent): void; cancel(): void}
 
-  static defaultProps = {
-    removableByMove: false,
-  }
-
   constructor(props: IProps) {
     super(props)
     this.schdOnPointerMove = schd(this.onPointerMove)

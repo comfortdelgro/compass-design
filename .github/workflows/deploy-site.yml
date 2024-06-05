@@ -35,13 +35,13 @@ jobs:
         run: pnpm i --frozen-lockfile
 
       - name: Build the libraries
-        run: pnpm run --filter=@comfortdelgro/react-compass --filter=@comfortdelgro/compass-icons build
+        run: pnpm run --filter=@comfortdelgro/react-compass build
 
       - name: Build the website
         run: |
           BASE_PATH="/compass-design" pnpm run --filter=@comfortdelgro/compass-design-website build
-          pnpm run --filter=@comfortdelgro/react-compass build-storybook --base "/compass-design/ladle"
-          mv packages/react-compass/build apps/docs/out/ladle
+          pnpm run --filter=@comfortdelgro/react-compass build-storybook --docs
+          mv packages/react-compass/storybook-static apps/docs/out/ladle
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
