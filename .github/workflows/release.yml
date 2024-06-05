@@ -5,11 +5,6 @@ on:
     branches:
       - feature/h5-optimization
   workflow_dispatch:
-    inputs:
-      release_name:
-        description: 'Release name (e.g., h5)'
-        required: true
-        default: ''
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -43,10 +38,10 @@ jobs:
       - name: Build
         run: pnpm run --filter=@comfortdelgro/react-compass build
 
-      - name: Bump version manually
+      - name: Bump version to 3.3.0-h5
         if: github.event_name == 'workflow_dispatch'
         run: |
-          CUSTOM_VERSION=${{ github.event.inputs.release_name }}
+          CUSTOM_VERSION="3.3.0-h5"
           echo "Custom version: $CUSTOM_VERSION"
           # Update the version in package.json
           npm version $CUSTOM_VERSION --no-git-tag-version
@@ -55,7 +50,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         run: |
           git add package.json
-          git commit -m "chore: bump version to ${{ github.event.inputs.release_name }}"
+          git commit -m "chore: bump version to 3.3.0-h5"
 
       - name: Push changes
         if: github.event_name == 'workflow_dispatch'
