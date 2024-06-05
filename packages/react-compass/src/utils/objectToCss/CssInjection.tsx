@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC} from 'react'
 import {CSS, objectToCSS} from '.'
 import generateRandomString from '../generateRandomString'
 
@@ -8,7 +8,7 @@ export interface Props {
   childrenRef?: React.Ref<HTMLElement>
 }
 
-const CssInjection = React.forwardRef<HTMLElement, Props>((props) => {
+const CssInjection: FC<Props> = (props) => {
   const {children, css, childrenRef} = props
 
   // Generate a unique class name for the children
@@ -54,6 +54,6 @@ const CssInjection = React.forwardRef<HTMLElement, Props>((props) => {
   }, [css, additionalClasses])
 
   return <>{modifiedChildren}</>
-})
+}
 
 export default CssInjection

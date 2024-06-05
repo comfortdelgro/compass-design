@@ -12,9 +12,6 @@
     "typescript:transpile": "echo 'Use `yarn docs:typescript:formatted'` instead && exit 1",
     "typescript:transpile:dev": "echo 'Use `yarn docs:typescript'` instead && exit 1"
   },
-  "resolutions": {
-    "@types/react": "^18.0.21"
-  },
   "dependencies": {
     "@babel/core": "^7.22.5",
     "@babel/plugin-transform-object-assign": "^7.22.5",
