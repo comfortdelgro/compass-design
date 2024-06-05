@@ -1,5 +1,4 @@
-import {faCamera, faGlobe} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import {Button} from '..'
 import Footer from './footer'
@@ -126,10 +125,7 @@ export const Basic = () => {
         >
           <h1 className='logo'>{zigLogo}</h1>
           <p>
-            <FontAwesomeIcon
-              icon={faGlobe}
-              style={{marginRight: '8px'}}
-            ></FontAwesomeIcon>
+            <HeartFilled style={{marginRight: '8px'}} />
             English
           </p>
         </FooterHeader>
@@ -172,9 +168,9 @@ export const Basic = () => {
         >
           <div>
             <FooterInfoSocial>
-              <FontAwesomeIcon icon={faCamera} />
-              <FontAwesomeIcon icon={faCamera} />
-              <FontAwesomeIcon icon={faCamera} />
+              <HeartFilled />
+              <HeartFilled />
+              <HeartFilled />
             </FooterInfoSocial>
             <span>383 Sin Ming Dr</span>
             <br />
@@ -234,10 +230,7 @@ export const Basic = () => {
         >
           <h1 className='logo'>{zigLogo}</h1>
           <p>
-            <FontAwesomeIcon
-              icon={faGlobe}
-              style={{marginRight: '8px'}}
-            ></FontAwesomeIcon>
+            <HeartFilled style={{marginRight: '8px'}} />
             English
           </p>
         </FooterHeader>
@@ -280,9 +273,9 @@ export const Basic = () => {
         >
           <div>
             <FooterInfoSocial>
-              <FontAwesomeIcon icon={faCamera} />
-              <FontAwesomeIcon icon={faCamera} />
-              <FontAwesomeIcon icon={faCamera} />
+              <HeartFilled />
+              <HeartFilled />
+              <HeartFilled />
             </FooterInfoSocial>
             <span>383 Sin Ming Dr</span>
             <br />
@@ -342,10 +335,7 @@ export const Basic = () => {
         >
           <h1 className='logo'>{zigLogo}</h1>
           <p>
-            <FontAwesomeIcon
-              icon={faGlobe}
-              style={{marginRight: '8px'}}
-            ></FontAwesomeIcon>
+            <HeartFilled style={{marginRight: '8px'}} />
             English
           </p>
         </FooterHeader>
@@ -388,9 +378,9 @@ export const Basic = () => {
         >
           <div>
             <FooterInfoSocial>
-              <FontAwesomeIcon icon={faCamera} />
-              <FontAwesomeIcon icon={faCamera} />
-              <FontAwesomeIcon icon={faCamera} />
+              <HeartFilled />
+              <HeartFilled />
+              <HeartFilled />
             </FooterInfoSocial>
             <span>383 Sin Ming Dr</span>
             <br />

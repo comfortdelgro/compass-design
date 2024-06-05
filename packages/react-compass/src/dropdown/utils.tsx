@@ -18,6 +18,9 @@ export function textContent(
   if (typeof elem === 'string') {
     return elem
   }
+  if (typeof elem === 'number') {
+    return String(elem)
+  }
 
   const children = elem.props?.children
   if (children instanceof Array) {

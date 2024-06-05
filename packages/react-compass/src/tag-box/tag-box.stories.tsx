@@ -1,15 +1,14 @@
-import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
-import Icon from '../icon'
 import TagBox from './index'
 
 const items = [
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
     value: 'Item 1',
-    icon: <Icon icon={faExclamationTriangle} />,
+    icon: <HeartFilled />,
   },
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
@@ -19,7 +18,7 @@ const items = [
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
     value: 'Item 3',
-    icon: <Icon icon={faExclamationTriangle} />,
+    icon: <HeartFilled />,
   },
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
@@ -29,7 +28,7 @@ const items = [
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
     value: 'Item 5',
-    icon: <Icon icon={faExclamationTriangle} />,
+    icon: <HeartFilled />,
     isError: true,
   },
   {
@@ -40,7 +39,7 @@ const items = [
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
     value: 'Item 7',
-    icon: <Icon icon={faExclamationTriangle} />,
+    icon: <HeartFilled />,
   },
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
@@ -50,7 +49,7 @@ const items = [
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
     value: 'Item 9',
-    icon: <Icon icon={faExclamationTriangle} />,
+    icon: <HeartFilled />,
   },
   {
     id: `cdg-id-${Math.random().toString(36).substring(2)}`,
@@ -117,7 +116,7 @@ export const TagBoxs: React.FC = () => {
       <TagBox
         label='Text Label'
         items={list}
-        icon={<Icon icon={faExclamationTriangle} />}
+        icon={<HeartFilled />}
         isRequired
         onAdd={addItem}
         onEdit={editItem}
@@ -134,7 +133,7 @@ export const TagBoxs: React.FC = () => {
         items={list}
         typeable
         collaspable
-        icon={<Icon icon={faExclamationTriangle} />}
+        icon={<HeartFilled />}
         onAdd={addItem}
         onEdit={editItem}
         onRemove={removeItem}
@@ -148,7 +147,7 @@ export const TagBoxs: React.FC = () => {
       <TagBox
         label='Text Label'
         items={list}
-        icon={<Icon icon={faExclamationTriangle} />}
+        icon={<HeartFilled />}
         onAdd={addItem}
         onEdit={editItem}
         onRemove={removeItem}
@@ -213,7 +212,7 @@ export const Collaspable: React.FC = () => {
         collaspable
         isRequired
         items={list}
-        icon={<Icon icon={faExclamationTriangle} />}
+        icon={<HeartFilled />}
         onAdd={addItem}
         onEdit={editItem}
         onRemove={removeItem}
@@ -229,7 +228,7 @@ export const Collaspable: React.FC = () => {
         collaspable
         typeable
         items={list}
-        icon={<Icon icon={faExclamationTriangle} />}
+        icon={<HeartFilled />}
         onAdd={addItem}
         onEdit={editItem}
         onRemove={removeItem}
@@ -244,7 +243,7 @@ export const Collaspable: React.FC = () => {
         label='Text Label'
         collaspable
         items={list}
-        icon={<Icon icon={faExclamationTriangle} />}
+        icon={<HeartFilled />}
         onAdd={addItem}
         onEdit={editItem}
         onRemove={removeItem}

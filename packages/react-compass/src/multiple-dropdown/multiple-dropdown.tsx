@@ -59,6 +59,7 @@ interface Props {
   isLoadingMore?: boolean
   popoverCSS?: React.CSSProperties
   css?: CSS
+  isFloatingPortal?: boolean
   onBlur?: () => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -120,6 +121,7 @@ const MultipleDropdown = React.forwardRef<
     noDataMessage = '',
     isLoadingMore = false,
     className = '',
+    isFloatingPortal = true,
     onLoadMore = () => {
       //Load more
     },
@@ -641,6 +643,7 @@ const MultipleDropdown = React.forwardRef<
           <Popover
             isOpen={open}
             onPositionedChange={handlePositionedChange}
+            isFloatingPortal={isFloatingPortal}
             anchor={
               <div
                 className={dropdownClassName}

@@ -19,11 +19,7 @@ import {Pudo} from '@comfortdelgro/react-compass'
 
 {{"demo": "Pudo.tsx"}}
 
-### H5 example
-
-{{"demo": "PudoH5Example.tsx"}}
-
-### Swap, add & remove items
+### Manipulate items
 
 <small>
 Real-world cases in general and the H5 application in particular, the <code>minLength</code> and <code>maxLength</code> are static value, there's no reason to change it dynamically as shown in the demo below.
@@ -63,7 +59,7 @@ Type: `PudoProps<TItemKeys extends PropertyKey = string>`<sup>(1)</sup>
 | `addItemsLabel`     | `string`                                                          | `"Add"`    | Label for the "add" button.                                                                                                 |
 | `removableItems`    | `TItemKeys[]`                                                     | —          | A list of item name that allowed to remove.<br/><small>This list will be automatically deduplicated.</small>                |
 | `removableLabel`    | `string`                                                          | `"Remove"` | Label for the "remove" button.                                                                                              |
-| `compact`           | `"sm" \| "md"`                                                    | —          | Compact size                                                                                                                |
+| `compact`           | `"sm"` \| `"md"`                                                  | —          | Compact size                                                                                                                |
 | `alignIcon`         | `"top"` \| `"center"`                                             | —          | If provided, this prop will override the `alignIcon` of all items.                                                          |
 | `isClearable`       | `boolean`                                                         | —          | If provided, this prop will override the `isClearable` of all items.                                                        |
 
@@ -86,14 +82,13 @@ Type: `PudoProps<TItemKeys extends PropertyKey = string>`<sup>(1)</sup>
 
 ### `PudoValueChange`
 
-| Name                               | Type                         | Default | Description                                                                                                                                                                             |
-| :--------------------------------- | :--------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                           | Inference type<sup>(1)</sup> | —       | Same order and name as Pudo's`items` props.<br/>Item Key and also is input's `name` attribute.                                                                                          |
-| `value`                            | `string`                     | `""`    | Input's value.                                                                                                                                                                          |
-| <code><del>isFocusing</del></code> | `boolean`                    | `false` | Focus status of each items.<br/><small>Deprecated and will be removed on next major release.<br/>To track item's focus status, consider using `onItemFocusChange` prop instead.</small> |
+| Name     | Type                         | Default | Description                                                                                    |
+| :------- | :--------------------------- | :------ | :--------------------------------------------------------------------------------------------- |
+| `name`\* | Inference type<sup>(1)</sup> | —       | Same order and name as Pudo's`items` props.<br/>Item Key and also is input's `name` attribute. |
+| `value`  | `string`                     | `""`    | Input's value.                                                                                 |
 
 \*: Required.
 
 (1): `TItemKeys` - This component knows exactly what the union enums is, if the provided `items` type is `Readonly`, `const` or declared elsewhere (eg: from declared API's response data type).<br/>
-<small>For instance, see <a href="#basic">the demo above</a>. The type of `value` from `onValuesChange()` is a union enum, makes it easier for us to process the data, especially looping & item keys comparing.
-Also, you can try adding `removableItems` prop, the intellisense will show and suggest the correct keys list that can be removed.</small>
+<small>For instance, let's inspect the code of <a href="#basic">the basic example above</a>. The type of `value` from `onValuesChange()` is a union of avaiable item keys, makes it easier for us to process the data, especially looping & item keys comparing.
+You can also try adding `removableItems` prop, the intellisense will show and suggest the correct key list that can be removed.</small>

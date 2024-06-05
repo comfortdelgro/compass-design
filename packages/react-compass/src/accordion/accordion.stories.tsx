@@ -1,9 +1,9 @@
 import type {Meta} from '@storybook/react'
 import React, {PropsWithChildren, useState} from 'react'
 
-import {faBug} from '@fortawesome/free-solid-svg-icons'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import Accordion from '.'
-import {Button, Icon} from '..'
+import {Button} from '..'
 
 const lorem = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi,
   officiis corporis magnam quo expedita nostrum temporibus quibusdam ipsa
@@ -96,7 +96,7 @@ export const Basic: React.FC = () => {
         <h3>Customize left icon</h3>
 
         <Accordion>
-          <Accordion.Title icon={<Icon icon={faBug} />}>Title</Accordion.Title>
+          <Accordion.Title icon={<HeartFilled />}>Title</Accordion.Title>
           {lorem}
         </Accordion>
       </Content>
@@ -124,7 +124,7 @@ export const Basic: React.FC = () => {
 
         <Accordion>
           <Accordion.ExpandIcon>
-            <Icon icon={faBug} />
+            <HeartFilled />
           </Accordion.ExpandIcon>
           <Accordion.Title>Title</Accordion.Title>
           {lorem}

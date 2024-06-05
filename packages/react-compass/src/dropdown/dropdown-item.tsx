@@ -73,6 +73,7 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       searchValue,
       focusKey,
       selectedKey,
+      disabledAutofill,
       setSelectedItem,
       setDropdownItemKeys,
       onItemClick,
@@ -99,13 +100,16 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
     )
 
     const canDisplayed = useMemo(() => {
+      if (disabledAutofill) {
+        return true
+      }
       return (
         !searchValue ||
         textContent(children as React.ReactElement)
           .toLocaleLowerCase()
           .includes(searchValue.toLocaleLowerCase())
       )
-    }, [searchValue, children])
+    }, [searchValue, children, disabledAutofill])
 
     useEffect(() => {
       if (!isDisabled) {

@@ -1,9 +1,7 @@
-import {faXmark} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import Cross from '@comfortdelgro/compass-icons/react/cross'
 import {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../button'
-import Icon from '../icon'
 import Modal from './index'
 
 export const Default: React.FC = () => {
@@ -27,7 +25,7 @@ export const Default: React.FC = () => {
         <Modal className='my-modal'>
           <Modal.Title>My small title</Modal.Title>
           <Modal.CloseIcon>
-            <FontAwesomeIcon icon={faXmark} />
+            <Cross />
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>
@@ -152,7 +150,7 @@ const ChildModal: React.FC = () => {
         <Modal css={{width: '20rem'}}>
           <Modal.Title>My child modal</Modal.Title>
           <Modal.CloseIcon>
-            <FontAwesomeIcon icon={faXmark} />
+            <Cross />
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>
@@ -193,7 +191,7 @@ export const NestedModal: React.FC = () => {
         <Modal>
           <Modal.Title>My parent modal</Modal.Title>
           <Modal.CloseIcon>
-            <FontAwesomeIcon icon={faXmark} />
+            <Cross />
           </Modal.CloseIcon>
           <Modal.Description>{lorem}</Modal.Description>
           <Modal.Actions>
@@ -253,9 +251,8 @@ export const H5: React.FC = () => {
           <Modal h5>
             <Modal.Title h5>Feedback</Modal.Title>
             <Modal.CloseIcon>
-              <Icon
+              <Cross
                 onClick={() => setIsOpenModal2(false)}
-                icon={faXmark}
                 style={{width: 25, height: 25, paddingTop: 24}}
               />
             </Modal.CloseIcon>

@@ -1,14 +1,4 @@
-import {
-  faAddressCard,
-  faAmbulance,
-  faAnchor,
-  faAngleUp,
-  faAsterisk,
-  faBank,
-  faBookOpen,
-  faCar,
-} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import {useState} from 'react'
 import MultipleChoicesSlider from './index'
@@ -25,42 +15,42 @@ export const Default = () => {
       <div style={{width: '374px', marginBottom: '20px'}}>
         <MultipleChoicesSlider onChange={handleChange}>
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faCar} />}
+            icon={<HeartFilled width={40} />}
             label={'Safe Driving'}
             index={0}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faAmbulance} />}
+            icon={<HeartFilled width={40} />}
             label={'Clean & Tidy Vehicle'}
             index={1}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faAddressCard} />}
+            icon={<HeartFilled width={40} />}
             label={'Friendly Driver'}
             index={2}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faAnchor} />}
+            icon={<HeartFilled width={40} />}
             label={'On Time'}
             index={3}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faAsterisk} />}
+            icon={<HeartFilled width={40} />}
             label={'Safe Driving'}
             index={4}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faAngleUp} />}
+            icon={<HeartFilled width={40} />}
             label={'Clean & Tidy Vehicle'}
             index={5}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faBank} />}
+            icon={<HeartFilled width={40} />}
             label={'Friendly Driver'}
             index={6}
           />
           <MultipleChoicesSlider.Item
-            icon={<FontAwesomeIcon icon={faBookOpen} />}
+            icon={<HeartFilled width={40} />}
             label={'On Time'}
             index={7}
           />

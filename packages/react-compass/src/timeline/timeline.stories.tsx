@@ -1,7 +1,6 @@
-import {faCalendarDay} from '@fortawesome/free-solid-svg-icons'
+import CalendarDay from '@comfortdelgro/compass-icons/react/filled/calendar-days-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
-import {Icon} from '../icon'
 import {Column} from '../utils/components'
 import Timeline from './index'
 
@@ -22,36 +21,21 @@ export const Default: React.FC = () => {
         <Timeline>
           <Timeline.Item
             label='June'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
           </Timeline.Item>
           <Timeline.Item
             label='July'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'red', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'red', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
           </Timeline.Item>
           <Timeline.Item
             label='August'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>
@@ -167,33 +151,21 @@ export const Variants: React.FC = () => {
       <Timeline mode='vertical' labelAlignment='left' itemAlignment='left'>
         <Timeline.Item
           label='June'
-          icon={
-            <Icon
-              icon={faCalendarDay}
-              style={{color: 'white', height: '50%'}}
-            />
-          }
+          icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
         >
           <div style={itemStyle}>reminder 2</div>
           <div style={itemStyle}>reminder 2</div>
         </Timeline.Item>
         <Timeline.Item
           label='July'
-          icon={
-            <Icon icon={faCalendarDay} style={{color: 'red', height: '50%'}} />
-          }
+          icon={<CalendarDay style={{color: 'red', height: '50%'}} />}
         >
           <div style={itemStyle}>reminder 3</div>
           <div style={itemStyle}>reminder 4</div>
         </Timeline.Item>
         <Timeline.Item
           label='August'
-          icon={
-            <Icon
-              icon={faCalendarDay}
-              style={{color: 'white', height: '50%'}}
-            />
-          }
+          icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
         >
           <div style={itemStyle}>reminder 5</div>
           <div style={itemStyle}>reminder 6</div>
@@ -211,36 +183,21 @@ export const Variants: React.FC = () => {
         <Timeline mode='vertical' labelAlignment='left' itemAlignment='right'>
           <Timeline.Item
             label='June'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
           </Timeline.Item>
           <Timeline.Item
             label='July'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'red', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'red', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
           </Timeline.Item>
           <Timeline.Item
             label='August'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>
@@ -254,33 +211,21 @@ export const Variants: React.FC = () => {
       <Timeline mode='vertical' labelAlignment='right' itemAlignment='left'>
         <Timeline.Item
           label='June'
-          icon={
-            <Icon
-              icon={faCalendarDay}
-              style={{color: 'white', height: '50%'}}
-            />
-          }
+          icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
         >
           <div style={itemStyle}>reminder 2</div>
           <div style={itemStyle}>reminder 2</div>
         </Timeline.Item>
         <Timeline.Item
           label='July'
-          icon={
-            <Icon icon={faCalendarDay} style={{color: 'red', height: '50%'}} />
-          }
+          icon={<CalendarDay style={{color: 'red', height: '50%'}} />}
         >
           <div style={itemStyle}>reminder 3</div>
           <div style={itemStyle}>reminder 4</div>
         </Timeline.Item>
         <Timeline.Item
           label='August'
-          icon={
-            <Icon
-              icon={faCalendarDay}
-              style={{color: 'white', height: '50%'}}
-            />
-          }
+          icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
         >
           <div style={itemStyle}>reminder 5</div>
           <div style={itemStyle}>reminder 6</div>
@@ -304,12 +249,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={0}
             label='June'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
@@ -317,12 +257,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={1}
             label='July'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'red', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'red', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
@@ -330,12 +265,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={2}
             label='August'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>
@@ -356,12 +286,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={0}
             label='June'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
@@ -369,12 +294,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={1}
             label='July'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'red', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'red', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
@@ -382,12 +302,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={2}
             label='August'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>
@@ -411,12 +326,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={0}
             label='June'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
@@ -424,12 +334,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={1}
             label='July'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'red', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'red', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
@@ -437,12 +342,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={2}
             label='August'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>
@@ -469,12 +369,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={0}
             label='June'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 2</div>
             <div style={itemStyle}>reminder 2</div>
@@ -483,12 +378,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={1}
             label='July'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'red', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'red', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 3</div>
             <div style={itemStyle}>reminder 4</div>
@@ -496,12 +386,7 @@ export const Variants: React.FC = () => {
           <Timeline.Item
             identifier={2}
             label='August'
-            icon={
-              <Icon
-                icon={faCalendarDay}
-                style={{color: 'white', height: '50%'}}
-              />
-            }
+            icon={<CalendarDay style={{color: 'white', height: '50%'}} />}
           >
             <div style={itemStyle}>reminder 5</div>
             <div style={itemStyle}>reminder 6</div>

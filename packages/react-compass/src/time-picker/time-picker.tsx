@@ -1,5 +1,5 @@
 'use client'
-import {cloneDeep} from 'lodash'
+import cloneDeep from 'lodash/cloneDeep'
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import Popover from '../popover'
 import TextField, {TextFieldProps} from '../textfield'
@@ -34,6 +34,7 @@ interface Props {
   views?: ViewType[]
   defaultValue?: string
   minTime?: string
+  isFloatingPortal?: boolean
   onTimeChange?: (time: string) => void
   onOpenChange?: (open: boolean) => void
 }
@@ -57,6 +58,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       views = DEFAULT_VIEWS,
       defaultValue,
       minTime = '',
+      isFloatingPortal = true,
       onTimeChange,
       onOpenChange,
       ...delegated
@@ -714,6 +716,7 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             offset={8}
             isOpen={isOpen}
             onOutsidePress={handlePopoverClose(true)}
+            isFloatingPortal={isFloatingPortal}
           >
             <TimePickerDropdown
               isUncontrolledComponent={isUncontrolledComponent}

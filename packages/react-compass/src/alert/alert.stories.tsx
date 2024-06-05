@@ -1,7 +1,5 @@
-import {faBug} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {AnimatePresence, motion} from 'framer-motion'
-import React, {useState} from 'react'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
+import React from 'react'
 
 import {Meta} from '@storybook/react'
 import Alert from './index'
@@ -19,41 +17,6 @@ export const Basic: React.FC = () => (
     </Alert>
   </div>
 )
-
-export const Dismissible: React.FC = () => {
-  const [alerts, setAlerts] = useState([
-    {color: 'info' as const, key: 'info'},
-    {color: 'success' as const, key: 'success'},
-    {color: 'danger' as const, key: 'danger'},
-  ])
-  const MotionAlert = motion(Alert)
-
-  const removeAlert = (key: string) =>
-    setAlerts((alerts) => alerts.filter((alert) => alert.key !== key))
-
-  return (
-    <div>
-      <h3>Dimissible Alert</h3>
-      <AnimatePresence mode='popLayout'>
-        {alerts.map((alert) => (
-          <MotionAlert
-            key={alert.key}
-            color={alert.color}
-            dismissible
-            onDismiss={() => removeAlert(alert.key)}
-            // motion
-            layout
-            animate={{x: 0, opacity: 1}}
-            exit={{x: -20, opacity: 0}}
-            transition={{duration: 0.2}}
-          >
-            <AlertContent />
-          </MotionAlert>
-        ))}
-      </AnimatePresence>
-    </div>
-  )
-}
 
 export const Indismissible: React.FC = () => (
   <div>
@@ -82,7 +45,7 @@ export const Indismissible: React.FC = () => (
 
     <h3>3. Custom Icons</h3>
 
-    <Alert color='success' icon={<FontAwesomeIcon icon={faBug} />}>
+    <Alert color='success' icon={<HeartFilled />}>
       <AlertContent />
     </Alert>
   </div>

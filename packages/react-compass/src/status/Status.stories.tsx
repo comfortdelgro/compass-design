@@ -1,29 +1,8 @@
-import {faPlus} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import Status from './index'
 import {STATUS_SIZE_MAP, StatusSize} from './status.const'
-
-const style: {
-  display: string
-  flexDirection: 'column' | 'row'
-  alignItems: string
-  justifyContent: string
-  height: string
-  width: string
-  padding: string
-  boxSizing: string
-} = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '100%',
-  width: '100%',
-  padding: '20px',
-  boxSizing: 'border-box',
-}
 
 export const Variants: React.FC = () => (
   <div
@@ -74,7 +53,7 @@ export const Variants: React.FC = () => (
                   fontSize: 6 + index * 2 + 'px',
                 }}
               >
-                <FontAwesomeIcon icon={faPlus} />
+                <HeartFilled />
               </div>
             }
             size={size as StatusSize}

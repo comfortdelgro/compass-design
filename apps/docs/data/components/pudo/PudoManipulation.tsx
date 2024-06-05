@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@comfortdelgro/react-compass'
 import {useState} from 'react'
+import pudoDocsClasses from './styles/pudo-docs.module.css'
 
 const addItemsPool = [
   {name: 'des2', value: '', placeholder: 'Where to', allowSwap: true},
@@ -41,6 +42,7 @@ export default function PudoManipulationDocs() {
   const [formValues, setFormValues] = useState<
     PudoValueChange<PudoItemAllKeys>
   >(defaultItems.map(({name, value = ''}) => ({name, value})))
+  const [focusingItems, setFocusingItems] = useState<PudoItemAllKeys>()
 
   const pendingAddItemsCount =
     addItemsPool.length + defaultItems.length - formValues.length
@@ -58,14 +60,15 @@ export default function PudoManipulationDocs() {
         )}{' '}
         to add.
         <br />
+        <code>maxLength</code>: <strong>{maxLength}</strong>
         <br />
-        Current maxLength: <strong>{maxLength}</strong>
+        Focusing input name: <strong>{focusingItems ?? '...'}</strong>
       </Typography.Body>
 
       <Row>
         <Button
           size='sm'
-          css={{marginBottom: '$4'}}
+          css={{marginBottom: '1rem'}}
           onClick={() => setMaxLength(maxLength + 1)}
         >
           Increase maxlength
@@ -81,27 +84,14 @@ export default function PudoManipulationDocs() {
         removableLabel='Remove extra destination'
         minLength={2} // default value: 2
         maxLength={maxLength} // default value: 3
+        onItemFocusChange={(focusingItem) => setFocusingItems(focusingItem)}
         isClearable
       />
       {formValues && (
         <>
           <Typography.Body variant='body3'>Values:</Typography.Body>
-          <pre
-            style={{
-              padding: '0.5rem',
-              margin: '0',
-
-              width: '100%',
-              minHeight: '1.25rem',
-              borderRadius: '8px',
-
-              backgroundColor: '#FAF9F8',
-              fontSize: '0.875rem',
-              whiteSpace: 'pre-wrap',
-              overflowWrap: 'anywhere',
-            }}
-          >
-            {JSON.stringify(formValues, null, 2)}
+          <pre className={pudoDocsClasses.previewCode}>
+            {JSON.stringify(formValues, null, 4)}
           </pre>
         </>
       )}

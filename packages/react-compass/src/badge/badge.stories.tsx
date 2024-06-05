@@ -1,7 +1,6 @@
 import Clock from '@comfortdelgro/compass-icons/react/clock-outlined'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import Tick from '@comfortdelgro/compass-icons/react/tick'
-import {faBug} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 import {Meta} from '@storybook/react'
 import React from 'react'
@@ -66,13 +65,13 @@ export const Icons: React.FC = () => (
         label='LGTM'
         color='success'
         variant='secondary'
-        icon={<FontAwesomeIcon icon={faBug} />}
+        icon={<HeartFilled />}
       />
       <Badge
         label='Practice Social Distancing'
         color='danger'
         variant='outline'
-        icon={<FontAwesomeIcon icon={faBug} />}
+        icon={<HeartFilled />}
       />
     </Layout>
   </Layout>

@@ -59,6 +59,7 @@ export interface Props {
   css?: CSS
   inputRef?: React.RefObject<HTMLInputElement>
   buttonRef?: React.RefObject<HTMLButtonElement>
+  disabledAutofill?: boolean
   onBlur?: (event: React.FocusEvent) => void
   onFocus?: () => void
   onLoadMore?: () => void
@@ -66,6 +67,7 @@ export interface Props {
   onSelectionChange?: (key: string | number) => void
   onValueChange?: (key: string | number) => void
   h5?: boolean
+  isFloatingPortal?: boolean
 }
 
 export const Icon = () => (
@@ -167,6 +169,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     buttonRef,
     autoFocus,
     autoCapitalize,
+    disabledAutofill = false,
     onCut,
     onCopy,
     onBlur = EMPTY_FUNC,
@@ -181,6 +184,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onCompositionStart,
     onCompositionUpdate,
     h5 = false,
+    isFloatingPortal = true,
     ...ariaSafeProps
   } = props
 
@@ -488,7 +492,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     if (!clonedChildren || (!valueDropdown && !defaultValueDropdown)) {
       setSelectedItem(null)
       setSearchValue('')
-      if (!allowsCustomValue && inputFieldRef.current) {
+      if (!allowsCustomValue && inputFieldRef.current && !disabledAutofill) {
         inputFieldRef.current.value = ''
       }
       setFocusKey((oldFocusKey) => oldFocusKey ?? null)
@@ -506,11 +510,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         displayValue: item.props.textValue || item.props.children,
         flagName: item?.props?.flagName ?? '',
       })
-      if (inputFieldRef.current) {
+      if (inputFieldRef.current && !disabledAutofill) {
         inputFieldRef.current.value = textContent(item as React.ReactElement)
       }
     }
   }, [
+    disabledAutofill,
     clonedChildren,
     valueDropdown,
     defaultValueDropdown,
@@ -824,6 +829,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             searchValue,
             labelId: `${dropdownId}-label`,
             selectedItem,
+            disabledAutofill,
             setSelectedItem,
             dropdownItemKeys,
             setDropdownItemKeys,
@@ -838,6 +844,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             direction='bottom-left'
             onClose={handleClosePopover}
             onPositionedChange={handlePositionedChange}
+            isFloatingPortal={isFloatingPortal}
           >
             <div
               className={`${styles.dropdownPopover} cdg-dropdown-popover`}

@@ -1,16 +1,10 @@
-const exampleItems = [
-  {name: 'item1', value: '', placeholder: 'item1'},
-  {
-    name: 'item2',
-    value: '',
-    placeholder: 'item2',
-    allowSwap: true,
-  },
-  {
-    name: 'item3',
-    value: '',
-    placeholder: 'item3',
-  },
-] as const
-
-<Pudo items={exampleItems} />
+<Pudo
+  items={[
+    {name: 'pickUp', value: '', placeholder: 'Pick up from'},
+    {name: 'des1', value: '', placeholder: 'Where to?', allowSwap: true},
+  ]}
+  addItems={[{name: 'des2', value: '', placeholder: 'Where to?'}]}
+  addItemsLabel='Add extra destination'
+  removableItems={['des2']}
+  removableLabel='Remove extra destination'
+/>

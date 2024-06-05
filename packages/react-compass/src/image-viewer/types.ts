@@ -1,4 +1,3 @@
-import {IconDefinition} from '@fortawesome/fontawesome-svg-core'
 import {ActionTypeEnum} from './Icon'
 
 export type ImageViewerCoreState = {
@@ -46,7 +45,7 @@ export type ImageDecorator = {
 export type ToolbarConfig = {
   key: string
   actionType: ActionTypeEnum
-  icon?: IconDefinition
+  icon?: React.ReactNode
   render?: React.ReactNode
   onClick?: (activeImage: ImageDecorator) => void
 }

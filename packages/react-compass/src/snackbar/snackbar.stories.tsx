@@ -1,12 +1,10 @@
 import CloseIcon from '@comfortdelgro/compass-icons/react/h5-close'
 import WarningIcon from '@comfortdelgro/compass-icons/react/warning-filled'
-import {faImage, faXmark} from '@fortawesome/free-solid-svg-icons'
 import {Meta} from '@storybook/react'
 import React, {Key} from 'react'
 import Snackbar from '.'
 import Button from '../button/button'
 import Dropdown from '../dropdown'
-import {Icon} from '../icon'
 import {SnackbarContextProvider, useSnackbar} from './service'
 
 const style: {
@@ -77,11 +75,11 @@ export const Default: React.FC = () => {
         }}
       >
         <Snackbar.PrefixIcon>
-          <Icon icon={faImage} />
+          <WarningIcon />
         </Snackbar.PrefixIcon>
         <Snackbar.Text>Text goes here</Snackbar.Text>
         <Snackbar.SuffixIcon>
-          <Icon icon={faXmark} />
+          <CloseIcon />
         </Snackbar.SuffixIcon>
       </Snackbar>
     </div>
