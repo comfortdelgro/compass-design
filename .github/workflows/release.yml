@@ -29,13 +29,14 @@ jobs:
         run: pnpm i --frozen-lockfile
       - name: Build
         run: pnpm run --filter=@comfortdelgro/react-compass build
+
       - name: Bump version to 3.3.0-h5
         if: github.event_name == 'workflow_dispatch'
         run: |
           CUSTOM_VERSION="3.3.0-h5"
           echo "Custom version: $CUSTOM_VERSION"
           # Update the version in package.json
-          npm version $CUSTOM_VERSION --no-git-tag-version
+          npm version $CUSTOM_VERSION
       - name: Commit version change
         if: github.event_name == 'workflow_dispatch'
         run: |
@@ -51,4 +52,5 @@ jobs:
             npm publish
           fi
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.CDG_PUBLISHER_NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CDG_BOT_GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.CDG_PUBLISHER_NPM_TOKEN }}
