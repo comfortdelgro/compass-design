@@ -145,7 +145,7 @@ export function Customize() {
               backgroundColor: 'rgba(61, 127, 118, 0.5)',
             }}
             color='#fff'
-            icon={<HeartFilled color='red'/>}
+            icon={<HeartFilled color='red' />}
             labelType='slide'
             onSwipeEnd={() => setTurnedOff(true)}
           >

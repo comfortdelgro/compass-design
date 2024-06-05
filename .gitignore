@@ -41,6 +41,7 @@ next-env.d.ts
 
 # build artefacts
 packages/react-compass/dist/
+packages/react-compass/storybook-static/
 packages/compass-icons/iconify/
 packages/compass-icons/react/
 
