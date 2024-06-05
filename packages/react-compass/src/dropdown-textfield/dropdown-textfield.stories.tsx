@@ -1,7 +1,7 @@
 import Singapore from '@comfortdelgro/compass-icons/react/flag-sgp'
 import USA from '@comfortdelgro/compass-icons/react/flag-usa'
 import type {Meta} from '@storybook/react'
-import {toString} from 'lodash'
+import toString from 'lodash/toString'
 import React, {useEffect, useState} from 'react'
 import Dropdown from '../dropdown'
 import Textarea from '../textarea'

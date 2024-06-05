@@ -259,11 +259,6 @@ export const routes: TSideNavItem[] = [
           'The Alert component displays important messages to the user.',
       },
       {
-        title: 'Chart',
-        pathname: '/chart',
-        description: 'Charts visualize data in graphical form.',
-      },
-      {
         title: 'Date Picker',
         pathname: '/date-picker',
         description:

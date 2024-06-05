@@ -1,5 +1,4 @@
-import {faBug} from '@fortawesome/free-solid-svg-icons/faBug'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import Status from './../status'
 import Avatar from './index'
@@ -142,39 +141,19 @@ export const Individual: React.FC = () => (
     <div style={{display: 'flex', gap: '8px'}}>
       <Avatar
         label='Albert Einstein'
-        icon={<FontAwesomeIcon icon={faBug} />}
+        icon={<HeartFilled />}
         style={{width: '160px', height: '160px'}}
       />
-      <Avatar
-        label='Albert Einstein'
-        icon={<FontAwesomeIcon icon={faBug} />}
-        size='lg'
-      />
-      <Avatar
-        label='Albert Einstein'
-        icon={<FontAwesomeIcon icon={faBug} />}
-        size='md'
-      />
-      <Avatar
-        label='Albert Einstein'
-        icon={<FontAwesomeIcon icon={faBug} />}
-        size='sm'
-      />
-      <Avatar
-        label='Albert Einstein'
-        icon={<FontAwesomeIcon icon={faBug} />}
-        size='xs'
-      />
-      <Avatar
-        label='Albert Einstein'
-        icon={<FontAwesomeIcon icon={faBug} />}
-        size='xxs'
-      />
+      <Avatar label='Albert Einstein' icon={<HeartFilled />} size='lg' />
+      <Avatar label='Albert Einstein' icon={<HeartFilled />} size='md' />
+      <Avatar label='Albert Einstein' icon={<HeartFilled />} size='sm' />
+      <Avatar label='Albert Einstein' icon={<HeartFilled />} size='xs' />
+      <Avatar label='Albert Einstein' icon={<HeartFilled />} size='xxs' />
     </div>
     <div style={{display: 'flex', gap: '8px'}}>
       <Avatar
         label='Albert Einstein'
-        icon={<FontAwesomeIcon icon={faBug} />}
+        icon={<HeartFilled />}
         style={{width: '160px', height: '160px'}}
         status={
           <Status
@@ -186,19 +165,19 @@ export const Individual: React.FC = () => (
       />
       <Avatar
         label='Albert Einstein'
-        icon={<FontAwesomeIcon icon={faBug} />}
+        icon={<HeartFilled />}
         size='lg'
         status={<Status type='offline' size='md'></Status>}
       />
       <Avatar
         label='Albert Einstein'
-        icon={<FontAwesomeIcon icon={faBug} />}
+        icon={<HeartFilled />}
         size='md'
         status={<Status type='verified' size='sm'></Status>}
       />
       <Avatar
         label='Albert Einstein'
-        icon={<FontAwesomeIcon icon={faBug} />}
+        icon={<HeartFilled />}
         size='sm'
         status={<Status type='zig' size='xs'></Status>}
       />
@@ -246,14 +225,14 @@ export const WithStatus: React.FC = () => (
     <h3>3. Icon Avatar</h3>
     <div style={{display: 'flex', gap: '8px'}}>
       <Avatar
-        icon={<FontAwesomeIcon icon={faBug} />}
+        icon={<HeartFilled />}
         style={{width: '160px', height: '160px'}}
       />
-      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='lg' />
-      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='md' />
-      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='sm' />
-      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='xs' />
-      <Avatar icon={<FontAwesomeIcon icon={faBug} />} size='xxs' />
+      <Avatar icon={<HeartFilled />} size='lg' />
+      <Avatar icon={<HeartFilled />} size='md' />
+      <Avatar icon={<HeartFilled />} size='sm' />
+      <Avatar icon={<HeartFilled />} size='xs' />
+      <Avatar icon={<HeartFilled />} size='xxs' />
     </div>
   </div>
 )

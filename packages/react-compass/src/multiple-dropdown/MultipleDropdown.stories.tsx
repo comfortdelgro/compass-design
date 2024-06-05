@@ -1,5 +1,4 @@
-import {faBug} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import MultipleDropdown from '.'
@@ -135,7 +134,7 @@ export const Basic: React.FC = () => {
           </div>
         </MultipleDropdown.Header>
         <MultipleDropdown.Item value='panda' textValue='Panda'>
-          <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
+          <HeartFilled style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
@@ -303,7 +302,7 @@ export const Basic: React.FC = () => {
       <MultipleDropdown
         label='Favorite Animal'
         placeholder='Choose an animal'
-        icon={<FontAwesomeIcon icon={faBug} />}
+        icon={<HeartFilled />}
       >
         <MultipleDropdown.Item value='panda'>Red Panda</MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
@@ -406,7 +405,7 @@ export const Basic: React.FC = () => {
         isDisabled
       >
         <MultipleDropdown.Item value='panda'>
-          <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
+          <HeartFilled style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>
@@ -424,7 +423,7 @@ export const Basic: React.FC = () => {
         displayedValue='string'
       >
         <MultipleDropdown.Item value='panda'>
-          <FontAwesomeIcon icon={faBug} style={{marginRight: 5}} />
+          <HeartFilled style={{marginRight: 5}} />
           Red Panda
         </MultipleDropdown.Item>
         <MultipleDropdown.Item value='cat'>Cat</MultipleDropdown.Item>

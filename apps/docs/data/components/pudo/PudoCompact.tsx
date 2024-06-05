@@ -1,4 +1,5 @@
 import {Column, Pudo, Typography} from '@comfortdelgro/react-compass'
+import pudoDocsClasses from './styles/pudo-docs.module.css'
 
 export default function PudoCompact() {
   return (
@@ -6,7 +7,7 @@ export default function PudoCompact() {
       <Typography.Body variant='body3'>
         Compact size: sm (1st example), md (2nd example)
       </Typography.Body>
-      <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+      <div className={pudoDocsClasses.compactExampleContainer}>
         <Pudo
           items={[
             {name: 'item1', value: '', placeholder: 'item 1'},
@@ -14,6 +15,7 @@ export default function PudoCompact() {
           ]}
           compact='sm'
         />
+
         <Pudo
           items={[
             {name: 'item1', value: '', placeholder: 'item 1'},
@@ -23,14 +25,14 @@ export default function PudoCompact() {
         />
       </div>
 
-      <Typography.Header variant='header5' css={{marginTop: '$4'}}>
+      <Typography.Header variant='header5' css={{marginTop: '1rem'}}>
         Type <code>custom</code>
       </Typography.Header>
       <Typography.Body variant='body3'>
         Compact size: sm (1st example), md (2nd example)
       </Typography.Body>
 
-      <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+      <div className={pudoDocsClasses.compactExampleContainer}>
         <Pudo
           items={[
             {

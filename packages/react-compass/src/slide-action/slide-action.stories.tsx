@@ -1,5 +1,4 @@
-import {faPowerOff} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import {useState} from 'react'
 import Typography from '../typography'
@@ -146,7 +145,7 @@ export function Customize() {
               backgroundColor: 'rgba(61, 127, 118, 0.5)',
             }}
             color='#fff'
-            icon={<FontAwesomeIcon icon={faPowerOff} color='red' size='lg' />}
+            icon={<HeartFilled color='red'/>}
             labelType='slide'
             onSwipeEnd={() => setTurnedOff(true)}
           >

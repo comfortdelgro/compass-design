@@ -1,5 +1,4 @@
-import {faUser} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import MenuList, {MenuListDropdown} from './index'
 
@@ -21,28 +20,28 @@ export const Basic = () => {
           <MenuListDropdown.Header leftIcon={false} rightIcon={true}>
             More menu
           </MenuListDropdown.Header>
-          <MenuListDropdown.Item icon={<FontAwesomeIcon icon={faUser} />}>
+          <MenuListDropdown.Item icon={<HeartFilled />}>
             Menu
           </MenuListDropdown.Item>
-          <MenuListDropdown.Item icon={<FontAwesomeIcon icon={faUser} />}>
+          <MenuListDropdown.Item icon={<HeartFilled />}>
             Menu
           </MenuListDropdown.Item>
-          <MenuListDropdown.Item icon={<FontAwesomeIcon icon={faUser} />}>
+          <MenuListDropdown.Item icon={<HeartFilled />}>
             Menu
           </MenuListDropdown.Item>
           <MenuListDropdown.Item isNested>
             <MenuListDropdown>
               <MenuListDropdown.Header>Nested menu</MenuListDropdown.Header>
-              <MenuListDropdown.Item icon={<FontAwesomeIcon icon={faUser} />}>
+              <MenuListDropdown.Item icon={<HeartFilled />}>
                 Menu
               </MenuListDropdown.Item>
-              <MenuListDropdown.Item icon={<FontAwesomeIcon icon={faUser} />}>
+              <MenuListDropdown.Item icon={<HeartFilled />}>
                 Menu
               </MenuListDropdown.Item>
-              <MenuListDropdown.Item icon={<FontAwesomeIcon icon={faUser} />}>
+              <MenuListDropdown.Item icon={<HeartFilled />}>
                 Menu
               </MenuListDropdown.Item>
-              <MenuListDropdown.Item icon={<FontAwesomeIcon icon={faUser} />}>
+              <MenuListDropdown.Item icon={<HeartFilled />}>
                 Menu
               </MenuListDropdown.Item>
             </MenuListDropdown>

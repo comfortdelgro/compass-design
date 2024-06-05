@@ -1,11 +1,7 @@
-import {
-  faExclamationTriangle,
-  faUserEdit,
-} from '@fortawesome/free-solid-svg-icons'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import Button from '../../button'
-import Icon from '../../icon'
 import ActionBar from './index'
 
 export const Basic: React.FC = () => {
@@ -14,12 +10,12 @@ export const Basic: React.FC = () => {
       <ActionBar>
         <ActionBar.LeftGroup>
           <Button variant='primary'>
-            <Icon icon={faExclamationTriangle} />
+            <HeartFilled />
           </Button>
         </ActionBar.LeftGroup>
         <ActionBar.CenterGroup>
           <Button isDisabled>
-            <Icon icon={faUserEdit} />
+            <HeartFilled />
           </Button>
         </ActionBar.CenterGroup>
         <ActionBar.RightGroup>
@@ -37,7 +33,7 @@ export const LeftAndRight: React.FC = () => {
       <ActionBar>
         <ActionBar.LeftGroup>
           <Button variant='primary'>
-            <Icon icon={faExclamationTriangle} />
+            <HeartFilled />
           </Button>
         </ActionBar.LeftGroup>
         <ActionBar.RightGroup>
@@ -55,7 +51,7 @@ export const Left: React.FC = () => {
       <ActionBar>
         <ActionBar.LeftGroup>
           <Button variant='primary'>
-            <Icon icon={faExclamationTriangle} />
+            <HeartFilled />
           </Button>
         </ActionBar.LeftGroup>
       </ActionBar>
@@ -82,7 +78,7 @@ export const Center: React.FC = () => {
       <ActionBar>
         <ActionBar.CenterGroup>
           <Button isDisabled>
-            <Icon icon={faUserEdit} />
+            <HeartFilled />
           </Button>
         </ActionBar.CenterGroup>
       </ActionBar>

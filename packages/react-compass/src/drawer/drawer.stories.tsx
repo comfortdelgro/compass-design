@@ -1,14 +1,10 @@
-import {
-  faArrowLeft,
-  faArrowRight,
-  faClose,
-} from '@fortawesome/free-solid-svg-icons'
-// import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight'
+import Cross from '@comfortdelgro/compass-icons/react/cross'
+import ArrowLeft from '@comfortdelgro/compass-icons/react/filled/arrow-left-filled'
+import ArrowRight from '@comfortdelgro/compass-icons/react/filled/arrow-right-filled'
 import {Meta} from '@storybook/react'
 import {FormEventHandler, useRef, useState} from 'react'
 import {Divider, Modal, Typography} from '..'
 import Button from '../button'
-import Icon from '../icon'
 import Drawer, {DrawerH5Props, DrawerProps, DrawerRef} from './index'
 import storiesStyles from './styles/drawer-stories.module.css'
 
@@ -77,7 +73,7 @@ export function Default() {
             variant='ghost'
             onClick={handleCloseDrawer}
           >
-            <Icon icon={faClose} size='2x' />
+            <Cross />
           </Button>
         </Drawer.Header>
 
@@ -171,7 +167,7 @@ export function Default() {
       <div className={storiesStyles.container}>
         <Button
           type='button'
-          leftIcon={<Icon icon={faArrowLeft} />}
+          leftIcon={<ArrowLeft />}
           onClick={() => handleChangePosition('left')}
         >
           Open on the left
@@ -187,7 +183,7 @@ export function Default() {
 
         <Button
           type='button'
-          rightIcon={<Icon icon={faArrowRight} />}
+          rightIcon={<ArrowRight />}
           onClick={() => handleChangePosition('right')}
         >
           Open on the right
@@ -251,7 +247,7 @@ export function Default() {
         <div className={storiesStyles.container}>
           <Button
             type='button'
-            leftIcon={<Icon icon={faArrowLeft} />}
+            leftIcon={<ArrowLeft />}
             onClick={() => setDrawerPosition('left')}
           >
             Open on the left
@@ -267,7 +263,7 @@ export function Default() {
 
           <Button
             type='button'
-            rightIcon={<Icon icon={faArrowRight} />}
+            rightIcon={<ArrowRight />}
             onClick={() => setDrawerPosition('right')}
           >
             Open on the right

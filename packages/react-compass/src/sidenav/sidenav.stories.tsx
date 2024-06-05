@@ -1,19 +1,9 @@
 'use client'
 
-import {
-  faAmbulance,
-  faBank,
-  faCar,
-  faChevronDown,
-  faHelicopter,
-  faPlane,
-  faTractor,
-  IconDefinition,
-} from '@fortawesome/free-solid-svg-icons'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import React, {useState} from 'react'
 import Avatar from '../avatar'
-import Icon from '../icon'
 import Sidenav from './index'
 import SidenavMenu from './sidenav-menu'
 
@@ -86,7 +76,7 @@ const styleDetailTimeWrapper = {
 
 interface ItemBase {
   id: number
-  icon: IconDefinition
+  icon: React.ReactNode
   title: string
 }
 
@@ -100,50 +90,50 @@ export const Default: React.FC = () => {
   const items: ItemType[] = [
     {
       id: 1,
-      icon: faCar,
+      icon: <HeartFilled />,
       title: 'Placeholder',
       children: [
         {
           id: 11,
           title:
             'Placeholder item with a really long name that makes this menu item width over screen to test the layout',
-          icon: faCar,
+          icon: <HeartFilled />,
         },
-        {id: 12, title: 'Placeholder', icon: faCar},
+        {id: 12, title: 'Placeholder', icon: <HeartFilled />},
         {
           id: 13,
           title: 'Placeholder',
-          icon: faCar,
+          icon: <HeartFilled />,
           children: [
-            {id: 11, title: 'Placeholder', icon: faCar},
+            {id: 11, title: 'Placeholder', icon: <HeartFilled />},
             {
               id: 12,
               title: 'Placeholder',
-              icon: faCar,
+              icon: <HeartFilled />,
               children: [
-                {id: 11, title: 'Placeholder', icon: faCar},
-                {id: 12, title: 'Placeholder', icon: faCar},
+                {id: 11, title: 'Placeholder', icon: <HeartFilled />},
+                {id: 12, title: 'Placeholder', icon: <HeartFilled />},
                 {
                   id: 13,
                   title: 'Placeholder',
-                  icon: faCar,
+                  icon: <HeartFilled />,
                   children: [
-                    {id: 11, title: 'Placeholder', icon: faCar},
-                    {id: 12, title: 'Placeholder', icon: faCar},
-                    {id: 13, title: 'Placeholder', icon: faCar},
+                    {id: 11, title: 'Placeholder', icon: <HeartFilled />},
+                    {id: 12, title: 'Placeholder', icon: <HeartFilled />},
+                    {id: 13, title: 'Placeholder', icon: <HeartFilled />},
                   ],
                 },
               ],
             },
-            {id: 13, title: 'Placeholder', icon: faCar},
+            {id: 13, title: 'Placeholder', icon: <HeartFilled />},
           ],
         },
       ],
     },
-    {id: 2, icon: faAmbulance, title: 'Placeholder'},
-    {id: 3, icon: faPlane, title: 'Placeholder'},
-    {id: 4, icon: faHelicopter, title: 'Placeholder'},
-    {id: 5, icon: faTractor, title: 'Placeholder'},
+    {id: 2, icon: <HeartFilled />, title: 'Placeholder'},
+    {id: 3, icon: <HeartFilled />, title: 'Placeholder'},
+    {id: 4, icon: <HeartFilled />, title: 'Placeholder'},
+    {id: 5, icon: <HeartFilled />, title: 'Placeholder'},
   ]
 
   const handleOnClick = (
@@ -158,7 +148,7 @@ export const Default: React.FC = () => {
     const {id, icon, title, children, isMenu} = props
     return (
       <Sidenav.Item isActive={isMenu ? false : currentPage === id}>
-        {icon ? <Icon icon={icon}></Icon> : <></>}
+        {icon ? icon : <></>}
         {title ? (
           <span>
             {title} {children ? '→' : ''}
@@ -213,8 +203,7 @@ export const Default: React.FC = () => {
           <div style={styleServiceMenuWrapper}>
             <div style={styleContent}>
               <p style={styleTitleWrapper}>ZB</p>
-              <Icon
-                icon={faChevronDown}
+              <HeartFilled
                 style={{width: 11, height: 7, color: '#333333', marginLeft: 0}}
               />
             </div>
@@ -245,7 +234,7 @@ export const Default: React.FC = () => {
         })}
         <Sidenav.Divider style={{margin: '8px 0'}} />
         <Sidenav.Item css={{marginTop: 'auto'}}>
-          <Icon icon={faBank}></Icon>
+          <HeartFilled />
           <span>Placeholder</span>
         </Sidenav.Item>
       </Sidenav>

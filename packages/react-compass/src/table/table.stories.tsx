@@ -1,17 +1,6 @@
-import {
-  faCheck,
-  faChevronDown,
-  faChevronRight,
-  faClose,
-  faDashboard,
-  faFileLines,
-  faHeart,
-  faHeartBroken,
-  faPencil,
-  faTrashAlt,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import ArrowDown from '@comfortdelgro/compass-icons/react/arrow-down'
+import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import React, {Key, MouseEvent, TouchEvent, useState} from 'react'
 import Table, {
@@ -26,7 +15,6 @@ import {
   Button,
   Dropdown,
   Grid,
-  Icon,
   Pagination,
   SearchField,
   Spinner,
@@ -217,13 +205,13 @@ export const Basic: React.FC = () => {
           <Button variant='primary'>Button</Button>
           <Button variant='secondary'>Button</Button>
           <Button variant='ghost' aria-label='Delete'>
-            <Icon icon={faTrashAlt} />
+            <HeartFilled />
           </Button>
           <Button variant='ghost' aria-label='Dashboard'>
-            <Icon icon={faDashboard} />
+            <HeartFilled />
           </Button>
           <Button variant='ghost'>
-            <Icon icon={faFileLines} aria-label='File' />
+            <HeartFilled aria-label='File' />
           </Button>
         </div>
       </Table.Toolbar>
@@ -287,11 +275,7 @@ export const ExpandableRow: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            {table.getIsAllRowsExpanded() ? (
-              <Icon icon={faChevronDown} />
-            ) : (
-              <Icon icon={faChevronRight} />
-            )}
+            {table.getIsAllRowsExpanded() ? <ArrowDown /> : <ArrowRight />}
           </span>
         ),
         cell: ({row}: TableCellContext<LimitRequestStatus, unknown>) => (
@@ -305,11 +289,7 @@ export const ExpandableRow: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            {row.getIsExpanded() ? (
-              <Icon icon={faChevronDown} />
-            ) : (
-              <Icon icon={faChevronRight} />
-            )}
+            {row.getIsExpanded() ? <ArrowDown /> : <ArrowRight />}
           </span>
         ),
       },
@@ -580,13 +560,13 @@ export const EmptyState: React.FC = () => {
             <Button variant='primary'>Button</Button>
             <Button variant='secondary'>Button</Button>
             <Button variant='ghost'>
-              <Icon icon={faTrashAlt} />
+              <HeartFilled />
             </Button>
             <Button variant='ghost'>
-              <Icon icon={faDashboard} />
+              <HeartFilled />
             </Button>
             <Button variant='ghost'>
-              <Icon icon={faFileLines} />
+              <HeartFilled />
             </Button>
           </div>
         </Table.Toolbar>
@@ -857,7 +837,7 @@ export const EditableTemplateCell: React.FC = () => {
               alignItems: 'center',
             }}
           >
-            <Icon icon={faPencil} />
+            <HeartFilled />
           </div>
         ),
         meta: {
@@ -936,13 +916,13 @@ export const EditableTemplateCell: React.FC = () => {
             <Button variant='primary'>Button</Button>
             <Button variant='secondary'>Button</Button>
             <Button variant='ghost'>
-              <Icon icon={faTrashAlt} />
+              <HeartFilled />
             </Button>
             <Button variant='ghost'>
-              <Icon icon={faDashboard} />
+              <HeartFilled />
             </Button>
             <Button variant='ghost'>
-              <Icon icon={faFileLines} />
+              <HeartFilled />
             </Button>
           </div>
         </Table.Toolbar>
@@ -1044,10 +1024,10 @@ const PersonTemplateCell = () => {
         css={{display: 'flex', justifyContent: 'center', gap: 5}}
       >
         <Button onClick={handleConfirm} size='sm'>
-          <Icon icon={faCheck} />
+          <HeartFilled />
         </Button>
         <Button onClick={handleCancel} variant='danger' size='sm'>
-          <Icon icon={faClose} />
+          <HeartFilled />
         </Button>
       </Grid.Item>
       <Grid.Item xs={3} sm={3} md={3} lg={3} xl={3}>
@@ -1235,13 +1215,13 @@ export const DataGrid: React.FC = () => {
             <Button variant='primary'>Button</Button>
             <Button variant='secondary'>Button</Button>
             <Button variant='ghost'>
-              <Icon icon={faTrashAlt} />
+              <HeartFilled />
             </Button>
             <Button variant='ghost'>
-              <Icon icon={faDashboard} />
+              <HeartFilled />
             </Button>
             <Button variant='ghost'>
-              <Icon icon={faFileLines} />
+              <HeartFilled />
             </Button>
           </div>
         </Table.Toolbar>
@@ -1267,11 +1247,11 @@ const StatusComponent = ({status}: {status: string}) => {
   const renderIcon = () => {
     switch (status) {
       case 'relationship':
-        return <FontAwesomeIcon icon={faHeart} />
+        return <HeartFilled />
       case 'complicated':
-        return <FontAwesomeIcon icon={faHeartBroken} />
+        return <HeartFilled />
       case 'single':
-        return <FontAwesomeIcon icon={faUser} />
+        return <HeartFilled />
       default:
         return null
     }

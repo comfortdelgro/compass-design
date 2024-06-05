@@ -1,5 +1,4 @@
-import {faBug} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import React, {useState} from 'react'
 import Radio from './index'
@@ -33,7 +32,7 @@ export const Variants: React.FC = () => {
             variant='outlined'
             label={
               <>
-                test <FontAwesomeIcon icon={faBug} />
+                test <HeartFilled />
               </>
             }
             description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'

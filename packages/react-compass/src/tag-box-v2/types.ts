@@ -1,10 +1,9 @@
-import {IconDefinition} from '@fortawesome/free-solid-svg-icons'
 import {CSS} from '../utils/objectToCss'
 
 export interface Tag {
   id: string | number
   value: string
-  icon?: IconDefinition
+  icon?: React.ReactNode
   isErrored?: boolean
 }
 

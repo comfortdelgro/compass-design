@@ -1,4 +1,4 @@
-import {toUpper} from 'lodash'
+import toUpper from 'lodash/toUpper'
 import React from 'react'
 import {getIconFromColor} from '../utils/get-icon-from-color'
 import {CSS, CssInjection} from '../utils/objectToCss'
