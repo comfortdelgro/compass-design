@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 4.0.0
+
+### Major Changes
+
+- bdb3a237: Bump version to 3.3.0-h5
+
 ## 3.3.0
 
 ### Minor Changes
