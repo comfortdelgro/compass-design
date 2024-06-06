@@ -1,6 +1,5 @@
 import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
 import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
-import {VisuallyHidden} from '@react-aria/visually-hidden'
 import React from 'react'
 import Button, {ButtonProps} from '../button'
 import {DateValue} from '../internationalized/date'
@@ -36,7 +35,6 @@ const CalendarHeader = (props: Props) => {
   const {
     state,
     variant = 'default',
-    calendarProps,
     prevButtonProps: datePrevButtonProps,
     nextButtonProps: dateNextButtonProps,
     middleButtonProps,
@@ -91,14 +89,6 @@ const CalendarHeader = (props: Props) => {
   return (
     <CssInjection css={css}>
       <div className={styles.calendarHeader}>
-        {/* Add a screen reader only description of the entire visible range rather than
-         * a separate heading above each month grid. This is placed first in the DOM order
-         * so that it is the first thing a touch screen reader user encounters.
-         * In addition, VoiceOver on iOS does not announce the aria-label of the grid
-         * elements, so the aria-label of the Calendar is included here as well. */}
-        <VisuallyHidden>
-          <h2>{(calendarProps as AriaLabelingProps)['aria-label']}</h2>
-        </VisuallyHidden>
         <div
           className={`calendar-header-left-side ${styles.calendarHeaderLeftSide}`}
         >

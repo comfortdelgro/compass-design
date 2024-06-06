@@ -4,7 +4,6 @@ import React, {useRef} from 'react'
 import {ButtonProps} from '../button'
 import Calendar, {CalendarProps} from '../calendar/calendar'
 import DateField from '../calendar/components/date-field'
-import Dialog from '../calendar/components/dialog'
 import Popover from '../calendar/components/popover'
 import {useDatePicker} from '../calendar/hooks/useDatePicker'
 import {useDatePickerState} from '../calendar/hooks/useDatePickerState'
@@ -175,7 +174,6 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
   const {
     state,
     calendarRef,
-    dialogProps,
     calendarProps,
     maxValue = parseDate('2999-03-10'),
     ctaButtonRender,
@@ -191,21 +189,14 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
           offset={8}
           placement='bottom start'
         >
-          <Dialog
-            {...dialogProps}
-            aria-describedby={dialogProps['aria-describedby'] ?? ''}
-            aria-label={dialogProps['aria-label'] ?? ''}
-            aria-labelledby={dialogProps['aria-labelledby'] ?? ''}
-          >
-            <Calendar
-              state={state}
-              hasFooter={true}
-              {...calendarProps}
-              maxValue={maxValue}
-              css={css}
-              ctaButtonRender={ctaButtonRender}
-            />
-          </Dialog>
+          <Calendar
+            state={state}
+            hasFooter={true}
+            {...calendarProps}
+            maxValue={maxValue}
+            css={css}
+            ctaButtonRender={ctaButtonRender}
+          />
         </Popover>
       )}
     </>

@@ -2,7 +2,6 @@
 import React from 'react'
 import {ButtonProps} from '../button'
 import DateField from '../calendar/components/date-field'
-import Dialog from '../calendar/components/dialog'
 import Popover from '../calendar/components/popover'
 import {useDateRangePicker} from '../calendar/hooks/useDateRangePicker'
 import {useDateRangePickerState} from '../calendar/hooks/useDateRangePickerState'
@@ -260,7 +259,6 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
   const {
     state,
     calendarRef,
-    dialogProps,
     calendarProps,
     css = {},
     hasShortcuts = false,
@@ -288,34 +286,23 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
           placement='bottom start'
           offset={8}
         >
-          <Dialog
-            {...dialogProps}
-            aria-describedby={dialogProps['aria-describedby'] ?? ''}
-            aria-label={dialogProps['aria-label'] ?? ''}
-            aria-labelledby={dialogProps['aria-labelledby'] ?? ''}
-          >
-            <RangeCalendar
-              css={css}
-              state={state}
-              hasFooter={true}
-              aria-label=''
-              aria-labelledby=''
-              {...(value ? {value} : {})}
-              onChange={onChangeRangeCalendar}
-              {...resCalendarProps}
-              maxValue={maxValue}
-              hasShortcuts={hasShortcuts}
-              ctaButtonRender={ctaButtonRender}
-              onSearchButtonClick={onSearchButtonClick}
-              customShortcuts={customShortcuts}
-              visibleMonths={
-                visibleMonths ? visibleMonths : isMobileView ? 1 : 2
-              }
-              shouldOnChangeTriggerOnSameDate={
-                !!shouldOnChangeTriggerOnSameDate
-              }
-            />
-          </Dialog>
+          <RangeCalendar
+            css={css}
+            state={state}
+            hasFooter={true}
+            aria-label=''
+            aria-labelledby=''
+            {...(value ? {value} : {})}
+            onChange={onChangeRangeCalendar}
+            {...resCalendarProps}
+            maxValue={maxValue}
+            hasShortcuts={hasShortcuts}
+            ctaButtonRender={ctaButtonRender}
+            onSearchButtonClick={onSearchButtonClick}
+            customShortcuts={customShortcuts}
+            visibleMonths={visibleMonths ? visibleMonths : isMobileView ? 1 : 2}
+            shouldOnChangeTriggerOnSameDate={!!shouldOnChangeTriggerOnSameDate}
+          />
         </Popover>
       )}
     </>

@@ -1,4 +1,3 @@
-import {useFocusRing} from '@react-aria/focus'
 import React, {useRef} from 'react'
 import {
   CalendarDate,
@@ -62,7 +61,7 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
     const classNameCombine = () => {
       let className = `${styles.calendarCell} `
-      if (isFocusVisible) className += `focused ${styles.focused} `
+      // if (isFocusVisible) className += `focused ${styles.focused} `
       if (isSelected && isRangeCalendar)
         className += `selected ${styles.selected} `
       else if (isSelected && !isRangeCalendar)
@@ -81,8 +80,6 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
       return
     }
     maxValueClassFunc()
-
-    const {focusProps, isFocusVisible} = useFocusRing()
 
     const cellWrapperRef = useRef(null)
 
@@ -127,7 +124,6 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
                 } ${isSelected ? 'selected' : ''} ${styles.calendarCellValue} ${
                   isDisabled ? styles.disabled : ''
                 }`}
-                {...focusProps}
                 {...buttonProps}
                 tabIndex={buttonProps['tabIndex']}
               >
