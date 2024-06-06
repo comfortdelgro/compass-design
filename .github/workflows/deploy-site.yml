@@ -25,10 +25,10 @@ jobs:
         with:
           version: 8.9.2
 
-      - name: Setup NodeJS 16
-        uses: actions/setup-node@v3
+      - name: Setup NodeJS 18
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -40,7 +40,7 @@ jobs:
       - name: Build the website
         run: |
           BASE_PATH="/compass-design" pnpm run --filter=@comfortdelgro/compass-design-website build
-          pnpm run --filter=@comfortdelgro/react-compass storybook build --docs
+          pnpm run --filter=@comfortdelgro/react-compass build-storybook --docs
           mv packages/react-compass/storybook-static apps/docs/out/ladle
 
       - name: Deploy to GitHub Pages

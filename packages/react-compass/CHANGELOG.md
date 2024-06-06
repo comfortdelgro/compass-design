@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 4.6.0
+
+### Minor Changes
+
+- c68e846: Remove unused packages
+
 ## 4.4.0
 
 ### Minor Changes
