@@ -36,5 +36,6 @@
   "packageManager": "pnpm@8.9.2",
   "publishConfig": {
     "directory": "./packages/static"
-  }
+  },
+  "version": "3.3.0-h5"
 }
