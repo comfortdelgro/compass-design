@@ -41,7 +41,7 @@ jobs:
 
       - name: Bump version
         run: |
-          CUSTOM_VERSION="3.0.0+h5"
+          CUSTOM_VERSION="3.0.1+h5"
           echo "Custom version: $CUSTOM_VERSION"
           # Update the version in package.json
           pnpm version $CUSTOM_VERSION
