@@ -55,8 +55,8 @@ jobs:
         run: |
           git push origin HEAD:feature/h5-optimization || echo "No changes to push"
       
-      - name: Publish to NPM
-        run: npm publish
+      - name: Publish
+        run: npm publish --access public
         env:
           GITHUB_TOKEN: ${{ secrets.CDG_BOT_GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.CDG_PUBLISHER_NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.CDG_PUBLISHER_NPM_TOKEN }}
