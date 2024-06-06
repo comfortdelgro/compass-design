@@ -1,1 +1,0 @@
-class s{constructor(t=0,n=0){this.x=t,this.y=n}}class r{constructor(){this.startPoint=new s,this.lastPoint=new s,this.currentPoint=new s}start(t){this.startPoint=t}update(t){this.currentPoint=t}end(t){this.lastPoint=t,this.currentPoint=t}get distance(){return{x:this.currentPoint.x-this.startPoint.x,y:this.currentPoint.y-this.startPoint.y}}}export{r as P,s as a};

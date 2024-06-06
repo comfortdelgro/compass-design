@@ -1,0 +1,1 @@
+import{_ as o}from"./_MapCache-94815e6f.js";import{_ as i}from"./_getAllKeys-5d98cf22.js";var v=o,n=function(){try{var e=v(Object,"defineProperty");return e({},"",{}),e}catch{}}(),_=n,a=_;function p(e,r,t){r=="__proto__"&&a?a(e,r,{configurable:!0,enumerable:!0,value:t,writable:!0}):e[r]=t}var b=p,s=i,f=s(Object.getPrototypeOf,Object),P=f;export{b as _,P as a};

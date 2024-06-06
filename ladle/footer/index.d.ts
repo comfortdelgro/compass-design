@@ -1,0 +1,10 @@
+import Footer from './footer';
+import FooterInfo from './footer-info';
+export type { FooterProps } from './footer';
+export type { FooterHeaderProps } from './footer-header';
+export type { FooterInfoProps } from './footer-info';
+export type { FooterInfoDownloadProps } from './footer-info-download';
+export type { FooterInfoSocialProps } from './footer-info-social';
+export type { FooterNavigationProps } from './footer-nav';
+export type { FooterPolicyProps } from './footer-policy';
+export { Footer, FooterInfo };

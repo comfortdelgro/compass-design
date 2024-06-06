@@ -1,0 +1,34 @@
+import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
+import { CSS } from '../utils/objectToCss';
+interface Props {
+    size?: 'sm' | 'lg';
+    children?: React.ReactNode;
+    defaultSelected?: boolean;
+    isSelected?: boolean;
+    onChange?: (isSelected: boolean) => void;
+    value?: string;
+    name?: string;
+    isDisabled?: boolean;
+    isReadOnly?: boolean;
+    validationState?: 'valid' | 'invalid';
+    isRequired?: boolean;
+    onFocus?: (e: React.FocusEvent) => void;
+    onBlur?: (e: React.FocusEvent) => void;
+    onFocusChange?: (isFocused: boolean) => void;
+    onKeyDown?: (e: React.KeyboardEvent) => void;
+    onKeyUp?: (e: React.KeyboardEvent) => void;
+    excludeFromTabOrder?: boolean;
+    autoFocus?: boolean;
+    'aria-controls'?: string;
+    'aria-label'?: string;
+    'aria-labelledby'?: string;
+    'aria-describedby'?: string;
+    'aria-details'?: string;
+    'aria-errormessage'?: string;
+    className?: string;
+    css?: CSS;
+    variant?: 'h5';
+}
+export type ToggleProps = Props & Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>;
+declare const Toggle: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props> & React.RefAttributes<HTMLInputElement>>;
+export default Toggle;

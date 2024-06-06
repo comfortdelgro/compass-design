@@ -1,0 +1,34 @@
+import { FocusEvent as ReactFocusEvent, RefObject } from '../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
+import { FocusManager, FocusManagerOptions, FocusableElement, Modality, ScopeRef, ScrollIntoViewportOpts } from '../types';
+export declare function focusWithoutScrolling(element: FocusableElement): void;
+export declare function isVirtualClick(event: MouseEvent | PointerEvent): boolean;
+export declare function isElementVisible(element: Element, childElement?: Element): any;
+export declare function isElementInScope(element: Element, scope: Element[]): boolean;
+export declare function isElementInChildScope(element: Element, scope?: ScopeRef): boolean;
+export declare function getFocusableTreeWalker(root: Element, opts?: FocusManagerOptions, scope?: Element[]): TreeWalker;
+export declare function getInteractionModality(): Modality;
+export declare function focusSafely(element: FocusableElement): void;
+export declare function createFocusManager(ref: RefObject<Element>, defaultOptions?: FocusManagerOptions): FocusManager;
+export declare class SyntheticFocusEvent<Target = Element> implements ReactFocusEvent<Target> {
+    nativeEvent: FocusEvent;
+    target: EventTarget & Target;
+    currentTarget: EventTarget & Target;
+    relatedTarget: Element;
+    bubbles: boolean;
+    cancelable: boolean;
+    defaultPrevented: boolean;
+    eventPhase: number;
+    isTrusted: boolean;
+    timeStamp: number;
+    type: string;
+    constructor(type: string, nativeEvent: FocusEvent);
+    isDefaultPrevented(): boolean;
+    preventDefault(): void;
+    stopPropagation(): void;
+    isPropagationStopped(): boolean;
+    persist(): void;
+}
+export declare function getScrollParent(node: Element): Element;
+export declare function isScrollable(node: Element): boolean;
+export declare function scrollIntoView(scrollView: HTMLElement, element: HTMLElement): void;
+export declare function scrollIntoViewport(targetElement: Element, opts?: ScrollIntoViewportOpts): void;

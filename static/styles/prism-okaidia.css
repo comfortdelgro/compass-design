@@ -29,7 +29,7 @@ pre[class*='language-'] {
 }
 
 .token.punctuation {
-  color: var(--colors-gray110);
+  color: var(--cdg-color-gray110);
 }
 
 .token.namespace {
