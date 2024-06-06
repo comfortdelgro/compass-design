@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 3.4.0
+
+### Minor Changes
+
+- 94236ebf: Release for H5
+
 ## 3.3.0
 
 ### Minor Changes
