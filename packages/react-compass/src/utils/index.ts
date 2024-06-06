@@ -1,4 +1,3 @@
-// export { useAsyncList } from '@react-stately/data'
 export * from './components'
 export * from './descendant'
 export * from './hooks'
