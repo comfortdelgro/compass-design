@@ -54,35 +54,17 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
   const toastRef = useDOMRef<HTMLDivElement>(ref)
 
   // Pick child element from children props
-  const {child: ToastActionsElement} = pickChild<typeof ToastActions>(
-    children,
-    ToastActions,
-  )
+  const {child: ToastActionsElement} = pickChild(children, ToastActions)
 
-  const {child: ToastCloseIconElement} = pickChild<typeof ToastCloseIcon>(
-    children,
-    ToastCloseIcon,
-  )
+  const {child: ToastCloseIconElement} = pickChild(children, ToastCloseIcon)
 
-  const {child: ToastIconElement} = pickChild<typeof ToastIcon>(
-    children,
-    ToastIcon,
-  )
+  const {child: ToastIconElement} = pickChild(children, ToastIcon)
 
-  const {child: ToastLabelElement} = pickChild<typeof ToastLabel>(
-    children,
-    ToastLabel,
-  )
+  const {child: ToastLabelElement} = pickChild(children, ToastLabel)
 
-  const {child: ToastMessagelement} = pickChild<typeof ToastMessage>(
-    children,
-    ToastMessage,
-  )
+  const {child: ToastMessagelement} = pickChild(children, ToastMessage)
 
-  const {child: ToastTitleElement} = pickChild<typeof ToastTitle>(
-    children,
-    ToastTitle,
-  )
+  const {child: ToastTitleElement} = pickChild(children, ToastTitle)
 
   const renderContent = React.useCallback(
     (children: React.ReactNode) => {

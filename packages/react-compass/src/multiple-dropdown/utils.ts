@@ -195,10 +195,7 @@ export const getItemByKey = (
   children?: React.ReactNode,
 ) => {
   // Pick Dropdown.Item in children except for DropdownHeader
-  const {rest: dropdownItems} = pickChild<typeof MultipleDropdownHeader>(
-    children,
-    MultipleDropdownHeader,
-  )
+  const {rest: dropdownItems} = pickChild(children, MultipleDropdownHeader)
   const childrenArr = React.Children.toArray(dropdownItems)
 
   if (!childrenArr.length) return null

@@ -4,11 +4,9 @@ import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
 import {useDOMRef} from '../utils/use-dom-ref'
 import AccordionContext from './accordion-context'
-import AccordionExpandIcon, {
-  AccordionExpandIconProps,
-} from './accordion-expandIcon'
+import AccordionExpandIcon from './accordion-expandIcon'
 import AccordionTable from './accordion-table'
-import AccordionTitle, {AccordionTitleProps} from './accordion-title'
+import AccordionTitle from './accordion-title'
 import styles from './styles/accordion.module.css'
 
 interface Props {
@@ -64,21 +62,15 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     )
 
     const {child: AccordionTitleElement, rest: NotAccordionaTitleElement} =
-      pickChild<React.ReactElement<AccordionTitleProps>>(
-        children,
-        AccordionTitle,
-      )
+      pickChild(children, AccordionTitle)
 
     // pick accordion expand icon from NotAccordionaTitleElement
     const {child: AccordionExpandIconElement, rest: AccordionContent} =
-      pickChild<React.ReactElement<AccordionExpandIconProps>>(
-        NotAccordionaTitleElement,
-        AccordionExpandIcon,
-      )
+      pickChild(NotAccordionaTitleElement, AccordionExpandIcon)
 
     const AccordionTitleWithIcon =
       AccordionTitleElement && AccordionExpandIconElement
-        ? React.cloneElement(AccordionTitleElement, {
+        ? React.cloneElement(AccordionTitleElement as React.ReactElement, {
             expandIcon: AccordionExpandIconElement,
           })
         : AccordionTitleElement

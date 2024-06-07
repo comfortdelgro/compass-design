@@ -39,11 +39,12 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
     const dropdownRef = useDOMRef<HTMLDivElement>(ref)
 
     // Pick child element from children props
-    const {child: DropdownMenuToggleElement} = pickChild<
-      typeof DropdownMenuToggle
-    >(children, DropdownMenuToggle)
+    const {child: DropdownMenuToggleElement} = pickChild(
+      children,
+      DropdownMenuToggle,
+    )
 
-    const {child: DropdownMenuMenuElement} = pickChild<typeof DropdownMenuMenu>(
+    const {child: DropdownMenuMenuElement} = pickChild(
       children,
       DropdownMenuMenu,
     )

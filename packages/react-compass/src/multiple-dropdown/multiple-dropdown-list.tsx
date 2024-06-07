@@ -33,9 +33,10 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
     MultipleDropdownContext,
   )
 
-  const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild<
-    typeof MultipleDropdownHeader
-  >(children, MultipleDropdownHeader)
+  const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild(
+    children,
+    MultipleDropdownHeader,
+  )
 
   const displayedItemsCount = useMemo(() => {
     let currentCount = 0
@@ -61,7 +62,7 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
         !isLoadingMore && onLoadMore?.()
       }
     }
-  }, [isInViewport])
+  }, [isInViewport, isLoadingMore, lastEl, onLoadMore, standEl])
 
   return (
     <CssInjection css={css}>

@@ -6,9 +6,9 @@ import CssInjection from '../../utils/objectToCss/CssInjection'
 import {pickChild} from '../../utils/pick-child'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from '../styles/banner.module.css'
-import BannerBody, {BannerBodyProps} from './body'
-import BannerLeft, {BannerLeftProps} from './left'
-import BannerRight, {BannerRightProps} from './right'
+import BannerBody from './body'
+import BannerLeft from './left'
+import BannerRight from './right'
 
 interface Props {
   css?: CSS
@@ -25,17 +25,11 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
     ref as React.RefObject<HTMLDivElement>,
   )
 
-  const {child: BannerLeftElement} = pickChild<
-    React.ReactElement<BannerLeftProps>
-  >(children, BannerLeft)
+  const {child: BannerLeftElement} = pickChild(children, BannerLeft)
 
-  const {child: BannerBodyElement} = pickChild<
-    React.ReactElement<BannerBodyProps>
-  >(children, BannerBody)
+  const {child: BannerBodyElement} = pickChild(children, BannerBody)
 
-  const {child: BannerRightElement} = pickChild<
-    React.ReactElement<BannerRightProps>
-  >(children, BannerRight)
+  const {child: BannerRightElement} = pickChild(children, BannerRight)
 
   const rootClasses = [
     styles.banner,

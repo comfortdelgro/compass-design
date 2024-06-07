@@ -46,18 +46,17 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
 
     const snackbarRef = useDOMRef<HTMLDivElement>(ref)
 
-    const {child: SnackbarSuffixIconElement} = pickChild<
-      typeof SnackbarSuffixIcon
-    >(children, SnackbarSuffixIcon)
-
-    const {child: SnackbarPrefixIconElement} = pickChild<
-      typeof SnackbarPrefixIcon
-    >(children, SnackbarPrefixIcon)
-
-    const {child: SnackbarTextElement} = pickChild<typeof SnackbarText>(
+    const {child: SnackbarSuffixIconElement} = pickChild(
       children,
-      SnackbarText,
+      SnackbarSuffixIcon,
     )
+
+    const {child: SnackbarPrefixIconElement} = pickChild(
+      children,
+      SnackbarPrefixIcon,
+    )
+
+    const {child: SnackbarTextElement} = pickChild(children, SnackbarText)
 
     const renderContent = React.useCallback(
       (children: React.ReactNode) => {

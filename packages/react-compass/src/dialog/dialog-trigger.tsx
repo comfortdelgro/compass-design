@@ -36,7 +36,7 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
       ...htmlProps
     } = props
 
-    const {child: DialogElement} = pickChild<typeof Dialog>(children, Dialog)
+    const {child: DialogElement} = pickChild(children, Dialog)
 
     const dialogRef = useDOMRef<HTMLDivElement>(ref)
     const dialogWrapperRef = useDOMRef<HTMLDivElement>(null)

@@ -34,10 +34,7 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
   const errorRef = useDOMRef<HTMLDivElement>(ref)
 
   // Pick title child component
-  const {child: ErrorTitleElement} = pickChild<typeof ErrorTitle>(
-    children,
-    ErrorTitle,
-  )
+  const {child: ErrorTitleElement} = pickChild(children, ErrorTitle)
 
   const ErrorTitleCloned = () => {
     if (React.isValidElement(ErrorTitleElement)) {
@@ -48,10 +45,7 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
   }
 
   // Pick description child component
-  const {child: ErrorDescriptionElement} = pickChild<typeof ErrorDescription>(
-    children,
-    ErrorDescription,
-  )
+  const {child: ErrorDescriptionElement} = pickChild(children, ErrorDescription)
 
   const ErrorDescriptionCloned = () => {
     if (React.isValidElement(ErrorDescriptionElement)) {
@@ -62,10 +56,7 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
   }
 
   // Pick action child component
-  const {child: ErrorActionsElement} = pickChild<typeof ErrorAction>(
-    children,
-    ErrorAction,
-  )
+  const {child: ErrorActionsElement} = pickChild(children, ErrorAction)
 
   const ErrorActionCloned = () => {
     if (React.isValidElement(ErrorActionsElement)) {
@@ -76,16 +67,10 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
   }
 
   // Pick icon child component
-  const {child: ErrorIconElement} = pickChild<typeof ErrorIcon>(
-    children,
-    ErrorIcon,
-  )
+  const {child: ErrorIconElement} = pickChild(children, ErrorIcon)
 
   // Pick Image child component
-  const {child: ErrorImageElement} = pickChild<typeof ErrorImage>(
-    children,
-    ErrorImage,
-  )
+  const {child: ErrorImageElement} = pickChild(children, ErrorImage)
   const ErrorImageCloned = () => {
     if (React.isValidElement(ErrorImageElement)) {
       return React.cloneElement(ErrorImageElement, {

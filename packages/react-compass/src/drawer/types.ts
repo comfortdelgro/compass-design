@@ -1,4 +1,4 @@
-import {DialogHTMLAttributes, ReactNode} from 'react'
+import {DialogHTMLAttributes} from 'react'
 import {CSS} from '../utils/objectToCss'
 
 type DrawerSharedProps = {
@@ -51,75 +51,11 @@ type DefaultDrawerProps = {
   disableDragClose?: never
 }
 
-type H5DrawerChildrenAsFunctionOptions = {
-  triggerCollapse: () => void
-  isExpanded: boolean
-  height: number
-} & Omit<
-  H5DrawerProps,
-  | 'variant'
-  | 'position'
-  | 'expanderCSS'
-  | 'onExpandChange'
-  | 'onHeightChange'
-  | 'children'
->
-
-type H5DrawerProps = {
-  variant: 'h5'
-  position?: never
-  expanderCSS?: CSS
-  onExpandChange?: (isExpand: boolean) => void
-
-  /**
-   * How many **percentage** of the viewport height that the drawer will be fully expanded.
-   * ___
-   * Accepted value range: `0` - `100`
-   *
-   * Must be greater than `expandableLine` and drawer initialization height (percent).
-   * ___
-   * @default 100 // the top edge of available viewport
-   */
-  expandedPoint?: number
-
-  /**
-   * A boundary to tell the drawer to fully expand when its top crosses this line.
-   * ___
-   * Accepted value range: `0` - `100`
-   *
-   * Must be smaller than `expandedPoint` and greater than drawer initialization height (percent).
-   * ___
-   * @default 67 // 2/3 viewport from bottom of available viewport
-   */
-  expandableLine?: number
-
-  /**
-   * if `true`, the H5 drawer will NOT be able to expand/collapse and the expander line will be hidden.
-   * @default false
-   */
-  disableResize?: boolean
-
-  /**
-   * Close the H5 drawer if the user drags and drops it below the default height.
-   *
-   * Note that if `disableResize` is true, users can't drag the the drawer.
-   * ___
-   * @default false
-   */
-  disableDragClose?: boolean
-
-  onHeightChange?: (height: number) => void
-
-  children?:
-    | ReactNode
-    | ((options: H5DrawerChildrenAsFunctionOptions) => ReactNode)
-}
-
-export type DrawerH5Props = DrawerSharedProps & H5DrawerProps
+export type DrawerH5Props = DrawerSharedProps
 export type DrawerDefaultProps = DrawerSharedProps & DefaultDrawerProps
 
 type Props = DrawerSharedProps &
-  (DefaultDrawerProps | H5DrawerProps) & {css?: CSS}
+  (DefaultDrawerProps) & {css?: CSS}
 
 export type DrawerProps = Props &
   Omit<

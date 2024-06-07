@@ -845,7 +845,6 @@ export const ForH5 = () => {
       <Dropdown.Select
         label='Favorite Animal'
         placeholder='Choose an animal'
-        h5
       >
         <Dropdown.Item value='fly' checkmark='tick'>
           Fly
