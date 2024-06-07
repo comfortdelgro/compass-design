@@ -1,4 +1,11 @@
 export {SSRProvider} from '@react-aria/ssr'
+export {default as ActionBar} from './action-bar'
+export type {
+  ActionBarCenterGroupProps,
+  ActionBarLeftGroupProps,
+  ActionBarProps,
+  ActionBarRightGroupProps,
+} from './action-bar'
 export {default as Alert} from './alert'
 export type {AlertProps} from './alert'
 export {default as AppNav} from './appnav'
@@ -78,6 +85,8 @@ export {default as Rating} from './rating'
 export type {RatingProps} from './rating'
 export {default as Skeleton} from './skeleton'
 export type {SkeletonProps} from './skeleton'
+export {default as SlideAction} from './slide-action'
+export type {SlideActionProps} from './slide-action'
 export {default as Snackbar} from './snackbar'
 export type {
   SnackbarPrefixIconProps,
