@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 4.1.1
+
+### Patch Changes
+
+- 033e7380: Remove intenationalize
+
 ## 4.1.0
 
 ### Minor Changes
