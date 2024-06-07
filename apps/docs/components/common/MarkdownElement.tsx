@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import * as React from 'react'
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(
@@ -18,7 +17,7 @@ const MarkdownElement = React.forwardRef(function MarkdownElement(
 
   return (
     <div
-      className={clsx('markdown-body', className, 'markDownElement')}
+      className={['markdown-body', className, 'markDownElement'].join(' ')}
       {...more}
       {...other}
       ref={ref}

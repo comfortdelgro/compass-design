@@ -134,7 +134,6 @@ export const Variants: React.FC = () => {
             onChange={handleInputsChange}
             label='Enter your mobile number'
             minLength={5}
-            placeholder='Min length of 5'
           />
         </div>
         <div style={{...style}}>
@@ -146,7 +145,6 @@ export const Variants: React.FC = () => {
             onChange={handleInputsChange}
             label='Enter your mobile number'
             maxLength={10}
-            placeholder='Max length of 10'
           />
         </div>
       </div>
@@ -183,7 +181,7 @@ export const H5Form: React.FC = () => {
 
       <h4>Your Information</h4>
       <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
-        <Dropdown.Select h5 label='Feedback' defaultSelectedKey={'General'}>
+        <Dropdown.Select label='Feedback' defaultSelectedKey={'General'}>
           <Dropdown.Item key={'General'}>General</Dropdown.Item>
         </Dropdown.Select>
         <TextField placeholder='Enter trip number' h5 />

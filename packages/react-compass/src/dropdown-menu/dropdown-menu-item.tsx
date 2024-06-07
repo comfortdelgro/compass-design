@@ -115,10 +115,7 @@ const DropdownMenuItem = React.forwardRef<HTMLLIElement, DropdownMenuItemProps>(
 
     const [focusing, setFocusing] = useState(false)
 
-    const {child: subMenuChild} = pickChild<typeof DropdownMenuSubmenu>(
-      children,
-      DropdownMenuSubmenu,
-    )
+    const {child: subMenuChild} = pickChild(children, DropdownMenuSubmenu)
     const dropdownMenuItemRef = useDOMRef<HTMLLIElement>(ref)
 
     const {refs} = useContext(DropdownMenuContext)

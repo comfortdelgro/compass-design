@@ -34,17 +34,11 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
   } = props
 
   const bannerRef = useDOMRef<HTMLDivElement>(ref)
-  const {child: BannerImageElement} = pickChild<typeof BannerImage>(
-    children,
-    BannerImage,
-  )
+  const {child: BannerImageElement} = pickChild(children, BannerImage)
 
-  const {child: BannerTitleElement} = pickChild<typeof BannerTitle>(
-    children,
-    BannerTitle,
-  )
+  const {child: BannerTitleElement} = pickChild(children, BannerTitle)
 
-  const {child: BannerDescriptionElement} = pickChild<typeof BannerDescription>(
+  const {child: BannerDescriptionElement} = pickChild(
     children,
     BannerDescription,
   )
@@ -70,8 +64,4 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
   )
 })
 
-export default Banner as typeof Banner & {
-  Image: typeof BannerImage
-  Title: typeof BannerTitle
-  Description: typeof BannerDescription
-}
+export default Banner 

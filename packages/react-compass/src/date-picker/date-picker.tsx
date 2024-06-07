@@ -2,15 +2,14 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import React, {useRef} from 'react'
 import {ButtonProps} from '../button'
-import Calendar, {CalendarProps} from '../calendar/calendar'
+import Calendar from '../calendar/calendar'
 import DateField from '../calendar/components/date-field'
-import Dialog from '../calendar/components/dialog'
-import Popover from '../calendar/components/popover'
+import Popover from '../popover'
 import {useDatePicker} from '../calendar/hooks/useDatePicker'
 import {useDatePickerState} from '../calendar/hooks/useDatePickerState'
 import {
   AriaDatePickerProps,
-  AriaDialogProps,
+  CalendarProps,
   DatePickerState,
   DOMAttributes,
   SpectrumDatePickerProps,
@@ -49,15 +48,14 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const calendarRef = useDOMRef(ref)
 
-  const {groupProps, fieldProps, buttonProps, dialogProps, calendarProps} =
-    useDatePicker(
-      {
-        ...props,
-        isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
-      },
-      state,
-      calendarRef,
-    )
+  const {groupProps, fieldProps, buttonProps, calendarProps} = useDatePicker(
+    {
+      ...props,
+      isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
+    },
+    state,
+    calendarRef,
+  )
 
   const extendedFieldProps = {
     necessityIndicator: props.necessityIndicator,
@@ -88,27 +86,36 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     <CssInjection css={css} childrenRef={datePickerRef}>
       <div ref={datePickerRef} className={styles.datePicker}>
         <DatePickerProvider>
-          <DatePickerFieldWrapper
-            ref={calendarRef}
-            groupProps={groupProps}
-            fieldProps={extendedFieldProps}
-            buttonProps={buttonProps as unknown as ButtonProps}
-            isInvalid={props.isInvalid}
-            isReadOnly={props.isReadOnly}
-            isMobile={props.isMobile}
-            label={props.label}
-            errorMessage={props.errorMessage}
-            helperText={props.helperText}
-          />
-          <DatePickerCalendarWrapper
-            maxValue={maxValue}
-            state={state}
-            calendarProps={calendarProps}
-            calendarRef={calendarRef}
-            dialogProps={dialogProps}
-            css={props.calendarCSS}
-            ctaButtonRender={ctaButtonRender}
-          />
+          <Popover
+            isOpen={state.isOpen}
+            anchor={
+              <DatePickerFieldWrapper
+                ref={calendarRef}
+                groupProps={groupProps}
+                fieldProps={extendedFieldProps}
+                buttonProps={buttonProps as unknown as ButtonProps}
+                isInvalid={props.isInvalid}
+                isReadOnly={props.isReadOnly}
+                isMobile={props.isMobile}
+                label={props.label}
+                errorMessage={props.errorMessage}
+                helperText={props.helperText}
+              />
+            }
+            css={{width: '100%'}}
+            direction='bottom-left'
+            onOpenChange={(open) => state.setOpen(open)}
+            onOutsidePress={() => state.close()}
+          >
+            <DatePickerCalendarWrapper
+              maxValue={maxValue}
+              state={state}
+              calendarProps={calendarProps}
+              calendarRef={calendarRef}
+              css={props.calendarCSS}
+              ctaButtonRender={ctaButtonRender}
+            />
+          </Popover>
         </DatePickerProvider>
       </div>
     </CssInjection>
@@ -163,7 +170,6 @@ const DatePickerFieldWrapper = React.forwardRef<
 interface DatePickerCalendarWrapperProps {
   state: DatePickerState
   calendarRef: React.RefObject<HTMLDivElement>
-  dialogProps: AriaDialogProps
   calendarProps: CalendarProps
   onCancel?: (() => void) | undefined
   maxValue?: DateValue | null | undefined
@@ -174,8 +180,6 @@ interface DatePickerCalendarWrapperProps {
 const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
   const {
     state,
-    calendarRef,
-    dialogProps,
     calendarProps,
     maxValue = parseDate('2999-03-10'),
     ctaButtonRender,
@@ -183,32 +187,14 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
   } = props
 
   return (
-    <>
-      {state.isOpen && (
-        <Popover
-          state={state}
-          triggerRef={calendarRef}
-          offset={8}
-          placement='bottom start'
-        >
-          <Dialog
-            {...dialogProps}
-            aria-describedby={dialogProps['aria-describedby'] ?? ''}
-            aria-label={dialogProps['aria-label'] ?? ''}
-            aria-labelledby={dialogProps['aria-labelledby'] ?? ''}
-          >
-            <Calendar
-              state={state}
-              hasFooter={true}
-              {...calendarProps}
-              maxValue={maxValue}
-              css={css}
-              ctaButtonRender={ctaButtonRender}
-            />
-          </Dialog>
-        </Popover>
-      )}
-    </>
+    <Calendar
+      state={state}
+      hasFooter={true}
+      {...calendarProps}
+      maxValue={maxValue}
+      css={css}
+      ctaButtonRender={ctaButtonRender}
+    />
   )
 }
 

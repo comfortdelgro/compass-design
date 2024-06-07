@@ -47,28 +47,19 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   const LastFocusableRef = React.useRef<HTMLElement | null>(null)
 
   // Pick title child component
-  const {child: DialogTitleElement} = pickChild<typeof DialogTitle>(
-    children,
-    DialogTitle,
-  )
+  const {child: DialogTitleElement} = pickChild(children, DialogTitle)
 
   // Pick description child component
-  const {child: DialogDescriptionElement} = pickChild<typeof DialogDescription>(
+  const {child: DialogDescriptionElement} = pickChild(
     children,
     DialogDescription,
   )
 
   // Pick action child component
-  const {child: DialogActionsElement} = pickChild<typeof DialogActions>(
-    children,
-    DialogActions,
-  )
+  const {child: DialogActionsElement} = pickChild(children, DialogActions)
 
   // Pick icon child component
-  const {child: DialogIconElement} = pickChild<typeof DialogIcon>(
-    children,
-    DialogIcon,
-  )
+  const {child: DialogIconElement} = pickChild(children, DialogIcon)
 
   // Handle click on the modal
   const handleClick = (e: MouseEvent) => {
@@ -156,7 +147,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         }
       }
     }
-  }, [DialogRef, FirstFocusableRef, LastFocusableRef])
+  }, [DialogRef, FirstFocusableRef, LastFocusableRef, triggerId])
 
   const dialogClassNames = [
     styles.dialog,

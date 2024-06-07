@@ -6,9 +6,9 @@ import CssInjection from '../../utils/objectToCss/CssInjection'
 import {pickChild} from '../../utils/pick-child'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from '../styles/card.module.css'
-import CardBody, {CardBodyProps} from './body'
-import CardFooter, {CardFooterProps} from './footer'
-import CardHeader, {CardHeaderProps} from './header'
+import CardBody from './body'
+import CardFooter from './footer'
+import CardHeader from './header'
 
 interface Props {
   css?: CSS
@@ -25,18 +25,11 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     ref as React.RefObject<HTMLDivElement>,
   )
 
-  const {child: CardHeaderElement} = pickChild<
-    React.ReactElement<CardHeaderProps>
-  >(children, CardHeader)
+  const {child: CardHeaderElement} = pickChild(children, CardHeader)
 
-  const {child: CardBodyElement} = pickChild<React.ReactElement<CardBodyProps>>(
-    children,
-    CardBody,
-  )
+  const {child: CardBodyElement} = pickChild(children, CardBody)
 
-  const {child: CardFooterElement} = pickChild<
-    React.ReactElement<CardFooterProps>
-  >(children, CardFooter)
+  const {child: CardFooterElement} = pickChild(children, CardFooter)
 
   const rootClasses = [
     styles.card,

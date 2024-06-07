@@ -32,9 +32,7 @@ const DropdownList: React.FC<DropdownItemListProps> = (
   const {searchValue, labelId, isLoadingMore, disabledAutofill} =
     useContext(DropdownContext)
 
-  const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild<
-    typeof DropdownHeader
-  >(children, DropdownHeader)
+  const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild(children, DropdownHeader)
 
   const displayedItemsCount = useMemo(() => {
     let currentCount = 0

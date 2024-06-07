@@ -33,10 +33,7 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
     } = props
 
     const subBannerRef = useDOMRef<HTMLDivElement>(ref)
-    const {child: SubBannerImageElement} = pickChild<typeof SubBannerImage>(
-      children,
-      SubBannerImage,
-    )
+    const {child: SubBannerImageElement} = pickChild(children, SubBannerImage)
 
     const SubBannerImageElementCloned = () => {
       if (React.isValidElement(SubBannerImageElement)) {
@@ -46,14 +43,12 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
       }
     }
 
-    const {child: SubBannerTitleElement} = pickChild<typeof SubBannerTitle>(
-      children,
-      SubBannerTitle,
-    )
+    const {child: SubBannerTitleElement} = pickChild(children, SubBannerTitle)
 
-    const {child: SubBannerDescriptionElement} = pickChild<
-      typeof SubBannerDescription
-    >(children, SubBannerDescription)
+    const {child: SubBannerDescriptionElement} = pickChild(
+      children,
+      SubBannerDescription,
+    )
 
     return (
       <CssInjection css={css} childrenRef={subBannerRef}>

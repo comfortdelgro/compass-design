@@ -38,7 +38,7 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
 
     const modalRef = useDOMRef<HTMLDivElement>(ref)
     const modalWrapperRef = useDOMRef<HTMLDivElement>(null)
-    const {child: ModalElement} = pickChild<typeof Modal>(children, Modal)
+    const {child: ModalElement} = pickChild(children, Modal)
 
     const handleClickBackdrop = (e: MouseEvent) => {
       e.stopPropagation()

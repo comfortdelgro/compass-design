@@ -3,6 +3,7 @@ import React from 'react'
 interface Props {
   title?: string
   isErrored?: boolean
+  children: React.ReactNode
 }
 
 export type WizardItemProps = Props

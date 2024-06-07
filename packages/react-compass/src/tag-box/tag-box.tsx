@@ -68,10 +68,7 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
 
   const inputRef = useDOMRef<HTMLInputElement>(null)
   const tagBoxRef = useDOMRef<HTMLDivElement>(ref)
-  const {child: TagBoxActionElement} = pickChild<typeof TagBoxAction>(
-    children,
-    TagBoxAction,
-  )
+  const {child: TagBoxActionElement} = pickChild(children, TagBoxAction)
   const [remainingCount, setRemainingCount] = React.useState(0)
   const bodyContentRef = React.useRef<HTMLDivElement>(null)
   const boxRef = React.useRef<HTMLDivElement>(null)

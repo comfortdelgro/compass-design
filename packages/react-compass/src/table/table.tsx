@@ -63,14 +63,12 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     options.initialRowSelection ?? {},
   )
 
-  const {child: toolbar, rest: childrenWithoutToolbar} = pickChild<
-    typeof TableToolbar
-  >(children, TableToolbar)
-
-  const {child: footer} = pickChild<typeof TableFooter>(
-    childrenWithoutToolbar,
-    TableFooter,
+  const {child: toolbar, rest: childrenWithoutToolbar} = pickChild(
+    children,
+    TableToolbar,
   )
+
+  const {child: footer} = pickChild(childrenWithoutToolbar, TableFooter)
 
   const tableRef = useDOMRef<HTMLTableElement>(ref)
 

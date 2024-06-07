@@ -1,4 +1,4 @@
-import {
+import React, {
   Children,
   ElementType,
   isValidElement,
@@ -22,10 +22,10 @@ const processChildren = (children: ReactNode) => {
   return children
 }
 
-export const drawerPickChild = <T = ReactNode>(
+export const drawerPickChild = (
   children: ReactNode,
   targetType: ElementType,
-): {child: T | undefined; rest: ReactElement} => {
+): {child: ReactNode | undefined; rest: ReactNode} => {
   const matched: ReactNode[] = []
 
   const rest = Children.map(processChildren(children), (item) => {
@@ -34,15 +34,15 @@ export const drawerPickChild = <T = ReactNode>(
     }
 
     if (item.type === targetType) {
-      matched.push(item)
+      matched.push(React.cloneElement(item, item.props))
       return null
     }
-    return item
+    return React.cloneElement(item, item.props)
   })
   const child = matched.length >= 0 ? matched[0] : undefined
 
   return {
-    child: child as T,
+    child: child,
     rest: rest as unknown as ReactElement,
   }
 }

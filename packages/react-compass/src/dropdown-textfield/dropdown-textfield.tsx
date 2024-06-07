@@ -9,7 +9,7 @@ interface Props {
   id?: string
   inputType?: 'text' | 'numeric' | 'email' | 'password'
   options: DropdownOptions[]
-  onChange?: (dropdownValue: string, inputValue: string | number) => void
+  onChange?: (dropdownValue: string, inputValue: Key) => void
   label: string
   isErrored?: boolean
   errorMessage?: string
@@ -158,7 +158,6 @@ const DropdownTextfield = React.forwardRef<
             isRequired={isRequired}
             isDisabled={isDisabled}
             placeholder={dropdownPlaceholder}
-            h5={h5}
           >
             {options.map((option) => (
               <Dropdown.Item
@@ -181,7 +180,7 @@ const DropdownTextfield = React.forwardRef<
             aria-label={label}
             type={inputType}
             onChange={handleInputChange}
-            value={textfieldValue}
+            value={textfieldValue as  string}
             errorMessage={errorMessage}
             isErrored={isErrored}
             isReadOnly={isReadOnly}

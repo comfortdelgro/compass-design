@@ -49,28 +49,16 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const CloseIconRef = React.useRef<HTMLButtonElement | null>(null)
 
   // Pick title child component
-  const {child: ModalTitleElement} = pickChild<typeof ModalTitle>(
-    children,
-    ModalTitle,
-  )
+  const {child: ModalTitleElement} = pickChild(children, ModalTitle)
 
   // Pick description child component
-  const {child: ModalDescriptionElement} = pickChild<typeof ModalDescription>(
-    children,
-    ModalDescription,
-  )
+  const {child: ModalDescriptionElement} = pickChild(children, ModalDescription)
 
   // Pick action child component
-  const {child: ModalActionsElement} = pickChild<typeof ModalActions>(
-    children,
-    ModalActions,
-  )
+  const {child: ModalActionsElement} = pickChild(children, ModalActions)
 
   // Pick modal close icon
-  const {child: CloseIconElement} = pickChild<typeof ModalCloseIcon>(
-    children,
-    ModalCloseIcon,
-  )
+  const {child: CloseIconElement} = pickChild(children, ModalCloseIcon)
 
   // Handle click on the modal
   const handleClick = (e: MouseEvent) => {
@@ -168,7 +156,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         }
       }
     }
-  }, [ModalRef, FirstFocusableRef, LastFocusableRef])
+  }, [ModalRef, FirstFocusableRef, LastFocusableRef, triggerId])
 
   const modalClassNames = [
     className,

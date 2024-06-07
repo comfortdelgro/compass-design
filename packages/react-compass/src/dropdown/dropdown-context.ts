@@ -7,7 +7,7 @@ export interface SelectedItemDropdown {
 }
 
 export interface DropdownItemKey {
-  value: string | number
+  value: React.Key
   visibility: boolean
 }
 
@@ -18,9 +18,9 @@ export interface DropdownContextType {
   searchValue: string
   disabledKeys?: string[] | number[]
   selectedItem: SelectedItemDropdown | null
-  focusKey: string | number | null
-  selectedKey?: string | number
-  defaultSelectedKey?: string | number
+  focusKey: React.Key | null
+  selectedKey?: React.Key
+  defaultSelectedKey?: React.Key
   dropdownItemKeys?: DropdownItemKey[]
   labelId: string
   disabledAutofill?: boolean

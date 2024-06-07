@@ -2,8 +2,7 @@
 import React from 'react'
 import {ButtonProps} from '../button'
 import DateField from '../calendar/components/date-field'
-import Dialog from '../calendar/components/dialog'
-import Popover from '../calendar/components/popover'
+import Popover from '../popover'
 import {useDateRangePicker} from '../calendar/hooks/useDateRangePicker'
 import {useDateRangePickerState} from '../calendar/hooks/useDateRangePickerState'
 import {
@@ -130,36 +129,46 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
           className={`date-range-picker-wrapper ${styles.dateRangePicker}`}
         >
           <DatePickerProvider>
-            <DateRangeInputsWrapper
-              state={state}
-              label={props.label}
-              labelProps={labelProps}
-              groupProps={groupProps}
-              startFieldProps={extendedStartFieldProps}
-              endFieldProps={extendedEndFieldProps}
-              buttonProps={buttonProps as unknown as ButtonProps}
-              startDateLabel={startDateLabel}
-              endDateLabel={endDateLabel}
-              isInvalid={props.isInvalid}
-              isReadOnly={props.isReadOnly}
-              isMobile={props.isMobile}
-              errorMessage={errorMessage}
-              helperText={helperText}
-            />
-            <DateRangeCalendarWrapper
-              maxValue={maxValue}
-              state={state}
-              calendarRef={calendarRef}
-              dialogProps={dialogProps}
-              calendarProps={calendarProps}
-              hasShortcuts={hasShortcuts}
-              ctaButtonRender={ctaButtonRender}
-              onSearchButtonClick={onSearchButtonClick}
-              customShortcuts={customShortcuts}
-              css={props.calendarCSS}
-              visibleMonths={visibleMonths}
-              shouldOnChangeTriggerOnSameDate={shouldOnChangeTriggerOnSameDate}
-            />
+            <Popover
+              isOpen={state.isOpen}
+              anchor={
+                <DateRangeInputsWrapper
+                  state={state}
+                  label={props.label}
+                  labelProps={labelProps}
+                  groupProps={groupProps}
+                  startFieldProps={extendedStartFieldProps}
+                  endFieldProps={extendedEndFieldProps}
+                  buttonProps={buttonProps as unknown as ButtonProps}
+                  startDateLabel={startDateLabel}
+                  endDateLabel={endDateLabel}
+                  isInvalid={props.isInvalid}
+                  isReadOnly={props.isReadOnly}
+                  isMobile={props.isMobile}
+                  errorMessage={errorMessage}
+                  helperText={helperText}
+                />
+              }
+              css={{width: '100%'}}
+              direction='bottom-left'
+              onOpenChange={(open) => state.setOpen(open)}
+              onOutsidePress={() => state.close()}
+            >
+              <DateRangeCalendarWrapper
+                maxValue={maxValue}
+                state={state}
+                calendarRef={calendarRef}
+                dialogProps={dialogProps}
+                calendarProps={calendarProps}
+                hasShortcuts={hasShortcuts}
+                ctaButtonRender={ctaButtonRender}
+                onSearchButtonClick={onSearchButtonClick}
+                customShortcuts={customShortcuts}
+                css={props.calendarCSS}
+                visibleMonths={visibleMonths}
+                shouldOnChangeTriggerOnSameDate={shouldOnChangeTriggerOnSameDate}
+              />
+            </Popover>
           </DatePickerProvider>
         </div>
       </CssInjection>
@@ -259,8 +268,6 @@ interface DateRangeCalendarWrapperProps {
 const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
   const {
     state,
-    calendarRef,
-    dialogProps,
     calendarProps,
     css = {},
     hasShortcuts = false,
@@ -280,45 +287,23 @@ const DateRangeCalendarWrapper = (props: DateRangeCalendarWrapperProps) => {
   }
 
   return (
-    <>
-      {state.isOpen && (
-        <Popover
-          state={state}
-          triggerRef={calendarRef}
-          placement='bottom start'
-          offset={8}
-        >
-          <Dialog
-            {...dialogProps}
-            aria-describedby={dialogProps['aria-describedby'] ?? ''}
-            aria-label={dialogProps['aria-label'] ?? ''}
-            aria-labelledby={dialogProps['aria-labelledby'] ?? ''}
-          >
-            <RangeCalendar
-              css={css}
-              state={state}
-              hasFooter={true}
-              aria-label=''
-              aria-labelledby=''
-              {...(value ? {value} : {})}
-              onChange={onChangeRangeCalendar}
-              {...resCalendarProps}
-              maxValue={maxValue}
-              hasShortcuts={hasShortcuts}
-              ctaButtonRender={ctaButtonRender}
-              onSearchButtonClick={onSearchButtonClick}
-              customShortcuts={customShortcuts}
-              visibleMonths={
-                visibleMonths ? visibleMonths : isMobileView ? 1 : 2
-              }
-              shouldOnChangeTriggerOnSameDate={
-                !!shouldOnChangeTriggerOnSameDate
-              }
-            />
-          </Dialog>
-        </Popover>
-      )}
-    </>
+    <RangeCalendar
+      css={css}
+      state={state}
+      hasFooter={true}
+      aria-label=''
+      aria-labelledby=''
+      {...(value ? {value} : {})}
+      onChange={onChangeRangeCalendar}
+      {...resCalendarProps}
+      maxValue={maxValue}
+      hasShortcuts={hasShortcuts}
+      ctaButtonRender={ctaButtonRender}
+      onSearchButtonClick={onSearchButtonClick}
+      customShortcuts={customShortcuts}
+      visibleMonths={visibleMonths ? visibleMonths : isMobileView ? 1 : 2}
+      shouldOnChangeTriggerOnSameDate={!!shouldOnChangeTriggerOnSameDate}
+    />
   )
 }
 

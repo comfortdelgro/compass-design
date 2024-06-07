@@ -27,10 +27,10 @@ import styles from './styles/dropdown.module.css'
 
 export interface Props {
   defaultOpen?: boolean
-  selectedKey?: string | number
-  defaultSelectedKey?: string | number
-  value?: string | number
-  defaultValue?: string | number
+  selectedKey?: React.Key
+  defaultSelectedKey?: React.Key
+  value?: React.Key
+  defaultValue?: React.Key
   shouldDeselect?: boolean
   allowsCustomValue?: boolean
   type?: 'select' | 'combobox'
@@ -64,9 +64,8 @@ export interface Props {
   onFocus?: () => void
   onLoadMore?: () => void
   onOpenChange?: (isOpen: boolean) => void
-  onSelectionChange?: (key: string | number) => void
-  onValueChange?: (key: string | number) => void
-  h5?: boolean
+  onSelectionChange?: (key: React.Key) => void
+  onValueChange?: (key: React.Key) => void
   isFloatingPortal?: boolean
 }
 
@@ -183,7 +182,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     onCompositionEnd,
     onCompositionStart,
     onCompositionUpdate,
-    h5 = false,
     isFloatingPortal = true,
     ...ariaSafeProps
   } = props
@@ -576,7 +574,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           isErrored && styles.dropdownInputIsErrored,
           isDisabled && styles.dropdownItemIsSelectedFocused,
           isDisabled && styles.dropdownInputIsDisabled,
-          h5 && styles.dropdownInputH5,
           'cdg-dropdown-input',
         ]
           .filter(Boolean)
@@ -584,7 +581,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
 
         const buttonClasses = [
           styles.dropdownSelectButton,
-          h5 && styles.dropdownSelectButtonH5,
           'cdg-dropdown-button',
         ]
           .filter(Boolean)
@@ -686,7 +682,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     selectedItem,
     isErrored,
     isDisabled,
-    h5,
     isRequired,
     dropdownId,
     buttonSelectRef,
@@ -790,7 +785,6 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const rootClasses = [
     styles.dropdownWrapper,
     open && styles.dropdownOpening,
-    h5 && styles.dropdownH5,
     className,
     'cdg-dropdown',
   ]

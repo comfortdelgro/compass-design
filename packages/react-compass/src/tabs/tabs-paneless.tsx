@@ -20,7 +20,7 @@ const TabsPaneless = React.forwardRef<HTMLDivElement, TabsPanelessProps>(
       <Tabs ref={ref} {...props} hidePanel>
         {[...props.items].map((item) => (
           <TabItem key={item.key} title={item.title}>
-            {item.key}
+            {item.key as string}
           </TabItem>
         ))}
       </Tabs>

@@ -36,8 +36,6 @@ export const Variants = () => {
       </Button>
 
       <Drawer
-        variant='h5'
-        disableResize
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         css={{
@@ -62,8 +60,6 @@ export const Variants = () => {
       </Drawer>
 
       <Drawer
-        variant='h5'
-        disableResize
         open={drawerNoPUOpen}
         onClose={() => setDrawerNoPUOpen(false)}
         css={{
