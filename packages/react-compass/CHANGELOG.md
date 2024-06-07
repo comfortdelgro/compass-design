@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 4.1.0
+
+### Minor Changes
+
+- 6bf7d29d: Adding back action bar and slide
+
 ## 4.0.0
 
 ### Major Changes
