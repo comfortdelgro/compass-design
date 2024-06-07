@@ -1,5 +1,11 @@
 ## 2.9.0
 
+## 4.0.0
+
+### Major Changes
+
+- 318a7c0b: Reduce exported modules
+
 ## 3.4.0
 
 ### Minor Changes
