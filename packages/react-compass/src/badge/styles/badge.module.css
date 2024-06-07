@@ -44,35 +44,6 @@
     align-items: center;
     justify-content: center;
   }
-  .h5 {
-    background: var(--cdg-color-background);
-    color: var(--cdg-color-grayShades100);
-    border-color: var(--cdg-color-blueShades80);
-    padding: 3px var(--cdg-spacing-2) 3px 3px;
-    font-size: var(--cdg-font-size-label2);
-    line-height: var(--cdg-spacing-4_5);
-    font-weight: var(--cdg-font-weight-medium);
-    gap: var(--cdg-spacing-1);
-  }
-
-  .h5Label {
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    display: -webkit-box;
-  }
-
-  .h5Destination {
-    background: var(--cdg-color-blueShades80);
-    display: flex;
-    min-width: 19px;
-    min-height: var(--cdg-spacing-4_5);
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    color: var(--cdg-color-white);
-    line-height: var(--cdg-spacing-4_5);
-  }
   .rounded {
     border-radius: 50%;
     justify-content: center;

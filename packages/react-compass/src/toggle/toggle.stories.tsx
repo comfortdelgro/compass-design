@@ -36,13 +36,6 @@ export const Variants: React.FC = () => (
       <Toggle size='lg' isDisabled />
       <Toggle size='lg' defaultSelected isDisabled />
     </div>
-    <h3>H5</h3>
-    <div style={{flexDirection: 'row', ...style}}>
-      <Toggle variant='h5' />
-      <Toggle variant='h5' defaultSelected />
-      <Toggle variant='h5' isDisabled />
-      <Toggle variant='h5' defaultSelected isDisabled />
-    </div>
   </div>
 )
 

@@ -6,7 +6,7 @@ interface Props {
   css?: CSS
   isRounded?: boolean
   children?: React.ReactNode
-  variant?: 'item' | 'interactive' | 'h5'
+  variant?: 'item' | 'interactive'
 }
 
 export type ListImageProps = Props &
@@ -18,7 +18,6 @@ const ListImage = React.forwardRef<HTMLImageElement, ListImageProps>(
       isRounded = false,
       css = {},
       className,
-      variant,
       ...htmlProps
     } = props
 
@@ -26,13 +25,12 @@ const ListImage = React.forwardRef<HTMLImageElement, ListImageProps>(
       return [
         styles.image,
         isRounded && styles.isRounded,
-        variant === 'h5' && styles.variantH5,
         'cdg-list-image',
         className,
       ]
         .filter(Boolean)
         .join(' ')
-    }, [className, isRounded, variant])
+    }, [className, isRounded])
 
     return (
       <CssInjection css={css} childrenRef={ref}>

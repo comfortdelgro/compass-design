@@ -1,9 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
 import {useDOMRef} from '../../utils/use-dom-ref'
-import FormLayoutExplaination from './form-layout-explaination'
-import FormLayoutGroup from './form-layout-group'
-import FormLayoutRow from './form-layout-row'
 import styles from './styles/action-bar.module.css'
 
 export interface Props {
@@ -34,8 +31,4 @@ const FormLayout = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   )
 })
 
-export default FormLayout as typeof FormLayout & {
-  Row: typeof FormLayoutRow
-  Group: typeof FormLayoutGroup
-  Explaination: typeof FormLayoutExplaination
-}
+export default FormLayout

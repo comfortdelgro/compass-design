@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import React, {useContext} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/tooltip.module.css'

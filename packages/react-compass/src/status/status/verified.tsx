@@ -1,7 +1,5 @@
 import styles from '../styles/status.module.css'
 
-interface Props {}
-
 const Verified = () => {
   return (
     <svg

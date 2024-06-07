@@ -5,7 +5,7 @@ export type Orientation = 'horizontal' | 'vertical'
 
 export type Icon = 'left' | 'right' | 'top' | 'none'
 
-export type Variant = 'rounded' | 'simple' | 'h5'
+export type Variant = 'rounded' | 'simple'
 
 const pickChilds = (
   children: React.ReactNode | undefined,

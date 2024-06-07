@@ -83,7 +83,7 @@ const MultipleDropdownSection = React.forwardRef<
       }
       return [...sectionIdsSet]
     })
-  }, [selectedItems, children, setSelectedSectionIndexes])
+  }, [selectedItems, children, setSelectedSectionIndexes, index])
 
   const handleOnClick = () => {
     if (!isClickable) {

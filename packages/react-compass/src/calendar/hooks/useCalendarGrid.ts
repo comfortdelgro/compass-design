@@ -9,7 +9,6 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import {useMemo} from 'react'
 import {
   CalendarDate,
@@ -79,7 +78,7 @@ export function useCalendarGrid(
       const dateDay = date.toDate(state.timeZone ?? getLocalTimeZone())
       return dayFormatter.format(dateDay)
     })
-  }, [locale])
+  }, [dayFormatter, locale, state.timeZone])
 
   const onKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {

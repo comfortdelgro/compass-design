@@ -42,14 +42,14 @@ export const Basic: React.FC = () => {
     enableRowSelection: (row) => row.original.age > 20,
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onSorting = (sortingField: TableSortingState) => {
     console.log(sortingField)
   }
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+
   const onChangeRowSelection = (rowSelection: unknown) => {
     console.log(rowSelection)
   }
+
   const onFiltering = (filtering: TableColumnFiltersState) => {
     console.log(filtering)
   }
@@ -819,9 +819,8 @@ export const EditableTemplateCell: React.FC = () => {
     enableRowSelection: (row) => row.original.age > 30,
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const onSorting = () => {}
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+
   const onChangeRowSelection = () => {}
 
   const columns = React.useMemo<Array<TableColumnDef<Person>>>(

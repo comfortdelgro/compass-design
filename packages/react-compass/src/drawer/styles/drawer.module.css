@@ -86,16 +86,6 @@
     width: 100%;
   }
 
-  .drawer.h5 {
-    height: 40dvh;
-    max-height: calc(100dvh - 1rem);
-    border-radius: var(--cdg-border-radius-xl) var(--cdg-border-radius-xl) 0 0;
-  }
-
-  .drawer.h5.drawerExpanded {
-    height: calc(100dvh - 1rem);
-  }
-
   .drawer.non-modal {
     overflow: hidden;
   }

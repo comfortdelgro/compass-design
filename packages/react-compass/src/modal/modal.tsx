@@ -6,11 +6,9 @@ import ModalActions from './modal-actions'
 import ModalCloseIcon from './modal-closeIcon'
 import ModalDescription from './modal-description'
 import ModalTitle from './modal-title'
-import ModalTrigger from './modal-trigger'
 import styles from './styles/modal.module.css'
 
 interface Props {
-  h5?: boolean
   children?: React.ReactNode
   handleClose?: () => void
   size?: 'sm' | 'md' | 'lg'
@@ -25,7 +23,6 @@ export type ModalProps = Props &
 
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const {
-    h5 = false,
     // StyledComponentProps
     css = {},
     // children
@@ -163,7 +160,6 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     'cdg-modal-container',
     styles.modal,
     size && styles[size],
-    h5 && styles.h5,
   ]
     .filter(Boolean)
     .join(' ')
@@ -206,10 +202,4 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   )
 })
 
-export default Modal as typeof Modal & {
-  Trigger: typeof ModalTrigger
-  Title: typeof ModalTitle
-  Description: typeof ModalDescription
-  Actions: typeof ModalActions
-  CloseIcon: typeof ModalCloseIcon
-}
+export default Modal

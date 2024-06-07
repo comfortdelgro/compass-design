@@ -9,9 +9,6 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {useRef} from 'react'
 import {
   AriaLabelingProps,
@@ -51,7 +48,6 @@ export function useCalendarBase(
   // Pass the label to the child grid elements.
   hookData.set(state, {
     ariaLabel: props['aria-label'] ?? '',
-    // @ts-ignore
     ariaLabelledBy: props['aria-labelledby'],
     errorMessageId,
     selectedDateDescription: '',

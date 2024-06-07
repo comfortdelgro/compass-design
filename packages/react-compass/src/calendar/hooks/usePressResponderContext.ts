@@ -18,7 +18,6 @@ export function usePressResponderContext(
 ): PressHookProps {
   const context = useContext(PressResponderContext)
   if (context) {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     const {register, ...contextProps} = context
     props = {...contextProps, ...props} as PressHookProps
     register()

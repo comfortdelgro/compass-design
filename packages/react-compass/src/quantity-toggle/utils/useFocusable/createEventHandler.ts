@@ -8,9 +8,6 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-
 import {SyntheticEvent} from 'react'
 import {BaseEvent} from '../types'
 

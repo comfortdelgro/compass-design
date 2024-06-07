@@ -18,7 +18,7 @@ interface Props {
   cssCheckBoxInput?: CSS
   children?: React.ReactNode
   validationState?: 'valid' | 'invalid'
-  variant?: 'default' | 'rounded' | 'h5'
+  variant?: 'default' | 'rounded'
   onChange?: (isSelected: boolean) => void
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -90,13 +90,11 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const labelClass = React.useMemo(() => {
       return [
         styles.label,
-        variant === 'h5' && styles.labelVariantH5,
-        variant === 'h5' && checked && styles.labelVariantH5Checked,
         'cdg-checkbox-label',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [checked, variant])
+    }, [])
 
     const boxClass = React.useMemo(() => {
       return [

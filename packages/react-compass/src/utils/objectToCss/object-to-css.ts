@@ -127,7 +127,6 @@ function objectToCSS(obj: StyleObject, selector = '', indent = ''): string {
       // Check if the selector already exists in the map
       if (map.has(selector)) {
         // Append the property to the existing value
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
         map.set(selector, map.get(selector) + `; ${kebabKey}: ${value}`)
       } else {
         // Create a new entry with the selector and the property

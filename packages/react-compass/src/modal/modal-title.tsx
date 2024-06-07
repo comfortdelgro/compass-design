@@ -5,7 +5,6 @@ import styles from './styles/modal.module.css'
 
 interface Props {
   children?: React.ReactNode
-  h5?: boolean
   css?: CSS
 }
 
@@ -14,14 +13,13 @@ export type ModalTitleProps = Props &
 
 const ModalTitle = React.forwardRef<HTMLHeadingElement, ModalTitleProps>(
   (props, ref) => {
-    const {children, css = {}, h5 = false, className, ...htmlProps} = props
+    const {children, css = {}, className, ...htmlProps} = props
     const modalTitleRef = useDOMRef<HTMLHeadingElement>(ref)
 
     const classNames = [
       className,
       'cdg-modal-title',
       styles.title,
-      h5 && styles.titleH5,
     ]
       .filter(Boolean)
       .join(' ')

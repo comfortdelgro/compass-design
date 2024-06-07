@@ -1,7 +1,7 @@
 import {useMemo, useRef} from 'react'
 import {useToast} from '../hooks/useToast'
+import Toast from '../index'
 import styles from '../styles/toast.module.css'
-import Toast from '../toast'
 import {ToastItemType} from './types'
 
 export type ToastItemProps = ToastItemType & {

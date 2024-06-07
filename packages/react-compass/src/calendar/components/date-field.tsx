@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import {ButtonProps} from '../../button'
 import {createCalendar} from '../../internationalized/date'
@@ -7,13 +6,6 @@ import {useDOMRef} from '../../utils/use-dom-ref'
 import {useDateField} from '../hooks/useDateField'
 import {useDateFieldState} from '../hooks/useDateFieldState'
 import {DateFieldState} from '../types'
-// import {
-//   StyledDateField,
-//   StyledExpandButton,
-//   StyledIcon,
-//   StyledLabelNecessity,
-//   StyledTextFieldHelperText,
-// } from './date-field.style'
 import DateSegment from './date-segment'
 import styles from './styles/date-field.module.css'
 
@@ -48,8 +40,6 @@ const Icon = () => (
 const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {locale} = useLocale()
   const expandButtonRef = useDOMRef<HTMLButtonElement>(null)
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const state = useDateFieldState({
     ...props,
     isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
@@ -60,7 +50,6 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const dateFieldRef = useDOMRef(ref)
 
   const {labelProps, fieldProps} = useDateField(
-    // @ts-ignore
     {
       ...props,
       isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,

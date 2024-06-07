@@ -2,7 +2,7 @@ import CarouselImageSlide from './carousel-image-slide'
 import CarouselMobile from './carousel-mobile'
 import CarouselPromotion from './carousel-promotion'
 import CarouselSlide from './carousel-slide'
-import CarouselSlider from './carousel-slider'
+import _CarouselSlider from './carousel-slider'
 
 export type {CarouselImageSlideProps} from './carousel-image-slide'
 export type {CarouselMobileProps} from './carousel-mobile'
@@ -18,6 +18,13 @@ export type {
   NinePartAlignment,
   SocicalIcon,
 } from './carousel.const'
+
+const CarouselSlider = _CarouselSlider as typeof _CarouselSlider & {
+  Slide: typeof CarouselSlide
+  ImageSlide: typeof CarouselImageSlide
+  Promotion: typeof CarouselPromotion
+  Mobile: typeof CarouselMobile
+}
 
 CarouselSlider.displayName = 'CarouselSlider'
 CarouselSlider.Slide = CarouselSlide

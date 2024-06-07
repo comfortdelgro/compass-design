@@ -100,7 +100,6 @@ function getTouchById(
   pointerId: null | number,
 ): null | Touch {
   const changedTouches = event.changedTouches
-  // eslint-disable-next-line @typescript-eslint/prefer-for-of
   for (let i = 0; i < changedTouches.length; i++) {
     const touch = changedTouches[i]
     if (touch?.identifier === pointerId) {
@@ -150,7 +149,6 @@ export function usePress(props: PressHookProps): PressResult {
     pointerType: 'mouse',
   })
 
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const {addGlobalListener, removeAllGlobalListeners} = useGlobalListeners()
 
   const pressProps = useMemo(() => {
@@ -736,6 +734,7 @@ export function usePress(props: PressHookProps): PressResult {
   useEffect(() => {
     return () => {
       if (!allowTextSelectionOnPress) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         restoreTextSelection(ref.current.target)
       }
     }

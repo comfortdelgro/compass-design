@@ -1,8 +1,7 @@
 import {useCallback} from 'react'
 import Button from '../button'
-import {ActionTypeEnum} from './Icon'
 import styles from './styles/image-viewer.module.css'
-import {ToolbarConfig} from './types'
+import {ActionTypeEnum, ToolbarConfig} from './types'
 
 export interface ViewerToolbarProps {
   onAction: (config: ToolbarConfig) => void
@@ -13,6 +12,7 @@ export interface ViewerToolbarProps {
   toolbars: ToolbarConfig[]
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const defaultToolbars: ToolbarConfig[] = [
   {
     key: 'zoomIn',

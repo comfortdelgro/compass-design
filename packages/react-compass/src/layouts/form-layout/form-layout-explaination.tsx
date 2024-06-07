@@ -13,7 +13,7 @@ export interface Props {
 
 const FormLayoutExplaination = React.forwardRef<HTMLDivElement, Props>(
   (props, ref) => {
-    const {title, css = {}, className, description, style, ...htmlProps} = props
+    const {title, css = {}, className, description, ...htmlProps} = props
 
     const formExplainationRef = useDOMRef<HTMLDivElement>(ref)
 

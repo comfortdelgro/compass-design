@@ -8,12 +8,10 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 // Reference: https://github.com/adobe/react-spectrum/blob/98cad3f064c5302c04a1140d12a2cacc3ee921a2/packages/%40react-stately/datepicker/src/useDateFieldState.ts
 /* eslint-disable prefer-const */
-import {useEffect, useMemo, useRef, useState} from 'react'
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {useDatePickerContext} from '../../date-picker/date-picker-context'
 import {
   Calendar,
@@ -159,6 +157,7 @@ export function useDateFieldState<T extends DateValue = DateValue>(
         Object.keys(validSegments).length === Object.keys(allSegments).length &&
         isValidFake === undefined
       ) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         validSegments = {}
         setValidSegments(validSegments)
 
@@ -216,19 +215,20 @@ export function useDateFieldState<T extends DateValue = DateValue>(
   // handle reset date field
   const {isReset, setIsReset} = useDatePickerContext()
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setDate(null)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     validSegments = {}
     setValidSegments(validSegments)
     setValidFake(undefined)
-  }
+  }, [])
 
   useEffect(() => {
     if (isReset === true) {
       reset()
       setIsReset?.(false)
     }
-  }, [isReset])
+  }, [isReset, reset, setIsReset])
   //
 
   const opts = useMemo(
@@ -377,15 +377,7 @@ export function useDateFieldState<T extends DateValue = DateValue>(
           isEditable,
         } as DateSegment
       }),
-    [
-      dateValue,
-      validSegments,
-      dateFormatter,
-      resolvedOptions,
-      displayValue,
-      calendar,
-      locale,
-    ],
+    [dateFormatter, dateValue, calendar, validSegments, displayValue, resolvedOptions, isValidFake],
   )
 
   if (allSegments.era && validSegments.year && !validSegments.era) {
@@ -540,7 +532,6 @@ export function useDateFieldState<T extends DateValue = DateValue>(
       ) {
         validSegments = {...allSegments}
         setValidSegments(validSegments)
-        // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
         setValue(displayValue?.copy() as DateValue)
       }
     },
@@ -672,7 +663,6 @@ function getSegmentLimits(
   return {}
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 function addSegment(
   value: DateValue,
   part: string,
@@ -705,7 +695,6 @@ function addSegment(
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 function setSegment(
   value: DateValue,
   part: string,
@@ -731,8 +720,6 @@ function setSegment(
         }
         return value.set({hour: wasPM ? hours - 12 : hours + 12})
       }
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
-      // @ts-ignore
       case 'hour':
         // In 12 hour time, ensure that AM/PM does not change
         if (options.hour12) {

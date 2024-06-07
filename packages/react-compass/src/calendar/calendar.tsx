@@ -3,7 +3,6 @@ import Button from '../button'
 import {useDatePickerContext} from '../date-picker/date-picker-context'
 import * as InternationalizedDate from '../internationalized/date'
 import {DateValue, createCalendar, parseDate} from '../internationalized/date'
-import * as i18n from '../internationalized/i18n'
 import {useLocale} from '../internationalized/i18n'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
@@ -76,7 +75,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     setIsReset?.(true)
   }
 
-  const handleTodayButtonClick = () => {
+  const handleTodayButtonClick = useCallback(() => {
     const today = InternationalizedDate.today(
       InternationalizedDate.getLocalTimeZone(),
     )
@@ -86,7 +85,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       state.selectDate?.(today)
     }
     state.setFocusedDate?.(today)
-  }
+  }, [pickerState, state])
 
   const renderBody = () => {
     switch (monthYearState.currentState) {
@@ -140,7 +139,12 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         </Button>
       )
     }
-  }, [ctaButtonRender])
+  }, [
+    ctaButtonRender,
+    handleTodayButtonClick,
+    isTodayButtonDisabled,
+    monthYearState,
+  ])
 
   return (
     <CssInjection css={css} childrenRef={calendarRef}>
@@ -180,7 +184,4 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   )
 })
 
-export default Calendar as typeof Calendar & {
-  InternationalizedDate: typeof InternationalizedDate
-  I18N: typeof i18n
-}
+export default Calendar

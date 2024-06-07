@@ -225,21 +225,6 @@ export const Variations: React.FC = () => (
       </Button>
     </div>
 
-    <h3>10. H5</h3>
-    <div style={{...Style}}>
-      <Button variant='primary' h5 onPress={() => console.log('pressed')}>
-        Primary
-      </Button>
-      <Button variant='secondary' h5>
-        Secondary
-      </Button>
-      <Button variant='danger' h5>
-        Danger
-      </Button>
-      <Button isDisabled h5>
-        Disabled
-      </Button>
-    </div>
     <h4>Square button</h4>
     <div style={{...Style}}>
       <Button

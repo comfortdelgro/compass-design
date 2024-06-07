@@ -26,7 +26,6 @@ const Status = React.forwardRef<HTMLDivElement, StatusProps>((props, ref) => {
     // StyledComponentProps
     css = {},
     // ComponentProps
-    label = true,
     type = '',
     // VariantProps
     size = 'md',
@@ -75,9 +74,4 @@ const Status = React.forwardRef<HTMLDivElement, StatusProps>((props, ref) => {
   )
 })
 
-export default Status as typeof Status & {
-  Offline: typeof Offline
-  Online: typeof Online
-  Verified: typeof Verified
-  Zig: typeof Zig
-}
+export default Status

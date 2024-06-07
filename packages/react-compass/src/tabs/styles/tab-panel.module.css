@@ -148,35 +148,7 @@
     color: var(--cdg-color-gray50);
   }
 
-  .h5DisabledTrue {
-    background: transparent;
-  }
-
-  .h5DisabledTrueIcon {
-    background-color: var(--cdg-color-gray50);
-    border: none;
-    display: flex;
-  }
-
-  .h5DisabledTrueIcon svg {
-    display: block;
-  }
-
-  .h5DisabledTrueIcon svg path {
-    fill: var(--cdg-color-whiteText);
-  }
-
-  .h5DisabledTrue:hover {
-    background: transparent;
-    color: var(--cdg-color-gray50);
-  }
-
   .simpleActiveTrue {
-    color: var(--cdg-color-cdgBlue100);
-    border-bottom: var(--cdg-color-cdgBlue) 2px solid;
-  }
-
-  .h5ActiveTrue {
     color: var(--cdg-color-cdgBlue100);
     border-bottom: var(--cdg-color-cdgBlue) 2px solid;
   }
@@ -223,23 +195,6 @@
   }
 
   .simpleActiveTrueIcon svg path {
-    fill: var(--cdg-color-whiteText);
-  }
-
-  .h5ActiveTrue {
-    background: transparent;
-  }
-
-  .h5ActiveTrueIcon {
-    background-color: var(--cdg-color-cdgBlue100);
-    border: none;
-  }
-
-  .h5ActiveTrueIcon svg {
-    display: block;
-  }
-
-  .h5ActiveTrueIcon svg path {
     fill: var(--cdg-color-whiteText);
   }
 

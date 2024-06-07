@@ -77,7 +77,6 @@ export interface Props {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
-  h5?: boolean
 }
 
 export type TextFieldProps = Props &
@@ -127,7 +126,6 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       onCompositionEnd,
       onCompositionStart,
       onCompositionUpdate,
-      h5 = false,
       ...ariaSafeProps
     } = props
     const isDarkTheme = useIsDarkTheme()
@@ -160,23 +158,21 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     const textfieldWrapperClasses = React.useMemo(() => {
       return [
         styles.textFieldWrapper,
-        h5 && styles.textFieldWrapperH5,
         className,
         'cdg-textfield-container',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [className, h5])
+    }, [className])
 
     const labelClasses = React.useMemo(() => {
       return [
         styles.textFieldLabel,
-        h5 && styles.textFieldLabelH5,
         'cdg-textfield-label',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [h5])
+    }, [])
 
     const textfieldBoxWrapperClasses = React.useMemo(() => {
       return [
@@ -184,24 +180,22 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
         isDisabled && styles.textFieldBoxDisabled,
         isErrored && styles.textFieldBoxErrored,
         isDarkTheme && styles.textFieldBoxDarkTheme,
-        h5 && styles.textFieldBoxH5,
         'cdg-textfield-box',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [h5, isDarkTheme, isDisabled, isErrored])
+    }, [isDarkTheme, isDisabled, isErrored])
 
     const textfieldInputWrapperClasses = React.useMemo(() => {
       return [
         styles.textField,
         isDisabled && styles.textFieldDisabled,
         isDarkTheme && styles.textFieldDarkTheme,
-        h5 && styles.textFieldH5,
         'cdg-textfield-input',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [h5, isDarkTheme, isDisabled])
+    }, [isDarkTheme, isDisabled])
 
     const helperTextClasses = React.useMemo(() => {
       return [styles.textFieldHelperText, 'cdg-textfield-helper-text']

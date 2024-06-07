@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/unbound-method */
 import React, {useRef} from 'react'
 import {ButtonProps} from '../button'
 import Calendar from '../calendar/calendar'

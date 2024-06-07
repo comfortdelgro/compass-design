@@ -2,10 +2,7 @@
 
 import React, {useRef, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import Divider from './divider'
 import {SidenavContext} from './sidenav-context'
-import SidenavItem from './sidenav-item'
-import SidenavMenu from './sidenav-menu'
 import styles from './styles/sidenav.module.css'
 
 interface Props {
@@ -87,8 +84,4 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
   )
 })
 
-export default Sidenav as typeof Sidenav & {
-  Item: typeof SidenavItem
-  Divider: typeof Divider
-  Menu: typeof SidenavMenu
-}
+export default Sidenav

@@ -36,7 +36,6 @@ export function useControlledState<T>(
       const onChangeCaller = (value: T, ...onChangeArgs: any) => {
         if (onChange) {
           if (!Object.is(stateRef.current, value)) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             onChange(value, ...onChangeArgs)
           }
         }
@@ -50,27 +49,21 @@ export function useControlledState<T>(
           'We can not support a function callback. See Github Issues for details https://github.com/adobe/react-spectrum/issues/2320',
         )
         const updateFunction = (oldValue: any, ...functionArgs: any[]) => {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
           const interceptedValue = value(
             isControlled ? stateRef.current : oldValue,
             ...functionArgs,
           )
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           onChangeCaller(interceptedValue, ...args)
           if (!isControlled) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
             return interceptedValue
           }
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           return oldValue
         }
         setStateValue(updateFunction)
       } else {
         if (!isControlled) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           setStateValue(value)
         }
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         onChangeCaller(value, ...args)
       }
     },
@@ -82,6 +75,5 @@ export function useControlledState<T>(
   } else {
     value = stateValue
   }
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   return [value, setValue]
 }

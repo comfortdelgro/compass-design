@@ -1,12 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, {useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import ListH5 from './h5'
 import ListImage from './list-image'
 import styles from './styles/list.module.css'
 interface Props {
   css?: CSS
-  variant?: 'item' | 'interactive' | 'h5'
+  variant?: 'item' | 'interactive'
   isDisabled?: boolean
   size?: 'sm' | 'md'
   leftInfo?: React.ReactNode
@@ -141,8 +140,6 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
       .filter(Boolean)
       .join(' ')
   }, [isDisabled, variant])
-
-  if (variant === 'h5') return <ListH5 {...props} />
 
   return (
     <CssInjection css={css} childrenRef={ref}>

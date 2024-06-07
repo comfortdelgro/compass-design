@@ -8,11 +8,7 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {useMemo, useRef, useState} from 'react'
 import {
   CalendarDate,
@@ -270,6 +266,7 @@ function makeRange(start: DateValue, end: DateValue): RangeValue<CalendarDate> {
   }
 
   if (end.compare(start) < 0) {
+    // eslint-disable-next-line no-extra-semi
     ;[start, end] = [end, start]
   }
 

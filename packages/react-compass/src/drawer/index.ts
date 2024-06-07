@@ -6,7 +6,6 @@ export type {DrawerFooterProps} from './drawer-footer'
 export type {DrawerHeaderProps} from './drawer-header'
 export type {
   DrawerDefaultProps,
-  DrawerH5Props,
   DrawerProps,
   DrawerRef,
 } from './types'

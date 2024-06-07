@@ -51,7 +51,6 @@ type DefaultDrawerProps = {
   disableDragClose?: never
 }
 
-export type DrawerH5Props = DrawerSharedProps
 export type DrawerDefaultProps = DrawerSharedProps & DefaultDrawerProps
 
 type Props = DrawerSharedProps &

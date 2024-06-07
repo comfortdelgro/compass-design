@@ -230,7 +230,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
           clearTimeout(timerId)
         }
       }
-    }, [searchedValue])
+    }, [debounce, onSearch, searchedValue, selectedOption, timerId])
 
     // Only open popover when options are available after the API call is complete.
     // We don't want to open popover right when the user starts typing because the options will be incorrect before the API call is complete.
@@ -239,7 +239,7 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       if (searchedValue) {
         setIsOpenPopover(true)
       }
-    }, [options])
+    }, [options, searchedValue])
 
     // Focus management when the popover is opened or closed
     React.useEffect(() => {

@@ -110,8 +110,4 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
   )
 })
 
-export default Sidebar as typeof Sidebar & {
-  Actions: typeof SidebarActions
-  Content: typeof SidebarContent
-  Title: typeof SidebarTitle
-}
+export default Sidebar

@@ -38,7 +38,7 @@ export function useId(defaultId?: string): string {
       nextId.current = null
       setValue(newId)
     }
-  })
+  }, [])
 
   return res
 }

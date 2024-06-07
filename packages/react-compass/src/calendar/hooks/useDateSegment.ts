@@ -8,11 +8,7 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/dot-notation */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // Reference: https://github.com/adobe/react-spectrum/blob/98cad3f064c5302c04a1140d12a2cacc3ee921a2/packages/%40react-aria/datepicker/src/useDateSegment.ts
 /* eslint-disable prefer-const */
 import React, {
@@ -29,12 +25,7 @@ import {
   useLocale,
 } from '../../internationalized/i18n'
 import {NumberParser} from '../../internationalized/number'
-import {
-  DOMAttributes,
-  DateFieldState,
-  DateSegment,
-  FocusableElement,
-} from '../types'
+import {DOMAttributes, DateFieldState, DateSegment} from '../types'
 import {
   getScrollParent,
   hookData,
@@ -62,7 +53,6 @@ export function useDateSegment(
   const {locale} = useLocale()
   const displayNames = useDisplayNames()
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   let {ariaLabel, ariaLabelledBy, ariaDescribedBy, focusManager} = hookData.get(
     state,
   ) as unknown as {
@@ -175,15 +165,12 @@ export function useDateSegment(
         break
       }
       default: {
-        spinButtonProps.onKeyDown?.(
-          e as unknown as React.KeyboardEvent<FocusableElement>,
-        )
+        spinButtonProps.onKeyDown?.(e as any)
         break
       }
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const {startsWith} = useFilter({sensitivity: 'base'})
   const amPmFormatter = useDateFormatter({hour: 'numeric', hour12: true})
   const am = useMemo(() => {
@@ -252,14 +239,12 @@ export function useDateSegment(
         } else {
           break
         }
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         focusManager.focusNext()
         break
       case 'era': {
         const matched = eras.find((e) => startsWith(e.formatted!, key))
         if (matched) {
           state.setSegment('era', matched.era)
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
           focusManager.focusNext()
         }
         break
@@ -312,13 +297,11 @@ export function useDateSegment(
         }
 
         if (
-          // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
           Number(numberValue + '0') > segment.maxValue! ||
           newValue.length >= String(segment.maxValue).length
         ) {
           enteredKeys.current = ''
           if (shouldSetValue) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             focusManager?.focusNext()
           }
         } else {
@@ -354,12 +337,9 @@ export function useDateSegment(
       case 'insertCompositionText':
         // insertCompositionText cannot be canceled.
         // Record the current state of the element so we can restore it in the `input` event below.
-        // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
         compositionRef.current = ref.current?.textContent as string
 
         // Safari gets stuck in a composition state unless we also assign to the value here.
-        // eslint-disable-next-line no-self-assign, @typescript-eslint/ban-ts-comment
-        // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
         ref.current.textContent = ref.current?.textContent as string
         break
       default:
@@ -375,7 +355,6 @@ export function useDateSegment(
     switch (inputType) {
       case 'insertCompositionText':
         // Reset the DOM to how it was in the beforeinput event.
-        // eslint-disable-next-line no-self-assign, @typescript-eslint/ban-ts-comment
         ref.current.textContent = compositionRef.current
 
         // Android sometimes fires key presses of letters as composition events. Need to handle am/pm keys here too.
@@ -392,10 +371,8 @@ export function useDateSegment(
     return () => {
       // If the focused segment is removed, focus the previous one, or the next one if there was no previous one.
       if (document.activeElement === element) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access,  @typescript-eslint/no-unsafe-call
         const prev = focusManager.focusPrevious()
         if (!prev) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access,  @typescript-eslint/no-unsafe-call
           focusManager.focusNext()
         }
       }
@@ -414,9 +391,8 @@ export function useDateSegment(
       : {}
 
   const firstSegment = useMemo(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     () => state?.['segments']?.find((s: any) => s.isEditable),
-    [state['segments']],
+    [state],
   )
   if (segment !== firstSegment && state.validationState !== 'invalid') {
     ariaDescribedBy = ''
@@ -437,9 +413,9 @@ export function useDateSegment(
   if (segment.type === 'literal') {
     return {
       segmentProps: {
-        // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
-        //@ts-ignore
-        'aria-hidden': true,
+        onKeyDown: () => {},
+        onKeyUp: () => {},
+        onClick: () => {},
       },
     }
   }

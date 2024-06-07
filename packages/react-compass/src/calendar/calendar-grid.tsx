@@ -40,7 +40,6 @@ const CalendarGrid = (props: Props) => {
   const startDate = state?.visibleRange?.start?.add(offset) as CalendarDate
   const endDate = endOfMonth(startDate)
 
-  // eslint-disable-next-line
   const {gridProps, headerProps, weekDays} = useCalendarGrid(
     {
       startDate,

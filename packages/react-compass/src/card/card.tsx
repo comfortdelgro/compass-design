@@ -1,10 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
-import CardAction from './card-actions'
-import CardBody from './card-body'
-import CardImage from './card-image'
-import CardTitle from './card-title'
 import styles from './styles/card.module.css'
 
 interface Props {
@@ -62,9 +58,4 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   )
 })
 
-export default Card as typeof Card & {
-  Body: typeof CardBody
-  Image: typeof CardImage
-  Title: typeof CardTitle
-  Action: typeof CardAction
-}
+export default Card

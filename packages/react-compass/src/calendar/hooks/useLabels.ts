@@ -8,7 +8,6 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import {AriaLabelingProps, DOMProps, LabelAria, LabelAriaProps} from '../types'
 import {useId} from './useId'
 

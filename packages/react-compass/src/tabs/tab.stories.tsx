@@ -87,33 +87,6 @@ export const Paneless: React.FC = () => {
   )
 }
 
-export const H5: React.FC = () => {
-  const [value, setValue] = React.useState<React.Key>('1')
-  const items = [
-    {key: '1', title: 'Founding of Rome'},
-    {key: '2', title: 'Monarchy and Republic'},
-    {key: '3', title: 'Empire'},
-  ]
-  return (
-    <div style={{...style}}>
-      <h3>H5</h3>
-      <div style={{flexDirection: 'row', ...style}}>
-        <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
-          <Tabs.Paneless
-            variant='h5'
-            items={items}
-            selectedKey={value}
-            onSelectionChange={(v: React.Key) => setValue(v)}
-          />
-          {value === '1' && <FetchList id='1' />}
-          {value === '2' && <FetchList id='2' />}
-          {value === '3' && <FetchList id='3' />}
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export const Icon: React.FC = () => (
   <div style={{...style}}>
     <h3>With left icon</h3>

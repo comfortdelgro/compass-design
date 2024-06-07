@@ -48,7 +48,7 @@ const Skeleton = React.forwardRef<HTMLElement, SkeletonProps>((props, ref) => {
     ]
       .filter(Boolean)
       .join(' ')
-  }, [className])
+  }, [animation, children, className, variant, width])
 
   return (
     <CssInjection css={css} childrenRef={skeletonRef}>

@@ -2,7 +2,6 @@ import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
-import GridItem from './grid-item'
 import styles from './styles/grid.module.css'
 
 interface Props {
@@ -68,6 +67,4 @@ const Grid = React.forwardRef<HTMLDivElement, GridContainerProps>(
   },
 )
 
-export default Grid as typeof Grid & {
-  Item: typeof GridItem
-}
+export default Grid
