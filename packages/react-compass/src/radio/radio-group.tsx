@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import React, {useCallback, useEffect, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
@@ -75,7 +74,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       } else {
         onMountRef.current = true
       }
-    }, [selectedValue])
+    }, [onChange, selectedValue])
 
     return (
       <CssInjection css={css} childrenRef={groupRef}>

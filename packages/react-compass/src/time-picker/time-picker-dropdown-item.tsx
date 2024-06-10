@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useRef} from 'react'
+import {useEffect, useRef} from 'react'
 import {TIME_PICKER_MARGIN_TOP} from './constant'
 import styles from './styles/time-picker.module.css'
 import {SelectedKey, TimePickerDropdownSelectedDisplayList} from './types'
@@ -41,7 +41,7 @@ function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
         scrollToSelectedItem('auto')
       }, 0)
     }
-  }, [isOpen])
+  }, [isOpen, selectedTime, time])
 
   useEffect(() => {
     if (selectedTime === time && ref.current) {
@@ -77,4 +77,4 @@ function TimePickerDropdownItem(props: TimePickerDropdownItemProps) {
     </button>
   )
 }
-export default React.memo(TimePickerDropdownItem)
+export default TimePickerDropdownItem

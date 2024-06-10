@@ -341,4 +341,4 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     </div>
   )
 }
-export default React.memo(TimePickerDropdown)
+export default TimePickerDropdown

@@ -17,20 +17,6 @@ export const Basic: React.FC = () => {
 
   return (
     <div style={{...style}}>
-      <h3> H5</h3>
-      <Textarea
-        variant='h5'
-        placeholder='Type your feedback here'
-        css={{
-          textarea: {
-            height: '129px',
-          },
-        }}
-        label='Details'
-        resizable={false}
-        wordCount
-        maxLength={200}
-      />
       <h3> Simple textarea</h3>
       <Textarea placeholder='Enter your message' />
       <br />

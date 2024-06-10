@@ -6,7 +6,7 @@ import styles from './styles/sub-header-description.module.css'
 
 interface Props {
   children: React.ReactNode
-  variant?: 'default' | 'h5'
+  variant?: 'default'
   css?: CSS
   className?: string
 }

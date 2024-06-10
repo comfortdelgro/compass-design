@@ -80,7 +80,7 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
         setIsInternalOpen(false)
         setIsChildOpen?.(false)
       }
-    }, [isNestedMenuOpen])
+    }, [isMouseLeave, isNestedMenuOpen, setIsChildOpen])
 
     const {refs, floatingStyles, context} = useFloating({
       open: isInternalOpen,
@@ -115,7 +115,7 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
     // set ref and anchor position to parent node
     useEffect(() => {
       setMenuParentProps?.(refs, getReferenceProps)
-    }, [refs, getReferenceProps])
+    }, [refs, getReferenceProps, setMenuParentProps])
 
     const headingId = useId()
 
@@ -135,7 +135,7 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
     // announce to parent node when this node change open state
     useEffect(() => {
       setIsChildOpen?.(openFinal)
-    }, [openFinal])
+    }, [openFinal, setIsChildOpen])
 
     const mergeRefs = (el: HTMLDivElement | null) => {
       refs.setFloating(el)

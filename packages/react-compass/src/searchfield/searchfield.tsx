@@ -55,7 +55,6 @@ interface Props {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
-  h5?: boolean
   css?: CSS
   className?: string
 }
@@ -89,7 +88,6 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       onInput,
       onKeyUp,
       onSelect,
-
       onKeyDown,
       onBeforeInput,
       onCompositionEnd,
@@ -98,7 +96,6 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       onFocus,
       maxLength,
       minLength,
-      h5 = false,
       className = '',
       ...delegated
     } = props
@@ -172,7 +169,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
               isDisabled ? styles.disabledTrue : ''
             } ${isErrored ? styles.isErroredTrue : ''} ${
               isDarkTheme ? styles.isDarkThemeTrue : styles.isDarkThemeFalse
-            }  ${h5 ? styles.h5True : styles.h5False}`}
+            }`}
             ref={wrapperRef}
             {...delegated}
           >
@@ -181,7 +178,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
                 isDisabled ? styles.disabledTrue : ''
               } ${isErrored ? styles.isErroredTrue : ''} ${
                 isDarkTheme ? styles.isDarkThemeTrue : ''
-              }  ${h5 ? styles.h5True : ''}`}
+              }`}
               ref={searchFieldRef}
               id={id}
               autoFocus={autoFocus}
@@ -230,16 +227,12 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
                 size='sm'
                 variant='ghost'
               >
-                {h5 ? (
-                  <H5SearchIcon />
-                ) : (
-                  <svg className='icon' viewBox='0 0 512 512'>
-                    <path
-                      fill='currentColor'
-                      d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z'
-                    />
-                  </svg>
-                )}
+                <svg className='icon' viewBox='0 0 512 512'>
+                  <path
+                    fill='currentColor'
+                    d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z'
+                  />
+                </svg>
               </Button>
             )}
           </div>
@@ -254,25 +247,6 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       </div>
     )
   },
-)
-
-const H5SearchIcon = () => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='16'
-    height='17'
-    viewBox='0 0 16 17'
-    fill='none'
-  >
-    <path
-      d='M15 14.5971C15 14.8279 14.9093 15.0587 14.7324 15.2352C14.3787 15.5883 13.8027 15.5883 13.449 15.2352L10.9916 12.9019C10.6378 12.5489 10.6378 11.9741 10.9916 11.621C11.3453 11.268 11.9213 11.268 12.275 11.621L14.7324 13.9544C14.9093 14.1354 15 14.3663 15 14.5971Z'
-      fill='#757575'
-    />
-    <path
-      d='M2.87044 7.1C2.87044 5.042 4.54915 3.36667 6.61131 3.36667C8.67347 3.36667 10.3522 5.042 10.3522 7.1C10.3522 9.158 8.67347 10.8333 6.61131 10.8333C4.54915 10.8333 2.87044 9.158 2.87044 7.1ZM1 7.1C1 10.194 3.51106 12.7 6.61131 12.7C9.71156 12.7 12.2226 10.194 12.2226 7.1C12.2226 4.006 9.71156 1.5 6.61131 1.5C3.51106 1.5 0.999999 4.006 1 7.1Z'
-      fill='#757575'
-    />
-  </svg>
 )
 
 export default SearchField

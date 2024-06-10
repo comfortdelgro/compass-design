@@ -2,7 +2,6 @@ import noop from 'lodash/noop'
 import {useCallback, useEffect, useReducer, useRef} from 'react'
 import Button from '../button'
 import {CssInjection} from '../utils/objectToCss'
-import {ActionTypeEnum} from './Icon'
 import ImageInformation from './ImageInformation'
 import ViewerCanvas from './ViewerCanvas'
 import ViewerNav from './ViewerNav'
@@ -13,6 +12,7 @@ import styles from './styles/image-viewer.module.css'
 import {
   ActionEnum,
   ActionType,
+  ActionTypeEnum,
   ImageDecorator,
   ImageViewerCoreState,
   ImageViewerProps,

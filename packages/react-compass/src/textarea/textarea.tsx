@@ -68,7 +68,6 @@ interface Props {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
-  variant?: 'h5' | string
   resizable?: boolean
 }
 
@@ -119,7 +118,6 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
       onKeyDown = () => null,
       onKeyUp = () => null,
       resizable = true,
-      variant,
       ...ariaSafeProps
     } = props
     const isDarkTheme = useIsDarkTheme()
@@ -147,23 +145,21 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
     const wrapperClasses = React.useMemo(() => {
       return [
         styles.textareaWrapper,
-        variant && styles[variant],
         className,
         'cdg-textarea-container',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [className, variant])
+    }, [className])
 
     const labelClasses = React.useMemo(() => {
       return [
         styles.textAreaLabel,
-        variant && styles[variant],
         'cdg-textarea-label',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [variant])
+    }, [])
 
     const textareaClasses = React.useMemo(() => {
       return [
@@ -171,44 +167,40 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
         isErrored && styles.isErrored,
         resizable && styles.resizable,
         isDarkTheme && styles.isDarkTheme,
-        variant && styles[variant],
         'cdg-textarea',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [isDarkTheme, isErrored, resizable, variant])
+    }, [isDarkTheme, isErrored, resizable])
 
     const wordCountClasses = React.useMemo(() => {
       return [
         styles.textAreaHelperText,
         styles.wordCount,
-        variant && styles[variant],
         'cdg-textarea-word-count',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [variant])
+    }, [])
 
     const helperTextClasses = React.useMemo(() => {
       return [
         styles.textAreaHelperText,
-        variant && styles[variant],
         'cdg-textarea-helper-text',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [variant])
+    }, [])
 
     const errorMessageClasses = React.useMemo(() => {
       return [
         styles.error,
         styles.textAreaHelperText,
-        variant && styles[variant],
         'cdg-textarea-error-message',
       ]
         .filter(Boolean)
         .join(' ')
-    }, [variant])
+    }, [])
 
     return (
       <CssInjection css={css} childrenRef={wrapperRef}>

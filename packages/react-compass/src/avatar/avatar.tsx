@@ -1,7 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
-import type AvatarGroup from './avatar-group'
 import {AVATAR_SIZE_MAP, AvatarSize} from './avatar.const'
 import styles from './styles/avatar.module.css'
 
@@ -87,4 +86,4 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
   )
 })
 
-export default Avatar as typeof Avatar & {Group: typeof AvatarGroup}
+export default Avatar

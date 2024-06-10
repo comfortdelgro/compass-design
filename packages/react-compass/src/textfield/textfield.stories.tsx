@@ -177,24 +177,6 @@ export const Basic: React.FC = () => {
   )
 }
 
-export const ForH5Variant = () => {
-  return (
-    <div style={{...style}}>
-      <Textfield
-        type='text'
-        label='Name'
-        placeholder='Enter your name'
-        // isErrored
-        helperText='my helper text'
-        errorMessage='my error message'
-        className='my-class'
-        onKeyDown={(e) => console.log('onKeyDownTest', e)}
-        h5
-      />
-    </div>
-  )
-}
-
 const meta = {
   title: 'Example/Textfield ',
   component: Basic,

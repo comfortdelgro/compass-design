@@ -70,7 +70,8 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       if (autoClose && typeof autoClose == 'number' && isOpen == true) {
         setTimeout(() => handleClose?.(), autoClose)
       }
-    }, [isOpen])
+    }, [autoClose, handleClose, isOpen])
+  
     const handleClick = (e: React.MouseEvent) => {
       if (onClick) {
         onClick(e, id)
@@ -117,8 +118,4 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
   },
 )
 
-export default Snackbar as typeof Snackbar & {
-  Text: typeof SnackbarText
-  PrefixIcon: typeof SnackbarPrefixIcon
-  SuffixIcon: typeof SnackbarSuffixIcon
-}
+export default Snackbar

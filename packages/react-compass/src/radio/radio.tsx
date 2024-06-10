@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
-import RadioGroup, {RadioContext} from './radio-group'
+import {RadioContext} from './radio-group'
 import styles from './styles/radio.module.css'
 import Tooltip from './tooltip'
 
@@ -11,7 +11,7 @@ interface Props {
   description?: string
   rightLabel?: string
   tooltip?: string
-  variant?: 'simple' | 'outlined' | 'h5'
+  variant?: 'simple' | 'outlined'
   inputPosition?: 'left' | 'right'
   isDisabled?: boolean
   value: string
@@ -36,9 +36,7 @@ const Radio: React.FC<RadioProps> = (props) => {
     css = {},
     ...htmlProps
   } = props
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const context = React.useContext(RadioContext)
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const state = context
   const [isChecked, setIsChecked] = useState(state.value === value)
 
@@ -50,7 +48,7 @@ const Radio: React.FC<RadioProps> = (props) => {
 
   useEffect(() => {
     setIsChecked(state.value === value)
-  }, [state.value])
+  }, [state.value, value])
 
   const internalRadioClassName = `${
     variant ? styles[`radioVariant${capitalizeFirstLetter(variant)}`] : ''
@@ -111,4 +109,4 @@ const Radio: React.FC<RadioProps> = (props) => {
   )
 }
 
-export default Radio as typeof Radio & {Group: typeof RadioGroup}
+export default Radio

@@ -49,7 +49,6 @@ interface Props {
   size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean
   loading?: boolean
-  h5?: boolean
 }
 
 export type ButtonProps = Props &
@@ -101,7 +100,6 @@ const Button = React.forwardRef<
     fullWidth = false,
     loading = false,
     isSquare = false,
-    h5 = false,
     // html props
     ...htmlProps
   } = props
@@ -173,8 +171,6 @@ const Button = React.forwardRef<
     isDisabled && styles.isDisabled,
     href && variant && styles[variant + 'Link'],
     href && styles.linkButton,
-    h5 && styles.h5,
-    h5 && variant && styles[variant + 'H5'],
     className,
     'cdg-button',
   )
@@ -184,7 +180,6 @@ const Button = React.forwardRef<
     styles.content,
     leftIcon || (fullWidth && rightIcon) ? styles.hasIcon : '',
     size && styles[`${size}Content`],
-    h5 && styles.h5Content,
     'cdg-button-content',
   ]
     .filter(Boolean)

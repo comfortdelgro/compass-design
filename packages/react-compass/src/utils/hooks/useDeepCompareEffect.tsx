@@ -14,12 +14,13 @@ function useDeepCompareMemoize<T>(value: T) {
     signalRef.current += 1
   }
 
-  return useMemo(() => ref.current, [signalRef.current])
+  return useMemo(() => ref.current, [])
 }
 
 export function useDeepCompareEffect(
   callback: EffectCallback,
   dependencies?: DependencyList | undefined,
 ) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(callback, useDeepCompareMemoize(dependencies))
 }

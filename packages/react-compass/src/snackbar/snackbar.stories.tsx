@@ -1,4 +1,4 @@
-import CloseIcon from '@comfortdelgro/compass-icons/react/h5-close'
+import CloseIcon from '@comfortdelgro/compass-icons/react/cross'
 import WarningIcon from '@comfortdelgro/compass-icons/react/warning-filled'
 import {Meta} from '@storybook/react'
 import React, {Key} from 'react'

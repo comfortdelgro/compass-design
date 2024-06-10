@@ -8,7 +8,7 @@ interface Props {
   isDisabled?: boolean
   description?: string
   avatar?: React.ReactNode
-  variant?: 'item' | 'interactive' | 'h5'
+  variant?: 'item' | 'interactive'
 }
 
 export type ListCardDetailProps = Props &

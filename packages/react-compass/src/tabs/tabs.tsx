@@ -76,7 +76,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
 
   React.useEffect(() => {
     if (currentKey) props.onSelectionChange?.(currentKey)
-  }, [currentKey])
+  }, [currentKey, props])
 
   const {onKeyDown, nextFocus, prevFocus} = useKeyboardNavigation()
 

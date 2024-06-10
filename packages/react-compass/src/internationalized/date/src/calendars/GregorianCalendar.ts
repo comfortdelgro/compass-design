@@ -111,8 +111,6 @@ export class GregorianCalendar implements Calendar {
     ] as number
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getMonthsInYear(_date: AnyCalendarDate): number {
     return 12
@@ -122,10 +120,8 @@ export class GregorianCalendar implements Calendar {
     return isLeapYear(date.year) ? 366 : 365
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  getYearsInEra(date: AnyCalendarDate): number {
+  getYearsInEra(_date: AnyCalendarDate): number {
     return 9999
   }
 

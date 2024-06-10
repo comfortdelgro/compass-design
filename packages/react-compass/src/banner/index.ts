@@ -8,7 +8,7 @@ export type {BannerDescriptionProps} from './banner-description'
 export type {BannerImageProps} from './banner-image'
 export type {BannerTitleProps} from './banner-title'
 
-const Banner = _Banner as typeof Banner & {
+const Banner = _Banner as typeof _Banner & {
   Image: typeof BannerImage
   Title: typeof BannerTitle
   Description: typeof BannerDescription

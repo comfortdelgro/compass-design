@@ -54,7 +54,6 @@ interface Props {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
-  h5?: boolean
   css?: CSS
 }
 
@@ -103,7 +102,6 @@ const DropdownTextfield = React.forwardRef<
     onCompositionEnd,
     onCompositionStart,
     onCompositionUpdate,
-    h5 = false,
     css = {},
   } = props
   const componentRef = useDOMRef(ref)
@@ -136,9 +134,7 @@ const DropdownTextfield = React.forwardRef<
         {label && (
           <label
             htmlFor={id}
-            className={`${styles.textFieldLabel} ${
-              h5 ? styles.textFieldLabelH5 : ''
-            }`}
+            className={`${styles.textFieldLabel} cdg-dropdown-textfield-label`}
           >
             {label}
             {isRequired && <span className={`${styles.asterisk}`}>*</span>}
@@ -180,7 +176,7 @@ const DropdownTextfield = React.forwardRef<
             aria-label={label}
             type={inputType}
             onChange={handleInputChange}
-            value={textfieldValue as  string}
+            value={textfieldValue as string}
             errorMessage={errorMessage}
             isErrored={isErrored}
             isReadOnly={isReadOnly}
@@ -189,7 +185,6 @@ const DropdownTextfield = React.forwardRef<
             isDisabled={isDisabled}
             minLength={minLength ?? 0}
             maxLength={maxLength ?? 524288}
-            h5={h5}
             autoFocus={autoFocus}
             onCut={onCut}
             onCopy={onCopy}

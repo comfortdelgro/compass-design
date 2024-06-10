@@ -11,7 +11,7 @@ interface Props {
   icon?: boolean | React.ReactNode
   destination?: string
   css?: CSS
-  variant?: 'outline' | 'h5' | 'primary' | 'secondary' | 'rounded'
+  variant?: 'outline' | 'primary' | 'secondary' | 'rounded'
   color?: 'info' | 'danger' | 'success' | 'warning'
   status?: 'online' | 'away' | 'busy' | 'offline'
   statusSize?: '8' | '12' | '16' | '20' | '24' | '28'

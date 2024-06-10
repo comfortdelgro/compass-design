@@ -9,8 +9,6 @@
  */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 
 import {FocusEvent as ReactFocusEvent, useCallback, useRef} from 'react'
 import {useLayoutEffect} from '../useLayoutEffect'

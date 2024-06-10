@@ -30,7 +30,6 @@ export function assignRef<T = any>(
   try {
     ref.current = value
   } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/no-base-to-string
     throw new Error(`Cannot assign value '${value}' to ref '${ref}'`)
   }
 }

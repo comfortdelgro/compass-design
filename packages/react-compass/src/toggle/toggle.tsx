@@ -33,7 +33,6 @@ interface Props {
   'aria-errormessage'?: string
   className?: string
   css?: CSS
-  variant?: 'h5'
 }
 
 export type ToggleProps = Props &
@@ -49,7 +48,6 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     isReadOnly = false,
     isRequired = false,
     isDisabled = false,
-    variant,
     css = {},
     className = '',
   } = props
@@ -86,9 +84,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     size && styles[`toggleSize${capitalizeFirstLetter(size)}`],
     isActive && styles.toggleActive,
     !!props.isDisabled && styles.toggleDisabled,
-    variant === 'h5' && styles.toggleH5,
     isActive && !!props.isDisabled && styles.toggleActiveDisabled,
-    variant === 'h5' && isActive && styles.toggleActiveH5,
     'cdg-toggle',
   ]
     .filter(Boolean)
@@ -97,7 +93,6 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
   const toggleCicleClasses = [
     styles.toggleCircle,
     size === 'lg' && styles.toggleCircleLg,
-    variant === 'h5' && styles.toggleCircleH5,
     'cdg-toggle-circle',
   ]
     .filter(Boolean)

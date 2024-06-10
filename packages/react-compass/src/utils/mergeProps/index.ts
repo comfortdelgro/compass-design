@@ -9,7 +9,6 @@
  */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/ban-types */
 
 import {chain} from './chain'
@@ -22,7 +21,7 @@ type TupleTypes<T> = {[P in keyof T]: T[P]} extends Record<number, infer V>
   ? NullToObject<V>
   : never
 type NullToObject<T> = T extends null | undefined ? {} : T
-// eslint-disable-next-line no-undef, @typescript-eslint/no-unused-vars
+
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
   k: infer I,
 ) => void

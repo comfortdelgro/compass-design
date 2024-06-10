@@ -8,7 +8,6 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {useCallback, useRef} from 'react'
 import {FocusWithinProps, FocusWithinResult} from './../types'

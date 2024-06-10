@@ -4,7 +4,6 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/modal.module.css'
 
 interface Props {
-  h5?: boolean
   children?: React.ReactNode
   css?: CSS
 }
@@ -16,13 +15,12 @@ const ModalDescription = React.forwardRef<
   HTMLDivElement,
   ModalDescriptionProps
 >((props, ref) => {
-  const {children, css = {}, h5 = false, className, ...htmlProps} = props
+  const {children, css = {}, className, ...htmlProps} = props
   const modalDescriptionRef = useDOMRef<HTMLDivElement>(ref)
   const classNames = [
     className,
     'cdg-modal-description',
     styles.description,
-    h5 && styles.descriptionH5,
   ]
     .filter(Boolean)
     .join(' ')

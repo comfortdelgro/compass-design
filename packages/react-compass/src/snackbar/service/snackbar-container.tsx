@@ -1,6 +1,6 @@
 import React from 'react'
 import Portal from '../../portal'
-import {CSS} from '../../utils/objectToCss'
+import {CSS, CssInjection} from '../../utils/objectToCss'
 import styles from '../styles/snackbar-item.module.css'
 import SnackbarItem from './snackbar-item'
 import {SnackbarItemType} from './types'
@@ -23,31 +23,34 @@ const SnackbarsContainer = (props: SnackbarsContainerProps) => {
     snackbars,
     snackbarItemClassName,
     // HTMLDiv Props
-    className = '',
+    className,
     ...htmlProps
   } = props
 
   const contentClasses = [
-    'cdg-snackbar-container',
     styles.snackbarContainer,
     snackbars.length > 0 ? '' : styles.snackbarContainerHidden,
+    className,
+    'cdg-snackbar-container',
   ]
     .filter(Boolean)
     .join(' ')
 
   return (
     <Portal open={snackbars.length > 0}>
-      <div {...htmlProps} className={contentClasses}>
-        {snackbars.map((snackbar) => (
-          <SnackbarItem
-            key={snackbar.id}
-            {...snackbar}
-            snackbarItemClassName={`${styles.cdgSnackbarItem} ${
-              snackbarItemClassName || ''
-            }`}
-          />
-        ))}
-      </div>
+      <CssInjection css={css}>
+        <div {...htmlProps} className={contentClasses}>
+          {snackbars.map((snackbar) => (
+            <SnackbarItem
+              key={snackbar.id}
+              {...snackbar}
+              snackbarItemClassName={`${styles.cdgSnackbarItem} ${
+                snackbarItemClassName || ''
+              }`}
+            />
+          ))}
+        </div>
+      </CssInjection>
     </Portal>
   )
 }

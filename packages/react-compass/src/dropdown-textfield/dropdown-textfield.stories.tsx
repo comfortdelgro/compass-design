@@ -3,9 +3,6 @@ import USA from '@comfortdelgro/compass-icons/react/flag-usa'
 import type {Meta} from '@storybook/react'
 import toString from 'lodash/toString'
 import React, {useEffect, useState} from 'react'
-import Dropdown from '../dropdown'
-import Textarea from '../textarea'
-import TextField from '../textfield'
 import DropdownTextfield, {DropdownOptions} from './dropdown-textfield'
 
 const style: React.CSSProperties = {
@@ -149,52 +146,6 @@ export const Variants: React.FC = () => {
         </div>
       </div>
     </>
-  )
-}
-
-export const H5Form: React.FC = () => {
-  return (
-    <div style={{...style}}>
-      <h4>Your Information</h4>
-      <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
-        <DropdownTextfield
-          options={dropdownOptions}
-          inputType='text'
-          label='Name'
-          h5
-          dropdownPlaceholder='Select gender'
-          textfieldPlaceholder='Enter name'
-        />
-        <DropdownTextfield
-          options={phoneDropdownOptions}
-          inputType='text'
-          label='Mobile Number'
-          h5
-        />
-        <TextField
-          h5
-          type='email'
-          value={'sallylee@gmail.com'}
-          label={'Email'}
-        />
-      </div>
-
-      <h4>Your Information</h4>
-      <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
-        <Dropdown.Select label='Feedback' defaultSelectedKey={'General'}>
-          <Dropdown.Item key={'General'}>General</Dropdown.Item>
-        </Dropdown.Select>
-        <TextField placeholder='Enter trip number' h5 />
-        <Textarea
-          variant='h5'
-          placeholder='Type your feedback here'
-          resizable={false}
-          wordCount
-          maxLength={200}
-          label={'Details'}
-        />
-      </div>
-    </div>
   )
 }
 

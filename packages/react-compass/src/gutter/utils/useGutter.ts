@@ -1,4 +1,4 @@
-import {CSSProperties, useEffect, useState} from 'react'
+import React, {CSSProperties, useEffect, useState} from 'react'
 import {Pointer, Position} from '../../utils/pointer'
 import {GutterProps, GutterSide} from '../gutter'
 
@@ -29,6 +29,14 @@ const useGutter = (
 
   const [isExpand, setIsExpand] = useState(controlledExpand)
 
+  const expand = React.useCallback(() => {
+    setWidth(maxExpand ?? '100%')
+  }, [maxExpand])
+
+  const collapse = React.useCallback(() => {
+    setWidth(minCollapse ?? 0)
+  }, [minCollapse])
+
   useEffect(() => {
     setIsExpand(controlledExpand)
   }, [controlledExpand])
@@ -39,7 +47,7 @@ const useGutter = (
     } else if (isExpand === false) {
       collapse()
     }
-  }, [isExpand])
+  }, [collapse, expand, isExpand])
 
   const handlePointerDown = (event: React.PointerEvent) => {
     const captureSize = parentRef?.current?.clientWidth ?? 0
@@ -47,7 +55,8 @@ const useGutter = (
     pointer.start(new Position(event.pageX, event.pageY))
 
     if (ref?.current) {
-      ;(event.target as HTMLElement).setPointerCapture(event.pointerId)
+      const eventTarget = event.target as HTMLElement
+      eventTarget.setPointerCapture(event.pointerId)
 
       const handlePointerMove = (event: PointerEvent) => {
         event.preventDefault()
@@ -72,14 +81,6 @@ const useGutter = (
         once: true,
       })
     }
-  }
-
-  const expand = () => {
-    setWidth(maxExpand ?? '100%')
-  }
-
-  const collapse = () => {
-    setWidth(minCollapse ?? 0)
   }
 
   const toggleExpand = () => {

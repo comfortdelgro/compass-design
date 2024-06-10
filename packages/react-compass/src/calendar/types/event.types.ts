@@ -84,7 +84,7 @@ export interface SpinButtonProps
 }
 
 export interface SpinbuttonAria {
-  spinButtonProps: DOMAttributes
+  spinButtonProps: AriaButtonProps
   incrementButtonProps: AriaButtonProps
   decrementButtonProps: AriaButtonProps
 }

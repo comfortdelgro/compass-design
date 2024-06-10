@@ -355,13 +355,6 @@
 }
 
 @layer variant {
-  .dropdownSelectButtonH5 {
-    font-weight: var(--normal);
-    padding: var(--cdg-spacing-3) var(--cdg-spacing-4);
-    font-size: var(--cdg-font-size-body3);
-    line-height: var(--cdg-spacing-5);
-  }
-
   .dropdownOption:hover {
     background-color: var(--cdg-color-gray20);
   }
@@ -486,20 +479,6 @@
     transition: transform 0.3s linear;
   }
 
-  .dropdownWrapper.dropdownH5 .dropdownLabel {
-    font-size: var(--cdg-font-size-label2);
-    font-weight: var(--cdg-font-weight-medium);
-    color: var(--cdg-color-grayShades80);
-    margin-bottom: var(--cdg-spacing-1);
-  }
-
-  .dropdownWrapper.dropdownH5 .dropdownSelectButton {
-    font-size: var(--cdg-font-size-label1);
-    font-weight: var(--cdg-font-weight-normal);
-    line-height: var(--cdg-line-height-tight);
-    padding: var(--cdg-spacing-3) var(--cdg-spacing-4);
-  }
-
   .dropdownSelect.dropdownInputIsEmpty
     .dropdownSelectButton
     .dropdownButtonText {
@@ -525,14 +504,5 @@
 
   .dropdownSelect.dropdownInputIsErrored:focus-within {
     border-color: var(--cdg-color-dangerDarker);
-  }
-
-  .dropdownSelect.dropdownInputH5 {
-    border-radius: var(--cdg-border-radius-lg);
-    color: var(--cdg-color-grayShades100);
-  }
-
-  .dropdownSelect.dropdownInputH5 svg {
-    color: var(--cdg-color-grayShades60);
   }
 }

@@ -10,7 +10,6 @@ import classes from './styles/confirm-pickup.module.css'
 
 export type ConfirmPUPointProps = {
   css?: CSS
-  h5?: boolean
   onConfirmPickup: (specificPUPoint?: string) => void
   onChangePUPoint?: () => void
   placeholder?: string
@@ -30,7 +29,6 @@ const ConfirmPUPoint = memo(
         puPointDescription,
         specificPUPoint: initialSpecificPUPoint,
         css = {},
-        h5 = false,
         className,
         ...htmlDivAttributes
       },
@@ -124,13 +122,11 @@ const ConfirmPUPoint = memo(
                 className={`${classes.puTextField} cdg-cp-textfield`}
                 placeholder={placeholder}
                 onChange={(value) => setSpecificPickupPoint(value.toString())}
-                h5={h5}
               />
             )}
             <Button
               className={`${classes.puConfirmButton} cdg-cp-button`}
               onPress={handleConfirmPickup}
-              h5={h5}
               fullWidth
             >
               Confirm pick up

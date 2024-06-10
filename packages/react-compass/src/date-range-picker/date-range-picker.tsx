@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import React from 'react'
 import {ButtonProps} from '../button'
 import DateField from '../calendar/components/date-field'

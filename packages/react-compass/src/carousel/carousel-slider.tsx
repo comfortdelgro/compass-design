@@ -3,10 +3,6 @@ import {CSS, CssInjection} from '../utils/objectToCss'
 import {Pointer, Position} from '../utils/pointer'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
-import CarouselImageSlide from './carousel-image-slide'
-import CarouselMobile from './carousel-mobile'
-import CarouselPromotion from './carousel-promotion'
-import CarouselSlide from './carousel-slide'
 import CarouselSliderDots from './carousel-slider-dots'
 import {
   AnimationType,
@@ -33,6 +29,8 @@ interface Props {
 export type CarouselSliderProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
+let timer = null
+
 const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
   (props, ref) => {
     const {
@@ -58,7 +56,6 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
     const [xPosition, setXPosition] = useState(0)
     const [current, setCurrent] = useState(0)
     const [viewWidth, setViewWidth] = useState(0)
-    const [timer, setTimer] = useState<any>()
 
     const targetXPosition =
       (sliderRef.current && sliderRef.current.clientWidth * current) || 0
@@ -74,32 +71,20 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       return () => {
         window.removeEventListener('resize', handleResize)
       }
+    }, [targetXPosition])
+
+    const clearCurrentTimer = React.useCallback(() => {
+      if (timer) {
+        clearTimeout(timer)
+        timer = null
+      }
     }, [])
 
-    useEffect(() => {
-      if (autoSwitch) {
-        setTimer(setTimeout(next, 3000))
-      }
-      onSwitchSlide(current)
-      setXPosition(targetXPosition)
-
-      return () => {
-        clearTimeout(timer)
-      }
-    }, [current])
-
-    // To update slider width based on the time sliderRef.current is available
-    useEffect(() => {
-      if (sliderRef && sliderRef.current) {
-        setViewWidth(sliderRef.current.clientWidth * children.length)
-      }
-    }, [sliderRef])
-
-    const next = () => {
+    const next = React.useCallback(() => {
       clearCurrentTimer()
       const nextIndex = (current + 1) % pageCount
       setCurrent(nextIndex)
-    }
+    }, [clearCurrentTimer, current, pageCount])
 
     const prev = () => {
       clearCurrentTimer()
@@ -110,13 +95,6 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
     const setCurrentIndex = (index: number) => {
       clearCurrentTimer()
       setCurrent(index)
-    }
-
-    const clearCurrentTimer = () => {
-      if (timer) {
-        clearTimeout(timer)
-        setTimer(null)
-      }
     }
 
     const handlePointerDown = (event: React.PointerEvent) => {
@@ -164,6 +142,25 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
         })
       }
     }
+
+    useEffect(() => {
+      if (autoSwitch) {
+        timer = setTimeout(next, 3000)
+      }
+      onSwitchSlide(current)
+      setXPosition(targetXPosition)
+
+      return () => {
+        clearTimeout(timer)
+      }
+    }, [autoSwitch, current, next, onSwitchSlide, targetXPosition])
+
+    // To update slider width based on the time sliderRef.current is available
+    useEffect(() => {
+      if (sliderRef && sliderRef.current) {
+        setViewWidth(sliderRef.current.clientWidth * children.length)
+      }
+    }, [children.length, sliderRef])
 
     return (
       <CssInjection css={css} childrenRef={hostRef}>
@@ -285,9 +282,4 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
   },
 )
 
-export default CarouselSlider as typeof CarouselSlider & {
-  Slide: typeof CarouselSlide
-  ImageSlide: typeof CarouselImageSlide
-  Promotion: typeof CarouselPromotion
-  Mobile: typeof CarouselMobile
-}
+export default CarouselSlider

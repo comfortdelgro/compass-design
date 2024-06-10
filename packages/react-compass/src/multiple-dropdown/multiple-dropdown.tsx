@@ -198,45 +198,46 @@ const MultipleDropdown = React.forwardRef<
 
   // clone children to assign value prop if not exists. the value would be equal to the key prop
   // This is to support the legacy code where users don't pass value prop and use key prop instead
-  const recursivelyAddValueProp = (
-    children: React.ReactNode,
-  ): React.ReactNode => {
-    if (typeof children === 'string') return children
+  const recursivelyAddValueProp = React.useCallback(
+    (children: React.ReactNode): React.ReactNode => {
+      if (typeof children === 'string') return children
 
-    let sectionIndex = -1
-    return React.Children.map(children, (child) => {
-      if (!child) return child
+      let sectionIndex = -1
+      return React.Children.map(children, (child) => {
+        if (!child) return child
 
-      if (React.isValidElement(child)) {
-        if (child.type === MultipleDropdownItem) {
-          const childWithProps =
-            child as React.ReactElement<MultipleDropdownItemProps>
-          if (!('value' in childWithProps.props)) {
-            return React.cloneElement(childWithProps, {
-              value: `${child.key}` || '',
-            })
+        if (React.isValidElement(child)) {
+          if (child.type === MultipleDropdownItem) {
+            const childWithProps =
+              child as React.ReactElement<MultipleDropdownItemProps>
+            if (!('value' in childWithProps.props)) {
+              return React.cloneElement(childWithProps, {
+                value: `${child.key}` || '',
+              })
+            }
+          }
+
+          const childProps = child as React.ReactElement<
+            Pick<DropdownSectionProps, 'index' | 'children'>
+          >
+          if (childProps.props.children) {
+            const newProps: Pick<DropdownSectionProps, 'index' | 'children'> = {
+              children: recursivelyAddValueProp(childProps.props.children),
+            }
+            //   // Set index for MultipleDropdownSection to handle selected section by index
+            if (childProps.type === MultipleDropdownSection) {
+              sectionIndex++
+              newProps.index = sectionIndex
+            }
+            return React.cloneElement(childProps, {...newProps})
           }
         }
 
-        const childProps = child as React.ReactElement<
-          Pick<DropdownSectionProps, 'index' | 'children'>
-        >
-        if (childProps.props.children) {
-          const newProps: Pick<DropdownSectionProps, 'index' | 'children'> = {
-            children: recursivelyAddValueProp(childProps.props.children),
-          }
-          //   // Set index for MultipleDropdownSection to handle selected section by index
-          if (childProps.type === MultipleDropdownSection) {
-            sectionIndex++
-            newProps.index = sectionIndex
-          }
-          return React.cloneElement(childProps, {...newProps})
-        }
-      }
-
-      return child
-    })
-  }
+        return child
+      })
+    },
+    [],
+  )
 
   useEffect(() => {
     if (open) {
@@ -248,7 +249,7 @@ const MultipleDropdown = React.forwardRef<
 
   useEffect(() => {
     setClonedChildren(recursivelyAddValueProp(children))
-  }, [children])
+  }, [children, recursivelyAddValueProp])
 
   React.useEffect(() => {
     if (!openStateInitialChangedRef.current) {
@@ -326,13 +327,7 @@ const MultipleDropdown = React.forwardRef<
         inputRef.current?.focus()
       }
     },
-    [
-      isReadOnly,
-      selectedItems,
-      isUncontrolledComponent,
-      onSelectionChange,
-      onValuesChange,
-    ],
+    [isReadOnly, selectedItems, isUncontrolledComponent, onSelectionChange, onValuesChange, inputRef],
   )
 
   const handleKeyDown = React.useCallback(
@@ -560,7 +555,7 @@ const MultipleDropdown = React.forwardRef<
         }
       }
     },
-    [onOpenChange],
+    [onOpenChange, open],
   )
 
   const handleDropdownHeaderClick = () => {

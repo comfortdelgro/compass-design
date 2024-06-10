@@ -34,7 +34,7 @@ const CarouselSliderDots = React.forwardRef<HTMLDivElement, Props>(
         >
           {Array(length)
             .fill(0)
-            .map((item: any, index: number) => {
+            .map((item, index: number) => {
               return (
                 <div
                   key={index + item}

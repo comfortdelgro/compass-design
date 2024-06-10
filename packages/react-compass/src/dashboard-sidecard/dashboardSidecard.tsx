@@ -1,8 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
-import DashboardSidecardContent from './dashboardSidecardContent'
-import DashboardSidecardHeader from './dashboardSidecardHeader'
 import styles from './styles/dashboardSidecard.module.css'
 
 interface Props {
@@ -41,7 +39,4 @@ const DashboardSidecard = React.forwardRef<
   )
 })
 
-export default DashboardSidecard as typeof DashboardSidecard & {
-  Header: typeof DashboardSidecardHeader
-  Content: typeof DashboardSidecardContent
-}
+export default DashboardSidecard
