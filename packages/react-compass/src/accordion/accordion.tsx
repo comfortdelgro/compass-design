@@ -2,6 +2,7 @@ import React, {useMemo, useState} from 'react'
 import Transitions from '../transitions'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import AccordionContext from './accordion-context'
 import AccordionExpandIcon from './accordion-expandIcon'
@@ -13,27 +14,21 @@ interface Props {
   css?: CSS
   expand?: boolean
   defaultExpand?: boolean
-  children: React.ReactNode
   onExpandChange?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
-  'aria-labelledby'?: string
 }
 
 export type AccordionProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-// eslint-disable-next-line react-refresh/only-export-components
 const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
   (props, ref) => {
     const {
-      // StyledComponentProps
       css = {},
-      // ComponentProps
-      expand: controlledExpand, //map the prop to a different name
-      defaultExpand = false,
       children,
       className,
+      defaultExpand = false,
+      expand: controlledExpand,
       onExpandChange,
-      // HTML Div props
       ...delegated
     } = props
 
@@ -75,9 +70,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
           })
         : AccordionTitleElement
 
-    const rootClasses = [styles.accordion, className, 'cdg-accordion']
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(styles.accordion, className, 'cdg-accordion')
 
     return (
       <CssInjection css={css} childrenRef={accordionRef}>
@@ -92,7 +85,10 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
               aria-labelledby={props['aria-labelledby']}
             >
               <div
-                className={`${styles.accordionBodyInner} cdg-accordion-body`}
+                className={classNames(
+                  styles.accordionBodyInner,
+                  'cdg-accordion-body',
+                )}
               >
                 {AccordionContent}
               </div>
@@ -102,10 +98,10 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       </CssInjection>
     )
   },
-)
-
-export default Accordion as typeof Accordion & {
+) as typeof Accordion & {
   Table: typeof AccordionTable
   Title: typeof AccordionTitle
   ExpandIcon: typeof AccordionExpandIcon
 }
+
+export default Accordion

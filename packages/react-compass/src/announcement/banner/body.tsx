@@ -1,6 +1,7 @@
 import React from 'react'
 import {CSS} from '../../utils'
 import CssInjection from '../../utils/objectToCss/CssInjection'
+import {classNames} from '../../utils/string'
 import styles from '../styles/banner.module.css'
 
 interface Props {
@@ -15,16 +16,14 @@ const BannerBody = React.forwardRef<HTMLDivElement, BannerBodyProps>(
   (props, ref) => {
     const {css = {}, align = 'left', children, className} = props
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.body,
       align === 'left' && styles.bodyAlignLeft,
       align === 'center' && styles.bodyAlignCenter,
       align === 'right' && styles.bodyAlignRight,
       className,
       'cdg-announcement-banner-body',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css}>
