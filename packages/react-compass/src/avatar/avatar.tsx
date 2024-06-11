@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {AVATAR_SIZE_MAP, AvatarSize} from './avatar.const'
 import styles from './styles/avatar.module.css'
@@ -54,23 +55,28 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
     <CssInjection css={css} childrenRef={avatarRef}>
       <div
         {...htmlProps}
-        className={`cdg-avatar ${styles.avatar} ${AVATAR_SIZE_MAP[size]} ${
-          className ? className : ''
-        } `}
+        className={classNames(
+          styles.avatar,
+          AVATAR_SIZE_MAP[size],
+          className,
+          'cdg-avatar',
+        )}
         style={style}
       >
-        <div className={`cdg-avatar-inner ${styles.avatarInner}`}>
+        <div className={classNames(styles.avatarInner, 'cdg-avatar-inner')}>
           {label ? (
-            <span className={`cdg-avatar-text ${styles.avatarText}`}>
+            <span className={classNames(styles.avatarText, 'cdg-avatar-text')}>
               {(cutOffText && calculateInitials(label, size)) || label}
             </span>
           ) : null}
           {icon ? (
-            <div className={`cdg-avatar-icon ${styles.avatarIcon}`}>{icon}</div>
+            <div className={classNames(styles.avatarIcon, 'cdg-avatar-icon')}>
+              {icon}
+            </div>
           ) : null}
           {image ? (
             <img
-              className={`cdg-avatar-image ${styles.avatarImage}`}
+              className={classNames(styles.avatarImage, 'cdg-avatar-image')}
               src={image}
               alt={label || 'Avatar'}
             />

@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import {EKeyboardKey} from '../utils/keyboard.enum'
 import {CSS} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import AccordionButton from './accordion-button'
 import AccordionContext, {AccordionContextType} from './accordion-context'
 import styles from './styles/accordion-title.module.css'
@@ -20,11 +21,11 @@ export type AccordionTitleProps = Props &
 const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
   (props, ref) => {
     const {
-      icon = <DefaultIcon />,
-      children,
-      expandIcon,
       css = {},
+      children,
       className,
+      expandIcon,
+      icon = <DefaultIcon />,
       'aria-controls': ariaControls,
       ...delegated
     } = props
@@ -73,13 +74,11 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
       return <div className={styles.accordionLeftIconContainer}>{icon}</div>
     }
 
-    const rootClasses = [
+    const rootClasses = classNames(
       expand ? styles.open : '',
       className,
       'cdg-accordion-title-container',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <AccordionButton
@@ -93,14 +92,22 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
       >
         <div
           {...delegated}
-          className={`${styles.accordionTitleWrapper} cdg-accordion-title-wrapper`}
+          className={classNames(
+            styles.accordionTitleWrapper,
+            'cdg-accordion-title-wrapper',
+          )}
         >
           {renderLeftIcon()}
-          <div className={`${styles.accordionTitle} cdg-accordion-title`}>
+          <div
+            className={classNames(styles.accordionTitle, 'cdg-accordion-title')}
+          >
             {renderTitle()}
           </div>
           <div
-            className={`${styles.accordionChevronContainer} cdg-accordion-title-chevron-container`}
+            className={classNames(
+              styles.accordionChevronContainer,
+              'cdg-accordion-title-chevron-container',
+            )}
           >
             {expandIcon ? expandIcon : <ChevronIcon />}
           </div>

@@ -105,34 +105,30 @@ const TableColumnHeader = React.forwardRef<
           width: headerProps.getSize(),
         }}
       >
-        {headerProps.isPlaceholder ? null : (
+        {!headerProps.isPlaceholder && (
           <div className={headerContentClass}>
-            {
-              <div
-                onClick={
-                  headerProps.column.columnDef.enableGrouping === true
-                    ? headerProps.column.getToggleGroupingHandler()
-                    : undefined
-                }
-              >
-                {isGroupedColumn ? (
-                  <span>({headerProps.column.getGroupedIndex()})</span>
-                ) : (
-                  <></>
-                )}
-                {flexRender(
-                  headerProps.column.columnDef.header,
-                  headerProps.getContext(),
-                )}
-              </div>
-            }
+            <div
+              onClick={
+                headerProps.column.columnDef.enableGrouping === true
+                  ? headerProps.column.getToggleGroupingHandler()
+                  : undefined
+              }
+            >
+              {isGroupedColumn ? (
+                <span>({headerProps.column.getGroupedIndex()})</span>
+              ) : null}
+              {flexRender(
+                headerProps.column.columnDef.header,
+                headerProps.getContext(),
+              )}
+            </div>
             {sortDirection && directions[sortDirection]}
-            {isFilterableColumn ? (
+            {isFilterableColumn && (
               <HeaderColumnFilter
                 column={headerProps.column}
                 table={tableOption}
               />
-            ) : null}
+            )}
           </div>
         )}
         {enableResizing && (

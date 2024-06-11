@@ -27,6 +27,7 @@ const TableCheckboxCell = React.forwardRef<
     onChange,
     ...rest
   } = props
+
   const tableCheckboxCellRef = useDOMRef<HTMLInputElement>(ref)
 
   const rootClasses = [
