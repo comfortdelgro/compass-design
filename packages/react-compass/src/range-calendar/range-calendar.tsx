@@ -165,14 +165,17 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ctaButtonRender, showShortcut])
 
+    const rootClasses = [
+      styles.rangeCalendar,
+      showShortcut && styles.extend,
+      'cdg-range-calendar',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={rangeCalendarRef}>
-        <div
-          ref={rangeCalendarRef}
-          className={`${styles.rangeCalendar} ${
-            showShortcut ? styles.extend : ''
-          }`}
-        >
+        <div ref={rangeCalendarRef} className={rootClasses}>
           {showShortcut ? (
             <RangeCalendarShorcuts
               state={state}
@@ -190,7 +193,9 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
               prevButtonProps={prevButtonProps as unknown as ButtonProps}
               nextButtonProps={nextButtonProps as unknown as ButtonProps}
             />
-            <div className={`calendar-body ${styles.calendarBody}`}>
+            <div
+              className={`${styles.calendarBody} cdg-range-calendar-calendar-body`}
+            >
               <CalendarGrid state={state} maxValue={maxValue} />
               {isRangeCalendar ? (
                 <CalendarGrid
@@ -203,14 +208,18 @@ const RangeCalendar = React.forwardRef<HTMLDivElement, RangeCalendarProps>(
               )}
             </div>
             {hasFooter && (
-              <div className={`calendar-footer ${styles.calendarFooter}`}>
+              <div
+                className={`${styles.calendarFooter} cdg-range-calendar-footer`}
+              >
                 <Button variant='ghost' onPress={handleClearButtonClick}>
                   Clear
                 </Button>
                 <div
-                  className={`calendar-footer-right-side ${styles.calendarFooterRightSide}`}
+                  className={`${styles.calendarFooterRightSide} cdg-range-calendar-footer-right-side`}
                 >
-                  <p className={`preview-date ${styles.previewDate}`}>
+                  <p
+                    className={`${styles.previewDate} cdg-range-calendar-preview-date`}
+                  >
                     {state?.value?.start && state?.value?.end
                       ? formatter.formatRange(
                           state.value.start.toDate(getLocalTimeZone()),

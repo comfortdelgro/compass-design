@@ -31,7 +31,7 @@ const BannerImage = React.forwardRef<HTMLImageElement, BannerImageProps>(
       <CssInjection css={css} childrenRef={bannerImageRef}>
         {!imageError ? (
           <img
-            className={`cdg-banner-image ${styles.bannerImage} ${className}`}
+            className={`${styles.bannerImage} ${className} cdg-banner-image `}
             ref={bannerImageRef}
             alt='banner image'
             onError={handleImageError}
@@ -39,7 +39,7 @@ const BannerImage = React.forwardRef<HTMLImageElement, BannerImageProps>(
           />
         ) : (
           <div
-            className={`cdg-banner-image-fallback ${styles.bannerImageFallback}`}
+            className={`${styles.bannerImageFallback} cdg-banner-image-fallback`}
           >
             Image failed to load. Please try again later.
           </div>

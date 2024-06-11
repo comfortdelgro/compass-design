@@ -50,10 +50,6 @@ const CarouselPromotion = React.forwardRef<
     onSwitchSlide(index)
   }
 
-  const generateButtonRangeClassName = () => {
-    return data[activeIndex]?.buttons?.length || 0
-  }
-
   const toCamelCase = (option: NinePartAlignment) => {
     const parts = option.split('-')
     return parts[0] + capitalizeFirstLetter(parts[1])
@@ -62,55 +58,60 @@ const CarouselPromotion = React.forwardRef<
   return (
     <CssInjection css={css} childrenRef={buttonRef}>
       <CarouselSlider
-        onSwitchSlide={handleSwitchSlide}
-        socials={socials || []}
-        useNavigation={useNavigation}
-        autoSwitch={autoSwitch}
-        navigationButtonType={navigationButtonType}
+        {...htmlProps}
+        css={css}
         effect={effect}
         ref={carouselRef}
-        css={css}
-        {...htmlProps}
-        className={`current-slide-buttons-${generateButtonRangeClassName()}`}
+        socials={socials || []}
+        autoSwitch={autoSwitch}
+        useNavigation={useNavigation}
+        navigationButtonType={navigationButtonType}
+        onSwitchSlide={handleSwitchSlide}
+        className={`cdg-carousel-promotion-current-slide-buttons-${
+          data[activeIndex]?.buttons?.length || 0
+        }`}
       >
         {data.map((dataItem: CarouselSliderItem, index: number) => (
           <CarouselSlide
             key={index}
-            className={`slider-slide${activeIndex === index ? ' active' : ''}`}
+            className={`${activeIndex === index ? 'active' : ''} cdg-carousel-promotion-slide`}
             active={activeIndex === index}
           >
             <img
-              className={`slide-background ${styles.slideBackground}`}
+              className={`${styles.slideBackground} cdg-carousel-promotion-slide-background`}
               src={dataItem.image}
               draggable={false}
             />
             {dataItem.mask && (
               <div
-                className={`slide-mask ${styles.slideMask}`}
+                className={`${styles.slideMask} cdg-carousel-promotion-slide-mask`}
                 style={{background: `rgba(0,0,0,${dataItem.mask})`}}
               />
             )}
             <div
-              className={`slide-body ${styles.slideBody} ${
-                dataItem.alignment || ''
-              } ${
-                dataItem.alignment
-                  ? styles[toCamelCase(dataItem.alignment)]
-                  : ''
-              }`}
+              className={[
+                styles.slideBody,
+                dataItem.alignment || '',
+                dataItem.alignment && styles[toCamelCase(dataItem.alignment)],
+                'cdg-carousel-promotion-slide-body',
+              ]
+                .filter(Boolean)
+                .join(' ')}
             >
               <h4
-                className={`content-slider-title ${styles.contentSliderTitle}`}
+                className={`${styles.contentSliderTitle} cdg-carousel-promotion-content-slider-title`}
               >
                 {dataItem.title}
               </h4>
               <p
-                className={`content-slider-description ${styles.contentSliderDescription}`}
+                className={`${styles.contentSliderDescription} cdg-carousel-promotion-content-slider-description`}
               >
                 {dataItem.description}
               </p>
               {dataItem.buttons && (
-                <div className={`slide-button-row ${styles.slideButtonRow}`}>
+                <div
+                  className={`${styles.slideButtonRow} cdg-carousel-promotion-slide-button-row`}
+                >
                   {dataItem.buttons.map((button, index) => {
                     return (
                       <Button

@@ -1,4 +1,4 @@
-import _Modal from './modal'
+import Modal from './modal'
 import ModalActions from './modal-actions'
 import ModalCloseIcon from './modal-closeIcon'
 import ModalDescription from './modal-description'
@@ -11,14 +11,6 @@ export type {ModalCloseIconProps} from './modal-closeIcon'
 export type {ModalDescriptionProps} from './modal-description'
 export type {ModalTitleProps} from './modal-title'
 export type {ModalTriggerProps} from './modal-trigger'
-
-const Modal = _Modal as typeof _Modal & {
-  Trigger: typeof ModalTrigger
-  Title: typeof ModalTitle
-  Description: typeof ModalDescription
-  Actions: typeof ModalActions
-  CloseIcon: typeof ModalCloseIcon
-}
 
 Modal.Trigger = ModalTrigger
 Modal.Title = ModalTitle

@@ -7,6 +7,7 @@ import DialogActions from './dialog-actions'
 import DialogDescription from './dialog-description'
 import DialogIcon from './dialog-icon'
 import DialogTitle from './dialog-title'
+import DialogTrigger from './dialog-trigger'
 import styles from './styles/dialog.module.css'
 
 interface Props {
@@ -182,6 +183,12 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Dialog & {
+  Trigger: typeof DialogTrigger
+  Title: typeof DialogTitle
+  Description: typeof DialogDescription
+  Actions: typeof DialogActions
+  Icon: typeof DialogIcon
+}
 
 export default Dialog

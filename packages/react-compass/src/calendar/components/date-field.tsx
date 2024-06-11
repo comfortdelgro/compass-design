@@ -87,17 +87,30 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const {onPress, ...buttonProps} = props.buttonProps
 
+  const rootClasses = [
+    styles.dateField,
+    isDisabled && styles.disabled,
+    isInvalid && styles.invalid,
+    'cdg-date-field',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  const inputClasses = [
+    styles.dateFieldInput,
+    isDisabled || isReadOnly ? '' : props.isMobile ? styles.mobile : '',
+    'cdg-date-field-input',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <div>
-      <div
-        className={`cdg-date-field ${styles.dateField} ${
-          isDisabled ? styles.disabled : ''
-        } ${isInvalid ? styles.invalid : ''}`}
-      >
+      <div className={rootClasses}>
         {typeof props.label === 'string' ? (
           <span
             {...labelProps}
-            className={`date-field-label ${styles.dateFieldLabel}`}
+            className={`${styles.dateFieldLabel} cdg-date-field-label`}
           >
             {props.label} {generateLabeling()}
           </span>
@@ -107,9 +120,7 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         <div
           {...fieldProps}
           ref={dateFieldRef}
-          className={`date-field-input ${styles.dateFieldInput} ${
-            isDisabled || isReadOnly ? '' : props.isMobile ? styles.mobile : ''
-          }`}
+          className={inputClasses}
           onClick={() => {
             if (isDisabled || isReadOnly) {
               return
@@ -141,7 +152,7 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             }}
             type='button'
             disabled={isDisabled || isReadOnly}
-            className={`toggle-calendar-button ${styles.expandButton}`}
+            className={`${styles.expandButton} cdg-date-field-expand-button`}
           >
             <Icon />
           </button>
@@ -149,13 +160,13 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       </div>
       {props.isInvalid && props.errorMessage && (
         <div
-          className={`cdg-date-field-error ${styles.textFieldHelperText} ${styles.helperTextError}`}
+          className={`${styles.textFieldHelperText} ${styles.helperTextError} cdg-date-field-error `}
         >
           {props.errorMessage}
         </div>
       )}
       {props.helperText ? (
-        <div className={`cdg-date-field-helper ${styles.textFieldHelperText}`}>
+        <div className={`${styles.textFieldHelperText} cdg-date-field-helper`}>
           {props.helperText}
         </div>
       ) : null}

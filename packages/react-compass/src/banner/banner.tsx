@@ -43,18 +43,21 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
     BannerDescription,
   )
 
+  const rootClasses = [
+    styles.banner,
+    styles[`bannerSize${capitalizeFirstLetter(size)}`],
+    className,
+    'cdg-banner',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={bannerRef}>
-      <div
-        className={`cdg-banner ${className} ${styles.banner} ${
-          styles[`bannerSize${capitalizeFirstLetter(size)}`]
-        }`}
-        ref={bannerRef}
-        {...htmlProps}
-      >
+      <div {...htmlProps} ref={bannerRef} className={rootClasses}>
         {BannerImageElement}
         <div
-          className={`cdg-banner-content-container ${styles.contentContainer}`}
+          className={`${styles.contentContainer} cdg-banner-content-container`}
         >
           {BannerTitleElement}
           {BannerDescriptionElement}
@@ -62,6 +65,10 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Banner & {
+  Image: typeof BannerImage
+  Title: typeof BannerTitle
+  Description: typeof BannerDescription
+}
 
-export default Banner 
+export default Banner

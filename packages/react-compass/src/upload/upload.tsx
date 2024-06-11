@@ -8,6 +8,7 @@ import {
   convertFileSizeToReadableNumber,
 } from './common'
 import styles from './styles/upload.module.css'
+import UploadDragAndDrop from './upload-drag-and-drop'
 
 interface Props {
   children?: React.ReactNode
@@ -203,6 +204,8 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Upload & {
+  DragAndDrop: typeof UploadDragAndDrop
+}
 
 export default Upload

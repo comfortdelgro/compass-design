@@ -3,6 +3,10 @@ import {CSS, CssInjection} from '../utils/objectToCss'
 import {Pointer, Position} from '../utils/pointer'
 import {capitalizeFirstLetter} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
+import CarouselImageSlide from './carousel-image-slide'
+import CarouselMobile from './carousel-mobile'
+import CarouselPromotion from './carousel-promotion'
+import CarouselSlide from './carousel-slide'
 import CarouselSliderDots from './carousel-slider-dots'
 import {
   AnimationType,
@@ -162,27 +166,72 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       }
     }, [children.length, sliderRef])
 
+    const rootClasses = [
+      styles.carousel,
+      styles['effect' + capitalizeFirstLetter(effect)],
+      className,
+      'cdg-carousel-slider',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const containerClasses = [
+      styles.contentSliderContainer,
+      styles[effect + 'ContentSliderContainer'],
+      'cdg-carousel-slider-container',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const scrollerClasses = [
+      styles.sliderScroller,
+      styles[effect + 'SliderScroller'],
+      'cdg-carousel-slider-scroller',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const prevClasses = [
+      styles.sliderNavButton,
+      styles.sliderPrevButton,
+      styles[navigationButtonType],
+      styles['sliderPrevButton' + capitalizeFirstLetter(navigationButtonType)],
+      'cdg-carousel-slider-prev-button',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const nextClasses = [
+      styles.sliderNavButton,
+      styles.sliderNextButton,
+      styles[navigationButtonType],
+      styles['sliderNextButton' + capitalizeFirstLetter(navigationButtonType)],
+      'cdg-carousel-slider-next-button',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const buttonClasses = [
+      styles.contentSliderBottomNav,
+      socials && socials.length ? styles.useSocials : '',
+      'cdg-carousel-slider-button-nav',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={hostRef}>
         <div
-          className={`content-slider ${
-            styles['effect' + capitalizeFirstLetter(effect)]
-          } ${styles.carousel} ${className ? ' ' + className : ''}`}
-          ref={sliderRef}
-          style={style}
           {...htmlProps}
+          style={style}
+          ref={sliderRef}
+          className={rootClasses}
         >
-          <div
-            className={`content-slider-container ${
-              styles.contentSliderContainer
-            } ${styles[effect + 'ContentSliderContainer']}`}
-          >
+          <div className={containerClasses}>
             {effect === 'slide' ? (
               <div
                 ref={scroller}
-                className={`slider-scroller ${styles.sliderScroller} ${
-                  styles[effect + 'SliderScroller']
-                }`}
+                className={scrollerClasses}
                 style={{
                   width: `${viewWidth}px`,
                   transform: `translate3d(-${xPosition}px, 0, 0)`,
@@ -197,19 +246,9 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
           </div>
           {useNavigation && pageCount > 1 && (
             <div
-              className={`content-slider-controls ${styles.contentSliderControls}`}
+              className={`${styles.contentSliderControls} cdg-carousel-slider-controls`}
             >
-              <div
-                onClick={prev}
-                className={`${styles.sliderNavButton} ${
-                  styles.sliderPrevButton
-                } ${styles[navigationButtonType]} ${
-                  styles[
-                    'sliderPrevButton' +
-                      capitalizeFirstLetter(navigationButtonType)
-                  ]
-                }`}
-              >
+              <div onClick={prev} className={prevClasses}>
                 {navigationButtonType === 'icon' ? (
                   <svg viewBox='0 0 320 512'>
                     <path
@@ -221,17 +260,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
                   'Prev'
                 )}
               </div>
-              <div
-                onClick={next}
-                className={`${styles.sliderNavButton} ${
-                  styles.sliderNextButton
-                } ${styles[navigationButtonType]} ${
-                  styles[
-                    'sliderNextButton' +
-                      capitalizeFirstLetter(navigationButtonType)
-                  ]
-                }`}
-              >
+              <div onClick={next} className={nextClasses}>
                 {navigationButtonType === 'icon' ? (
                   <svg viewBox='0 0 320 512'>
                     <path
@@ -245,11 +274,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
               </div>
             </div>
           )}
-          <div
-            className={`content-slider-bottom-nav ${
-              styles.contentSliderBottomNav
-            } ${socials && socials.length ? styles.useSocials : ''}`}
-          >
+          <div className={buttonClasses}>
             {useDotIndicator && pageCount > 1 && (
               <CarouselSliderDots
                 length={pageCount}
@@ -280,6 +305,11 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       </CssInjection>
     )
   },
-)
+) as typeof CarouselSlider & {
+  Slide: typeof CarouselSlide
+  ImageSlide: typeof CarouselImageSlide
+  Promotion: typeof CarouselPromotion
+  Mobile: typeof CarouselMobile
+}
 
 export default CarouselSlider

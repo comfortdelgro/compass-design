@@ -22,7 +22,7 @@ const BannerDescription = React.forwardRef<
   return (
     <CssInjection css={css} childrenRef={bannerDescriptionRef}>
       <div
-        className={`cdg-banner-description ${styles.bannerDescription} ${className}`}
+        className={`${styles.bannerDescription} ${className} cdg-banner-description`}
         ref={bannerDescriptionRef}
         {...delegated}
       >

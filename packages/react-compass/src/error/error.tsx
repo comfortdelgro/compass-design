@@ -109,6 +109,12 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Error & {
+  Title: typeof ErrorTitle
+  Description: typeof ErrorDescription
+  Action: typeof ErrorAction
+  Icon: typeof ErrorIcon
+  Image: typeof ErrorImage
+}
 
 export default Error

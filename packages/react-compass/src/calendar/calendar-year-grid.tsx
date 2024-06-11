@@ -31,7 +31,7 @@ const CalendarYearGrid = (props: Props) => {
 
   return (
     <div className={styles.calendarMonthYearGrid}>
-      {Array.isArray(monthYearState?.renderedYears) ? (
+      {Array.isArray(monthYearState?.renderedYears) &&
         monthYearState?.renderedYears.map((year) => {
           const isDisabled = (() => {
             if (maxValue) {
@@ -45,26 +45,30 @@ const CalendarYearGrid = (props: Props) => {
 
           const isCurrentYear = year === currentDate.getFullYear()
 
+          // content classes
+          const rootClasses = [
+            styles.calendarMonthYearCell,
+            isCurrentYear && styles.highlighted,
+            isCurrentYear && 'highlighted',
+            isDisabled && 'disabled',
+            'cdg-calendar-year-cell',
+          ]
+            .filter(Boolean)
+            .join(' ')
+
           return (
             <button
+              key={year}
               type='button'
-              className={`calendar-year-cell ${isDisabled ? 'disabled' : ''} ${
-                isCurrentYear ? 'highlighted' : ''
-              } ${styles.calendarMonthYearCell} ${
-                isCurrentYear ? styles.highlighted : ''
-              }`}
+              disabled={isDisabled}
+              className={rootClasses}
               aria-label={year.toString()}
               onClick={handleYearClick(year)}
-              disabled={isDisabled}
-              key={year}
             >
               {year}
             </button>
           )
-        })
-      ) : (
-        <></>
-      )}
+        })}
     </div>
   )
 }

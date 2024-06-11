@@ -71,7 +71,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
         setTimeout(() => handleClose?.(), autoClose)
       }
     }, [autoClose, handleClose, isOpen])
-  
+
     const handleClick = (e: React.MouseEvent) => {
       if (onClick) {
         onClick(e, id)
@@ -116,6 +116,10 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       </>
     )
   },
-)
+) as typeof Snackbar & {
+  Text: typeof SnackbarText
+  PrefixIcon: typeof SnackbarPrefixIcon
+  SuffixIcon: typeof SnackbarSuffixIcon
+}
 
 export default Snackbar

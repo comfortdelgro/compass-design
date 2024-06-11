@@ -2,6 +2,7 @@ import React, {useMemo} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/timeline.module.css'
+import TimelineItem from './timeline-item'
 
 interface Props {
   children?: React.ReactNode
@@ -70,6 +71,8 @@ const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
       </>
     )
   },
-)
+) as typeof Timeline & {
+  Item: typeof TimelineItem
+}
 
 export default Timeline

@@ -112,6 +112,8 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Wizard & {
+  Item: typeof WizardItem
+}
 
 export default Wizard

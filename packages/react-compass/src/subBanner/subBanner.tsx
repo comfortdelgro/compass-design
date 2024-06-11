@@ -87,6 +87,10 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
       </CssInjection>
     )
   },
-)
+) as typeof SubBanner & {
+  Image: typeof SubBannerImage
+  Title: typeof SubBannerTitle
+  Description: typeof SubBannerDescription
+}
 
 export default SubBanner

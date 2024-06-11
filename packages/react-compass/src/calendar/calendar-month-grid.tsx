@@ -33,11 +33,11 @@ const CalendarMonthGrid = (props: Props) => {
       {months.map((month) => {
         return (
           <button
-            className={styles.calendarMonthYearCell}
+            key={month}
             type='button'
             aria-label={month}
             onClick={handleMonthClick(month)}
-            key={month}
+            className={styles.calendarMonthYearCell}
           >
             {month}
           </button>

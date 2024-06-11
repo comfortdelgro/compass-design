@@ -28,7 +28,7 @@ const BannerTitle = React.forwardRef<HTMLHeadingElement, BannerTitleProps>(
     return (
       <CssInjection css={css} childrenRef={bannerTitleRef}>
         <h1
-          className={`cdg-banner-title ${styles.bannerTitle} ${className}`}
+          className={`${styles.bannerTitle} ${className} cdg-banner-title`}
           ref={bannerTitleRef}
           {...delegated}
         >

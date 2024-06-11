@@ -21,15 +21,18 @@ const CarouselImageSlide = React.forwardRef<
 
   const buttonRef = useDOMRef<HTMLDivElement>(ref)
 
+  const rootClasses = [
+    styles.carouselImageSlide,
+    active && styles.sliderSlideActive,
+    className,
+    'cdg-carousel-image-slider-slide',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <CssInjection css={css} childrenRef={buttonRef}>
-      <img
-        className={`slider-slide ${className ? className : ''} ${
-          styles.carouselImageSlide
-        } ${active ? styles.sliderSlideActive : ''}`}
-        src={imageUrl}
-        {...htmlProps}
-      />
+      <img {...htmlProps} src={imageUrl} className={rootClasses} />
     </CssInjection>
   )
 })

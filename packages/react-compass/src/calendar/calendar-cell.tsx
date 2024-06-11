@@ -58,21 +58,7 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
       isDisabled = isDisabled ? isDisabled : date.month !== currentMonth.month
     }
-
-    const classNameCombine = () => {
-      let className = `${styles.calendarCell} `
-      // if (isFocusVisible) className += `focused ${styles.focused} `
-      if (isSelected && isRangeCalendar)
-        className += `selected ${styles.selected} `
-      else if (isSelected && !isRangeCalendar)
-        className += `highlighted ${styles.highlighted} `
-      if (isSelectionStart || isSelectionEnd)
-        className += `highlighted ${styles.highlighted} `
-      if (isUnavailable) className += `unavailable ${styles.unavailable} `
-      if (isToday) className += `today ${styles.today} `
-      return className
-    }
-
+  
     const maxValueClassFunc = () => {
       if (maxValue && date > maxValue) {
         isDisabled = true
@@ -83,56 +69,50 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
     const cellWrapperRef = useRef(null)
 
+    const rootClasses = [
+      styles.calendarCell,
+      isSelected && isRangeCalendar
+        ? `selected ${styles.selected}`
+        : isSelected && !isRangeCalendar
+        ? `highlighted ${styles.highlighted}`
+        : '',
+      (isSelectionStart || isSelectionEnd) &&
+        `highlighted ${styles.highlighted}`,
+      isUnavailable && `unavailable ${styles.unavailable}`,
+      isToday && `today ${styles.today}`,
+      'cdg-calendar-cell',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    const cellClasses = [
+      styles.calendarCellValue,
+      isDisabled && 'disabled',
+      isDisabled && styles.disabled,
+      isSelected && 'selected',
+      'cdg-calendar-cell-value',
+    ]
+      .filter(Boolean)
+      .join(' ')
+
     return (
-      <>
-        {isDisabled ? (
-          <CssInjection css={css} childrenRef={cellWrapperRef}>
-            <td
-              ref={cellWrapperRef}
-              {...cellProps}
-              className={classNameCombine()}
-              aria-selected={isSelected}
-              aria-disabled={isDisabled}
-            >
-              <div
-                ref={cellRef}
-                hidden={isOutsideMonth}
-                className={`calendar-cell-value  ${'disabled'} ${
-                  isSelected ? 'selected' : ''
-                } ${styles.calendarCellValue} ${styles.disabled}`}
-              >
-                {formattedDate}
-              </div>
-            </td>
-          </CssInjection>
-        ) : (
-          <CssInjection css={css} childrenRef={cellWrapperRef}>
-            <td
-              ref={cellWrapperRef}
-              {...cellProps}
-              className={classNameCombine()}
-            >
-              <div
-                aria-label={buttonProps['aria-label']}
-                aria-disabled={buttonProps['aria-disabled']}
-                aria-invalid={buttonProps['aria-invalid']}
-                role={buttonProps['role']}
-                ref={cellRef}
-                hidden={isOutsideMonth}
-                className={`calendar-cell-value  ${
-                  isDisabled ? 'disabled' : ''
-                } ${isSelected ? 'selected' : ''} ${styles.calendarCellValue} ${
-                  isDisabled ? styles.disabled : ''
-                }`}
-                {...buttonProps}
-                tabIndex={buttonProps['tabIndex']}
-              >
-                {formattedDate}
-              </div>
-            </td>
-          </CssInjection>
-        )}
-      </>
+      <CssInjection css={css} childrenRef={cellWrapperRef}>
+        <td {...cellProps} ref={cellWrapperRef} className={rootClasses}>
+          <div
+            {...buttonProps}
+            ref={cellRef}
+            className={cellClasses}
+            hidden={isOutsideMonth}
+            role={buttonProps['role']}
+            tabIndex={buttonProps['tabIndex']}
+            aria-label={buttonProps['aria-label']}
+            aria-invalid={buttonProps['aria-invalid']}
+            aria-disabled={buttonProps['aria-disabled']}
+          >
+            {formattedDate}
+          </div>
+        </td>
+      </CssInjection>
     )
   },
 )

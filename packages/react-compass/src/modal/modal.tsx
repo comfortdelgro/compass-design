@@ -6,6 +6,7 @@ import ModalActions from './modal-actions'
 import ModalCloseIcon from './modal-closeIcon'
 import ModalDescription from './modal-description'
 import ModalTitle from './modal-title'
+import ModalTrigger from './modal-trigger'
 import styles from './styles/modal.module.css'
 
 interface Props {
@@ -200,6 +201,12 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Modal & {
+  Trigger: typeof ModalTrigger
+  Title: typeof ModalTitle
+  Description: typeof ModalDescription
+  Actions: typeof ModalActions
+  CloseIcon: typeof ModalCloseIcon
+}
 
 export default Modal

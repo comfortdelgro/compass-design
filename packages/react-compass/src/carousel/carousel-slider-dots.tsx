@@ -15,32 +15,36 @@ export interface Props {
 const CarouselSliderDots = React.forwardRef<HTMLDivElement, Props>(
   (props, ref) => {
     const {
+      style,
       length,
       current,
       css = {},
-      style,
       dotClick = () => null,
       ...htmlProps
     } = props
 
     const slideDotsRef = useDOMRef<HTMLDivElement>(ref)
 
+    const rootClasses = [styles.contentSliderDots, 'cdg-carousel-slider-dots']
+      .filter(Boolean)
+      .join(' ')
+
     return (
       <CssInjection css={css} childrenRef={slideDotsRef}>
-        <div
-          className={`content-slider-dots ${styles.contentSliderDots}`}
-          style={style}
-          {...htmlProps}
-        >
+        <div {...htmlProps} style={style} className={rootClasses}>
           {Array(length)
             .fill(0)
             .map((item, index: number) => {
               return (
                 <div
                   key={index + item}
-                  className={`carousel-dot ${styles.carouselDot} ${
-                    index === current ? styles.carouselActiveDot : ''
-                  }`}
+                  className={[
+                    styles.carouselDot,
+                    index === current && styles.carouselActiveDot,
+                    'cdg-carousel-slider-dot',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
                   onClick={() => {
                     dotClick(index)
                   }}

@@ -55,17 +55,17 @@ const CalendarGrid = (props: Props) => {
   return (
     <CssInjection css={css} childrenRef={tableRef}>
       <table
-        ref={tableRef}
         {...gridProps}
+        ref={tableRef}
         cellPadding='0'
-        className={`cdg-calendar-grid ${styles.calendarGrid}`}
+        className={`${styles.calendarGrid} cdg-calendar-grid`}
       >
         <thead {...headerProps}>
           <tr>
             {weekDays.map((day, index) => (
               <th
                 key={index}
-                className={`calendar-weekday ${styles.calendarWeekday}`}
+                className={`${styles.calendarWeekday} cdg-calendar-weekday`}
               >
                 {day}
               </th>
@@ -95,7 +95,7 @@ const CalendarGrid = (props: Props) => {
           {isFiveWeeks && (
             <tr
               aria-hidden
-              className={`week-sixth-placeholder ${styles.rowPlaceholder}`}
+              className={`${styles.rowPlaceholder} cdg-calendar-week-sixth-placeholder`}
             />
           )}
         </tbody>

@@ -1,6 +1,8 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {SpeedDialActions} from './speed-dial-actions'
+import {SpeedDialButton} from './speed-dial-button'
 import styles from './styles/speed-dial.module.css'
 
 interface Props {
@@ -47,6 +49,9 @@ const SpeedDial2 = React.forwardRef<HTMLDivElement, SpeedDial2Props>(
       </CssInjection>
     )
   },
-)
+) as typeof SpeedDial2 & {
+  Actions: typeof SpeedDialActions
+  Button: typeof SpeedDialButton
+}
 
 export default SpeedDial2

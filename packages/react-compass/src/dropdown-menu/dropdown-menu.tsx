@@ -7,7 +7,9 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMenuContext, {
   DropdownMenuContextType,
 } from './dropdown-menu-context'
+import DropdownMenuItem from './dropdown-menu-item'
 import DropdownMenuMenu from './dropdown-menu-menu'
+import DropdownMenuSubmenu from './dropdown-menu-submenu'
 import DropdownMenuToggle from './dropdown-menu-toggle'
 import styles from './styles/dropdown-menu.module.css'
 
@@ -161,6 +163,11 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
       </CssInjection>
     )
   },
-)
+) as typeof DropdownMenu & {
+  Toggle: typeof DropdownMenuToggle
+  Item: typeof DropdownMenuItem
+  Submenu: typeof DropdownMenuSubmenu
+  Menu: typeof DropdownMenuMenu
+}
 
 export default DropdownMenu
