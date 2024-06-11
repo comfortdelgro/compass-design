@@ -1,6 +1,7 @@
 import React from 'react'
 import {CSS} from '../../utils'
 import CssInjection from '../../utils/objectToCss/CssInjection'
+import {classNames} from '../../utils/string'
 
 interface Props {
   css?: CSS
@@ -13,9 +14,7 @@ const BannerRight = React.forwardRef<HTMLDivElement, BannerRightProps>(
   (props, ref) => {
     const {css = {}, className, children} = props
 
-    const rootClasses = [className, 'cdg-announcement-banner-right']
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(className, 'cdg-announcement-banner-right')
 
     return (
       <CssInjection css={css}>

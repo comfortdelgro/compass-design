@@ -1,6 +1,7 @@
 import React, {useRef} from 'react'
 import Popover from '../popover'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/autoComplete.module.css'
 
@@ -290,7 +291,11 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
       <>
         <CssInjection css={css}>
           <div
-            className={`${styles.autoComplete} ${className} cdg-auto-complete`}
+            className={classNames(
+              styles.autoComplete,
+              className,
+              'cdg-auto-complete',
+            )}
             ref={containerRef}
             {...htmlProps}
             aria-haspopup='true'
@@ -308,7 +313,10 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
               }
             >
               <div
-                className={`${styles.popover} cdg-auto-complete-popover`}
+                className={classNames(
+                  styles.popover,
+                  'cdg-auto-complete-popover',
+                )}
                 ref={popoverContentRef}
                 style={{
                   width: popoverWidth ? `${popoverWidth}px` : 'auto',
@@ -318,14 +326,20 @@ const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
               >
                 {options?.length === 0 ? (
                   <div
-                    className={`${styles.emptyMessage} cdg-auto-complete-empty-message`}
+                    className={classNames(
+                      styles.emptyMessage,
+                      'cdg-auto-complete-empty-message',
+                    )}
                   >
                     {notFoundContent}
                   </div>
                 ) : (
                   options?.map((option) => (
                     <div
-                      className={`${styles.option} cdg-auto-complete-option`}
+                      className={classNames(
+                        styles.option,
+                        'cdg-auto-complete-option',
+                      )}
                       key={option}
                       data-value={option}
                       onClick={() => handleSelectOption(option)}

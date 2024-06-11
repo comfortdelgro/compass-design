@@ -51,10 +51,10 @@ export const AppNavSection = React.forwardRef<
         type='button'
         ref={itemRef}
         className={classNames(
-          'cdg-appnav-section',
-          className,
           styles.appNavSection,
           isActive ? styles.isActive : styles.isInactive,
+          className,
+          'cdg-appnav-section',
         )}
         onClick={handleClick}
         tabIndex={0}

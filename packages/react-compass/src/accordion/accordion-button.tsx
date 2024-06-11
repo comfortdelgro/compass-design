@@ -1,15 +1,12 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/accordion-button.module.css'
 
 interface Props {
   css: CSS
-  children?: React.ReactNode
-  className?: string
   expand?: boolean
-  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void
-  onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement>) => void
 }
 
 export type AccordionButtonProps = Props &
@@ -20,10 +17,10 @@ const AccordionButton = React.forwardRef<
   AccordionButtonProps
 >((props, ref) => {
   const {
-    children,
-    expand,
-    className,
     css = {},
+    expand,
+    children,
+    className,
     onMouseDown,
     onKeyDown,
     ...delegated
@@ -31,14 +28,12 @@ const AccordionButton = React.forwardRef<
 
   const buttonRef = useDOMRef<HTMLButtonElement>(ref)
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.accordionButton,
     expand ? styles.open : styles.close,
     className,
     'cdg-accordion-button',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={buttonRef}>

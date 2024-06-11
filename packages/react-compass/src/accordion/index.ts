@@ -12,9 +12,9 @@ Accordion.Table = AccordionTable
 Accordion.Title = AccordionTitle
 Accordion.ExpandIcon = AccordionExpandIcon
 
+Accordion.displayName = 'Accordion'
 Accordion.Table.displayName = 'Accordion.Table'
 Accordion.Title.displayName = 'Accordion.Title'
-Accordion.displayName = 'Accordion'
 Accordion.ExpandIcon.displayName = 'Accordion.ExpandIcon'
 
 export default Accordion

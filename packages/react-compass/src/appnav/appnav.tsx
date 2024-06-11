@@ -35,8 +35,8 @@ const AppNav = React.forwardRef<HTMLDivElement, AppNavProps>((props, ref) => {
         className={classNames(
           styles.appNav,
           styles[position],
-          'cdg-appnav',
           className,
+          'cdg-appnav',
         )}
         ref={navBarRef}
         {...delegated}
