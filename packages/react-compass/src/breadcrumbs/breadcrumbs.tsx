@@ -1,16 +1,17 @@
 /* eslint-disable react-refresh/only-export-components */
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import BreadcrumbItem from './breadcrumb-item'
 import styles from './styles/breadscrumbs.module.css'
 
 export interface Props {
   css?: CSS
+  className?: string
   children?: React.ReactNode
   dividerIcon?: React.ReactNode
   isCurrent?: (item: number) => boolean
-  className?: string
 }
 
 export type BreadcrumbsProps = Props &
@@ -37,15 +38,15 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const items = React.Children.toArray(children)
 
-  const wrapperClass = React.useMemo(() => {
-    return [styles.breadcrumbs, 'cdg-breadcrumbs', className]
-      .filter(Boolean)
-      .join(' ')
-  }, [className])
+  const rootClasses = classNames(
+    styles.breadcrumbs,
+    className,
+    'cdg-breadcrumbs',
+  )
 
   return (
     <CssInjection css={css} childrenRef={breadcrumbsRef}>
-      <nav ref={breadcrumbsRef} className={wrapperClass} {...htmlProps}>
+      <nav {...htmlProps} ref={breadcrumbsRef} className={rootClasses}>
         <ol className={styles.breadcrumbsList}>
           {items.map((item, i) => (
             <React.Fragment key={i}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/box.module.css'
 
@@ -192,9 +193,7 @@ const Box = React.forwardRef<HTMLElement, BoxProps>((props, ref) => {
 
   const Component = asProp as React.ElementType
 
-  const rootClasses = [styles.box, className, 'cdg-box']
-    .filter(Boolean)
-    .join(' ')
+  const rootClasses = classNames(styles.box, className, 'cdg-box')
 
   return (
     <>
