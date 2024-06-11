@@ -1,134 +1,146 @@
-import { flexRender, Header, Table } from '@tanstack/react-table';
-import React, { useMemo } from 'react';
-import { useIsDarkTheme } from '../theme';
-import { EKeyboardKey } from '../utils/keyboard.enum';
-import { CSS, CssInjection } from '../utils/objectToCss';
-import { useDOMRef } from '../utils/use-dom-ref';
-import styles from './styles/table-column-header.module.css';
-import HeaderColumnFilter from './table-column-header-filter';
-import TableResizer from './table-resizer';
+import {flexRender, Header, Table} from '@tanstack/react-table'
+import React, {useMemo} from 'react'
+import {useIsDarkTheme} from '../theme'
+import {EKeyboardKey} from '../utils/keyboard.enum'
+import {CSS, CssInjection} from '../utils/objectToCss'
+import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/table-column-header.module.css'
+import HeaderColumnFilter from './table-column-header-filter'
+import TableResizer from './table-resizer'
 
 interface Props<TData, TValue> {
-  css?: CSS;
-  tableOption: Table<TData>;
-  headerProps: Header<TData, TValue>;
+  css?: CSS
+  tableOption: Table<TData>
+  headerProps: Header<TData, TValue>
 }
 
-export type TableColumnHeaderProps<TData = unknown, TValue = unknown> = Props<TData, TValue> &
-  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>;
+export type TableColumnHeaderProps<TData = unknown, TValue = unknown> = Props<
+  TData,
+  TValue
+> &
+  Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<TData, TValue>>
 
-const TableColumnHeader = React.forwardRef<HTMLTableCellElement, TableColumnHeaderProps>(
-  ({ headerProps, tableOption, className, css = {}, onKeyDown }, ref) => {
-    const enableResizing = headerProps?.column?.columnDef?.enableResizing;
-    const isFilterableColumn = headerProps.column.columnDef.enableColumnFilter === true &&
-                               headerProps.column.getCanFilter();
-    const isSortableColumn = headerProps.column.getCanSort();
-    const isGroupedColumn = headerProps.column.columnDef.enableGrouping === true &&
-                            headerProps.column.getIsGrouped();
-    const tableColumnHeaderRef = useDOMRef<HTMLTableCellElement>(ref);
-    const sortDirection = headerProps.column.getIsSorted();
-    const directions = {
-      asc: <ArrowUpIcon />,
-      desc: <ArrowDownIcon />,
-    };
+const TableColumnHeader = React.forwardRef<
+  HTMLTableCellElement,
+  TableColumnHeaderProps
+>(({headerProps, tableOption, className, css = {}, onKeyDown}, ref) => {
+  const enableResizing = headerProps?.column?.columnDef?.enableResizing
+  const isFilterableColumn =
+    headerProps.column.columnDef.enableColumnFilter === true &&
+    headerProps.column.getCanFilter()
+  const isSortableColumn = headerProps.column.getCanSort()
+  const isGroupedColumn =
+    headerProps.column.columnDef.enableGrouping === true &&
+    headerProps.column.getIsGrouped()
+  const tableColumnHeaderRef = useDOMRef<HTMLTableCellElement>(ref)
+  const sortDirection = headerProps.column.getIsSorted()
+  const directions = {
+    asc: <ArrowUpIcon />,
+    desc: <ArrowDownIcon />,
+  }
 
-    const handleOnKeyDown = (e: React.KeyboardEvent<HTMLTableCellElement>) => {
-      const key = e.key as EKeyboardKey;
-      const handler = headerProps.column.getToggleSortingHandler();
-      const targetElement = e.target as HTMLElement;
+  const handleOnKeyDown = (e: React.KeyboardEvent<HTMLTableCellElement>) => {
+    const key = e.key as EKeyboardKey
+    const handler = headerProps.column.getToggleSortingHandler()
+    const targetElement = e.target as HTMLElement
 
-      switch (key) {
-        case EKeyboardKey.Enter:
-          handler?.(e);
-          break;
-        case EKeyboardKey.Spacebar:
-          if (targetElement.tagName.toLowerCase() !== 'input') {
-            e.preventDefault();
-          }
-          handler?.(e);
-          break;
-        default:
-          break;
-      }
+    switch (key) {
+      case EKeyboardKey.Enter:
+        handler?.(e)
+        break
+      case EKeyboardKey.Spacebar:
+        if (targetElement.tagName.toLowerCase() !== 'input') {
+          e.preventDefault()
+        }
+        handler?.(e)
+        break
+      default:
+        break
+    }
 
-      onKeyDown?.(e);
-    };
+    onKeyDown?.(e)
+  }
 
-    const ariaSort = useMemo<React.HTMLAttributes<HTMLDivElement>['aria-sort']>(() => {
-      if (sortDirection === false) {
-        return 'none';
-      } else if (sortDirection === 'asc') {
-        return 'ascending';
-      } else {
-        return 'descending';
-      }
-    }, [sortDirection]);
+  const ariaSort = useMemo<
+    React.HTMLAttributes<HTMLDivElement>['aria-sort']
+  >(() => {
+    if (sortDirection === false) {
+      return 'none'
+    } else if (sortDirection === 'asc') {
+      return 'ascending'
+    } else {
+      return 'descending'
+    }
+  }, [sortDirection])
 
-    const rootClasses = [
-      styles.cdgTableColumnHeader,
-      className,
-      'cdg-table-column-header',
-    ].filter(Boolean).join(' ');
+  const rootClasses = [
+    styles.cdgTableColumnHeader,
+    className,
+    'cdg-table-column-header',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
-    const headerContentClass = [
-      styles.cdgTableContent,
-      headerProps.column.getCanSort() && styles.canSort,
-      'cdg-table-column-header-content',
-    ].filter(Boolean).join(' ');
+  const headerContentClass = [
+    styles.cdgTableContent,
+    headerProps.column.getCanSort() && styles.canSort,
+    'cdg-table-column-header-content',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
-    return (
-      <CssInjection css={css} childrenRef={tableColumnHeaderRef}>
-        <th
-          ref={tableColumnHeaderRef}
-          className={rootClasses}
-          key={headerProps.id}
-          colSpan={headerProps.colSpan}
-          onClick={headerProps.column.getToggleSortingHandler()}
-          onKeyDown={handleOnKeyDown}
-          role='columnheader'
-          aria-sort={ariaSort}
-          tabIndex={isSortableColumn || isFilterableColumn ? 0 : -1}
-          style={{
-            width: headerProps.getSize(),
-          }}
-        >
-          {!headerProps.isPlaceholder && (
-            <div className={headerContentClass}>
-              <div
-                onClick={
-                  headerProps.column.columnDef.enableGrouping === true
-                    ? headerProps.column.getToggleGroupingHandler()
-                    : undefined
-                }
-              >
-                {isGroupedColumn ? (
-                  <span>({headerProps.column.getGroupedIndex()})</span>
-                ) : null}
-                {flexRender(
-                  headerProps.column.columnDef.header,
-                  headerProps.getContext()
-                )}
-              </div>
-              {sortDirection && directions[sortDirection]}
-              {isFilterableColumn && (
-                <HeaderColumnFilter
-                  column={headerProps.column}
-                  table={tableOption}
-                />
+  return (
+    <CssInjection css={css} childrenRef={tableColumnHeaderRef}>
+      <th
+        ref={tableColumnHeaderRef}
+        className={rootClasses}
+        key={headerProps.id}
+        colSpan={headerProps.colSpan}
+        onClick={headerProps.column.getToggleSortingHandler()}
+        onKeyDown={handleOnKeyDown}
+        role='columnheader'
+        aria-sort={ariaSort}
+        tabIndex={isSortableColumn || isFilterableColumn ? 0 : -1}
+        style={{
+          width: headerProps.getSize(),
+        }}
+      >
+        {!headerProps.isPlaceholder && (
+          <div className={headerContentClass}>
+            <div
+              onClick={
+                headerProps.column.columnDef.enableGrouping === true
+                  ? headerProps.column.getToggleGroupingHandler()
+                  : undefined
+              }
+            >
+              {isGroupedColumn ? (
+                <span>({headerProps.column.getGroupedIndex()})</span>
+              ) : null}
+              {flexRender(
+                headerProps.column.columnDef.header,
+                headerProps.getContext(),
               )}
             </div>
-          )}
-          {enableResizing && (
-            <TableResizer resizeHandler={headerProps.getResizeHandler()} />
-          )}
-        </th>
-      </CssInjection>
-    );
-  }
-);
+            {sortDirection && directions[sortDirection]}
+            {isFilterableColumn && (
+              <HeaderColumnFilter
+                column={headerProps.column}
+                table={tableOption}
+              />
+            )}
+          </div>
+        )}
+        {enableResizing && (
+          <TableResizer resizeHandler={headerProps.getResizeHandler()} />
+        )}
+      </th>
+    </CssInjection>
+  )
+})
 
 const ArrowDownIcon = () => {
-  const isDarkTheme = useIsDarkTheme();
+  const isDarkTheme = useIsDarkTheme()
   return (
     <span aria-hidden='true' className={styles.cdgTableSortingIndicator}>
       <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
@@ -142,8 +154,8 @@ const ArrowDownIcon = () => {
         />
       </svg>
     </span>
-  );
-};
+  )
+}
 
 const ArrowUpIcon = () => (
   <span aria-hidden='true' className={styles.cdgTableSortingIndicator}>
@@ -158,6 +170,6 @@ const ArrowUpIcon = () => (
       />
     </svg>
   </span>
-);
+)
 
-export default TableColumnHeader;
+export default TableColumnHeader

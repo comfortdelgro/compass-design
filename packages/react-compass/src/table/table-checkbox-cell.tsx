@@ -1,20 +1,23 @@
-import React from 'react';
-import Checkbox from '../checkbox';
-import { CSS, CssInjection } from '../utils/objectToCss';
-import { useDOMRef } from '../utils/use-dom-ref';
-import styles from './styles/table-checkbox-cell.module.css';
+import React from 'react'
+import Checkbox from '../checkbox'
+import {CSS, CssInjection} from '../utils/objectToCss'
+import {useDOMRef} from '../utils/use-dom-ref'
+import styles from './styles/table-checkbox-cell.module.css'
 
 interface Props {
-  css?: CSS;
-  disabled?: boolean;
-  checked?: boolean;
-  indeterminate?: boolean;
+  css?: CSS
+  disabled?: boolean
+  checked?: boolean
+  indeterminate?: boolean
 }
 
-export type TableCheckboxCellProps = Props & 
-  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>;
+export type TableCheckboxCellProps = Props &
+  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
 
-const TableCheckboxCell = React.forwardRef<HTMLInputElement, TableCheckboxCellProps>((props, ref) => {
+const TableCheckboxCell = React.forwardRef<
+  HTMLInputElement,
+  TableCheckboxCellProps
+>((props, ref) => {
   const {
     css = {},
     className,
@@ -23,15 +26,17 @@ const TableCheckboxCell = React.forwardRef<HTMLInputElement, TableCheckboxCellPr
     indeterminate = false,
     onChange,
     ...rest
-  } = props;
+  } = props
 
-  const tableCheckboxCellRef = useDOMRef<HTMLInputElement>(ref);
+  const tableCheckboxCellRef = useDOMRef<HTMLInputElement>(ref)
 
   const rootClasses = [
     styles.cdgTableCheckboxCell,
     className,
     'cdg-table-checkbox-cell',
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <CssInjection css={css} childrenRef={tableCheckboxCellRef}>
@@ -45,7 +50,7 @@ const TableCheckboxCell = React.forwardRef<HTMLInputElement, TableCheckboxCellPr
         onChangeEvent={onChange}
       />
     </CssInjection>
-  );
-});
+  )
+})
 
-export default TableCheckboxCell;
+export default TableCheckboxCell
