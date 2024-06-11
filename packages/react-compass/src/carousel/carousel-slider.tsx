@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {Pointer, Position} from '../utils/pointer'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CarouselImageSlide from './carousel-image-slide'
 import CarouselMobile from './carousel-mobile'
@@ -166,58 +166,46 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       }
     }, [children.length, sliderRef])
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.carousel,
       styles['effect' + capitalizeFirstLetter(effect)],
       className,
       'cdg-carousel-slider',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const containerClasses = [
+    const containerClasses = classNames(
       styles.contentSliderContainer,
       styles[effect + 'ContentSliderContainer'],
       'cdg-carousel-slider-container',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const scrollerClasses = [
+    const scrollerClasses = classNames(
       styles.sliderScroller,
       styles[effect + 'SliderScroller'],
       'cdg-carousel-slider-scroller',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const prevClasses = [
+    const prevClasses = classNames(
       styles.sliderNavButton,
       styles.sliderPrevButton,
       styles[navigationButtonType],
       styles['sliderPrevButton' + capitalizeFirstLetter(navigationButtonType)],
       'cdg-carousel-slider-prev-button',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const nextClasses = [
+    const nextClasses = classNames(
       styles.sliderNavButton,
       styles.sliderNextButton,
       styles[navigationButtonType],
       styles['sliderNextButton' + capitalizeFirstLetter(navigationButtonType)],
       'cdg-carousel-slider-next-button',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const buttonClasses = [
+    const buttonClasses = classNames(
       styles.contentSliderBottomNav,
       socials && socials.length ? styles.useSocials : '',
       'cdg-carousel-slider-button-nav',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={hostRef}>
@@ -246,7 +234,10 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
           </div>
           {useNavigation && pageCount > 1 && (
             <div
-              className={`${styles.contentSliderControls} cdg-carousel-slider-controls`}
+              className={classNames(
+                styles.contentSliderControls,
+                'cdg-carousel-slider-controls',
+              )}
             >
               <div onClick={prev} className={prevClasses}>
                 {navigationButtonType === 'icon' ? (

@@ -18,6 +18,7 @@ import Popover from '../popover'
 import RangeCalendar from '../range-calendar/range-calendar'
 import {CustomShortcutsProps} from '../range-calendar/range-calendar-shortcuts'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useMediaQuery} from '../utils/use-media-query'
 import styles from './styles/date-range-picker.module.css'
@@ -123,13 +124,11 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
 
     calendarProps.isReadOnly = checkIfCalendarInMobile()
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.dateRangePicker,
       className,
       'cdg-date-range-picker',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={calendarRef}>
@@ -227,7 +226,12 @@ const DateRangeInputsWrapper = React.forwardRef<
         {label}
       </span>
       <div {...groupProps} ref={ref} className='cdg-date-range-inputs-body'>
-        <div className={`${styles.dateRangeFields} cdg-date-range-fields`}>
+        <div
+          className={classNames(
+            styles.dateRangeFields,
+            'cdg-date-range-fields',
+          )}
+        >
           <DateField
             {...startFieldProps}
             label={startDateLabel}

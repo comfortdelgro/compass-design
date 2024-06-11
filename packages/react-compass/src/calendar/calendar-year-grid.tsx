@@ -1,4 +1,5 @@
 import {CalendarDate} from '../internationalized/date'
+import {classNames} from '../utils/string'
 import {MonthYearState} from './hooks/useMonthYearState'
 import styles from './styles/calendar-month-year-grid.module.css'
 import {CalendarState, DateValue, RangeCalendarState} from './types'
@@ -30,7 +31,12 @@ const CalendarYearGrid = (props: Props) => {
   const currentDate = new Date()
 
   return (
-    <div className={styles.calendarMonthYearGrid}>
+    <div
+      className={classNames(
+        styles.calendarMonthYearGrid,
+        'cdg-calendar-year-grid',
+      )}
+    >
       {Array.isArray(monthYearState?.renderedYears) &&
         monthYearState?.renderedYears.map((year) => {
           const isDisabled = (() => {
@@ -46,15 +52,13 @@ const CalendarYearGrid = (props: Props) => {
           const isCurrentYear = year === currentDate.getFullYear()
 
           // content classes
-          const rootClasses = [
+          const rootClasses = classNames(
             styles.calendarMonthYearCell,
             isCurrentYear && styles.highlighted,
             isCurrentYear && 'highlighted',
             isDisabled && 'disabled',
             'cdg-calendar-year-cell',
-          ]
-            .filter(Boolean)
-            .join(' ')
+          )
 
           return (
             <button

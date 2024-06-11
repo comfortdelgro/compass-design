@@ -10,6 +10,7 @@ import {
   SocicalIcon,
 } from './carousel.const'
 
+import {classNames} from '../utils/string'
 import CarouselSlide from './carousel-slide'
 import styles from './styles/carousel.module.css'
 
@@ -58,9 +59,11 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     <CssInjection css={css} childrenRef={wrapperRef}>
       <div
         {...htmlProps}
-        className={`content-slider-mobile-mode${
-          floatingContent ? ' floating-content' : ''
-        } ${styles.contentSliderMobileMode}`}
+        className={classNames(
+          styles.contentSliderMobileMode,
+          floatingContent && 'floating-content',
+          'cdg-content-slider-mobile-mode',
+        )}
       >
         <CarouselSlider
           onSwitchSlide={handleSwitchSlide}
@@ -77,49 +80,57 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
           {data.map((dataItem: CarouselSliderItem, index: number) => (
             <CarouselSlide
               key={index}
-              className={[
+              className={classNames(
                 styles.mobileModeSlide,
                 activeIndex === index && 'active',
                 'mobile-mode',
                 'cdg-carousel-mobile-slide',
-              ]
-                .filter(Boolean)
-                .join(' ')}
+              )}
               active={activeIndex === index}
             >
               {dataItem.mask && (
                 <div
-                  className={`${styles.slideMask} cdg-carousel-mobile-slide-mask`}
+                  className={classNames(
+                    styles.slideMask,
+                    'cdg-carousel-mobile-slide-mask',
+                  )}
                   style={{background: `rgba(0,0,0,${dataItem.mask})`}}
                 />
               )}
               <div
-                className={`${styles.mobileInnerContent} cdg-carousel-mobile-inner-content`}
+                className={classNames(
+                  styles.mobileInnerContent,
+                  'cdg-carousel-mobile-inner-content',
+                )}
               >
                 <img
-                  className='slide-background'
+                  className='cdg-carousel-mobile-inner-content-image'
                   src={dataItem.image}
                   draggable={false}
                 />
                 {floatingContent ? (
                   <div
-                    className={[
+                    className={classNames(
                       styles.slideBody,
                       styles.floatingContent,
                       floatingContent && dataItem.alignment,
                       'mobile-mode',
-                      'cdg-carousel-mobile-slide-body',
-                    ]
-                      .filter(Boolean)
-                      .join(' ')}
+                      'cdg-carousel-mobile-inner-content-body',
+                    )}
                   >
                     <div
-                      className={`${styles.contentSliderTitle} cdg-carousel-mobile-content-slider-title`}
+                      className={classNames(
+                        styles.contentSliderTitle,
+                        'cdg-carousel-mobile-inner-content-title',
+                      )}
                     >
                       {dataItem.title}
                     </div>
                     <div
-                      className={`${styles.contentSliderDescription} cdg-carousel-mobile-content-slider-description`}
+                      className={classNames(
+                        styles.contentSliderDescription,
+                        'cdg-carousel-mobile-inner-content-description',
+                      )}
                     >
                       {dataItem.description}
                     </div>
@@ -134,33 +145,27 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
         {!floatingContent ? (
           <div
-            className={[
+            className={classNames(
               styles.slideBody,
               styles.noneFloatingSlideBody,
               'cdg-carousel-mobile-slide-body',
-            ]
-              .filter(Boolean)
-              .join(' ')}
+            )}
           >
             <div
-              className={[
+              className={classNames(
                 styles.contentSliderTitle,
                 styles.mobileContentSliderTitle,
                 'cdg-carousel-mobile-content-slider-title',
-              ]
-                .filter(Boolean)
-                .join(' ')}
+              )}
             >
               {slideTitle()}
             </div>
             <div
-              className={[
+              className={classNames(
                 styles.contentSliderDescription,
                 styles.mobileContentSliderDescription,
                 'cdg-carousel-mobile-content-slider-description',
-              ]
-                .filter(Boolean)
-                .join(' ')}
+              )}
             >
               {slideDescription()}
             </div>
@@ -170,26 +175,22 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         )}
         {buttons && (
           <div
-            className={[
+            className={classNames(
               styles.slideButtonRow,
               styles.slideMobileButtonRow,
               'cdg-carousel-mobile-slide-mobile-buttons',
-            ]
-              .filter(Boolean)
-              .join(' ')}
+            )}
           >
             {buttons.map((button, index) => {
               return (
                 <Button
                   key={index}
                   variant={button.type}
-                  className={[
+                  className={classNames(
                     button.type,
                     styles['mobile-' + button.type],
                     'cdg-carousel-mobile-slide-mobile-button',
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
+                  )}
                   onPress={() => {
                     if (button.callback) {
                       button.callback()

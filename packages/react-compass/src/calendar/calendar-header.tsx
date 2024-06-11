@@ -3,6 +3,7 @@ import Button, {ButtonProps} from '../button'
 import {DateValue} from '../internationalized/date'
 import {useDateFormatter} from '../internationalized/i18n'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {MONTH_YEAR_STATE, MonthYearState} from './hooks/useMonthYearState'
 import styles from './styles/calendar-header.module.css'
 import {AriaLabelingProps, DOMProps} from './types'
@@ -86,9 +87,12 @@ const CalendarHeader = (props: Props) => {
 
   return (
     <CssInjection css={css}>
-      <div className={styles.calendarHeader}>
+      <div className={classNames(styles.calendarHeader, 'cdg-calendar-header')}>
         <div
-          className={`${styles.calendarHeaderLeftSide} cdg-calendar-header-left-side`}
+          className={classNames(
+            styles.calendarHeaderLeftSide,
+            'cdg-calendar-header-left-side',
+          )}
         >
           <Button
             {...prevButtonProps}
@@ -114,7 +118,10 @@ const CalendarHeader = (props: Props) => {
               // We have a visually hidden heading describing the entire visible range,
               // and the calendar itself describes the individual month
               // so we don't need to repeat that here for screen reader users.
-              className={`${styles.calendarHeaderMiddle} cdg-calendar-header-middle`}
+              className={classNames(
+                styles.calendarHeaderMiddle,
+                'cdg-calendar-header-middle',
+              )}
               aria-hidden
               type='button'
               onClick={() => {
@@ -132,7 +139,12 @@ const CalendarHeader = (props: Props) => {
               )}
             </button>
           ) : (
-            <h2 className={styles.calendarHeaderTitle}>
+            <h2
+              className={classNames(
+                styles.calendarHeaderTitle,
+                'cdg-calendar-header-title',
+              )}
+            >
               {renderMiddleButtonContent(
                 monthDateFormatter.format(
                   state?.visibleRange?.start?.toDate(
@@ -144,12 +156,12 @@ const CalendarHeader = (props: Props) => {
           )}
           {variant === 'default' && (
             <Button
-              variant='ghost'
+              {...nextButtonProps}
               type='button'
+              variant='ghost'
               css={{
                 '& #cdg-calendar-arrow-right': iconButtonStyle,
               }}
-              {...nextButtonProps}
             >
               <svg
                 width='1em'
@@ -166,9 +178,17 @@ const CalendarHeader = (props: Props) => {
         </div>
         {variant === 'range' && (
           <div
-            className={`${styles.calendarHeaderRightSide} cdg-calendar-header-right-side`}
+            className={classNames(
+              styles.calendarHeaderRightSide,
+              'cdg-calendar-header-right-side',
+            )}
           >
-            <h2 className={styles.calendarHeaderTitle}>
+            <h2
+              className={classNames(
+                styles.calendarHeaderTitle,
+                'cdg-calendar-header-title',
+              )}
+            >
               {renderMiddleButtonContent(
                 monthDateFormatter.format(
                   state?.visibleRange?.start
@@ -178,12 +198,12 @@ const CalendarHeader = (props: Props) => {
               )}
             </h2>
             <Button
-              variant='ghost'
+              {...nextButtonProps}
               type='button'
+              variant='ghost'
               css={{
                 '& #cdg-calendar-arrow-right': iconButtonStyle,
               }}
-              {...nextButtonProps}
             >
               <svg
                 width='1em'

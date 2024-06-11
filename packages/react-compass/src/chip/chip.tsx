@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/chip.module.css'
 
@@ -53,31 +54,32 @@ const Chip = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     onCloseClick?.(event)
   }
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.chip,
     isErrored && styles.isErrored,
     className,
     'cdg-chip',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={chipRef}>
       <div
+        {...delegated}
         ref={chipRef}
         className={rootClasses}
         tabIndex={hasCloseButton || onClick ? tabIndex || 0 : -1}
         onClick={onClick}
         onKeyDown={handleChipKeyDown}
-        {...delegated}
       >
-        <div className={`${styles.cdgChipContent} cdg-chip-content`}>
+        <div className={classNames(styles.cdgChipContent, 'cdg-chip-content')}>
           {children}
         </div>
         {hasCloseButton && (
           <div
-            className={`${styles['close-icon-container']} cdg-chip-close`}
+            className={classNames(
+              styles['close-icon-container'],
+              'cdg-chip-close',
+            )}
             onClick={handleCloseIconClick}
             ref={closeButtonRef}
           >

@@ -11,6 +11,7 @@ import {
   useState,
 } from 'react'
 import {CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DrawerFooter from './drawer-footer'
 import DrawerHeader from './drawer-header'
@@ -126,7 +127,7 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     setDrawerInitHeight(DrawerElement?.offsetHeight ?? 0)
   }, [DrawerElement])
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.drawer,
     styles[drawerMode],
     styles[variant],
@@ -134,24 +135,24 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     isExpanded && `${styles.drawerExpanded} cdg-drawer-expanded`,
     className,
     'cdg-drawer',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={DrawerRef}>
       <dialog
+        {...htmlDialogAttributes}
         style={style}
         ref={DrawerRef}
         className={rootClasses}
-        {...htmlDialogAttributes}
-        onMouseDown={handleMouseDown}
         onClose={onClose}
+        onMouseDown={handleMouseDown}
         onCancel={handleCancelDrawer}
       >
         {DrawerHeaderElement}
 
-        <article className={`${styles.drawerContent} cdg-drawer-content`}>
+        <article
+          className={classNames(styles.drawerContent, 'cdg-drawer-content')}
+        >
           {OtherElements}
         </article>
 
@@ -159,6 +160,9 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
       </dialog>
     </CssInjection>
   )
-})
+}) as typeof Drawer & {
+  Header: typeof DrawerHeader
+  Footer: typeof DrawerFooter
+}
 
 export default Drawer

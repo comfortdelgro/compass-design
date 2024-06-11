@@ -1,4 +1,5 @@
 import {CalendarDate} from '../internationalized/date'
+import {classNames} from '../utils/string'
 import {MONTH_YEAR_STATE, useMonthYearCalendar} from './hooks/useMonthYearState'
 import styles from './styles/calendar-month-year-grid.module.css'
 import {CalendarState, DateValue, RangeCalendarState} from './types'
@@ -29,7 +30,12 @@ const CalendarMonthGrid = (props: Props) => {
   }
 
   return (
-    <div className={styles.calendarMonthYearGrid}>
+    <div
+      className={classNames(
+        styles.calendarMonthYearGrid,
+        'cdg-calendar-month-grid',
+      )}
+    >
       {months.map((month) => {
         return (
           <button
@@ -37,7 +43,10 @@ const CalendarMonthGrid = (props: Props) => {
             type='button'
             aria-label={month}
             onClick={handleMonthClick(month)}
-            className={styles.calendarMonthYearCell}
+            className={classNames(
+              styles.calendarMonthYearCell,
+              'cdg-calendar-month-grid-cell',
+            )}
           >
             {month}
           </button>

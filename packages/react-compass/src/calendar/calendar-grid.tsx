@@ -8,6 +8,7 @@ import {
 } from '../internationalized/date'
 import {useLocale} from '../internationalized/i18n'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import CalendarCell from './calendar-cell'
 import {useCalendarGrid} from './hooks/useCalendarGrid'
 import styles from './styles/calendar-grid.module.css'
@@ -58,14 +59,17 @@ const CalendarGrid = (props: Props) => {
         {...gridProps}
         ref={tableRef}
         cellPadding='0'
-        className={`${styles.calendarGrid} cdg-calendar-grid`}
+        className={classNames(styles.calendarGrid, 'cdg-calendar-grid')}
       >
         <thead {...headerProps}>
           <tr>
             {weekDays.map((day, index) => (
               <th
                 key={index}
-                className={`${styles.calendarWeekday} cdg-calendar-weekday`}
+                className={classNames(
+                  styles.calendarWeekday,
+                  'cdg-calendar-weekday',
+                )}
               >
                 {day}
               </th>
@@ -95,7 +99,10 @@ const CalendarGrid = (props: Props) => {
           {isFiveWeeks && (
             <tr
               aria-hidden
-              className={`${styles.rowPlaceholder} cdg-calendar-week-sixth-placeholder`}
+              className={classNames(
+                styles.rowPlaceholder,
+                'cdg-calendar-week-sixth-placeholder',
+              )}
             />
           )}
         </tbody>

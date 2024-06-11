@@ -9,6 +9,7 @@ import {
   parseDate,
 } from '../internationalized/date'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useCalendarCell} from './hooks/useCalendarCell'
 import styles from './styles/calendar-cell.module.css'
@@ -58,7 +59,7 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
       isDisabled = isDisabled ? isDisabled : date.month !== currentMonth.month
     }
-  
+
     const maxValueClassFunc = () => {
       if (maxValue && date > maxValue) {
         isDisabled = true
@@ -69,7 +70,7 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
 
     const cellWrapperRef = useRef(null)
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.calendarCell,
       isSelected && isRangeCalendar
         ? `selected ${styles.selected}`
@@ -81,19 +82,15 @@ const CalendarCell = React.forwardRef<HTMLTableCellElement, Props>(
       isUnavailable && `unavailable ${styles.unavailable}`,
       isToday && `today ${styles.today}`,
       'cdg-calendar-cell',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const cellClasses = [
+    const cellClasses = classNames(
       styles.calendarCellValue,
       isDisabled && 'disabled',
       isDisabled && styles.disabled,
       isSelected && 'selected',
       'cdg-calendar-cell-value',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={cellWrapperRef}>

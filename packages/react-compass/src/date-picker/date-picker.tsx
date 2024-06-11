@@ -15,6 +15,7 @@ import {
 import {DateValue, parseDate} from '../internationalized/date'
 import Popover from '../popover'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DatePickerProvider from './date-picker-context'
 import styles from './styles/date-picker.module.css'
@@ -88,9 +89,11 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
 
     const datePickerRef = useRef(null)
 
-    const rootClasses = [styles.datePicker, className, 'cdg-date-picker']
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.datePicker,
+      className,
+      'cdg-date-picker',
+    )
 
     return (
       <CssInjection css={css} childrenRef={datePickerRef}>

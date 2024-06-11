@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/dropdown-menu.module.css'
 
@@ -25,11 +26,13 @@ const DropdownMenuMenu = React.forwardRef<
   return (
     <CssInjection css={css} childrenRef={DropdownMenuMenuRef}>
       <ul
-        ref={DropdownMenuMenuRef}
-        className={`${className ?? ''} ${MULTILEVEL_MENU_CLASS_NAME} ${
-          styles.dropdownMenuBoxshadow
-        }`}
         {...delegated}
+        ref={DropdownMenuMenuRef}
+        className={classNames(
+          styles.dropdownMenuBoxshadow,
+          className,
+          MULTILEVEL_MENU_CLASS_NAME,
+        )}
       >
         {children}
       </ul>

@@ -2,6 +2,7 @@ import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {useDOMRef} from '../utils/use-dom-ref'
 
+import {classNames} from '../utils/string'
 import styles from './styles/carousel.module.css'
 
 export interface Props {
@@ -38,13 +39,11 @@ const CarouselSliderDots = React.forwardRef<HTMLDivElement, Props>(
               return (
                 <div
                   key={index + item}
-                  className={[
+                  className={classNames(
                     styles.carouselDot,
                     index === current && styles.carouselActiveDot,
                     'cdg-carousel-slider-dot',
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
+                  )}
                   onClick={() => {
                     dotClick(index)
                   }}

@@ -2,6 +2,7 @@ import React, {Key} from 'react'
 import Dropdown from '../dropdown'
 import TextField from '../textfield'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/dropdown-textfield.module.css'
 
@@ -129,22 +130,44 @@ const DropdownTextfield = React.forwardRef<
     <CssInjection css={css} childrenRef={componentRef}>
       <div
         ref={componentRef}
-        className={`${className} ${styles.dropdownTextfield}`}
+        className={classNames(
+          styles.dropdownTextfield,
+          className,
+          'cdg-dropdown-textfield',
+        )}
       >
         {label && (
           <label
             htmlFor={id}
-            className={`${styles.textFieldLabel} cdg-dropdown-textfield-label`}
+            className={classNames(
+              styles.textFieldLabel,
+              'cdg-dropdown-textfield-label',
+            )}
           >
             {label}
-            {isRequired && <span className={`${styles.asterisk}`}>*</span>}
+            {isRequired && (
+              <span
+                className={classNames(
+                  styles.asterisk,
+                  'cdg-dropdown-textfield-label-asterisk',
+                )}
+              >
+                *
+              </span>
+            )}
           </label>
         )}
         <div
-          className={`${styles.inputWrapper} input-wrapper cdg-input-wrapper`}
+          className={classNames(
+            styles.inputWrapper,
+            'cdg-dropdown-textfield-input-wrapper',
+          )}
         >
           <Dropdown.Select
-            className={`${styles.dropdownTextfieldSelect} cdg-dropdown-textfield-select`}
+            className={classNames(
+              styles.dropdownTextfieldSelect,
+              'cdg-dropdown-textfield-select',
+            )}
             aria-label={label}
             selectedKey={selectedDropdownKey}
             defaultSelectedKey={defaultSelectedKey as Key}
@@ -209,7 +232,10 @@ const DropdownTextfield = React.forwardRef<
         </div>
         {isErrored && (
           <div
-            className={`${styles.dropdownTextfieldError} dropdown-textfield__error`}
+            className={classNames(
+              styles.dropdownTextfieldError,
+              'cdg-dropdown-textfield-error',
+            )}
           >
             {errorMessage}
           </div>

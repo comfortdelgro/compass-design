@@ -1,4 +1,4 @@
-import _Card from './card'
+import Card from './card'
 import CardAction from './card-actions'
 import CardBody from './card-body'
 import CardImage from './card-image'
@@ -9,13 +9,6 @@ export type {CardActionProps} from './card-actions'
 export type {CardBodyProps} from './card-body'
 export type {CardImageProps} from './card-image'
 export type {CardTitleProps} from './card-title'
-
-const Card = _Card as typeof _Card & {
-  Body: typeof CardBody
-  Image: typeof CardImage
-  Title: typeof CardTitle
-  Action: typeof CardAction
-}
 
 Card.Body = CardBody
 Card.Image = CardImage

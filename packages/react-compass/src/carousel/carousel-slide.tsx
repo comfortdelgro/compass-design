@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/carousel.module.css'
 
@@ -27,14 +28,12 @@ const CarouselSlide = React.forwardRef<HTMLDivElement, CarouselSlideProps>(
 
     const slideRef = useDOMRef<HTMLDivElement>(ref)
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.sliderSlide,
       active && styles.sliderSlideActive,
       className,
       'cdg-carousel-slide',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={slideRef}>

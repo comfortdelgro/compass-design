@@ -11,7 +11,7 @@ import {
   SocicalIcon,
 } from './carousel.const'
 
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import CarouselSlide from './carousel-slide'
 import styles from './styles/carousel.module.css'
 
@@ -74,43 +74,59 @@ const CarouselPromotion = React.forwardRef<
         {data.map((dataItem: CarouselSliderItem, index: number) => (
           <CarouselSlide
             key={index}
-            className={`${activeIndex === index ? 'active' : ''} cdg-carousel-promotion-slide`}
+            className={classNames(
+              activeIndex === index && 'active',
+              'cdg-carousel-promotion-slide',
+            )}
             active={activeIndex === index}
           >
             <img
-              className={`${styles.slideBackground} cdg-carousel-promotion-slide-background`}
+              className={classNames(
+                styles.slideBackground,
+                'cdg-carousel-promotion-slide-background',
+              )}
               src={dataItem.image}
               draggable={false}
             />
             {dataItem.mask && (
               <div
-                className={`${styles.slideMask} cdg-carousel-promotion-slide-mask`}
+                className={classNames(
+                  styles.slideMask,
+                  'cdg-carousel-promotion-slide-mask',
+                )}
                 style={{background: `rgba(0,0,0,${dataItem.mask})`}}
               />
             )}
             <div
-              className={[
+              className={classNames(
                 styles.slideBody,
                 dataItem.alignment || '',
                 dataItem.alignment && styles[toCamelCase(dataItem.alignment)],
                 'cdg-carousel-promotion-slide-body',
-              ]
-                .filter(Boolean)
-                .join(' ')}
+              )}
             >
               <h4
-                className={`${styles.contentSliderTitle} cdg-carousel-promotion-content-slider-title`}
+                className={classNames(
+                  styles.contentSliderTitle,
+                  'cdg-carousel-promotion-content-slider-title',
+                )}
               >
                 {dataItem.title}
               </h4>
               <p
-                className={`${styles.contentSliderDescription} cdg-carousel-promotion-content-slider-description`}
+                className={classNames(
+                  styles.contentSliderDescription,
+                  'cdg-carousel-promotion-content-slider-description',
+                )}
               >
                 {dataItem.description}
               </p>
               {dataItem.buttons && (
                 <div
-                  className={`${styles.slideButtonRow} cdg-carousel-promotion-slide-button-row`}
+                  className={classNames(
+                    styles.slideButtonRow,
+                    'cdg-carousel-promotion-slide-button-row',
+                  )}
                 >
                   {dataItem.buttons.map((button, index) => {
                     return (

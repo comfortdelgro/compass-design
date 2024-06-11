@@ -6,6 +6,7 @@ import {DateValue, createCalendar, parseDate} from '../internationalized/date'
 import * as i18n from '../internationalized/i18n'
 import {useLocale} from '../internationalized/i18n'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
@@ -154,7 +155,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         role='Calendar'
         ref={calendarRef}
         aria-label='Calendar'
-        className={`${styles.calendar} cdg-calendar`}
+        className={classNames(styles.calendar, 'cdg-calendar')}
         aria-labelledby={ariaLabelledBy}
         aria-describedby={ariaDescribedBy}
       >
@@ -167,7 +168,9 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         />
         {renderBody()}
         {hasFooter && (
-          <div className={`${styles.calendarFooter} cdg-calendar-footer`}>
+          <div
+            className={classNames(styles.calendarFooter, 'cdg-calendar-footer')}
+          >
             <Button
               className='cdg-calendar-clear-btn'
               variant='ghost'

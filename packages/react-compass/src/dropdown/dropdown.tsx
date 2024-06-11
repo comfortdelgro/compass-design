@@ -19,6 +19,7 @@ import {
 
 import Popover from '../popover'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useId} from '../utils/useId'
 import DropdownComboBox from './dropdown.combobox'
 import DropdownSection from './dropdown.section'
@@ -568,23 +569,19 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const contentElement = useMemo(() => {
     switch (type) {
       case 'select': {
-        const contentClasses = [
+        const contentClasses = classNames(
           styles.dropdownSelect,
           !selectedItem && styles.dropdownInputIsEmpty,
           isErrored && styles.dropdownInputIsErrored,
           isDisabled && styles.dropdownItemIsSelectedFocused,
           isDisabled && styles.dropdownInputIsDisabled,
           'cdg-dropdown-input',
-        ]
-          .filter(Boolean)
-          .join(' ')
+        )
 
-        const buttonClasses = [
+        const buttonClasses = classNames(
           styles.dropdownSelectButton,
           'cdg-dropdown-button',
-        ]
-          .filter(Boolean)
-          .join(' ')
+        )
 
         return (
           <div
@@ -605,7 +602,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             >
               {prefix}
               <span
-                className={`${styles.dropdownButtonText} cdg-dropdown-button-text`}
+                className={classNames(
+                  styles.dropdownButtonText,
+                  'cdg-dropdown-button-text',
+                )}
               >
                 {selectedItem ? selectedItem?.displayValue : placeholder}
               </span>
@@ -615,15 +615,13 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         )
       }
       case 'combobox': {
-        const contentClasses = [
+        const contentClasses = classNames(
           styles.dropdownComboBox,
           !selectedItem && styles.dropdownItemRightIconIsEmpty,
           isDisabled && styles.dropdownItemRightIconIsDisabled,
           isErrored && styles.dropdownItemRightIconIsErrored,
           'cdg-dropdown-input',
-        ]
-          .filter(Boolean)
-          .join(' ')
+        )
 
         return (
           <div
@@ -660,14 +658,20 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
               onCompositionEnd={onCompositionEnd}
               onCompositionStart={onCompositionStart}
               onCompositionUpdate={onCompositionUpdate}
-              className={`${styles.dropdownInputControl} cdg-dropdown-input-control`}
+              className={classNames(
+                styles.dropdownInputControl,
+                'cdg-dropdown-input-control',
+              )}
             />
             <button
               type='button'
               tabIndex={-1}
               disabled={isDisabled}
               onClick={handleDropdownToggle}
-              className={`${styles.dropdownButtonControl} cdg-dropdown-button`}
+              className={classNames(
+                styles.dropdownButtonControl,
+                'cdg-dropdown-button',
+              )}
             >
               {icon}
             </button>
@@ -782,14 +786,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     setIsPositioned(isPositioned)
   }, [])
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.dropdownWrapper,
     open && styles.dropdownOpening,
     className,
     'cdg-dropdown',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={selectRef}>
@@ -803,11 +805,18 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
           <label
             htmlFor={dropdownId}
             id={`${dropdownId}-label`}
-            className={`${styles.dropdownLabel} cdg-dropdown-label`}
+            className={classNames(styles.dropdownLabel, 'cdg-dropdown-label')}
           >
             {label}
             {isRequired && (
-              <span className={styles.dropdownLabelAsterisk}>*</span>
+              <span
+                className={classNames(
+                  styles.dropdownLabelAsterisk,
+                  'cdg-dropdown-label-asterisk',
+                )}
+              >
+                *
+              </span>
             )}
           </label>
         )}
@@ -841,7 +850,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
             isFloatingPortal={isFloatingPortal}
           >
             <div
-              className={`${styles.dropdownPopover} cdg-dropdown-popover`}
+              className={classNames(
+                styles.dropdownPopover,
+                'cdg-dropdown-popover',
+              )}
               onClick={handleDropdownHeaderClick}
               style={{
                 ...popoverCSS,
@@ -866,14 +878,21 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
         </DropdownContext.Provider>
         {isErrored && errorMessage && (
           <div
-            className={`${styles.dropdownHelperText} ${styles.dropdownHelperIsErrored} cdg-dropdown-error-message`}
+            className={classNames(
+              styles.dropdownHelperText,
+              styles.dropdownHelperIsErrored,
+              'cdg-dropdown-error-message',
+            )}
           >
             {errorMessage}
           </div>
         )}
         {helperText && (
           <div
-            className={`${styles.dropdownHelperText} cdg-dropdown-helper-text`}
+            className={classNames(
+              styles.dropdownHelperText,
+              'cdg-dropdown-helper-text',
+            )}
           >
             {helperText}
           </div>
@@ -889,4 +908,4 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   Header: typeof DropdownHeader
 }
 
-export default Select 
+export default Select
