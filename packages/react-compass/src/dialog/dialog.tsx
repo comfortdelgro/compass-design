@@ -7,8 +7,8 @@ import DialogActions from './dialog-actions'
 import DialogDescription from './dialog-description'
 import DialogIcon from './dialog-icon'
 import DialogTitle from './dialog-title'
-import DialogTrigger from './dialog-trigger'
 import styles from './styles/dialog.module.css'
+import DialogTrigger from './dialog-trigger'
 
 interface Props {
   children?: React.ReactNode

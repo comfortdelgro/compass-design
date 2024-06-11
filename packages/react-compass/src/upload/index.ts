@@ -1,8 +1,12 @@
-import Upload from './upload'
+import _Upload from './upload'
 import UploadDragAndDrop from './upload-drag-and-drop'
 
 export type {UploadProps} from './upload'
 export type {UploadDragAndDropProps} from './upload-drag-and-drop'
+
+const Upload = _Upload as typeof _Upload & {
+  DragAndDrop: typeof UploadDragAndDrop
+}
 
 Upload.DragAndDrop = UploadDragAndDrop
 

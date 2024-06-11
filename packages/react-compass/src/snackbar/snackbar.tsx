@@ -71,7 +71,6 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
         setTimeout(() => handleClose?.(), autoClose)
       }
     }, [autoClose, handleClose, isOpen])
-
     const handleClick = (e: React.MouseEvent) => {
       if (onClick) {
         onClick(e, id)

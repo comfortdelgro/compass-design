@@ -4,11 +4,11 @@ import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {capitalizeFirstLetter} from '../utils/string'
 import styles from './styles/sub-header.module.css'
-import SubHeaderBody from './sub-header-body'
+import SubHeaderTitle from './sub-header-title'
 import SubHeaderDescription from './sub-header-description'
 import SubHeaderHeader from './sub-header-header'
 import SubHeaderImage from './sub-header-image'
-import SubHeaderTitle from './sub-header-title'
+import SubHeaderBody from './sub-header-body'
 
 interface Props {
   children: React.ReactNode
