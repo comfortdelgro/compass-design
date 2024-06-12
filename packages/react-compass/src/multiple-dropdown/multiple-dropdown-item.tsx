@@ -1,5 +1,6 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {MultipleDropdownContext} from './multiple-dropdown-context'
 import styles from './styles/multiple-dropdown.module.css'
@@ -123,55 +124,50 @@ const MultipleDropdownItem = React.forwardRef<
     })
   }
 
-  const multipleDropdownOptionClassName = useMemo(() => {
-    let className = `${styles.multipleDropdownOption}`
-    if (isFocused && !isSelected) {
-      className += ` ${styles.multipleDropdownItemIsFocused}`
-    }
-    if (isSelected && !isFocused) {
-      className += ` ${styles.multipleDropdownItemIsSelected}`
-    }
-    if (isSelected && isFocused) {
-      className += ` ${styles.multipleDropdownItemIsSelectedFocused}`
-    }
-    if (isDisabled) {
-      className += ` ${styles.multipleDropdownItemIsDisabled}`
-    }
+  const rootClasses = classNames(
+    styles.multipleDropdownOption,
+    isFocused && !isSelected && styles.multipleDropdownItemIsFocused,
+    isSelected && !isFocused && styles.multipleDropdownItemIsSelected,
+    isSelected && isFocused && styles.multipleDropdownItemIsSelectedFocused,
+    isDisabled && styles.multipleDropdownItemIsDisabled,
+    'cdg-multiple-dropdown-item',
+  )
 
-    return className
-  }, [isDisabled, isFocused, isSelected])
-
-  const multipleDropdownItemRightIconClassName = useMemo(() => {
-    let className = `${styles.multipleDropdownItemRightIcon}`
-    if (isSelected) {
-      className += ` ${styles.multipleDropdownItemRightIconSelected}`
-    }
-
-    if (checkmark === 'checkbox') {
-      className += ` ${styles.multipleDropdownItemRightIconCheckMarkCheckbox}`
-    } else if (checkmark === 'tick') {
-      className += ` ${styles.multipleDropdownItemRightIconCheckMarkTick}`
-    }
-
-    return className
-  }, [checkmark, isSelected])
+  const rightIconClasses = classNames(
+    styles.multipleDropdownItemRightIcon,
+    isSelected && styles.multipleDropdownItemRightIconSelected,
+    checkmark === 'checkbox' &&
+      styles.multipleDropdownItemRightIconCheckMarkCheckbox,
+    checkmark === 'tick' && styles.multipleDropdownItemRightIconCheckMarkTick,
+    'cdg-multiple-dropdown-item-icon',
+  )
 
   return canDisplayed ? (
     <CssInjection css={css} childrenRef={multipleDropdownItemRef}>
       <li
-        className={`${multipleDropdownOptionClassName} cdg-dropdown-item`}
+        {...delegated}
+        role='option'
+        className={rootClasses}
         onClick={handleItemClick}
         ref={multipleDropdownItemRef}
-        role='option'
         aria-selected={isSelected}
-        {...delegated}
       >
-        <div className={`${styles.multipleDropdownItemContent}`}>
+        <div
+          className={classNames(
+            styles.multipleDropdownItemContent,
+            'cdg-multiple-dropdown-item-content',
+          )}
+        >
           {children}
         </div>
-        <div className={multipleDropdownItemRightIconClassName}>
+        <div className={rightIconClasses}>
           {checkmark === 'checkbox' ? (
-            <div className={`${styles.multipleDropdownItemRightIconContent}`}>
+            <div
+              className={classNames(
+                styles.multipleDropdownItemRightIconContent,
+                'cdg-multiple-dropdown-item-icon-content',
+              )}
+            >
               <Tick />
             </div>
           ) : checkmark === 'tick' ? (

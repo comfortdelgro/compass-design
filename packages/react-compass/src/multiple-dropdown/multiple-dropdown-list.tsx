@@ -1,6 +1,7 @@
 import React, {useMemo} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useIsInViewport} from './hooks/useInViewport'
 import {MultipleDropdownContext} from './multiple-dropdown-context'
@@ -70,21 +71,41 @@ const MultipleDropdownList: React.FC<DropdownItemListProps> = (
       <ul
         role='listbox'
         aria-labelledby={labelId}
-        className={`${styles.multipleDropdownList} cdg-multiple-dropdown-list`}
+        className={classNames(
+          styles.multipleDropdownList,
+          'cdg-multiple-dropdown-list',
+        )}
       >
         {isLoading ? (
           <DropdownLoading />
         ) : displayedItemsCount === 0 ? (
-          <div className={`${styles.multipleDropdownListEmptyData}`}>
+          <div
+            className={classNames(
+              styles.multipleDropdownListEmptyData,
+              'cdg-multiple-dropdown-list-empty',
+            )}
+          >
             {noDataMessage || 'No data'}
           </div>
         ) : (
           dropdownItems
         )}
         {React.Children.toArray(dropdownItems).length > 0 && (
-          <div className={`${styles.multipleDropdownListItem}`} ref={lastEl} />
+          <div
+            className={classNames(
+              styles.multipleDropdownListItem,
+              'cdg-multiple-dropdown-list-item',
+            )}
+            ref={lastEl}
+          />
         )}
-        <div className={`${styles.multipleDropdownListItem}`} ref={standEl} />
+        <div
+          className={classNames(
+            styles.multipleDropdownListItem,
+            'cdg-multiple-dropdown-list-item',
+          )}
+          ref={standEl}
+        />
       </ul>
     </CssInjection>
   )

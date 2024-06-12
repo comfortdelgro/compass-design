@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/modal.module.css'
 
@@ -15,12 +16,15 @@ const ModalActions = React.forwardRef<HTMLDivElement, ModalActionsProps>(
   (props, ref) => {
     const {children, css = {}, className, ...htmlProps} = props
     const modalActionRef = useDOMRef<HTMLDivElement>(ref)
-    const classNames = [className, 'cdg-modal-actions', styles.actionsContainer]
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.actionsContainer,
+      className,
+      'cdg-modal-actions',
+    )
+
     return (
       <CssInjection css={css}>
-        <div ref={modalActionRef} className={classNames} {...htmlProps}>
+        <div {...htmlProps} ref={modalActionRef} className={rootClasses}>
           {children}
         </div>
       </CssInjection>

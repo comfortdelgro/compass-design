@@ -1,7 +1,8 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import Chip from '../chip'
 import Popover from '../popover'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DropdownItemKey,
@@ -327,7 +328,14 @@ const MultipleDropdown = React.forwardRef<
         inputRef.current?.focus()
       }
     },
-    [isReadOnly, selectedItems, isUncontrolledComponent, onSelectionChange, onValuesChange, inputRef],
+    [
+      isReadOnly,
+      selectedItems,
+      isUncontrolledComponent,
+      onSelectionChange,
+      onValuesChange,
+      inputRef,
+    ],
   )
 
   const handleKeyDown = React.useCallback(
@@ -568,44 +576,31 @@ const MultipleDropdown = React.forwardRef<
     setIsPositioned(isPositioned)
   }, [])
 
-  const dropdownClassName = useMemo(() => {
-    let className = `dropdownContainer ${styles.multipleDropdownControl}`
-    if (open) {
-      className += ` ${styles.multipleDropdownControlIsOpen}`
-    }
-    if (isErrored) {
-      className += ` ${styles.multipleDropdownControlIsErrored}`
-    }
-    if (isDisabled) {
-      className += ` ${styles.multipleDropdownControlIsDisabled}`
-    }
+  const popoverClasses = classNames(
+    styles.multipleDropdownControl,
+    open && styles.multipleDropdownControlIsOpen,
+    isErrored && styles.multipleDropdownControlIsErrored,
+    isDisabled && styles.multipleDropdownControlIsDisabled,
+    'cdg-multiple-dropdown-popover',
+  )
 
-    return className
-  }, [isDisabled, isErrored, open])
-
-  const dropdownWrapperClassName = useMemo(() => {
-    let dropdownWrapperName = `cdg-multiple-dropdown-wrapper ${className} ${styles.multipleDropdownWrapper}`
-    if (displayedValue === 'string') {
-      dropdownWrapperName += ` ${styles.displayedValueString}`
-    } else if (displayedValue === 'chip') {
-      dropdownWrapperName += ` ${styles.displayedValueChip}`
-    }
-    if (variant === 'select') {
-      dropdownWrapperName += ` ${styles.variantSelect}`
-    } else if (variant === 'combobox') {
-      dropdownWrapperName += ` ${styles.variantCombobox}`
-    }
-
-    return dropdownWrapperName
-  }, [className, displayedValue, variant])
+  const rootClasses = classNames(
+    styles.multipleDropdownWrapper,
+    displayedValue === 'string' && styles.displayedValueString,
+    displayedValue === 'chip' && styles.displayedValueChip,
+    variant === 'select' && styles.variantSelect,
+    variant === 'combobox' && styles.variantCombobox,
+    className,
+    'cdg-multiple-dropdown',
+  )
 
   return (
     <CssInjection css={css} childrenRef={refDOM}>
       <div
-        className={dropdownWrapperClassName}
-        ref={refDOM}
-        onKeyDown={handleKeyDown}
         {...delegated}
+        ref={refDOM}
+        className={rootClasses}
+        onKeyDown={handleKeyDown}
       >
         <MultipleDropdownContext.Provider
           value={{
@@ -641,22 +636,28 @@ const MultipleDropdown = React.forwardRef<
             isFloatingPortal={isFloatingPortal}
             anchor={
               <div
-                className={dropdownClassName}
+                role='button'
                 ref={wrapperRef}
-                onClick={handleOpen}
                 onBlur={onBlur}
                 onFocus={onFocus}
-                role='button'
+                onClick={handleOpen}
+                className={popoverClasses}
               >
                 <div
-                  className={`${styles.multipleDropdownSelectedItemWrapper} cdg-selectedItemWrapper`}
+                  className={classNames(
+                    styles.multipleDropdownSelectedItemWrapper,
+                    'cdg-multiple-dropdown-seleted',
+                  )}
                 >
                   {selectedItems.length === 0 &&
                     search === '' &&
                     !open &&
                     !focused && (
                       <p
-                        className={`${styles.placeholderSelectedItemWrapper} cdg-placeholder`}
+                        className={classNames(
+                          styles.placeholderSelectedItemWrapper,
+                          'cdg-multiple-dropdown-seleted-placeholder',
+                        )}
                       >
                         {placeholder}
                       </p>
@@ -683,7 +684,12 @@ const MultipleDropdown = React.forwardRef<
                       </Chip>
                     ))}
                   {displayedValue === 'string' && selectedItems.length > 0 ? (
-                    <div className={`${styles.itemListString}`}>
+                    <div
+                      className={classNames(
+                        styles.itemListString,
+                        'cdg-multiple-dropdown-seleted-display',
+                      )}
+                    >
                       {customDisplayValue ?? convertSelectedNodeToString()}
                     </div>
                   ) : null}
@@ -706,7 +712,10 @@ const MultipleDropdown = React.forwardRef<
                   )}
                 </div>
                 <div
-                  className={`${styles.multipleDropdownControlIcon} dropdown-icon`}
+                  className={classNames(
+                    styles.multipleDropdownControlIcon,
+                    'cdg-multiple-dropdown-item-icon',
+                  )}
                 >
                   {icon}
                 </div>
@@ -717,7 +726,10 @@ const MultipleDropdown = React.forwardRef<
             onClose={handleClosePopover}
           >
             <div
-              className={`${styles.dropdownPopover}`}
+              className={classNames(
+                styles.dropdownPopover,
+                'cdg-multiple-dropdown-list-wrapper',
+              )}
               onClick={handleDropdownHeaderClick}
               style={{
                 ...popoverCSS,
@@ -740,15 +752,24 @@ const MultipleDropdown = React.forwardRef<
         </MultipleDropdownContext.Provider>
         {isErrored && errorMessage && (
           <div
-            className={`${styles.dropdownHelperText} ${
-              isErrored ? styles.dropdownHelperIsErrored : ''
-            }`}
+            className={classNames(
+              styles.dropdownHelperText,
+              isErrored && styles.dropdownHelperIsErrored,
+              'cdg-multiple-dropdown-error-message',
+            )}
           >
             {errorMessage}
           </div>
         )}
         {helperText && (
-          <div className={`${styles.dropdownHelperText}`}>{helperText}</div>
+          <div
+            className={classNames(
+              styles.dropdownHelperText,
+              'cdg-multiple-dropdown-helper-text',
+            )}
+          >
+            {helperText}
+          </div>
         )}
       </div>
     </CssInjection>

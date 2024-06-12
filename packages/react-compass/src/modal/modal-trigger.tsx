@@ -2,6 +2,7 @@ import React from 'react'
 import Portal from '../portal'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Modal from './modal'
 import styles from './styles/modal.module.css'
@@ -46,18 +47,20 @@ const ModalTrigger = React.forwardRef<HTMLDivElement, ModalTriggerProps>(
       handleClose?.()
     }
 
-    const classNames = [className, 'cdg-modal-wrapper', styles.wrapper]
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.wrapper,
+      className,
+      'cdg-modal-wrapper',
+    )
 
     return (
       <Portal open={isOpen}>
         <CssInjection css={css}>
           <div
-            ref={modalWrapperRef}
-            onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
-            className={classNames}
             {...htmlProps}
+            ref={modalWrapperRef}
+            className={rootClasses}
+            onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
           >
             {ModalElement &&
               React.cloneElement(ModalElement as unknown as JSX.Element, {

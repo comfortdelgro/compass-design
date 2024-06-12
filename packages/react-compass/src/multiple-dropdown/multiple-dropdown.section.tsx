@@ -1,5 +1,6 @@
-import React, {useContext, useMemo} from 'react'
+import React, {useContext} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   MultipleDropdownContext,
@@ -107,39 +108,43 @@ const MultipleDropdownSection = React.forwardRef<
     setChecking(!checking)
   }
 
-  const contentRightIconClassName = useMemo(() => {
-    let className = `cdg-multiple-dropdown-section ${styles.multipleDropdownRightIcon}`
-    if (checking) {
-      className += ` ${styles.multipleDropdownRightIconSelected}`
-    }
-
-    if (checkmark === 'checkbox') {
-      className += ` ${styles.multipleDropdownRightIconCheckbox}`
-    } else if (checkmark === 'tick') {
-      className += ` ${styles.multipleDropdownRightIconTick}`
-    }
-
-    return className
-  }, [checkmark, checking])
+  const rightIconClasses = classNames(
+    styles.multipleDropdownRightIcon,
+    checking && styles.multipleDropdownRightIconSelected,
+    checkmark === 'checkbox' && styles.multipleDropdownRightIconCheckbox,
+    checkmark === 'tick' && styles.multipleDropdownRightIconTick,
+    'cdg-multiple-dropdown-section',
+  )
 
   return (
     <CssInjection css={css} childrenRef={dropdownSectionRef}>
       <div
-        className={`${styles.multipleDropdownSection}`}
-        ref={dropdownSectionRef}
         {...delegated}
+        ref={dropdownSectionRef}
+        className={classNames(
+          styles.multipleDropdownSection,
+          'cdg-multiple-dropdown-section',
+        )}
       >
         {title && (
           <div
-            className={`${styles.multipleDropdownSectionContent} ${
-              isClickable ? styles.IsClickable : ''
-            }`}
+            className={classNames(
+              styles.multipleDropdownSectionContent,
+              isClickable && styles.IsClickable,
+              'cdg-multiple-dropdown-section-content',
+            )}
             onClick={handleOnClick}
           >
             {title}
-            <div className={contentRightIconClassName}>
+            <div className={rightIconClasses}>
               {checkmark === 'checkbox' ? (
-                <div className={`${styles.multipleDropdownSectionCheckbox}`}>
+                <div
+                  className={classNames(
+                    styles.multipleDropdownSectionCheckbox,
+                    isClickable && styles.IsClickable,
+                    'cdg-multiple-dropdown-section-checkbox',
+                  )}
+                >
                   <Tick />
                 </div>
               ) : checkmark === 'tick' ? (
