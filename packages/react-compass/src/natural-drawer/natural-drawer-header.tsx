@@ -1,5 +1,6 @@
 import {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/natural-drawer.module.css'
 
@@ -16,13 +17,26 @@ export const NaturalDrawerHeader = forwardRef<HTMLElement, DrawerHeaderProps>(
     return (
       <CssInjection css={css} childrenRef={drawerHeaderRef}>
         <header
-          ref={drawerHeaderRef}
-          className={`${styles.naturalDrawerHeader} natural-drawer-header`}
           {...htmlAttributes}
+          ref={drawerHeaderRef}
+          className={classNames(
+            styles.naturalDrawerHeader,
+            'cdg-natural-drawer-header',
+          )}
         >
           {useDrag && (
-            <div className={styles.naturalDrawerDragger}>
-              <span className={styles.naturalDrawerHandle} />
+            <div
+              className={classNames(
+                styles.naturalDrawerDragger,
+                'cdg-natural-drawer-dragger',
+              )}
+            >
+              <span
+                className={classNames(
+                  styles.naturalDrawerHandle,
+                  'cdg-natural-drawer-handle',
+                )}
+              />
             </div>
           )}
           {children}

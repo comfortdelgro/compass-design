@@ -17,7 +17,7 @@ const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>(
       <div
         ref={tabPanelRef}
         aria-labelledby={ariaLabelledBy}
-        className='tab-panel-wrapper'
+        className='cdg-tab-panel-wrapper'
         role='tabpanel'
       >
         {selectedItem?.props.children}

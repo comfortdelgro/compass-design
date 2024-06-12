@@ -17,6 +17,7 @@ import {
 import React, {useEffect, useState} from 'react'
 import {CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ExpandableRow from './components/table-expandable-row'
 import styles from './styles/table.module.css'
@@ -29,6 +30,7 @@ import TableLoading from './table-loading'
 import TableRow from './table-row'
 import TableToolbar from './table-toolbar'
 import {Props} from './utils/types'
+import TableCheckboxCell from './table-checkbox-cell'
 
 export type TableProps<T = unknown> = Props<T> &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<T>>
@@ -145,8 +147,17 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
     <CssInjection css={css} childrenRef={tableRef}>
       <div {...htmlProps}>
         {toolbar && <>{toolbar}</>}
-        <div className={styles.cdgTableContainer}>
-          <table ref={tableRef} role='table' className={styles.cdgTable}>
+        <div
+          className={classNames(
+            styles.cdgTableContainer,
+            'cdg-table-container',
+          )}
+        >
+          <table
+            ref={tableRef}
+            role='table'
+            className={classNames(styles.cdgTable, 'cdg-table')}
+          >
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableHeaderRow key={headerGroup.id}>
@@ -214,6 +225,11 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Table & {
+  Toolbar: typeof TableToolbar
+  Footer: typeof TableFooter
+  CheckboxCell: typeof TableCheckboxCell
+  ProgressPercentage: typeof ProgressEvent
+}
 
 export default Table

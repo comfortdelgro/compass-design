@@ -4,6 +4,7 @@ import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import Popover from '../popover'
 import TextField, {TextFieldProps} from '../textfield'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DEFAULT_VIEWS,
@@ -678,7 +679,11 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       <CssInjection css={css} childrenRef={containerRef}>
         <div
           ref={containerRef as React.RefObject<HTMLDivElement>}
-          className={`${className} ${styles.timePickerContainer} cdg-time-picker-container`}
+          className={classNames(
+            styles.timePickerContainer,
+            className,
+            'cdg-time-picker-container',
+          )}
         >
           <Popover
             anchor={
@@ -689,11 +694,17 @@ const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
                 onClick={handleInputClick}
                 onKeyDown={handleKeyDown}
                 placeholder={formatTime}
-                className={`${styles.timePickerInput} cdg-time-picker-input`}
+                className={classNames(
+                  styles.timePickerInput,
+                  'cdg-time-picker-input',
+                )}
                 rightIcon={
                   <button
                     onClick={handleIconClockClick}
-                    className={`${styles.timePickerInputIcon} cdg-time-picker-input-icon`}
+                    className={classNames(
+                      styles.timePickerInputIcon,
+                      'cdg-time-picker-input-icon',
+                    )}
                     disabled={delegated.isDisabled}
                     ref={timePickerIconRef}
                   >

@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/circular.module.css'
 
@@ -52,42 +53,34 @@ const CircularProgress = React.forwardRef<
     return {}
   }, [thickness, value, variant])
 
-  const circularClass = React.useMemo(() => {
-    return [
-      styles.circular,
-      variant === 'indeterminate' && styles.circularVariantIndeterminate,
-      'cdg-progress-circular',
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [variant, className])
+  const rootClasses = classNames(
+    styles.circular,
+    variant === 'indeterminate' && styles.circularVariantIndeterminate,
+    className,
+    'cdg-progress-circular',
+  )
 
-  const svgCircleClass = React.useMemo(() => {
-    return [
-      styles.svgCircle,
-      variant === 'determinate'
-        ? styles.svgCircleVariantDeterminate
-        : styles.svgCircleVariantIndeterminate,
-      variant === 'indeterminate' &&
-        !disableShrink &&
-        styles.svgCircleVariantDeterminateDisableShrink,
-      'cdg-progress-svgCircle',
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [variant, disableShrink])
+  const svgCircleClasses = classNames(
+    styles.svgCircle,
+    variant === 'determinate'
+      ? styles.svgCircleVariantDeterminate
+      : styles.svgCircleVariantIndeterminate,
+    variant === 'indeterminate' &&
+      !disableShrink &&
+      styles.svgCircleVariantDeterminateDisableShrink,
+    'cdg-progress-svgCircle',
+  )
 
   return (
     <CssInjection css={css} childrenRef={rootRef}>
       <div
         {...htmlProps}
         ref={rootRef}
-        className={circularClass}
+        className={rootClasses}
         style={{color: color, width: size, height: size, ...rootStyle}}
       >
         <svg
-          className={`${styles.svg} cdg-progress-svg`}
+          className={classNames(styles.svg, 'cdg-progress-svg')}
           viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}
         >
           <circle
@@ -97,7 +90,7 @@ const CircularProgress = React.forwardRef<
             style={circleStyle}
             strokeWidth={thickness}
             r={(SIZE - thickness) / 2}
-            className={svgCircleClass}
+            className={svgCircleClasses}
           />
         </svg>
       </div>

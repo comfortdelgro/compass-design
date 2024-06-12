@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import RadioGroup, {RadioContext} from './radio-group'
 import styles from './styles/radio.module.css'
@@ -54,26 +54,22 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
     setIsChecked(state.value === value)
   }, [state.value, value])
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.radio,
     variant && styles[`radioVariant${capitalizeFirstLetter(variant)}`],
     inputPosition === 'left' ? '' : styles.radioInputPositionRight,
     isDisabled && styles.radioDisabled,
     className,
     'cdg-radio',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const inputClasses = [
+  const inputClasses = classNames(
     styles.radioInput,
     variant && styles[`radioInputVariant${capitalizeFirstLetter(variant)}`],
     isChecked && styles.radioInputActive,
     isDisabled && styles.radioInputDisabled,
     'cdg-radio-input',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css}>
@@ -95,22 +91,35 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
           ></input>
         </div>
         <div
-          className={`${styles.radioContentWrapper} cdg-radio-content-wrapper`}
+          className={classNames(
+            styles.radioContentWrapper,
+            'cdg-radio-content-wrapper',
+          )}
         >
           {!!label && (
-            <div className={`${styles.radioLabel} cdg-radio-label`}>
+            <div className={classNames(styles.radioLabel, 'cdg-radio-label')}>
               {label} {!!tooltip && <Tooltip text={tooltip} />}
             </div>
           )}
 
           {description && (
-            <p className={`${styles.radioDescription} cdg-radio-description`}>
+            <p
+              className={classNames(
+                styles.radioDescription,
+                'cdg-radio-description',
+              )}
+            >
               {description}
             </p>
           )}
         </div>
         {!!rightLabel && (
-          <p className={`${styles.radioRightLabel} cdg-radio-right-label`}>
+          <p
+            className={classNames(
+              styles.radioRightLabel,
+              'cdg-radio-right-label',
+            )}
+          >
             {rightLabel}
           </p>
         )}

@@ -1,6 +1,7 @@
 import {Cell, flexRender, Row} from '@tanstack/react-table'
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {CellMetaProps, EditableCell} from './components/table-editable-cell'
 import styles from './styles/table-cell.module.css'
@@ -34,16 +35,14 @@ const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
     >
     const isCellEditable = tableMeta?.editable
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.cdgTableCell,
       cell.getIsGrouped() && styles.isGrouped,
       cell.getIsAggregated() && styles.isAggregated,
       cell.getIsPlaceholder() && styles.isPlaceholder,
       className,
       'cdg-table-cell',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     const renderGroupedCell = () => (
       <button

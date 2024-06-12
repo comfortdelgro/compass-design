@@ -1,5 +1,6 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/timeline.module.css'
 import TimelineItem from './timeline-item'
@@ -35,34 +36,26 @@ const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
     const timelineRef = useDOMRef<HTMLDivElement>(ref)
 
     //  classes
-    const timelineContainerClasses = useMemo(() => {
-      return [
-        styles.timelineContainer,
-        styles[`timelineContainer-${mode}-${labelAlignment}-${itemAlignment}`],
-        className,
-        'cdg-timeline-container',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [className, itemAlignment, labelAlignment, mode])
+    const timelineContainerClasses = classNames(
+      styles.timelineContainer,
+      styles[`timelineContainer-${mode}-${labelAlignment}-${itemAlignment}`],
+      className,
+      'cdg-timeline-container',
+    )
 
-    const timelineClasses = useMemo(() => {
-      return [
-        styles.timeline,
-        styles[`timeline-${mode}-${labelAlignment}-${itemAlignment}`],
-        className,
-        'cdg-timeline',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [className, itemAlignment, labelAlignment, mode])
+    const timelineClasses = classNames(
+      styles.timeline,
+      styles[`timeline-${mode}-${labelAlignment}-${itemAlignment}`],
+      className,
+      'cdg-timeline',
+    )
 
     return (
       <>
         <CssInjection css={css}>
           <div
-            ref={timelineRef}
             {...htmlProps}
+            ref={timelineRef}
             className={timelineContainerClasses}
           >
             <div className={timelineClasses}>{children}</div>

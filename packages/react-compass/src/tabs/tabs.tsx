@@ -6,6 +6,7 @@ import {
   useKeyboardNavigationState,
 } from '../utils/hooks'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import TabItem from './item'
 import styles from './styles/tabs.module.css'
@@ -108,22 +109,24 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const tabPanelId = `${id}_${selectedItem?.key}`
 
   return (
-    <div className={`cdg-tab-wrapper ${styles.wrapper} ${className}`}>
+    <div className={classNames(styles.wrapper, className, 'cdg-tab-wrapper')}>
       <CssInjection css={css} childrenRef={tabRef}>
         <div
           ref={tabRef}
-          className={`cdg-tabs ${styles.tabs} ${styles[`${orientation}`]} ${
-            styles[`${variant}`]
-          } ${
+          {...htmlProps}
+          className={classNames(
+            styles.tabs,
+            styles[`${orientation}`],
+            styles[`${variant}`],
             styles[
               variant +
                 `${orientation.charAt(0).toUpperCase() + orientation.slice(1)}`
-            ]
-          }`}
+            ],
+            'cdg-tabs',
+          )}
           onKeyDown={handleKeyDown}
           role='tablist'
           aria-orientation={orientation}
-          {...htmlProps}
         >
           {[...collection].map((item) => (
             <Tab

@@ -5,6 +5,7 @@ import {
   useKeyboardNavigationState,
 } from '../../utils/hooks'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {TabItemProps} from '../item'
 import styles from '../styles/tab.module.css'
@@ -77,8 +78,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
     }
 
     const mergeRef = useMergeRefs([tabRef, register])
-    const tabClassName = [
-      `cdg-tab-item-wrapper`,
+    const tabClassName = classNames(
       styles.tab,
       styles[`icon${icon.charAt(0).toUpperCase() + icon.slice(1)}`],
       styles[`${variant}`],
@@ -86,12 +86,10 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       styles[`disabled${disabledState ? 'True' : 'False'}`],
       styles[variant + `Disabled${disabledState ? 'True' : 'False'}`],
       styles[variant + `Active${isSelected ? 'True' : 'False'}`],
-    ]
-      .filter(Boolean)
-      .join(' ')
+      `cdg-tab-item-wrapper`,
+    )
 
-    const tabIconClassName = [
-      `cdg-tab-icon`,
+    const tabIconClassName = classNames(
       styles.icon,
       styles[`icon${icon.charAt(0).toUpperCase() + icon.slice(1)}Icon`],
       variant && styles[variant + `Icon`],
@@ -101,9 +99,8 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       variant &&
         isSelected &&
         styles[variant + `Active${isSelected ? 'True' : 'False'}Icon`],
-    ]
-      .filter(Boolean)
-      .join(' ')
+      `cdg-tab-icon`,
+    )
 
     // legacy, users are advised to use className styling for customization
     const customCss = {

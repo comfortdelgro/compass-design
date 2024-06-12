@@ -2,6 +2,7 @@
 
 import React, {useRef, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import Divider from './divider'
 import {SidenavContext} from './sidenav-context'
 import SidenavItem from './sidenav-item'
@@ -72,9 +73,13 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
     <CssInjection css={css} childrenRef={ref}>
       <div
         ref={ref}
-        className={`cdg-sidenav ${styles.sidenav} ${className} ${
-          expandOnHover ? 'sidenav-expanded' : ''
-        } ${isExpand ? `${styles.sidenavFull}` : 'default'}`}
+        className={classNames(
+          styles.sidenav,
+          expandOnHover && 'sidenav-expanded',
+          isExpand ? styles.sidenavFull : 'default',
+          className,
+          'cdg-sidenav',
+        )}
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseLeave}
         {...htmlProps}

@@ -14,6 +14,7 @@ import StarterKit from '@tiptap/starter-kit'
 import isEqual from 'lodash/isEqual'
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import * as controls from './controls'
 import Control from './controls/Control'
@@ -107,11 +108,11 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
 
     const textEditorRef = useDOMRef<HTMLDivElement>(ref)
 
-    const rootClasses = React.useMemo(() => {
-      return [styles.cdgRichTextEditor, className, 'cdg-rich-text-editor']
-        .filter(Boolean)
-        .join(' ')
-    }, [className])
+    const rootClasses = classNames(
+      styles.cdgRichTextEditor,
+      className,
+      'cdg-rich-text-editor',
+    )
 
     return (
       <RichTextEditorProvider
@@ -124,7 +125,10 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
             {children}
             <EditorContent
               editor={editor}
-              className={`${styles.editorContent} cdg-rich-text-editor-content`}
+              className={classNames(
+                styles.editorContent,
+                'cdg-rich-text-editor-content',
+              )}
             />
             {characterCount && (
               <div className={`${styles.characterCount}`}>

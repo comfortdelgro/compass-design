@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/skeleton.module.css'
 
@@ -33,22 +34,18 @@ const Skeleton = React.forwardRef<HTMLElement, SkeletonProps>((props, ref) => {
 
   const skeletonRef = useDOMRef<HTMLElement>(ref)
 
-  const skeletonClass = React.useMemo(() => {
-    return [
-      styles.skeleton,
-      variant === 'text' && styles.skeletonVariantText,
-      variant === 'circular' && styles.skeletonVariantCircular,
-      variant === 'rounded' && styles.skeletonVariantRounded,
-      animation === 'pulse' && styles.skeletonAnimationPulse,
-      animation === 'wave' && styles.skeletonAnimationWave,
-      !!children && styles.skeletonHasChildren,
-      !!children && !width && styles.skeletonHasChildrenNotHasWidth,
-      'cdg-skeleton',
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [animation, children, className, variant, width])
+  const skeletonClass = classNames(
+    styles.skeleton,
+    variant === 'text' && styles.skeletonVariantText,
+    variant === 'circular' && styles.skeletonVariantCircular,
+    variant === 'rounded' && styles.skeletonVariantRounded,
+    animation === 'pulse' && styles.skeletonAnimationPulse,
+    animation === 'wave' && styles.skeletonAnimationWave,
+    !!children && styles.skeletonHasChildren,
+    !!children && !width && styles.skeletonHasChildrenNotHasWidth,
+    className,
+    'cdg-skeleton',
+  )
 
   return (
     <CssInjection css={css} childrenRef={skeletonRef}>

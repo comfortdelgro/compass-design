@@ -1,4 +1,5 @@
 import React, {KeyboardEvent} from 'react'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/tag-box.module.css'
 
@@ -51,7 +52,7 @@ const TagBoxInput = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
       {...htmlProps}
       type='text'
       ref={tagBoxInputRef}
-      className={`${styles.bodyContentInput} cdg-tag-box-input`}
+      className={classNames(styles.bodyContentInput, 'cdg-tag-box-input')}
       onChange={onInputChange}
       onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
         const value = (e.target as HTMLInputElement).value

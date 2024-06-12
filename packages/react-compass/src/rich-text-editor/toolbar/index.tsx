@@ -1,5 +1,6 @@
 import React, {HTMLAttributes, useState} from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import Control from '../controls/Control'
 import styles from '../styles/toolbar.module.css'
@@ -149,11 +150,11 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
     )
   }, [children])
 
-  const toolbarWrapperClasses = React.useMemo(() => {
-    return [styles.rteToolbarWrapper, className, 'cdg-rte-toolbar']
-      .filter(Boolean)
-      .join(' ')
-  }, [className])
+  const toolbarWrapperClasses = classNames(
+    styles.rteToolbarWrapper,
+    className,
+    'cdg-rte-toolbar',
+  )
 
   return (
     <CssInjection css={css} childrenRef={toolbarRef}>
@@ -162,7 +163,7 @@ const Toolbar = React.forwardRef<HTMLDivElement, ToolbarProps>((props, ref) => {
           {calcultedChildren}
         </div>
         <Control onClick={handleMoreBtnClick} id='more-button' active={false}>
-          <svg className='accordion-chevron-icon' viewBox='0 0 448 512'>
+          <svg className='cdg-rte-toolbar-icon' viewBox='0 0 448 512'>
             <path
               fill='currentColor'
               d='M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z'

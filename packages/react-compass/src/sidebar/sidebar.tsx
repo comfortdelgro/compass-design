@@ -3,7 +3,7 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import SidebarActions from './sidebar-actions'
 import SidebarContent from './sidebar-content'
@@ -70,26 +70,37 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
     <CssInjection css={css} childrenRef={sidebarRef}>
       {isOpen && (
         <div
-          className={`cdg-sidebar-wrapper ${styles.sidebarWrapper} ${className}`}
+          className={classNames(
+            styles.sidebarWrapper,
+            className,
+            'cdg-sidebar-wrapper',
+          )}
           onClick={(e) => handleClickBackDrop(e as unknown as MouseEvent)}
         >
           <div
-            className={`cdg-sidebar ${styles.sidebar} ${
-              variant ? styles[`sidebar${capitalizeFirstLetter(variant)}`] : ''
-            } ${
-              position
-                ? styles[`sidebar${capitalizeFirstLetter(position)}`]
-                : ''
-            }`}
-            ref={sidebarRef}
-            onClick={(e) => handleClickSidebar(e as unknown as MouseEvent)}
             {...htmlProps}
+            ref={sidebarRef}
+            className={classNames(
+              styles.sidebar,
+              variant && styles[`sidebar${capitalizeFirstLetter(variant)}`],
+              position && styles[`sidebar${capitalizeFirstLetter(position)}`],
+              'cdg-sidebar',
+            )}
+            onClick={(e) => handleClickSidebar(e as unknown as MouseEvent)}
           >
             {variant == 'primary' && (
-              <div className={`cdg-sidebar-header ${styles.sidebarHeader}`}>
+              <div
+                className={classNames(
+                  styles.sidebarHeader,
+                  'cdg-sidebar-header',
+                )}
+              >
                 {SidebarTitleElement}
                 <div
-                  className={`cdg-sidebar-close-icon ${styles.sidebarCloseIcon}`}
+                  className={classNames(
+                    styles.sidebarCloseIcon,
+                    'cdg-sidebar-close-icon',
+                  )}
                   onClick={() => handleClose?.()}
                 >
                   <svg viewBox='0 0 384 512'>

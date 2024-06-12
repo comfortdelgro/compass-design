@@ -3,13 +3,12 @@ import React, {
   AriaAttributes,
   DataHTMLAttributes,
   forwardRef,
-  useCallback,
   useImperativeHandle,
-  useMemo,
   useRef,
   useState,
 } from 'react'
 import {CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/tag-box-v2.module.css'
 import {CustomTagBoxRef, Tag, TagBoxV2Props} from './types'
 
@@ -192,35 +191,20 @@ const TagBoxV2 = forwardRef<
     }
 
     //  classes
-    const tagBoxV2Classes = useMemo(() => {
-      return [styles.tagBoxV2, className, 'cdg-tag-box-v2']
-        .filter(Boolean)
-        .join(' ')
-    }, [className])
+    const tagBoxV2Classes = classNames(
+      styles.tagBoxV2,
+      className,
+      'cdg-tag-box-v2',
+    )
 
     //  classes
-    const tagBoxV2ContainerClasses = useMemo(() => {
-      return [
-        styles.container,
-        isErrored && styles.containerIsErrored,
-        isDisabled && styles.containerIsDisabled,
-        focused && styles.containerFocused,
-        'cdg-tag-box-v2-container',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [focused, isDisabled, isErrored])
-
-    //  classes
-    const tagClasses = useCallback((tag) => {
-      return [
-        styles.tagContainer,
-        tag.isErrored && styles.tagContainerIsErrored,
-        'cdg-tag-box-v2-tag',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [])
+    const tagBoxV2ContainerClasses = classNames(
+      styles.container,
+      isErrored && styles.containerIsErrored,
+      isDisabled && styles.containerIsDisabled,
+      focused && styles.containerFocused,
+      'cdg-tag-box-v2-container',
+    )
 
     return (
       <CssInjection css={css}>
@@ -229,11 +213,16 @@ const TagBoxV2 = forwardRef<
           <div
             aria-label={tagBoxLabel}
             onClick={handleClickContainer}
-            className={`${styles.label} cdg-tag-box-v2-label`}
+            className={classNames(styles.label, 'cdg-tag-box-v2-label')}
           >
             {tagBoxLabel}
             {isRequired && (
-              <span className={`${styles.asterisk} cdg-tag-box-v2-asterisk`}>
+              <span
+                className={classNames(
+                  styles.asterisk,
+                  'cdg-tag-box-v2-asterisk',
+                )}
+              >
                 *
               </span>
             )}
@@ -253,11 +242,18 @@ const TagBoxV2 = forwardRef<
                 key={tag.id}
                 onClick={(event) => handleClickOrDblClickTag(event, tag)}
                 onDoubleClick={(event) => handleClickOrDblClickTag(event, tag)}
-                className={tagClasses(tag)}
+                className={classNames(
+                  styles.tagContainer,
+                  tag.isErrored && styles.tagContainerIsErrored,
+                  'cdg-tag-box-v2-tag',
+                )}
               >
                 <div
                   title={isEditable ? 'Click to edit' : undefined}
-                  className={`${styles.tagContent} cdg-tag-box-v2-tag-content`}
+                  className={classNames(
+                    styles.tagContent,
+                    'cdg-tag-box-v2-tag-content',
+                  )}
                 >
                   {currentlyEditingTag && currentlyEditingTag.id === tag.id ? (
                     <input
@@ -268,7 +264,10 @@ const TagBoxV2 = forwardRef<
                       onChange={(event) => handleChangeTagInput(event, tag)}
                       onBlur={(event) => handleBlurTagInput(event, tag)}
                       onKeyDown={(event) => handleKeyDownTagInput(event, tag)}
-                      className={`${styles.tagInput} cdg-tag-box-v2-tag-input`}
+                      className={classNames(
+                        styles.tagInput,
+                        'cdg-tag-box-v2-tag-input',
+                      )}
                     />
                   ) : (
                     tag.value
@@ -285,7 +284,10 @@ const TagBoxV2 = forwardRef<
                           ? 'none'
                           : 'inline-block',
                     }}
-                    className={`${styles.tagCloseIcon} cdg-tag-box-v2-tag-icon`}
+                    className={classNames(
+                      styles.tagCloseIcon,
+                      'cdg-tag-box-v2-tag-icon',
+                    )}
                   >
                     <path
                       fill='currentColor'
@@ -298,16 +300,21 @@ const TagBoxV2 = forwardRef<
 
             {/**** add new button ****/}
             {!isDisabled && (
-              <div className={`${styles.buttonContainer} cdg-tag-box-v2-add`}>
+              <div
+                className={classNames(
+                  styles.buttonContainer,
+                  'cdg-tag-box-v2-add',
+                )}
+              >
                 {!isUsingNewTagInput && (
                   <div
                     onClick={handleClickAddNewTag}
-                    className={`${styles.newTagButton} cdg-tag-box-v2-add-button`}
+                    className={classNames(
+                      styles.newTagButton,
+                      'cdg-tag-box-v2-add-button',
+                    )}
                   >
-                    <svg
-                      width={11}
-                      viewBox='0 0 448 512'
-                    >
+                    <svg width={11} viewBox='0 0 448 512'>
                       <path
                         fill='currentColor'
                         d='M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z'
@@ -328,7 +335,10 @@ const TagBoxV2 = forwardRef<
                   onChange={handleChangeNewTag}
                   onKeyDown={handleKeyDownNewTag}
                   onBlur={handleBlurNewTag}
-                  className={`${styles.newTagInput} cdg-tag-box-v2-add-input`}
+                  className={classNames(
+                    styles.newTagInput,
+                    'cdg-tag-box-v2-add-input',
+                  )}
                 />
               </div>
             )}

@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/page-header-description.module.css'
 
 interface Props {
@@ -14,17 +15,15 @@ const PageHeaderTitle = React.forwardRef<HTMLDivElement, PageHeaderTitleProps>(
   (props, ref) => {
     const {children, css = {}, className, ...delegated} = props
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.pageHeaderTitle,
       className,
       'cdg-page-header-title',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <h1 className={rootClasses} ref={ref} {...delegated}>
+        <h1 {...delegated} className={rootClasses} ref={ref}>
           {children}
         </h1>
       </CssInjection>

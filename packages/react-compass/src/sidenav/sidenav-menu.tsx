@@ -19,6 +19,7 @@ import {
 } from '@floating-ui/react'
 import React, {useContext, useEffect, useMemo, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/sidenav-menu.module.css'
 
 interface Props {
@@ -153,7 +154,12 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
             <FloatingFocusManager context={context} modal={false}>
               <CssInjection css={css} childrenRef={mergeRefs}>
                 <div
-                  className={`cdg-sidenav-menu ${className} ${styles.sidenavMenu}`}
+                  {...delegated}
+                  className={classNames(
+                    styles.sidenavMenu,
+                    className,
+                    'cdg-sidenav-menu',
+                  )}
                   ref={mergeRefs}
                   style={{...floatingStyles}}
                   aria-labelledby={headingId}
@@ -164,7 +170,6 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
                   onMouseOver={() => {
                     setIsMouseLeave(false)
                   }}
-                  {...delegated}
                 >
                   <SideMenuContext.Provider
                     value={{setIsChildOpen: setIsNestedMenuOpen}}

@@ -1,6 +1,7 @@
 import Color from 'colorjs.io'
 import React, {useMemo} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/linear.module.css'
 
@@ -38,32 +39,24 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
       [color],
     )
 
-    const linearClass = React.useMemo(() => {
-      return [
-        styles.linear,
-        variant === 'indeterminate' && styles.linearVariantIndeterminate,
-        variant === 'determinate' && styles.linearVariantDeterminate,
-        variant === 'buffer' && styles.linearVariantBuffer,
-        rounded && styles.linearRounded,
-        'cdg-progress-linear',
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [variant, rounded, className])
+    const rootClasses = classNames(
+      styles.linear,
+      variant === 'indeterminate' && styles.linearVariantIndeterminate,
+      variant === 'determinate' && styles.linearVariantDeterminate,
+      variant === 'buffer' && styles.linearVariantBuffer,
+      rounded && styles.linearRounded,
+      className,
+      'cdg-progress-linear',
+    )
 
-    const bar1Class = React.useMemo(() => {
-      return [
-        styles.bar1,
-        variant === 'indeterminate' && styles.bar1VariantIndeterminate,
-        variant === 'determinate' && styles.bar1VariantDeterminate,
-        variant === 'buffer' && styles.bar1VariantBuffer,
-        rounded && styles.linearRounded,
-        'cdg-progress-bar1',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [rounded, variant])
+    const bar1Classes = classNames(
+      styles.bar1,
+      variant === 'indeterminate' && styles.bar1VariantIndeterminate,
+      variant === 'determinate' && styles.bar1VariantDeterminate,
+      variant === 'buffer' && styles.bar1VariantBuffer,
+      rounded && styles.linearRounded,
+      'cdg-progress-bar1',
+    )
 
     const bar1Style = useMemo(() => {
       if (variant === 'determinate' || variant === 'buffer') {
@@ -76,18 +69,14 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
       return {}
     }, [value, variant])
 
-    const bar2Class = React.useMemo(() => {
-      return [
-        styles.bar2,
-        variant === 'indeterminate' && styles.bar2VariantIndeterminate,
-        variant === 'determinate' && styles.bar2VariantDeterminate,
-        variant === 'buffer' && styles.bar2VariantBuffer,
-        rounded && styles.linearRounded,
-        'cdg-progress-bar2',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [rounded, variant])
+    const bar2Classes = classNames(
+      styles.bar2,
+      variant === 'indeterminate' && styles.bar2VariantIndeterminate,
+      variant === 'determinate' && styles.bar2VariantDeterminate,
+      variant === 'buffer' && styles.bar2VariantBuffer,
+      rounded && styles.linearRounded,
+      'cdg-progress-bar2',
+    )
 
     const bar2Syle = useMemo(() => {
       if (variant === 'buffer') {
@@ -103,19 +92,22 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
     return (
       <CssInjection css={css} childrenRef={rootRef}>
         <div
+          {...delegated}
           ref={rootRef}
-          className={linearClass}
+          className={rootClasses}
           style={
             {
               '--cdg-progress-linear-color': color,
               height: `${size}px`,
             } as React.CSSProperties
           }
-          {...delegated}
         >
           {variant === 'buffer' && (
             <div
-              className={`${styles.dashed} cdg-progress-linear-dashed`}
+              className={classNames(
+                styles.dashed,
+                'cdg-progress-linear-dashed',
+              )}
               style={
                 {
                   '--cdg-progress-linear-color': color,
@@ -126,12 +118,12 @@ const LinearProgress = React.forwardRef<HTMLDivElement, LinearProgressProps>(
             />
           )}
           <div
-            className={bar1Class}
+            className={bar1Classes}
             style={{...bar1Style, backgroundColor: color}}
           />
           {variant !== 'determinate' && (
             <div
-              className={bar2Class}
+              className={bar2Classes}
               style={
                 {
                   ...bar2Syle,

@@ -2,13 +2,13 @@
 
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import styles from './styles/sub-header.module.css'
-import SubHeaderTitle from './sub-header-title'
+import SubHeaderBody from './sub-header-body'
 import SubHeaderDescription from './sub-header-description'
 import SubHeaderHeader from './sub-header-header'
 import SubHeaderImage from './sub-header-image'
-import SubHeaderBody from './sub-header-body'
+import SubHeaderTitle from './sub-header-title'
 
 interface Props {
   children: React.ReactNode
@@ -33,11 +33,14 @@ const SubHeader = React.forwardRef<HTMLDivElement, SubHeaderProps>(
     return (
       <CssInjection css={css} childrenRef={ref}>
         <div
-          className={`cdg-sub-header ${className} ${styles.subHeader} ${
-            styles[`subHeader${capitalizeFirstLetter(variant)}`]
-          }`}
           ref={ref}
           {...htmlProps}
+          className={classNames(
+            styles.subHeader,
+            styles[`subHeader${capitalizeFirstLetter(variant)}`],
+            className,
+            'cdg-sub-header',
+          )}
         >
           {children}
         </div>

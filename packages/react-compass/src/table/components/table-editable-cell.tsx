@@ -2,6 +2,7 @@ import {Cell, ColumnMeta, flexRender, RowData} from '@tanstack/react-table'
 import React, {SetStateAction, useEffect} from 'react'
 import {createSafeContext} from '../../utils/create-safe-context'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from '../styles/table-editable-cell.module.css'
 
@@ -92,13 +93,11 @@ export const EditableCell: React.FC<EditableCellProps> = (props) => {
     tableMeta?.revertData?.(row)
   }
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.cdgTableEditableCell,
     className,
     'cdg-table-editable-cell',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css}>
@@ -126,12 +125,18 @@ export const EditableCell: React.FC<EditableCellProps> = (props) => {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               onBlur={handleBlur}
-              className={`${styles.editableCellInput} cdg-table-editable-cell-input`}
+              className={classNames(
+                styles.editableCellInput,
+                'cdg-table-editable-cell-input',
+              )}
             />
           )
         ) : (
           <p
-            className={`${styles.editableCellContent} cdg-table-editable-cell-content`}
+            className={classNames(
+              styles.editableCellContent,
+              'cdg-table-editable-cell-content',
+            )}
           >
             {flexRender(cell.column.columnDef.cell, cell.getContext())}
           </p>

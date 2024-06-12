@@ -3,6 +3,7 @@ import React, {useMemo} from 'react'
 import {useIsDarkTheme} from '../theme'
 import {EKeyboardKey} from '../utils/keyboard.enum'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-column-header.module.css'
 import HeaderColumnFilter from './table-column-header-filter'
@@ -73,21 +74,17 @@ const TableColumnHeader = React.forwardRef<
     }
   }, [sortDirection])
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.cdgTableColumnHeader,
     className,
     'cdg-table-column-header',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const headerContentClass = [
+  const headerContentClass = classNames(
     styles.cdgTableContent,
     headerProps.column.getCanSort() && styles.canSort,
     'cdg-table-column-header-content',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={tableColumnHeaderRef}>

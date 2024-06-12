@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/sidebar.module.css'
 
@@ -22,9 +23,13 @@ const SidebarTitle = React.forwardRef<HTMLDivElement, SidebarTitleProps>(
       if (typeof children === 'string') {
         return (
           <div
-            className={`cdg-sidebar-title ${styles.sidebarTitle} ${className}`}
-            ref={sidebarTitleRef}
             {...delegated}
+            ref={sidebarTitleRef}
+            className={classNames(
+              styles.sidebarTitle,
+              className,
+              'cdg-sidebar-title',
+            )}
           >
             {children}
           </div>
@@ -36,9 +41,13 @@ const SidebarTitle = React.forwardRef<HTMLDivElement, SidebarTitleProps>(
     return (
       <CssInjection css={css} childrenRef={sidebarTitleRef}>
         <div
-          className={`cdg-sidebar-title ${styles.sidebarTitle} ${className}`}
-          ref={sidebarTitleRef}
           {...delegated}
+          ref={sidebarTitleRef}
+          className={classNames(
+            styles.sidebarTitle,
+            className,
+            'cdg-sidebar-title',
+          )}
         >
           {renderTitle()}
         </div>

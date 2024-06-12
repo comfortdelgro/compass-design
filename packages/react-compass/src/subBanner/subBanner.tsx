@@ -3,6 +3,7 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/subBanner.module.css'
 import SubBannerDescription from './subBanner-description'
@@ -54,14 +55,26 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
       <CssInjection css={css} childrenRef={subBannerRef}>
         {variant == 'primary' ? (
           <div
-            className={`cdg-sub-banner ${className} ${styles.subBanner} `}
-            ref={subBannerRef}
             {...htmlProps}
+            ref={subBannerRef}
+            className={classNames(
+              styles.subBanner,
+              className,
+              'cdg-sub-banner',
+            )}
           >
             {SubBannerImageElementCloned()}
-            <div className={`cdg-sub-banner-bottom ${styles.subBannerBottom} `}>
+            <div
+              className={classNames(
+                styles.subBannerBottom,
+                'cdg-sub-banner-bottom',
+              )}
+            >
               <div
-                className={`cdg-bottom-content-container ${styles.bottomContentContainer} `}
+                className={classNames(
+                  styles.bottomContentContainer,
+                  'cdg-bottom-content-container',
+                )}
               >
                 {SubBannerTitleElement}
                 {SubBannerDescriptionElement}
@@ -70,14 +83,23 @@ const SubBanner = React.forwardRef<HTMLDivElement, SubBannerProps>(
           </div>
         ) : (
           <div
-            className={`cdg-sub-banner ${className} ${styles.subBanner} ${styles.subBannerSecondary}`}
-            ref={subBannerRef}
             {...htmlProps}
+            ref={subBannerRef}
+            className={classNames(
+              styles.subBanner,
+              styles.subBannerSecondary,
+              className,
+              'cdg-sub-banner',
+            )}
           >
             {SubBannerImageElementCloned()}
 
             <div
-              className={`cdg-bottom-content-container ${styles.bottomContentContainer} ${styles.bottomContentContainerSecondary}`}
+              className={classNames(
+                styles.bottomContentContainer,
+                styles.bottomContentContainerSecondary,
+                'cdg-bottom-content-container',
+              )}
             >
               {SubBannerTitleElement}
               {SubBannerDescriptionElement}

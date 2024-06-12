@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-toolbar.module.css'
 
@@ -15,11 +16,11 @@ const TableToolbar = React.forwardRef<HTMLDivElement, TableToolbarProps>(
     const {css = {}, className, children} = props
     const tableToolbarRef = useDOMRef<HTMLDivElement>(ref)
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.cdgTableToolbar,
       className,
       'cdg-table-toolbar',
-    ].join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={tableToolbarRef}>

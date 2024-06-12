@@ -2,6 +2,7 @@
 import cloneDeep from 'lodash/cloneDeep'
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Button from '../button'
+import {classNames} from '../utils/string'
 import {
   DEFAULT_VIEWS,
   EMPTY_DISPLAY_TIME_DROPDOWN_LIST,
@@ -297,14 +298,23 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
     <div
       onKeyDown={handleWrapperKeyDown}
       ref={ref}
-      className={`cdg-time-picker-dropdown-wrapper ${styles.timePickerDropdownWrapper}`}
+      className={classNames(
+        styles.timePickerDropdownWrapper,
+        'cdg-time-picker-dropdown-wrapper',
+      )}
     >
       <div
-        className={`cdg-time-picker-dropdown-wrapper ${styles.timePickerDropdownContent}`}
+        className={classNames(
+          styles.timePickerDropdownContent,
+          'cdg-time-picker-dropdown-wrapper',
+        )}
       >
         {displayList.map((displayData, index) => (
           <div
-            className={`${styles.timePickerDropdownControl} cdg-time-picker-dropdown-control`}
+            className={classNames(
+              styles.timePickerDropdownControl,
+              'cdg-time-picker-dropdown-control',
+            )}
             key={index}
           >
             {displayData.items.map(
@@ -327,7 +337,12 @@ function TimePickerDropdown(props: TimePickerDropdownProps) {
         ))}
       </div>
       {hasFooter && (
-        <div className={`${styles.timePickerDropdownFooter}`}>
+        <div
+          className={classNames(
+            styles.timePickerDropdownFooter,
+            'cdg-time-picker-dropdown-footer',
+          )}
+        >
           <Button
             variant='ghost'
             onClick={handleButtonOkClick}

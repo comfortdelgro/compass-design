@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import SnackbarPrefixIcon from './snackbar-prefix-icon'
 import SnackbarSuffixIcon from './snackbar-suffix-icon'
@@ -77,29 +78,31 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       }
     }
 
-    const contentClasses = [
-      'cdg-snackbar',
+    const contentClasses = classNames(
       styles.snackbar,
       type && styles[`${type}Type`],
       className,
-    ]
-      .filter(Boolean)
-      .join(' ')
+      'cdg-snackbar',
+    )
+
     return (
       <>
         {isOpen &&
           renderContent(
             <CssInjection css={css} childrenRef={snackbarRef}>
               <div
-                className={contentClasses}
-                ref={snackbarRef}
-                onClick={handleClick}
                 {...htmlProps}
+                ref={snackbarRef}
+                className={contentClasses}
+                onClick={handleClick}
               >
                 {SnackbarPrefixIconElement}
                 {SnackbarTextElement}
                 <div
-                  className={`cdg-snackbar-right-section ${styles.snackbarRightSection}`}
+                  className={classNames(
+                    styles.snackbarRightSection,
+                    'cdg-snackbar-right-section',
+                  )}
                 >
                   {SnackbarSuffixIconElement &&
                     React.cloneElement(

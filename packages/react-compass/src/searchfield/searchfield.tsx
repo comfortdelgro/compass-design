@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '../button/button'
 import {useIsDarkTheme} from '../theme'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/searchfield.module.css'
 
@@ -152,33 +153,44 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
 
     return (
       <div
-        className={`cdg-search-field-box-wrapper ${styles.searchFieldBoxWrapper} ${className}`}
+        className={classNames(
+          styles.searchFieldBoxWrapper,
+          className,
+          'cdg-search-field-box-wrapper',
+        )}
       >
         {label && (
           <label
             htmlFor={id}
-            className={`cdg-text-field-label ${styles.textFieldLabel}`}
+            className={classNames(
+              styles.textFieldLabel,
+              'cdg-text-field-label',
+            )}
           >
             {label}
-            {isRequired && <span className='asterisk'>*</span>}
+            {isRequired && <span className='cdg-text-field-asterisk'>*</span>}
           </label>
         )}
         <CssInjection css={css} childrenRef={wrapperRef}>
           <div
-            className={`cdg-search-field-box ${styles.searchFieldBox} ${
-              isDisabled ? styles.disabledTrue : ''
-            } ${isErrored ? styles.isErroredTrue : ''} ${
-              isDarkTheme ? styles.isDarkThemeTrue : styles.isDarkThemeFalse
-            }`}
-            ref={wrapperRef}
             {...delegated}
+            className={classNames(
+              styles.searchFieldBox,
+              isDisabled && styles.disabledTrue,
+              isErrored && styles.isErroredTrue,
+              isDarkTheme ? styles.isDarkThemeTrue : styles.isDarkThemeFalse,
+              'cdg-search-field-box',
+            )}
+            ref={wrapperRef}
           >
             <input
-              className={`cdg-search-field-input ${styles.searchFieldInput} ${
-                isDisabled ? styles.disabledTrue : ''
-              } ${isErrored ? styles.isErroredTrue : ''} ${
-                isDarkTheme ? styles.isDarkThemeTrue : ''
-              }`}
+              className={classNames(
+                styles.searchFieldInput,
+                isDisabled && styles.disabledTrue,
+                isErrored && styles.isErroredTrue,
+                isDarkTheme && styles.isDarkThemeTrue,
+                'cdg-search-field-input',
+              )}
               ref={searchFieldRef}
               id={id}
               autoFocus={autoFocus}
@@ -239,7 +251,11 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
         </CssInjection>
         {isErrored && errorMessage && (
           <div
-            className={`cdg-text-field-helper-text ${styles.textFieldHelperText} ${styles.errorTrue}`}
+            className={classNames(
+              styles.textFieldHelperText,
+              styles.errorTrue,
+              'cdg-text-field-helper-text',
+            )}
           >
             {errorMessage}
           </div>

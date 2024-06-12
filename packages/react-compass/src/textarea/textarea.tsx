@@ -2,6 +2,7 @@
 import React from 'react'
 import {useIsDarkTheme} from '../theme'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useId} from '../utils/useId'
 import styles from './styles/textarea.module.css'
@@ -142,65 +143,38 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
     }, [value?.length])
 
     //  classes
-    const wrapperClasses = React.useMemo(() => {
-      return [
-        styles.textareaWrapper,
-        className,
-        'cdg-textarea-container',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [className])
+    const wrapperClasses = classNames(
+      styles.textareaWrapper,
+      className,
+      'cdg-textarea-container',
+    )
 
-    const labelClasses = React.useMemo(() => {
-      return [
-        styles.textAreaLabel,
-        'cdg-textarea-label',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [])
+    const labelClasses = classNames(styles.textAreaLabel, 'cdg-textarea-label')
 
-    const textareaClasses = React.useMemo(() => {
-      return [
-        styles.textarea,
-        isErrored && styles.isErrored,
-        resizable && styles.resizable,
-        isDarkTheme && styles.isDarkTheme,
-        'cdg-textarea',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [isDarkTheme, isErrored, resizable])
+    const textareaClasses = classNames(
+      styles.textarea,
+      isErrored && styles.isErrored,
+      resizable && styles.resizable,
+      isDarkTheme && styles.isDarkTheme,
+      'cdg-textarea',
+    )
 
-    const wordCountClasses = React.useMemo(() => {
-      return [
-        styles.textAreaHelperText,
-        styles.wordCount,
-        'cdg-textarea-word-count',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [])
+    const wordCountClasses = classNames(
+      styles.textAreaHelperText,
+      styles.wordCount,
+      'cdg-textarea-word-count',
+    )
 
-    const helperTextClasses = React.useMemo(() => {
-      return [
-        styles.textAreaHelperText,
-        'cdg-textarea-helper-text',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [])
+    const helperTextClasses = classNames(
+      styles.textAreaHelperText,
+      'cdg-textarea-helper-text',
+    )
 
-    const errorMessageClasses = React.useMemo(() => {
-      return [
-        styles.error,
-        styles.textAreaHelperText,
-        'cdg-textarea-error-message',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [])
+    const errorMessageClasses = classNames(
+      styles.error,
+      styles.textAreaHelperText,
+      'cdg-textarea-error-message',
+    )
 
     return (
       <CssInjection css={css} childrenRef={wrapperRef}>
@@ -209,7 +183,12 @@ const Textarea = React.forwardRef<HTMLDivElement, TextareaProps>(
             <label htmlFor={textareaId} className={labelClasses}>
               {label}
               {isRequired && (
-                <span className={`${styles.asterisk} cdg-textarea-asterisk`}>
+                <span
+                  className={classNames(
+                    styles.asterisk,
+                    'cdg-textarea-asterisk',
+                  )}
+                >
                   *
                 </span>
               )}
