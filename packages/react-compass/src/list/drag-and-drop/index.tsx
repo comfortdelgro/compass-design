@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './index.module.css'
 import DragAndDropListItem from './item'
@@ -34,9 +35,9 @@ const DragAndDropList = React.forwardRef<HTMLDivElement, DragAndDropListProps>(
     return (
       <CssInjection css={css} childrenRef={ref}>
         <div
-          ref={dndRef}
-          className={`${styles.dnd} cdg-list-dnd ${className}`}
           {...htmlProps}
+          ref={dndRef}
+          className={classNames(styles.dnd, className, 'cdg-list-dnd')}
         >
           <List
             values={items}

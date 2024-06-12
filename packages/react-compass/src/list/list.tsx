@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, {useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import ListImage from './list-image'
 import styles from './styles/list.module.css'
 interface Props {
@@ -52,94 +53,70 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
     setPressed(value)
   }
 
-  const listClass = React.useMemo(() => {
-    return [
-      styles.list,
-      isDisabled && styles.listIsDisabled,
-      size == 'sm' && styles.listSizeSM,
-      variant === 'interactive' &&
-        !isPressed &&
-        !isDisabled &&
-        styles.listVariantInteractive,
-      variant === 'item' && !isPressed && !isDisabled && styles.listVariantItem,
-      variant === 'interactive' &&
-        isPressed &&
-        !isDisabled &&
-        styles.listVariantInteractiveIsPressed,
-      variant === 'item' &&
-        isPressed &&
-        !isDisabled &&
-        styles.listVariantItemIsPressed,
-      variant === 'interactive' &&
-        isDisabled &&
-        styles.listVariantInteractiveIsDisabled,
-      variant === 'item' && isDisabled && styles.listVariantItemIsDisabled,
-      'cdg-list',
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [className, isDisabled, isPressed, size, variant])
+  const listClass = classNames(
+    styles.list,
+    isDisabled && styles.listIsDisabled,
+    size == 'sm' && styles.listSizeSM,
+    variant === 'interactive' &&
+      !isPressed &&
+      !isDisabled &&
+      styles.listVariantInteractive,
+    variant === 'item' && !isPressed && !isDisabled && styles.listVariantItem,
+    variant === 'interactive' &&
+      isPressed &&
+      !isDisabled &&
+      styles.listVariantInteractiveIsPressed,
+    variant === 'item' &&
+      isPressed &&
+      !isDisabled &&
+      styles.listVariantItemIsPressed,
+    variant === 'interactive' &&
+      isDisabled &&
+      styles.listVariantInteractiveIsDisabled,
+    variant === 'item' && isDisabled && styles.listVariantItemIsDisabled,
+    className,
+    'cdg-list',
+  )
 
-  const leftDescriptionClass = React.useMemo(() => {
-    return [
-      styles.leftDescription,
-      size == 'sm' && styles.leftDescriptionSizeSM,
-      variant === 'interactive' && styles.lefttDescriptionVariantInteractive,
-      size == 'sm' && isPressed && styles.leftDescriptionSizeSMIsPressed,
-      variant === 'interactive' &&
-        isDisabled &&
-        styles.leftDescriptionVariantInteractiveIsDisabled,
-      'cdg-list-description',
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [isDisabled, isPressed, size, variant])
+  const leftDescriptionClass = classNames(
+    styles.leftDescription,
+    size == 'sm' && styles.leftDescriptionSizeSM,
+    variant === 'interactive' && styles.lefttDescriptionVariantInteractive,
+    size == 'sm' && isPressed && styles.leftDescriptionSizeSMIsPressed,
+    variant === 'interactive' &&
+      isDisabled &&
+      styles.leftDescriptionVariantInteractiveIsDisabled,
+    'cdg-list-description',
+  )
 
-  const leftInfoClass = React.useMemo(() => {
-    return [
-      styles.leftInfo,
-      size == 'sm' && styles.leftInfoSizeSM,
-      size == 'sm' && isPressed && styles.leftInfoSizeSMIsPressed,
-      'cdg-list-info',
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [isPressed, size])
+  const leftInfoClass = classNames(
+    styles.leftInfo,
+    size == 'sm' && styles.leftInfoSizeSM,
+    size == 'sm' && isPressed && styles.leftInfoSizeSMIsPressed,
+    'cdg-list-info',
+  )
 
-  const leftTitleClass = React.useMemo(() => {
-    return [
-      styles.leftTitle,
-      size == 'sm' && styles.leftTitleSizeSM,
-      size == 'sm' && isPressed && styles.leftTitleSizeSMIsPressed,
-      'cdg-list-title',
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [isPressed, size])
+  const leftTitleClass = classNames(
+    styles.leftTitle,
+    size == 'sm' && styles.leftTitleSizeSM,
+    size == 'sm' && isPressed && styles.leftTitleSizeSMIsPressed,
+    'cdg-list-title',
+  )
 
-  const leftTextClass = React.useMemo(() => {
-    return [
-      styles.leftText,
-      size == 'sm' && styles.leftTextSizeSM,
-      size == 'sm' && isPressed && styles.leftTextSizeSMIsPressed,
-      'cdg-list-left-text',
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [isPressed, size])
+  const leftTextClass = classNames(
+    styles.leftText,
+    size == 'sm' && styles.leftTextSizeSM,
+    size == 'sm' && isPressed && styles.leftTextSizeSMIsPressed,
+    'cdg-list-left-text',
+  )
 
-  const rightTextClass = React.useMemo(() => {
-    return [
-      styles.rightText,
-      variant === 'interactive' &&
-        isDisabled &&
-        styles.rightTextVariantInteractiveIsDisabled,
-      'cdg-list-right-text',
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [isDisabled, variant])
+  const rightTextClass = classNames(
+    styles.rightText,
+    variant === 'interactive' &&
+      isDisabled &&
+      styles.rightTextVariantInteractiveIsDisabled,
+    'cdg-list-right-text',
+  )
 
   return (
     <CssInjection css={css} childrenRef={ref}>
@@ -178,6 +155,6 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof List & {Image: typeof ListImage}
 
-export default List as typeof List & {Image: typeof ListImage}
+export default List

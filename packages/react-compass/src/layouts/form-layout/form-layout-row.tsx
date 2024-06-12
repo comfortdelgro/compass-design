@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './styles/action-bar.module.css'
 
@@ -28,12 +29,16 @@ const FormLayoutRow = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={layoutRowRef}>
       <div
-        ref={layoutRowRef}
-        style={style}
-        className={`${styles.formLayoutRow} ${className} ${
-          breaksOnSmall ? styles.breaksOnSmall : ''
-        } ${styles['column' + columns]}`}
         {...htmlProps}
+        style={style}
+        ref={layoutRowRef}
+        className={classNames(
+          styles.formLayoutRow,
+          breaksOnSmall && styles.breaksOnSmall,
+          styles['column' + columns],
+          className,
+          'cdg-layout-form-row',
+        )}
       >
         {children}
       </div>

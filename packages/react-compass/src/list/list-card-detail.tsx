@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/list-card-detail.module.css'
 
 interface Props {
@@ -26,33 +27,38 @@ const ListCardDetail = React.forwardRef<HTMLDivElement, ListCardDetailProps>(
       ...htmlProps
     } = props
 
-    const rootClass = React.useMemo(() => {
-      return [
-        styles.cardDetail,
-        isDisabled && styles.isDisabled,
-        'cdg-list-card-detail',
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [className, isDisabled])
+    const rootClass = classNames(
+      styles.cardDetail,
+      isDisabled && styles.isDisabled,
+      className,
+      'cdg-list-card-detail',
+    )
 
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div ref={ref} className={rootClass} {...htmlProps}>
+        <div {...htmlProps} ref={ref} className={rootClass}>
           {title && (
             <h3
-              className={`${styles.cardDetailTitle} cdg-list-card-detail-title`}
+              className={classNames(
+                styles.cardDetailTitle,
+                'cdg-list-card-detail-title',
+              )}
             >
               {title}
             </h3>
           )}
           <div
-            className={`${styles.cardDetailFooter} cdg-list-card-detail-footer`}
+            className={classNames(
+              styles.cardDetailFooter,
+              'cdg-list-card-detail-footer',
+            )}
           >
             {avatar && (
               <div
-                className={`${styles.cardDetailAvatar} cdg-list-card-detail-avatar`}
+                className={classNames(
+                  styles.cardDetailAvatar,
+                  'cdg-list-card-detail-avatar',
+                )}
               >
                 {React.cloneElement(avatar as React.ReactElement, {
                   size: 'xxs',
@@ -61,7 +67,10 @@ const ListCardDetail = React.forwardRef<HTMLDivElement, ListCardDetailProps>(
             )}
             {description && (
               <span
-                className={`${styles.cardDetailDescription} cdg-list-card-detail-description`}
+                className={classNames(
+                  styles.cardDetailDescription,
+                  'cdg-list-card-detail-description',
+                )}
               >
                 {description}
               </span>

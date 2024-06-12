@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/error.module.css'
 
@@ -17,13 +18,15 @@ const ErrorIcon = React.forwardRef<HTMLDivElement, ErrorIconProps>(
     const {children, css = {}, className = '', ...htmlProps} = props
     const errorIconRef = useDOMRef<HTMLDivElement>(ref)
 
-    const errorIconClasses = [`cdg-error-icon`, className, styles.errorIcon]
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.errorIcon,
+      className,
+      `cdg-error-icon`,
+    )
 
     return (
       <CssInjection css={css} childrenRef={errorIconRef}>
-        <div className={errorIconClasses} ref={errorIconRef} {...htmlProps}>
+        <div {...htmlProps} className={rootClasses} ref={errorIconRef}>
           {children}
         </div>
       </CssInjection>

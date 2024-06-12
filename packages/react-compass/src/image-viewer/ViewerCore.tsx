@@ -2,13 +2,14 @@ import noop from 'lodash/noop'
 import {useCallback, useEffect, useReducer, useRef} from 'react'
 import Button from '../button'
 import {CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import ImageInformation from './ImageInformation'
 import ViewerCanvas from './ViewerCanvas'
 import ViewerNav from './ViewerNav'
 import ViewerToolbar, {defaultToolbars} from './ViewerToolbar'
-import * as constants from './constants'
-import {Z_INDEX} from './constants'
 import styles from './styles/image-viewer.module.css'
+import * as constants from './utils/constants'
+import {Z_INDEX} from './utils/constants'
 import {
   ActionEnum,
   ActionType,
@@ -17,7 +18,7 @@ import {
   ImageViewerCoreState,
   ImageViewerProps,
   ToolbarConfig,
-} from './types'
+} from './utils/types'
 
 function createAction(
   type: ActionEnum,
@@ -642,7 +643,7 @@ const ViewCore = (props: ImageViewerProps) => {
   return (
     <CssInjection>
       {visible && (
-        <div className={styles.imageViewerWrap}>
+        <div className={classNames(styles.imageViewerWrap, 'cdg-image-viewer')}>
           {props.noClose || (
             <Button
               variant='primary'

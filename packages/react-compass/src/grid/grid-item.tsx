@@ -1,6 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/grid.module.css'
 
@@ -37,10 +37,8 @@ const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
 
     const gridItemRef = useDOMRef<HTMLDivElement>(ref)
 
-    const classNames = [
+    const rootClasses = classNames(
       styles.item,
-      className,
-      'cdg-grid-item',
       spacing && styles[`itemSpacing${capitalizeFirstLetter(spacing)}`],
       xs && styles[`itemXs${xs}`],
       sm && styles[`itemSm${sm}`],
@@ -48,13 +46,13 @@ const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
       lg && styles[`itemLg${lg}`],
       xl && styles[`itemXl${xl}`],
       xxl && styles[`itemXxl${xxl}`],
-    ]
-      .filter(Boolean)
-      .join(' ')
+      className,
+      'cdg-grid-item',
+    )
 
     return (
       <CssInjection css={css}>
-        <div ref={gridItemRef} className={classNames} {...htmlProps}>
+        <div {...htmlProps} ref={gridItemRef} className={rootClasses}>
           {children}
         </div>
       </CssInjection>

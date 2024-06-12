@@ -1,6 +1,7 @@
 import React from 'react'
 import Spinner from '../spinner'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/state.module.css'
 
@@ -29,19 +30,15 @@ const FileState = React.forwardRef<HTMLDivElement, FileStateProps>(
     } = props
     const stateRef = useDOMRef<HTMLDivElement>(ref)
 
-    const stateClasses = React.useMemo(
-      () =>
-        [styles.state, 'cdg-file-state', className].filter(Boolean).join(' '),
-      [className],
-    )
+    const stateClasses = classNames(styles.state, className, 'cdg-file-state')
 
     return (
       <CssInjection css={css} childrenRef={stateRef}>
         <div ref={stateRef} className={stateClasses}>
-          <div className={`${styles.name} cdg-file-state-name`}>
+          <div className={classNames(styles.name, 'cdg-file-state-name')}>
             {imageIcon && (
               <div
-                className={`${styles.image} cdg-file-state-image`}
+                className={classNames(styles.image, 'cdg-file-state-image')}
                 onClick={onIconPress}
               >
                 {imageIcon}
@@ -49,7 +46,7 @@ const FileState = React.forwardRef<HTMLDivElement, FileStateProps>(
             )}
             {fileName}
           </div>
-          <div className={`${styles.icon} cdg-file-state-icon`}>
+          <div className={classNames(styles.icon, 'cdg-file-state-icon')}>
             {isLoading ? <Loading /> : icon}
           </div>
         </div>

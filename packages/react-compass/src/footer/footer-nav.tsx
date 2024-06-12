@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/footer-nav.module.css'
 
 interface Props {
@@ -38,7 +39,7 @@ const FooterNavigation = React.forwardRef<
         'div',
         {
           ...delegated,
-          className: `${styles.footerNav} cdg-footer-nav`,
+          className: classNames(styles.footerNav, 'cdg-footer-nav'),
           style: {
             // '--gridNumber': gridNumber,
             // '--tabletGridNumber': tabletGridNumber,

@@ -1,6 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import GridItem from './grid-item'
 import styles from './styles/grid.module.css'
@@ -36,9 +36,7 @@ const Grid = React.forwardRef<HTMLDivElement, GridContainerProps>(
 
     const gridContainerRef = useDOMRef<HTMLDivElement>(ref)
 
-    const classNames = [
-      'cdg-grid',
-      className,
+    const rootClasses = classNames(
       styles.container,
       spacing && styles[`containerSpacing${capitalizeFirstLetter(spacing)}`],
       justifyContent &&
@@ -47,9 +45,9 @@ const Grid = React.forwardRef<HTMLDivElement, GridContainerProps>(
         ],
       alignItems &&
         styles[`containerAlignItems${capitalizeFirstLetter(alignItems)}`],
-    ]
-      .filter(Boolean)
-      .join(' ')
+      className,
+      'cdg-grid',
+    )
 
     // Loop children and for each element in children, pass prop spacing to the element
     const clonedChildren = React.Children.map(children, (child) => {
@@ -60,7 +58,7 @@ const Grid = React.forwardRef<HTMLDivElement, GridContainerProps>(
 
     return (
       <CssInjection css={css}>
-        <div ref={gridContainerRef} className={classNames} {...htmlProps}>
+        <div {...htmlProps} ref={gridContainerRef} className={rootClasses}>
           {clonedChildren}
         </div>
       </CssInjection>
