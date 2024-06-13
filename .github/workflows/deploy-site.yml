@@ -3,7 +3,7 @@ name: Deploy Website
 on:
   push:
     branches:
-      - main
+      - sit2
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -40,8 +40,6 @@ jobs:
       - name: Build the website
         run: |
           BASE_PATH="/compass-design" pnpm run --filter=@comfortdelgro/compass-design-website build
-          pnpm run --filter=@comfortdelgro/react-compass build-storybook --docs
-          mv packages/react-compass/storybook-static apps/docs/out/ladle
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
