@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, {CSSProperties, useEffect} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/gutter.module.css'
 import Icon from './utils/Icon'
@@ -44,15 +45,13 @@ const Gutter = React.forwardRef<HTMLDivElement, GutterProps>((props, ref) => {
     onChange?.(width)
   }, [onChange, width])
 
-  const gutterClasses = [
+  const gutterClasses = classNames(
     styles.gutter,
     side === GutterSide.LEFT && styles.gutterVariantLeft,
     side === GutterSide.RIGHT && styles.gutterVariantRight,
-    'cdg-gutter',
     className,
-  ]
-    .filter(Boolean)
-    .join(' ')
+    'cdg-gutter',
+  )
 
   return (
     <CssInjection css={css}>
@@ -68,7 +67,10 @@ const Gutter = React.forwardRef<HTMLDivElement, GutterProps>((props, ref) => {
               e.stopPropagation()
               toggleExpand()
             }}
-            className={`${styles.collapse} cdg-gutter-collapse-button`}
+            className={classNames(
+              styles.collapse,
+              'cdg-gutter-collapse-button',
+            )}
           >
             <Icon side={side} isExpand={isExpand} />
           </button>

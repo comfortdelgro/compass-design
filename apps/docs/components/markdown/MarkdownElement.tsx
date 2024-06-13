@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import * as React from 'react'
 import styles from './styles/MarkdownElement.module.css'
 
@@ -19,7 +18,7 @@ const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
 
     return (
       <div
-        className={clsx('markdown-body', className, styles.markdownElement)}
+        className={['markdown-body', className, styles.markdownElement].join(' ')}
         {...more}
         {...other}
         ref={ref}

@@ -15,9 +15,4 @@
   .isRounded {
     border-radius: var(--cdg-border-radius-full);
   }
-
-  .variantH5 {
-    width: var(--cdg-spacing-11);
-    height: var(--cdg-spacing-11);
-  }
 }

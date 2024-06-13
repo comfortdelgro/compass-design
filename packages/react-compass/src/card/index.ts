@@ -15,11 +15,10 @@ Card.Image = CardImage
 Card.Title = CardTitle
 Card.Action = CardAction
 
+Card.displayName = 'Card'
 Card.Body.displayName = 'Card.Body'
 Card.Image.displayName = 'Card.Image'
 Card.Title.displayName = 'Card.Title'
 Card.Action.displayName = 'Card.Action'
-Card.Action.displayName = 'Card.Action'
-Card.displayName = 'Card'
 
 export default Card

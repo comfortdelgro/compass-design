@@ -2,6 +2,7 @@
 import React from 'react'
 import Button from '../button'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import ListCardDetail, {ListCardDetailProps} from './list-card-detail'
 import styles from './styles/list-card.module.css'
 
@@ -39,28 +40,37 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
       return React.cloneElement(typedChild, {isDisabled})
     })
 
-    const rootClass = React.useMemo(() => {
-      return [
-        styles.listCard,
-        isDisabled && styles.listCardIsDisabled,
-        'cdg-list-card',
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [className, isDisabled])
+    const rootClass = classNames(
+      styles.listCard,
+      isDisabled && styles.listCardIsDisabled,
+      className,
+      'cdg-list-card',
+    )
 
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div ref={ref} className={rootClass} {...delegated}>
-          <div className={`${styles.listCardHeader} cdg-list-card-header`}>
+        <div {...delegated} ref={ref} className={rootClass}>
+          <div
+            className={classNames(
+              styles.listCardHeader,
+              'cdg-list-card-header',
+            )}
+          >
             {title && (
-              <h2 className={`${styles.listCardTitle} cdg-list-card-title`}>
+              <h2
+                className={classNames(
+                  styles.listCardTitle,
+                  'cdg-list-card-title',
+                )}
+              >
                 {title}
               </h2>
             )}
             <div
-              className={`${styles.listCardHeaderRight} cdg-list-card-header-right`}
+              className={classNames(
+                styles.listCardHeaderRight,
+                'cdg-list-card-header-right',
+              )}
             >
               {badge ? badge : null}
               {!children && showActionButton ? (
@@ -69,7 +79,13 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
                   variant='ghost'
                   aria-label='Action Header'
                 >
-                  <svg className={styles.listCardIcon} viewBox='0 0 128 512'>
+                  <svg
+                    className={classNames(
+                      styles.listCardIcon,
+                      'cdg-list-card-icon',
+                    )}
+                    viewBox='0 0 128 512'
+                  >
                     <path
                       fill='currentColor'
                       d='M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z'
@@ -80,12 +96,25 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
             </div>
           </div>
           <div
-            className={`${styles.listCardDescription} cdg-list-card-description`}
+            className={classNames(
+              styles.listCardDescription,
+              'cdg-list-card-description',
+            )}
           >
             {description && <span>{description}</span>}
           </div>
-          <div className={`${styles.listCardFooter} cdg-list-card-footer`}>
-            <div className={`${styles.listCardContent} cdg-list-card-content`}>
+          <div
+            className={classNames(
+              styles.listCardFooter,
+              'cdg-list-card-footer',
+            )}
+          >
+            <div
+              className={classNames(
+                styles.listCardContent,
+                'cdg-list-card-content',
+              )}
+            >
               {clonedChildren.map((child) => child)}
             </div>
             {children && showActionButton ? (
@@ -94,7 +123,13 @@ const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
                 variant='ghost'
                 aria-label='Action Footer'
               >
-                <svg className={styles.listCardIcon} viewBox='0 0 128 512'>
+                <svg
+                  className={classNames(
+                    styles.listCardIcon,
+                    'cdg-list-card-icon',
+                  )}
+                  viewBox='0 0 128 512'
+                >
                   <path
                     fill='currentColor'
                     d='M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z'

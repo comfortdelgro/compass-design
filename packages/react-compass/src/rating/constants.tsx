@@ -1,8 +1,9 @@
+import {classNames} from '../utils/string'
 import styles from './styles/rating.module.css'
 
 export const FaceSadTear = () => (
   <svg
-    className={`${styles.emoIcons}`}
+    className={classNames(styles.emoIcons, 'cdg-rating-icon')}
     width='32'
     height='32'
     viewBox='0 0 32 32'
@@ -13,7 +14,7 @@ export const FaceSadTear = () => (
 )
 export const FaceFrown = () => (
   <svg
-    className={`${styles.emoIcons}`}
+    className={classNames(styles.emoIcons, 'cdg-rating-icon')}
     width='32'
     height='32'
     viewBox='0 0 32 32'
@@ -24,7 +25,7 @@ export const FaceFrown = () => (
 )
 export const FaceMeh = () => (
   <svg
-    className={`${styles.emoIcons}`}
+    className={classNames(styles.emoIcons, 'cdg-rating-icon')}
     width='32'
     height='32'
     viewBox='0 0 32 32'
@@ -35,7 +36,7 @@ export const FaceMeh = () => (
 )
 export const FaceSmile = () => (
   <svg
-    className={`${styles.emoIcons}`}
+    className={classNames(styles.emoIcons, 'cdg-rating-icon')}
     width='32'
     height='32'
     viewBox='0 0 32 32'
@@ -46,7 +47,7 @@ export const FaceSmile = () => (
 )
 export const FaceSmileHeart = () => (
   <svg
-    className={`${styles.emoIcons}`}
+    className={classNames(styles.emoIcons, 'cdg-rating-icon')}
     width='32'
     height='32'
     viewBox='0 0 32 32'

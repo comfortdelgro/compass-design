@@ -239,7 +239,7 @@ export function numberFormatSignDisplayPolyfill(
       const minus = negative.replace(noSign, '').replace(/\u200e|\u061C/, '')
       if ([...minus].length !== 1) {
         console.warn(
-          '@react-aria/i18n polyfill for NumberFormat signDisplay: Unsupported case',
+          'Polyfill for NumberFormat signDisplay: Unsupported case',
         )
       }
       const positive = negative

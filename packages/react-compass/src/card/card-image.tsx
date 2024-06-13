@@ -1,7 +1,8 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
-import style from './styles/card.module.css'
+import styles from './styles/card.module.css'
 
 type Props = {
   css?: CSS
@@ -19,9 +20,9 @@ const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>(
     return (
       <CssInjection css={css} childrenRef={ref}>
         <img
-          className={`${style.cardImage} ${className ?? ''}`}
           {...htmlProps}
           ref={cardImageRef}
+          className={classNames(styles.cardImage, className, 'cdg-card-image')}
         />
       </CssInjection>
     )

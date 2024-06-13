@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import {classNames} from '../../utils/string'
 import styles from '../styles/pagination.module.css'
 
 export type ItemCountingProps = React.HTMLAttributes<HTMLDivElement>
@@ -14,7 +15,10 @@ const ItemCounting: React.FC<{
   const end = Math.min(page * rowsPerPage, count)
   return (
     <div
-      className={styles.paginationItemCounting}
+      className={classNames(
+        styles.paginationItemCounting,
+        'cdg-pagination-item-counting',
+      )}
     >{`${start} - ${end} of ${count}`}</div>
   )
 }

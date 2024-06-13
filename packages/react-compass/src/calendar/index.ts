@@ -7,4 +7,5 @@ export type {CalendarProps} from './calendar'
 Calendar.displayName = 'Calendar'
 Calendar.InternationalizedDate = InternationalizedDate
 Calendar.I18N = i18n
+
 export default Calendar

@@ -1,6 +1,6 @@
 import React, {useRef} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useId} from '../utils/useId'
 import styles from './styles/toggle.module.css'
@@ -33,7 +33,6 @@ interface Props {
   'aria-errormessage'?: string
   className?: string
   css?: CSS
-  variant?: 'h5'
 }
 
 export type ToggleProps = Props &
@@ -49,7 +48,6 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     isReadOnly = false,
     isRequired = false,
     isDisabled = false,
-    variant,
     css = {},
     className = '',
   } = props
@@ -80,28 +78,21 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
     }
   }
 
-  const toggleClasses = [
-    className,
+  const toggleClasses = classNames(
     styles.toggle,
     size && styles[`toggleSize${capitalizeFirstLetter(size)}`],
     isActive && styles.toggleActive,
     !!props.isDisabled && styles.toggleDisabled,
-    variant === 'h5' && styles.toggleH5,
     isActive && !!props.isDisabled && styles.toggleActiveDisabled,
-    variant === 'h5' && isActive && styles.toggleActiveH5,
+    className,
     'cdg-toggle',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const toggleCicleClasses = [
+  const toggleCicleClasses = classNames(
     styles.toggleCircle,
     size === 'lg' && styles.toggleCircleLg,
-    variant === 'h5' && styles.toggleCircleH5,
     'cdg-toggle-circle',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   React.useEffect(() => {
     setIsActive(!!isSelected || !!defaultSelected)
@@ -137,7 +128,7 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>((props, ref) => {
           aria-labelledby={props['aria-labelledby']}
           aria-describedby={props['aria-describedby']}
           aria-errormessage={props['aria-errormessage']}
-          className={styles.toggleInput}
+          className={classNames(styles.toggleInput, 'cdg-toggle-input')}
         />
         <div className={toggleCicleClasses} />
       </div>

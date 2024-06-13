@@ -1,4 +1,5 @@
 import {RefObject, useRef} from 'react'
+import {classNames} from '../../utils/string'
 import styles from '../styles/slider.module.css'
 import {SliderState, SliderThumbBaseProps} from '../utils/types'
 import {useSliderThumb} from '../utils/useSliderThumb'
@@ -22,7 +23,7 @@ export function SliderThumb(props: SliderThumbProps) {
     props.state,
   )
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.thumb,
     props.state.tooltip &&
       `${styles.thumbShowToolip} cdg-slider-thumb-tooltips`,
@@ -30,9 +31,7 @@ export function SliderThumb(props: SliderThumbProps) {
     props.state.orientation === 'vertical' && styles.thumbVertical,
     props.state.isDisabled && styles.thumbIsDisabled,
     'cdg-slider-thumb',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <div
@@ -42,7 +41,11 @@ export function SliderThumb(props: SliderThumbProps) {
       className={rootClasses}
       data-value={inputProps.value}
     >
-      <input className={styles.thumbInput} ref={inputRef} {...inputProps} />
+      <input
+        {...inputProps}
+        ref={inputRef}
+        className={classNames(styles.thumbInput, 'cdg-slider-thumb-input')}
+      />
     </div>
   )
 }

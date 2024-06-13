@@ -1,6 +1,7 @@
 import React from 'react'
 import {CSS} from '../../utils'
 import CssInjection from '../../utils/objectToCss/CssInjection'
+import {classNames} from '../../utils/string'
 import styles from '../styles/card.module.css'
 
 interface Props {
@@ -14,13 +15,11 @@ const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
   (props, ref) => {
     const {css = {}, className, children} = props
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.header,
       className,
       'cdg-announcement-card-footer',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css}>

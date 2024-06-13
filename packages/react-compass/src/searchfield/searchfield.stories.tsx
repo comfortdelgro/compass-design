@@ -80,29 +80,6 @@ export const Variants: React.FC = () => {
         css={{width: '15rem'}}
         onSubmit={(text) => console.log(text)}
       />
-
-      <h3> H5</h3>
-      <SearchField
-        placeholder='Search'
-        minLength={5}
-        css={{
-          width: '343px',
-        }}
-        h5
-        onSubmit={(text) => console.log(text)}
-      />
-
-      <h3> H5 Searchfield with box shadow</h3>
-      <SearchField
-        placeholder='Search'
-        minLength={5}
-        css={{
-          width: '343px',
-          boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 4px;',
-        }}
-        h5
-        onSubmit={(text) => console.log(text)}
-      />
     </div>
   )
 }

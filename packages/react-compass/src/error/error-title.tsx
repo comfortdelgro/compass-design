@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/error.module.css'
 
@@ -24,18 +25,16 @@ const ErrorTitle = React.forwardRef<HTMLHeadingElement, ErrorTitleProps>(
     } = props
     const errorTitleRef = useDOMRef<HTMLHeadingElement>(ref)
 
-    const errorTitleClasses = [
-      `cdg-error-title`,
-      className,
-      variant && styles[`${variant}VariantErrorTitle`],
+    const errorTitleClasses = classNames(
       styles.errorTitle,
-    ]
-      .filter(Boolean)
-      .join(' ')
+      variant && styles[`${variant}VariantErrorTitle`],
+      className,
+      `cdg-error-title`,
+    )
 
     return (
       <CssInjection css={css} childrenRef={errorTitleRef}>
-        <h3 className={errorTitleClasses} ref={errorTitleRef} {...htmlProps}>
+        <h3 {...htmlProps} className={errorTitleClasses} ref={errorTitleRef}>
           {children}
         </h3>
       </CssInjection>

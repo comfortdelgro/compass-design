@@ -8,7 +8,7 @@ export function useIsInViewport(ref: RefObject<Element>) {
       new IntersectionObserver(([entry]) =>
         setIsIntersecting(!!entry?.isIntersecting),
       ),
-    [ref.current],
+    [],
   )
 
   useEffect(() => {

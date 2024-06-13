@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/accordion-table.module.css'
 
@@ -17,13 +18,11 @@ const AccordionTable = React.forwardRef<HTMLDivElement, AccordionTableProps>(
 
     const accordionTableRef = useDOMRef<HTMLDivElement>(ref)
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.accordionTable,
       className,
       'cdg-accordion-table',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={accordionTableRef}>

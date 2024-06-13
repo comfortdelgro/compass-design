@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import SnackbarPrefixIcon from './snackbar-prefix-icon'
 import SnackbarSuffixIcon from './snackbar-suffix-icon'
@@ -46,18 +47,17 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
 
     const snackbarRef = useDOMRef<HTMLDivElement>(ref)
 
-    const {child: SnackbarSuffixIconElement} = pickChild<
-      typeof SnackbarSuffixIcon
-    >(children, SnackbarSuffixIcon)
-
-    const {child: SnackbarPrefixIconElement} = pickChild<
-      typeof SnackbarPrefixIcon
-    >(children, SnackbarPrefixIcon)
-
-    const {child: SnackbarTextElement} = pickChild<typeof SnackbarText>(
+    const {child: SnackbarSuffixIconElement} = pickChild(
       children,
-      SnackbarText,
+      SnackbarSuffixIcon,
     )
+
+    const {child: SnackbarPrefixIconElement} = pickChild(
+      children,
+      SnackbarPrefixIcon,
+    )
+
+    const {child: SnackbarTextElement} = pickChild(children, SnackbarText)
 
     const renderContent = React.useCallback(
       (children: React.ReactNode) => {
@@ -71,36 +71,38 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       if (autoClose && typeof autoClose == 'number' && isOpen == true) {
         setTimeout(() => handleClose?.(), autoClose)
       }
-    }, [isOpen])
+    }, [autoClose, handleClose, isOpen])
     const handleClick = (e: React.MouseEvent) => {
       if (onClick) {
         onClick(e, id)
       }
     }
 
-    const contentClasses = [
-      'cdg-snackbar',
+    const contentClasses = classNames(
       styles.snackbar,
       type && styles[`${type}Type`],
       className,
-    ]
-      .filter(Boolean)
-      .join(' ')
+      'cdg-snackbar',
+    )
+
     return (
       <>
         {isOpen &&
           renderContent(
             <CssInjection css={css} childrenRef={snackbarRef}>
               <div
-                className={contentClasses}
-                ref={snackbarRef}
-                onClick={handleClick}
                 {...htmlProps}
+                ref={snackbarRef}
+                className={contentClasses}
+                onClick={handleClick}
               >
                 {SnackbarPrefixIconElement}
                 {SnackbarTextElement}
                 <div
-                  className={`cdg-snackbar-right-section ${styles.snackbarRightSection}`}
+                  className={classNames(
+                    styles.snackbarRightSection,
+                    'cdg-snackbar-right-section',
+                  )}
                 >
                   {SnackbarSuffixIconElement &&
                     React.cloneElement(
@@ -116,10 +118,10 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       </>
     )
   },
-)
-
-export default Snackbar as typeof Snackbar & {
+) as typeof Snackbar & {
   Text: typeof SnackbarText
   PrefixIcon: typeof SnackbarPrefixIcon
   SuffixIcon: typeof SnackbarSuffixIcon
 }
+
+export default Snackbar

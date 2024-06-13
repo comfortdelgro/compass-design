@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
+import {classNames} from '../../utils/string'
 import styles from '../styles/volume-slider.module.css'
 
 interface VerticalSliderProps {
@@ -68,7 +69,13 @@ const VolumeSlider: React.FC<VerticalSliderProps> = ({value, onChange}) => {
     }
     return (
       <div>
-        <div className={styles.progressBar} style={progressBarStyles} />
+        <div
+          className={classNames(
+            styles.progressBar,
+            'cdg-video-slider-progress',
+          )}
+          style={progressBarStyles}
+        />
       </div>
     )
   }
@@ -76,12 +83,15 @@ const VolumeSlider: React.FC<VerticalSliderProps> = ({value, onChange}) => {
   return (
     <div
       ref={sliderRef}
-      className={`cdg-video-vertical-slider ${styles.sliderContainer}`}
+      className={classNames(
+        styles.sliderContainer,
+        'cdg-video-vertical-slider',
+      )}
       onMouseDown={handleMouseDown}
       onClick={handleClick}
     >
       <div
-        className={`cdg-video-slider-thumb ${styles.thumb}`}
+        className={classNames(styles.thumb, 'cdg-video-slider-thumb')}
         style={{
           top: `calc(${sliderValue}% - 8px)`,
         }}

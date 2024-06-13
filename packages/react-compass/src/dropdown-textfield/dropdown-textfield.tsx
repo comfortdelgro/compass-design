@@ -2,6 +2,7 @@ import React, {Key} from 'react'
 import Dropdown from '../dropdown'
 import TextField from '../textfield'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/dropdown-textfield.module.css'
 
@@ -9,7 +10,7 @@ interface Props {
   id?: string
   inputType?: 'text' | 'numeric' | 'email' | 'password'
   options: DropdownOptions[]
-  onChange?: (dropdownValue: string, inputValue: string | number) => void
+  onChange?: (dropdownValue: string, inputValue: Key) => void
   label: string
   isErrored?: boolean
   errorMessage?: string
@@ -54,7 +55,6 @@ interface Props {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
-  h5?: boolean
   css?: CSS
 }
 
@@ -103,7 +103,6 @@ const DropdownTextfield = React.forwardRef<
     onCompositionEnd,
     onCompositionStart,
     onCompositionUpdate,
-    h5 = false,
     css = {},
   } = props
   const componentRef = useDOMRef(ref)
@@ -131,24 +130,44 @@ const DropdownTextfield = React.forwardRef<
     <CssInjection css={css} childrenRef={componentRef}>
       <div
         ref={componentRef}
-        className={`${className} ${styles.dropdownTextfield}`}
+        className={classNames(
+          styles.dropdownTextfield,
+          className,
+          'cdg-dropdown-textfield',
+        )}
       >
         {label && (
           <label
             htmlFor={id}
-            className={`${styles.textFieldLabel} ${
-              h5 ? styles.textFieldLabelH5 : ''
-            }`}
+            className={classNames(
+              styles.textFieldLabel,
+              'cdg-dropdown-textfield-label',
+            )}
           >
             {label}
-            {isRequired && <span className={`${styles.asterisk}`}>*</span>}
+            {isRequired && (
+              <span
+                className={classNames(
+                  styles.asterisk,
+                  'cdg-dropdown-textfield-label-asterisk',
+                )}
+              >
+                *
+              </span>
+            )}
           </label>
         )}
         <div
-          className={`${styles.inputWrapper} input-wrapper cdg-input-wrapper`}
+          className={classNames(
+            styles.inputWrapper,
+            'cdg-dropdown-textfield-input-wrapper',
+          )}
         >
           <Dropdown.Select
-            className={`${styles.dropdownTextfieldSelect} cdg-dropdown-textfield-select`}
+            className={classNames(
+              styles.dropdownTextfieldSelect,
+              'cdg-dropdown-textfield-select',
+            )}
             aria-label={label}
             selectedKey={selectedDropdownKey}
             defaultSelectedKey={defaultSelectedKey as Key}
@@ -158,7 +177,6 @@ const DropdownTextfield = React.forwardRef<
             isRequired={isRequired}
             isDisabled={isDisabled}
             placeholder={dropdownPlaceholder}
-            h5={h5}
           >
             {options.map((option) => (
               <Dropdown.Item
@@ -181,7 +199,7 @@ const DropdownTextfield = React.forwardRef<
             aria-label={label}
             type={inputType}
             onChange={handleInputChange}
-            value={textfieldValue}
+            value={textfieldValue as string}
             errorMessage={errorMessage}
             isErrored={isErrored}
             isReadOnly={isReadOnly}
@@ -190,7 +208,6 @@ const DropdownTextfield = React.forwardRef<
             isDisabled={isDisabled}
             minLength={minLength ?? 0}
             maxLength={maxLength ?? 524288}
-            h5={h5}
             autoFocus={autoFocus}
             onCut={onCut}
             onCopy={onCopy}
@@ -215,7 +232,10 @@ const DropdownTextfield = React.forwardRef<
         </div>
         {isErrored && (
           <div
-            className={`${styles.dropdownTextfieldError} dropdown-textfield__error`}
+            className={classNames(
+              styles.dropdownTextfieldError,
+              'cdg-dropdown-textfield-error',
+            )}
           >
             {errorMessage}
           </div>

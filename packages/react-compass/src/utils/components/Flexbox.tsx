@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../objectToCss'
+import {classNames} from '../string'
 import {useDOMRef} from '../use-dom-ref'
 import styles from './components.module.css'
 
@@ -20,9 +21,9 @@ const Flexbox = React.forwardRef<HTMLDivElement, FlexboxComponentProps>(
     return (
       <CssInjection css={css} childrenRef={flexboxRef}>
         <div
-          className={`cdg-flexbox ${className} ${styles.flexbox}`}
-          ref={flexboxRef}
           {...htmlProps}
+          ref={flexboxRef}
+          className={classNames(styles.flexbox, className, 'cdg-flexbox')}
         >
           {children}
         </div>

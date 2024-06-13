@@ -1,8 +1,8 @@
 import {useCallback} from 'react'
 import Button from '../button'
-import {ActionTypeEnum} from './Icon'
+import {classNames} from '../utils/string'
 import styles from './styles/image-viewer.module.css'
-import {ToolbarConfig} from './types'
+import {ActionTypeEnum, ToolbarConfig} from './utils/types'
 
 export interface ViewerToolbarProps {
   onAction: (config: ToolbarConfig) => void
@@ -13,6 +13,7 @@ export interface ViewerToolbarProps {
   toolbars: ToolbarConfig[]
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const defaultToolbars: ToolbarConfig[] = [
   {
     key: 'zoomIn',
@@ -171,8 +172,10 @@ export default function ViewerToolbar(props: ViewerToolbarProps) {
     toolbars = deleteToolbarFromKey(toolbars, ['scaleX', 'scaleY'])
   }
   return (
-    <div className={styles.toolbarWrap}>
-      <div className={styles.toolbar}>
+    <div className={classNames(styles.toolbarWrap, 'cdg-image-viewer-toolbar')}>
+      <div
+        className={classNames(styles.toolbar, 'cdg-image-viewer-toolbar-items')}
+      >
         {toolbars.map((item) => {
           return renderAction(item)
         })}

@@ -8,8 +8,6 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import {useRef} from 'react'
 import {CalendarDate} from '../../internationalized/date'
 import {CalendarProps} from '../calendar'
@@ -63,7 +61,6 @@ export function useCalendar(
     state.setFocused?.(true)
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   const labelProps = useLabels({
     id: props.id as string,
     'aria-label': [props['aria-label'], visibleRangeDescription]

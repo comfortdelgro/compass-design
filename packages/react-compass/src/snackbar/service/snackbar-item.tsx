@@ -1,7 +1,8 @@
 import React, {useRef} from 'react'
 import {CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useSnackbar} from '../hooks/useSnackbar'
-import Snackbar from '../snackbar'
+import Snackbar from '../index'
 import styles from '../styles/snackbar-item.module.css'
 import {SnackbarItemType} from './types'
 
@@ -41,9 +42,7 @@ const SnackbarItem = ({
     }
   }
 
-  const contentClasses = ['cdg-snackbar-item', styles.snackbarItem]
-    .filter(Boolean)
-    .join(' ')
+  const contentClasses = classNames(styles.snackbarItem, 'cdg-snackbar-item')
 
   return (
     <CssInjection>

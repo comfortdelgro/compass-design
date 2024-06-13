@@ -11,6 +11,7 @@ import React, {
   useState,
 } from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import MultipleChoicesSliderItem, {
   MultipleChoicesSliderItemProps,
@@ -29,7 +30,7 @@ export type MultipleChoicesSliderProps = Props &
 const MultipleChoicesSlider = forwardRef<
   HTMLDivElement,
   MultipleChoicesSliderProps
->(({children, onChange, css = {}, ...htmlDivAttributes}, ref) => {
+>(({children, onChange, css = {}, className, ...htmlDivAttributes}, ref) => {
   const MultipleChoicesSliderRef = useDOMRef(ref)
 
   const [selectedItems, setItems] = useState<number[]>([])
@@ -53,9 +54,13 @@ const MultipleChoicesSlider = forwardRef<
   return (
     <CssInjection css={css} childrenRef={MultipleChoicesSliderRef}>
       <div
-        ref={MultipleChoicesSliderRef}
-        className={`${styles.multipleChoicesSlider} cdg-multiple-choices-slider`}
         {...htmlDivAttributes}
+        ref={MultipleChoicesSliderRef}
+        className={classNames(
+          styles.multipleChoicesSlider,
+          className,
+          'cdg-multiple-choices-slider',
+        )}
       >
         {Children.map(children, (child) => {
           if (!isValidElement(child)) {

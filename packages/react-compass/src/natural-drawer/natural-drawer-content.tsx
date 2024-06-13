@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/natural-drawer.module.css'
 
@@ -36,13 +37,16 @@ export const NaturalDrawerContent = forwardRef<
   return (
     <CssInjection css={css} childrenRef={naturalDrawerRef}>
       <div
-        className={`${styles.naturalDrawer} natural-drawer`}
+        className={classNames(styles.naturalDrawer, 'cdg-natural-drawer')}
         ref={naturalDrawerRef}
       >
         {header}
         <div
-          className={`${styles.naturalDrawerContent} natural-drawer-content`}
           {...htmlAttributes}
+          className={classNames(
+            styles.naturalDrawerContent,
+            'cdg-natural-drawer-content',
+          )}
         >
           {children}
         </div>

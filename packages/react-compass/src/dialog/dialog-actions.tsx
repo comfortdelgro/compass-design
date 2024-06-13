@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/dialog.module.css'
 
@@ -23,16 +24,16 @@ const DialogActions = React.forwardRef<HTMLDivElement, DialogActionsProps>(
     } = props
     const dialogActionRef = useDOMRef<HTMLDivElement>(ref)
 
-    const classNames = [
+    const rootClasses = classNames(
       styles.actionsContainer,
       isMobile && styles.actionsContainerResponsive,
       className,
-    ]
-      .filter(Boolean)
-      .join(' ')
+      'cdg-dialog-action',
+    )
+
     return (
       <CssInjection css={css}>
-        <div className={classNames} ref={dialogActionRef} {...htmlProps}>
+        <div {...htmlProps} className={rootClasses} ref={dialogActionRef}>
           {children}
         </div>
       </CssInjection>

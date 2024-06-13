@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import {classNames} from '../../utils/string'
 import styles from '../styles/pagination.module.css'
 
 export type EllipsisProps = React.HTMLAttributes<HTMLDivElement>
@@ -17,8 +18,12 @@ const Ellipsis: React.FC<EllipsisProps> = ({...props}) => {
 
   return (
     <div
-      className={`${styles.paginationItem} ${styles.ellipsis} cdg-pagination-item`}
       {...props}
+      className={classNames(
+        styles.paginationItem,
+        styles.ellipsis,
+        'cdg-pagination-item',
+      )}
     >
       {svgIcon}
     </div>

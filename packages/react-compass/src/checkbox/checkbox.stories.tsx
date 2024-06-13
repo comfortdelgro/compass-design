@@ -94,21 +94,6 @@ export const Uncontrolled = () => {
   return <Checkbox defaultSelected>Checkbox</Checkbox>
 }
 
-export const H5Checkbox = () => {
-  const [checked, setChecked] = useState<boolean>(false)
-  return (
-    <Checkbox
-      isSelected={checked}
-      variant='h5'
-      onChange={() => setChecked(!checked)}
-    >
-      <b style={{fontSize: '16px', lineHeight: '24px'}}>
-        I'm picking with/for a child below 1.35m
-      </b>
-    </Checkbox>
-  )
-}
-
 const meta = {
   title: 'Example/Checkbox',
   component: Variants,

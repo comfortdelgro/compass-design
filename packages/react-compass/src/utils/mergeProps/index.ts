@@ -9,9 +9,9 @@
  */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/ban-types */
 
+import {classNames} from '../string'
 import {chain} from './chain'
 
 type Props = Record<string, any>
@@ -22,7 +22,7 @@ type TupleTypes<T> = {[P in keyof T]: T[P]} extends Record<number, infer V>
   ? NullToObject<V>
   : never
 type NullToObject<T> = T extends null | undefined ? {} : T
-// eslint-disable-next-line no-undef, @typescript-eslint/no-unused-vars
+
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
   k: infer I,
 ) => void
@@ -59,7 +59,7 @@ export default function mergeProps<T extends PropsArg[]>(
         typeof a === 'string' &&
         typeof b === 'string'
       ) {
-        result[key] = [a, b].filter(Boolean).join(' ')
+        result[key] = classNames(a, b)
       } else {
         result[key] = b !== undefined ? b : a
       }

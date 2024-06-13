@@ -8,8 +8,6 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/unbound-method */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {RefObject, useMemo} from 'react'
 import {DateValue} from '../../internationalized/date'
@@ -110,7 +108,6 @@ export function useDatePicker<T extends DateValue>(
       [roleSymbol]: 'presentation',
       'aria-describedby': ariaDescribedBy,
       value: state.value,
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       onChange: state.setValue,
       minValue: props.minValue,
       maxValue: props.maxValue,

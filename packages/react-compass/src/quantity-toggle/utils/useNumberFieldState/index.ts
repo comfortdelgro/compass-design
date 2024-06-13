@@ -8,12 +8,6 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/prefer-optional-chain */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import {useCallback, useMemo, useRef, useState} from 'react'
 import {NumberFormatter, NumberParser} from '../../../internationalized/number'
 import {clamp, snapValueToStep} from '../number'

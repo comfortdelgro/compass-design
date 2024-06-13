@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {Pointer, Position} from '../utils/pointer'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CarouselImageSlide from './carousel-image-slide'
 import CarouselMobile from './carousel-mobile'
@@ -33,6 +33,8 @@ interface Props {
 export type CarouselSliderProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
+let timer = null
+
 const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
   (props, ref) => {
     const {
@@ -58,7 +60,6 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
     const [xPosition, setXPosition] = useState(0)
     const [current, setCurrent] = useState(0)
     const [viewWidth, setViewWidth] = useState(0)
-    const [timer, setTimer] = useState<any>()
 
     const targetXPosition =
       (sliderRef.current && sliderRef.current.clientWidth * current) || 0
@@ -74,32 +75,20 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       return () => {
         window.removeEventListener('resize', handleResize)
       }
+    }, [targetXPosition])
+
+    const clearCurrentTimer = React.useCallback(() => {
+      if (timer) {
+        clearTimeout(timer)
+        timer = null
+      }
     }, [])
 
-    useEffect(() => {
-      if (autoSwitch) {
-        setTimer(setTimeout(next, 3000))
-      }
-      onSwitchSlide(current)
-      setXPosition(targetXPosition)
-
-      return () => {
-        clearTimeout(timer)
-      }
-    }, [current])
-
-    // To update slider width based on the time sliderRef.current is available
-    useEffect(() => {
-      if (sliderRef && sliderRef.current) {
-        setViewWidth(sliderRef.current.clientWidth * children.length)
-      }
-    }, [sliderRef])
-
-    const next = () => {
+    const next = React.useCallback(() => {
       clearCurrentTimer()
       const nextIndex = (current + 1) % pageCount
       setCurrent(nextIndex)
-    }
+    }, [clearCurrentTimer, current, pageCount])
 
     const prev = () => {
       clearCurrentTimer()
@@ -110,13 +99,6 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
     const setCurrentIndex = (index: number) => {
       clearCurrentTimer()
       setCurrent(index)
-    }
-
-    const clearCurrentTimer = () => {
-      if (timer) {
-        clearTimeout(timer)
-        setTimer(null)
-      }
     }
 
     const handlePointerDown = (event: React.PointerEvent) => {
@@ -165,27 +147,79 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       }
     }
 
+    useEffect(() => {
+      if (autoSwitch) {
+        timer = setTimeout(next, 3000)
+      }
+      onSwitchSlide(current)
+      setXPosition(targetXPosition)
+
+      return () => {
+        clearTimeout(timer)
+      }
+    }, [autoSwitch, current, next, onSwitchSlide, targetXPosition])
+
+    // To update slider width based on the time sliderRef.current is available
+    useEffect(() => {
+      if (sliderRef && sliderRef.current) {
+        setViewWidth(sliderRef.current.clientWidth * children.length)
+      }
+    }, [children.length, sliderRef])
+
+    const rootClasses = classNames(
+      styles.carousel,
+      styles['effect' + capitalizeFirstLetter(effect)],
+      className,
+      'cdg-carousel-slider',
+    )
+
+    const containerClasses = classNames(
+      styles.contentSliderContainer,
+      styles[effect + 'ContentSliderContainer'],
+      'cdg-carousel-slider-container',
+    )
+
+    const scrollerClasses = classNames(
+      styles.sliderScroller,
+      styles[effect + 'SliderScroller'],
+      'cdg-carousel-slider-scroller',
+    )
+
+    const prevClasses = classNames(
+      styles.sliderNavButton,
+      styles.sliderPrevButton,
+      styles[navigationButtonType],
+      styles['sliderPrevButton' + capitalizeFirstLetter(navigationButtonType)],
+      'cdg-carousel-slider-prev-button',
+    )
+
+    const nextClasses = classNames(
+      styles.sliderNavButton,
+      styles.sliderNextButton,
+      styles[navigationButtonType],
+      styles['sliderNextButton' + capitalizeFirstLetter(navigationButtonType)],
+      'cdg-carousel-slider-next-button',
+    )
+
+    const buttonClasses = classNames(
+      styles.contentSliderBottomNav,
+      socials && socials.length ? styles.useSocials : '',
+      'cdg-carousel-slider-button-nav',
+    )
+
     return (
       <CssInjection css={css} childrenRef={hostRef}>
         <div
-          className={`content-slider ${
-            styles['effect' + capitalizeFirstLetter(effect)]
-          } ${styles.carousel} ${className ? ' ' + className : ''}`}
-          ref={sliderRef}
-          style={style}
           {...htmlProps}
+          style={style}
+          ref={sliderRef}
+          className={rootClasses}
         >
-          <div
-            className={`content-slider-container ${
-              styles.contentSliderContainer
-            } ${styles[effect + 'ContentSliderContainer']}`}
-          >
+          <div className={containerClasses}>
             {effect === 'slide' ? (
               <div
                 ref={scroller}
-                className={`slider-scroller ${styles.sliderScroller} ${
-                  styles[effect + 'SliderScroller']
-                }`}
+                className={scrollerClasses}
                 style={{
                   width: `${viewWidth}px`,
                   transform: `translate3d(-${xPosition}px, 0, 0)`,
@@ -200,19 +234,12 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
           </div>
           {useNavigation && pageCount > 1 && (
             <div
-              className={`content-slider-controls ${styles.contentSliderControls}`}
+              className={classNames(
+                styles.contentSliderControls,
+                'cdg-carousel-slider-controls',
+              )}
             >
-              <div
-                onClick={prev}
-                className={`${styles.sliderNavButton} ${
-                  styles.sliderPrevButton
-                } ${styles[navigationButtonType]} ${
-                  styles[
-                    'sliderPrevButton' +
-                      capitalizeFirstLetter(navigationButtonType)
-                  ]
-                }`}
-              >
+              <div onClick={prev} className={prevClasses}>
                 {navigationButtonType === 'icon' ? (
                   <svg viewBox='0 0 320 512'>
                     <path
@@ -224,17 +251,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
                   'Prev'
                 )}
               </div>
-              <div
-                onClick={next}
-                className={`${styles.sliderNavButton} ${
-                  styles.sliderNextButton
-                } ${styles[navigationButtonType]} ${
-                  styles[
-                    'sliderNextButton' +
-                      capitalizeFirstLetter(navigationButtonType)
-                  ]
-                }`}
-              >
+              <div onClick={next} className={nextClasses}>
                 {navigationButtonType === 'icon' ? (
                   <svg viewBox='0 0 320 512'>
                     <path
@@ -248,11 +265,7 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
               </div>
             </div>
           )}
-          <div
-            className={`content-slider-bottom-nav ${
-              styles.contentSliderBottomNav
-            } ${socials && socials.length ? styles.useSocials : ''}`}
-          >
+          <div className={buttonClasses}>
             {useDotIndicator && pageCount > 1 && (
               <CarouselSliderDots
                 length={pageCount}
@@ -261,11 +274,19 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
               />
             )}
             {socials && socials.length ? (
-              <div className={styles.sliderSocials}>
+              <div
+                className={classNames(
+                  styles.sliderSocials,
+                  'cdg-carousel-slider-socials',
+                )}
+              >
                 {socials.map((social, index) => {
                   return (
                     <a
-                      className={styles.socialLink}
+                      className={classNames(
+                        styles.socialLink,
+                        'cdg-carousel-slider-link',
+                      )}
                       href={social.url}
                       target='_blank'
                       key={index}
@@ -283,11 +304,11 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
       </CssInjection>
     )
   },
-)
-
-export default CarouselSlider as typeof CarouselSlider & {
+) as typeof CarouselSlider & {
   Slide: typeof CarouselSlide
   ImageSlide: typeof CarouselImageSlide
   Promotion: typeof CarouselPromotion
   Mobile: typeof CarouselMobile
 }
+
+export default CarouselSlider

@@ -1,4 +1,5 @@
 import React from 'react'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-nodata.module.css'
 
@@ -17,13 +18,11 @@ const EmptyDataComponent = React.forwardRef<
   const {colSpan, className, content} = props
   const emptyDataRef = useDOMRef<HTMLTableCellElement>(ref)
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.cdgTableEmptyData,
     className,
     'cdg-table-empty-data',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <tr>
@@ -87,7 +86,12 @@ const EmptyDataComponent = React.forwardRef<
                 stroke-linejoin='round'
               />
             </svg>
-            <div className={styles.cdgTableEmptyDataDesciption}>
+            <div
+              className={classNames(
+                styles.cdgTableEmptyDataDesciption,
+                'cdg-table-empty-data-text',
+              )}
+            >
               Your list is empty.
             </div>
           </div>

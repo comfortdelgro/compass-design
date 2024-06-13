@@ -1,5 +1,6 @@
 import {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/drawer.module.css'
 
@@ -13,9 +14,9 @@ const DrawerFooter = forwardRef<HTMLElement, DrawerFooterProps>(
     return (
       <CssInjection css={css} childrenRef={drawerFooterRef}>
         <footer
-          ref={drawerFooterRef}
-          className={`${styles.drawerFooter} cdg-drawer-footer`}
           {...htmlAttributes}
+          ref={drawerFooterRef}
+          className={classNames(styles.drawerFooter, 'cdg-drawer-footer')}
         >
           {children}
         </footer>

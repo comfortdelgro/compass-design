@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-/* eslint-disable @typescript-eslint/consistent-generic-constructors */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {FocusableElement} from '../types/scroll.types'
 import {ScopeRef} from './../types/event.types'
 import {isElementInScope} from './focus'
@@ -11,9 +7,7 @@ export class Tree {
   private fastMap = new Map<ScopeRef, TreeNode>()
 
   constructor() {
-    // @ts-ignore
     this.root = new TreeNode({scopeRef: null})
-    // @ts-ignore
     this.fastMap.set(null, this.root)
   }
 
@@ -32,9 +26,7 @@ export class Tree {
   ) {
     const parentNode = this.fastMap.get(parent ?? null)
     const node = new TreeNode({scopeRef})
-    // @ts-ignore
     parentNode.addChild(node)
-    // @ts-ignore
     node.parent = parentNode
     this.fastMap.set(scopeRef, node)
     if (nodeToRestore) {
@@ -52,33 +44,30 @@ export class Tree {
       return
     }
     const node = this.fastMap.get(scopeRef)
-    // @ts-ignore
+
     const parentNode = node.parent
     // when we remove a scope, check if any sibling scopes are trying to restore focus to something inside the scope we're removing
     // if we are, then replace the siblings restore with the restore from the scope we're removing
     for (const current of this.traverse()) {
       if (
         current !== node &&
-        // @ts-ignore
         node.nodeToRestore &&
         current.nodeToRestore &&
-        // @ts-ignore
         node.scopeRef.current &&
-        // @ts-ignore
         isElementInScope(current.nodeToRestore, node.scopeRef.current) &&
         node !== undefined
       ) {
         current.nodeToRestore = node.nodeToRestore
       }
     }
-    // @ts-ignore
+
     const children = node.children
-    // @ts-ignore
+
     parentNode.removeChild(node)
     if (children.size > 0 && parentNode !== undefined) {
       children.forEach((child) => parentNode.addChild(child))
     }
-    // @ts-ignore
+
     this.fastMap.delete(node.scopeRef)
   }
 

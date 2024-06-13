@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/modal.module.css'
 
@@ -18,9 +19,11 @@ const ModalCloseIcon = React.forwardRef<HTMLDivElement, ModalCloseIconProps>(
 
     const modalCloseIconRef = useDOMRef<HTMLDivElement>(ref)
 
-    const classNames = ['cdg-modal-close-icon', className, styles.closeIcon]
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.closeIcon,
+      className,
+      'cdg-modal-close-icon',
+    )
 
     return (
       <CssInjection css={css}>
@@ -28,7 +31,7 @@ const ModalCloseIcon = React.forwardRef<HTMLDivElement, ModalCloseIconProps>(
           ref={modalCloseIconRef}
           onClick={() => onClose?.()}
           tabIndex={0}
-          className={classNames}
+          className={rootClasses}
           {...htmlProps}
         >
           {children}

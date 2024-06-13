@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import React, {useCallback, useEffect, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/radio-group.module.css'
 
@@ -75,21 +74,22 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       } else {
         onMountRef.current = true
       }
-    }, [selectedValue])
+    }, [onChange, selectedValue])
 
     return (
       <CssInjection css={css} childrenRef={groupRef}>
         <div
-          className={`cdg-radio-group ${styles.radioGroup} ${
-            orientation
-              ? styles[`radioGroup${capitalizeFirstLetter(orientation)}`]
-              : ''
-          }`}
+          {...delegated}
+          role=''
           ref={groupRef}
           onBlur={handleBlur}
-          {...delegated}
+          className={classNames(
+            styles.radioGroup,
+            orientation &&
+              styles[`radioGroup${capitalizeFirstLetter(orientation)}`],
+            'cdg-radio-group',
+          )}
           aria-labelledby={ariaLabelledBy}
-          role=''
         >
           <RadioContext.Provider
             value={{

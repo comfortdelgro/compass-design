@@ -5,7 +5,7 @@ import {
   useKeyboardNavigationState,
 } from '../utils/hooks'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {SpeedDialAction} from './speed-dial-action'
 import {SpeedDialTrigger} from './speed-dial-trigger'
@@ -85,31 +85,25 @@ const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
       },
     })
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.speedDial,
       position && styles[`speedDial${capitalizeFirstLetter(position)}`],
       className,
       'cdg-speed-dial',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const triggerClasses = [
+    const triggerClasses = classNames(
       styles.speedDialTriggerContent,
       isOpen ? styles.speedDialTriggerOpenSpan : styles.speedDialTriggerSpan,
       'cdg-speed-dial-trigger-content',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const actionClasses = [
+    const actionClasses = classNames(
       styles.speedDialActions,
       position && styles[`speedDialActions${capitalizeFirstLetter(position)}`],
       isOpen && styles.speedDialActionsOpen,
       'cdg-speed-dial-actions',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={speedDialRef}>

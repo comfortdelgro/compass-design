@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Dropdown from '../../dropdown'
+import {classNames} from '../../utils/string'
 import styles from '../styles/pagination.module.css'
 
 export type RowsCountingProps = React.HTMLAttributes<HTMLDivElement>
@@ -12,7 +13,12 @@ const RowsCounting: React.FC<{
   onRowsPerPageChange: (newValue: number) => void | undefined
 }> = ({rowsPerPage, onRowsPerPageChange, rowsOptions}) => {
   return (
-    <div className={styles.paginationRowsCounting}>
+    <div
+      className={classNames(
+        styles.paginationRowsCounting,
+        'cdg-pagination-row-counting',
+      )}
+    >
       <span>Rows per page:</span>
       <Dropdown.Select
         style={{width: '138px', gap: '4px'}}

@@ -4,7 +4,7 @@ import _Slider from './slider'
 export type {RangeSliderProps} from './range-slider'
 export type {SliderProps} from './slider'
 
-const Slider = _Slider as typeof Slider & {Range: typeof RangeSlider}
+const Slider = _Slider as typeof _Slider & {Range: typeof RangeSlider}
 
 Slider.Range = RangeSlider
 

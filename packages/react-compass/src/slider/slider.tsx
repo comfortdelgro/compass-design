@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {
   SliderControls,
   SliderControlsChildArguments,
@@ -40,21 +41,17 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     },
   }
 
-  const upperTrackClasses = [
+  const upperTrackClasses = classNames(
     styles.sliderFilledTrackUpper,
     orientation === 'vertical' && styles.sliderFilledTrackUpperVertical,
     'cdg-slider-upper-filled-track',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const lowerTrackClasses = [
+  const lowerTrackClasses = classNames(
     styles.sliderFilledTrackLower,
     orientation === 'vertical' && styles.sliderFilledTrackLowerVertical,
     'cdg-slider-lower-filled-track',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css}>

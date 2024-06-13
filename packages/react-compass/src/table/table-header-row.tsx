@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-header-row.module.css'
 
@@ -17,13 +18,11 @@ const TableHeaderRow = React.forwardRef<
   const {children, className, css = {}} = props
   const tableHeaderRowRef = useDOMRef<HTMLTableRowElement>(ref)
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.cdgTableHeaderRow,
     className,
     'cdg-table-header-row',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={tableHeaderRowRef}>

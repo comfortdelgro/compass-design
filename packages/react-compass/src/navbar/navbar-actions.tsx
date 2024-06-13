@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/navbar-actions.module.css'
 
 interface Props {
@@ -21,17 +22,17 @@ const NavbarActions = React.forwardRef<HTMLDivElement, NavbarActionsProps>(
       ...delegated
     } = props
 
-    const rootClasses = [styles.navbarActions, className, 'cdg-navbar-actions']
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.navbarActions,
+      className,
+      'cdg-navbar-actions',
+    )
 
-    const defaultClasses = [
+    const defaultClasses = classNames(
       styles.defaultNavbarActions,
       !!alternativeElement && `${styles.hasAlternative} cdg-na-has-alternative`,
       'cdg-navbar-actions-default',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={ref}>
@@ -39,7 +40,10 @@ const NavbarActions = React.forwardRef<HTMLDivElement, NavbarActionsProps>(
           <div className={defaultClasses}>{children}</div>
           {alternativeElement ? (
             <div
-              className={`${styles.alternativeNavbarActions} cdg-navbar-actions-alternative`}
+              className={classNames(
+                styles.alternativeNavbarActions,
+                'cdg-navbar-actions-alternative',
+              )}
             >
               {alternativeElement}
             </div>

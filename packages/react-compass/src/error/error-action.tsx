@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/error.module.css'
 
@@ -24,18 +25,16 @@ const ErrorAction = React.forwardRef<HTMLDivElement, ErrorActionProps>(
     } = props
     const errorActionRef = useDOMRef<HTMLDivElement>(ref)
 
-    const errorActionClasses = [
-      `cdg-error-action`,
-      className,
-      variant && styles[`${variant}VariantErrorAction`],
+    const rootClasses = classNames(
       styles.errorTitle,
-    ]
-      .filter(Boolean)
-      .join(' ')
+      variant && styles[`${variant}VariantErrorAction`],
+      className,
+      `cdg-error-action`,
+    )
 
     return (
       <CssInjection css={css} childrenRef={errorActionRef}>
-        <div className={errorActionClasses} ref={errorActionRef} {...htmlProps}>
+        <div {...htmlProps} className={rootClasses} ref={errorActionRef}>
           {children}
         </div>
       </CssInjection>

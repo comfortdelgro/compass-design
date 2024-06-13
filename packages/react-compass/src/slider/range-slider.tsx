@@ -9,6 +9,7 @@ import {
 import {SliderThumb} from './component/SliderThumb'
 import {FocusableRef, RangeValue} from './utils/types'
 
+import {classNames} from '../utils/string'
 import styles from './styles/slider.module.css'
 
 export interface RangeSliderProps
@@ -42,13 +43,11 @@ const RangeSlider = React.forwardRef<HTMLDivElement, RangeSliderProps>(
       },
     }
 
-    const filledClasses = [
+    const filledClasses = classNames(
       styles.rangeSliderFilledTrack,
       orientation === 'vertical' && styles.rangeSliderFilledTrackVertical,
       'cdg-slider-filled-track',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <SliderControls

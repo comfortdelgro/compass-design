@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/dashboardSidecard.module.css'
 
 interface Props {
@@ -20,8 +21,8 @@ const DashboardSidecardContent = React.forwardRef<
     <CssInjection css={css}>
       <div
         ref={ref}
-        className={`${styles.content} cdg-dashboard-sidecard-content`}
         {...htmlProps}
+        className={classNames(styles.content, 'cdg-dashboard-sidecard-content')}
       >
         {children}
       </div>

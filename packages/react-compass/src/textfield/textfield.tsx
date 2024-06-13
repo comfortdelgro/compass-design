@@ -2,6 +2,7 @@
 import React from 'react'
 import {useIsDarkTheme} from '../theme'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useId} from '../utils/useId'
 import styles from './styles/textfield.module.css'
@@ -77,7 +78,6 @@ export interface Props {
   'aria-describedby'?: string
   'aria-details'?: string
   'aria-errormessage'?: string
-  h5?: boolean
 }
 
 export type TextFieldProps = Props &
@@ -127,7 +127,6 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
       onCompositionEnd,
       onCompositionStart,
       onCompositionUpdate,
-      h5 = false,
       ...ariaSafeProps
     } = props
     const isDarkTheme = useIsDarkTheme()
@@ -157,67 +156,42 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
     }, [password, isPassWordVisible, type])
 
     //  classes
-    const textfieldWrapperClasses = React.useMemo(() => {
-      return [
-        styles.textFieldWrapper,
-        h5 && styles.textFieldWrapperH5,
-        className,
-        'cdg-textfield-container',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [className, h5])
+    const textfieldWrapperClasses = classNames(
+      styles.textFieldWrapper,
+      className,
+      'cdg-textfield-container',
+    )
 
-    const labelClasses = React.useMemo(() => {
-      return [
-        styles.textFieldLabel,
-        h5 && styles.textFieldLabelH5,
-        'cdg-textfield-label',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [h5])
+    const labelClasses = classNames(
+      styles.textFieldLabel,
+      'cdg-textfield-label',
+    )
 
-    const textfieldBoxWrapperClasses = React.useMemo(() => {
-      return [
-        styles.textFieldBox,
-        isDisabled && styles.textFieldBoxDisabled,
-        isErrored && styles.textFieldBoxErrored,
-        isDarkTheme && styles.textFieldBoxDarkTheme,
-        h5 && styles.textFieldBoxH5,
-        'cdg-textfield-box',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [h5, isDarkTheme, isDisabled, isErrored])
+    const textfieldBoxWrapperClasses = classNames(
+      styles.textFieldBox,
+      isDisabled && styles.textFieldBoxDisabled,
+      isErrored && styles.textFieldBoxErrored,
+      isDarkTheme && styles.textFieldBoxDarkTheme,
+      'cdg-textfield-box',
+    )
 
-    const textfieldInputWrapperClasses = React.useMemo(() => {
-      return [
-        styles.textField,
-        isDisabled && styles.textFieldDisabled,
-        isDarkTheme && styles.textFieldDarkTheme,
-        h5 && styles.textFieldH5,
-        'cdg-textfield-input',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [h5, isDarkTheme, isDisabled])
+    const textfieldInputWrapperClasses = classNames(
+      styles.textField,
+      isDisabled && styles.textFieldDisabled,
+      isDarkTheme && styles.textFieldDarkTheme,
+      'cdg-textfield-input',
+    )
 
-    const helperTextClasses = React.useMemo(() => {
-      return [styles.textFieldHelperText, 'cdg-textfield-helper-text']
-        .filter(Boolean)
-        .join(' ')
-    }, [])
+    const helperTextClasses = classNames(
+      styles.textFieldHelperText,
+      'cdg-textfield-helper-text',
+    )
 
-    const errorMessageClasses = React.useMemo(() => {
-      return [
-        styles.textFieldHelperTextError,
-        styles.textFieldHelperText,
-        'cdg-textfield-error-message',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [])
+    const errorMessageClasses = classNames(
+      styles.textFieldHelperTextError,
+      styles.textFieldHelperText,
+      'cdg-textfield-error-message',
+    )
 
     return (
       <CssInjection css={css} childrenRef={textfieldRef}>
@@ -230,7 +204,12 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
             <label htmlFor={id} className={labelClasses}>
               {label}
               {isRequired && (
-                <span className={`${styles.asterisk} cdg-textfield-asterisk`}>
+                <span
+                  className={classNames(
+                    styles.asterisk,
+                    'cdg-textarea-asterisk',
+                  )}
+                >
                   *
                 </span>
               )}
@@ -238,12 +217,19 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
           )}
           <div className={textfieldBoxWrapperClasses}>
             {leftIcon && (
-              <div className={`${styles.leftIcon} cdg-textfield-left-icon`}>
+              <div
+                className={classNames(
+                  styles.leftIcon,
+                  'cdg-textfield-left-icon',
+                )}
+              >
                 {leftIcon}
               </div>
             )}
             {prefix && (
-              <div className={`${styles.prefix} cdg-textfield-prefix`}>
+              <div
+                className={classNames(styles.prefix, 'cdg-textfield-prefix')}
+              >
                 {prefix}
               </div>
             )}
@@ -279,13 +265,21 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
               className={textfieldInputWrapperClasses}
             />
             {rightIcon ? (
-              <div className={`${styles.rightIcon} cdg-textfield-right-icon`}>
+              <div
+                className={classNames(
+                  styles.rightIcon,
+                  'cdg-textfield-right-icon',
+                )}
+              >
                 {rightIcon}
               </div>
             ) : null}
             {password && determineInputType == 'password' ? (
               <div
-                className={`${styles.passwordIcon} cdg-textfield-password-icon`}
+                className={classNames(
+                  styles.passwordIcon,
+                  'cdg-textfield-password-icon',
+                )}
                 style={{cursor: 'pointer'}}
                 onClick={() => setIsPassWordVisible(true)}
               >
@@ -299,7 +293,10 @@ const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>(
             ) : null}
             {password && determineInputType == type ? (
               <div
-                className={`${styles.passwordIcon} cdg-textfield-password-icon`}
+                className={classNames(
+                  styles.passwordIcon,
+                  'cdg-textfield-password-icon',
+                )}
                 style={{cursor: 'pointer'}}
                 onClick={() => setIsPassWordVisible(false)}
               >

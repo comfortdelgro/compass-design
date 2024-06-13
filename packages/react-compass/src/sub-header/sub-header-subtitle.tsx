@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/sub-header-subtitle.module.css'
 
 interface Props {
@@ -22,9 +23,13 @@ const SubHeaderSubtitle = React.forwardRef<
   return (
     <CssInjection css={css} childrenRef={ref}>
       <span
-        className={`cdg-sub-header-subtitle ${className} ${styles.subHeaderSubtitle}`}
-        ref={ref}
         {...htmlProps}
+        ref={ref}
+        className={classNames(
+          styles.subHeaderSubtitle,
+          className,
+          'cdg-sub-header-subtitle',
+        )}
       >
         {children}
       </span>

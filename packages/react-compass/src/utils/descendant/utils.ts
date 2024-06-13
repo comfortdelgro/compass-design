@@ -47,7 +47,6 @@ export function sortNodes(nodes: Node[]) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isElement = (el: any): el is HTMLElement =>
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   typeof el == 'object' && 'nodeType' in el && el.nodeType === Node.ELEMENT_NODE
 
 export function getNextIndex(current: number, max: number, loop: boolean) {

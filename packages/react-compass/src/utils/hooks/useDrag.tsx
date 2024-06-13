@@ -141,7 +141,8 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
     return processingOptions
   }, [options])
 
-  const target = opts.targetRef || useRef<T>(null)
+  const targetRef = useRef<T>(null)
+  const target = opts.targetRef || targetRef
   const startXY = useRef<DragPosition>({x: 0, y: 0})
   const prevPosition = useRef<DragPosition>({x: 0, y: 0})
   const dragging = useRef<boolean>(false)
@@ -181,7 +182,7 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
 
       target.current.style.transform = `translate3d(${newPosition.x}px, ${newPosition.y}px, 0)`
     },
-    [opts.setCSS, opts.stepSize],
+    [opts.setCSS, opts.stepSize, position.x, position.y, target],
   )
 
   const handleStart = useCallback(
@@ -217,7 +218,7 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
         opts.onStart?.(target, {x, y}, setTransform)
       }
     },
-    [opts, setTransform],
+    [opts, setTransform, target],
   )
 
   const handleMove = useCallback(
@@ -286,7 +287,7 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
 
       setTransform({x, y}, {skipCalulateStep: true})
     },
-    [dragging, opts, setTransform],
+    [opts, setTransform, target],
   )
 
   const handleEnd = useCallback(
@@ -305,7 +306,7 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
         opts.onEnd?.(target, prevPosition.current, setTransform)
       }
     },
-    [dragging, opts, setTransform],
+    [opts, setTransform, target],
   )
 
   useEffect(() => {

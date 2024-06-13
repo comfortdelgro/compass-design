@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/sub-header-image.module.css'
 interface Props {
   css?: CSS
@@ -18,9 +19,13 @@ const SubHeaderImage = React.forwardRef<HTMLImageElement, SubHeaderImageProps>(
     return (
       <CssInjection css={css} childrenRef={ref}>
         <img
-          className={`cdg-sub-header-image ${className} ${styles.subHeaderImage}`}
-          ref={ref}
           {...htmlProps}
+          ref={ref}
+          className={classNames(
+            styles.subHeaderImage,
+            className,
+            'cdg-sub-header-image',
+          )}
         />
       </CssInjection>
     )

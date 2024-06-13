@@ -1,5 +1,6 @@
 import React, {memo, useCallback, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import SingleInput from './SingleInput'
 import styles from './styles/otpInput.module.css'
@@ -196,18 +197,16 @@ const OTPInputComponent = React.forwardRef<HTMLDivElement, OTPInputProps>(
       [activeInput, getRightValue, handleOtpChange, length, otpValues],
     )
 
-    const classNames = [
+    const rootClasses = classNames(
       styles.inputContainer,
       isMobile && styles.inputContainerIsMobile,
-      'cdg-otp-input',
       className,
-    ]
-      .filter(Boolean)
-      .join(' ')
+      'cdg-otp-input',
+    )
 
     return (
       <CssInjection css={css}>
-        <div ref={inputRef} className={classNames} {...htmlProps}>
+        <div {...htmlProps} ref={inputRef} className={rootClasses}>
           {Array.from(Array(length).keys()).map((index) => (
             <SingleInput
               index={index}

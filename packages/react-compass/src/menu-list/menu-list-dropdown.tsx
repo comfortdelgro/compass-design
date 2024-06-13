@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {MenuListContext} from './menu-list-context'
 import MenuListDropdownHeader from './menu-list-dropdown-header'
 import MenuListDropdownItem from './menu-list-dropdown-item'
@@ -57,21 +58,17 @@ const MenuListDropdown = React.forwardRef<
 
   const bodyOpenState = isOpen ? EBodyOpenState.OPEN : EBodyOpenState.CLOSE
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.menuListDropdown,
     className,
     'cdg-menu-list-dropdown',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const bodyClasses = [
+  const bodyClasses = classNames(
     styles.menuListDropdownBody,
     styles[bodyOpenState],
     'cdg-menu-list-dropdown-body',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={ref}>

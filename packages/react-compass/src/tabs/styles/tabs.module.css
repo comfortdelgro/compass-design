@@ -29,12 +29,6 @@
     border-radius: none;
   }
 
-  .h5 {
-    background: transparent;
-    padding: 0 0 4px 0 !important;
-    gap: var(--cdg-spacing-5);
-  }
-
   .horizontal {
     padding: var(--cdg-spacing-2);
     flex-direction: row;

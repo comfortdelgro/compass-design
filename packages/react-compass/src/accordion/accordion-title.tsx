@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import {EKeyboardKey} from '../utils/keyboard.enum'
 import {CSS} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import AccordionButton from './accordion-button'
 import AccordionContext, {AccordionContextType} from './accordion-context'
 import styles from './styles/accordion-title.module.css'
@@ -20,11 +21,11 @@ export type AccordionTitleProps = Props &
 const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
   (props, ref) => {
     const {
-      icon = <DefaultIcon />,
-      children,
-      expandIcon,
       css = {},
+      children,
       className,
+      expandIcon,
+      icon = <DefaultIcon />,
       'aria-controls': ariaControls,
       ...delegated
     } = props
@@ -70,16 +71,23 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
 
     const renderLeftIcon = () => {
       if (icon === false) return null
-      return <div className={styles.accordionLeftIconContainer}>{icon}</div>
+      return (
+        <div
+          className={classNames(
+            styles.accordionLeftIconContainer,
+            'cdg-accordion-left-icon',
+          )}
+        >
+          {icon}
+        </div>
+      )
     }
 
-    const rootClasses = [
+    const rootClasses = classNames(
       expand ? styles.open : '',
       className,
       'cdg-accordion-title-container',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <AccordionButton
@@ -93,14 +101,22 @@ const AccordionTitle = React.forwardRef<HTMLButtonElement, AccordionTitleProps>(
       >
         <div
           {...delegated}
-          className={`${styles.accordionTitleWrapper} cdg-accordion-title-wrapper`}
+          className={classNames(
+            styles.accordionTitleWrapper,
+            'cdg-accordion-title-wrapper',
+          )}
         >
           {renderLeftIcon()}
-          <div className={`${styles.accordionTitle} cdg-accordion-title`}>
+          <div
+            className={classNames(styles.accordionTitle, 'cdg-accordion-title')}
+          >
             {renderTitle()}
           </div>
           <div
-            className={`${styles.accordionChevronContainer} cdg-accordion-title-chevron-container`}
+            className={classNames(
+              styles.accordionChevronContainer,
+              'cdg-accordion-title-chevron-container',
+            )}
           >
             {expandIcon ? expandIcon : <ChevronIcon />}
           </div>
@@ -123,7 +139,13 @@ const DefaultIcon = () => (
 
 const ChevronIcon = () => {
   return (
-    <svg viewBox='0 0 512 512' className={styles.accordionChevronIcon}>
+    <svg
+      viewBox='0 0 512 512'
+      className={classNames(
+        styles.accordionChevronIcon,
+        'cdg-accordion-chevron-icon',
+      )}
+    >
       <path
         fill='currentColor'
         d='M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z'

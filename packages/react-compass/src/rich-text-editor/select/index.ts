@@ -1,5 +1,9 @@
-import Dropdown from './dropdown'
+import _Dropdown from './dropdown'
 import DropdownItem from './item'
+
+const Dropdown = _Dropdown as typeof _Dropdown & {
+  Item: typeof DropdownItem
+}
 
 Dropdown.Item = DropdownItem
 

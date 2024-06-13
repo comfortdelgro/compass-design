@@ -48,12 +48,3 @@
     width: 75%;
   }
 }
-
-@layer variant {
-  .textFieldLabelH5 {
-    font-size: var(--cdg-font-size-label2);
-    font-weight: var(--cdg-font-weight-medium);
-    color: var(--cdg-color-grayShades80);
-    margin-bottom: var(--cdg-spacing-1);
-  }
-}

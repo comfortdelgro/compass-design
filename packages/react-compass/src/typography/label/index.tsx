@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {Component} from '../utils'
 import styles from './label.module.css'
 
@@ -29,21 +30,18 @@ const Label: React.FC<labelTypographyProps> = (props) => {
     return 'label'
   }, [component])
 
-  const classNames = React.useMemo(() => {
-    const arr = [
-      styles.label,
-      variant && styles[variant],
-      weight && styles[weight],
-      className && className,
-      'cdg-label',
-    ]
-    return arr.filter(Boolean).join(' ')
-  }, [className, variant, weight])
+  const rootClasses = classNames(
+    styles.label,
+    variant && styles[variant],
+    weight && styles[weight],
+    className && className,
+    'cdg-typography-label',
+  )
 
   return (
     <>
       <CssInjection css={css}>
-        <Component {...htmlProps} className={classNames}>
+        <Component {...htmlProps} className={rootClasses}>
           {children}
         </Component>
       </CssInjection>

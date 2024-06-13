@@ -1,5 +1,6 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {
   DEFAULT_FILE_ACCEPT,
@@ -156,38 +157,39 @@ const UploadDragAndDrop = React.forwardRef<
     return '#A19F9D'
   }
   //  classes
-  const uploadWrapperClasses = useMemo(() => {
-    return [
-      styles.uploadWrapper,
-      variant === 'area' && styles.uploadWrapperArea,
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [className, variant])
-  const uploadContainerClasses = useMemo(() => {
-    return [
-      styles.uploadContainer,
-      variant === 'area' && styles.uploadContainerArea,
-      isDisabled && styles.uploadContainerisDisabled,
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [isDisabled, variant])
-  const uploadContentClasses = useMemo(() => {
-    return [styles.uploadContent, isDisabled && styles.uploadContentIsDisabled]
-      .filter(Boolean)
-      .join(' ')
-  }, [isDisabled])
+  const uploadWrapperClasses = classNames(
+    styles.uploadWrapper,
+    variant === 'area' && styles.uploadWrapperArea,
+    className,
+    'cdg-upload-dnd-upload',
+  )
+
+  const uploadContainerClasses = classNames(
+    styles.uploadContainer,
+    variant === 'area' && styles.uploadContainerArea,
+    isDisabled && styles.uploadContainerisDisabled,
+    'cdg-upload-dnd-upload-container',
+  )
+
+  const uploadContentClasses = classNames(
+    styles.uploadContent,
+    isDisabled && styles.uploadContentIsDisabled,
+    'cdg-upload-dnd-upload-content',
+  )
 
   return (
     <CssInjection css={css}>
-      <div className={uploadWrapperClasses} {...delegated}>
+      <div {...delegated} className={uploadWrapperClasses}>
         {label && (
           <>
-            <label className={`${styles.label}`}>
-              <span className='cdg-label'>{label}</span>
-              <span className={`cdg-isRequired-Sign ${styles.isRequiredSign}`}>
+            <label className={classNames(styles.label, 'cdg-upload-dnd-label')}>
+              <span className='cdg-upload-dnd-label-text'>{label}</span>
+              <span
+                className={classNames(
+                  styles.isRequiredSign,
+                  'cdg-upload-dnd-label-asterisk',
+                )}
+              >
                 {isRequired ? ' *' : ''}
               </span>
             </label>
@@ -212,9 +214,11 @@ const UploadDragAndDrop = React.forwardRef<
             disabled={isDisabled}
             type='button'
             role='button'
-            className={`${styles.uploadButton} ${
-              isDisabled ? styles.uploadButtonIsDisabled : ''
-            }`}
+            className={classNames(
+              styles.uploadButton,
+              isDisabled && styles.uploadButtonIsDisabled,
+              'cdg-upload-dnd-button',
+            )}
           >
             {variant === 'field' && (
               <svg
@@ -236,7 +240,16 @@ const UploadDragAndDrop = React.forwardRef<
               <span style={{pointerEvents: 'none'}}>Upload files</span>
             )}
           </button>
-          {variant === 'area' && <a className={`${styles.orLetter}`}>or</a>}
+          {variant === 'area' && (
+            <a
+              className={classNames(
+                styles.orLetter,
+                'cdg-upload-dnd-or-letter',
+              )}
+            >
+              or
+            </a>
+          )}
           {variant === 'area' ? (
             <div className={uploadContentClasses}>Drag&Drop files here</div>
           ) : (
@@ -253,12 +266,24 @@ const UploadDragAndDrop = React.forwardRef<
             </div>
           )}
         </div>
-        <a className={`${styles.uploadMaxSize}`}>
+        <a
+          className={classNames(
+            styles.uploadMaxSize,
+            'cdg-upload-dnd-helper-text',
+          )}
+        >
           {helperText
             ? helperText
             : `Maximum size: ${convertFileSizeToReadableNumber(fileSizeLimit)}`}
         </a>
-        <a className={`${styles.uploadError}`}>{handleErrorMessage(error)}</a>
+        <a
+          className={classNames(
+            styles.uploadError,
+            'cdg-upload-dnd-error-message',
+          )}
+        >
+          {handleErrorMessage(error)}
+        </a>
       </div>
     </CssInjection>
   )

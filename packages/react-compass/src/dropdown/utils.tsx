@@ -31,7 +31,7 @@ export function textContent(
 
 const findItemByValue = (
   items: Array<React.ReactElement<DropdownItemProps>>,
-  value: string | number,
+  value: React.Key,
   disabledKeys: string[] | number[] = [],
 ): React.ReactElement<DropdownItemProps> | null => {
   for (let index = 0; index < items.length; index++) {
@@ -192,15 +192,9 @@ export const getLastItem = (
  * @param key current key
  * @param children All Dropdown.Item elements
  */
-export const getItemByKey = (
-  key: string | number,
-  children?: React.ReactNode,
-) => {
+export const getItemByKey = (key: React.Key, children?: React.ReactNode) => {
   // Pick Dropdown.Item in children except for DropdownHeader
-  const {rest: dropdownItems} = pickChild<typeof DropdownHeader>(
-    children,
-    DropdownHeader,
-  )
+  const {rest: dropdownItems} = pickChild(children, DropdownHeader)
   const childrenArr = React.Children.toArray(dropdownItems)
 
   if (!childrenArr?.length) return null

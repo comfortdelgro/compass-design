@@ -88,11 +88,10 @@ export const Variants: React.FC = () => (
       <Badge
         css={{maxWidth: 210}}
         label='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-        variant='h5'
         destination='A'
       />
-      <Badge label='Current Location' variant='h5' destination='B' />
-      <Badge label='Current Location' variant='h5' destination='C' isRevert />
+      <Badge label='Current Location' destination='B' />
+      <Badge label='Current Location' destination='C' isRevert />
     </Layout>
   </Layout>
 )

@@ -6,6 +6,7 @@ import {
   RangeValue,
 } from '../calendar/types'
 import {CalendarDate} from '../internationalized/date'
+import {classNames} from '../utils/string'
 import styles from './styles/range-calendar-shortcuts.module.css'
 import {useRangeCalendarShortcuts} from './useRangeCalendarShorcuts'
 
@@ -48,14 +49,21 @@ const RangeCalendarShorcuts = (props: RangeCalendarShortcutsProps) => {
   }
 
   return (
-    <div className={styles.rangeCalendarShortcuts}>
+    <div
+      className={classNames(
+        styles.rangeCalendarShortcuts,
+        'cdg-range-calendar-shortcuts',
+      )}
+    >
       {shorcuts &&
         shorcuts.map((shorcut) => {
           return (
             <button
-              className={`${styles.rangeCalendarShortcutsItem} ${
-                selectedItem === shorcut.label ? styles.active : ''
-              }`}
+              className={classNames(
+                styles.rangeCalendarShortcutsItem,
+                selectedItem === shorcut.label && styles.active,
+                'cdg-range-calendar-shortcuts-item',
+              )}
               key={shorcut.label}
               aria-disabled={shorcut.isDisable}
               type='button'

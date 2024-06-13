@@ -1,6 +1,7 @@
 import {useMergeRefs} from '@floating-ui/react'
 import React from 'react'
 import {useKeyboardNavigation, useKeyboardNavigationState} from '../utils/hooks'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/speed-dial.module.css'
 
@@ -24,13 +25,11 @@ export const SpeedDialTrigger = React.forwardRef<
 
   const mergeRef = useMergeRefs([ref, register, domRef])
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.speedDialTrigger,
     isOpen && styles.speedDialTriggerOpen,
     'cdg-speed-dial-trigger',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <button

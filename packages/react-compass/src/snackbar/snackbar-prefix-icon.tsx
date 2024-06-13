@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/snackbar.module.css'
 
@@ -21,9 +22,13 @@ const SnackbarPrefixIcon = React.forwardRef<
   return (
     <CssInjection css={css} childrenRef={snackbarIconRef}>
       <div
-        className={`cdg-snackbar-prefix-icon ${className} ${styles.snackbarIcon}`}
-        ref={snackbarIconRef}
         {...htmlProps}
+        ref={snackbarIconRef}
+        className={classNames(
+          styles.snackbarIcon,
+          className,
+          'cdg-snackbar-prefix-icon',
+        )}
       >
         {children}
       </div>

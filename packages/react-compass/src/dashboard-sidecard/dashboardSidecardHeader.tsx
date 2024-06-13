@@ -1,6 +1,7 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import styles from './styles/dashboardSidecard.module.css'
+import { classNames } from '../utils/string'
 
 interface Props {
   children?: React.ReactNode
@@ -18,7 +19,11 @@ const DashboardSidecardHeader = React.forwardRef<
 
   return (
     <CssInjection css={css}>
-      <div ref={ref} className={`${styles.header}`} {...htmlProps}>
+      <div
+        {...htmlProps}
+        ref={ref}
+        className={classNames(styles.header, 'cdg-dashboard-sidecard-header')}
+      >
         {children}
       </div>
     </CssInjection>
