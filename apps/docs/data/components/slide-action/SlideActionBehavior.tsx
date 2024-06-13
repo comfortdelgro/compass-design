@@ -6,7 +6,7 @@ export default function SliderActionBehaviorDocs() {
 
   return (
     <>
-      <Typography.Body variant='body3' css={{marginBottom: '$4'}}>
+      <Typography.Body variant='body3' css={{marginBottom: 'var(--cdg-spacing-4)'}}>
         Successful / confirmatory action count:{' '}
         <strong>{`${countSuccess}`}</strong>
       </Typography.Body>

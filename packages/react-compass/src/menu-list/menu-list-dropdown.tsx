@@ -22,7 +22,6 @@ enum EBodyOpenState {
   CLOSE = 'close',
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 const MenuListDropdown = React.forwardRef<
   HTMLDivElement,
   MenuListDropdownProps

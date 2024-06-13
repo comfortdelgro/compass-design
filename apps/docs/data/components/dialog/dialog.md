@@ -28,10 +28,6 @@ import {Dialog} from '@comfortdelgro/react-compass'
 
 {{"demo": "DialogNested.tsx"}}
 
-### Mobile Dialog
-
-{{"demo": "DialogMobile.tsx"}}
-
 ## Props
 
 | Name    | Type                        | Default | Description |

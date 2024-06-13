@@ -33,10 +33,10 @@ const ActionBar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof ActionBar & {
+})
+
+export default ActionBar as typeof ActionBar & {
   LeftGroup: typeof ActionBarLeftGroup
   CenterGroup: typeof ActionBarCenterGroup
   RightGroup: typeof ActionBarRightGroup
 }
-
-export default ActionBar

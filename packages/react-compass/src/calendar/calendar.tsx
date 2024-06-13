@@ -187,9 +187,9 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Calendar & {
+})
+
+export default Calendar as typeof Calendar & {
   InternationalizedDate: typeof InternationalizedDate
   I18N: typeof i18n
 }
-
-export default Calendar

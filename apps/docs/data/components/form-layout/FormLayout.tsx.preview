@@ -66,7 +66,11 @@
         />
     </FormLayout.Group>
     <FormLayout.Group
-        css={{display: 'flex', flexDirection: 'column', gap: '$4'}}
+        css={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'var(--cdg-spacing-4)',
+        }}
     >
         <Checkbox>Unselected</Checkbox>
         <Checkbox>Unselected</Checkbox>

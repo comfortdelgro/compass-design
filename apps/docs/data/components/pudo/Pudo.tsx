@@ -14,7 +14,7 @@ export default function PudoDocs() {
     <Column>
       <Typography.Body
         variant='body3'
-        css={{color: '$grayShades60', marginBottom: '1rem'}}
+        css={{color: 'var(--cdg-color-grayShades60)', marginBottom: '1rem'}}
       >
         Default config: Minlength <strong>2</strong>, Maxlength{' '}
         <strong>3</strong>, Input&#39;s maxlength <strong>255</strong>

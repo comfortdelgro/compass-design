@@ -22,17 +22,18 @@ import {useDOMRef} from '../utils/use-dom-ref'
 import ExpandableRow from './components/table-expandable-row'
 import styles from './styles/table.module.css'
 import TableCell from './table-cell'
+import TableCheckboxCell from './table-checkbox-cell'
 import TableColumnHeader from './table-column-header'
 import EmptyDataComponent from './table-empty-data'
 import TableFooter from './table-footer'
 import TableHeaderRow from './table-header-row'
 import TableLoading from './table-loading'
+import ProgressPercentage from './table-progress'
 import TableRow from './table-row'
 import TableToolbar from './table-toolbar'
 import {Props} from './utils/types'
-import TableCheckboxCell from './table-checkbox-cell'
 
-export type TableProps<T = unknown> = Props<T> &
+export type TableProps<T = any> = Props<T> &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props<T>>
 
 const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
@@ -225,11 +226,11 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Table & {
+})
+
+export default Table as typeof Table & {
   Toolbar: typeof TableToolbar
   Footer: typeof TableFooter
   CheckboxCell: typeof TableCheckboxCell
-  ProgressPercentage: typeof ProgressEvent
+  ProgressPercentage: typeof ProgressPercentage
 }
-
-export default Table

@@ -31,10 +31,10 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Footer & {
+})
+
+export default Footer as typeof Footer & {
   Header: typeof FooterHeader
   Nav: typeof FooterNavigation
   Policy: typeof FooterPolicy
 }
-
-export default Footer

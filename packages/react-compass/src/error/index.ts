@@ -1,4 +1,4 @@
-import _Error from './error'
+import Error from './error'
 import ErrorAction from './error-action'
 import ErrorDescription from './error-description'
 import ErrorIcon from './error-icon'
@@ -11,14 +11,6 @@ export type {ErrorDescriptionProps} from './error-description'
 export type {ErrorIconProps} from './error-icon'
 export type {ErrorImageProps} from './error-image'
 export type {ErrorTitleProps} from './error-title'
-
-const Error = _Error as typeof _Error & {
-  Title: typeof ErrorTitle
-  Description: typeof ErrorDescription
-  Action: typeof ErrorAction
-  Icon: typeof ErrorIcon
-  Image: typeof ErrorImage
-}
 
 Error.Action = ErrorAction
 Error.Description = ErrorDescription

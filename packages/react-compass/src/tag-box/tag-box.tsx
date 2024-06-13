@@ -291,8 +291,8 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof TagBox & {
+})
+
+export default TagBox as typeof TagBox & {
   Action: typeof TagBoxAction
 }
-
-export default TagBox

@@ -16,7 +16,6 @@ interface Props {
 export type PageHeaderProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-// eslint-disable-next-line react-refresh/only-export-components
 const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>(
   (props, ref) => {
     const {children, color = 'white', css = {}, className, ...delegated} = props

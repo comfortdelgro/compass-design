@@ -27,10 +27,6 @@ import {Modal} from '@comfortdelgro/react-compass'
 
 {{"demo": "ModalNested.tsx"}}
 
-### H5
-
-{{"demo": "ModalH5.tsx"}}
-
 ## Props
 
 | Name            | Type                                                          | Default | Description                                                             |

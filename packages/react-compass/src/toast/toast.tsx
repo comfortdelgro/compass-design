@@ -153,7 +153,9 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
         )}
     </>
   )
-}) as typeof Toast & {
+})
+
+export default Toast as typeof Toast & {
   Actions: typeof ToastActions
   CloseIcon: typeof ToastCloseIcon
   Icon: typeof ToastIcon
@@ -161,5 +163,3 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
   Message: typeof ToastMessage
   Title: typeof ToastTitle
 }
-
-export default Toast
