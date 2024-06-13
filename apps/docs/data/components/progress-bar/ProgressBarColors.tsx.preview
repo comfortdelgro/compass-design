@@ -1,1 +1,1 @@
-<ProgressBar label='H5' color='var(--cdg-color-blueShades80)' barColor='var(--cdg-color-blueShades10)' />
+<ProgressBar label='Progress' color='var(--cdg-color-blueShades80)' barColor='var(--cdg-color-blueShades10)' />

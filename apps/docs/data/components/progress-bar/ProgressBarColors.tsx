@@ -64,18 +64,6 @@ export default function ProgressBarColorDocs() {
       />
 
       <Divider css={{marginBlock: 'var(--cdg-spacing-8)'}} />
-
-      <ProgressBar
-        value={progressValue}
-        maxValue={MAX_VALUE}
-        size='md'
-        label='H5'
-        rightLabel='color: var(--cdg-color-blueShades80) | barColor: var(--cdg-color-blueShades10) | size: md'
-        color='var(--cdg-color-blueShades80)'
-        barColor='var(--cdg-color-blueShades10)'
-        onComplete={() => setIsCompleted(true)}
-      />
-
       <Row css={{alignItems: 'unset', height: 'var(--cdg-spacing-8)'}}>
         {isCompleted ? (
           <>
