@@ -3,7 +3,7 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import BannerDescription from './banner-description'
 import BannerImage from './banner-image'
@@ -43,21 +43,19 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
     BannerDescription,
   )
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.banner,
     styles[`bannerSize${capitalizeFirstLetter(size)}`],
     className,
     'cdg-banner',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={bannerRef}>
       <div {...htmlProps} ref={bannerRef} className={rootClasses}>
         {BannerImageElement}
         <div
-          className={`${styles.contentContainer} cdg-banner-content-container`}
+          className={classNames(styles.contentContainer, 'cdg-banner-content')}
         >
           {BannerTitleElement}
           {BannerDescriptionElement}

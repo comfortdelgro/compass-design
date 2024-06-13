@@ -42,7 +42,10 @@ const PudoItemComponent = <TItemName extends PropertyKey>({
         return (
           <TextField
             inputRef={inputRef}
-            className={`${classes.pudoItemInput} cdg-pudo-item__input`}
+            className={classNames(
+              classes.pudoItemInput,
+              'cdg-pudo-item__input',
+            )}
             type='text'
             name={name.toString()}
             value={value}

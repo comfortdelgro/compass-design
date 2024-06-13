@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import React, {useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
@@ -130,7 +129,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
         onMouseUp={() => onMouse(false)}
         {...delegated}
       >
-        <div className={styles.left}>
+        <div className={classNames(styles.left, 'cdg-list-left')}>
           {leftInfo && <div className={leftInfoClass}>{leftInfo}</div>}
           {(title || description) && (
             <div className={leftTextClass}>
@@ -145,7 +144,7 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
           )}
         </div>
         {rightInfo && !rightContent && (
-          <div className={styles.right}>
+          <div className={classNames(styles.right, 'cdg-list-right')}>
             {rightInfo.text && (
               <span className={rightTextClass}>{rightInfo?.text}</span>
             )}

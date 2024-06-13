@@ -274,11 +274,19 @@ const CarouselSlider = React.forwardRef<HTMLDivElement, CarouselSliderProps>(
               />
             )}
             {socials && socials.length ? (
-              <div className={styles.sliderSocials}>
+              <div
+                className={classNames(
+                  styles.sliderSocials,
+                  'cdg-carousel-slider-socials',
+                )}
+              >
                 {socials.map((social, index) => {
                   return (
                     <a
-                      className={styles.socialLink}
+                      className={classNames(
+                        styles.socialLink,
+                        'cdg-carousel-slider-link',
+                      )}
                       href={social.url}
                       target='_blank'
                       key={index}

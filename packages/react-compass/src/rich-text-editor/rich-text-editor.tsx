@@ -131,7 +131,12 @@ const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
               )}
             />
             {characterCount && (
-              <div className={`${styles.characterCount}`}>
+              <div
+                className={classNames(
+                  styles.characterCount,
+                  'cdg-rich-text-editor-character-count',
+                )}
+              >
                 {CharacterCountFunc()}/{characterCount}
               </div>
             )}

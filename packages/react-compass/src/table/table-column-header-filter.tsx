@@ -52,7 +52,12 @@ const HeaderColumnFilter = forwardRef<
   }
 
   const renderNumberFilter = () => (
-    <div className={styles.numberContainer}>
+    <div
+      className={classNames(
+        styles.numberContainer,
+        'cdg-table-column-header-filter-number',
+      )}
+    >
       <TextField
         type='number'
         ref={ref}

@@ -11,6 +11,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 
+import {classNames} from '../string'
 import {chain} from './chain'
 
 type Props = Record<string, any>
@@ -58,7 +59,7 @@ export default function mergeProps<T extends PropsArg[]>(
         typeof a === 'string' &&
         typeof b === 'string'
       ) {
-        result[key] = [a, b].filter(Boolean).join(' ')
+        result[key] = classNames(a, b)
       } else {
         result[key] = b !== undefined ? b : a
       }

@@ -133,7 +133,11 @@ const CarouselPromotion = React.forwardRef<
                       <Button
                         key={index}
                         variant={button.type}
-                        className={`${button.type} ${styles[button.type]}`}
+                        className={classNames(
+                          button.type,
+                          styles[button.type],
+                          'cdg-carousel-promotion-slide-button',
+                        )}
                       >
                         {button.label}
                       </Button>

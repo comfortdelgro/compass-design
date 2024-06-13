@@ -1,7 +1,7 @@
 import React from 'react'
 import Avatar, {AvatarProps} from '.'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {AvatarSize, OFFSET_LEFT_MAP} from './avatar.const'
 import styles from './styles/avatar.module.css'
@@ -39,7 +39,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
     return (
       <CssInjection css={css} childrenRef={avatarGroupRef}>
         <div
-          className={`${styles.avatarGroup}`}
+          className={classNames(styles.avatarGroup, 'cdg-avatar-group')}
           ref={avatarGroupRef}
           {...delegated}
         >
@@ -66,9 +66,11 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
           )}
           {useAddMore && (
             <button
-              className={`${styles.avatarAddMore} ${
-                styles['addMoreSize' + capitalizeFirstLetter(size)]
-              }`}
+              className={classNames(
+                styles.avatarAddMore,
+                styles['addMoreSize' + capitalizeFirstLetter(size)],
+                'cdg-avatar-group-addmore',
+              )}
             >
               <svg viewBox='0 0 448 512' width={20}>
                 <path

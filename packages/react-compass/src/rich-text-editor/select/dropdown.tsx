@@ -9,6 +9,7 @@ import {
 } from '@floating-ui/react'
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from '../styles/dropdown.module.css'
 import DropdownItem, {DropdownItemProps} from './item'
@@ -186,16 +187,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     setFocusKey(currentKey)
   }
 
-  const dropdownClasses = React.useMemo(() => {
-    return [
-      styles.rteDropdown,
-      !selectedItem && styles.isEmpty,
-      isDisabled && styles.isDisabled,
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [className, isDisabled, selectedItem])
+  const dropdownClasses = classNames(
+    styles.rteDropdown,
+    !selectedItem && styles.isEmpty,
+    isDisabled && styles.isDisabled,
+    className,
+  )
 
   // ====================================== RENDER ======================================
   return (

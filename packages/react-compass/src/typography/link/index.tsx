@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import styles from './link.module.css'
 
 interface Props {
@@ -22,21 +23,18 @@ const Link: React.FC<linkTypographyProps> = (props) => {
     ...htmlProps
   } = props
 
-  const classNames = React.useMemo(() => {
-    const arr = [
-      styles.link,
-      variant && styles[variant],
-      weight && styles[weight],
-      className && className,
-      'cdg-link',
-    ]
-    return arr.filter(Boolean).join(' ')
-  }, [className, variant, weight])
+  const rootClasses = classNames(
+    styles.link,
+    variant && styles[variant],
+    weight && styles[weight],
+    className,
+    'cdg-typography-link',
+  )
 
   return (
     <>
       <CssInjection css={css}>
-        <a {...htmlProps} className={classNames}>
+        <a {...htmlProps} className={rootClasses}>
           {children}
         </a>
       </CssInjection>

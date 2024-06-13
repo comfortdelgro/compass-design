@@ -2,6 +2,7 @@ import React from 'react'
 import {ButtonProps} from '../../button'
 import {createCalendar} from '../../internationalized/date'
 import {useLocale} from '../../internationalized/i18n'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {useDateField} from '../hooks/useDateField'
 import {useDateFieldState} from '../hooks/useDateFieldState'
@@ -25,7 +26,10 @@ interface Props {
 
 const Icon = () => (
   <svg
-    className={styles.calendarToggleIcon}
+    className={classNames(
+      styles.calendarToggleIcon,
+      'cdg-calendar-toogle-icon',
+    )}
     width='16'
     height='16'
     viewBox='0 0 16 16'
@@ -74,35 +78,47 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const generateLabeling = () => {
     const necessityIndicator = props.necessityIndicator ?? 'icon'
     if (props.isRequired && necessityIndicator === 'icon') {
-      return <span className={`${styles.error}`}>*</span>
+      return (
+        <span className={classNames(styles.error, 'cdg-date-field-asterisk')}>
+          *
+        </span>
+      )
     } else if (props.isRequired && necessityIndicator === 'label') {
       return (
-        <span className={`${styles.error} ${styles.text}`}>(required)</span>
+        <span
+          className={classNames(
+            styles.error,
+            styles.text,
+            'cdg-date-field-required',
+          )}
+        >
+          (required)
+        </span>
       )
     } else if (!props.isRequired && necessityIndicator === 'label') {
-      return <span className={`${styles.text}`}>(optional)</span>
+      return (
+        <span className={classNames(styles.text, 'cdg-date-field-label')}>
+          (optional)
+        </span>
+      )
     }
     return ''
   }
 
   const {onPress, ...buttonProps} = props.buttonProps
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.dateField,
     isDisabled && styles.disabled,
     isInvalid && styles.invalid,
     'cdg-date-field',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const inputClasses = [
+  const inputClasses = classNames(
     styles.dateFieldInput,
     isDisabled || isReadOnly ? '' : props.isMobile ? styles.mobile : '',
     'cdg-date-field-input',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <div>
@@ -110,7 +126,10 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         {typeof props.label === 'string' ? (
           <span
             {...labelProps}
-            className={`${styles.dateFieldLabel} cdg-date-field-label`}
+            className={classNames(
+              styles.dateFieldLabel,
+              'cdg-date-field-label',
+            )}
           >
             {props.label} {generateLabeling()}
           </span>
@@ -152,7 +171,10 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             }}
             type='button'
             disabled={isDisabled || isReadOnly}
-            className={`${styles.expandButton} cdg-date-field-expand-button`}
+            className={classNames(
+              styles.expandButton,
+              'cdg-date-field-expand-button',
+            )}
           >
             <Icon />
           </button>
@@ -160,13 +182,22 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       </div>
       {props.isInvalid && props.errorMessage && (
         <div
-          className={`${styles.textFieldHelperText} ${styles.helperTextError} cdg-date-field-error `}
+          className={classNames(
+            styles.textFieldHelperText,
+            styles.helperTextError,
+            'cdg-date-field-error',
+          )}
         >
           {props.errorMessage}
         </div>
       )}
       {props.helperText ? (
-        <div className={`${styles.textFieldHelperText} cdg-date-field-helper`}>
+        <div
+          className={classNames(
+            styles.textFieldHelperText,
+            'cdg-date-field-helper',
+          )}
+        >
           {props.helperText}
         </div>
       ) : null}

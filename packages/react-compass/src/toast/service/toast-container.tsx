@@ -1,6 +1,7 @@
 import React from 'react'
 import Portal from '../../portal'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import styles from '../styles/toast.module.css'
 import {Anchor} from './toast-context'
 import ToastItem from './toast-item'
@@ -30,37 +31,25 @@ const ToastsContainer = (props: ToastsContainerProps) => {
   } = props
 
   // classes
-  const toastContainerClasses = [
+  const toastContainerClasses = classNames(
     styles.toastContainer,
-    toasts.length > 0
-      ? false
-      : `${styles.toastContainerHidden} cdg-toast-container-hidden`,
+    toasts.length <= 0 &&
+      `${styles.toastContainerHidden} cdg-toast-container-hidden`,
     styles[styles.toastContainerVertical + anchorOrigin.vertical],
     styles[styles.toastContainerHorizontal + anchorOrigin.horizontal],
-    anchorOrigin.vertical === 'top' ? styles.toastContainerVerticalTop : false,
-    anchorOrigin.vertical === 'bottom'
-      ? styles.toastContainerVerticalBottom
-      : false,
-    anchorOrigin.vertical === 'center'
-      ? styles.toastContainerVerticalCenter
-      : false,
-    anchorOrigin.horizontal === 'left'
-      ? styles.toastContainerHorizontalLeft
-      : false,
-    anchorOrigin.horizontal === 'right'
-      ? styles.toastContainerHorizontalRight
-      : false,
-    anchorOrigin.horizontal === 'center'
-      ? styles.toastContainerHorizontalCenter
-      : false,
-    anchorOrigin.vertical === 'center' && anchorOrigin.horizontal === 'center'
-      ? styles.toastContainerCenterCenter
-      : false,
+    anchorOrigin.vertical === 'top' ? styles.toastContainerVerticalTop : '',
+    anchorOrigin.vertical === 'bottom' && styles.toastContainerVerticalBottom,
+    anchorOrigin.vertical === 'center' && styles.toastContainerVerticalCenter,
+    anchorOrigin.horizontal === 'left' && styles.toastContainerHorizontalLeft,
+    anchorOrigin.horizontal === 'right' && styles.toastContainerHorizontalRight,
+    anchorOrigin.horizontal === 'center' &&
+      styles.toastContainerHorizontalCenter,
+    anchorOrigin.vertical === 'center' &&
+      anchorOrigin.horizontal === 'center' &&
+      styles.toastContainerCenterCenter,
     className,
     'cdg-toast-container',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <Portal open={toasts.length > 0}>
@@ -72,7 +61,7 @@ const ToastsContainer = (props: ToastsContainerProps) => {
               {...toast}
               vertical={anchorOrigin.vertical}
               horizontal={anchorOrigin.horizontal}
-              toastItemClassName={`${toastItemClassName || ''}`}
+              toastItemClassName={toastItemClassName}
             />
           ))}
         </div>

@@ -1,5 +1,6 @@
 import React, {HTMLAttributes} from 'react'
 import CssInjection from '../../../utils/objectToCss/CssInjection'
+import {classNames} from '../../../utils/string'
 import {useDOMRef} from '../../../utils/use-dom-ref'
 import styles from '../../styles/popover.module.css'
 
@@ -34,16 +35,12 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       }
     }, [onBlur, onFocus])
 
-    const popoverClasses = React.useMemo(() => {
-      return [
-        styles.rtePopover,
-        type === 'color' ? styles.typeColor : '',
-        type === 'heading' ? styles.typeHeading : '',
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [className, type])
+    const popoverClasses = classNames(
+      styles.rtePopover,
+      type === 'color' ? styles.typeColor : '',
+      type === 'heading' ? styles.typeHeading : '',
+      className,
+    )
 
     return (
       <CssInjection childrenRef={popoverRef}>

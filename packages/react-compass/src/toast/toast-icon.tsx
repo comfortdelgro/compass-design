@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/toast.module.css'
 
@@ -18,9 +19,9 @@ const ToastIcon = React.forwardRef<HTMLDivElement, ToastIconProps>(
     return (
       <CssInjection css={css} childrenRef={toastIconRef}>
         <div
-          ref={toastIconRef}
-          className={`${className} ${styles.toastIcon}`}
           {...delegated}
+          ref={toastIconRef}
+          className={classNames(styles.toastIcon, className, 'cdg-toast-icon')}
         >
           {children}
         </div>

@@ -86,7 +86,12 @@ const EmptyDataComponent = React.forwardRef<
                 stroke-linejoin='round'
               />
             </svg>
-            <div className={styles.cdgTableEmptyDataDesciption}>
+            <div
+              className={classNames(
+                styles.cdgTableEmptyDataDesciption,
+                'cdg-table-empty-data-text',
+              )}
+            >
               Your list is empty.
             </div>
           </div>

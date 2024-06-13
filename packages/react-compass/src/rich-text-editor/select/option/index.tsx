@@ -1,5 +1,6 @@
 import React, {HTMLAttributes, Key} from 'react'
 import {CSS, CssInjection} from '../../../utils/objectToCss'
+import {classNames} from '../../../utils/string'
 import {useDOMRef} from '../../../utils/use-dom-ref'
 import styles from '../../styles/option.module.css'
 import {DropdownItemProps} from '../item'
@@ -51,28 +52,20 @@ const Option = React.forwardRef<HTMLLIElement, OptionProps>(
       if (item.key && !isDisabled) onSelect(item.key)
     }
 
-    const optionClasses = React.useMemo(() => {
-      return [
-        styles.rteOption,
-        isFocused && styles.isFocused,
-        isSelected && styles.isSelected,
-        isDisabled && styles.isDisabled,
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [className, isDisabled, isFocused, isSelected])
+    const optionClasses = classNames(
+      styles.rteOption,
+      isFocused && styles.isFocused,
+      isSelected && styles.isSelected,
+      isDisabled && styles.isDisabled,
+      className,
+    )
 
-    const rightIconClasses = React.useMemo(() => {
-      return [
-        styles.rightIcon,
-        isSelected ? '' : styles.isUnselected,
-        type === 'color' && styles.typeColor,
-        type === 'heading' && styles.typeHeading,
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [isSelected, type])
+    const rightIconClasses = classNames(
+      styles.rightIcon,
+      isSelected ? '' : styles.isUnselected,
+      type === 'color' && styles.typeColor,
+      type === 'heading' && styles.typeHeading,
+    )
 
     return (
       <CssInjection css={css} childrenRef={optionRef}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {Component} from '../utils'
 import styles from './header.module.css'
 
@@ -50,20 +51,18 @@ const Header: React.FC<headerTypographyProps> = (props) => {
     }
   }, [component, variant])
 
-  const classNames = React.useMemo(() => {
-    const arr = [
-      styles.header,
-      variant && styles[variant],
-      weight && styles[weight],
-      className && className,
-      'cdg-header',
-    ]
-    return arr.filter(Boolean).join(' ')
-  }, [className, variant, weight])
+  const rootClasses = classNames(
+    styles.header,
+    variant && styles[variant],
+    weight && styles[weight],
+    className,
+    'cdg-typography-header',
+  )
+
   return (
     <>
       <CssInjection css={css}>
-        <Component {...htmlProps} className={classNames}>
+        <Component {...htmlProps} className={rootClasses}>
           {children}
         </Component>
       </CssInjection>

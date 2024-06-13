@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {Component} from '../utils'
 import styles from './body.module.css'
 
@@ -29,21 +30,18 @@ const Body: React.FC<bodyTypographyProps> = (props) => {
     return 'p'
   }, [component])
 
-  const classNames = React.useMemo(() => {
-    const arr = [
-      variant && styles[variant],
-      weight && styles[weight],
-      styles.body,
-      className,
-      'cdg-body',
-    ]
-    return arr.filter(Boolean).join(' ')
-  }, [variant, weight, className])
+  const rootClasses = classNames(
+    variant && styles[variant],
+    weight && styles[weight],
+    styles.body,
+    className,
+    'cdg-typography-body',
+  )
 
   return (
     <>
       <CssInjection css={css}>
-        <Component className={classNames} {...htmlProps}>
+        <Component className={rootClasses} {...htmlProps}>
           {children}
         </Component>
       </CssInjection>

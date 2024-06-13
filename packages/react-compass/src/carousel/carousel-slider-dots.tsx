@@ -26,9 +26,10 @@ const CarouselSliderDots = React.forwardRef<HTMLDivElement, Props>(
 
     const slideDotsRef = useDOMRef<HTMLDivElement>(ref)
 
-    const rootClasses = [styles.contentSliderDots, 'cdg-carousel-slider-dots']
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.contentSliderDots,
+      'cdg-carousel-slider-dots',
+    )
 
     return (
       <CssInjection css={css} childrenRef={slideDotsRef}>

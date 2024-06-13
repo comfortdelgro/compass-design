@@ -151,7 +151,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
         >
           {title}
           {icon !== 'none' && (
-            <div className={`${tabIconClassName}`}>
+            <div className={tabIconClassName}>
               {disabledState ? <DisableIcon /> : <TickIcon />}
             </div>
           )}

@@ -37,7 +37,14 @@ const MultipleChoicesSliderItem = forwardRef<
   return (
     <button ref={itemRef} className={rootClasses} onClick={handleItemClick}>
       {icon}
-      <span className={styles.itemLabel}>{label}</span>
+      <span
+        className={classNames(
+          styles.itemLabel,
+          'cdg-multiple-choices-slider-item-label',
+        )}
+      >
+        {label}
+      </span>
     </button>
   )
 })

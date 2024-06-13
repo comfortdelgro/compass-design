@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/banner.module.css'
 interface Props {
@@ -22,7 +23,11 @@ const BannerDescription = React.forwardRef<
   return (
     <CssInjection css={css} childrenRef={bannerDescriptionRef}>
       <div
-        className={`${styles.bannerDescription} ${className} cdg-banner-description`}
+        className={classNames(
+          styles.bannerDescription,
+          className,
+          'cdg-banner-description',
+        )}
         ref={bannerDescriptionRef}
         {...delegated}
       >

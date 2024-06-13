@@ -16,7 +16,11 @@ const CardTitle = React.forwardRef<HTMLDivElement, CardTitleProps>(
 
     const renderTitle = () => {
       if (typeof children === 'string') {
-        return <h3 className={styles.cardTitle}>{children}</h3>
+        return (
+          <h3 className={classNames(styles.cardTitle, 'cdg-card-title')}>
+            {children}
+          </h3>
+        )
       }
       return children
     }

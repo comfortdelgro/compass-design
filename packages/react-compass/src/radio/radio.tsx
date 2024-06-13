@@ -81,7 +81,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
         aria-disabled={isDisabled}
         className={rootClasses}
       >
-        <div className={styles.radioWrapper}>
+        <div className={classNames(styles.radioWrapper, 'cdg-radio-wrapper')}>
           <div className={inputClasses} />
           <input
             type='radio'

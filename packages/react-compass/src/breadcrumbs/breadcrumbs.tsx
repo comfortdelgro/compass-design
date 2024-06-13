@@ -47,14 +47,20 @@ const Breadcrumbs = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={breadcrumbsRef}>
       <nav {...htmlProps} ref={breadcrumbsRef} className={rootClasses}>
-        <ol className={styles.breadcrumbsList}>
+        <ol className={classNames(styles.breadcrumbsList, 'cdg-breadcrumbs')}>
           {items.map((item, i) => (
             <React.Fragment key={i}>
               {React.cloneElement(item as JSX.Element, {
                 isCurrent: isCurrent ? isCurrent(i) : false,
               })}
               {i < items.length - 1 && (
-                <li aria-hidden className={styles.divider}>
+                <li
+                  aria-hidden
+                  className={classNames(
+                    styles.divider,
+                    'cdg-breadcrumbs-divider',
+                  )}
+                >
                   {dividerIcon}
                 </li>
               )}

@@ -225,15 +225,26 @@ const Button = React.forwardRef<
               aria-hidden={!loading}
               className={contentClasses}
             >
-              <span className={styles.loadingDots}>
+              <span
+                className={classNames(styles.loadingDots, 'cdg-button-loading')}
+              >
                 <span
-                  className={`${styles.loadingDot} ${styles.firstLoadingDot}`}
+                  className={classNames(
+                    styles.loadingDot,
+                    styles.firstLoadingDot,
+                  )}
                 />
                 <span
-                  className={`${styles.loadingDot} ${styles.secondLoadingDot}`}
+                  className={classNames(
+                    styles.loadingDot,
+                    styles.secondLoadingDot,
+                  )}
                 />
                 <span
-                  className={`${styles.loadingDot} ${styles.thirdLoadingDot}`}
+                  className={classNames(
+                    styles.loadingDot,
+                    styles.thirdLoadingDot,
+                  )}
                 />
               </span>
             </span>
