@@ -60,7 +60,7 @@ export const AppNavSection = React.forwardRef<
         tabIndex={0}
         {...delegated}
       >
-        <div className={styles.icon}>
+        <div className={classNames(styles.icon, 'cdg-appnav-icon')}>
           {hasBadge && (
             <Badge
               label=''

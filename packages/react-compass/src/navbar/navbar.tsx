@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import NavbarActions from './navbar-actions'
 import NavbarBrand from './navbar-brand'
 import {NavbarLinks} from './navbar-links'
@@ -35,7 +36,7 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
   //   variant: variant,
   // }
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.navbar,
     color === 'blue' && styles.blue,
     color === 'white' && styles.white,
@@ -43,13 +44,11 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
     `cdg-navbar-${color}`,
     className,
     'cdg-navbar',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={ref}>
-      <nav className={rootClasses} ref={ref} role='navigation' {...delegated}>
+      <nav {...delegated} className={rootClasses} ref={ref} role='navigation'>
         {children}
       </nav>
     </CssInjection>

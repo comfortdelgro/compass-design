@@ -1,6 +1,10 @@
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
+import FormExplaination from './form-layout-explaination'
+import FormGroup from './form-layout-group'
+import FormRow from './form-layout-row'
 import styles from './styles/action-bar.module.css'
 
 export interface Props {
@@ -18,17 +22,19 @@ const FormLayout = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={formLayoutRef}>
       <div
-        ref={formLayoutRef}
-        className={`cdg-form-layout ${className ? className : ''} ${
-          styles.formLayout
-        }`}
-        style={style}
         {...htmlProps}
+        style={style}
+        ref={formLayoutRef}
+        className={classNames(styles.formLayout, className, 'cdg-layout-form')}
       >
         {children}
       </div>
     </CssInjection>
   )
-})
+}) as typeof FormLayout & {
+  Row: typeof FormRow
+  Group: typeof FormGroup
+  Explaination: typeof FormExplaination
+}
 
 export default FormLayout

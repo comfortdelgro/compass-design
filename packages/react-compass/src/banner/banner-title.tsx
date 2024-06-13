@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/banner.module.css'
 
@@ -16,7 +17,7 @@ export type BannerTitleProps = Props &
 
 const BannerTitle = React.forwardRef<HTMLHeadingElement, BannerTitleProps>(
   (props, ref) => {
-    const {children, css = {}, className = '', ...delegated} = props
+    const {children, css = {}, className, ...delegated} = props
     const bannerTitleRef = useDOMRef<HTMLDivElement>(ref)
     const renderTitle = () => {
       if (typeof children === 'string') {
@@ -28,7 +29,11 @@ const BannerTitle = React.forwardRef<HTMLHeadingElement, BannerTitleProps>(
     return (
       <CssInjection css={css} childrenRef={bannerTitleRef}>
         <h1
-          className={`cdg-banner-title ${styles.bannerTitle} ${className}`}
+          className={classNames(
+            styles.bannerTitle,
+            className,
+            'cdg-banner-title',
+          )}
           ref={bannerTitleRef}
           {...delegated}
         >

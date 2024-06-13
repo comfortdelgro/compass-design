@@ -2,7 +2,7 @@ import {useMergeRefs} from '@floating-ui/react'
 import React from 'react'
 import {useKeyboardNavigation, useKeyboardNavigationState} from '../utils/hooks'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/speed-dial.module.css'
 
@@ -33,16 +33,14 @@ export const SpeedDialAction = React.forwardRef<
 
   const mergeRef = useMergeRefs([ref, domRef, register])
 
-  const actionClasses = [
+  const actionClasses = classNames(
     styles.speedDialAction,
     position && styles[`speedDialAction${capitalizeFirstLetter(position)}`],
     isVisible ? styles.isVisibleTrue : styles.isVisibleFalse,
     position && styles[`speedDialAction${capitalizeFirstLetter(position)}`],
     className,
     'cdg-speed-dial-action',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={mergeRef}>
@@ -56,10 +54,20 @@ export const SpeedDialAction = React.forwardRef<
         type='button'
         role='menuitem'
       >
-        <span className={`${styles.speedDialIcon} cdg-speed-dial-action-icon`}>
+        <span
+          className={classNames(
+            styles.speedDialIcon,
+            'cdg-speed-dial-action-icon',
+          )}
+        >
           {icon}
         </span>
-        <span className={`${styles.speedDialName} cdg-speed-dial-action-name`}>
+        <span
+          className={classNames(
+            styles.speedDialName,
+            'cdg-speed-dial-action-name',
+          )}
+        >
           {name}
         </span>
       </button>

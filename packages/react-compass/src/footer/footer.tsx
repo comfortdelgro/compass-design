@@ -1,6 +1,6 @@
-/* eslint-disable react-refresh/only-export-components */
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import FooterHeader from './footer-header'
 import FooterNavigation from './footer-nav'
 import FooterPolicy from './footer-policy'
@@ -17,21 +17,24 @@ export type FooterProps = Props &
 const Footer = React.forwardRef<HTMLDivElement, FooterProps>((props, ref) => {
   const {children, color = 'white', className, css = {}, ...delegated} = props
 
-  const rootClasses = [styles.footer, styles[color], className, 'cdg-footer']
-    .filter(Boolean)
-    .join(' ')
+  const rootClasses = classNames(
+    styles.footer,
+    styles[color],
+    className,
+    'cdg-footer',
+  )
 
   return (
     <CssInjection css={css} childrenRef={ref}>
-      <div className={rootClasses} ref={ref} color={color} {...delegated}>
+      <div {...delegated} className={rootClasses} ref={ref} color={color}>
         {children}
       </div>
     </CssInjection>
   )
-})
-
-export default Footer as typeof Footer & {
+}) as typeof Footer & {
   Header: typeof FooterHeader
   Nav: typeof FooterNavigation
   Policy: typeof FooterPolicy
 }
+
+export default Footer

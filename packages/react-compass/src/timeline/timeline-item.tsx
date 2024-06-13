@@ -1,5 +1,6 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/timeline.module.css'
 
@@ -29,43 +30,42 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
     const timelineItemRef = useDOMRef<HTMLDivElement>(ref)
 
     // classname for styling alternate
-    const itemContainerClasses = () => {
-      if (identifier % 2 === 0) {
-        return styles.itemContainer + ' ' + styles['itemContainer-even']
-      }
-      return styles.itemContainer + ' ' + styles['itemContainer-odd']
-    }
+    const itemContainerClasses = classNames(
+      identifier % 2 === 0
+        ? styles.itemContainer + ' ' + styles['itemContainer-even']
+        : styles.itemContainer + ' ' + styles['itemContainer-odd'],
+      'cdg-timeline-item',
+    )
 
-    const itemHeaderContainerClasses = () => {
-      if (identifier % 2 === 0) {
-        return styles.itemHeaderContainer + ' ' + styles['header-even']
-      }
-      return styles.itemHeaderContainer + ' ' + styles['header-odd']
-    }
+    const itemHeaderContainerClasses = classNames(
+      identifier % 2 === 0
+        ? styles.itemHeaderContainer + ' ' + styles['header-even']
+        : styles.itemHeaderContainer + ' ' + styles['header-odd'],
+      'cdg-timeline-item-header',
+    )
 
-    const itemContentClasses = () => {
-      if (identifier % 2 === 0) {
-        return styles.content + ' ' + styles['content-even']
-      }
-      return styles.content
-    }
+    const itemContentClasses = classNames(
+      identifier % 2 === 0
+        ? styles.content + ' ' + styles['content-even']
+        : styles.content,
+      'cdg-timeline-item-content',
+    )
 
-    const itemDotClasses = useMemo(() => {
-      return [styles.itemDot].filter(Boolean).join(' ')
-    }, [])
+    const itemDotClasses = classNames(styles.itemDot, 'cdg-timeline-item-dot')
 
-    const itemLabelClasses = useMemo(() => {
-      return [styles.itemLabel].filter(Boolean).join(' ')
-    }, [])
+    const itemLabelClasses = classNames(
+      styles.itemLabel,
+      'cdg-timeline-item-dot',
+    )
 
     return (
       <CssInjection css={css}>
         <div
           ref={timelineItemRef}
           {...htmlProps}
-          className={itemContainerClasses()}
+          className={itemContainerClasses}
         >
-          <div className={itemHeaderContainerClasses()}>
+          <div className={itemHeaderContainerClasses}>
             {!dot ? <div className={itemDotClasses}>{icon}</div> : dot}
             {typeof label === 'string' ? (
               <div className={itemLabelClasses}>{label}</div>
@@ -73,7 +73,7 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
               label
             )}
           </div>
-          <div className={itemContentClasses()}>{children}</div>
+          <div className={itemContentClasses}>{children}</div>
         </div>
       </CssInjection>
     )

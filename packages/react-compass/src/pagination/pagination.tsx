@@ -2,6 +2,7 @@
 
 import React, {useCallback} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Ellipsis from './components/Ellipsis'
 import ItemCounting from './components/ItemCounting'
@@ -31,6 +32,7 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       count,
       css = {},
       // ComponentProps
+      className,
       page = 1,
       total = 1,
       initialPage = 1,
@@ -76,13 +78,11 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
 
         return (
           <div
-            className={[
+            className={classNames(
               styles.paginationItem,
               item === active && styles.paginationItemActive,
               'cdg-pagination-item',
-            ]
-              .filter(Boolean)
-              .join(' ')}
+            )}
             key={index}
             style={itemStyle}
             onClick={() => item !== active && setPage(item)}
@@ -96,30 +96,32 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       [active, items, setPage, total],
     )
 
-    const previousPageClasses = [
+    const rootClasses = classNames(
+      styles.pagination,
+      className,
+      'cdg-pagination',
+    )
+
+    const previousPageClasses = classNames(
       styles.paginationItem,
       active === 1 && styles.paginationItemDisabled,
       'cdg-pagination-item',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const nextPageClasses = [
+    const nextPageClasses = classNames(
       styles.paginationItem,
       active === total && styles.paginationItemDisabled,
       'cdg-pagination-item',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={paginationRef}>
         <div
-          className={`${styles.pagination} cdg-pagination`}
-          ref={paginationRef}
-          role='navigation'
-          aria-label='pagination'
           {...htmlProps}
+          role='navigation'
+          ref={paginationRef}
+          aria-label='pagination'
+          className={rootClasses}
         >
           {rowsPerPage && (
             <RowsCounting
@@ -142,7 +144,10 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           >
             <svg
               viewBox='0 0 320 512'
-              className={`${styles.paginationItemSvg} cdg-pagination-item-svg`}
+              className={classNames(
+                styles.paginationItemSvg,
+                'cdg-pagination-item-svg',
+              )}
             >
               <path
                 fill={active === 1 ? '#D2D0CE' : '#201F1E'}
@@ -158,7 +163,10 @@ const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           >
             <svg
               viewBox='0 0 320 512'
-              className={`${styles.paginationItemSvg} cdg-pagination-item-svg`}
+              className={classNames(
+                styles.paginationItemSvg,
+                'cdg-pagination-item-svg',
+              )}
             >
               <path
                 fill={active === total ? '#D2D0CE' : '#201F1E'}

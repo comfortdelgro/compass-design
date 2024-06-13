@@ -1,8 +1,8 @@
 import React, {createRef, RefObject} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
-import stylesItem from './styles/tag-box-item.module.css'
 import styles from './styles/tag-box.module.css'
 import TagBoxAction from './tag-box-action'
 import TagBoxInput from './tag-box-input'
@@ -43,7 +43,6 @@ interface Props {
 export type TagBoxProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-// eslint-disable-next-line react-refresh/only-export-components
 const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
   const {
     id,
@@ -145,35 +144,20 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
     }
   }, [resizing])
 
-  const rootClass = React.useMemo(
-    () => [styles.tabBox, 'cdg-tag-box', className].filter(Boolean).join(' '),
-    [className],
+  const rootClass = classNames(styles.tabBox, className, 'cdg-tag-box')
+
+  const wrapperClass = classNames(
+    styles.wrapper,
+    labelPosition === 'top' && styles.wrapperLabelPositionTop,
+    labelPosition === 'left' && styles.wrapperLabelPositionLeft,
+    'cdg-tab-box-wrapper',
   )
 
-  const wrapperClass = React.useMemo(
-    () =>
-      [
-        styles.wrapper,
-        labelPosition === 'top' && styles.wrapperLabelPositionTop,
-        labelPosition === 'left' && styles.wrapperLabelPositionLeft,
-        'cdg-tab-box-wrapper',
-      ]
-        .filter(Boolean)
-        .join(' '),
-    [labelPosition],
-  )
-
-  const bodyClass = React.useMemo(
-    () =>
-      [
-        styles.body,
-        collaspable === false && styles.bodyCollaspableFalse,
-        isErrored && styles.bodyIsErrored,
-        'cdg-tag-box-body',
-      ]
-        .filter(Boolean)
-        .join(' '),
-    [collaspable, isErrored],
+  const bodyClass = classNames(
+    styles.body,
+    collaspable === false && styles.bodyCollaspableFalse,
+    isErrored && styles.bodyIsErrored,
+    'cdg-tag-box-body',
   )
 
   return (
@@ -181,16 +165,26 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
       <div {...htmlProps} ref={tagBoxRef} className={rootClass}>
         <div className={wrapperClass} onClick={focusInput}>
           {label && (
-            <label htmlFor={id} className={`${styles.label} cdg-tag-box-label`}>
+            <label
+              htmlFor={id}
+              className={classNames(styles.label, 'cdg-tag-box-label')}
+            >
               {label}
               {isRequired && (
-                <span className={`${styles.asterix} cdg-tag-box-asterix`}>
+                <span
+                  className={classNames(styles.label, 'cdg-tag-box-asterix')}
+                >
                   *
                 </span>
               )}
             </label>
           )}
-          <div className={`${styles.bodyWrapper} cdg-tag-box-body-wrapper`}>
+          <div
+            className={classNames(
+              styles.bodyWrapper,
+              'cdg-tag-box-body-wrapper',
+            )}
+          >
             <div
               id={id}
               tabIndex={0}
@@ -203,13 +197,18 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
               onFocus={focusInput}
             >
               {icon && (
-                <div className={`${styles.icon} cdg-tag-box-body-icon`}>
+                <div
+                  className={classNames(styles.icon, 'cdg-tag-box-body-icon')}
+                >
                   {icon}
                 </div>
               )}
 
               <div
-                className={`${styles.bodyContent} cdg-tag-box-body-content`}
+                className={classNames(
+                  styles.bodyContent,
+                  'cdg-tag-box-body-content',
+                )}
                 ref={bodyContentRef}
               >
                 {items.map((item, index) => (
@@ -232,7 +231,11 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
                 {remainingCount > 0 && (
                   <div
                     key='remainingCount'
-                    className={`${stylesItem.item} ${styles.count} cdg-tag-box-count`}
+                    className={classNames(
+                      styles.item,
+                      styles.count,
+                      'cdg-tag-box-count',
+                    )}
                   >
                     <span>+{remainingCount}</span>
                   </div>
@@ -248,7 +251,11 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
               </div>
               {collaspable && (
                 <div
-                  className={`${styles.icon} ${styles.iconCollapse} cdg-tag-box-collapse-icon`}
+                  className={classNames(
+                    styles.icon,
+                    styles.iconCollapse,
+                    'cdg-tag-box-collapse-icon',
+                  )}
                   onClick={toggleCollapse}
                 >
                   {isOpen ? <ChevronUp /> : <ChevronDown />}
@@ -257,7 +264,11 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
             </div>
             {isErrored && errorMessage && (
               <div
-                className={`${styles.helperText} ${styles.helperTextIsErrored} cdg-tag-box-error-message`}
+                className={classNames(
+                  styles.helperText,
+                  styles.helperTextIsErrored,
+                  'cdg-tag-box-error-message',
+                )}
               >
                 {errorMessage}
               </div>
@@ -265,8 +276,13 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
           </div>
         </div>
         {(helperText || TagBoxActionElement) && (
-          <div className={`${styles.action} cdg-tag-box-action`}>
-            <span className={`${styles.helperText} cdg-tag-box-helper-text`}>
+          <div className={classNames(styles.action, 'cdg-tag-box-action')}>
+            <span
+              className={classNames(
+                styles.helperText,
+                'cdg-tag-box-helper-text',
+              )}
+            >
               {helperText}
             </span>
             {TagBoxActionElement}
@@ -275,8 +291,8 @@ const TagBox = React.forwardRef<HTMLDivElement, TagBoxProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
-
-export default TagBox as typeof TagBox & {
+}) as typeof TagBox & {
   Action: typeof TagBoxAction
 }
+
+export default TagBox

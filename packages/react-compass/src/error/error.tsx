@@ -1,6 +1,7 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ErrorAction, {ErrorActionProps} from './error-action'
 import ErrorDescription, {ErrorDescriptionProps} from './error-description'
@@ -79,20 +80,18 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
     }
   }
 
-  const errorContainerClasses = [
-    `cdg-error-container`,
-    className,
-    variant && styles[`${variant}Variant`],
+  const errorContainerClasses = classNames(
     styles.errorContainer,
-  ]
-    .filter(Boolean)
-    .join(' ')
+    variant && styles[`${variant}Variant`],
+    className,
+    `cdg-error-container`,
+  )
 
   return (
     <CssInjection css={css} childrenRef={errorRef}>
-      <div className={errorContainerClasses} ref={errorRef} {...htmlProps}>
+      <div {...htmlProps} className={errorContainerClasses} ref={errorRef}>
         {variant === 'primary' && (
-          <div className={`cdg-error-header ${styles.errorHeader}`}>
+          <div className={classNames(styles.errorHeader, 'cdg-error-header')}>
             {ErrorIconElement}
             {ErrorTitleCloned()}
           </div>
@@ -109,6 +108,12 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Error & {
+  Title: typeof ErrorTitle
+  Description: typeof ErrorDescription
+  Action: typeof ErrorAction
+  Icon: typeof ErrorIcon
+  Image: typeof ErrorImage
+}
 
 export default Error

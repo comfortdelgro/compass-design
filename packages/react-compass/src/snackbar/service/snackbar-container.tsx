@@ -1,6 +1,7 @@
 import React from 'react'
 import Portal from '../../portal'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import styles from '../styles/snackbar-item.module.css'
 import SnackbarItem from './snackbar-item'
 import {SnackbarItemType} from './types'
@@ -27,14 +28,12 @@ const SnackbarsContainer = (props: SnackbarsContainerProps) => {
     ...htmlProps
   } = props
 
-  const contentClasses = [
+  const contentClasses = classNames(
     styles.snackbarContainer,
     snackbars.length > 0 ? '' : styles.snackbarContainerHidden,
     className,
     'cdg-snackbar-container',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <Portal open={snackbars.length > 0}>
@@ -44,9 +43,10 @@ const SnackbarsContainer = (props: SnackbarsContainerProps) => {
             <SnackbarItem
               key={snackbar.id}
               {...snackbar}
-              snackbarItemClassName={`${styles.cdgSnackbarItem} ${
-                snackbarItemClassName || ''
-              }`}
+              snackbarItemClassName={classNames(
+                styles.cdgSnackbarItem,
+                snackbarItemClassName || '',
+              )}
             />
           ))}
         </div>

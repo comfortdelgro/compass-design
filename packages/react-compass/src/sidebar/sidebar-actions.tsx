@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/sidebar.module.css'
 
@@ -21,9 +22,13 @@ const SidebarActions = React.forwardRef<HTMLDivElement, SidebarActionsProps>(
     return (
       <CssInjection css={css} childrenRef={sidebarActionsRef}>
         <div
-          className={`cdg-sidebar-actions ${styles.sidebarActions} ${className}`}
-          ref={sidebarActionsRef}
           {...delegated}
+          ref={sidebarActionsRef}
+          className={classNames(
+            styles.sidebarActions,
+            className,
+            'cdg-sidebar-actions',
+          )}
         >
           {children}
         </div>

@@ -5,6 +5,7 @@ import {DropdownContext} from './dropdown-context'
 import {textContent} from './utils'
 
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/dropdown.module.css'
 
 const Tick = () => (
@@ -22,7 +23,10 @@ const BlueTick = () => (
     height='17'
     viewBox='0 0 16 17'
     fill='none'
-    className={`${styles.dropdownItemRightIconContentSvg}`}
+    className={classNames(
+      styles.dropdownItemRightIconContentSvg,
+      'cdg-dropdown-tick-icon',
+    )}
   >
     <path
       d='M15.0265 3.47966C15.4357 3.89637 15.4357 4.56978 15.0265 4.98649L6.64506 13.5208C6.23581 13.9375 5.57446 13.9375 5.16521 13.5208L0.973587 9.25363C0.564469 8.83691 0.564469 8.16351 0.973587 7.74679C1.38277 7.33008 2.04608 7.33008 2.45533 7.74679L5.87567 11.2572L13.5466 3.47966C13.9559 3.06228 14.6172 3.06228 15.0265 3.47966Z'
@@ -171,42 +175,29 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
       })
     }
 
-    const rootClasses = useMemo(() => {
-      return [
-        styles.dropdownOption,
-        isFocused && !isSelected && styles.dropdownItemIsFocused,
-        isSelected && !isFocused && styles.dropdownItemIsSelected,
-        isSelected && isFocused && styles.dropdownItemIsSelectedFocused,
-        isDisabled && styles.dropdownItemIsDisabled,
-        className,
-        'cdg-dropdown-item',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [className, isDisabled, isFocused, isSelected])
+    const rootClasses = classNames(
+      styles.dropdownOption,
+      isFocused && !isSelected && styles.dropdownItemIsFocused,
+      isSelected && !isFocused && styles.dropdownItemIsSelected,
+      isSelected && isFocused && styles.dropdownItemIsSelectedFocused,
+      isDisabled && styles.dropdownItemIsDisabled,
+      className,
+      'cdg-dropdown-item',
+    )
 
-    const rightIconClasses = useMemo(() => {
-      return [
-        styles.dropdownItemRightIcon,
-        isSelected && styles.dropdownItemRightIconSelected,
-        checkmark === 'checkbox' &&
-          styles.dropdownItemRightIconCheckMarkCheckbox,
-        checkmark === 'tick' && styles.dropdownItemRightIconCheckMarkTick,
-        'cdg-dropdown-item-right-icon',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [checkmark, isSelected])
+    const rightIconClasses = classNames(
+      styles.dropdownItemRightIcon,
+      isSelected && styles.dropdownItemRightIconSelected,
+      checkmark === 'checkbox' && styles.dropdownItemRightIconCheckMarkCheckbox,
+      checkmark === 'tick' && styles.dropdownItemRightIconCheckMarkTick,
+      'cdg-dropdown-item-right-icon',
+    )
 
-    const colorClasses = useMemo(() => {
-      return [
-        styles.dropdownItemColor,
-        isSelected && styles.dropdownItemSelected,
-        'cdg-dropdown-item-color',
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [isSelected])
+    const colorClasses = classNames(
+      styles.dropdownItemColor,
+      isSelected && styles.dropdownItemSelected,
+      'cdg-dropdown-item-color',
+    )
 
     return canDisplayed ? (
       <CssInjection css={css} childrenRef={dropdownItemRef}>
@@ -220,19 +211,28 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
         >
           {leftIcon && (
             <div
-              className={`${styles.dropdownItemIcon} cdg-dropdown-item-left-icon`}
+              className={classNames(
+                styles.dropdownItemIcon,
+                'cdg-dropdown-item-left-icon',
+              )}
             >
               {leftIcon}
             </div>
           )}
           <div
-            className={`${styles.dropdownItemContent} cdg-dropdown-item-content`}
+            className={classNames(
+              styles.dropdownItemContent,
+              'cdg-dropdown-item-content',
+            )}
           >
             {children}
           </div>
           {type === 'icon' && rightIcon && (
             <div
-              className={`${styles.dropdownItemIcon} cdg-dropdown-item-right-icon`}
+              className={classNames(
+                styles.dropdownItemIcon,
+                'cdg-dropdown-item-right-icon',
+              )}
             >
               {rightIcon}
             </div>
@@ -254,7 +254,12 @@ const DropdownItem = React.forwardRef<HTMLLIElement, DropdownItemProps>(
           {checkmark !== 'none' && (
             <div className={rightIconClasses}>
               {checkmark === 'checkbox' ? (
-                <div className={styles.dropdownItemRightIconContent}>
+                <div
+                  className={classNames(
+                    styles.dropdownItemRightIconContent,
+                    'cdg-dropdown-item-right',
+                  )}
+                >
                   <Tick />
                 </div>
               ) : checkmark === 'tick' ? (

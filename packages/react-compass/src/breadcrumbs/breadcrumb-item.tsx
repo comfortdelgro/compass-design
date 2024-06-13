@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/breadscrumbs-item.module.css'
 
@@ -9,7 +10,6 @@ interface Props {
   target?: string
   isCurrent?: boolean
   isDisabled?: boolean
-  children?: React.ReactNode
 }
 
 export type BreadcrumbItemProps = Props &
@@ -30,17 +30,13 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
 
     const linkRef = useDOMRef<HTMLAnchorElement>(ref)
 
-    const itemClass = React.useMemo(() => {
-      return [
-        styles.breadcrumbsItem,
-        isCurrent && styles.isActive,
-        isDisabled && styles.isDisabled,
-        'cdg-breadcrumb-item',
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [isCurrent, isDisabled, className])
+    const rootClasses = classNames(
+      styles.breadcrumbsItem,
+      isCurrent && styles.isActive,
+      isDisabled && styles.isDisabled,
+      className,
+      'cdg-breadcrumb-item',
+    )
 
     return (
       <CssInjection css={css} childrenRef={linkRef}>
@@ -52,7 +48,7 @@ const BreadcrumbItem = React.forwardRef<HTMLAnchorElement, BreadcrumbItemProps>(
               href: href,
               ref: linkRef,
               target: target,
-              className: itemClass,
+              className: rootClasses,
             },
             children,
           )}

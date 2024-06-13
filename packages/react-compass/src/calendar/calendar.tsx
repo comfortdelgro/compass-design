@@ -3,8 +3,10 @@ import Button from '../button'
 import {useDatePickerContext} from '../date-picker/date-picker-context'
 import * as InternationalizedDate from '../internationalized/date'
 import {DateValue, createCalendar, parseDate} from '../internationalized/date'
+import * as i18n from '../internationalized/i18n'
 import {useLocale} from '../internationalized/i18n'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
@@ -16,6 +18,7 @@ import {MONTH_YEAR_STATE, useMonthYearCalendar} from './hooks/useMonthYearState'
 import styles from './styles/calendar.module.css'
 import {DatePickerState, ValueBase} from './types'
 import {isInvalid} from './utils'
+
 interface Props extends ValueBase<DateValue> {
   css?: CSS
   children?: React.ReactNode
@@ -149,10 +152,10 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={calendarRef}>
       <div
-        className={styles.calendar}
-        ref={calendarRef}
         role='Calendar'
+        ref={calendarRef}
         aria-label='Calendar'
+        className={classNames(styles.calendar, 'cdg-calendar')}
         aria-labelledby={ariaLabelledBy}
         aria-describedby={ariaDescribedBy}
       >
@@ -165,7 +168,9 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         />
         {renderBody()}
         {hasFooter && (
-          <div className={`calendar-footer ${styles.calendarFooter}`}>
+          <div
+            className={classNames(styles.calendarFooter, 'cdg-calendar-footer')}
+          >
             <Button
               className='cdg-calendar-clear-btn'
               variant='ghost'
@@ -182,6 +187,9 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Calendar & {
+  InternationalizedDate: typeof InternationalizedDate
+  I18N: typeof i18n
+}
 
 export default Calendar

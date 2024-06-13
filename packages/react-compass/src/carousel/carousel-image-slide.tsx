@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/carousel.module.css'
 
@@ -21,15 +22,16 @@ const CarouselImageSlide = React.forwardRef<
 
   const buttonRef = useDOMRef<HTMLDivElement>(ref)
 
+  const rootClasses = classNames(
+    styles.carouselImageSlide,
+    active && styles.sliderSlideActive,
+    className,
+    'cdg-carousel-image-slide',
+  )
+
   return (
     <CssInjection css={css} childrenRef={buttonRef}>
-      <img
-        className={`slider-slide ${className ? className : ''} ${
-          styles.carouselImageSlide
-        } ${active ? styles.sliderSlideActive : ''}`}
-        src={imageUrl}
-        {...htmlProps}
-      />
+      <img {...htmlProps} src={imageUrl} className={rootClasses} />
     </CssInjection>
   )
 })

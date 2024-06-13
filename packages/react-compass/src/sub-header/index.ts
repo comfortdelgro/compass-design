@@ -1,6 +1,6 @@
 'use client'
 
-import _SubHeader from './sub-header'
+import SubHeader from './sub-header'
 import SubHeaderBody from './sub-header-body'
 import SubHeaderDescription from './sub-header-description'
 import SubHeaderHeader from './sub-header-header'
@@ -12,14 +12,6 @@ export type {SubHeaderDescriptionProps} from './sub-header-description'
 export type {SubHeaderHeaderProps} from './sub-header-header'
 export type {SubHeaderSubtitleProps} from './sub-header-subtitle'
 export type {SubHeaderTitleProps} from './sub-header-title'
-
-const SubHeader = _SubHeader as typeof _SubHeader & {
-  Title: typeof SubHeaderTitle
-  Header: typeof SubHeaderHeader
-  Description: typeof SubHeaderDescription
-  Image: typeof SubHeaderImage
-  Body: typeof SubHeaderBody
-}
 
 SubHeader.Header = SubHeaderHeader
 SubHeader.Title = SubHeaderTitle

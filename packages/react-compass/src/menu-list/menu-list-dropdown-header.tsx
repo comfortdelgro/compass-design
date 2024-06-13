@@ -1,5 +1,6 @@
 import React, {SyntheticEvent, useContext} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {MenuListContext} from './menu-list-context'
 import styles from './styles/menu-list-dropdown-item.module.css'
@@ -47,13 +48,11 @@ const MenuListDropdownHeader = React.forwardRef<
   }
 
   const renderLeftIcon = () => {
-    const classes = [
+    const classes = classNames(
       styles.menuListDropdownChevronDownLeftIcon,
       isOpen && `${styles.rotatedIcon} cdg-menu-list-rotated-icon`,
       'cdg-menu-list-dropdown-chevron-down-left-icon',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     if (leftIcon === undefined) {
       return (
@@ -69,13 +68,11 @@ const MenuListDropdownHeader = React.forwardRef<
   }
 
   const renderRightIcon = () => {
-    const classes = [
+    const classes = classNames(
       styles.menuListDropdownChevronDownRightIcon,
       isOpen && `${styles.rotatedIcon} cdg-menu-list-rotated-icon`,
       'cdg-menu-list-dropdown-chevron-down-right-icon',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     if (rightIcon === true) {
       return (
@@ -94,7 +91,10 @@ const MenuListDropdownHeader = React.forwardRef<
     if (typeof children === 'string') {
       return (
         <h2
-          className={`${styles.menuListDropdownTitle} cdg-menu-list-dropdown-title`}
+          className={classNames(
+            styles.menuListDropdownTitle,
+            'cdg-menu-list-dropdown-title',
+          )}
         >
           {children}
         </h2>
@@ -103,22 +103,20 @@ const MenuListDropdownHeader = React.forwardRef<
     return children
   }
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.menuListDropdownHeader,
     className,
     'cdg-menu-list-dropdown-header',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={buttonRef}>
       <button
-        className={rootClasses}
-        ref={buttonRef}
-        onClick={handleOnClick}
-        aria-expanded={isOpen}
         {...delegated}
+        ref={buttonRef}
+        aria-expanded={isOpen}
+        className={rootClasses}
+        onClick={handleOnClick}
       >
         {renderLeftIcon()}
         {renderTitle()}

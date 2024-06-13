@@ -3,6 +3,7 @@ import React, {useMemo} from 'react'
 import {useIsDarkTheme} from '../theme'
 import {EKeyboardKey} from '../utils/keyboard.enum'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-column-header.module.css'
 import HeaderColumnFilter from './table-column-header-filter'
@@ -73,21 +74,17 @@ const TableColumnHeader = React.forwardRef<
     }
   }, [sortDirection])
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.cdgTableColumnHeader,
     className,
     'cdg-table-column-header',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const headerContentClass = [
+  const headerContentClass = classNames(
     styles.cdgTableContent,
     headerProps.column.getCanSort() && styles.canSort,
     'cdg-table-column-header-content',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={tableColumnHeaderRef}>
@@ -142,7 +139,13 @@ const TableColumnHeader = React.forwardRef<
 const ArrowDownIcon = () => {
   const isDarkTheme = useIsDarkTheme()
   return (
-    <span aria-hidden='true' className={styles.cdgTableSortingIndicator}>
+    <span
+      aria-hidden='true'
+      className={classNames(
+        styles.cdgTableSortingIndicator,
+        'cdg-table-column-header-sorting',
+      )}
+    >
       <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
         <path
           d='M12.8476 4.34166C12.379 3.88611 11.6181 3.88611 11.1495 4.34166L6.35152 9.00651C6.00666 9.34179 5.90546 9.84108 6.09288 10.2784C6.2803 10.7157 6.71512 11 7.20242 11H16.7984C17.282 11 17.7205 10.7157 17.908 10.2784C18.0954 9.84108 17.9904 9.34179 17.6493 9.00651L12.8513 4.34166H12.8476Z'
@@ -158,7 +161,13 @@ const ArrowDownIcon = () => {
 }
 
 const ArrowUpIcon = () => (
-  <span aria-hidden='true' className={styles.cdgTableSortingIndicator}>
+  <span
+    aria-hidden='true'
+    className={classNames(
+      styles.cdgTableSortingIndicator,
+      'cdg-table-column-header-sorting',
+    )}
+  >
     <svg width='24' height='26' viewBox='0 0 24 26' fill='none'>
       <path
         d='M12.8476 4.34166C12.379 3.88611 11.6181 3.88611 11.1495 4.34166L6.35152 9.00651C6.00666 9.34179 5.90546 9.84108 6.09288 10.2784C6.2803 10.7157 6.71512 11 7.20242 11H16.7984C17.282 11 17.7205 10.7157 17.908 10.2784C18.0954 9.84108 17.9904 9.34179 17.6493 9.00651L12.8513 4.34166H12.8476Z'

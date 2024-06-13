@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/tooltip.module.css'
 import {TooltipContext} from './tooltip-context'
 
@@ -30,13 +31,13 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     const renderTitle = () => {
       if (typeof title === 'string') {
         return (
-          <h2 className={`cdg-tooltip-title ${styles.tooltipTitle}`}>
+          <h2 className={classNames(styles.tooltipTitle, 'cdg-tooltip-title')}>
             {title}
           </h2>
         )
       }
       return (
-        <div className={`cdg-tooltip-title ${styles.tooltipTitle}`}>
+        <div className={classNames(styles.tooltipTitle, 'cdg-tooltip-title')}>
           {title}
         </div>
       )
@@ -54,25 +55,36 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     return (
       <CssInjection css={css} childrenRef={mergeRefs}>
         <div
-          ref={mergeRefs}
-          {...tooltipContext.tooltipProps}
           {...htmlProps}
-          className={`cdg-tooltip ${className} ${styles.tooltip} ${
-            title ? '' : styles.noTitle
-          }`}
+          {...tooltipContext.tooltipProps}
+          ref={mergeRefs}
+          className={classNames(
+            styles.tooltip,
+            title ? '' : styles.noTitle,
+            className,
+            'cdg-tooltip',
+          )}
         >
           {/* only show header when it has title or dismissible = true */}
           {(title || dismissible) && (
-            <div className={`cdg-tooltip-header ${styles.tooltipHeader}`}>
+            <div
+              className={classNames(styles.tooltipHeader, 'cdg-tooltip-header')}
+            >
               {title ? renderTitle() : <></>}
               {dismissible && (
                 <button
                   type='button'
-                  className={`tootip-close-button ${styles.tooltipCloseButton}`}
+                  className={classNames(
+                    styles.tooltipCloseButton,
+                    'cdg-tootip-close-button',
+                  )}
                   onClick={tooltipContext.handleTooltipClose}
                 >
                   <svg
-                    className={`cdg-tooltip-close-icon ${styles.tooltipCloseIcon}`}
+                    className={classNames(
+                      styles.tooltipCloseIcon,
+                      'cdg-tooltip-close-icon',
+                    )}
                     viewBox='0 0 384 512'
                   >
                     <path
@@ -93,7 +105,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
               }
             >
               <div
-                className={`cdg-tooltip-arrow ${styles.tooltipArrow}`}
+                className={classNames(styles.tooltipArrow, 'cdg-tooltip-arrow')}
                 ref={tooltipContext.arrowRef as React.RefObject<HTMLDivElement>}
                 // ref={arrowRef}
               ></div>

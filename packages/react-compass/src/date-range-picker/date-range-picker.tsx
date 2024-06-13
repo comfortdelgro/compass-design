@@ -1,7 +1,6 @@
 import React from 'react'
 import {ButtonProps} from '../button'
 import DateField from '../calendar/components/date-field'
-import Popover from '../popover'
 import {useDateRangePicker} from '../calendar/hooks/useDateRangePicker'
 import {useDateRangePickerState} from '../calendar/hooks/useDateRangePickerState'
 import {
@@ -15,9 +14,11 @@ import {
 } from '../calendar/types'
 import DatePickerProvider from '../date-picker/date-picker-context'
 import {DateValue, parseDate} from '../internationalized/date'
+import Popover from '../popover'
 import RangeCalendar from '../range-calendar/range-calendar'
 import {CustomShortcutsProps} from '../range-calendar/range-calendar-shortcuts'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useMediaQuery} from '../utils/use-media-query'
 import styles from './styles/date-range-picker.module.css'
@@ -46,24 +47,26 @@ interface Props extends SpectrumDateRangePickerProps<DateValue> {
   customShortcuts?: CustomShortcutsProps
 }
 
-export type DateRangePickerProps = Props
+export type DateRangePickerProps = Props &
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
 
 const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
   (props, ref) => {
     const {
-      startDateLabel,
-      endDateLabel,
-      shouldCloseOnSelect = false,
       css = {},
-      errorMessage,
-      helperText,
       maxValue,
+      className,
+      helperText,
+      endDateLabel,
+      errorMessage,
       hasShortcuts,
-      ctaButtonRender,
       visibleMonths,
+      startDateLabel,
+      ctaButtonRender,
+      shouldCloseOnSelect = false,
       shouldOnChangeTriggerOnSameDate,
-      onSearchButtonClick,
       customShortcuts,
+      onSearchButtonClick,
       ...delegated
     } = props
 
@@ -121,12 +124,15 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
 
     calendarProps.isReadOnly = checkIfCalendarInMobile()
 
+    const rootClasses = classNames(
+      styles.dateRangePicker,
+      className,
+      'cdg-date-range-picker',
+    )
+
     return (
       <CssInjection css={css} childrenRef={calendarRef}>
-        <div
-          ref={calendarRef}
-          className={`date-range-picker-wrapper ${styles.dateRangePicker}`}
-        >
+        <div ref={calendarRef} className={rootClasses}>
           <DatePickerProvider>
             <Popover
               isOpen={state.isOpen}
@@ -165,7 +171,9 @@ const DateRangePicker = React.forwardRef<HTMLDivElement, DateRangePickerProps>(
                 customShortcuts={customShortcuts}
                 css={props.calendarCSS}
                 visibleMonths={visibleMonths}
-                shouldOnChangeTriggerOnSameDate={shouldOnChangeTriggerOnSameDate}
+                shouldOnChangeTriggerOnSameDate={
+                  shouldOnChangeTriggerOnSameDate
+                }
               />
             </Popover>
           </DatePickerProvider>
@@ -214,11 +222,16 @@ const DateRangeInputsWrapper = React.forwardRef<
 
   return (
     <div>
-      <span {...labelProps} className='date-range-label'>
+      <span {...labelProps} className='cdg-date-range-label'>
         {label}
       </span>
-      <div {...groupProps} ref={ref} className='date-range-inputs-body'>
-        <div className={`date-range-fields ${styles.dateRangeFields}`}>
+      <div {...groupProps} ref={ref} className='cdg-date-range-inputs-body'>
+        <div
+          className={classNames(
+            styles.dateRangeFields,
+            'cdg-date-range-fields',
+          )}
+        >
           <DateField
             {...startFieldProps}
             label={startDateLabel}

@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {STATUS_SIZE_MAP, StatusSize, StatusType} from './status.const'
 import Offline from './status/offline'
@@ -62,16 +63,26 @@ const Status = React.forwardRef<HTMLDivElement, StatusProps>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={spinnerRef}>
       <div
+        {...delegated}
         tabIndex={-1}
         ref={spinnerRef}
-        className={`${styles.status} ${STATUS_SIZE_MAP[size]} ${className}`}
+        className={classNames(
+          styles.status,
+          STATUS_SIZE_MAP[size],
+          className,
+          'cdg-status',
+        )}
         style={style}
-        {...delegated}
       >
         {toStatusElement()}
       </div>
     </CssInjection>
   )
-})
+}) as typeof Status & {
+  Offline: typeof Offline
+  Online: typeof Online
+  Verified: typeof Verified
+  Zig: typeof Zig
+}
 
 export default Status

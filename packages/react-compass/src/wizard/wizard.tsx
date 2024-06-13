@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {Item} from './components/Item'
 import {Line} from './components/Line'
@@ -45,15 +46,15 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
   return (
     <CssInjection css={css}>
       <div
-        ref={wizardRef}
-        className={`${styles.wizard} cdg-wizard`}
         {...htmlProps}
+        ref={wizardRef}
+        className={classNames(styles.wizard, 'cdg-wizard')}
       >
-        <div className={`${styles.track} cdg-wizard-track`}>
+        <div className={classNames(styles.track, 'cdg-wizard-track')}>
           {list.map((item, index: number) => (
             <div
               key={`${isControlled ? item.props.title : item}-${index}`}
-              className={`${styles.trackItem} cdg-wizard-track-item`}
+              className={classNames(styles.trackItem, 'cdg-wizard-track-item')}
               style={{width: `calc(100% / ${itemWidth})`}}
             >
               <Line
@@ -98,7 +99,7 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
             </div>
           ))}
         </div>
-        <div className={`${styles.title}`}>
+        <div className={classNames(styles.title, 'cdg-wizard-title')}>
           {list.map((item, index: number) => (
             <Title
               key={index}
@@ -112,6 +113,8 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Wizard & {
+  Item: typeof WizardItem
+}
 
 export default Wizard

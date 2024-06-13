@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../objectToCss'
+import {classNames} from '../string'
 import {useDOMRef} from '../use-dom-ref'
 import styles from './components.module.css'
 
@@ -20,9 +21,9 @@ const Column = React.forwardRef<HTMLDivElement, ColumnComponentProps>(
     return (
       <CssInjection css={css} childrenRef={columnRef}>
         <div
-          className={`cdg-column ${className} ${styles.column}`}
-          ref={columnRef}
           {...htmlProps}
+          ref={columnRef}
+          className={classNames(styles.column, className, 'cdg-column')}
         >
           {children}
         </div>

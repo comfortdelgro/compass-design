@@ -15,6 +15,7 @@ import {
 } from '@floating-ui/react'
 import React, {HTMLAttributes, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/popover.module.css'
 
 type OffsetValue =
@@ -57,25 +58,25 @@ export type LegacyPopoverDirection =
 
 export type PopoverDirection = LegacyPopoverDirection | Placement
 interface Props {
-  children: React.ReactNode
-  anchor: React.ReactNode
-  attachToElement?: HTMLElement | null // legacy. Will be deprecated in the future
+  css?: CSS
+  delay?: number
   isOpen?: boolean
-  allowOutsidePress?: boolean
-  onOpenChange?: (isOpen: boolean) => void
-  onClose?: () => void
-  onOutsidePress?: () => void
-  direction?: PopoverDirection
+  className?: string
   offset?: OffsetValue
   shouldFlip?: boolean
-  delay?: number
-  disableInteractive?: boolean
   defaultOpen?: boolean
+  anchor: React.ReactNode
   trigger?: 'click' | null
+  children: React.ReactNode
   isFloatingPortal?: boolean
+  allowOutsidePress?: boolean
+  direction?: PopoverDirection
+  disableInteractive?: boolean
+  attachToElement?: HTMLElement | null
+  onClose?: () => void
+  onOutsidePress?: () => void
+  onOpenChange?: (isOpen: boolean) => void
   onPositionedChange?: (isPositioned: boolean) => void
-  className?: string
-  css?: CSS
 }
 
 export type PopoverProps = Props &
@@ -85,24 +86,24 @@ const DEFAULT_OFFSET = 10
 
 const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
   const {
-    children,
     anchor,
+    css = {},
+    children,
+    className,
+    delay = 0,
+    trigger = 'click',
+    shouldFlip = true,
     isOpen: isOpenProp,
-    onOpenChange,
+    offset = undefined,
+    defaultOpen = false,
+    direction = 'bottom',
+    isFloatingPortal = true,
+    allowOutsidePress = true,
+    disableInteractive = false,
     onClose,
+    onOpenChange,
     onPositionedChange,
     onOutsidePress,
-    allowOutsidePress = true,
-    offset = undefined,
-    shouldFlip = true,
-    direction = 'bottom',
-    delay = 0,
-    disableInteractive = false,
-    defaultOpen = false,
-    trigger = 'click',
-    css = {},
-    isFloatingPortal = true,
-    className = '',
   } = props
 
   // uncontrolled state
@@ -207,9 +208,9 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
     <>
       <CssInjection css={css} childrenRef={refs.setReference}>
         <div
-          ref={refs.setReference}
           {...getReferenceProps()}
-          className={styles.popoverWrapper}
+          ref={refs.setReference}
+          className={classNames(styles.popoverWrapper, 'cdg-popover-anchor')}
         >
           {anchor}
         </div>
@@ -221,9 +222,13 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
           {(isOpenProp != null ? isOpenProp : isOpen) && (
             // popoverWrapper
             <div
-              ref={mergeRefs}
               {...popoverProps}
-              className={`${className} ${styles.popoverWrapper}`}
+              ref={mergeRefs}
+              className={classNames(
+                styles.popoverWrapper,
+                className,
+                'cdg-popover',
+              )}
             >
               {children} {/* The actual popover */}
             </div>
@@ -234,9 +239,13 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>((props, ref) => {
           {(isOpenProp != null ? isOpenProp : isOpen) && (
             // popoverWrapper
             <div
-              ref={mergeRefs}
               {...popoverProps}
-              className={`${className} ${styles.popoverWrapper}`}
+              ref={mergeRefs}
+              className={classNames(
+                styles.popoverWrapper,
+                className,
+                'cdg-popover',
+              )}
             >
               {children} {/* The actual popover */}
             </div>

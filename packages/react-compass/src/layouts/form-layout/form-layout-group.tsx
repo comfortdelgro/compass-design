@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './styles/action-bar.module.css'
 
@@ -20,10 +21,14 @@ const FormLayoutGroup = React.forwardRef<HTMLDivElement, Props>(
     return (
       <CssInjection css={css} childrenRef={layoutGroupRef}>
         <div
-          ref={layoutGroupRef}
-          className={`${className} ${styles.formLayoutGroup}`}
-          style={style}
           {...htmlProps}
+          style={style}
+          ref={layoutGroupRef}
+          className={classNames(
+            styles.formLayoutGroup,
+            className,
+            'cdg-layout-form-group',
+          )}
         >
           {children}
         </div>

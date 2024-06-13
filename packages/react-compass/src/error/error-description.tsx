@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/error.module.css'
 
@@ -26,22 +27,16 @@ const ErrorDescription = React.forwardRef<
   } = props
   const errorDescriptionRef = useDOMRef<HTMLParagraphElement>(ref)
 
-  const ErrorDescriptionClasses = [
-    `cdg-error-description`,
-    className,
-    variant && styles[`${variant}VariantErrorDescription`],
+  const rootClasses = classNames(
     styles.errorDescription,
-  ]
-    .filter(Boolean)
-    .join(' ')
+    variant && styles[`${variant}VariantErrorDescription`],
+    className,
+    `cdg-error-description`,
+  )
 
   return (
     <CssInjection css={css} childrenRef={errorDescriptionRef}>
-      <p
-        className={ErrorDescriptionClasses}
-        ref={errorDescriptionRef}
-        {...htmlProps}
-      >
+      <p {...htmlProps} className={rootClasses} ref={errorDescriptionRef}>
         {children}
       </p>
     </CssInjection>

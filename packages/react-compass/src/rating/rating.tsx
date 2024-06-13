@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Button from '../button'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   FaceFrown,
@@ -52,45 +53,55 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     return (
       <>
         <Button
-          className={`${styles.rating} ${
-            activeIndex === 0 ? `${styles.active}` : ''
-          } ${styles.customButton}`}
+          className={classNames(
+            styles.rating,
+            activeIndex === 0 && styles.active,
+            styles.customButton,
+          )}
           onPress={handleRatingBtnPress(0)}
           isDisabled={disabled}
         >
           <FaceSadTear />
         </Button>
         <Button
-          className={`${styles.rating} ${
-            activeIndex === 1 ? `${styles.active}` : ''
-          } ${styles.customButton}`}
+          className={classNames(
+            styles.rating,
+            activeIndex === 1 && styles.active,
+            styles.customButton,
+          )}
           onPress={handleRatingBtnPress(1)}
           isDisabled={disabled}
         >
           <FaceFrown />
         </Button>
         <Button
-          className={`${styles.rating} ${
-            activeIndex === 2 ? `${styles.active}` : ''
-          } ${styles.customButton}`}
+          className={classNames(
+            styles.rating,
+            activeIndex === 2 && styles.active,
+            styles.customButton,
+          )}
           onPress={handleRatingBtnPress(2)}
           isDisabled={disabled}
         >
           <FaceMeh />
         </Button>
         <Button
-          className={`${styles.rating} ${
-            activeIndex === 3 ? `${styles.active}` : ''
-          } ${styles.customButton}`}
+          className={classNames(
+            styles.rating,
+            activeIndex === 3 && styles.active,
+            styles.customButton,
+          )}
           onPress={handleRatingBtnPress(3)}
           isDisabled={disabled}
         >
           <FaceSmile />
         </Button>
         <Button
-          className={`${styles.rating} ${
-            activeIndex === 4 ? `${styles.active}` : ''
-          } ${styles.customButton}`}
+          className={classNames(
+            styles.rating,
+            activeIndex === 4 && styles.active,
+            styles.customButton,
+          )}
           onPress={handleRatingBtnPress(4)}
           isDisabled={disabled}
         >
@@ -103,9 +114,11 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
     return [1, 2, 3, 4, 5].map((item, index) => {
       return (
         <Button
-          className={`${styles.rating} ${
-            activeIndex === index ? `${styles.active}` : ''
-          } ${styles.customButton}`}
+          className={classNames(
+            styles.rating,
+            activeIndex === index && styles.active,
+            styles.customButton,
+          )}
           onPress={handleRatingBtnPress(index)}
           key={index}
           isDisabled={disabled}
@@ -118,9 +131,9 @@ const Rating = React.forwardRef<HTMLDivElement, RatingProps>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={ratingRef}>
       <div
-        ref={ratingRef}
         {...htmlProps}
-        className={`cdg-rating ${styles.ratingWrapper} ${className}`}
+        ref={ratingRef}
+        className={classNames(styles.ratingWrapper, className, 'cdg-rating')}
       >
         {useIcons ? renderIconButtons() : renderNumberButtons()}
       </div>

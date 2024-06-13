@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-footer.module.css'
 
@@ -15,9 +16,11 @@ const TableFooter = React.forwardRef<HTMLDivElement, TableFooterProps>(
     const {css = {}, className, children} = props
     const TableFooterRef = useDOMRef<HTMLDivElement>(ref)
 
-    const rootClasses = [styles.cdgTableFooter, className, 'cdg-table-footer']
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.cdgTableFooter,
+      className,
+      'cdg-table-footer',
+    )
 
     return (
       <CssInjection css={css} childrenRef={TableFooterRef}>

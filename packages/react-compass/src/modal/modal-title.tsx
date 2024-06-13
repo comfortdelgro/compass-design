@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/modal.module.css'
 
@@ -16,16 +17,11 @@ const ModalTitle = React.forwardRef<HTMLHeadingElement, ModalTitleProps>(
     const {children, css = {}, className, ...htmlProps} = props
     const modalTitleRef = useDOMRef<HTMLHeadingElement>(ref)
 
-    const classNames = [
-      className,
-      'cdg-modal-title',
-      styles.title,
-    ]
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(styles.title, className, 'cdg-modal-title')
+
     return (
       <CssInjection css={css}>
-        <div className={classNames} ref={modalTitleRef} {...htmlProps}>
+        <div className={rootClasses} ref={modalTitleRef} {...htmlProps}>
           {children}
         </div>
       </CssInjection>

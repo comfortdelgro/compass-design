@@ -1,6 +1,7 @@
 import {memo, useCallback, useRef} from 'react'
 import {Button} from '..'
 import TextField from '../textfield'
+import {classNames} from '../utils/string'
 import {DefaultIcons} from './pudo.config'
 import {PudoItemPrivateProps} from './pudo.types'
 import classes from './styles/pudo.module.css'
@@ -41,7 +42,10 @@ const PudoItemComponent = <TItemName extends PropertyKey>({
         return (
           <TextField
             inputRef={inputRef}
-            className={`${classes.pudoItemInput} cdg-pudo-item__input`}
+            className={classNames(
+              classes.pudoItemInput,
+              'cdg-pudo-item__input',
+            )}
             type='text'
             name={name.toString()}
             value={value}
@@ -52,14 +56,12 @@ const PudoItemComponent = <TItemName extends PropertyKey>({
             isRequired={isRequired}
             rightIcon={
               <Button
-                className={[
+                className={classNames(
                   classes.pudoItemInputBtnClear,
                   (!value || !isClearable) &&
                     classes.pudoItemInputBtnClearHidden,
                   'cdg-pudo-item__input-btn-clear',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
+                )}
                 variant='ghost'
                 type='button'
                 onClick={() => handleClearInput()}
@@ -84,10 +86,18 @@ const PudoItemComponent = <TItemName extends PropertyKey>({
 
       case 'custom':
         return (
-          <div className={`${classes.pudoItemCustom} cdg-pudo-item__custom`}>
+          <div
+            className={classNames(
+              classes.pudoItemCustom,
+              'cdg-pudo-item__custom',
+            )}
+          >
             {typeof title === 'string' && title ? (
               <div
-                className={`${classes.pudoItemCustomTitle} cdg-pudo-item__custom-title`}
+                className={classNames(
+                  classes.pudoItemCustomTitle,
+                  'cdg-pudo-item__custom-title',
+                )}
                 title={title}
               >
                 {title}
@@ -97,7 +107,10 @@ const PudoItemComponent = <TItemName extends PropertyKey>({
             )}
             {typeof content === 'string' && content ? (
               <p
-                className={`${classes.pudoItemCustomContent} cdg-pudo-item__custom-content`}
+                className={classNames(
+                  classes.pudoItemCustomContent,
+                  'cdg-pudo-item__custom-content',
+                )}
               >
                 {content}
               </p>
@@ -116,25 +129,26 @@ const PudoItemComponent = <TItemName extends PropertyKey>({
     return <></>
   }
 
-  const rootClasses = [
+  const rootClasses = classNames(
     classes.pudoItem,
     type && classes[type],
     alignIcon && classes[`alignIcon--${alignIcon}`],
     compact && classes[compact],
     className,
     'cdg-pudo-item',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <div
       className={rootClasses}
       style={{zIndex: itemsLength - 1 - index ?? undefined}}
     >
-      <div className={`${classes.pudoItemIcon} cdg-pudo-item__icon`}>
+      <div className={classNames(classes.pudoItemIcon, 'cdg-pudo-item__icon')}>
         <div
-          className={`${classes.pudoItemIconShape} cdg-pudo-item__icon-shape`}
+          className={classNames(
+            classes.pudoItemIconShape,
+            'cdg-pudo-item__icon-shape',
+          )}
         >
           {icon || DefaultIcons[index]}
         </div>
@@ -143,7 +157,10 @@ const PudoItemComponent = <TItemName extends PropertyKey>({
 
       {allowSwap && type === 'input' ? (
         <button
-          className={`${classes.pudoItemSwapIcon} cdg-pudo-item__swap-icon`}
+          className={classNames(
+            classes.pudoItemSwapIcon,
+            'cdg-pudo-item__swap-icon',
+          )}
           type='button'
           onClick={() => handleSwap?.()}
         >

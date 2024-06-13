@@ -1,5 +1,6 @@
 import {forwardRef, HTMLAttributes, PropsWithChildren} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/drawer.module.css'
 
@@ -13,9 +14,9 @@ const DrawerHeader = forwardRef<HTMLElement, DrawerHeaderProps>(
     return (
       <CssInjection css={css} childrenRef={drawerHeaderRef}>
         <header
-          ref={drawerHeaderRef}
-          className={`${styles.drawerHeader} cdg-drawer-header`}
           {...htmlAttributes}
+          ref={drawerHeaderRef}
+          className={classNames(styles.drawerHeader, 'cdg-drawer-header')}
         >
           {children}
         </header>

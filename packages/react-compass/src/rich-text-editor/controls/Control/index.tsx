@@ -1,5 +1,6 @@
 import React, {HTMLAttributes} from 'react'
 import {CSS, CssInjection} from '../../../utils/objectToCss'
+import {classNames} from '../../../utils/string'
 import {useDOMRef} from '../../../utils/use-dom-ref'
 import styles from '../../styles/control.module.css'
 
@@ -37,16 +38,12 @@ const Control = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const {children, className, active, css = {}, onClick, ...htmlProps} = props
     const buttonRef = useDOMRef<HTMLButtonElement>(ref)
 
-    const rootClasses = React.useMemo(() => {
-      return [
-        styles.rteControl,
-        active && styles.active,
-        'cdg-rte-control',
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [active, className])
+    const rootClasses = classNames(
+      styles.rteControl,
+      active && styles.active,
+      className,
+      'cdg-rte-control',
+    )
 
     return (
       <CssInjection css={css} childrenRef={buttonRef}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from './styles/action-bar.module.css'
 
@@ -18,9 +19,13 @@ const ActionBarRightGroup = React.forwardRef<HTMLDivElement, Props>(
     return (
       <CssInjection css={css} childrenRef={actionBarGroupRef}>
         <div
-          ref={actionBarGroupRef}
-          className={`${className} ${styles.actionBarRightGroup}`}
           {...htmlProps}
+          ref={actionBarGroupRef}
+          className={classNames(
+            styles.actionBarRightGroup,
+            className,
+            'cdg-layout-action-bar-right-group',
+          )}
         >
           {children}
         </div>

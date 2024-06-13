@@ -3,6 +3,7 @@
 import {ExtendedRefs, ReferenceType} from '@floating-ui/react'
 import React, {useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/sidenav-item.module.css'
 
 interface Props {
@@ -70,27 +71,35 @@ const SidenavItem = React.forwardRef<HTMLDivElement, SidenavItemProps>(
     return (
       <CssInjection css={css} childrenRef={mergeRefs}>
         <div
+          {...delegated}
+          {...menuParenProps?.getReferenceProps()}
           ref={mergeRefs}
-          className={`cdg-sidenav-item ${className} ${styles.sidenavItem} ${
+          className={classNames(
+            styles.sidenavItem,
             isActive
               ? `${styles.sidenavItemActive} sidenav-item-active`
-              : 'default'
-          }`}
+              : 'default',
+            className,
+            'cdg-sidenav-item',
+          )}
           onMouseEnter={() => {
             setOpenMenu(true)
           }}
-          {...delegated}
-          {...menuParenProps?.getReferenceProps()}
         >
           <div
-            className={`cdg-sidenav-item-icon ${styles.cdgSidenavItemIcon} ${
-              isActive ? `${styles.cdgSidenavItemActiveIcon}` : ''
-            }`}
+            className={classNames(
+              styles.cdgSidenavItemIcon,
+              isActive && styles.cdgSidenavItemActiveIcon,
+              'cdg-sidenav-item-icon',
+            )}
           >
             {icon}
           </div>
           <div
-            className={`cdg-sidenav-item-title ${styles.cdgSidenavItemTitle}`}
+            className={classNames(
+              styles.cdgSidenavItemTitle,
+              'cdg-sidenav-item-title',
+            )}
           >
             {title}
           </div>

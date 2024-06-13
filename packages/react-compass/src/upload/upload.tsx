@@ -1,6 +1,7 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import {useIsDarkTheme} from '../theme'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {
   DEFAULT_FILE_ACCEPT,
@@ -8,6 +9,7 @@ import {
   convertFileSizeToReadableNumber,
 } from './common'
 import styles from './styles/upload.module.css'
+import UploadDragAndDrop from './upload-drag-and-drop'
 
 interface Props {
   children?: React.ReactNode
@@ -122,51 +124,50 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
     return customErrorMessages
   }
   //  classes
-  const uploadWrapperClasses = useMemo(() => {
-    return [
-      styles.uploadWrapper,
-      isDisabled && styles.isDisabled,
-      isDarkTheme && styles.isDarkTheme,
-      className,
-      'cdg-upload-wrapper',
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [className, isDarkTheme, isDisabled])
-  const browseFileClasses = useMemo(() => {
-    return [
-      styles.browseFile,
-      isDisabled && styles.browseFileIsDisabled,
-      isDarkTheme && styles.browseFileIsDarkTheme,
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [isDarkTheme, isDisabled])
-  const uploadContentClasses = useMemo(() => {
-    return [
-      styles.uploadContent,
-      isDisabled && styles.uploadContentIsDisabled,
-      isDarkTheme && styles.uploadContentIsDarkTheme,
-      selectedFiles.length > 0 && styles.fileSelected,
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [isDarkTheme, isDisabled, selectedFiles.length])
+  const uploadWrapperClasses = classNames(
+    styles.uploadWrapper,
+    isDisabled && styles.isDisabled,
+    isDarkTheme && styles.isDarkTheme,
+    className,
+    'cdg-upload-wrapper',
+  )
+
+  const browseFileClasses = classNames(
+    styles.browseFile,
+    isDisabled && styles.browseFileIsDisabled,
+    isDarkTheme && styles.browseFileIsDarkTheme,
+    'cdg-upload-browse-file',
+  )
+
+  const uploadContentClasses = classNames(
+    styles.uploadContent,
+    isDisabled && styles.uploadContentIsDisabled,
+    isDarkTheme && styles.uploadContentIsDarkTheme,
+    selectedFiles.length > 0 && styles.fileSelected,
+    'cdg-upload-content',
+  )
 
   return (
     <CssInjection css={css} childrenRef={uploadRef}>
-      <div ref={uploadRef} className={uploadWrapperClasses} {...delegated}>
+      <div {...delegated} ref={uploadRef} className={uploadWrapperClasses}>
         {label && (
           <>
-            <label className={`${styles.label}`}>
-              <span className='cdg-label'> {label}</span>
-              <span className={`cdg-isRequired-Sign ${styles.isRequiredSign}`}>
+            <label className={classNames(styles.label, 'cdg-upload-label')}>
+              <span className='cdg-upload-label-text'>{label}</span>
+              <span
+                className={classNames(
+                  styles.isRequiredSign,
+                  'cdg-upload-label-asterisk',
+                )}
+              >
                 {isRequired ? ' *' : ''}
               </span>
             </label>
           </>
         )}
-        <div className={`${styles.uploadContainer}`}>
+        <div
+          className={classNames(styles.uploadContainer, 'cdg-upload-container')}
+        >
           <input
             ref={uploadInputRef}
             type='file'
@@ -180,11 +181,23 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
             role='button'
             className={browseFileClasses}
           >
-            <span className={`${styles.browseFileSpan}`}>Browse file</span>
+            <span
+              className={classNames(
+                styles.browseFileSpan,
+                'cdg-upload-browse-file',
+              )}
+            >
+              Browse file
+            </span>
           </button>
           <div onClick={onOpenUploadClick} className={uploadContentClasses}>
             {selectedFiles.length > 0 ? (
-              <p className={`${styles.uploadContentText}`}>
+              <p
+                className={classNames(
+                  styles.uploadContentText,
+                  'cdg-upload-file-selected',
+                )}
+              >
                 {selectedFiles.map((file) => file.name).join(', ')}
               </p>
             ) : (
@@ -192,17 +205,23 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
             )}
           </div>
         </div>
-        <div className={`${styles.helperText}`}>
+        <div
+          className={classNames(styles.helperText, 'cdg-upload-helper-text')}
+        >
           {helperText
             ? helperText
             : `Maximum size: ${convertFileSizeToReadableNumber(fileSizeLimit)}`}
         </div>
-        <div className={`${styles.uploadError}`}>
+        <div
+          className={classNames(styles.uploadError, 'cdg-upload-error-message')}
+        >
           {handleErrorMessage(error)}
         </div>
       </div>
     </CssInjection>
   )
-})
+}) as typeof Upload & {
+  DragAndDrop: typeof UploadDragAndDrop
+}
 
 export default Upload

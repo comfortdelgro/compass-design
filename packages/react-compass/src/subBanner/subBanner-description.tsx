@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/subBanner.module.css'
 
 interface Props {
@@ -24,7 +25,11 @@ const SubBannerDescription = React.forwardRef<
       <p
         ref={ref}
         {...htmlProps}
-        className={`cdg-sub-banner-description ${className} ${styles.subBannerDescription}`}
+        className={classNames(
+          styles.subBannerDescription,
+          className,
+          'cdg-sub-banner-description',
+        )}
       >
         {children}
       </p>

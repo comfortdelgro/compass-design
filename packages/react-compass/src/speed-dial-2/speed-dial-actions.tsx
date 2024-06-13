@@ -1,4 +1,5 @@
 import React from 'react'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/speed-dial.module.css'
 
@@ -19,9 +20,13 @@ export const SpeedDialActions = React.forwardRef<
 
   return (
     <div
-      className={`cdg-speed-dial-actions ${styles.speedDialActions} ${styles[position]}`}
-      ref={speedDialActionRef}
       {...htmlProps}
+      ref={speedDialActionRef}
+      className={classNames(
+        styles.speedDialActions,
+        styles[position],
+        'cdg-speed-dial-actions',
+      )}
     >
       {children}
     </div>

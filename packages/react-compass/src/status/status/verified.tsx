@@ -1,3 +1,4 @@
+import {classNames} from '../../utils/string'
 import styles from '../styles/status.module.css'
 
 const Verified = () => {
@@ -8,7 +9,7 @@ const Verified = () => {
       viewBox='0 0 24 24'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      className={styles.statusIcon}
+      className={classNames(styles.statusIcon, 'cdg-status-icon')}
     >
       <g clip-path='url(#clip0_10568_110735)'>
         <path

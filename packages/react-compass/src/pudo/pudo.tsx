@@ -287,13 +287,13 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
   return (
     <CssInjection css={css} childrenRef={PudoRef}>
       <div
+        {...htmlDataAttributes}
         ref={PudoRef}
         className={classNames(
           classes.pudoContainer,
-          'cdg-pudo-container',
           className,
+          'cdg-pudo-container',
         )}
-        {...htmlDataAttributes}
         style={
           {
             ...style,
@@ -304,16 +304,22 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
         }
       >
         <div
-          className={`${classes.pudoItemsWrapper} cdg-pudo-items-wrapper`}
+          className={classNames(
+            classes.pudoItemsWrapper,
+            'cdg-pudo-items-wrapper',
+          )}
           onBlur={handlePudoItemsWrapperBlur}
         >
           {renderPudoItems}
         </div>
 
-        <div className={`${classes.pudoActions} cdg-pudo-actions`}>
+        <div className={classNames(classes.pudoActions, 'cdg-pudo-actions')}>
           {showAddButton && (
             <Button
-              className={`${classes.pudoActionButton} cdg-pudo-action-button`}
+              className={classNames(
+                classes.pudoActionButton,
+                'cdg-pudo-action-button',
+              )}
               variant='ghost'
               type='button'
               size='sm'
@@ -339,7 +345,10 @@ const PudoRefComponent = <TItemKeys extends PropertyKey>(
 
           {showRemoveButton && (
             <Button
-              className={`${classes.pudoActionButton} cdg-pudo-action-button`}
+              className={classNames(
+                classes.pudoActionButton,
+                'cdg-pudo-action-button',
+              )}
               variant='danger'
               type='button'
               size='sm'

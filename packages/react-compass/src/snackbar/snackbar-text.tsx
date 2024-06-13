@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/snackbar.module.css'
 
@@ -19,7 +20,11 @@ const SnackbarText = React.forwardRef<HTMLHeadingElement, SnackbarTextProps>(
     return (
       <CssInjection css={css} childrenRef={SnackbarTextRef}>
         <div
-          className={`cdg-snackbar-text ${className} ${styles.snackbarText}`}
+          className={classNames(
+            styles.snackbarText,
+            className,
+            'cdg-snackbar-text',
+          )}
           ref={SnackbarTextRef}
           {...htmlProps}
         >

@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useMemo} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DropdownContext} from './dropdown-context'
 import DropdownLoading from './dropdown-loading'
@@ -32,7 +33,10 @@ const DropdownList: React.FC<DropdownItemListProps> = (
   const {searchValue, labelId, isLoadingMore, disabledAutofill} =
     useContext(DropdownContext)
 
-  const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild(children, DropdownHeader)
+  const {child: DropdownHeaderElement, rest: dropdownItems} = pickChild(
+    children,
+    DropdownHeader,
+  )
 
   const displayedItemsCount = useMemo(() => {
     let currentCount = 0
@@ -67,13 +71,16 @@ const DropdownList: React.FC<DropdownItemListProps> = (
         <ul
           role='listbox'
           aria-labelledby={labelId}
-          className={`${styles.dropdownList} cdg-dropdown-list`}
+          className={classNames(styles.dropdownList, 'cdg-dropdown-list')}
         >
           {isLoading ? (
             <DropdownLoading />
           ) : displayedItemsCount === 0 ? (
             <div
-              className={`${styles.dropdownListEmptyData} cdg-dropdown-list-empty-data`}
+              className={classNames(
+                styles.dropdownListEmptyData,
+                'cdg-dropdown-list-empty-data',
+              )}
             >
               {noDataMessage || 'No data'}
             </div>
@@ -81,9 +88,21 @@ const DropdownList: React.FC<DropdownItemListProps> = (
             dropdownItems
           )}
           {React.Children.toArray(dropdownItems).length > 0 && (
-            <div className={`${styles.dropdownListItem}`} ref={lastEl} />
+            <div
+              className={classNames(
+                styles.dropdownListItem,
+                'cdg-dropdown-list-item',
+              )}
+              ref={lastEl}
+            />
           )}
-          <div className={`${styles.dropdownListItem}`} ref={standEl} />
+          <div
+            className={classNames(
+              styles.dropdownListItem,
+              'cdg-dropdown-list-item',
+            )}
+            ref={standEl}
+          />
         </ul>
       </CssInjection>
     ),

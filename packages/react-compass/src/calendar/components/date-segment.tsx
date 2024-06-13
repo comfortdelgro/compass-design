@@ -1,4 +1,5 @@
 import React from 'react'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {useDateSegment} from '../hooks/useDateSegment'
 import {DateFieldState, DateSegment as IDateSegment} from '../types'
@@ -21,9 +22,11 @@ const DateSegment = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     <div
       {...segmentProps}
       ref={dateSegmentRef}
-      className={`${styles.dateSegment} ${
-        segment.isPlaceholder ? 'placeholder' : styles.number
-      }`}
+      className={classNames(
+        styles.dateSegment,
+        segment.isPlaceholder ? 'placeholder' : styles.number,
+        'cdg-calendar-segment',
+      )}
     >
       {segment.text}
     </div>

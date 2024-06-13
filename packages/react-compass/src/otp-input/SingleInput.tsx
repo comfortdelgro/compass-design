@@ -1,5 +1,6 @@
 import React, {memo, useLayoutEffect} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/otpInput.module.css'
 import usePrevious from './usePrevious'
@@ -54,20 +55,18 @@ const SingleOTPInputComponent = React.forwardRef<
     }
   }, [autoFocus, focus, index, inputRef, prevFocus])
 
-  const classNames = [
+  const rootClasses = classNames(
     styles.singleInput,
     isNumberInput && styles.singleInputNumber,
     isMobile && styles.singleInputIsMobile,
     isErrored && styles.singleInputisErrored,
-    'cdg-otp-single-input',
     className,
-  ]
-    .filter(Boolean)
-    .join(' ')
+    'cdg-otp-single-input',
+  )
 
   return (
     <CssInjection css={css}>
-      <input {...htmlProps} ref={inputRef} className={classNames} />
+      <input {...htmlProps} ref={inputRef} className={rootClasses} />
     </CssInjection>
   )
 })

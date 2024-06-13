@@ -3,11 +3,14 @@ import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Popover from '../popover'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMenuContext, {
   DropdownMenuContextType,
 } from './dropdown-menu-context'
+import DropdownMenuItem from './dropdown-menu-item'
 import DropdownMenuMenu from './dropdown-menu-menu'
+import DropdownMenuSubmenu from './dropdown-menu-submenu'
 import DropdownMenuToggle from './dropdown-menu-toggle'
 import styles from './styles/dropdown-menu.module.css'
 
@@ -140,12 +143,12 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
     return (
       <CssInjection css={css} childrenRef={dropdownRef}>
         <div
+          {...delegated}
+          role='menu'
           ref={dropdownRef}
           onKeyDown={handleKeyDown}
-          role='menu'
           aria-labelledby={props['aria-labelledby']}
-          className={`${styles.dropdownMenu} cdg-dropdown-menu`}
-          {...delegated}
+          className={classNames(styles.dropdownMenu, 'cdg-dropdown-menu')}
         >
           <DropdownMenuContext.Provider value={contextValue}>
             <Popover
@@ -161,6 +164,11 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
       </CssInjection>
     )
   },
-)
+) as typeof DropdownMenu & {
+  Toggle: typeof DropdownMenuToggle
+  Item: typeof DropdownMenuItem
+  Submenu: typeof DropdownMenuSubmenu
+  Menu: typeof DropdownMenuMenu
+}
 
 export default DropdownMenu

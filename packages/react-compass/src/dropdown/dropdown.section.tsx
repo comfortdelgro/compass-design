@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/dropdown.module.css'
 
@@ -38,21 +39,17 @@ const DropdownSection = React.forwardRef<HTMLDivElement, DropdownSectionProps>(
       onClick?.()
     }
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.dropdownSection,
       className,
       'cdg-dropdown-section',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const titleClasses = [
+    const titleClasses = classNames(
       styles.dropdownSectionContent,
       isClickable && styles.dropdownSectionContentClickable,
       'cdg-dropdown-section-title',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={DropdownSectionRef}>

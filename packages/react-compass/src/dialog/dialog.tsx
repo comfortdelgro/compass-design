@@ -1,12 +1,13 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DialogActions from './dialog-actions'
 import DialogDescription from './dialog-description'
 import DialogIcon from './dialog-icon'
 import DialogTitle from './dialog-title'
+import DialogTrigger from './dialog-trigger'
 import styles from './styles/dialog.module.css'
 
 interface Props {
@@ -148,32 +149,28 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
     }
   }, [DialogRef, FirstFocusableRef, LastFocusableRef, triggerId])
 
-  const dialogClassNames = [
+  const dialogClasses = classNames(
     styles.dialog,
     variant && styles['dialog' + capitalizeFirstLetter(variant)],
     className,
     'cdg-dialog-container',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const contentClassNames = [styles.content, 'cdg-dialog-content']
-    .filter(Boolean)
-    .join(' ')
+  const contentClasses = classNames(styles.content, 'cdg-dialog-content')
 
   return (
     <CssInjection css={css}>
       <div
+        {...htmlProps}
         ref={DialogRef}
         tabIndex={0}
         role='dialog'
         aria-modal={true}
         onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
         onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
-        {...htmlProps}
-        className={dialogClassNames}
+        className={dialogClasses}
       >
-        <div tabIndex={0} className={contentClassNames}>
+        <div tabIndex={0} className={contentClasses}>
           {variant == 'alert' ? DialogIconElement : null}
           {DialogTitleElement}
           {DialogDescriptionElement}
@@ -182,6 +179,12 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Dialog & {
+  Trigger: typeof DialogTrigger
+  Title: typeof DialogTitle
+  Description: typeof DialogDescription
+  Actions: typeof DialogActions
+  Icon: typeof DialogIcon
+}
 
 export default Dialog

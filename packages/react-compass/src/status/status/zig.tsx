@@ -1,3 +1,4 @@
+import {classNames} from '../../utils/string'
 import styles from '../styles/status.module.css'
 
 const Zig = () => {
@@ -8,7 +9,7 @@ const Zig = () => {
       viewBox='0 0 24 24'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      className={styles.statusIcon}
+      className={classNames(styles.statusIcon, 'cdg-status-icon')}
     >
       <rect
         x='1.25'

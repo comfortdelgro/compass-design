@@ -1,4 +1,6 @@
 import React, {ReactNode, RefObject, useRef} from 'react'
+import {classNames} from '../../utils/string'
+import styles from '../styles/slider.module.css'
 import {
   FocusableRef,
   SliderBaseProps,
@@ -8,9 +10,6 @@ import {
 import {useFocusableRef} from '../utils/useFocusableRef'
 import {useSlider} from '../utils/useSlider'
 import {useSliderState} from '../utils/useSliderState'
-
-// import {useNumberFormatter} from '../../quantity-toggle/utils/useNumberField/useNumberFormatter'
-import styles from '../styles/slider.module.css'
 
 export interface SliderControlsChildArguments {
   inputRef: RefObject<HTMLInputElement>
@@ -47,23 +46,19 @@ function SliderControls(
   const inputRef = useRef()
   const domRef = useFocusableRef(ref, inputRef)
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.controls,
     isDisabled && styles.controlsIsDisabled,
     orientation === 'vertical' && styles.controlsVertical,
     'cdg-slider',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const trackClasses = [
+  const trackClasses = classNames(
     styles.sliderMainTrack,
     isDisabled && styles.sliderMainTrackIsDisabled,
     orientation === 'vertical' && styles.sliderMainTrackVertical,
     'cdg-slider-main-track',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <div ref={domRef} className={rootClasses}>

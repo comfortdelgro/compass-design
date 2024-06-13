@@ -1,11 +1,13 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ModalActions from './modal-actions'
 import ModalCloseIcon from './modal-closeIcon'
 import ModalDescription from './modal-description'
 import ModalTitle from './modal-title'
+import ModalTrigger from './modal-trigger'
 import styles from './styles/modal.module.css'
 
 interface Props {
@@ -155,34 +157,28 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
     }
   }, [ModalRef, FirstFocusableRef, LastFocusableRef, triggerId])
 
-  const modalClassNames = [
-    className,
-    'cdg-modal-container',
+  const modalClassNames = classNames(
     styles.modal,
     size && styles[size],
-  ]
-    .filter(Boolean)
-    .join(' ')
+    className,
+    'cdg-modal-container',
+  )
 
-  const contentClassNames = ['cdg-modal-content', styles.content]
-    .filter(Boolean)
-    .join(' ')
+  const contentClassNames = classNames(styles.content, 'cdg-modal-content')
 
-  const headerClassNames = ['cdg-modal-header', styles.header]
-    .filter(Boolean)
-    .join(' ')
+  const headerClassNames = classNames(styles.header, 'cdg-modal-header')
 
   return (
     <CssInjection css={css}>
       <div
+        {...htmlProps}
         ref={ModalRef}
         tabIndex={0}
         role='dialog'
         aria-modal={true}
+        className={modalClassNames}
         onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
         onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
-        className={modalClassNames}
-        {...htmlProps}
       >
         <div tabIndex={0} className={contentClassNames}>
           <div className={headerClassNames}>
@@ -200,6 +196,12 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
+}) as typeof Modal & {
+  Trigger: typeof ModalTrigger
+  Title: typeof ModalTitle
+  Description: typeof ModalDescription
+  Actions: typeof ModalActions
+  CloseIcon: typeof ModalCloseIcon
+}
 
 export default Modal

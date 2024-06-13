@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
-import {RadioContext} from './radio-group'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
+import {useDOMRef} from '../utils/use-dom-ref'
+import RadioGroup, {RadioContext} from './radio-group'
 import styles from './styles/radio.module.css'
 import Tooltip from './tooltip'
 
@@ -20,9 +21,10 @@ interface Props {
   css?: CSS
 }
 
-export type RadioProps = Props
+export type RadioProps = Props &
+  Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>
 
-const Radio: React.FC<RadioProps> = (props) => {
+const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   const {
     value,
     label,
@@ -34,8 +36,10 @@ const Radio: React.FC<RadioProps> = (props) => {
     inputPosition = 'left',
     name = '',
     css = {},
+    className,
     ...htmlProps
   } = props
+  const radioRef = useDOMRef<HTMLInputElement>(ref)
   const context = React.useContext(RadioContext)
   const state = context
   const [isChecked, setIsChecked] = useState(state.value === value)
@@ -50,63 +54,78 @@ const Radio: React.FC<RadioProps> = (props) => {
     setIsChecked(state.value === value)
   }, [state.value, value])
 
-  const internalRadioClassName = `${
-    variant ? styles[`radioVariant${capitalizeFirstLetter(variant)}`] : ''
-  } ${inputPosition === 'left' ? '' : styles.radioInputPositionRight} ${
-    isDisabled ? styles.radioDisabled : ''
-  }
-  `
+  const rootClasses = classNames(
+    styles.radio,
+    variant && styles[`radioVariant${capitalizeFirstLetter(variant)}`],
+    inputPosition === 'left' ? '' : styles.radioInputPositionRight,
+    isDisabled && styles.radioDisabled,
+    className,
+    'cdg-radio',
+  )
 
-  const internalRadioInputClassName = `${
-    variant ? styles[`radioInputVariant${capitalizeFirstLetter(variant)}`] : ''
-  } ${isChecked ? styles.radioInputActive : ''} ${
-    isDisabled ? styles.radioInputDisabled : ''
-  }
-  `
+  const inputClasses = classNames(
+    styles.radioInput,
+    variant && styles[`radioInputVariant${capitalizeFirstLetter(variant)}`],
+    isChecked && styles.radioInputActive,
+    isDisabled && styles.radioInputDisabled,
+    'cdg-radio-input',
+  )
 
   return (
     <CssInjection css={css}>
       <div
-        className={`cdg-radio ${styles.radio} ${internalRadioClassName}`}
-        onClick={onClick}
-        role='radio'
-        aria-disabled={isDisabled}
-        aria-valuetext={value}
         {...htmlProps}
+        role='radio'
+        onClick={onClick}
+        aria-valuetext={value}
+        aria-disabled={isDisabled}
+        className={rootClasses}
       >
-        <div className={styles.radioWrapper}>
-          <div
-            className={`cdg-radio-input ${styles.radioInput} ${internalRadioInputClassName}`}
-          />
+        <div className={classNames(styles.radioWrapper, 'cdg-radio-wrapper')}>
+          <div className={inputClasses} />
           <input
             type='radio'
+            ref={radioRef}
             name={state.radioName ? state.radioName : name}
             disabled={isDisabled}
           ></input>
         </div>
         <div
-          className={`cdg-radio-content-wrapper ${styles.radioContentWrapper}`}
+          className={classNames(
+            styles.radioContentWrapper,
+            'cdg-radio-content-wrapper',
+          )}
         >
           {!!label && (
-            <div className={`cdg-radio-label ${styles.radioLabel}`}>
+            <div className={classNames(styles.radioLabel, 'cdg-radio-label')}>
               {label} {!!tooltip && <Tooltip text={tooltip} />}
             </div>
           )}
 
           {description && (
-            <p className={`cdg-radio-label  ${styles.radioDescription}`}>
+            <p
+              className={classNames(
+                styles.radioDescription,
+                'cdg-radio-description',
+              )}
+            >
               {description}
             </p>
           )}
         </div>
         {!!rightLabel && (
-          <p className={`cdg-radio-label ${styles.radioRightLabel}`}>
+          <p
+            className={classNames(
+              styles.radioRightLabel,
+              'cdg-radio-right-label',
+            )}
+          >
             {rightLabel}
           </p>
         )}
       </div>
     </CssInjection>
   )
-}
+}) as typeof Radio & {Group: typeof RadioGroup}
 
 export default Radio

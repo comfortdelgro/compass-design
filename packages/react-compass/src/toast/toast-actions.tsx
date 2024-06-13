@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/toast.module.css'
 
@@ -18,9 +19,13 @@ const ToastActions = React.forwardRef<HTMLDivElement, ToastActionsProps>(
     return (
       <CssInjection css={css} childrenRef={toastActionsRef}>
         <div
-          ref={toastActionsRef}
-          className={`${className} ${styles.toastActionsContainer}`}
           {...delegated}
+          ref={toastActionsRef}
+          className={classNames(
+            styles.toastActionsContainer,
+            className,
+            'cdg-toast-actions',
+          )}
         >
           {children}
         </div>

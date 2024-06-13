@@ -1,7 +1,8 @@
-import React, {useMemo} from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/toast.module.css'
 import ToastActions from './toast-actions'
@@ -81,66 +82,57 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
   }, [autoClose, handleClose, isOpen])
 
   // classes
-  const toastClasses = useMemo(() => {
-    return [
-      styles.toast,
-      color && styles[color],
-      withHeader && styles.toastWithHeader,
-      isItemContainer && styles.isItemContainer,
-      anchorOrigin.vertical === 'top' ? styles.verticalTop : false,
-      anchorOrigin.vertical === 'bottom' ? styles.verticalBottom : false,
-      anchorOrigin.vertical === 'center' ? styles.verticalCenter : false,
-      anchorOrigin.horizontal === 'left' ? styles.horizontalLeft : false,
-      anchorOrigin.horizontal === 'right' ? styles.horizontalRight : false,
-      anchorOrigin.horizontal === 'center' ? styles.horizontalCenter : false,
-      anchorOrigin.vertical === 'center' && anchorOrigin.horizontal === 'center'
-        ? styles.centerCenter
-        : false,
-      className,
-      'cdg-toast',
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [
-    anchorOrigin.horizontal,
-    anchorOrigin.vertical,
+  const toastClasses = classNames(
+    styles.toast,
+    color && styles[color],
+    withHeader && styles.toastWithHeader,
+    isItemContainer && styles.isItemContainer,
+    anchorOrigin.vertical === 'top' && styles.verticalTop,
+    anchorOrigin.vertical === 'bottom' && styles.verticalBottom,
+    anchorOrigin.vertical === 'center' && styles.verticalCenter,
+    anchorOrigin.horizontal === 'left' && styles.horizontalLeft,
+    anchorOrigin.horizontal === 'right' && styles.horizontalRight,
+    anchorOrigin.horizontal === 'center' && styles.horizontalCenter,
+    anchorOrigin.vertical === 'center' &&
+      anchorOrigin.horizontal === 'center' &&
+      styles.centerCenter,
     className,
-    color,
-    isItemContainer,
-    withHeader,
-  ])
+    'cdg-toast',
+  )
 
-  const headerClasses = useMemo(() => {
-    return [
-      styles.toastHeader,
-      withHeader && styles.headerWithHeader,
-      'cdg-toast-header',
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [withHeader])
+  const headerClasses = classNames(
+    styles.toastHeader,
+    withHeader && styles.headerWithHeader,
+    'cdg-toast-header',
+  )
 
-  const bodyClasses = useMemo(() => {
-    return [styles.body, withHeader && styles.bodyWithHeader, 'cdg-toast-body']
-      .filter(Boolean)
-      .join(' ')
-  }, [withHeader])
+  const bodyClasses = classNames(
+    styles.body,
+    withHeader && styles.bodyWithHeader,
+    'cdg-toast-body',
+  )
 
   return (
     <>
       {isOpen &&
         renderContent(
           <CssInjection css={css} childrenRef={toastRef}>
-            <div ref={toastRef} className={toastClasses} {...delegated}>
+            <div {...delegated} ref={toastRef} className={toastClasses}>
               <div className={headerClasses}>
                 <div
-                  className={`${styles.toastHeaderLeft} cdg-toast-header-left`}
+                  className={classNames(
+                    styles.toastHeaderLeft,
+                    'cdg-toast-header-left',
+                  )}
                 >
                   {ToastIconElement}
                   {ToastTitleElement}
                 </div>
                 <div
-                  className={`${styles.toastHeaderRight} cdg-toast-header-right`}
+                  className={classNames(
+                    styles.toastHeaderRight,
+                    'cdg-toast-header-right',
+                  )}
                 >
                   {ToastLabelElement}
                   {ToastCloseIconElement &&
@@ -161,6 +153,13 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) => {
         )}
     </>
   )
-})
+}) as typeof Toast & {
+  Actions: typeof ToastActions
+  CloseIcon: typeof ToastCloseIcon
+  Icon: typeof ToastIcon
+  Label: typeof ToastLabel
+  Message: typeof ToastMessage
+  Title: typeof ToastTitle
+}
 
 export default Toast

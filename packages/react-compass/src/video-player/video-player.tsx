@@ -11,6 +11,7 @@ import {
 } from './icon'
 
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/video-player.module.css'
 import VolumeSlider from './volume-slider/volume-slider'
 
@@ -187,19 +188,28 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
 
   return (
     <div
-      className={`cdg-video-player ${styles.videoPlayer}`}
       id={id}
+      className={classNames(styles.videoPlayer, 'cdg-video-player')}
       onKeyDown={handleWrapperKeyDown}
     >
       {loadError && (
-        <div className={`cdg-load-error ${styles.videoLoadError}`}>
+        <div
+          className={classNames(
+            styles.videoLoadError,
+            'cdg-video-player-load-error',
+          )}
+        >
           Sorry, the video failed to load. Please try again later.
         </div>
       )}
       <CssInjection css={css} childrenRef={videoRef}>
         <video
-          className={`cdg-video ${styles.videoPlayerVideo} ${className}`}
           {...ariaSafeProps}
+          className={classNames(
+            styles.videoPlayerVideo,
+            className,
+            'cdg-video-player-video',
+          )}
           src={src}
           ref={videoRef}
           loop={loop}
@@ -218,17 +228,38 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
       </CssInjection>
       {controls && (
         <>
-          <div className={`cdg-volume ${styles.volume}`} tabIndex={0}>
+          <div
+            className={classNames(styles.volume, 'cdg-video-player-volume')}
+            tabIndex={0}
+          >
             <VolumeSlider value={volume} onChange={onToggleVolume} />
-            <div className={`cdg-volume-icon ${styles.volumeSliderBarIcon}`}>
+            <div
+              className={classNames(
+                styles.volumeSliderBarIcon,
+                'cdg-video-player-volume-icon',
+              )}
+            >
               <VolumeIcon value={volume} onChange={onToggleVolume} />
             </div>
           </div>
           <div
-            className={`cdg-video-controller-wrapper ${styles.controllerWrapper}`}
+            className={classNames(
+              styles.controllerWrapper,
+              'cdg-video-player-controller',
+            )}
           >
-            <div className={`cdg-silde-bar-wrapper ${styles.slideBarWrapper}`}>
-              <span className={styles.slideBarWrapperSpan}>
+            <div
+              className={classNames(
+                styles.slideBarWrapper,
+                'cdg-video-player-slide',
+              )}
+            >
+              <span
+                className={classNames(
+                  styles.slideBarWrapperSpan,
+                  'cdg-video-player-slide-current',
+                )}
+              >
                 {formatTime(currentTime)}
               </span>
               <Slider
@@ -240,15 +271,33 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
                   '.range-slider': {background: '#fff'},
                 }}
               />
-              <span className={styles.slideBarWrapperSpan}>
+              <span
+                className={classNames(
+                  styles.slideBarWrapperSpan,
+                  'cdg-video-player-duration',
+                )}
+              >
                 {formatTime(duration)}
               </span>
             </div>
-            <div className={`cdg-video-button-wrapper ${styles.buttonWrapper}`}>
-              <div className={styles.sliderButtonMain}>
+            <div
+              className={classNames(
+                styles.buttonWrapper,
+                'cdg-video-player-buttons',
+              )}
+            >
+              <div
+                className={classNames(
+                  styles.sliderButtonMain,
+                  'cdg-video-player-buttons-content',
+                )}
+              >
                 <div
                   tabIndex={0}
-                  className={styles.sliderButtonPrev}
+                  className={classNames(
+                    styles.sliderButtonPrev,
+                    'cdg-video-player-button-prev',
+                  )}
                   onClick={onPrev}
                   onKeyDown={(e) => handleKeyDown(e, onPrev)}
                 >
@@ -256,7 +305,10 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
                 </div>
                 <div
                   tabIndex={0}
-                  className={styles.sliderButtonPlay}
+                  className={classNames(
+                    styles.sliderButtonPlay,
+                    'cdg-video-player-button-play',
+                  )}
                   onClick={play}
                   onKeyDown={(e) => handleKeyDown(e, play)}
                 >
@@ -264,7 +316,10 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
                 </div>
                 <div
                   tabIndex={0}
-                  className={styles.sliderButtonNext}
+                  className={classNames(
+                    styles.sliderButtonNext,
+                    'cdg-video-player-button-next',
+                  )}
                   onClick={onNext}
                   onKeyDown={(e) => handleKeyDown(e, onNext)}
                 >
@@ -272,7 +327,10 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, Props>((props, ref) => {
                 </div>
                 <div
                   tabIndex={0}
-                  className={styles.sliderButtonSetting}
+                  className={classNames(
+                    styles.sliderButtonSetting,
+                    'cdg-video-player-button-setting',
+                  )}
                   onClick={onSetting}
                   onKeyDown={(e) => handleKeyDown(e, onSetting)}
                 >

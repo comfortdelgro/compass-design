@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import {classNames} from '../utils/string'
 import styles from './styles/divider.module.css'
 
 interface Props {
@@ -21,9 +22,9 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
 
   return (
     <div
-      className={`${className} ${styles.divider} cdg-sidenav-divider`}
-      ref={ref}
       {...delegated}
+      ref={ref}
+      className={classNames(styles.divider, className, 'cdg-sidenav-divider')}
     />
   )
 })

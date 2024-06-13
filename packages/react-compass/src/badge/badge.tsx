@@ -2,7 +2,7 @@ import toUpper from 'lodash/toUpper'
 import React from 'react'
 import {getIconFromColor} from '../utils/get-icon-from-color'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/badge.module.css'
 
@@ -42,7 +42,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
 
   const badgeRef = useDOMRef<HTMLDivElement>(ref)
 
-  const classNames = [
+  const rootClasses = classNames(
     styles.badge,
     variant && styles[variant],
     color && styles[color],
@@ -59,36 +59,40 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>((props, ref) => {
     isDisabled && styles.isDisabled,
     className,
     'cdg-badge',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const iconClassNames = [
+  const iconClasses = classNames(
     styles.icon,
     statusSize && styles[`statusSize${statusSize}Icon`],
     status && icon && styles.statusIcon,
-  ]
-    .filter(Boolean)
-    .join(' ')
+    'cdg-badge-icon',
+  )
 
   return (
     <>
       <CssInjection css={css}>
-        <div ref={badgeRef} className={classNames} {...htmlProps}>
+        <div {...htmlProps} ref={badgeRef} className={rootClasses}>
           {icon ? (
-            <div className={iconClassNames}>
+            <div className={iconClasses}>
               {typeof icon === 'boolean' ? getIconFromColor(color) : icon}
             </div>
           ) : null}
           {destination ? (
-            <span className={variant ? styles[variant + 'Destination'] : ''}>
+            <span
+              className={classNames(
+                variant && styles[variant + 'Destination'],
+                'cdg-badge-destination',
+              )}
+            >
               {toUpper(destination)}
             </span>
           ) : null}
           <span
-            className={`${styles.label} ${
-              variant ? styles[variant + 'Label'] : ''
-            }`}
+            className={classNames(
+              styles.label,
+              variant && styles[variant + 'Label'],
+              'cdg-badge-label',
+            )}
           >
             {label}
           </span>

@@ -5,6 +5,7 @@ import Button from '../button'
 import Popover from '../popover'
 import TextField from '../textfield'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-column-header-filter.module.css'
 
@@ -31,13 +32,11 @@ const HeaderColumnFilter = forwardRef<
     .flatRows[0]?.getValue(column.id)
   const columnFilterValue = column.getFilterValue()
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.cdgTableHeaderFilter,
     className,
     'cdg-table-column-header-filter',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   const handleToggleFiltering = (e) => {
     e.stopPropagation()
@@ -53,7 +52,12 @@ const HeaderColumnFilter = forwardRef<
   }
 
   const renderNumberFilter = () => (
-    <div className={styles.numberContainer}>
+    <div
+      className={classNames(
+        styles.numberContainer,
+        'cdg-table-column-header-filter-number',
+      )}
+    >
       <TextField
         type='number'
         ref={ref}
