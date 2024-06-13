@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 4.6.1
+
+### Patch Changes
+
+- 75564e5: Remove unused libraries
+
 ## 4.6.0
 
 ### Minor Changes

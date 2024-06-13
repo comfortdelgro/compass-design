@@ -16,7 +16,6 @@ interface Props {
 export type AppNavProps = Props &
   Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
 
-// eslint-disable-next-line react-refresh/only-export-components
 const AppNav = React.forwardRef<HTMLDivElement, AppNavProps>((props, ref) => {
   const navBarRef = useDOMRef(ref)
   const {

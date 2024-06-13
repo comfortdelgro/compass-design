@@ -25,7 +25,6 @@ interface Props {
 export type PaginationProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-// eslint-disable-next-line react-refresh/only-export-components
 const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
     const {

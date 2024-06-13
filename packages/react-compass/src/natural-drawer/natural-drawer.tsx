@@ -33,7 +33,6 @@ export type NaturalDrawerProps = Props &
 
 const SCROLL_COOLDOWN_TIME = 500
 
-// eslint-disable-next-line react-refresh/only-export-components
 const NaturalDrawerWrapper = forwardRef<HTMLDivElement, NaturalDrawerProps>(
   (props, ref) => {
     const {
