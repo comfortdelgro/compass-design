@@ -154,6 +154,6 @@ const List = React.forwardRef<HTMLDivElement, ListProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof List & {Image: typeof ListImage}
+})
 
-export default List
+export default List as typeof List & {Image: typeof ListImage}

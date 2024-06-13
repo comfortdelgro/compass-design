@@ -15,9 +15,9 @@ export default function DemoEditorError(props: {children: React.ReactNode}) {
         transform: 'translateX(-50%) translateY(-50%)',
         py: '2px',
         px: '6px',
-        background: '$dangerBg',
-        color: '$danger',
-        border: '1px solid $danger',
+        background: 'var(--cdg-color-dangerBg)',
+        color: 'var(--cdg-color-danger)',
+        border: '1px solid var(--cdg-color-danger)',
         padding: 'var(--cdg-spacing-2)',
         borderRadius: 8,
       }}

@@ -1,6 +1,5 @@
 import React, {createContext, useCallback, useEffect, useState} from 'react'
 
-// eslint-disable-next-line react-refresh/only-export-components
 export enum ETheme {
   Light = 'light',
   Dark = 'dark',

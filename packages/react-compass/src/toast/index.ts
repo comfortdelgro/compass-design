@@ -1,4 +1,4 @@
-import _Toast from './toast'
+import Toast from './toast'
 import ToastActions from './toast-actions'
 import ToastCloseIcon from './toast-closeIcon'
 import ToastIcon from './toast-icon'
@@ -13,15 +13,6 @@ export type {ToastIconProps} from './toast-icon'
 export type {ToastLabelProps} from './toast-label'
 export type {ToastMessageProps} from './toast-message'
 export type {ToastTitleProps} from './toast-title'
-
-const Toast = _Toast as typeof _Toast & {
-  Actions: typeof ToastActions
-  CloseIcon: typeof ToastCloseIcon
-  Icon: typeof ToastIcon
-  Label: typeof ToastLabel
-  Message: typeof ToastMessage
-  Title: typeof ToastTitle
-}
 
 Toast.Actions = ToastActions
 Toast.CloseIcon = ToastCloseIcon

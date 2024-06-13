@@ -17,7 +17,6 @@ interface Props {
 export type NavbarProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-// eslint-disable-next-line react-refresh/only-export-components
 const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>((props, ref) => {
   const {
     // ComponentProps

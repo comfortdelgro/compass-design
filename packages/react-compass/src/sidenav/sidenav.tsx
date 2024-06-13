@@ -90,10 +90,10 @@ const Sidenav = React.forwardRef<HTMLDivElement, SidenavProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Sidenav & {
+})
+
+export default Sidenav as typeof Sidenav & {
   Item: typeof SidenavItem
   Divider: typeof Divider
   Menu: typeof SidenavMenu
 }
-
-export default Sidenav

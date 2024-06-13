@@ -31,10 +31,10 @@ const FormLayout = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof FormLayout & {
+})
+
+export default FormLayout as typeof FormLayout & {
   Row: typeof FormRow
   Group: typeof FormGroup
   Explaination: typeof FormExplaination
 }
-
-export default FormLayout

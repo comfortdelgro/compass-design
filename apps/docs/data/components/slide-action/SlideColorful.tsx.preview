@@ -1,1 +1,1 @@
-<SlideAction color='$cdgBlue' />
+<SlideAction color='var(--cdg-color-cdgBlue)' />

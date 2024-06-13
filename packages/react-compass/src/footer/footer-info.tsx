@@ -12,7 +12,6 @@ interface Props {
 export type FooterInfoProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-// eslint-disable-next-line react-refresh/only-export-components
 const FooterInfo = React.forwardRef<HTMLDivElement, FooterInfoProps>(
   (props, ref) => {
     const {children, css = {}, className, ...delegated} = props

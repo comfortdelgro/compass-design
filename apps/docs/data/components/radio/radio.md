@@ -25,10 +25,6 @@ import {Radio} from '@comfortdelgro/react-compass'
 
 {{"demo": "RadioOrientation.tsx"}}
 
-## H5 variant
-
-{{"demo": "RadioH5.tsx"}}
-
 ## Props
 
 ### Radio.Group Props
@@ -50,7 +46,7 @@ import {Radio} from '@comfortdelgro/react-compass'
 
 | Name          | Type                                 | Default    | Description                                                                                                            |
 | :------------ | :----------------------------------- | :--------- | :--------------------------------------------------------------------------------------------------------------------- |
-| variant       | `"h5"` \| `"simple"` \| `"outlined"` | `"simple"` |                                                                                                                        |
+| variant       | `"simple"` \| `"outlined"` | `"simple"` |                                                                                                                        |
 | title         | `string`                             | —          | Display title for radio                                                                                                |
 | description   | `string`                             | —          | Display description for radio                                                                                          |
 | rightLabel    | `ReactNode`                          | —          | Display rightLabel for radio                                                                                           |

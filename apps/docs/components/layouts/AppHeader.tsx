@@ -22,7 +22,7 @@ export default function AppHeader(props: AppHeaderProps) {
   const isMobileScreen = useIsMobileScreen()
 
   return (
-    <Navbar css={{maxWidth: '100vw', overflow: 'hidden', gap: '$1'}}>
+    <Navbar css={{maxWidth: '100vw', overflow: 'hidden', gap: 'var(--cdg-spacing-1)'}}>
       {isTabletScreen && <DocsAppSideNavMobile />}
       <Navbar.Brand>
         <Link href='/' style={{textDecoration: 'none'}}>

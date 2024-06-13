@@ -1,4 +1,4 @@
-import _Dialog from './dialog'
+import Dialog from './dialog'
 import DialogActions from './dialog-actions'
 import DialogDescription from './dialog-description'
 import DialogIcon from './dialog-icon'
@@ -11,14 +11,6 @@ export type {DialogDescriptionProps} from './dialog-description'
 export type {DialogIconProps} from './dialog-icon'
 export type {DialogTitleProps} from './dialog-title'
 export type {DialogTriggerProps} from './dialog-trigger'
-
-const Dialog = _Dialog as typeof _Dialog & {
-  Trigger: typeof DialogTrigger
-  Title: typeof DialogTitle
-  Description: typeof DialogDescription
-  Actions: typeof DialogActions
-  Icon: typeof DialogIcon
-}
 
 Dialog.Trigger = DialogTrigger
 Dialog.Title = DialogTitle

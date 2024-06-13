@@ -119,10 +119,10 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
       )}
     </CssInjection>
   )
-}) as typeof Sidebar & {
+})
+
+export default Sidebar as typeof Sidebar & {
   Actions: typeof SidebarActions
   Content: typeof SidebarContent
   Title: typeof SidebarTitle
 }
-
-export default Sidebar

@@ -84,7 +84,7 @@ export default function DocsAppSideNavMobile(props: any) {
   return (
     <SidenavContext.Provider value={sidenav}>
       <Button
-        css={{padding: '$1'}}
+        css={{padding: 'var(--cdg-spacing-1)'}}
         type='button'
         onClick={() => setIsShowDrawer(true)}
       >
@@ -110,7 +110,7 @@ export default function DocsAppSideNavMobile(props: any) {
             position: 'sticky',
             top: 0,
             zIndex: 99,
-            background: '$background',
+            background: 'var(--cdg-color-background)',
           }}
         >
           <Navbar.Brand>

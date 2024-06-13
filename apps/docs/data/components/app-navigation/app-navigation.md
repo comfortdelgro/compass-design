@@ -1,5 +1,5 @@
 ---
-title: H5 App Naviation component
+title: App Naviation component
 components: AppNav
 ---
 

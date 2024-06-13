@@ -78,11 +78,10 @@ const Status = React.forwardRef<HTMLDivElement, StatusProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Status & {
+})
+export default Status as typeof Status & {
   Offline: typeof Offline
   Online: typeof Online
   Verified: typeof Verified
   Zig: typeof Zig
 }
-
-export default Status

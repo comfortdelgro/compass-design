@@ -40,9 +40,8 @@ const DashboardSidecard = React.forwardRef<
       </div>
     </CssInjection>
   )
-}) as typeof DashboardSidecard & {
+})
+export default DashboardSidecard as typeof DashboardSidecard & {
   Header: typeof DashboardSidecardHeader
   Content: typeof DashboardSidecardContent
 }
-
-export default DashboardSidecard

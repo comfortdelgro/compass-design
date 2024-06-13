@@ -25,7 +25,6 @@ export interface CellMetaProps<TData extends RowData, TValue>
 export type EditableCellProps = CellProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof CellProps>
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const [EditableCellContextProvider, useEditableCellContext] =
   createSafeContext<EditableCellContextType>(
     'EditableCell was not found in tree',

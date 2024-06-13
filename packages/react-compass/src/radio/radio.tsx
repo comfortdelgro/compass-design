@@ -126,6 +126,6 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Radio & {Group: typeof RadioGroup}
+})
 
-export default Radio
+export default Radio as typeof Radio & {Group: typeof RadioGroup}
