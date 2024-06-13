@@ -1,5 +1,6 @@
 import React from '../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
 import { CSS } from '../../utils/objectToCss';
+import DropdownItem from './item';
 interface Props {
     isDisabled?: boolean;
     isReadOnly?: boolean;
@@ -21,5 +22,7 @@ interface Props {
     css?: CSS;
 }
 export type DropdownProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
-declare const Select: any;
-export default Select;
+declare const _default: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> & React.RefAttributes<HTMLDivElement>> & {
+    Item: typeof DropdownItem;
+};
+export default _default;

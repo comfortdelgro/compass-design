@@ -1,5 +1,6 @@
 import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
 import { CSS } from '../utils/objectToCss';
+import UploadDragAndDrop from './upload-drag-and-drop';
 interface Props {
     children?: React.ReactNode;
     isDisabled?: boolean;
@@ -16,5 +17,7 @@ interface Props {
     css?: CSS;
 }
 export type UploadProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
-declare const Upload: any;
-export default Upload;
+declare const _default: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> & React.RefAttributes<HTMLDivElement>> & {
+    DragAndDrop: typeof UploadDragAndDrop;
+};
+export default _default;

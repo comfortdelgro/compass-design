@@ -1,5 +1,6 @@
 import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
 import { CSS } from '../utils/objectToCss';
+import RadioGroup from './radio-group';
 interface Props {
     className?: string;
     label?: React.ReactNode;
@@ -15,5 +16,7 @@ interface Props {
     css?: CSS;
 }
 export type RadioProps = Props & Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>;
-declare const Radio: any;
-export default Radio;
+declare const _default: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props> & React.RefAttributes<HTMLInputElement>> & {
+    Group: typeof RadioGroup;
+};
+export default _default;

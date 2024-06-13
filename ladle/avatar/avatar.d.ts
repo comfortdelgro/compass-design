@@ -1,5 +1,6 @@
 import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
 import { CSS } from '../utils/objectToCss';
+import AvatarGroup from './avatar-group';
 import { AvatarSize } from './avatar.const';
 interface Props {
     label?: string;
@@ -12,5 +13,7 @@ interface Props {
     status?: React.ReactElement;
 }
 export type AvatarProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
-declare const Avatar: any;
-export default Avatar;
+declare const _default: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> & React.RefAttributes<HTMLDivElement>> & {
+    Group: typeof AvatarGroup;
+};
+export default _default;

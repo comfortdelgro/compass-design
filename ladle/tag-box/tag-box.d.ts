@@ -1,5 +1,6 @@
 import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
 import { CSS } from '../utils/objectToCss';
+import TagBoxAction from './tag-box-action';
 type Item = {
     id: string | number;
     value: string;
@@ -30,5 +31,7 @@ interface Props {
     'aria-details'?: string;
 }
 export type TagBoxProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
-declare const TagBox: any;
-export default TagBox;
+declare const _default: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> & React.RefAttributes<HTMLDivElement>> & {
+    Action: typeof TagBoxAction;
+};
+export default _default;

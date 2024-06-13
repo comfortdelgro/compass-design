@@ -1,5 +1,10 @@
 import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
+import DropdownItem from './dropdown-item';
+import DropdownHeader from './dropdown.header';
 import { CSS } from '../utils/objectToCss';
+import DropdownComboBox from './dropdown.combobox';
+import DropdownSection from './dropdown.section';
+import DropdownSelect from './dropdown.select';
 export interface Props {
     defaultOpen?: boolean;
     selectedKey?: React.Key;
@@ -45,5 +50,11 @@ export interface Props {
 }
 export declare const Icon: () => import('../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 export type DropdownProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
-declare const Select: any;
-export default Select;
+declare const _default: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> & React.RefAttributes<HTMLDivElement>> & {
+    ComboBox: typeof DropdownComboBox;
+    Select: typeof DropdownSelect;
+    Item: typeof DropdownItem;
+    Section: typeof DropdownSection;
+    Header: typeof DropdownHeader;
+};
+export default _default;

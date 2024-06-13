@@ -1,5 +1,7 @@
 import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
+import * as InternationalizedDate from '../internationalized/date';
 import { DateValue } from '../internationalized/date';
+import * as i18n from '../internationalized/i18n';
 import { CSS } from '../utils/objectToCss';
 import { DatePickerState, ValueBase } from './types';
 interface Props extends ValueBase<DateValue> {
@@ -16,5 +18,8 @@ interface Props extends ValueBase<DateValue> {
     'aria-describedby'?: string;
 }
 export type CalendarProps = Props & DateValue;
-declare const Calendar: any;
-export default Calendar;
+declare const _default: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLDivElement>> & {
+    InternationalizedDate: typeof InternationalizedDate;
+    I18N: typeof i18n;
+};
+export default _default;
