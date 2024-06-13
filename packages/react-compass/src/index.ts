@@ -95,7 +95,6 @@ export {default as Drawer} from './drawer'
 export type {
   DrawerDefaultProps,
   DrawerFooterProps,
-  DrawerH5Props,
   DrawerHeaderProps,
   DrawerProps,
   DrawerRef,

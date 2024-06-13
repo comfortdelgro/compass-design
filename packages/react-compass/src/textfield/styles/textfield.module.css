@@ -147,32 +147,4 @@
   .textFieldDisabled {
     background-color: var(--cdg-color-gray20);
   }
-
-  .textFieldLabelH5 {
-    font-size: var(--cdg-font-size-label2);
-    font-weight: var(--cdg-font-weight-medium);
-    color: var(--cdg-color-grayShades80);
-    margin-bottom: var(--cdg-spacing-1);
-  }
-  .textFieldWrapperH5 {
-    color: var(--cdg-color-grayShades100);
-    font-size: var(--cdg-font-size-label1);
-    line-height: var(--cdg-line-height-tight);
-    font-weight: var(--cdg-font-weight-normal);
-  }
-  .textFieldBoxH5 {
-    border-radius: var(--cdg-border-radius-lg);
-  }
-  .textFieldH5 {
-    border: none;
-    width: 100%;
-    font-size: var(--cdg-font-size-label2);
-    font-weight: var(--cdg-font-weight-normal);
-  }
-  .textFieldH5::placeholder {
-    color: var(--cdg-color-grayShades40);
-    font-size: var(--cdg-spacing-3_5);
-    line-height: var(--cdg-line-height-tight);
-    font-weight: var(--cdg-font-weight-normal);
-  }
 }

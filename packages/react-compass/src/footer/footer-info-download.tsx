@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/footer-info-download.module.css'
 
 interface Props {
@@ -16,17 +17,15 @@ const FooterInfoDownload = React.forwardRef<
 >((props, ref) => {
   const {children, css = {}, className, ...delegated} = props
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.footerInfoDownload,
     className,
     'cdg-footer-info-download',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={ref}>
-      <div className={rootClasses} ref={ref} {...delegated}>
+      <div {...delegated} className={rootClasses} ref={ref}>
         {children}
       </div>
     </CssInjection>

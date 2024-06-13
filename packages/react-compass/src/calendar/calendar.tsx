@@ -6,6 +6,7 @@ import {DateValue, createCalendar, parseDate} from '../internationalized/date'
 import * as i18n from '../internationalized/i18n'
 import {useLocale} from '../internationalized/i18n'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
@@ -17,6 +18,7 @@ import {MONTH_YEAR_STATE, useMonthYearCalendar} from './hooks/useMonthYearState'
 import styles from './styles/calendar.module.css'
 import {DatePickerState, ValueBase} from './types'
 import {isInvalid} from './utils'
+
 interface Props extends ValueBase<DateValue> {
   css?: CSS
   children?: React.ReactNode
@@ -76,7 +78,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     setIsReset?.(true)
   }
 
-  const handleTodayButtonClick = () => {
+  const handleTodayButtonClick = useCallback(() => {
     const today = InternationalizedDate.today(
       InternationalizedDate.getLocalTimeZone(),
     )
@@ -86,7 +88,7 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       state.selectDate?.(today)
     }
     state.setFocusedDate?.(today)
-  }
+  }, [pickerState, state])
 
   const renderBody = () => {
     switch (monthYearState.currentState) {
@@ -140,15 +142,20 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         </Button>
       )
     }
-  }, [ctaButtonRender])
+  }, [
+    ctaButtonRender,
+    handleTodayButtonClick,
+    isTodayButtonDisabled,
+    monthYearState,
+  ])
 
   return (
     <CssInjection css={css} childrenRef={calendarRef}>
       <div
-        className={styles.calendar}
-        ref={calendarRef}
         role='Calendar'
+        ref={calendarRef}
         aria-label='Calendar'
+        className={classNames(styles.calendar, 'cdg-calendar')}
         aria-labelledby={ariaLabelledBy}
         aria-describedby={ariaDescribedBy}
       >
@@ -161,7 +168,9 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         />
         {renderBody()}
         {hasFooter && (
-          <div className={`calendar-footer ${styles.calendarFooter}`}>
+          <div
+            className={classNames(styles.calendarFooter, 'cdg-calendar-footer')}
+          >
             <Button
               className='cdg-calendar-clear-btn'
               variant='ghost'
@@ -178,9 +187,9 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
-
-export default Calendar as typeof Calendar & {
+}) as typeof Calendar & {
   InternationalizedDate: typeof InternationalizedDate
   I18N: typeof i18n
 }
+
+export default Calendar

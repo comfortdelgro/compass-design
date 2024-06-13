@@ -1,6 +1,7 @@
 import React from 'react'
 import Checkbox from '../checkbox'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-checkbox-cell.module.css'
 
@@ -27,15 +28,14 @@ const TableCheckboxCell = React.forwardRef<
     onChange,
     ...rest
   } = props
+
   const tableCheckboxCellRef = useDOMRef<HTMLInputElement>(ref)
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.cdgTableCheckboxCell,
     className,
     'cdg-table-checkbox-cell',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={tableCheckboxCellRef}>

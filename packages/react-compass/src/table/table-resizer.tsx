@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-resizer.module.css'
 
@@ -16,9 +17,11 @@ const TableResizer = React.forwardRef<HTMLTableCellElement, TableResizerProps>(
     const {css = {}, className, resizeHandler} = props
     const tableResizerRef = useDOMRef<HTMLDivElement>(ref)
 
-    const rootClasses = [styles.cdgTableResizer, className, 'cdg-table-resizer']
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.cdgTableResizer,
+      className,
+      'cdg-table-resizer',
+    )
 
     return (
       <CssInjection css={css} childrenRef={ref}>

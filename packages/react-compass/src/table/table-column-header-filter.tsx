@@ -5,6 +5,7 @@ import Button from '../button'
 import Popover from '../popover'
 import TextField from '../textfield'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-column-header-filter.module.css'
 
@@ -29,16 +30,64 @@ const HeaderColumnFilter = forwardRef<
   const firstValue = table
     .getPreFilteredRowModel()
     .flatRows[0]?.getValue(column.id)
-
   const columnFilterValue = column.getFilterValue()
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.cdgTableHeaderFilter,
     className,
     'cdg-table-column-header-filter',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
+
+  const handleToggleFiltering = (e) => {
+    e.stopPropagation()
+    setIsFiltering(!isFiltering)
+  }
+
+  const handleNumberChange = (index: number, value: string) => {
+    column.setFilterValue((old: [number, number]) => {
+      const newValues = [...(old || [])] as [number, number]
+      newValues[index] = Number(value)
+      return newValues
+    })
+  }
+
+  const renderNumberFilter = () => (
+    <div
+      className={classNames(
+        styles.numberContainer,
+        'cdg-table-column-header-filter-number',
+      )}
+    >
+      <TextField
+        type='number'
+        ref={ref}
+        value={(columnFilterValue as [number, number])?.[0] ?? ''}
+        onChange={(value) => handleNumberChange(0, value as string)}
+        placeholder='Min'
+        autoFocus
+      />
+      <Typography.Label css={{width: 'auto', marginInline: '$2'}}>
+        &#8212;
+      </Typography.Label>
+      <TextField
+        type='number'
+        ref={ref}
+        value={(columnFilterValue as [number, number])?.[1] ?? ''}
+        onChange={(value) => handleNumberChange(1, value as string)}
+        placeholder='Max'
+      />
+    </div>
+  )
+
+  const renderTextFilter = () => (
+    <TextField
+      ref={ref}
+      value={(columnFilterValue ?? '') as string}
+      onChange={(value) => column.setFilterValue(value)}
+      placeholder='Search...'
+      autoFocus
+    />
+  )
 
   return (
     <CssInjection css={css} childrenRef={filterRef}>
@@ -50,10 +99,7 @@ const HeaderColumnFilter = forwardRef<
             type='button'
             isSquare
             size='sm'
-            onClick={(e) => {
-              e.stopPropagation()
-              setIsFiltering(!isFiltering)
-            }}
+            onClick={handleToggleFiltering}
           >
             <svg width='16' height='16' viewBox='0 0 16 16' fill='currentColor'>
               <path
@@ -66,48 +112,9 @@ const HeaderColumnFilter = forwardRef<
         direction='bottom-end'
       >
         <div className={rootClasses} onClick={(e) => e.stopPropagation()}>
-          {typeof firstValue === 'number' ? (
-            <div className={styles.numberContainer}>
-              <TextField
-                type='number'
-                ref={ref}
-                value={(columnFilterValue as [number, number])?.[0] ?? ''}
-                onChange={(value) =>
-                  column.setFilterValue((old: [number, number]) => [
-                    value,
-                    old?.[1],
-                  ])
-                }
-                placeholder='Min'
-                autoFocus
-              />
-
-              <Typography.Label css={{width: 'auto', marginInline: '$2'}}>
-                &#8212;
-              </Typography.Label>
-
-              <TextField
-                type='number'
-                ref={ref}
-                value={(columnFilterValue as [number, number])?.[1] ?? ''}
-                onChange={(value) =>
-                  column.setFilterValue((old: [number, number]) => [
-                    old?.[0],
-                    value,
-                  ])
-                }
-                placeholder='Max'
-              />
-            </div>
-          ) : (
-            <TextField
-              ref={ref}
-              value={(columnFilterValue ?? '') as string}
-              onChange={(value) => column.setFilterValue(value)}
-              placeholder='Search...'
-              autoFocus
-            />
-          )}
+          {typeof firstValue === 'number'
+            ? renderNumberFilter()
+            : renderTextFilter()}
         </div>
       </Popover>
     </CssInjection>

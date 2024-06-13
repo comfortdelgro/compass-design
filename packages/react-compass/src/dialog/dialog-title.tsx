@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/dialog.module.css'
 
@@ -15,10 +16,10 @@ const DialogTitle = React.forwardRef<HTMLHeadingElement, DialogTitleProps>(
   (props, ref) => {
     const {children, css = {}, className, ...htmlProps} = props
     const dialogTitleRef = useDOMRef<HTMLHeadingElement>(ref)
-    const classNames = [styles.title, className].filter(Boolean).join(' ')
+    const rootClasses = classNames(styles.title, className, 'cdg-dialog-title')
     return (
       <CssInjection css={css}>
-        <div className={classNames} ref={dialogTitleRef} {...htmlProps}>
+        <div {...htmlProps} className={rootClasses} ref={dialogTitleRef}>
           {children}
         </div>
       </CssInjection>

@@ -1,9 +1,13 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {Item} from './components/Item'
+import {Line} from './components/Line'
+import {Title} from './components/Title'
 import WizardItem from './item'
 import styles from './styles/wizard.module.css'
-import {TickIcon, pickChilds} from './utils'
+import {pickChilds} from './utils'
 
 interface Props {
   css?: CSS
@@ -42,15 +46,15 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
   return (
     <CssInjection css={css}>
       <div
-        ref={wizardRef}
-        className={`${styles.wizard} cdg-wizard`}
         {...htmlProps}
+        ref={wizardRef}
+        className={classNames(styles.wizard, 'cdg-wizard')}
       >
-        <div className={`${styles.track} cdg-wizard-track`}>
+        <div className={classNames(styles.track, 'cdg-wizard-track')}>
           {list.map((item, index: number) => (
             <div
               key={`${isControlled ? item.props.title : item}-${index}`}
-              className={`${styles.trackItem} cdg-wizard-track-item`}
+              className={classNames(styles.trackItem, 'cdg-wizard-track-item')}
               style={{width: `calc(100% / ${itemWidth})`}}
             >
               <Line
@@ -74,7 +78,16 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
                   style={{cursor: onStepClick ? 'pointer' : ''}}
                   active={currentStep > index + 1 || index + 1 === currentStep}
                 >
-                  {currentStep > index + 1 ? <TickIcon /> : index + 1}
+                  {currentStep > index + 1 ? (
+                    <svg width='10' height='8' viewBox='0 0 10 8'>
+                      <path
+                        d='M9.39146 0.862272C9.64724 1.12272 9.64724 1.5436 9.39146 1.80404L4.15307 7.13796C3.89729 7.3984 3.48395 7.3984 3.22817 7.13796L0.6084 4.471C0.352701 4.21056 0.352701 3.78968 0.6084 3.52923C0.86414 3.26879 1.27871 3.26879 1.53449 3.52923L3.6722 5.72322L8.46655 0.862272C8.72233 0.601411 9.13568 0.601411 9.39146 0.862272Z'
+                        fill='currentColor'
+                      />
+                    </svg>
+                  ) : (
+                    index + 1
+                  )}
                 </Item>
               )}
               <Line
@@ -86,7 +99,7 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
             </div>
           ))}
         </div>
-        <div className={`${styles.title}`}>
+        <div className={classNames(styles.title, 'cdg-wizard-title')}>
           {list.map((item, index: number) => (
             <Title
               key={index}
@@ -100,57 +113,8 @@ const Wizard = React.forwardRef<HTMLDivElement, WizardProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
-
-const Line = ({side, bordered, active, error}) => (
-  <div
-    className={[
-      styles.line,
-      active && styles.lineIsActive,
-      bordered && side === 'left' && styles.lineSideLeftBordered,
-      bordered && side === 'right' && styles.lineSideRightBordered,
-      active && error && styles.lineIsActiveIsErrored,
-      'cdg-wizard-line',
-    ]
-      .filter(Boolean)
-      .join(' ')}
-  />
-)
-
-const Item = ({active, error, onKeyDown, onClick, style, children}) => (
-  <div
-    tabIndex={0}
-    className={[
-      styles.item,
-      active && styles.itemIsActive,
-      active && error && styles.itemIsActiveIsErrored,
-      'cdg-wizard-item',
-    ]
-      .filter(Boolean)
-      .join(' ')}
-    onKeyDown={onKeyDown}
-    onClick={onClick}
-    style={style}
-  >
-    {children}
-  </div>
-)
-
-const Title = ({active, style, children}) => (
-  <div
-    style={style}
-    className={[
-      styles.titleItem,
-      active && styles.titleItemIsActive,
-      'cdg-wizard-title-item',
-    ]
-      .filter(Boolean)
-      .join(' ')}
-  >
-    {children}
-  </div>
-)
-
-export default Wizard as typeof Wizard & {
+}) as typeof Wizard & {
   Item: typeof WizardItem
 }
+
+export default Wizard

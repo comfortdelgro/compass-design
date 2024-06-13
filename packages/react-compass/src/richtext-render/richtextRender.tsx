@@ -1,6 +1,7 @@
 import {Document} from '@contentful/rich-text-types'
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import RenderDocument from './renderDocument'
 import styles from './styles/richtextRender.module.css'
@@ -32,9 +33,9 @@ const RichTextRender = React.forwardRef<HTMLInputElement, RichTextRenderProps>(
       <>
         <CssInjection css={css}>
           <div
-            className={styles.richTextRender}
-            ref={richTextRenderRef}
             {...htmlProps}
+            ref={richTextRenderRef}
+            className={classNames(styles.richTextRender, 'cdg-richtext-render')}
           >
             {document ? RenderDocument(document, platform) : null}
           </div>

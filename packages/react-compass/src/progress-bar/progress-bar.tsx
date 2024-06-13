@@ -1,6 +1,7 @@
 import clampValue from 'lodash/clamp'
 import React, {useEffect, useMemo} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/progress-bar.module.css'
 
@@ -104,20 +105,39 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     return (
       <CssInjection css={css} childrenRef={linkRef}>
         <div
-          className={`cdg-progress-bar-wrapper ${styles.progressBarWrapper} ${className}`}
-          ref={linkRef}
           {...labelProps}
           {...htmlProps}
+          className={classNames(
+            styles.progressBarWrapper,
+            className,
+            'cdg-progress-bar',
+          )}
+          ref={linkRef}
         >
           {(!!label || !!rightLabel) && (
             <div
-              className={`cdg-progress-bar-label ${styles.progressBarLabel}`}
+              className={classNames(
+                styles.progressBarLabel,
+                'cdg-progress-bar-label',
+              )}
             >
-              <span {...labelProps} className={styles.progressBarLabelSpan}>
+              <span
+                {...labelProps}
+                className={classNames(
+                  styles.progressBarLabelSpan,
+                  'cdg-progress-bar-label-span',
+                )}
+              >
                 {label}
               </span>
               {rightLabel && (
-                <span {...labelProps} className={styles.progressBarLabelSpan}>
+                <span
+                  {...labelProps}
+                  className={classNames(
+                    styles.progressBarLabelSpan,
+                    'cdg-progress-bar-label-span',
+                  )}
+                >
                   {rightLabel}
                 </span>
               )}
@@ -125,11 +145,14 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           )}
 
           <div
-            className={`cdg-progress-bar ${styles.progressBar} ${
+            className={classNames(
+              styles.progressBar,
               styles[
                 `variant${variant.charAt(0).toUpperCase() + variant.slice(1)}`
-              ]
-            } ${styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`]}`}
+              ],
+              styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`],
+              'cdg-progress-bar-content',
+            )}
             style={{backgroundColor: barColor}}
           >
             {!loading && (
@@ -141,7 +164,10 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
                 childrenRef={currentProgressRef}
               >
                 <div
-                  className={`progress-bar__current-state ${styles.currentProgress}`}
+                  className={classNames(
+                    styles.currentProgress,
+                    'cdg-progress-bar-current-state',
+                  )}
                   ref={currentProgressRef}
                 />
               </CssInjection>
@@ -164,15 +190,17 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
                 childrenRef={currentProgressRef}
               >
                 <div
-                  className={`progress-bar__loading ${styles.loadingProgress} ${
+                  {...{loading}}
+                  className={classNames(
+                    styles.loadingProgress,
                     styles[
                       `loading${
                         loading.toString().charAt(0).toUpperCase() +
                         loading.toString().slice(1)
                       }`
-                    ]
-                  }`}
-                  {...{loading}}
+                    ],
+                    'cdg-progress-bar-loading',
+                  )}
                   ref={loadingProgressRef}
                 />
               </CssInjection>

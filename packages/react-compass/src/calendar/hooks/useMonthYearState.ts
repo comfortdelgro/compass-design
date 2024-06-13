@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import {useEffect, useMemo, useState} from 'react'
+import {useCallback, useEffect, useMemo, useState} from 'react'
 import {ButtonProps} from '../../button'
 import {CalendarDate} from '../../internationalized/date'
 import {useDateFormatter, useLocale} from '../../internationalized/i18n'
@@ -58,29 +57,30 @@ export const useMonthYearCalendar = (props: Props): MonthYearState => {
     return dayOfEachMonths.map((day) => {
       return dayFormatter.format(day)
     })
-  }, [locale])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale, dayFormatter])
 
-  const generateYears = (
-    year: number,
-    type: 'middle' | 'end' | 'start' = 'middle',
-  ) => {
-    // const focusedDateYear = focusedDate?.year ?? new Date().getFullYear()
-    const years = []
-    if (type === 'middle') {
-      for (let i = year - 4; i <= year + 7; i++) {
-        if (validateYear(i)) years.push(i)
+  const generateYears = useCallback(
+    (year: number, type: 'middle' | 'end' | 'start' = 'middle') => {
+      // const focusedDateYear = focusedDate?.year ?? new Date().getFullYear()
+      const years = []
+      if (type === 'middle') {
+        for (let i = year - 4; i <= year + 7; i++) {
+          if (validateYear(i)) years.push(i)
+        }
+      } else if (type === 'end') {
+        for (let i = year; i <= year + 11; i++) {
+          if (validateYear(i)) years.push(i)
+        }
+      } else {
+        for (let i = year - 11; i <= year; i++) {
+          if (validateYear(i)) years.push(i)
+        }
       }
-    } else if (type === 'end') {
-      for (let i = year; i <= year + 11; i++) {
-        if (validateYear(i)) years.push(i)
-      }
-    } else {
-      for (let i = year - 11; i <= year; i++) {
-        if (validateYear(i)) years.push(i)
-      }
-    }
-    return years
-  }
+      return years
+    },
+    [],
+  )
 
   const validateYear = (year: number) => {
     if (year > MAX_YEAR) {
@@ -107,7 +107,7 @@ export const useMonthYearCalendar = (props: Props): MonthYearState => {
     const years = generateYears(focusedDate?.year ?? new Date().getFullYear())
     setEndStartYears({start: years[0], end: years[11]})
     setRenderedYears(years)
-  }, [state.focusedDate, currentState])
+  }, [state.focusedDate, currentState, generateYears])
 
   useEffect(() => {
     setEndStartYears({

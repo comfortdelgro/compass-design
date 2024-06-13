@@ -145,24 +145,6 @@
 }
 
 @layer variant {
-  .headerH5 {
-    padding-left: var(--cdg-spacing-4);
-    padding-right: var(--cdg-spacing-4);
-  }
-
-  .titleH5 {
-    font-size: var(--cdg-font-size-body1);
-    padding-top: var(--cdg-spacing-4);
-    padding-bottom: 0;
-    font-weight: var(--cdg-font-weight-bold);
-    color: var(--cdg-color-grayShades100);
-  }
-
-  .descriptionH5 {
-    padding: var(--cdg-spacing-4);
-    border: none;
-  }
-
   /* variants for .modal */
   .sm {
     width: var(--cdg-spacing-75);
@@ -172,11 +154,6 @@
   }
   .lg {
     width: var(--cdg-spacing-200);
-  }
-  .h5 {
-    min-height: var(--cdg-spacing-20);
-    max-width: calc(100vw - 32px);
-    border-radius: var(--cdg-border-radius-xl);
   }
   /* end of variants for .modal */
 }

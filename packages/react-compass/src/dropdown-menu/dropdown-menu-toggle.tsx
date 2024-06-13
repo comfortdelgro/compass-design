@@ -34,10 +34,10 @@ const DropdownMenuToggle = React.forwardRef<
   return (
     <CssInjection css={css} childrenRef={DropdownMenuToggleRef}>
       <div
+        {...delegated}
         ref={DropdownMenuToggleRef}
         onClick={handleButtonClick}
         aria-haspopup={props['aria-haspopup']}
-        {...delegated}
       >
         {children}
       </div>

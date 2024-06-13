@@ -2,6 +2,7 @@ import React from 'react'
 import Portal from '../portal'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import Dialog from './dialog'
 import styles from './styles/dialog.module.css'
@@ -36,7 +37,7 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
       ...htmlProps
     } = props
 
-    const {child: DialogElement} = pickChild<typeof Dialog>(children, Dialog)
+    const {child: DialogElement} = pickChild(children, Dialog)
 
     const dialogRef = useDOMRef<HTMLDivElement>(ref)
     const dialogWrapperRef = useDOMRef<HTMLDivElement>(null)
@@ -47,18 +48,20 @@ const DialogTrigger = React.forwardRef<HTMLDivElement, DialogTriggerProps>(
       handleClose?.()
     }
 
-    const classNames = [styles.wrapper, className, 'cdg-dialog-wrapper']
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.wrapper,
+      className,
+      'cdg-dialog-trigger',
+    )
 
     return (
       <Portal open={isOpen}>
         <CssInjection css={css}>
           <div
-            ref={dialogWrapperRef}
-            onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
-            className={classNames}
             {...htmlProps}
+            ref={dialogWrapperRef}
+            className={rootClasses}
+            onClick={(e) => handleClickBackdrop?.(e as unknown as MouseEvent)}
           >
             {DialogElement &&
               React.cloneElement(DialogElement as unknown as JSX.Element, {

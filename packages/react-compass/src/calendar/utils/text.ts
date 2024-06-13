@@ -45,9 +45,7 @@ export function restoreTextSelection(target: FocusableElement | null) {
         // Avoid race conditions
         if (state === 'restoring') {
           if (document.documentElement.style.webkitUserSelect === 'none') {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             document.documentElement.style.webkitUserSelect =
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               savedUserSelect || ''
           }
 
@@ -63,7 +61,6 @@ export function restoreTextSelection(target: FocusableElement | null) {
       const targetOldUserSelect = modifiedElementMap.get(target)
 
       if (target.style.userSelect === 'none') {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         target.style.userSelect = targetOldUserSelect
       }
 

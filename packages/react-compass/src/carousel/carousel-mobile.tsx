@@ -10,6 +10,7 @@ import {
   SocicalIcon,
 } from './carousel.const'
 
+import {classNames} from '../utils/string'
 import CarouselSlide from './carousel-slide'
 import styles from './styles/carousel.module.css'
 
@@ -46,10 +47,6 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     onSwitchSlide(index)
   }
 
-  const generateButtonRangeClassName = () => {
-    return data[activeIndex]?.buttons?.length || 0
-  }
-
   const slideTitle = () => {
     return data[activeIndex]?.title || ''
   }
@@ -62,9 +59,11 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     <CssInjection css={css} childrenRef={wrapperRef}>
       <div
         {...htmlProps}
-        className={`content-slider-mobile-mode${
-          floatingContent ? ' floating-content' : ''
-        } ${styles.contentSliderMobileMode}`}
+        className={classNames(
+          styles.contentSliderMobileMode,
+          floatingContent && 'floating-content',
+          'cdg-content-slider-mobile-mode',
+        )}
       >
         <CarouselSlider
           onSwitchSlide={handleSwitchSlide}
@@ -74,43 +73,64 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
           navigationButtonType={navigationButtonType}
           useDotIndicator={useDotIndicator}
           effect='slide'
-          className={`current-slide-buttons-${generateButtonRangeClassName()}`}
+          className={`cdg-carousel-mobile-current-slide-buttons-${
+            data[activeIndex]?.buttons?.length || 0
+          }`}
         >
           {data.map((dataItem: CarouselSliderItem, index: number) => (
             <CarouselSlide
               key={index}
-              className={`slider-slide mobile-mode${
-                activeIndex === index ? ' active' : ''
-              } ${styles.mobileModeSlide}`}
+              className={classNames(
+                styles.mobileModeSlide,
+                activeIndex === index && 'active',
+                'mobile-mode',
+                'cdg-carousel-mobile-slide',
+              )}
               active={activeIndex === index}
             >
               {dataItem.mask && (
                 <div
-                  className={`slide-mask ${styles.slideMask}`}
+                  className={classNames(
+                    styles.slideMask,
+                    'cdg-carousel-mobile-slide-mask',
+                  )}
                   style={{background: `rgba(0,0,0,${dataItem.mask})`}}
                 />
               )}
               <div
-                className={`carousel-mobile-inner-content ${styles.mobileInnerContent}`}
+                className={classNames(
+                  styles.mobileInnerContent,
+                  'cdg-carousel-mobile-inner-content',
+                )}
               >
                 <img
-                  className='slide-background'
+                  className='cdg-carousel-mobile-inner-content-image'
                   src={dataItem.image}
                   draggable={false}
                 />
                 {floatingContent ? (
                   <div
-                    className={`slide-body ${styles.slideBody} ${
-                      floatingContent ? dataItem.alignment || '' : ''
-                    } ${styles.floatingContent}`}
+                    className={classNames(
+                      styles.slideBody,
+                      styles.floatingContent,
+                      floatingContent && dataItem.alignment,
+                      'mobile-mode',
+                      'cdg-carousel-mobile-inner-content-body',
+                    )}
                   >
                     <div
-                      className={`content-slider-title ${styles.contentSliderTitle}`}
+                      className={classNames(
+                        styles.contentSliderTitle,
+                        'cdg-carousel-mobile-inner-content-title',
+                      )}
                     >
                       {dataItem.title}
                     </div>
                     <div
-                      className={`content-slider-description ${styles.contentSliderDescription}`}
+                      className={classNames(
+                        styles.contentSliderDescription,
+                        'cdg-carousel-mobile-inner-content-description',
+                      )}
                     >
                       {dataItem.description}
                     </div>
@@ -125,15 +145,27 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
         {!floatingContent ? (
           <div
-            className={`slide-body ${styles.slideBody} ${styles.noneFloatingSlideBody}`}
+            className={classNames(
+              styles.slideBody,
+              styles.noneFloatingSlideBody,
+              'cdg-carousel-mobile-slide-body',
+            )}
           >
             <div
-              className={`content-slider-title ${styles.contentSliderTitle} ${styles.mobileContentSliderTitle}`}
+              className={classNames(
+                styles.contentSliderTitle,
+                styles.mobileContentSliderTitle,
+                'cdg-carousel-mobile-content-slider-title',
+              )}
             >
               {slideTitle()}
             </div>
             <div
-              className={`content-slider-description ${styles.contentSliderDescription} ${styles.mobileContentSliderDescription}`}
+              className={classNames(
+                styles.contentSliderDescription,
+                styles.mobileContentSliderDescription,
+                'cdg-carousel-mobile-content-slider-description',
+              )}
             >
               {slideDescription()}
             </div>
@@ -143,16 +175,22 @@ const CarouselMobile = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
         )}
         {buttons && (
           <div
-            className={`slide-mobile-buttons ${styles.slideButtonRow} ${styles.slideMobileButtonRow}`}
+            className={classNames(
+              styles.slideButtonRow,
+              styles.slideMobileButtonRow,
+              'cdg-carousel-mobile-slide-mobile-buttons',
+            )}
           >
             {buttons.map((button, index) => {
               return (
                 <Button
                   key={index}
                   variant={button.type}
-                  className={`${button.type} ${
-                    styles['mobile-' + button.type]
-                  }`}
+                  className={classNames(
+                    button.type,
+                    styles['mobile-' + button.type],
+                    'cdg-carousel-mobile-slide-mobile-button',
+                  )}
                   onPress={() => {
                     if (button.callback) {
                       button.callback()

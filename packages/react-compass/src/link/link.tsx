@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/link.module.css'
 
@@ -33,16 +34,16 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
     <>
       <CssInjection css={css}>
         <a
-          className={styles.link}
-          ref={linkRef}
+          {...htmlProps}
           href={href}
+          role='link'
+          tabIndex={0}
+          ref={linkRef}
+          className={classNames(styles.link, 'cdg-link')}
           target={target || (external ? '_blank' : undefined)}
           rel={
             target === '_blank' || external ? 'noopener noreferrer' : undefined
           }
-          {...htmlProps}
-          role='link'
-          tabIndex={0}
         >
           {children}
         </a>

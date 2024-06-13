@@ -8,7 +8,6 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import {useMemo, useRef, useState} from 'react'
 import {
   Calendar,
@@ -49,7 +48,6 @@ interface VisibleDuration {
 function unitDuration(duration: DateDuration) {
   const unit = {...duration}
   for (const key in duration) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     unit[key] = 1
   }
   return unit
@@ -165,7 +163,7 @@ export const useCalendarState = (
     }
 
     return startDate.add(duration)
-  }, [startDate])
+  }, [startDate, visibleDuration])
 
   const lastCalendarIdentifier = useRef(calendar.identifier)
   if (calendar.identifier !== lastCalendarIdentifier.current) {
@@ -207,7 +205,6 @@ export const useCalendarState = (
       // Emit dates in the same calendar as the original value, if any, otherwise gregorian.
       newValue = toCalendar(
         newValue,
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         value?.calendar ?? (new GregorianCalendar() as Calendar),
       )
 
@@ -240,7 +237,6 @@ export const useCalendarState = (
   return {
     isDisabled: props.isDisabled ?? false,
     isReadOnly: props.isReadOnly ?? false,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     value: calendarDateValue,
     setValue,
     visibleRange: {

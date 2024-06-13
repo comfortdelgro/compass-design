@@ -1,7 +1,7 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DialogActions from './dialog-actions'
 import DialogDescription from './dialog-description'
@@ -47,28 +47,19 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
   const LastFocusableRef = React.useRef<HTMLElement | null>(null)
 
   // Pick title child component
-  const {child: DialogTitleElement} = pickChild<typeof DialogTitle>(
-    children,
-    DialogTitle,
-  )
+  const {child: DialogTitleElement} = pickChild(children, DialogTitle)
 
   // Pick description child component
-  const {child: DialogDescriptionElement} = pickChild<typeof DialogDescription>(
+  const {child: DialogDescriptionElement} = pickChild(
     children,
     DialogDescription,
   )
 
   // Pick action child component
-  const {child: DialogActionsElement} = pickChild<typeof DialogActions>(
-    children,
-    DialogActions,
-  )
+  const {child: DialogActionsElement} = pickChild(children, DialogActions)
 
   // Pick icon child component
-  const {child: DialogIconElement} = pickChild<typeof DialogIcon>(
-    children,
-    DialogIcon,
-  )
+  const {child: DialogIconElement} = pickChild(children, DialogIcon)
 
   // Handle click on the modal
   const handleClick = (e: MouseEvent) => {
@@ -156,34 +147,30 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
         }
       }
     }
-  }, [DialogRef, FirstFocusableRef, LastFocusableRef])
+  }, [DialogRef, FirstFocusableRef, LastFocusableRef, triggerId])
 
-  const dialogClassNames = [
+  const dialogClasses = classNames(
     styles.dialog,
     variant && styles['dialog' + capitalizeFirstLetter(variant)],
     className,
     'cdg-dialog-container',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
-  const contentClassNames = [styles.content, 'cdg-dialog-content']
-    .filter(Boolean)
-    .join(' ')
+  const contentClasses = classNames(styles.content, 'cdg-dialog-content')
 
   return (
     <CssInjection css={css}>
       <div
+        {...htmlProps}
         ref={DialogRef}
         tabIndex={0}
         role='dialog'
         aria-modal={true}
         onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
         onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
-        {...htmlProps}
-        className={dialogClassNames}
+        className={dialogClasses}
       >
-        <div tabIndex={0} className={contentClassNames}>
+        <div tabIndex={0} className={contentClasses}>
           {variant == 'alert' ? DialogIconElement : null}
           {DialogTitleElement}
           {DialogDescriptionElement}
@@ -192,12 +179,12 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
-
-export default Dialog as typeof Dialog & {
+}) as typeof Dialog & {
   Trigger: typeof DialogTrigger
   Title: typeof DialogTitle
   Description: typeof DialogDescription
   Actions: typeof DialogActions
   Icon: typeof DialogIcon
 }
+
+export default Dialog

@@ -158,12 +158,12 @@ const NaturalDrawerWrapper = forwardRef<HTMLDivElement, NaturalDrawerProps>(
       <div
         ref={wrapperRef}
         className={classNames(
-          className,
-          `natural-drawer-wrapper`,
-          styles[type],
           styles.naturalDrawerWrapper,
+          styles[type],
           fullscreen ? styles.fullscreen : '',
           lastTop >= distance ? classNames('maximized', styles.maximized) : '',
+          className,
+          `cdg-natural-drawer`,
         )}
         onScroll={handleScroll}
         style={{
@@ -176,7 +176,12 @@ const NaturalDrawerWrapper = forwardRef<HTMLDivElement, NaturalDrawerProps>(
         {...rest}
       >
         {fixedContent && (
-          <div className={classNames('fixed-content', styles.fixedContent)}>
+          <div
+            className={classNames(
+              styles.fixedContent,
+              'cdg-natural-drawer-fixed-content',
+            )}
+          >
             {fixedContent}
           </div>
         )}
@@ -184,8 +189,8 @@ const NaturalDrawerWrapper = forwardRef<HTMLDivElement, NaturalDrawerProps>(
           <div
             ref={pullDownRef}
             className={classNames(
-              'natural-drawer-stop',
               styles.naturalDrawerStop,
+              'cdg-natural-drawer-stop',
             )}
             style={{
               height: `calc(100% - ${getStopHeight()})`,
@@ -199,8 +204,8 @@ const NaturalDrawerWrapper = forwardRef<HTMLDivElement, NaturalDrawerProps>(
             <div
               ref={spaceRef}
               className={classNames(
-                'natural-drawer-stop',
                 styles.naturalDrawerStop,
+                'cdg-natural-drawer-stop',
               )}
               style={{
                 height: getStopHeight(),

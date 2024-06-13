@@ -1,6 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/spinner.module.css'
 
@@ -37,45 +37,63 @@ const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
   return (
     <CssInjection css={css} childrenRef={spinnerRef}>
       <div
+        {...htmlProps}
         tabIndex={-1}
         ref={spinnerRef}
-        className={`cdg-spinner ${styles.spinner} ${
-          size ? styles[capitalizeFirstLetter(size)] : ''
-        } ${className}`}
-        {...htmlProps}
+        className={classNames(
+          styles.spinner,
+          size && styles[capitalizeFirstLetter(size)],
+          className,
+          'cdg-spinner',
+        )}
       >
         <div
-          className={`cdg-spinner-ring ${styles.ring} ${toSpinnerClassName(
-            'ring',
-          )}`}
+          className={classNames(
+            styles.ring,
+            toSpinnerClassName('ring'),
+            'cdg-spinner-ring',
+          )}
           tabIndex={-1}
         >
           <div
-            className={`cdg-spinner-bg ${styles.bg} ${toSpinnerClassName(
-              'bg',
-            )}`}
+            className={classNames(
+              styles.bg,
+              toSpinnerClassName('bg'),
+              'cdg-spinner-bg',
+            )}
           />
           <div
-            className={`cdg-spinner-segment ${
-              styles.segment
-            } ${toSpinnerClassName('segment')} ${styles.segment1}`}
+            className={classNames(
+              styles.segment,
+              styles.segment1,
+              toSpinnerClassName('segment'),
+              'cdg-spinner-segment',
+            )}
           />
           <div
-            className={`cdg-spinner-segment ${
-              styles.segment
-            } ${toSpinnerClassName('segment')} ${styles.segment2}`}
+            className={classNames(
+              styles.segment,
+              styles.segment2,
+              toSpinnerClassName('segment'),
+              'cdg-spinner-segment',
+            )}
           />
           <div
-            className={`cdg-spinner-segment ${
-              styles.segment
-            } ${toSpinnerClassName('segment')} ${styles.segment3}`}
+            className={classNames(
+              styles.segment,
+              styles.segment3,
+              toSpinnerClassName('segment'),
+              'cdg-spinner-segment',
+            )}
           />
         </div>
         {labelText ? (
           <div
-            className={`cdg-spinner-label ${styles.label} ${toSpinnerClassName(
-              'label',
-            )}`}
+            className={classNames(
+              styles.label,
+              toSpinnerClassName('label'),
+              'cdg-spinner-label',
+            )}
           >
             {labelText}
           </div>

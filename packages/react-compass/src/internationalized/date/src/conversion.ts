@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-semi */
 /**
  * This file contains code adapted from the React Spectrum project.
  *

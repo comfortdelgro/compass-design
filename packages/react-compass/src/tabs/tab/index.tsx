@@ -5,6 +5,7 @@ import {
   useKeyboardNavigationState,
 } from '../../utils/hooks'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import {TabItemProps} from '../item'
 import styles from '../styles/tab.module.css'
@@ -48,11 +49,11 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
     const tabRef = useDOMRef<HTMLDivElement>(ref)
     const isSelected = React.useMemo(
       () => currentKey === item.key,
-      [currentKey],
+      [currentKey, item.key],
     )
     const isDisabledItem = React.useMemo(
       () => (item.key ? [...disabledKeys].includes(item.key) : false),
-      [disabledKeys],
+      [disabledKeys, item.key],
     )
     const disabledState = isDisabled || isDisabledItem
 
@@ -77,33 +78,29 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
     }
 
     const mergeRef = useMergeRefs([tabRef, register])
-    const tabClassName = [
-      `cdg-tab-item-wrapper`,
+    const tabClassName = classNames(
       styles.tab,
       styles[`icon${icon.charAt(0).toUpperCase() + icon.slice(1)}`],
       styles[`${variant}`],
       styles[`active${isSelected ? 'True' : 'False'}`],
-      styles[`disabled${!!disabledState ? 'True' : 'False'}`],
-      styles[variant + `Disabled${!!disabledState ? 'True' : 'False'}`],
-      styles[variant + `Active${!!isSelected ? 'True' : 'False'}`],
-    ]
-      .filter(Boolean)
-      .join(' ')
+      styles[`disabled${disabledState ? 'True' : 'False'}`],
+      styles[variant + `Disabled${disabledState ? 'True' : 'False'}`],
+      styles[variant + `Active${isSelected ? 'True' : 'False'}`],
+      `cdg-tab-item-wrapper`,
+    )
 
-    const tabIconClassName = [
-      `cdg-tab-icon`,
+    const tabIconClassName = classNames(
       styles.icon,
       styles[`icon${icon.charAt(0).toUpperCase() + icon.slice(1)}Icon`],
       variant && styles[variant + `Icon`],
       variant &&
         disabledState &&
-        styles[variant + `Disabled${!!disabledState ? 'True' : 'False'}Icon`],
+        styles[variant + `Disabled${disabledState ? 'True' : 'False'}Icon`],
       variant &&
         isSelected &&
-        styles[variant + `Active${!!isSelected ? 'True' : 'False'}Icon`],
-    ]
-      .filter(Boolean)
-      .join(' ')
+        styles[variant + `Active${isSelected ? 'True' : 'False'}Icon`],
+      `cdg-tab-icon`,
+    )
 
     // legacy, users are advised to use className styling for customization
     const customCss = {
@@ -116,11 +113,6 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
           color: `${textColor}`,
         },
       },
-      [styles.h5]: {
-        '&:focus-visible': {
-          boxShadow: `0px -2px ${indicatorColor}`,
-        },
-      },
       [styles.simpleActiveTrue]: {
         borderBottom: `${indicatorColor} 2px solid`,
         color: `${textColor}`,
@@ -131,9 +123,6 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
           fill: `${textColor}`,
         },
       },
-      [styles.h5ActiveTrueIcon]: {
-        backgroundColor: `${textColor}`,
-      },
       [styles.rounded]: {
         color: `${textColor}`,
       },
@@ -143,7 +132,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       [styles.activeTrue]: {
         backgroundColor: `${textColor}`,
       },
-      ...(css as Object),
+      ...css,
     }
 
     return (
@@ -162,7 +151,7 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
         >
           {title}
           {icon !== 'none' && (
-            <div className={`${tabIconClassName}`}>
+            <div className={tabIconClassName}>
               {disabledState ? <DisableIcon /> : <TickIcon />}
             </div>
           )}

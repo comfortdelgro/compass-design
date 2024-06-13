@@ -1,6 +1,7 @@
 import React from 'react'
 import {CSS} from '../../utils'
 import CssInjection from '../../utils/objectToCss/CssInjection'
+import {classNames} from '../../utils/string'
 import styles from '../styles/card.module.css'
 
 interface Props {
@@ -14,9 +15,11 @@ const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
   (props, ref) => {
     const {css = {}, className, children} = props
 
-    const rootClasses = [styles.body, className, 'cdg-announcement-card-body']
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.body,
+      className,
+      'cdg-announcement-card-body',
+    )
 
     return (
       <CssInjection css={css}>

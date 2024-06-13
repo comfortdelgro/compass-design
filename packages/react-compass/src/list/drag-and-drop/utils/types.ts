@@ -17,6 +17,7 @@ export interface IProps {
     React.DetailedReactHTMLElement<DragAndDropListItemProps, HTMLElement>
   >
   onChange: (meta: {oldIndex: number; newIndex: number}) => void
+  children: React.ReactNode
 }
 
 export type TEvent = React.MouseEvent | React.TouchEvent | React.KeyboardEvent

@@ -1,6 +1,7 @@
 import React from 'react'
 import Transitions from '../../transitions'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from '../styles/table-expandable-row.module.css'
 
@@ -19,13 +20,11 @@ const ExpandableRow = React.forwardRef<HTMLTableRowElement, ExpandableRowProps>(
 
     const rowRef = useDOMRef<HTMLTableRowElement>(ref)
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.cdgTableExpandableRow,
       className,
       'cdg-table-expandable-cell',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css}>

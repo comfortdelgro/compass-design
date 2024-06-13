@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {useId} from '../utils/useId'
 import styles from './styles/quantity-toggle.module.css'
@@ -52,64 +53,37 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
       onUpdate?.(state.inputValue, state.numberValue)
     }, [state.numberValue, state.inputValue, onUpdate])
 
-    const rootClass = React.useMemo(
-      () =>
-        [
-          styles.quantityToggleWrapper,
-          !!inputProps.disabled && styles.quantityToggleWrapperIsDisabled,
-          'cdg-quantity-toggle-root',
-          className,
-        ]
-          .filter(Boolean)
-          .join(' '),
-      [className, inputProps.disabled],
+    const rootClass = classNames(
+      styles.quantityToggleWrapper,
+      !!inputProps.disabled && styles.quantityToggleWrapperIsDisabled,
+      className,
+      'cdg-quantity-toggle',
     )
 
-    const quantityToggleClass = React.useMemo(
-      () =>
-        [
-          styles.quantityToggle,
-          isErrored && styles.quantityToggleIsErrored,
-          'cdg-quantity-toggle',
-          className,
-        ]
-          .filter(Boolean)
-          .join(' '),
-      [className, isErrored],
+    const quantityToggleClass = classNames(
+      styles.quantityToggle,
+      isErrored && styles.quantityToggleIsErrored,
+      'cdg-quantity-toggle-content',
     )
-    const inputClass = React.useMemo(
-      () =>
-        [
-          styles.quantityToggleInput,
-          !!inputProps.disabled && styles.quantityToggleInputIsDisabled,
-          isErrored && styles.quantityToggleInputIsErrored,
-          'cdg-quantity-toggle-input',
-        ]
-          .filter(Boolean)
-          .join(' '),
-      [inputProps.disabled, isErrored],
+    const inputClass = classNames(
+      styles.quantityToggleInput,
+      !!inputProps.disabled && styles.quantityToggleInputIsDisabled,
+      isErrored && styles.quantityToggleInputIsErrored,
+      'cdg-quantity-toggle-input',
     )
 
-    const buttonClass = React.useMemo(
-      () =>
-        [
-          styles.quantityToggleButton,
-          !!inputProps.disabled && styles.quantityToggleButtonIsDisabled,
-          isErrored && styles.quantityToggleButtonIsErrored,
-          'cdg-quantity-toggle-button',
-        ]
-          .filter(Boolean)
-          .join(' '),
-      [inputProps.disabled, isErrored],
+    const buttonClass = classNames(
+      styles.quantityToggleButton,
+      !!inputProps.disabled && styles.quantityToggleButtonIsDisabled,
+      isErrored && styles.quantityToggleButtonIsErrored,
+      'cdg-quantity-toggle-button',
     )
 
-    const errorMessageClass = [
+    const errorMessageClass = classNames(
       styles.quantityToggleHelperText,
       styles.quantityToggleHelperTextIsErrored,
       'cdg-quantity-toggle-error-message',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css}>
@@ -117,12 +91,15 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
           {props.label && (
             <label
               htmlFor={toggleId}
-              className={`${styles.label} cdg-quantity-toggle-label`}
+              className={classNames(styles.label, 'cdg-quantity-toggle-label')}
             >
               {label}
               {isRequired && (
                 <span
-                  className={`${styles.asterix} cdg-quantity-toggle-asterix`}
+                  className={classNames(
+                    styles.asterix,
+                    'cdg-quantity-toggle-asterix',
+                  )}
                 >
                   *
                 </span>
@@ -134,10 +111,10 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
               -
             </button>
             <input
+              {...inputProps}
               id={toggleId}
               className={inputClass}
               ref={quantityToggleRef}
-              {...inputProps}
             />
             <button className={buttonClass} {...incrementButtonProps}>
               +
@@ -148,7 +125,10 @@ const QuantityToggle = React.forwardRef<HTMLInputElement, QuantityToggleProps>(
           )}
           {props.helperText && (
             <div
-              className={`${styles.quantityToggleHelperText} cdg-quantity-toggle-helper-text`}
+              className={classNames(
+                styles.quantityToggleHelperText,
+                'cdg-quantity-toggle-helper-text',
+              )}
             >
               {props.helperText}
             </div>

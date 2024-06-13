@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/preview.module.css'
 
@@ -18,33 +19,33 @@ const FilePreview = React.forwardRef<HTMLDivElement, FilePreviewProps>(
     const previewRef = useDOMRef<HTMLDivElement>(ref)
     const [failed, setFailed] = React.useState(false)
 
-    const previewClasses = React.useMemo(
-      () =>
-        [
-          styles.preview,
-          !!imageSrc && !failed
-            ? styles.previewImageLoadedTrue
-            : styles.previewImageLoadedFalse,
-          'cdg-file-preview',
-          className,
-        ]
-          .filter(Boolean)
-          .join(' '),
-      [className, failed, imageSrc],
+    const previewClasses = classNames(
+      styles.preview,
+      !!imageSrc && !failed
+        ? styles.previewImageLoadedTrue
+        : styles.previewImageLoadedFalse,
+      className,
+      'cdg-file-preview',
     )
 
     return (
       <CssInjection css={css} childrenRef={previewRef}>
-        <div ref={previewRef} className={previewClasses} {...htmlProps}>
+        <div {...htmlProps} ref={previewRef} className={previewClasses}>
           <div
-            className={`${styles.imagePreviewWrapper} cdg-file-preview-image-wrapper`}
+            className={classNames(
+              styles.imagePreviewWrapper,
+              'cdg-file-preview-image-wrapper',
+            )}
           >
             {imageSrc && !failed ? (
               <img
                 alt='preview'
                 src={imageSrc}
                 onError={() => setFailed(true)}
-                className={`${styles.previewImage} cdg-file-preview-image`}
+                className={classNames(
+                  styles.previewImage,
+                  'cdg-file-preview-image',
+                )}
               />
             ) : imageSrc && failed ? (
               <Fallback />

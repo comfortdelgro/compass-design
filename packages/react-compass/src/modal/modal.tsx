@@ -1,6 +1,7 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ModalActions from './modal-actions'
 import ModalCloseIcon from './modal-closeIcon'
@@ -10,7 +11,6 @@ import ModalTrigger from './modal-trigger'
 import styles from './styles/modal.module.css'
 
 interface Props {
-  h5?: boolean
   children?: React.ReactNode
   handleClose?: () => void
   size?: 'sm' | 'md' | 'lg'
@@ -25,7 +25,6 @@ export type ModalProps = Props &
 
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const {
-    h5 = false,
     // StyledComponentProps
     css = {},
     // children
@@ -49,28 +48,16 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
   const CloseIconRef = React.useRef<HTMLButtonElement | null>(null)
 
   // Pick title child component
-  const {child: ModalTitleElement} = pickChild<typeof ModalTitle>(
-    children,
-    ModalTitle,
-  )
+  const {child: ModalTitleElement} = pickChild(children, ModalTitle)
 
   // Pick description child component
-  const {child: ModalDescriptionElement} = pickChild<typeof ModalDescription>(
-    children,
-    ModalDescription,
-  )
+  const {child: ModalDescriptionElement} = pickChild(children, ModalDescription)
 
   // Pick action child component
-  const {child: ModalActionsElement} = pickChild<typeof ModalActions>(
-    children,
-    ModalActions,
-  )
+  const {child: ModalActionsElement} = pickChild(children, ModalActions)
 
   // Pick modal close icon
-  const {child: CloseIconElement} = pickChild<typeof ModalCloseIcon>(
-    children,
-    ModalCloseIcon,
-  )
+  const {child: CloseIconElement} = pickChild(children, ModalCloseIcon)
 
   // Handle click on the modal
   const handleClick = (e: MouseEvent) => {
@@ -168,37 +155,30 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
         }
       }
     }
-  }, [ModalRef, FirstFocusableRef, LastFocusableRef])
+  }, [ModalRef, FirstFocusableRef, LastFocusableRef, triggerId])
 
-  const modalClassNames = [
-    className,
-    'cdg-modal-container',
+  const modalClassNames = classNames(
     styles.modal,
     size && styles[size],
-    h5 && styles.h5,
-  ]
-    .filter(Boolean)
-    .join(' ')
+    className,
+    'cdg-modal-container',
+  )
 
-  const contentClassNames = ['cdg-modal-content', styles.content]
-    .filter(Boolean)
-    .join(' ')
+  const contentClassNames = classNames(styles.content, 'cdg-modal-content')
 
-  const headerClassNames = ['cdg-modal-header', styles.header]
-    .filter(Boolean)
-    .join(' ')
+  const headerClassNames = classNames(styles.header, 'cdg-modal-header')
 
   return (
     <CssInjection css={css}>
       <div
+        {...htmlProps}
         ref={ModalRef}
         tabIndex={0}
         role='dialog'
         aria-modal={true}
+        className={modalClassNames}
         onClick={(e) => handleClick?.(e as unknown as MouseEvent)}
         onKeyDown={(e) => handleKeyDown?.(e as unknown as KeyboardEvent)}
-        className={modalClassNames}
-        {...htmlProps}
       >
         <div tabIndex={0} className={contentClassNames}>
           <div className={headerClassNames}>
@@ -216,12 +196,12 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
-
-export default Modal as typeof Modal & {
+}) as typeof Modal & {
   Trigger: typeof ModalTrigger
   Title: typeof ModalTitle
   Description: typeof ModalDescription
   Actions: typeof ModalActions
   CloseIcon: typeof ModalCloseIcon
 }
+
+export default Modal

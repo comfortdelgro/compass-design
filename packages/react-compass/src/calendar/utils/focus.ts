@@ -1,9 +1,3 @@
-import {Tree} from './tree'
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {FocusEvent as ReactFocusEvent, RefObject} from 'react'
 import {
   FOCUSABLE_ELEMENT_SELECTOR,
@@ -20,6 +14,7 @@ import {
 } from '../types'
 import {isAndroid} from './platform'
 import {runAfterTransition} from './text'
+import {Tree} from './tree'
 
 let supportsPreventScrollCached: boolean | null = null
 
@@ -119,9 +114,8 @@ function isStyleVisible(element: Element) {
     display !== 'none' && visibility !== 'hidden' && visibility !== 'collapse'
 
   if (isVisible) {
-    // @ts-ignore
     const {getComputedStyle} = element.ownerDocument.defaultView
-    // @ts-ignore
+
     const {display: computedDisplay, visibility: computedVisibility} =
       getComputedStyle(element)
 
@@ -144,10 +138,7 @@ function isAttributeVisible(element: Element, childElement?: Element) {
       : true)
   )
 }
-
-// @ts-ignore
 export function isElementVisible(element: Element, childElement?: Element) {
-  // @ts-ignore
   return (
     element.nodeName !== '#comment' &&
     isStyleVisible(element) &&
@@ -162,7 +153,6 @@ export function isElementInScope(element: Element, scope: Element[]) {
 
 export function isElementInChildScope(
   element: Element,
-  // @ts-ignore
   scope: ScopeRef = null,
 ) {
   if (
@@ -177,7 +167,6 @@ export function isElementInChildScope(
   for (const {scopeRef: s} of focusScopeTree.traverse(
     focusScopeTree.getTreeNode(scope),
   )) {
-    // @ts-ignore
     if (isElementInScope(element, s.current)) {
       return true
     }
@@ -224,7 +213,6 @@ export function getFocusableTreeWalker(
 const currentModality = null
 
 export function getInteractionModality(): Modality {
-  // @ts-ignore
   return currentModality
 }
 
@@ -270,7 +258,6 @@ function last(walker: TreeWalker) {
       next = last
     }
   } while (last)
-  // @ts-ignore
   return next
 }
 
@@ -279,7 +266,6 @@ export function createFocusManager(
   defaultOptions: FocusManagerOptions = {},
 ): FocusManager {
   return {
-    // @ts-ignore
     focusNext(opts: FocusManagerOptions = {}) {
       const root = ref.current
       if (!root) {
@@ -292,10 +278,9 @@ export function createFocusManager(
         accept = defaultOptions.accept,
       } = opts
       const node = from || document.activeElement
-      // @ts-ignore
+
       const walker = getFocusableTreeWalker(root, {tabbable, accept})
       if (root.contains(node)) {
-        // @ts-ignore
         walker.currentNode = node
       }
       let nextNode = walker.nextNode() as FocusableElement
@@ -308,7 +293,7 @@ export function createFocusManager(
       }
       return nextNode
     },
-    // @ts-ignore
+
     focusPrevious(opts: FocusManagerOptions = defaultOptions) {
       const root = ref.current
       if (!root) {
@@ -321,10 +306,9 @@ export function createFocusManager(
         accept = defaultOptions.accept,
       } = opts
       const node = from || document.activeElement
-      // @ts-ignore
+
       const walker = getFocusableTreeWalker(root, {tabbable, accept})
       if (root.contains(node)) {
-        // @ts-ignore
         walker.currentNode = node
       } else {
         const next = last(walker)
@@ -343,7 +327,7 @@ export function createFocusManager(
       }
       return previousNode
     },
-    // @ts-ignore
+
     focusFirst(opts = defaultOptions) {
       const root = ref.current
       if (!root) {
@@ -353,7 +337,7 @@ export function createFocusManager(
         tabbable = defaultOptions.tabbable,
         accept = defaultOptions.accept,
       } = opts
-      // @ts-ignore
+
       const walker = getFocusableTreeWalker(root, {tabbable, accept})
       const nextNode = walker.nextNode() as FocusableElement
       if (nextNode) {
@@ -361,7 +345,7 @@ export function createFocusManager(
       }
       return nextNode
     },
-    // @ts-ignore
+
     focusLast(opts = defaultOptions) {
       const root = ref.current
       if (!root) {
@@ -371,7 +355,7 @@ export function createFocusManager(
         tabbable = defaultOptions.tabbable,
         accept = defaultOptions.accept,
       } = opts
-      // @ts-ignore
+
       const walker = getFocusableTreeWalker(root, {tabbable, accept})
       const next = last(walker)
       if (next) {
@@ -429,18 +413,15 @@ export class SyntheticFocusEvent<Target = Element>
     return false
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   persist() {}
 }
 
 export function getScrollParent(node: Element): Element {
   if (isScrollable(node)) {
-    // @ts-ignore
     node = node.parentElement
   }
 
   while (node && !isScrollable(node)) {
-    // @ts-ignore
     node = node.parentElement
   }
 

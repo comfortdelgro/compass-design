@@ -14,7 +14,7 @@ import {
 } from '@tanstack/react-table'
 import TableToolbar from './table-toolbar'
 
-import _Table from './table'
+import Table from './table'
 import TableCheckboxCell from './table-checkbox-cell'
 import TableFooter from './table-footer'
 import ProgressPercentage from './table-progress'
@@ -26,13 +26,6 @@ export type {TableProps} from './table'
 export type {TableFooterProps as ReactTableFooterProps} from './table-footer'
 export type {TableToolbarProps as ReactTableToolbarProps} from './table-toolbar'
 export type {OptionType} from './utils/types'
-
-const Table = _Table as typeof Table & {
-  Toolbar: typeof TableToolbar
-  Footer: typeof TableFooter
-  CheckboxCell: typeof TableCheckboxCell
-  ProgressPercentage: typeof ProgressPercentage
-}
 
 Table.Footer = TableFooter
 Table.Toolbar = TableToolbar

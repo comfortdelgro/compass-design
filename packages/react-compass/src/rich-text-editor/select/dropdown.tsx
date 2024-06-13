@@ -9,12 +9,13 @@ import {
 } from '@floating-ui/react'
 import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
+import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
 import styles from '../styles/dropdown.module.css'
 import DropdownItem, {DropdownItemProps} from './item'
 import ListBox from './list-box'
 import Popover from './popover'
-import {getDefaultValue, Icon, ListKeyboardDelegate, pickChilds} from './utils'
+import {getDefaultValue, ListKeyboardDelegate, pickChilds} from './utils'
 
 interface Props {
   isDisabled?: boolean
@@ -186,16 +187,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     setFocusKey(currentKey)
   }
 
-  const dropdownClasses = React.useMemo(() => {
-    return [
-      styles.rteDropdown,
-      !selectedItem && styles.isEmpty,
-      isDisabled && styles.isDisabled,
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ')
-  }, [className, isDisabled, selectedItem])
+  const dropdownClasses = classNames(
+    styles.rteDropdown,
+    !selectedItem && styles.isEmpty,
+    isDisabled && styles.isDisabled,
+    className,
+  )
 
   // ====================================== RENDER ======================================
   return (
@@ -220,7 +217,12 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
                 : selectedItem.props.children
               : placeholder}
           </span>
-          <Icon />
+          <svg width='16' height='16' viewBox='0 0 16 16'>
+            <path
+              d='M8.33276 12.3334C8.02004 12.3334 7.70717 12.2125 7.46885 11.9707L1.35805 5.78022C0.880649 5.29658 0.880649 4.5131 1.35805 4.02947C1.83546 3.54584 2.60886 3.54584 3.08626 4.02947L8.33276 9.34651L13.5804 4.03044C14.0578 3.54681 14.8312 3.54681 15.3086 4.03044C15.786 4.51407 15.786 5.29755 15.3086 5.78118L9.19782 11.9717C8.95912 12.2135 8.64594 12.3334 8.33276 12.3334Z'
+              fill='currentColor'
+            />
+          </svg>
         </button>
         {collection && open && (
           <FloatingPortal>
@@ -259,8 +261,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
-
-export default Select as typeof Select & {
+}) as typeof Select & {
   Item: typeof DropdownItem
 }
+
+export default Select

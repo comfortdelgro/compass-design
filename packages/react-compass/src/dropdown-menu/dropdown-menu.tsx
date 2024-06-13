@@ -3,6 +3,7 @@ import React, {useCallback, useEffect, useRef, useState} from 'react'
 import Popover from '../popover'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DropdownMenuContext, {
   DropdownMenuContextType,
@@ -39,11 +40,12 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
     const dropdownRef = useDOMRef<HTMLDivElement>(ref)
 
     // Pick child element from children props
-    const {child: DropdownMenuToggleElement} = pickChild<
-      typeof DropdownMenuToggle
-    >(children, DropdownMenuToggle)
+    const {child: DropdownMenuToggleElement} = pickChild(
+      children,
+      DropdownMenuToggle,
+    )
 
-    const {child: DropdownMenuMenuElement} = pickChild<typeof DropdownMenuMenu>(
+    const {child: DropdownMenuMenuElement} = pickChild(
       children,
       DropdownMenuMenu,
     )
@@ -71,7 +73,7 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
       setOpen(false)
       onOpenChange?.(false)
       onClose?.()
-    }, [])
+    }, [onClose, onOpenChange])
 
     useEffect(() => {
       if (!open) {
@@ -141,12 +143,12 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
     return (
       <CssInjection css={css} childrenRef={dropdownRef}>
         <div
+          {...delegated}
+          role='menu'
           ref={dropdownRef}
           onKeyDown={handleKeyDown}
-          role='menu'
           aria-labelledby={props['aria-labelledby']}
-          className={`${styles.dropdownMenu} cdg-dropdown-menu`}
-          {...delegated}
+          className={classNames(styles.dropdownMenu, 'cdg-dropdown-menu')}
         >
           <DropdownMenuContext.Provider value={contextValue}>
             <Popover
@@ -162,11 +164,11 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
       </CssInjection>
     )
   },
-)
-
-export default DropdownMenu as typeof DropdownMenu & {
+) as typeof DropdownMenu & {
   Toggle: typeof DropdownMenuToggle
   Item: typeof DropdownMenuItem
   Submenu: typeof DropdownMenuSubmenu
   Menu: typeof DropdownMenuMenu
 }
+
+export default DropdownMenu

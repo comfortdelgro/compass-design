@@ -1,6 +1,7 @@
 import React, {HTMLAttributes} from 'react'
 import Spinner from '../spinner'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-loading.module.css'
 
@@ -24,9 +25,11 @@ const TableLoading = React.forwardRef<HTMLTableRowElement, TableLoadingProps>(
     } = props
     const tableLoadingRef = useDOMRef(ref)
 
-    const rootClasses = [styles.cdgTableLoading, className, 'cdg-table-loading']
-      .filter(Boolean)
-      .join(' ')
+    const rootClasses = classNames(
+      styles.cdgTableLoading,
+      className,
+      'cdg-table-loading',
+    )
 
     return (
       <CssInjection css={css}>

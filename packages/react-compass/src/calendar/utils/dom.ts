@@ -1,9 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
-
 import {AriaLabelingProps, DOMProps} from '../types'
 
 interface Options {
@@ -31,12 +25,10 @@ export function filterDOMProps(
     if (
       Object.prototype.hasOwnProperty.call(props, prop) &&
       (DOMPropNames.has(prop) ||
-        // @ts-ignore
-        (labelable && labelablePropNames.has(prop)) ||
+        labelable ||
         propNames?.has(prop) ||
         propRe.test(prop))
     ) {
-      // @ts-ignore
       filteredProps[prop] = props[prop]
     }
   }

@@ -1,22 +1,21 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/unbound-method */
 import React, {useRef} from 'react'
 import {ButtonProps} from '../button'
-import Calendar, {CalendarProps} from '../calendar/calendar'
+import Calendar from '../calendar/calendar'
 import DateField from '../calendar/components/date-field'
-import Dialog from '../calendar/components/dialog'
-import Popover from '../calendar/components/popover'
 import {useDatePicker} from '../calendar/hooks/useDatePicker'
 import {useDatePickerState} from '../calendar/hooks/useDatePickerState'
 import {
   AriaDatePickerProps,
-  AriaDialogProps,
+  CalendarProps,
   DatePickerState,
   DOMAttributes,
   SpectrumDatePickerProps,
 } from '../calendar/types'
 import {DateValue, parseDate} from '../internationalized/date'
+import Popover from '../popover'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import DatePickerProvider from './date-picker-context'
 import styles from './styles/date-picker.module.css'
@@ -33,24 +32,30 @@ interface Props extends SpectrumDatePickerProps<DateValue> {
   ctaButtonRender?: React.ReactNode
 }
 
-export type DatePickerProps = Props
+export type DatePickerProps = Props &
+  Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
 
-const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {css = {}, maxValue = parseDate('2999-03-10'), ctaButtonRender} = props
-  const state = useDatePickerState({
-    ...props,
-    // mobile styles: prevent date field from user input, click on any place in date field will open calendar
-    // to achieve that, i use isReadonly=true on datefield and isReadonly=false on calendar
-    isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
-    shouldCloseOnSelect: props.granularity
-      ? true
-      : props.shouldCloseOnSelect ?? false,
-  })
+const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
+  (props, ref) => {
+    const {
+      css = {},
+      maxValue = parseDate('2999-03-10'),
+      ctaButtonRender,
+      className,
+    } = props
+    const state = useDatePickerState({
+      ...props,
+      // mobile styles: prevent date field from user input, click on any place in date field will open calendar
+      // to achieve that, i use isReadonly=true on datefield and isReadonly=false on calendar
+      isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
+      shouldCloseOnSelect: props.granularity
+        ? true
+        : props.shouldCloseOnSelect ?? false,
+    })
 
-  const calendarRef = useDOMRef(ref)
+    const calendarRef = useDOMRef(ref)
 
-  const {groupProps, fieldProps, buttonProps, dialogProps, calendarProps} =
-    useDatePicker(
+    const {groupProps, fieldProps, buttonProps, calendarProps} = useDatePicker(
       {
         ...props,
         isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
@@ -59,61 +64,77 @@ const DatePicker = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       calendarRef,
     )
 
-  const extendedFieldProps = {
-    necessityIndicator: props.necessityIndicator,
-    ...fieldProps,
-  }
+    const extendedFieldProps = {
+      necessityIndicator: props.necessityIndicator,
+      ...fieldProps,
+    }
 
-  // if in mobile, allow calendar to select date
+    // if in mobile, allow calendar to select date
 
-  const checkIfCalendarInMobile = () => {
-    if (props.isReadOnly) {
+    const checkIfCalendarInMobile = () => {
+      if (props.isReadOnly) {
+        return true
+      }
+      if (!props.isReadOnly && !props.isMobile) {
+        return false
+      }
+      if (props.isMobile) {
+        return false
+      }
       return true
     }
-    if (!props.isReadOnly && !props.isMobile) {
-      return false
-    }
-    if (props.isMobile) {
-      return false
-    }
-    return true
-  }
 
-  // @ts-ignore
-  calendarProps.isReadOnly = checkIfCalendarInMobile()
+    // @ts-ignore
+    calendarProps.isReadOnly = checkIfCalendarInMobile()
 
-  const datePickerRef = useRef(null)
+    const datePickerRef = useRef(null)
 
-  return (
-    <CssInjection css={css} childrenRef={datePickerRef}>
-      <div ref={datePickerRef} className={styles.datePicker}>
-        <DatePickerProvider>
-          <DatePickerFieldWrapper
-            ref={calendarRef}
-            groupProps={groupProps}
-            fieldProps={extendedFieldProps}
-            buttonProps={buttonProps as unknown as ButtonProps}
-            isInvalid={props.isInvalid}
-            isReadOnly={props.isReadOnly}
-            isMobile={props.isMobile}
-            label={props.label}
-            errorMessage={props.errorMessage}
-            helperText={props.helperText}
-          />
-          <DatePickerCalendarWrapper
-            maxValue={maxValue}
-            state={state}
-            calendarProps={calendarProps}
-            calendarRef={calendarRef}
-            dialogProps={dialogProps}
-            css={props.calendarCSS}
-            ctaButtonRender={ctaButtonRender}
-          />
-        </DatePickerProvider>
-      </div>
-    </CssInjection>
-  )
-})
+    const rootClasses = classNames(
+      styles.datePicker,
+      className,
+      'cdg-date-picker',
+    )
+
+    return (
+      <CssInjection css={css} childrenRef={datePickerRef}>
+        <div ref={datePickerRef} className={rootClasses}>
+          <DatePickerProvider>
+            <Popover
+              isOpen={state.isOpen}
+              anchor={
+                <DatePickerFieldWrapper
+                  ref={calendarRef}
+                  groupProps={groupProps}
+                  fieldProps={extendedFieldProps}
+                  buttonProps={buttonProps as unknown as ButtonProps}
+                  isInvalid={props.isInvalid}
+                  isReadOnly={props.isReadOnly}
+                  isMobile={props.isMobile}
+                  label={props.label}
+                  errorMessage={props.errorMessage}
+                  helperText={props.helperText}
+                />
+              }
+              css={{width: '100%'}}
+              direction='bottom-left'
+              onOpenChange={(open) => state.setOpen(open)}
+              onOutsidePress={() => state.close()}
+            >
+              <DatePickerCalendarWrapper
+                maxValue={maxValue}
+                state={state}
+                calendarProps={calendarProps}
+                calendarRef={calendarRef}
+                css={props.calendarCSS}
+                ctaButtonRender={ctaButtonRender}
+              />
+            </Popover>
+          </DatePickerProvider>
+        </div>
+      </CssInjection>
+    )
+  },
+)
 
 interface DatePickerFieldWrapperProps {
   groupProps: DOMAttributes
@@ -163,7 +184,6 @@ const DatePickerFieldWrapper = React.forwardRef<
 interface DatePickerCalendarWrapperProps {
   state: DatePickerState
   calendarRef: React.RefObject<HTMLDivElement>
-  dialogProps: AriaDialogProps
   calendarProps: CalendarProps
   onCancel?: (() => void) | undefined
   maxValue?: DateValue | null | undefined
@@ -174,8 +194,6 @@ interface DatePickerCalendarWrapperProps {
 const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
   const {
     state,
-    calendarRef,
-    dialogProps,
     calendarProps,
     maxValue = parseDate('2999-03-10'),
     ctaButtonRender,
@@ -183,32 +201,14 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
   } = props
 
   return (
-    <>
-      {state.isOpen && (
-        <Popover
-          state={state}
-          triggerRef={calendarRef}
-          offset={8}
-          placement='bottom start'
-        >
-          <Dialog
-            {...dialogProps}
-            aria-describedby={dialogProps['aria-describedby'] ?? ''}
-            aria-label={dialogProps['aria-label'] ?? ''}
-            aria-labelledby={dialogProps['aria-labelledby'] ?? ''}
-          >
-            <Calendar
-              state={state}
-              hasFooter={true}
-              {...calendarProps}
-              maxValue={maxValue}
-              css={css}
-              ctaButtonRender={ctaButtonRender}
-            />
-          </Dialog>
-        </Popover>
-      )}
-    </>
+    <Calendar
+      state={state}
+      hasFooter={true}
+      {...calendarProps}
+      maxValue={maxValue}
+      css={css}
+      ctaButtonRender={ctaButtonRender}
+    />
   )
 }
 

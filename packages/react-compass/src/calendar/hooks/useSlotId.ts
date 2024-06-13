@@ -8,9 +8,6 @@
  * found in the LICENSE.txt file at the root directory of this source tree.
  */
 
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 import {useCallback, useLayoutEffect, useState} from 'react'
 import {useId} from './useId'
 
@@ -29,6 +26,7 @@ export function useSlotId(depArray: readonly any[] = []): string {
     setResolvedId(generator.next().value as string | undefined) // Retrieve the first yielded value
   }, [id])
 
-  useLayoutEffect(updateId, [id, ...depArray]) // Remove updateId from the dependency array
-  return resolvedId ?? '' // Provide a default value in case resolvedId is undefined
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useLayoutEffect(updateId, [id, ...depArray])
+  return resolvedId ?? ''
 }

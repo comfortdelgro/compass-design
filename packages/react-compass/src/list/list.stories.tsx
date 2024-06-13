@@ -1,5 +1,4 @@
 import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
-import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import Avatar from '../avatar'
@@ -42,26 +41,6 @@ export const Variants: React.FC = () => {
         />
       </div>
 
-      <div style={{width: 500}}>
-        <h3>H5</h3>
-        <List
-          title='ComfortRIDE'
-          description='Car or Taxi, Flat Fare'
-          descriptionIcon={
-            <HeartFilled style={{width: 14, height: 14, color: '#0142AF'}} />
-          }
-          variant='h5'
-          leftInfo={
-            <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-          }
-          rightInfo={{
-            text: '$9.90',
-            description: 'Fees may apply',
-            icon: <ArrowRight />,
-          }}
-        />
-      </div>
-
       <div style={{width: 300}}>
         <h3>Interactive Disabled</h3>
         <List
@@ -86,27 +65,6 @@ export const Variants: React.FC = () => {
           leftInfo={<Avatar label='A' />}
           rightInfo={{
             text: 'Details',
-            icon: <ArrowRight />,
-          }}
-        />
-      </div>
-
-      <div style={{width: 500}}>
-        <h3>H5 Disabled</h3>
-        <List
-          isDisabled
-          title='ComfortRIDE'
-          description='Car or Taxi, Flat Fare'
-          descriptionIcon={
-            <HeartFilled style={{width: 14, height: 14, color: '#0142AF'}} />
-          }
-          variant='h5'
-          leftInfo={
-            <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-          }
-          rightInfo={{
-            text: '$9.90',
-            description: 'Fees may apply',
             icon: <ArrowRight />,
           }}
         />
@@ -244,68 +202,6 @@ export const InteractiveLists: React.FC = () => {
         avatar={<Avatar image={imgSrc} />}
         title='Profile Name'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-      />
-    </div>
-  )
-}
-
-export const H5: React.FC = () => {
-  return (
-    <div style={{width: 500}}>
-      <List
-        title='ComfortRIDE'
-        description='Car or Taxi, Flat Fare'
-        descriptionIcon={
-          <HeartFilled style={{width: 14, height: 14, color: '#0142AF'}} />
-        }
-        variant='h5'
-        leftInfo={
-          <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-        }
-        rightInfo={{
-          text: '$9.90',
-          description: 'Fees may apply',
-          icon: <ArrowRight />,
-        }}
-      />
-      <List
-        title='ComfortRIDE'
-        description='Car or Taxi, Flat Fare'
-        variant='h5'
-        leftInfo={
-          <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-        }
-        rightInfo={{text: '$9.90', description: 'Fees may apply'}}
-      />
-      <List
-        title='ComfortRIDE'
-        description='Car or Taxi, Flat Fare'
-        variant='h5'
-        leftInfo={
-          <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-        }
-        rightInfo={{text: '$9.90', description: 'Fees may apply'}}
-        descriptionIcon={
-          <HeartFilled style={{width: 14, height: 14, color: '#0142AF'}} />
-        }
-      />
-      <List
-        title='ComfortRIDE'
-        description='Car or Taxi, Flat Fare'
-        variant='h5'
-        leftInfo={
-          <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-        }
-        rightInfo={{text: '$9.90', description: 'Fees may apply'}}
-      />
-      <List
-        title='ComfortRIDE'
-        description='Car or Taxi, Flat Fare'
-        variant='h5'
-        leftInfo={
-          <ListImage variant='h5' isRounded src={imgSrc} alt='singapore' />
-        }
-        rightInfo={{text: '$9.90', description: 'Fees may apply'}}
       />
     </div>
   )

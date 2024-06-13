@@ -1,17 +1,40 @@
+import {classNames} from '../utils/string'
 import styles from './styles/multiple-dropdown.module.css'
 
 export default function DropdownLoading() {
   return (
-    <div className={`${styles.multipleDropdownLoading}`}>
-      <div className={styles.multipleDropdownLoadingSpinner}>
+    <div
+      className={classNames(
+        styles.multipleDropdownLoading,
+        'cdg-multiple-dropdown-loading',
+      )}
+    >
+      <div
+        className={classNames(
+          styles.multipleDropdownLoadingSpinner,
+          'cdg-multiple-dropdown-loading-spinner',
+        )}
+      >
         <div
-          className={`${styles.multipleDropdownLoadingSpinnerItem} ${styles.multipleDropdownLoadingSpinnerItem1}`}
+          className={classNames(
+            styles.multipleDropdownLoadingSpinnerItem,
+            styles.multipleDropdownLoadingSpinnerItem1,
+            'cdg-multiple-dropdown-loading-spinner-item-1',
+          )}
         />
         <div
-          className={`${styles.multipleDropdownLoadingSpinnerItem} ${styles.multipleDropdownLoadingSpinnerItem2}`}
+          className={classNames(
+            styles.multipleDropdownLoadingSpinnerItem,
+            styles.multipleDropdownLoadingSpinnerItem2,
+            'cdg-multiple-dropdown-loading-spinner-item-2',
+          )}
         />
         <div
-          className={`${styles.multipleDropdownLoadingSpinnerItem} ${styles.multipleDropdownLoadingSpinnerItem3}`}
+          className={classNames(
+            styles.multipleDropdownLoadingSpinnerItem,
+            styles.multipleDropdownLoadingSpinnerItem3,
+            'cdg-multiple-dropdown-loading-spinner-item-3',
+          )}
         />
         <div />
       </div>

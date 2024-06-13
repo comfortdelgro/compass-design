@@ -47,9 +47,6 @@
     width: var(--cdg-spacing-10);
     height: var(--cdg-spacing-6);
   }
-  .toggleSizeSm {
-    /* default css */
-  }
 
   .toggleCircleLg {
     width: var(--cdg-spacing-5);
@@ -65,24 +62,10 @@
     background-color: var(--cdg-color-success);
     justify-content: flex-end;
   }
-
-  .toggleH5 {
-    width: var(--cdg-spacing-12);
-    height: var(--cdg-spacing-7);
-  }
-
-  .toggleCircleH5 {
-    width: var(--cdg-spacing-6);
-    height: var(--cdg-spacing-6);
-  }
 }
 
 @layer compoundVariant {
   .toggleActiveDisabled {
     background-color: var(--cdg-color-successBg);
-  }
-
-  .toggleActiveH5 {
-    background-color: var(--cdg-color-greenShades);
   }
 }

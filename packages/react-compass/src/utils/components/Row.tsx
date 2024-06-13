@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../objectToCss'
+import {classNames} from '../string'
 import {useDOMRef} from '../use-dom-ref'
 import styles from './components.module.css'
 
@@ -20,9 +21,9 @@ const Row = React.forwardRef<HTMLDivElement, RowComponentProps>(
     return (
       <CssInjection css={css} childrenRef={rowRef}>
         <div
-          className={`cdg-row ${className} ${styles.row}`}
-          ref={rowRef}
           {...htmlProps}
+          ref={rowRef}
+          className={classNames(styles.row, className, 'cdg-row')}
         >
           {children}
         </div>

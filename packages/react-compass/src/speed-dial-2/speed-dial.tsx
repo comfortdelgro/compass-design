@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {SpeedDialActions} from './speed-dial-actions'
 import {SpeedDialButton} from './speed-dial-button'
@@ -35,10 +36,13 @@ const SpeedDial2 = React.forwardRef<HTMLDivElement, SpeedDial2Props>(
     return (
       <CssInjection css={css} childrenRef={speedDialRef}>
         <div
-          className={`cdg-speed-dial ${className} ${styles.speedDial} ${
-            showing && styles.showing
-          }`}
           {...htmlProps}
+          className={classNames(
+            styles.speedDial,
+            showing && styles.showing,
+            className,
+            'cdg-speed-dial',
+          )}
           ref={speedDialRef}
           role='presentation'
           style={{...style}}
@@ -49,9 +53,9 @@ const SpeedDial2 = React.forwardRef<HTMLDivElement, SpeedDial2Props>(
       </CssInjection>
     )
   },
-)
-
-export default SpeedDial2 as typeof SpeedDial2 & {
+) as typeof SpeedDial2 & {
   Actions: typeof SpeedDialActions
   Button: typeof SpeedDialButton
 }
+
+export default SpeedDial2

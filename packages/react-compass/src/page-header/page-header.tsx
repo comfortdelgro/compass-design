@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import PageHeaderDescription from './page-header-description'
 import PageHeaderHeader from './page-header-header'
 import PageHeaderSubtitle from './page-header-subtitle'
@@ -20,18 +21,16 @@ const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>(
   (props, ref) => {
     const {children, color = 'white', css = {}, className, ...delegated} = props
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.pageHeader,
       styles[color],
       className,
       'cdg-page-header',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div className={rootClasses} ref={ref} {...delegated}>
+        <div {...delegated} className={rootClasses} ref={ref}>
           {children}
         </div>
       </CssInjection>

@@ -112,7 +112,7 @@ export const Variants = () => {
         value={progressValue}
         maxValue={MAX_VALUE}
         size='md'
-        label='H5'
+        label='Progress'
         color='#3468BF'
         barColor='#E6ECF7'
         onComplete={() => setIsCompleted(true)}

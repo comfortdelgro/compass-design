@@ -19,6 +19,7 @@ import {
 } from '@floating-ui/react'
 import React, {useContext, useEffect, useMemo, useState} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/sidenav-menu.module.css'
 
 interface Props {
@@ -80,7 +81,7 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
         setIsInternalOpen(false)
         setIsChildOpen?.(false)
       }
-    }, [isNestedMenuOpen])
+    }, [isMouseLeave, isNestedMenuOpen, setIsChildOpen])
 
     const {refs, floatingStyles, context} = useFloating({
       open: isInternalOpen,
@@ -115,7 +116,7 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
     // set ref and anchor position to parent node
     useEffect(() => {
       setMenuParentProps?.(refs, getReferenceProps)
-    }, [refs, getReferenceProps])
+    }, [refs, getReferenceProps, setMenuParentProps])
 
     const headingId = useId()
 
@@ -135,7 +136,7 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
     // announce to parent node when this node change open state
     useEffect(() => {
       setIsChildOpen?.(openFinal)
-    }, [openFinal])
+    }, [openFinal, setIsChildOpen])
 
     const mergeRefs = (el: HTMLDivElement | null) => {
       refs.setFloating(el)
@@ -153,7 +154,12 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
             <FloatingFocusManager context={context} modal={false}>
               <CssInjection css={css} childrenRef={mergeRefs}>
                 <div
-                  className={`cdg-sidenav-menu ${className} ${styles.sidenavMenu}`}
+                  {...delegated}
+                  className={classNames(
+                    styles.sidenavMenu,
+                    className,
+                    'cdg-sidenav-menu',
+                  )}
                   ref={mergeRefs}
                   style={{...floatingStyles}}
                   aria-labelledby={headingId}
@@ -164,7 +170,6 @@ const SidenavMenu = React.forwardRef<HTMLDivElement, SidenavMenuProps>(
                   onMouseOver={() => {
                     setIsMouseLeave(false)
                   }}
-                  {...delegated}
                 >
                   <SideMenuContext.Provider
                     value={{setIsChildOpen: setIsNestedMenuOpen}}

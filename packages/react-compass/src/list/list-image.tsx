@@ -1,12 +1,13 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/list-image.module.css'
 
 interface Props {
   css?: CSS
   isRounded?: boolean
   children?: React.ReactNode
-  variant?: 'item' | 'interactive' | 'h5'
+  variant?: 'item' | 'interactive'
 }
 
 export type ListImageProps = Props &
@@ -14,29 +15,18 @@ export type ListImageProps = Props &
 
 const ListImage = React.forwardRef<HTMLImageElement, ListImageProps>(
   (props, ref) => {
-    const {
-      isRounded = false,
-      css = {},
-      className,
-      variant,
-      ...htmlProps
-    } = props
+    const {isRounded = false, css = {}, className, ...htmlProps} = props
 
-    const rootClass = React.useMemo(() => {
-      return [
-        styles.image,
-        isRounded && styles.isRounded,
-        variant === 'h5' && styles.variantH5,
-        'cdg-list-image',
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')
-    }, [className, isRounded, variant])
+    const rootClass = classNames(
+      styles.image,
+      isRounded && styles.isRounded,
+      className,
+      'cdg-list-image',
+    )
 
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <img ref={ref} className={rootClass} {...htmlProps} />
+        <img {...htmlProps} ref={ref} className={rootClass} />
       </CssInjection>
     )
   },

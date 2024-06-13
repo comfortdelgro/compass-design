@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/toast.module.css'
 
@@ -19,10 +20,14 @@ const ToastCloseIcon = React.forwardRef<HTMLDivElement, ToastCloseIconProps>(
     return (
       <CssInjection css={css} childrenRef={toastCloseIconRef}>
         <div
-          ref={toastCloseIconRef}
-          className={`${className} ${styles.toastCloseIcon}`}
           {...delegated}
+          ref={toastCloseIconRef}
           onClick={() => onClose?.()}
+          className={classNames(
+            styles.toastCloseIcon,
+            className,
+            'cdg-toast-close-icon',
+          )}
         >
           {children}
         </div>

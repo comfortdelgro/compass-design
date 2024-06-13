@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/menu-list-dropdown-item.module.css'
 
 interface Props {
@@ -34,23 +35,24 @@ const MenuListDropdownItem = React.forwardRef<
 
   const tabIndex = isDisabled || isNested ? -1 : 0
 
-  const rootClasses = [
+  const rootClasses = classNames(
     styles.menuListDropdownItem,
     isNested && styles.nested,
     isActive && styles.active,
     isDisabled && styles.disabled,
     className,
     'cdg-menu-list-dropdown-item',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css} childrenRef={ref}>
       <div className={rootClasses} ref={ref} tabIndex={tabIndex} {...delegated}>
         {icon ? (
           <div
-            className={`${styles.cdgMenuListDropdownIcon} cdg-menu-list-dropdown-icon`}
+            className={classNames(
+              styles.cdgMenuListDropdownIcon,
+              'cdg-menu-list-dropdown-icon',
+            )}
           >
             {icon}
           </div>

@@ -3,7 +3,7 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
-import {capitalizeFirstLetter} from '../utils/string'
+import {capitalizeFirstLetter, classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import BannerDescription from './banner-description'
 import BannerImage from './banner-image'
@@ -34,33 +34,28 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
   } = props
 
   const bannerRef = useDOMRef<HTMLDivElement>(ref)
-  const {child: BannerImageElement} = pickChild<typeof BannerImage>(
-    children,
-    BannerImage,
-  )
+  const {child: BannerImageElement} = pickChild(children, BannerImage)
 
-  const {child: BannerTitleElement} = pickChild<typeof BannerTitle>(
-    children,
-    BannerTitle,
-  )
+  const {child: BannerTitleElement} = pickChild(children, BannerTitle)
 
-  const {child: BannerDescriptionElement} = pickChild<typeof BannerDescription>(
+  const {child: BannerDescriptionElement} = pickChild(
     children,
     BannerDescription,
   )
 
+  const rootClasses = classNames(
+    styles.banner,
+    styles[`bannerSize${capitalizeFirstLetter(size)}`],
+    className,
+    'cdg-banner',
+  )
+
   return (
     <CssInjection css={css} childrenRef={bannerRef}>
-      <div
-        className={`cdg-banner ${className} ${styles.banner} ${
-          styles[`bannerSize${capitalizeFirstLetter(size)}`]
-        }`}
-        ref={bannerRef}
-        {...htmlProps}
-      >
+      <div {...htmlProps} ref={bannerRef} className={rootClasses}>
         {BannerImageElement}
         <div
-          className={`cdg-banner-content-container ${styles.contentContainer}`}
+          className={classNames(styles.contentContainer, 'cdg-banner-content')}
         >
           {BannerTitleElement}
           {BannerDescriptionElement}
@@ -68,10 +63,10 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
-
-export default Banner as typeof Banner & {
+}) as typeof Banner & {
   Image: typeof BannerImage
   Title: typeof BannerTitle
   Description: typeof BannerDescription
 }
+
+export default Banner

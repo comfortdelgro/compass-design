@@ -1,5 +1,6 @@
+import {classNames} from '../utils/string'
 import styles from './styles/image-viewer.module.css'
-import {ToolbarConfig} from './types'
+import {ToolbarConfig} from './utils/types'
 
 export interface ViewerToolbarProps {
   onAction: (config: ToolbarConfig) => void
@@ -13,7 +14,12 @@ export interface ViewerToolbarProps {
 
 export default function ImageInformation(props: ViewerToolbarProps) {
   return (
-    <div className={styles.imageInformationWrap}>
+    <div
+      className={classNames(
+        styles.imageInformationWrap,
+        'cdg-image-viewer-information',
+      )}
+    >
       <p style={{textAlign: 'center'}}>
         {props.alt && `${props.alt} `}
         {`(${props.width} x ${props.height}) `}

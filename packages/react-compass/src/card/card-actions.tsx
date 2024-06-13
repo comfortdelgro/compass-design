@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/card.module.css'
 
 interface Props {
@@ -17,9 +18,13 @@ const CardAction = React.forwardRef<HTMLDivElement, CardActionProps>(
     return (
       <CssInjection css={css} childrenRef={ref}>
         <div
-          className={`${styles.cardActions} ${className ?? ''}`}
-          ref={ref}
           {...htmlProps}
+          ref={ref}
+          className={classNames(
+            styles.cardActions,
+            className,
+            'cdg-card-action',
+          )}
         >
           {children}
         </div>

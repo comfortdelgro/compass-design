@@ -87,41 +87,6 @@
     border: none;
   }
 
-  .h5 {
-    background: transparent;
-    padding: 0;
-    color: var(--cdg-color-grayShades60);
-    font-size: var(--cdg-font-size-label1);
-    line-height: 20px;
-  }
-
-  .h5:focus-visible {
-    box-shadow: 0px -2px var(--cdg-color-cdgBlue);
-  }
-
-  .h5:hover,
-  .h5:focus-visible {
-    color: var(--cdg-color-blueShades100);
-  }
-
-  .h5Icon {
-    background-color: var(--cdg-color-blueShades100);
-    border: none;
-  }
-
-  .h5Icon svg {
-    display: block;
-  }
-
-  .h5Icon path {
-    fill: var(--cdg-color-whiteText);
-  }
-
-  .h5Icon:hover,
-  .h5Icon:focus-visible {
-    background-color: var(--cdg-color-blueShades100);
-  }
-
   .disabledTrue {
     background: transparent;
     color: var(--cdg-color-gray50);
@@ -199,46 +164,6 @@
     background-color: var(--cdg-color-gray50);
   }
 
-  .h5DisabledTrue {
-    background: transparent;
-    color: var(--cdg-color-gray50);
-  }
-
-  .h5DisabledTrueIcon {
-    background-color: var(--cdg-color-gray50);
-    border: none;
-    display: flex;
-  }
-
-  .h5DisabledTrueIcon svg {
-    display: block;
-  }
-
-  .h5DisabledTrueIcon path {
-    fill: var(--cdg-color-whiteText);
-  }
-
-  .h5DisabledTrue:hover,
-  .h5DisabledTrue:focus-visible {
-    background: transparent;
-    color: var(--cdg-color-gray50);
-  }
-
-  .h5DisabledTrueIcon:hover,
-  .h5DisabledTrueIcon:focus-visible {
-    background-color: var(--cdg-color-gray50);
-  }
-
-  .h5DisabledTrueIcon svg:hover,
-  .h5DisabledTrueIcon svg:focus-visible {
-    display: block;
-  }
-
-  .h5DisabledTrue .icon path:hover,
-  .h5DisabledTrue .icon path:focus-visible {
-    fill: var(--cdg-color-whiteText);
-  }
-
   .roundedDisabledTrue {
     color: var(--cdg-color-gray50);
     background: transparent;
@@ -286,35 +211,6 @@
 
   .simpleActiveTrueIcon path {
     fill: var(--cdg-color-whiteText);
-  }
-
-  .h5ActiveTrue {
-    background: transparent;
-    color: var(--cdg-color-blueShades100);
-  }
-
-  .h5ActiveTrueIcon {
-    background-color: var(--cdg-color-blueShades100);
-    border: none;
-  }
-
-  .h5ActiveTrueIcon svg {
-    display: block;
-  }
-
-  .h5ActiveTrueIcon path {
-    fill: var(--cdg-color-whiteText);
-  }
-
-  .h5ActiveTrue:after {
-    position: absolute;
-    border-radius: 1px;
-    bottom: -4px;
-    left: -1px;
-    content: '';
-    width: calc(100% + 2px);
-    height: 2px;
-    background: var(--cdg-color-blueShades100);
   }
 
   .roundedDisabledTrueIcon {

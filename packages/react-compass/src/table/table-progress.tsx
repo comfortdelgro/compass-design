@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/table-progress.module.css'
 
@@ -26,30 +27,24 @@ const TableProgress = React.forwardRef<HTMLDivElement, TableProgressProps>(
       }
     }, [progress])
 
-    const rootClasses = [
+    const rootClasses = classNames(
       styles.cdgTableProgressBar,
       className,
       'cdg-table-progress',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const progressClasses = [
+    const progressClasses = classNames(
       styles.cdgTableProgress,
       status === 'low' && styles.progressLow,
       status === 'average' && styles.progressAverage,
       status === 'high' && styles.progressHigh,
       'cdg-table-progress-current',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const labelClasses = [
+    const labelClasses = classNames(
       styles.cdgTableProgressLabel,
       'cdg-table-progress-label',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={tableProgressRef}>

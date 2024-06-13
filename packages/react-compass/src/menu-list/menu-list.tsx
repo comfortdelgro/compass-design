@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import styles from './styles/menu-list.module.css'
 
 interface Props {
@@ -22,13 +23,10 @@ const MenuList = React.forwardRef<HTMLDivElement, MenuListProps>(
       ...delegated
     } = props
 
-    const rootClasses = [styles.menuList, className, 'cdg-menu-list']
-      .filter(Boolean)
-      .join(' ')
-
+    const rootClasses = classNames(styles.menuList, className, 'cdg-menu-list')
     return (
       <CssInjection css={css} childrenRef={ref}>
-        <div className={rootClasses} ref={ref} {...delegated}>
+        <div {...delegated} className={rootClasses} ref={ref}>
           {children}
         </div>
       </CssInjection>

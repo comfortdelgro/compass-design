@@ -1,6 +1,7 @@
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {pickChild} from '../utils/pick-child'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import ErrorAction, {ErrorActionProps} from './error-action'
 import ErrorDescription, {ErrorDescriptionProps} from './error-description'
@@ -34,10 +35,7 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
   const errorRef = useDOMRef<HTMLDivElement>(ref)
 
   // Pick title child component
-  const {child: ErrorTitleElement} = pickChild<typeof ErrorTitle>(
-    children,
-    ErrorTitle,
-  )
+  const {child: ErrorTitleElement} = pickChild(children, ErrorTitle)
 
   const ErrorTitleCloned = () => {
     if (React.isValidElement(ErrorTitleElement)) {
@@ -48,10 +46,7 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
   }
 
   // Pick description child component
-  const {child: ErrorDescriptionElement} = pickChild<typeof ErrorDescription>(
-    children,
-    ErrorDescription,
-  )
+  const {child: ErrorDescriptionElement} = pickChild(children, ErrorDescription)
 
   const ErrorDescriptionCloned = () => {
     if (React.isValidElement(ErrorDescriptionElement)) {
@@ -62,10 +57,7 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
   }
 
   // Pick action child component
-  const {child: ErrorActionsElement} = pickChild<typeof ErrorAction>(
-    children,
-    ErrorAction,
-  )
+  const {child: ErrorActionsElement} = pickChild(children, ErrorAction)
 
   const ErrorActionCloned = () => {
     if (React.isValidElement(ErrorActionsElement)) {
@@ -76,16 +68,10 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
   }
 
   // Pick icon child component
-  const {child: ErrorIconElement} = pickChild<typeof ErrorIcon>(
-    children,
-    ErrorIcon,
-  )
+  const {child: ErrorIconElement} = pickChild(children, ErrorIcon)
 
   // Pick Image child component
-  const {child: ErrorImageElement} = pickChild<typeof ErrorImage>(
-    children,
-    ErrorImage,
-  )
+  const {child: ErrorImageElement} = pickChild(children, ErrorImage)
   const ErrorImageCloned = () => {
     if (React.isValidElement(ErrorImageElement)) {
       return React.cloneElement(ErrorImageElement, {
@@ -94,20 +80,18 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
     }
   }
 
-  const errorContainerClasses = [
-    `cdg-error-container`,
-    className,
-    variant && styles[`${variant}Variant`],
+  const errorContainerClasses = classNames(
     styles.errorContainer,
-  ]
-    .filter(Boolean)
-    .join(' ')
+    variant && styles[`${variant}Variant`],
+    className,
+    `cdg-error-container`,
+  )
 
   return (
     <CssInjection css={css} childrenRef={errorRef}>
-      <div className={errorContainerClasses} ref={errorRef} {...htmlProps}>
+      <div {...htmlProps} className={errorContainerClasses} ref={errorRef}>
         {variant === 'primary' && (
-          <div className={`cdg-error-header ${styles.errorHeader}`}>
+          <div className={classNames(styles.errorHeader, 'cdg-error-header')}>
             {ErrorIconElement}
             {ErrorTitleCloned()}
           </div>
@@ -124,12 +108,12 @@ const Error = React.forwardRef<HTMLDivElement, ErrorProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-})
-
-export default Error as typeof Error & {
+}) as typeof Error & {
   Title: typeof ErrorTitle
   Description: typeof ErrorDescription
   Action: typeof ErrorAction
   Icon: typeof ErrorIcon
   Image: typeof ErrorImage
 }
+
+export default Error

@@ -1,4 +1,5 @@
 import React from 'react'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import styles from './styles/speed-dial.module.css'
 
@@ -19,12 +20,14 @@ export const SpeedDialButton = React.forwardRef<
 
   return (
     <button
-      className={`cdg-speed-dial-button ${styles.floatButton} ${
-        isOpen && styles.open
-      }`}
-      ref={floatButtonRef}
-      type='button'
       {...htmlProps}
+      type='button'
+      ref={floatButtonRef}
+      className={classNames(
+        styles.floatButton,
+        isOpen && styles.open,
+        'cdg-speed-dial-button',
+      )}
     >
       {children}
     </button>

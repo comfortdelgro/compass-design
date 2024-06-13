@@ -3,6 +3,7 @@
 
 import {CSSProperties, forwardRef, useCallback, useRef, useState} from 'react'
 import {CssInjection} from '../utils/objectToCss'
+import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {SLIDER_REDUCE_OPACITY} from './slide-action.const'
 import {SlideActionProps, SlideDraggerProps} from './slide-action.types'
@@ -125,31 +126,25 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
       [onChange, handleUpdateSlideBg, allowSwipeAfterEnd, onSwipeEnd],
     )
 
-    const rootClasses = [
+    const rootClasses = classNames(
       classes.slideAction,
       compact && classes.compact,
       className,
       'cdg-slide-action',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const bgClasses = [
+    const bgClasses = classNames(
       classes.slideActionBackground,
       slideColor && classes[slideColor],
       slideType && classes[slideType],
       'cdg-slide-action__bg',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
-    const labelClasses = [
+    const labelClasses = classNames(
       classes.slideActionLabel,
       labelType && classes[labelType],
       'cdg-slide-action__label',
-    ]
-      .filter(Boolean)
-      .join(' ')
+    )
 
     return (
       <CssInjection css={css} childrenRef={slideRef}>

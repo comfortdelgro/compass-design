@@ -9,7 +9,6 @@
  */
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/prefer-ts-expect-error */
 
 import {
   DOMAttributes,

@@ -49,7 +49,6 @@ interface Props {
   size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean
   loading?: boolean
-  h5?: boolean
 }
 
 export type ButtonProps = Props &
@@ -101,7 +100,6 @@ const Button = React.forwardRef<
     fullWidth = false,
     loading = false,
     isSquare = false,
-    h5 = false,
     // html props
     ...htmlProps
   } = props
@@ -161,7 +159,6 @@ const Button = React.forwardRef<
 
   const Button = href ? 'a' : 'button'
 
-  //  button classes
   const buttonClasses = classNames(
     styles.button,
     loading && styles.loading,
@@ -173,22 +170,16 @@ const Button = React.forwardRef<
     isDisabled && styles.isDisabled,
     href && variant && styles[variant + 'Link'],
     href && styles.linkButton,
-    h5 && styles.h5,
-    h5 && variant && styles[variant + 'H5'],
     className,
     'cdg-button',
   )
 
-  // content classes
-  const contentClasses = [
+  const contentClasses = classNames(
     styles.content,
     leftIcon || (fullWidth && rightIcon) ? styles.hasIcon : '',
     size && styles[`${size}Content`],
-    h5 && styles.h5Content,
     'cdg-button-content',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   return (
     <CssInjection css={css}>
@@ -234,15 +225,26 @@ const Button = React.forwardRef<
               aria-hidden={!loading}
               className={contentClasses}
             >
-              <span className={styles.loadingDots}>
+              <span
+                className={classNames(styles.loadingDots, 'cdg-button-loading')}
+              >
                 <span
-                  className={`${styles.loadingDot} ${styles.firstLoadingDot}`}
+                  className={classNames(
+                    styles.loadingDot,
+                    styles.firstLoadingDot,
+                  )}
                 />
                 <span
-                  className={`${styles.loadingDot} ${styles.secondLoadingDot}`}
+                  className={classNames(
+                    styles.loadingDot,
+                    styles.secondLoadingDot,
+                  )}
                 />
                 <span
-                  className={`${styles.loadingDot} ${styles.thirdLoadingDot}`}
+                  className={classNames(
+                    styles.loadingDot,
+                    styles.thirdLoadingDot,
+                  )}
                 />
               </span>
             </span>
@@ -251,17 +253,30 @@ const Button = React.forwardRef<
           <Ripple isEnabled={ripple}>
             <span className={contentClasses}>
               {leftIcon || (fullWidth && rightIcon) ? (
-                <span className={`${styles.leftIcon} cdg-button-left-icon`}>
+                <span
+                  className={classNames(
+                    styles.leftIcon,
+                    'cdg-button-left-icon',
+                  )}
+                >
                   {leftIcon}
                 </span>
               ) : null}
               <span
-                className={`cdg-button-content-children ${styles.children}`}
+                className={classNames(
+                  styles.children,
+                  'cdg-button-content-children',
+                )}
               >
                 {children}
               </span>
               {rightIcon || (fullWidth && leftIcon) ? (
-                <span className={`${styles.rightIcon} cdg-button-right-icon`}>
+                <span
+                  className={classNames(
+                    styles.rightIcon,
+                    'cdg-button-right-icon',
+                  )}
+                >
                   {rightIcon}
                 </span>
               ) : null}

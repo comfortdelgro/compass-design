@@ -15,10 +15,4 @@
     /* css default */
     flex-direction: column;
   }
-
-  .subHeaderH5 {
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-  }
 }
