@@ -63,10 +63,10 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Banner & {
+})
+
+export default Banner as typeof Banner & {
   Image: typeof BannerImage
   Title: typeof BannerTitle
   Description: typeof BannerDescription
 }
-
-export default Banner

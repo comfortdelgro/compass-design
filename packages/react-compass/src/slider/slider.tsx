@@ -9,6 +9,7 @@ import {
   SliderControlsProps,
 } from './component/SliderControls'
 import {SliderThumb} from './component/SliderThumb'
+import RangeSlider from './range-slider'
 import styles from './styles/slider.module.css'
 import {FocusableRef, InputDOMProps} from './utils/types'
 
@@ -100,4 +101,4 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   )
 })
 
-export default Slider
+export default Slider as typeof Slider & {Range: typeof RangeSlider}

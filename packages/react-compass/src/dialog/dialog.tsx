@@ -179,12 +179,12 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Dialog & {
+})
+
+export default Dialog as typeof Dialog & {
   Trigger: typeof DialogTrigger
   Title: typeof DialogTitle
   Description: typeof DialogDescription
   Actions: typeof DialogActions
   Icon: typeof DialogIcon
 }
-
-export default Dialog

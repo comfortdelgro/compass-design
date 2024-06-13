@@ -2,9 +2,9 @@ import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
+import AvatarGroup from './avatar-group'
 import {AVATAR_SIZE_MAP, AvatarSize} from './avatar.const'
 import styles from './styles/avatar.module.css'
-import AvatarGroup from './avatar-group'
 
 const calculateInitials = (name: string, size: AvatarSize) => {
   const initials = name
@@ -91,6 +91,6 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Avatar & {Group: typeof AvatarGroup}
+})
 
-export default Avatar
+export default Avatar as typeof Avatar & {Group: typeof AvatarGroup}

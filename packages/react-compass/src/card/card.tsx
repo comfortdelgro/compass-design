@@ -67,11 +67,11 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Card & {
+})
+
+export default Card as typeof Card & {
   Body: typeof CardBody
   Image: typeof CardImage
   Title: typeof CardTitle
   Action: typeof CardAction
 }
-
-export default Card
