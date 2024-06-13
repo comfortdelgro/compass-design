@@ -80,7 +80,7 @@ export default function ComponentLinkHeader({backround}: {background: string}) {
   return (
     <Flexbox
       css={{
-        marginBottom: '$4',
+        marginBottom: 'var(--cdg-spacing-4)',
         background: backround,
       }}
     ></Flexbox>

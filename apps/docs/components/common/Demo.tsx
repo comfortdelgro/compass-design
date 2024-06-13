@@ -15,10 +15,6 @@ function trimLeadingSpaces(input = '') {
 
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'))
 
-function DemoToolbarFallback() {
-  return <Box>Loading...</Box>
-}
-
 function getDemoName(location: string) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
 }

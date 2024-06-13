@@ -20,7 +20,7 @@ export default function ThemeModeToggle(props: {
             props.onChange(!props.checked)
           }}
           css={{
-            border: '1px solid $cdgBlue60',
+            border: '1px solid var(--cdg-color-cdgBlue60)',
             height: 34,
             width: 34,
             borderRadius: 4,
@@ -31,7 +31,7 @@ export default function ThemeModeToggle(props: {
         >
           {props.checked ? <SvgDarkMode /> : <SvgLightMode />}
         </Button>
-        <Tooltip css={{background: '$gray40'}}>
+        <Tooltip css={{background: 'var(--cdg-color-gray40)'}}>
           <Typography.Label>
             {props.checked ? 'Turn on the light' : 'Turn off the light'}
           </Typography.Label>

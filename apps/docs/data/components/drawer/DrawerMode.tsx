@@ -25,7 +25,7 @@ export default function DrawerModeDocs() {
         </Button>
       </Row>
 
-      <Typography.Header css={{marginBlock: '$4 0'}} variant='header4'>
+      <Typography.Header css={{marginBlock: 'var(--cdg-spacing-4) 0'}} variant='header4'>
         H5 Drawer
       </Typography.Header>
       <Row>
@@ -74,8 +74,8 @@ export default function DrawerModeDocs() {
         open={openNonModalH5Drawer}
         css={{height: '30dvh'}}
         expanderCSS={{
-          background: '$blueShades100',
-          paddingBlock: '$2 $6',
+          background: 'var(--cdg-color-blueShades100)',
+          paddingBlock: 'var(--cdg-spacing-2) var(--cdg-spacing-6)',
         }}
         onClose={() => setOpenNonModalH5Drawer(false)}
         variant='h5'
@@ -87,28 +87,28 @@ export default function DrawerModeDocs() {
           css={{
             display: 'flex',
             paddingTop: 0,
-            gap: '$2',
+            gap: 'var(--cdg-spacing-2)',
             justifyContent: 'space-between',
-            backgroundColor: '$blueShades100',
+            backgroundColor: 'var(--cdg-color-blueShades100)',
           }}
         >
           <Typography.Body
             variant='body3'
             weight='semibold'
-            css={{color: '$grayShades10', width: 'fit-content', margin: 0}}
+            css={{color: 'var(--cdg-color-grayShades10)', width: 'fit-content', margin: 0}}
           >
             Drawer Header
           </Typography.Body>
           <Typography.Body
             variant='body3'
             weight='semibold'
-            css={{color: '$grayShades10', width: 'fit-content', margin: 0}}
+            css={{color: 'var(--cdg-color-grayShades10)', width: 'fit-content', margin: 0}}
           >
             Non-modal Mode
           </Typography.Body>
         </Drawer.Header>
 
-        <Typography.Body variant='body3' css={{marginBlock: '$4'}}>
+        <Typography.Body variant='body3' css={{marginBlock: 'var(--cdg-spacing-4)'}}>
           To close this drawer:
           <br />
           <strong>Drag to bottom</strong> ⏬ of the screen or{' '}

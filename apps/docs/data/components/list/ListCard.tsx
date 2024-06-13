@@ -16,7 +16,7 @@ function ListCardExmaple() {
         title='Lorem Ipsum'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
         badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px', border: '$blueShades120 1px solid'}}
+        css={{width: '347px', border: 'var(--cdg-color-blueShades120) 1px solid'}}
       >
         <ListCard.Detail
           title='Detail 1'
@@ -34,7 +34,7 @@ function ListCardExmaple() {
         title='Lorem Ipsum'
         description='Lorem ipsum dolor sit amet, consectetur adipiscing elit'
         badge={<Badge label='Active' color='success' variant='secondary' />}
-        css={{width: '347px', border: '$blueShades120 1px solid'}}
+        css={{width: '347px', border: 'var(--cdg-color-blueShades120) 1px solid'}}
       >
         <ListCard.Detail
           title='Detail 1'

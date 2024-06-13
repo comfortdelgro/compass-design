@@ -2,7 +2,7 @@ import {Column, ProgressBar} from '@comfortdelgro/react-compass'
 
 export default function ProgressBarSizeDocs() {
   return (
-    <Column css={{gap: '$4'}}>
+    <Column css={{gap: 'var(--cdg-spacing-4)'}}>
       <ProgressBar value={20} size='sm' label='sm' />
       <ProgressBar value={20} size='md' label='md' />
       <ProgressBar value={20} size='lg' label='lg - default' />

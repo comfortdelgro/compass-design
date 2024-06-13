@@ -41,10 +41,6 @@ The content below the non-modal drawer can be interacted.
 
 {{"demo": "DrawerMode.tsx"}}
 
-## Control behavior
-
-{{"demo": "DrawerCustomize.tsx"}}
-
 ## Compound components
 
 - `Drawer.Header` – a fully customizable header for drawer, usually contains a title and the close button.

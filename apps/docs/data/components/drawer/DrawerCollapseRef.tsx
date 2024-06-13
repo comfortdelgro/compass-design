@@ -10,7 +10,6 @@ import {useRef, useState} from 'react'
 
 export default function DrawerCollapseRefDocs() {
   const [openDrawer, setOpenDrawer] = useState(false)
-  const [isExpanded, setIsExpanded] = useState(false)
   const drawerRef = useRef<DrawerRef>(null)
 
   return (
@@ -20,7 +19,7 @@ export default function DrawerCollapseRefDocs() {
         Use <code>ref</code> to call the Drawer's <code>triggerCollapse</code>{' '}
         function
       </Typography.Body>
-      <Row css={{marginBlock: '$4'}}>
+      <Row css={{marginBlock: 'var(--cdg-spacing-4)'}}>
         <Button type='button' onClick={() => setOpenDrawer(true)}>
           Open H5 Drawer
         </Button>
@@ -30,8 +29,8 @@ export default function DrawerCollapseRefDocs() {
         ref={drawerRef}
         open={openDrawer}
         variant='h5'
-        onExpandChange={(isExpanded) => setIsExpanded(isExpanded)}
-        onHeightChange={(height) => console.log('height', height)}
+        onExpandChange={(isExpanded: string) => console.log(isExpanded)}
+        onHeightChange={(height: string) => console.log('height', height)}
         onClose={() => setOpenDrawer(false)}
       >
         <Drawer.Header>
@@ -39,7 +38,7 @@ export default function DrawerCollapseRefDocs() {
         </Drawer.Header>
 
         <Button
-          css={{marginTop: '$4'}}
+          css={{marginTop: 'var(--cdg-spacing-4)'}}
           type='button'
           onClick={() => drawerRef.current?.triggerCollapse()}
         >

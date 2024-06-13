@@ -55,9 +55,9 @@ const DialogMobile: React.FC = () => {
           },
           '.calendar-header-left-side button': {
             backgroundColor: 'transparent',
-            color: '$cdgBlue100',
+            color: 'var(--cdg-color-cdgBlue100)',
             '&.calendar-header-middle': {
-              color: '$grayShades100',
+              color: 'var(--cdg-color-grayShades100)',
             },
           },
         }}
@@ -138,7 +138,7 @@ const DialogMobile: React.FC = () => {
           css={{
             '&.cdg-dialog-container': {
               width: '343px',
-              borderRadius: '$xl',
+              borderRadius: 'var(--cdg-border-radius-xl)',
             },
             '.cdg-dialog-content': {
               gap: '8px',
@@ -167,13 +167,21 @@ const DialogMobile: React.FC = () => {
             }}
           >
             <Button
-              css={{width: '100%', padding: '12px 24px', borderRadius: '$lg'}}
+              css={{
+                width: '100%',
+                padding: '12px 24px',
+                borderRadius: 'var(--cdg-border-radius-lg)',
+              }}
               onPress={() => setDefaultOpen(false)}
             >
               Do it
             </Button>
             <Button
-              css={{width: '100%', padding: '12px 24px', borderRadius: '$lg'}}
+              css={{
+                width: '100%',
+                padding: '12px 24px',
+                borderRadius: 'var(--cdg-border-radius-lg)',
+              }}
               onPress={() => setDefaultOpen(false)}
               variant='secondary'
             >

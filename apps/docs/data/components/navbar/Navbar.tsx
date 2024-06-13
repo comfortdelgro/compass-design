@@ -24,8 +24,8 @@ const Variants: React.FC = () => {
             icon={faBars}
             style={{
               color: '#FFF',
-              width: '$5',
-              height: '$5',
+              width: 'var(--cdg-spacing-5)',
+              height: 'var(--cdg-spacing-5)',
               cursor: 'pointer',
             }}
           />
@@ -43,8 +43,8 @@ const Variants: React.FC = () => {
             icon={faQuestionCircle}
             style={{
               color: '#FFF',
-              width: '$5',
-              height: '$5',
+              width: 'var(--cdg-spacing-5)',
+              height: 'var(--cdg-spacing-5)',
               cursor: 'pointer',
             }}
           />
@@ -52,8 +52,8 @@ const Variants: React.FC = () => {
             icon={faBell}
             style={{
               color: '#FFF',
-              width: '$5',
-              height: '$5',
+              width: 'var(--cdg-spacing-5)',
+              height: 'var(--cdg-spacing-5)',
               cursor: 'pointer',
             }}
           />
@@ -61,8 +61,8 @@ const Variants: React.FC = () => {
             icon={faChartGantt}
             style={{
               color: '#FFF',
-              width: '$5',
-              height: '$5',
+              width: 'var(--cdg-spacing-5)',
+              height: 'var(--cdg-spacing-5)',
               cursor: 'pointer',
             }}
           />

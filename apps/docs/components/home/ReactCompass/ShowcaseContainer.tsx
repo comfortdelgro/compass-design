@@ -40,8 +40,8 @@ export default function ShowcaseContainer({
             position: 'relative',
             borderWidth: '0 1px 1px 1px',
             borderStyle: 'solid',
-            borderColor: '$gray100',
-            backgroundColor: '$black',
+            borderColor: 'var(--cdg-color-gray100)',
+            backgroundColor: '#000000',
             borderRadius: 8,
             padding: 'var(--cdg-spacing-4)',
             '.token.punctuation': {
@@ -51,7 +51,7 @@ export default function ShowcaseContainer({
         >
           <Box
             css={{
-              padding: '$3',
+              padding: 'var(--cdg-spacing-3)',
               overflow: 'hidden',
               flexGrow: 1,
               '&::-webkit-scrollbar': {

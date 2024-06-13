@@ -24,7 +24,7 @@ export default function RadioH5VariantDocs() {
         ))}
       </Radio.Group>
 
-      <Divider css={{marginBlock: '$4'}} />
+      <Divider css={{marginBlock: 'var(--cdg-spacing-4)'}} />
 
       <Typography.Header variant='header4'>
         With <code>inputPosition="right"</code>

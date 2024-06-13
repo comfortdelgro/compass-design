@@ -10,7 +10,7 @@ export default function SliderActionDocs() {
         When users swiped all the way to the end, we can call it a successful or
         confirmatory action.
       </Typography.Body>
-      <Typography.Body variant='body3' css={{color: '$grayShades60'}}>
+      <Typography.Body variant='body3' css={{color: 'var(--cdg-color-grayShades60)'}}>
         The component below will be reset 1000ms after that.
       </Typography.Body>
 
