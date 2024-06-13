@@ -17,5 +17,6 @@ export interface IProps {
         oldIndex: number;
         newIndex: number;
     }) => void;
+    children: React.ReactNode;
 }
 export type TEvent = React.MouseEvent | React.TouchEvent | React.KeyboardEvent;

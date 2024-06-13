@@ -24,7 +24,7 @@ export type Direction = 'ltr' | 'rtl';
 /**
  * Provides the locale for the application to all child components.
  */
-export declare function I18nProvider(props: I18nProviderProps): JSX.Element;
+export declare function I18nProvider(props: I18nProviderProps): import('../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 /**
  * Returns the current locale and layout direction.
  */

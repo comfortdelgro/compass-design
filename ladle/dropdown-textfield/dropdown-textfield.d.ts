@@ -1,10 +1,10 @@
-import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
+import React, { Key } from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
 import { CSS } from '../utils/objectToCss';
 interface Props {
     id?: string;
     inputType?: 'text' | 'numeric' | 'email' | 'password';
     options: DropdownOptions[];
-    onChange?: (dropdownValue: string, inputValue: string | number) => void;
+    onChange?: (dropdownValue: string, inputValue: Key) => void;
     label: string;
     isErrored?: boolean;
     errorMessage?: string;
@@ -41,7 +41,6 @@ interface Props {
     'aria-describedby'?: string;
     'aria-details'?: string;
     'aria-errormessage'?: string;
-    h5?: boolean;
     css?: CSS;
 }
 export type DropdownTextfieldProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;

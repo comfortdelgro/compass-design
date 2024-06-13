@@ -9,5 +9,5 @@ interface Props {
     collection: Array<React.DetailedReactHTMLElement<DropdownItemProps, HTMLElement>>;
     onSelect: (key: React.Key) => void;
 }
-declare function ListBox(props: Props): JSX.Element;
+declare function ListBox(props: Props): import('../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 export default ListBox;

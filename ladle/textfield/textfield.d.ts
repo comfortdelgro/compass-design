@@ -53,7 +53,6 @@ export interface Props {
     'aria-describedby'?: string;
     'aria-details'?: string;
     'aria-errormessage'?: string;
-    h5?: boolean;
 }
 export type TextFieldProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 declare const TextField: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> & React.RefAttributes<HTMLDivElement>>;

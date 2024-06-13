@@ -22,4 +22,4 @@ export interface ViewerCanvasState {
     mouseX?: number;
     mouseY?: number;
 }
-export default function ViewerCanvas(props: ViewerCanvasProps): JSX.Element;
+export default function ViewerCanvas(props: ViewerCanvasProps): import('../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;

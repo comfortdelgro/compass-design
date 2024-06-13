@@ -3,7 +3,6 @@ export declare const Variants: React.FC;
 export declare const Size: React.FC;
 export declare const ListCards: React.FC;
 export declare const InteractiveLists: React.FC;
-export declare const H5: React.FC;
 export declare const DragAndDrops: React.FC;
 declare const meta: {
     title: string;

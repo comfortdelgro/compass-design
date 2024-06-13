@@ -14,7 +14,7 @@ interface Props {
     cssCheckBoxInput?: CSS;
     children?: React.ReactNode;
     validationState?: 'valid' | 'invalid';
-    variant?: 'default' | 'rounded' | 'h5';
+    variant?: 'default' | 'rounded';
     onChange?: (isSelected: boolean) => void;
     onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

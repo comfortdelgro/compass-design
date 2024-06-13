@@ -3,10 +3,10 @@ import { CSS } from '../utils/objectToCss';
 import BreadcrumbItem from './breadcrumb-item';
 export interface Props {
     css?: CSS;
+    className?: string;
     children?: React.ReactNode;
     dividerIcon?: React.ReactNode;
     isCurrent?: (item: number) => boolean;
-    className?: string;
 }
 export type BreadcrumbsProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 declare const _default: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLDivElement>> & {

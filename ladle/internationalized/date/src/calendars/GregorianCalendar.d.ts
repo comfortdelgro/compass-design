@@ -25,7 +25,7 @@ export declare class GregorianCalendar implements Calendar {
     getDaysInMonth(date: AnyCalendarDate): number;
     getMonthsInYear(_date: AnyCalendarDate): number;
     getDaysInYear(date: AnyCalendarDate): number;
-    getYearsInEra(date: AnyCalendarDate): number;
+    getYearsInEra(_date: AnyCalendarDate): number;
     getEras(): string[];
     isInverseEra(date: AnyCalendarDate): boolean;
     balanceDate(date: Mutable<AnyCalendarDate>): void;

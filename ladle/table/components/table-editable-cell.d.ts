@@ -18,7 +18,7 @@ export type EditableCellProps = CellProps & Omit<React.HTMLAttributes<HTMLDivEle
 export declare const EditableCellContextProvider: ({ children, value, }: {
     value: EditableCellContextType;
     children: React.ReactNode;
-}) => JSX.Element, useEditableCellContext: () => EditableCellContextType;
+}) => import('../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element, useEditableCellContext: () => EditableCellContextType;
 export type EditableCellContextType = {
     finishTemplateEditing: (data: unknown) => void;
     cancelTemplateEditing: () => void;

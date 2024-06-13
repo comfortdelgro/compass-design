@@ -11,5 +11,5 @@ export interface SnackbarContextValue {
     remove: (id: number) => void;
     clearAll: () => void;
 }
-export declare const SnackbarContextProvider: ({ children, containerCSS, }: SnackbarContextProviderProps) => JSX.Element;
+export declare const SnackbarContextProvider: ({ children, containerCSS, }: SnackbarContextProviderProps) => import('../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 export {};

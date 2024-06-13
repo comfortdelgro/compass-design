@@ -1,0 +1,1 @@
+import{R as r}from"./index-6c164b11.js";const s=(l,o)=>{const e=[],t=r.Children.map(l,n=>r.isValidElement(n)?n.type===o?(e.push(r.cloneElement(n,n.props)),null):r.cloneElement(n,n.props):n);return{child:e.length>=0?e[0]:void 0,rest:t}};export{s as p};

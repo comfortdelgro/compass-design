@@ -67,7 +67,7 @@ export interface SpinButtonProps extends InputBase, Validation, ValueBase<number
     onIncrementToMax?: () => void;
 }
 export interface SpinbuttonAria {
-    spinButtonProps: DOMAttributes;
+    spinButtonProps: AriaButtonProps;
     incrementButtonProps: AriaButtonProps;
     decrementButtonProps: AriaButtonProps;
 }

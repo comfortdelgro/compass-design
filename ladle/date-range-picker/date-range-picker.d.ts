@@ -22,6 +22,6 @@ interface Props extends SpectrumDateRangePickerProps<DateValue> {
     onSearchButtonClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.TouchEvent<HTMLButtonElement>) => void;
     customShortcuts?: CustomShortcutsProps;
 }
-export type DateRangePickerProps = Props;
-declare const DateRangePicker: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLDivElement>>;
+export type DateRangePickerProps = Props & Omit<React.HTMLAttributes<HTMLElement>, keyof Props>;
+declare const DateRangePicker: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLElement>, keyof Props> & React.RefAttributes<HTMLDivElement>>;
 export default DateRangePicker;

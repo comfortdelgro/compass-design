@@ -15,5 +15,5 @@ export interface ToastContextValue {
     remove: (id: number) => void;
     clearAll: () => void;
 }
-export declare const ToastContextProvider: ({ children, anchorOrigin, toastItemClassName, }: ToastContextProviderProps) => JSX.Element;
+export declare const ToastContextProvider: ({ children, anchorOrigin, toastItemClassName, }: ToastContextProviderProps) => import('../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 export {};

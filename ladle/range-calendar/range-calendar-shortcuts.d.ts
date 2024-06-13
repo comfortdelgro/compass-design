@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { CalendarProps } from '../calendar';
 import { DateRangePickerState, DateValue, RangeCalendarState, RangeValue } from '../calendar/types';
 export interface RangeCalendarShorcutItem {
@@ -12,5 +11,5 @@ export interface RangeCalendarShortcutsProps {
     pickerState?: DateRangePickerState | undefined;
     customShortcuts?: CustomShortcutsProps;
 }
-declare const RangeCalendarShorcuts: (props: RangeCalendarShortcutsProps) => JSX.Element;
+declare const RangeCalendarShorcuts: (props: RangeCalendarShortcutsProps) => import('../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 export default RangeCalendarShorcuts;

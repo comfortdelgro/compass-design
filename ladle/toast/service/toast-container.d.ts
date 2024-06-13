@@ -9,5 +9,5 @@ interface Props {
     css?: CSS;
 }
 export type ToastsContainerProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
-declare const ToastsContainer: (props: ToastsContainerProps) => JSX.Element;
+declare const ToastsContainer: (props: ToastsContainerProps) => import('../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 export default ToastsContainer;

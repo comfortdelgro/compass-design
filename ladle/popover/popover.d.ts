@@ -30,25 +30,25 @@ type OffsetValue = number | {
 export type LegacyPopoverDirection = 'bottom-right' | 'bottom-center' | 'bottom-left' | 'top-right' | 'top-left' | 'top-center';
 export type PopoverDirection = LegacyPopoverDirection | Placement;
 interface Props {
-    children: React.ReactNode;
-    anchor: React.ReactNode;
-    attachToElement?: HTMLElement | null;
+    css?: CSS;
+    delay?: number;
     isOpen?: boolean;
-    allowOutsidePress?: boolean;
-    onOpenChange?: (isOpen: boolean) => void;
-    onClose?: () => void;
-    onOutsidePress?: () => void;
-    direction?: PopoverDirection;
+    className?: string;
     offset?: OffsetValue;
     shouldFlip?: boolean;
-    delay?: number;
-    disableInteractive?: boolean;
     defaultOpen?: boolean;
+    anchor: React.ReactNode;
     trigger?: 'click' | null;
+    children: React.ReactNode;
     isFloatingPortal?: boolean;
+    allowOutsidePress?: boolean;
+    direction?: PopoverDirection;
+    disableInteractive?: boolean;
+    attachToElement?: HTMLElement | null;
+    onClose?: () => void;
+    onOutsidePress?: () => void;
+    onOpenChange?: (isOpen: boolean) => void;
     onPositionedChange?: (isPositioned: boolean) => void;
-    className?: string;
-    css?: CSS;
 }
 export type PopoverProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 declare const Popover: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> & React.RefAttributes<HTMLDivElement>>;

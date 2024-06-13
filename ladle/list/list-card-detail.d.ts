@@ -6,7 +6,7 @@ interface Props {
     isDisabled?: boolean;
     description?: string;
     avatar?: React.ReactNode;
-    variant?: 'item' | 'interactive' | 'h5';
+    variant?: 'item' | 'interactive';
 }
 export type ListCardDetailProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
 declare const ListCardDetail: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> & React.RefAttributes<HTMLDivElement>>;

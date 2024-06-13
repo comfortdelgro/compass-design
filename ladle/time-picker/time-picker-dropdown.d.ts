@@ -1,4 +1,3 @@
-import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
 import { TimePickerDropdownSelectedDisplayList, ViewType } from './types';
 interface TimePickerDropdownProps {
     isOpen?: boolean;
@@ -14,6 +13,5 @@ interface TimePickerDropdownProps {
     onOkClick?: () => void;
     onEscapeKeyDown?: () => void;
 }
-declare function TimePickerDropdown(props: TimePickerDropdownProps): JSX.Element;
-declare const _default: React.MemoExoticComponent<typeof TimePickerDropdown>;
-export default _default;
+declare function TimePickerDropdown(props: TimePickerDropdownProps): import('../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
+export default TimePickerDropdown;

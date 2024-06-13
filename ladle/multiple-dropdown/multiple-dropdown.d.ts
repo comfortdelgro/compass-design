@@ -45,7 +45,7 @@ interface Props {
     onValuesChange?: (key: Array<string | number>) => void;
 }
 export type MultipleDropdownProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
-export declare const Icon: () => JSX.Element;
+export declare const Icon: () => import('../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 declare const _default: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> & React.RefAttributes<HTMLDivElement>> & {
     Item: typeof MultipleDropdownItem;
     Header: typeof MultipleDropdownHeader;

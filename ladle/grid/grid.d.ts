@@ -1,6 +1,5 @@
 import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
 import { CSS } from '../utils/objectToCss';
-import GridItem from './grid-item';
 interface Props {
     children?: React.ReactNode;
     css?: CSS;
@@ -9,7 +8,5 @@ interface Props {
     alignItems?: 'flexStart' | 'flexEnd' | 'center' | 'stretch' | 'baseline';
 }
 export type GridContainerProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;
-declare const _default: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props> & React.RefAttributes<HTMLDivElement>> & {
-    Item: typeof GridItem;
-};
-export default _default;
+declare const Grid: any;
+export default Grid;

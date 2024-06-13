@@ -53,7 +53,6 @@ interface Props {
     'aria-describedby'?: string;
     'aria-details'?: string;
     'aria-errormessage'?: string;
-    variant?: 'h5' | string;
     resizable?: boolean;
 }
 export type TextareaProps = Props & Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>;

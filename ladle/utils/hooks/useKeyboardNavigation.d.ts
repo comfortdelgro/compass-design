@@ -19,7 +19,7 @@ export interface KeyboardNavigationProviderProps extends SelectType {
     children: React.ReactNode;
     descendants: DescendantsManager<HTMLElement, object>;
 }
-export declare const KeyboardNavigationProvider: (props: KeyboardNavigationProviderProps) => JSX.Element;
+export declare const KeyboardNavigationProvider: (props: KeyboardNavigationProviderProps) => import('../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 export declare const useKeyboardNavigation: () => Partial<SelectType> & {
     descendants?: DescendantsManager<HTMLElement, object>;
     nextFocus?: () => void;

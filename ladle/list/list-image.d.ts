@@ -4,7 +4,7 @@ interface Props {
     css?: CSS;
     isRounded?: boolean;
     children?: React.ReactNode;
-    variant?: 'item' | 'interactive' | 'h5';
+    variant?: 'item' | 'interactive';
 }
 export type ListImageProps = Props & Omit<React.ImgHTMLAttributes<HTMLImageElement>, keyof Props>;
 declare const ListImage: React.ForwardRefExoticComponent<Props & Omit<React.ImgHTMLAttributes<HTMLImageElement>, keyof Props> & React.RefAttributes<HTMLImageElement>>;

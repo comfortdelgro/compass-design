@@ -27,7 +27,6 @@ interface Props {
     'aria-errormessage'?: string;
     className?: string;
     css?: CSS;
-    variant?: 'h5';
 }
 export type ToggleProps = Props & Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props>;
 declare const Toggle: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLInputElement>, keyof Props> & React.RefAttributes<HTMLInputElement>>;

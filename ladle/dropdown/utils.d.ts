@@ -38,7 +38,7 @@ export declare const getLastItem: (children?: React.ReactNode, dropdownItemKeys?
  * @param key current key
  * @param children All Dropdown.Item elements
  */
-export declare const getItemByKey: (key: string | number, children?: React.ReactNode) => React.ReactElement<DropdownItemProps, string | React.JSXElementConstructor<any>>;
+export declare const getItemByKey: (key: React.Key, children?: React.ReactNode) => React.ReactElement<DropdownItemProps, string | React.JSXElementConstructor<any>>;
 export declare const getDistanceBetweenElements: (a: HTMLDivElement, b: HTMLDivElement) => number;
 export declare function getDefaultValue(defaultValue: string[] | number | undefined, value: string | number | undefined, disableDefault?: boolean): string[] | number | undefined;
 export interface KeyboardDelegate {

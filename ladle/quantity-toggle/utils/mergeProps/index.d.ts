@@ -12,7 +12,7 @@ type PropsArg = Props | null | undefined;
 type TupleTypes<T> = {
     [P in keyof T]: T[P];
 } extends Record<number, infer V> ? NullToObject<V> : never;
-type NullToObject<T> = T extends null | undefined ? {} : T;
+type NullToObject<T> = T extends null | undefined ? object : T;
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
 export default function mergeProps<T extends PropsArg[]>(...args: T): UnionToIntersection<TupleTypes<T>>;
 export {};

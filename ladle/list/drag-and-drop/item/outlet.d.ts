@@ -8,5 +8,5 @@ export interface DragAndDropListItemProps {
     isSelected: boolean;
     isOutOfBounds: boolean;
 }
-declare const DragAndDropListOutletItem: ({ children, props, isDragged, }: DragAndDropListItemProps) => JSX.Element;
+declare const DragAndDropListOutletItem: ({ children, props, isDragged, }: DragAndDropListItemProps) => import('../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 export default DragAndDropListOutletItem;

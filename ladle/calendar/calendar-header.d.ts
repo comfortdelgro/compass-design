@@ -16,5 +16,5 @@ interface Props {
     middleButtonProps?: MonthYearState;
     maxValue?: DateValue;
 }
-declare const CalendarHeader: (props: Props) => JSX.Element;
+declare const CalendarHeader: (props: Props) => import('../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 export default CalendarHeader;

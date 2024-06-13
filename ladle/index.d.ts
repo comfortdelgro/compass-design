@@ -43,7 +43,7 @@ export type { DialogActionsProps, DialogDescriptionProps, DialogIconProps, Dialo
 export { default as Divider } from './divider';
 export type { DividerProps } from './divider';
 export { default as Drawer } from './drawer';
-export type { DrawerDefaultProps, DrawerFooterProps, DrawerH5Props, DrawerHeaderProps, DrawerProps, DrawerRef, } from './drawer';
+export type { DrawerDefaultProps, DrawerFooterProps, DrawerHeaderProps, DrawerProps, DrawerRef, } from './drawer';
 export { default as Dropdown } from './dropdown';
 export type { DropdownComboBoxProps, DropdownItemProps, DropdownProps, DropdownSelectProps, } from './dropdown';
 export { default as DropdownMenu } from './dropdown-menu';

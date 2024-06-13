@@ -6,5 +6,5 @@ interface RichTextEditorContext {
 export declare const RichTextEditorProvider: ({ children, value, }: {
     value: RichTextEditorContext;
     children: import('../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').ReactNode;
-}) => JSX.Element, useRichTextEditorContext: () => RichTextEditorContext;
+}) => import('../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element, useRichTextEditorContext: () => RichTextEditorContext;
 export {};

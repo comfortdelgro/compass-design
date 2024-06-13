@@ -1,6 +1,5 @@
 import React, { Key } from '../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
 import { DropdownItemProps } from './item';
-export declare const Icon: () => JSX.Element;
 export declare const pickChilds: <T extends import("./item").Props>(children: React.ReactNode | undefined, targetType: React.ElementType) => React.DetailedReactHTMLElement<T, HTMLElement>[];
 export declare function getDefaultValue(defaultValue: React.Key | undefined, value: React.Key | undefined, disableDefault?: boolean): React.Key | undefined;
 export interface KeyboardDelegate {

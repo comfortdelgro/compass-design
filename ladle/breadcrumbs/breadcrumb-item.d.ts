@@ -6,7 +6,6 @@ interface Props {
     target?: string;
     isCurrent?: boolean;
     isDisabled?: boolean;
-    children?: React.ReactNode;
 }
 export type BreadcrumbItemProps = Props & Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props>;
 declare const BreadcrumbItem: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLAnchorElement>, keyof Props> & React.RefAttributes<HTMLAnchorElement>>;

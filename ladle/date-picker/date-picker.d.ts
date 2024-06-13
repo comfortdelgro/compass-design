@@ -14,6 +14,6 @@ interface Props extends SpectrumDatePickerProps<DateValue> {
     helperText?: React.ReactNode;
     ctaButtonRender?: React.ReactNode;
 }
-export type DatePickerProps = Props;
-declare const DatePicker: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLDivElement>>;
+export type DatePickerProps = Props & Omit<React.HTMLAttributes<HTMLElement>, keyof Props>;
+declare const DatePicker: React.ForwardRefExoticComponent<Props & Omit<React.HTMLAttributes<HTMLElement>, keyof Props> & React.RefAttributes<HTMLDivElement>>;
 export default DatePicker;

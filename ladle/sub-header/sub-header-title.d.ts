@@ -2,7 +2,7 @@ import React from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/reac
 import { CSS } from '../utils/objectToCss';
 interface Props {
     children: React.ReactNode;
-    variant?: 'default' | 'h5';
+    variant?: 'default';
     css?: CSS;
     className?: string;
 }

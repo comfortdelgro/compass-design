@@ -1,10 +1,10 @@
 import { AccessorColumnDef, Cell, CellContext, ColumnDef, ColumnFiltersState, DisplayColumnDef, GroupColumnDef, HeaderContext, Row, SortingState, Table as TanstackTable } from '@tanstack/react-table';
+import Table from './table';
 export { EditableCellContextProvider, useEditableCellContext, } from './components/table-editable-cell';
 export type { TableProps } from './table';
 export type { TableFooterProps as ReactTableFooterProps } from './table-footer';
 export type { TableToolbarProps as ReactTableToolbarProps } from './table-toolbar';
 export type { OptionType } from './utils/types';
-declare const Table: any;
 export type TableRow<T> = Row<T>;
 export type TableType<T> = TanstackTable<T>;
 export type TableColumnDef<T> = ColumnDef<T>;

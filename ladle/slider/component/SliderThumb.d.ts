@@ -5,5 +5,5 @@ interface SliderThumbProps extends SliderThumbBaseProps {
     inputRef?: RefObject<HTMLInputElement>;
     state: SliderState;
 }
-export declare function SliderThumb(props: SliderThumbProps): JSX.Element;
+export declare function SliderThumb(props: SliderThumbProps): import('../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react/jsx-runtime').JSX.Element;
 export {};

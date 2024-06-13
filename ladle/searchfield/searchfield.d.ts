@@ -42,7 +42,6 @@ interface Props {
     'aria-describedby'?: string;
     'aria-details'?: string;
     'aria-errormessage'?: string;
-    h5?: boolean;
     css?: CSS;
     className?: string;
 }

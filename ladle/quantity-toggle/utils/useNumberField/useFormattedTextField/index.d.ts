@@ -63,7 +63,7 @@ export default function useFormattedTextField(props: AriaTextFieldProps, state: 
     suppressHydrationWarning?: boolean;
     accessKey?: string;
     className?: string;
-    contentEditable?: "inherit" | (boolean | "false" | "true");
+    contentEditable?: "inherit" | (boolean | "false" | "true") | "plaintext-only";
     contextMenu?: string;
     dir?: string;
     draggable?: boolean | "false" | "true";
@@ -103,13 +103,17 @@ export default function useFormattedTextField(props: AriaTextFieldProps, state: 
     unselectable?: "on" | "off";
     is?: string;
     "aria-atomic"?: boolean | "false" | "true";
+    "aria-braillelabel"?: string;
+    "aria-brailleroledescription"?: string;
     "aria-busy"?: boolean | "false" | "true";
     "aria-checked"?: boolean | "mixed" | "false" | "true";
     "aria-colcount"?: number;
     "aria-colindex"?: number;
+    "aria-colindextext"?: string;
     "aria-colspan"?: number;
     "aria-controls"?: string;
-    "aria-current"?: boolean | "page" | "false" | "true" | "time" | "step" | "location" | "date";
+    "aria-current"?: boolean | "page" | "false" | "true" | "step" | "location" | "date" | "time";
+    "aria-description"?: string;
     "aria-disabled"?: boolean | "false" | "true";
     "aria-dropeffect"?: "none" | "copy" | "move" | "link" | "execute" | "popup";
     "aria-expanded"?: boolean | "false" | "true";
@@ -134,6 +138,7 @@ export default function useFormattedTextField(props: AriaTextFieldProps, state: 
     "aria-roledescription"?: string;
     "aria-rowcount"?: number;
     "aria-rowindex"?: number;
+    "aria-rowindextext"?: string;
     "aria-rowspan"?: number;
     "aria-selected"?: boolean | "false" | "true";
     "aria-setsize"?: number;
@@ -200,6 +205,8 @@ export default function useFormattedTextField(props: AriaTextFieldProps, state: 
     onProgressCapture?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').ReactEventHandler<HTMLInputElement>;
     onRateChange?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').ReactEventHandler<HTMLInputElement>;
     onRateChangeCapture?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').ReactEventHandler<HTMLInputElement>;
+    onResize?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').ReactEventHandler<HTMLInputElement>;
+    onResizeCapture?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').ReactEventHandler<HTMLInputElement>;
     onSeeked?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').ReactEventHandler<HTMLInputElement>;
     onSeekedCapture?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').ReactEventHandler<HTMLInputElement>;
     onSeeking?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').ReactEventHandler<HTMLInputElement>;
@@ -268,9 +275,7 @@ export default function useFormattedTextField(props: AriaTextFieldProps, state: 
     onPointerCancel?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').PointerEventHandler<HTMLInputElement>;
     onPointerCancelCapture?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').PointerEventHandler<HTMLInputElement>;
     onPointerEnter?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').PointerEventHandler<HTMLInputElement>;
-    onPointerEnterCapture?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').PointerEventHandler<HTMLInputElement>;
     onPointerLeave?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').PointerEventHandler<HTMLInputElement>;
-    onPointerLeaveCapture?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').PointerEventHandler<HTMLInputElement>;
     onPointerOver?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').PointerEventHandler<HTMLInputElement>;
     onPointerOverCapture?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').PointerEventHandler<HTMLInputElement>;
     onPointerOut?: import('../../../../../../../node_modules/.pnpm/react@18.3.1/node_modules/react').PointerEventHandler<HTMLInputElement>;
