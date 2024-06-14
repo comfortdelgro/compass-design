@@ -4,6 +4,7 @@ import {useIsDarkTheme} from '../theme'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useId} from '../utils/useId'
 import styles from './styles/searchfield.module.css'
 
 interface Props {
@@ -69,7 +70,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       // StyledComponentProps
       label,
       css = {},
-      id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+      id: propsId,
       value = '',
       defaultValue = '',
       isErrored = false,
@@ -79,6 +80,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       autoFocus = false,
       placeholder = '',
       errorMessage = '',
+      onClear,
       onSubmit,
       onChange,
       onChangeEvent,
@@ -100,6 +102,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
       className = '',
       ...delegated
     } = props
+    const id = useId(propsId)
     const isDarkTheme = useIsDarkTheme()
     const [textValue, setTextValue] = React.useState<string>(
       defaultValue || value,
@@ -136,7 +139,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
 
       if (key === 'Escape') {
         setTextValue('')
-        props.onClear?.()
+        onClear?.()
       }
       onKeyDown?.(e)
     }
@@ -144,7 +147,7 @@ const SearchField = React.forwardRef<HTMLDivElement, SearchFieldProps>(
     const onClearButtonClick = () => {
       setTextValue('')
       onChange?.('')
-      props.onClear?.()
+      onClear?.()
     }
 
     const onSearchButtonClick = () => {

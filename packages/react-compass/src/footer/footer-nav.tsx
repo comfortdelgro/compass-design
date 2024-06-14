@@ -27,6 +27,9 @@ const FooterNavigation = React.forwardRef<
     ...delegated
   } = props
 
+  delete delegated.gridNumber
+  delete delegated.tabletGridNumber
+
   // const cssProps = {
   //   $$gridNumber: gridNumber,
   //   $$tabletGridNumber: tabletGridNumber,

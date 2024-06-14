@@ -190,7 +190,6 @@ const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
                 childrenRef={currentProgressRef}
               >
                 <div
-                  {...{loading}}
                   className={classNames(
                     styles.loadingProgress,
                     styles[

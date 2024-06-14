@@ -11,6 +11,7 @@ import React from 'react'
 import {CSS, CssInjection} from '../../utils/objectToCss'
 import {classNames} from '../../utils/string'
 import {useDOMRef} from '../../utils/use-dom-ref'
+import {useId} from '../../utils/useId'
 import styles from '../styles/dropdown.module.css'
 import DropdownItem, {DropdownItemProps} from './item'
 import ListBox from './list-box'
@@ -44,7 +45,7 @@ export type DropdownProps = Props &
 const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const {
     css = {},
-    id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+    id: propsId,
     children,
     selectedKey,
     placeholder,
@@ -54,6 +55,7 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
     isDisabled = false,
     shouldDeselect = false,
     className = '',
+    onSelectionChange,
     ...htmlProps
   } = props
 
@@ -85,6 +87,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const {getReferenceProps, getFloatingProps} = useInteractions([dismiss])
 
   // ====================================== CONST ======================================
+  const id = useId(propsId)
+
   const collection = React.useMemo(
     () => pickChilds<DropdownItemProps>(children, DropdownItem),
     [children],
@@ -167,10 +171,10 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
   const onSelect = (key: React.Key) => {
     if (currentKey === key && shouldDeselect) {
       setCurrentKey(undefined)
-      props.onSelectionChange?.('')
+      onSelectionChange?.('')
     } else {
       setCurrentKey(key)
-      props.onSelectionChange?.(key)
+      onSelectionChange?.(key)
     }
     setOpen(false)
   }

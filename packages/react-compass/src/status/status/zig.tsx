@@ -42,7 +42,7 @@ const Zig = () => {
         height='21.5'
         rx='10.75'
         stroke='white'
-        stroke-width='1.5'
+        strokeWidth='1.5'
       />
     </svg>
   )
