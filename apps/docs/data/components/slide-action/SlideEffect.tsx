@@ -6,7 +6,7 @@ export default function SliderEffectDocs() {
       <Typography.Header variant='header4'>Slide effect</Typography.Header>
       <SlideAction color='#475569'>Default: Slide background</SlideAction>
 
-      <SlideAction css={{marginBlock: '$4'}} color='#475569' slideType='static'>
+      <SlideAction css={{marginBlock: 'var(--cdg-spacing-4)'}} color='#475569' slideType='static'>
         Static fade-in background
       </SlideAction>
 

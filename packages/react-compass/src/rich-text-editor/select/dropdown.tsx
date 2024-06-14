@@ -261,8 +261,8 @@ const Select = React.forwardRef<HTMLDivElement, DropdownProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Select & {
+})
+
+export default Select as typeof Select & {
   Item: typeof DropdownItem
 }
-
-export default Select

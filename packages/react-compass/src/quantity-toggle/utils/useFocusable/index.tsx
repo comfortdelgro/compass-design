@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 /**
  * This file contains code adapted from the React Spectrum project.
  *

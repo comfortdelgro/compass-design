@@ -2,13 +2,13 @@ import {Column, Divider, ProgressBar} from '@comfortdelgro/react-compass'
 
 export default function ProgressBarLoadingDocs() {
   return (
-    <Column css={{gap: '$4'}}>
+    <Column css={{gap: 'var(--cdg-spacing-4)'}}>
       <ProgressBar variant='rounded' label='Default' loading />
       <ProgressBar
         variant='rounded'
         label='Stripes'
-        color='$blueShades80'
-        barColor='$blueShades10'
+        color='var(--cdg-color-blueShades80)'
+        barColor='var(--cdg-color-blueShades10)'
         loading='stripes'
       />
 
@@ -16,7 +16,7 @@ export default function ProgressBarLoadingDocs() {
       <ProgressBar
         variant='rounded'
         label='With color'
-        color='$dangerShades'
+        color='var(--cdg-color-dangerShades)'
         barColor='#fecaca'
         loading
       />

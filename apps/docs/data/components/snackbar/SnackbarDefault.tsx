@@ -1,4 +1,4 @@
-import CloseIcon from '@comfortdelgro/compass-icons/react/h5-close'
+import CloseIcon from '@comfortdelgro/compass-icons/react/cross'
 import {Button, Dropdown, Icon, Snackbar} from '@comfortdelgro/react-compass'
 import {faImage} from '@fortawesome/free-solid-svg-icons'
 import React, {Key} from 'react'

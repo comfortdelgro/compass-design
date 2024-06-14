@@ -71,7 +71,7 @@ export default function PudoCompact() {
 // const CompactExampleContainer = styled('div', {
 //   display: 'flex',
 //   flexDirection: 'column',
-//   gap: '$4',
+//   gap: 'var(--cdg-spacing-4)',
 
 //   '@sm': {
 //     flexDirection: 'row',

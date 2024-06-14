@@ -101,7 +101,7 @@ const MyFooter: React.FC<MyFooterProps> = ({color = 'white'}) => {
       color={color}
       css={{
         '& a': {
-          color: '$gray70',
+          color: 'var(--cdg-color-gray70)',
           textDecoration: 'none',
           fontSize: '14px',
           fontWeight: '400',
@@ -113,7 +113,7 @@ const MyFooter: React.FC<MyFooterProps> = ({color = 'white'}) => {
         css={{
           '& .logo': {
             fontSize: '30px',
-            color: '$cdgBlue',
+            color: 'var(--cdg-color-cdgBlue)',
             margin: 0,
           },
         }}

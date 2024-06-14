@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import React from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'

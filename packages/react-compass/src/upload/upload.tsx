@@ -220,8 +220,8 @@ const Upload = React.forwardRef<HTMLDivElement, UploadProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Upload & {
+})
+
+export default Upload as typeof Upload & {
   DragAndDrop: typeof UploadDragAndDrop
 }
-
-export default Upload

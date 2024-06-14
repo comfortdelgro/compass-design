@@ -196,12 +196,12 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) => {
       </div>
     </CssInjection>
   )
-}) as typeof Modal & {
+})
+
+export default Modal as typeof Modal & {
   Trigger: typeof ModalTrigger
   Title: typeof ModalTitle
   Description: typeof ModalDescription
   Actions: typeof ModalActions
   CloseIcon: typeof ModalCloseIcon
 }
-
-export default Modal

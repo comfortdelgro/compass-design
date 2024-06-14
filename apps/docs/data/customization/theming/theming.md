@@ -115,7 +115,7 @@ function MyApp({Component, pageProps}: AppProps) {
       >
         <Box
           css={{
-            backgroundColor: '$background',
+            backgroundColor: 'var(--cdg-color-background)',
           }}
         >
           <Box>

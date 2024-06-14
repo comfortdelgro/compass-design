@@ -1,12 +1,12 @@
-import ComposableTagBox from './tag-box'
+import TagBox from './tag-box'
 import TagBoxAction from './tag-box-action'
 
 export type {TagBoxProps} from './tag-box'
 export type {TagBoxActionProps} from './tag-box-action'
 
-ComposableTagBox.Action = TagBoxAction
+TagBox.Action = TagBoxAction
 
-ComposableTagBox.displayName = 'TagBox'
-ComposableTagBox.Action.displayName = 'TagBox.Action'
+TagBox.displayName = 'TagBox'
+TagBox.Action.displayName = 'TagBox.Action'
 
-export default ComposableTagBox
+export default TagBox

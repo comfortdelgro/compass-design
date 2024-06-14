@@ -11,19 +11,19 @@ const slideBgColors = [
   '#475569',
   '#ea580c',
   '#059669',
-  '$cdgBlue',
+  'var(--cdg-color-cdgBlue)',
   '#0891b2',
   '#7c3aed',
   '#e11d48',
 ]
 
 export default function SliderColorfulDocs() {
-  const [colorBg, setColorBg] = useState(slideBgColors[0] || '$cdgBlue')
+  const [colorBg, setColorBg] = useState(slideBgColors[0] || 'var(--cdg-color-cdgBlue)')
   return (
     <Column>
       <Typography.Header variant='header4'>Default color</Typography.Header>
-      <code>$dangerShades - #E31617</code>
-      <SlideAction css={{marginBlock: '$4'}}>
+      <code>var(--cdg-color-dangerShades) - #E31617</code>
+      <SlideAction css={{marginBlock: 'var(--cdg-spacing-4)'}}>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque enim
         sint labore nesciunt
       </SlideAction>
@@ -31,7 +31,7 @@ export default function SliderColorfulDocs() {
       <Divider />
 
       <Typography.Header variant='header4'>More colors 🎨</Typography.Header>
-      <StyledColorPickerWrapper styles={{marginBottom: '$4'}}>
+      <StyledColorPickerWrapper styles={{marginBottom: 'var(--cdg-spacing-4)'}}>
         {slideBgColors.map((color) => (
           <StyledColorPicker
             key={color}
@@ -56,7 +56,7 @@ export default function SliderColorfulDocs() {
 
       <SlideAction color={colorBg}>Slide background</SlideAction>
 
-      <SlideAction css={{marginBlock: '$4'}} color={colorBg} slideType='static'>
+      <SlideAction css={{marginBlock: 'var(--cdg-spacing-4)'}} color={colorBg} slideType='static'>
         Fadein background
       </SlideAction>
 
@@ -67,7 +67,7 @@ export default function SliderColorfulDocs() {
         deleniti!
       </SlideAction>
 
-      <Divider css={{marginBlock: '$4'}} />
+      <Divider css={{marginBlock: 'var(--cdg-spacing-4)'}} />
 
       <Typography.Header variant='header4'>
         Default gradient background

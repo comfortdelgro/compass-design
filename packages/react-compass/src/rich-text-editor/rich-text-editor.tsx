@@ -41,7 +41,6 @@ interface StorageCount {
 export type RichTextEditorProps = Props &
   Omit<React.HTMLAttributes<HTMLDivElement>, keyof Props>
 
-// eslint-disable-next-line react-refresh/only-export-components
 const RichTextEditor = React.forwardRef<HTMLDivElement, RichTextEditorProps>(
   (props, ref) => {
     const {

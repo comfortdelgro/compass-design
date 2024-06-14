@@ -29,10 +29,6 @@ import {SearchField} from '@comfortdelgro/react-compass'
 
 {{"demo": "SearchFieldCustom.tsx"}}
 
-### H5 variant
-
-{{"demo": "SearchFieldH5.tsx"}}
-
 ## Props
 
 | Name       | Type               | Default | Description |

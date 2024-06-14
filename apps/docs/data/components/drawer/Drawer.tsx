@@ -39,7 +39,7 @@ export default function DrawerDocs() {
         Drawer controlled by form
       </Typography.Header>
 
-      <Row css={{marginBlock: '$4'}}>
+      <Row css={{marginBlock: 'var(--cdg-spacing-4)'}}>
         <Button type='button' onClick={() => setOpenDrawer(true)}>
           Open Drawer
         </Button>
@@ -71,7 +71,7 @@ export default function DrawerDocs() {
           </Typography.Header>
           <Button
             css={{
-              padding: '$1',
+              padding: 'var(--cdg-spacing-1)',
               svg: {
                 width: 'fit-content !important',
               },
@@ -87,7 +87,10 @@ export default function DrawerDocs() {
         <Typography.Header variant='header4'>Drawer Form</Typography.Header>
         <Typography.Body
           variant='body3'
-          css={{color: '$grayShades60', marginBottom: '$4'}}
+          css={{
+            color: 'var(--cdg-color-grayShades60)',
+            marginBottom: 'var(--cdg-spacing-4)',
+          }}
         >
           In this example, all inputs are uncontrolled input.
         </Typography.Body>
@@ -109,9 +112,12 @@ export default function DrawerDocs() {
           />
         </form>
 
-        <Divider css={{marginBlock: '$4'}} />
+        <Divider css={{marginBlock: 'var(--cdg-spacing-4)'}} />
 
-        <Typography.Header variant='header4' css={{marginTop: '$16'}}>
+        <Typography.Header
+          variant='header4'
+          css={{marginTop: 'var(--cdg-spacing-16)'}}
+        >
           Article contents
         </Typography.Header>
         <section style={{height: '50vh'}}>
@@ -165,7 +171,7 @@ export default function DrawerDocs() {
           </Typography.Body>
         </section>
 
-        <Drawer.Footer css={{display: 'flex', gap: '$2'}}>
+        <Drawer.Footer css={{display: 'flex', gap: 'var(--cdg-spacing-2)'}}>
           <Button
             variant='secondary'
             form='form-in-drawer'

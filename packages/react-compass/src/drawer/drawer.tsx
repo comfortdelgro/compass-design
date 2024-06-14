@@ -160,9 +160,9 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
       </dialog>
     </CssInjection>
   )
-}) as typeof Drawer & {
+})
+
+export default Drawer as typeof Drawer & {
   Header: typeof DrawerHeader
   Footer: typeof DrawerFooter
 }
-
-export default Drawer

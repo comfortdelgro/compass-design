@@ -47,36 +47,24 @@ export default function ProgressBarColorDocs() {
   }, [startProcess])
 
   return (
-    <Column css={{gap: '$4'}}>
+    <Column css={{gap: 'var(--cdg-spacing-4)'}}>
       <ProgressBar value={20} color='blue' label='blue' />
       <ProgressBar value={40} color='green' label='green' />
       <ProgressBar
         value={20}
-        label='color: $dangerShades | barColor: $FECACA'
-        color='$dangerShades'
+        label='color: var(--cdg-color-dangerShades) | barColor: $FECACA'
+        color='var(--cdg-color-dangerShades)'
         barColor='#fecaca'
       />
       <ProgressBar
         value={60}
-        label='color: $cdgBlue | barColor: $blueShades10'
-        color='$cdgBlue'
-        barColor='$blueShades10'
+        label='color: var(--cdg-color-cdgBlue) | barColor: var(--cdg-color-blueShades10)'
+        color='var(--cdg-color-cdgBlue)'
+        barColor='var(--cdg-color-blueShades10)'
       />
 
-      <Divider css={{marginBlock: '$8'}} />
-
-      <ProgressBar
-        value={progressValue}
-        maxValue={MAX_VALUE}
-        size='md'
-        label='H5'
-        rightLabel='color: $blueShades80 | barColor: $blueShades10 | size: md'
-        color='$blueShades80'
-        barColor='$blueShades10'
-        onComplete={() => setIsCompleted(true)}
-      />
-
-      <Row css={{alignItems: 'unset', height: '$8'}}>
+      <Divider css={{marginBlock: 'var(--cdg-spacing-8)'}} />
+      <Row css={{alignItems: 'unset', height: 'var(--cdg-spacing-8)'}}>
         {isCompleted ? (
           <>
             <Typography.Label>Completed</Typography.Label>
