@@ -24,7 +24,7 @@ export function useDescription(description: string): AriaLabeDescriptionProps {
 
     let desc = descriptionNodes.get(description)
     if (!desc) {
-      const id = `react-aria-description-${descriptionId++}`
+      const id = `cdg-description-${descriptionId++}`
       setId(id)
 
       const node = document.createElement('div')

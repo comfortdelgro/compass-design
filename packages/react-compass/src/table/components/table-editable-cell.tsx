@@ -131,14 +131,14 @@ export const EditableCell: React.FC<EditableCellProps> = (props) => {
             />
           )
         ) : (
-          <p
+          <div
             className={classNames(
               styles.editableCellContent,
               'cdg-table-editable-cell-content',
             )}
           >
             {flexRender(cell.column.columnDef.cell, cell.getContext())}
-          </p>
+          </div>
         )}
       </div>
     </CssInjection>

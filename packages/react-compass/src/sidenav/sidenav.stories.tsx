@@ -50,9 +50,9 @@ const styleTitleWrapper = {
   paddingRight: 3,
 }
 
-const styleDetailWrapper = {
+const styleDetailWrapper: React.CSSProperties = {
   display: 'flex',
-  'flex-direction': 'column',
+  flexDirection: 'column',
   fontFamily: 'Poppins',
   justifyContent: 'center',
   marginLeft: 8,
@@ -68,7 +68,7 @@ const styleDetailTitleWrapper = {
 const styleDetailTimeWrapper = {
   fontSize: 12,
   lineHeight: '18px',
-  'white-space': 'nowrap',
+  whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   color: '#A19F9D',

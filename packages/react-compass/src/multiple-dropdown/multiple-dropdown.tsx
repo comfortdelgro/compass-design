@@ -4,6 +4,7 @@ import Popover from '../popover'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useId} from '../utils/useId'
 import {
   DropdownItemKey,
   MultipleDropdownContext,
@@ -94,7 +95,7 @@ const MultipleDropdown = React.forwardRef<
   MultipleDropdownProps
 >((props, ref) => {
   const {
-    id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+    id: propsId,
     css = {},
     popoverCSS = {},
     isOpen,
@@ -176,6 +177,8 @@ const MultipleDropdown = React.forwardRef<
   const inputRef = useDOMRef<HTMLInputElement>(null)
 
   const openStateInitialChangedRef = React.useRef(false)
+
+  const id = useId(propsId)
 
   const dropdownDisabledKeys = React.useMemo(
     () => (disabledValues.length ? disabledValues : disabledKeys),

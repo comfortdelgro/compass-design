@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useId} from '../utils/useId'
 import {
   MultipleDropdownContext,
   SelectedItemDropdown,
@@ -10,7 +11,7 @@ import {MultipleDropdownItemProps} from './multiple-dropdown-item'
 import styles from './styles/multiple-dropdown.module.css'
 
 export interface DropdownSectionBase {
-  id?: number | string
+  id?: string
   title?: React.ReactNode
   'aria-label'?: string
   children: React.ReactNode
@@ -36,7 +37,7 @@ const MultipleDropdownSection = React.forwardRef<
   DropdownSectionProps
 >((props, ref) => {
   const {
-    id = `cdg-element-${Math.random().toString(36).substring(2)}`,
+    id: propsId,
     children,
     title,
     isClickable,
@@ -48,6 +49,8 @@ const MultipleDropdownSection = React.forwardRef<
     onSectionClick,
     ...delegated
   } = props
+
+  const id = useId(propsId)
 
   const {
     onSectionClick: onSectionClickContext,
