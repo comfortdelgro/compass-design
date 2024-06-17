@@ -4,37 +4,59 @@ import {getStaticPath} from 'utils'
 
 const Banner = () => {
   return (
-    <Box className='hero-banner'>
+    <Box css={{position: 'relative'}}>
       <Image
-        className='hero-background'
-        src={getStaticPath('/static/images/home-background.png')}
         style={{
-          filter: 'brightness(0.7)',
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          zIndex: 0,
+          objectFit: 'cover',
         }}
+        src={getStaticPath('/static/images/home-background.png')}
         alt='Big hero banner'
         sizes='100vw'
         width={0}
         height={0}
       />
-      <Box className='hero-content-wrapper'>
-        <Box className='hero-content'>
+      <Box
+        css={{
+          position: 'relative',
+          zIndex: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '70px 0',
+        }}
+      >
+        <Box
+          css={{
+            backgroundColor: '#0000001A',
+            padding: '25px 70px',
+            borderRadius: '16px',
+            color: '#FFFFFF',
+          }}
+        >
           <Typography.Header
-            variant='header4'
-            style={{
+            css={{
               color: 'var(--colors-background)',
               fontSize: '1.125rem',
               textAlign: 'center',
-              fontWeight: 'bold',
+              fontWeight: '700',
+              lineHeight: '27px',
+              marginBottom: '12px',
             }}
           >
             WELCOME TO
           </Typography.Header>
           <Typography.Header
-            style={{
+            css={{
               color: 'var(--colors-background)',
               fontSize: '2.875rem',
               textAlign: 'center',
+              fontWeight: '700',
               lineHeight: '69px',
+              marginBottom: '12px',
               '@media screen and (max-width: 768px)': {
                 fontSize: '2rem',
                 lineHeight: '32px',
@@ -43,26 +65,39 @@ const Banner = () => {
           >
             Compass Design System
           </Typography.Header>
-          <Typography.Header
-            variant='header5'
-            style={{
+          <Box
+            css={{
+              gap: 7,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               color: 'var(--colors-background)',
               fontSize: '1.125rem',
+              fontWeight: '500',
               textAlign: 'center',
+              lineHeight: '27px',
             }}
           >
-            let the{' '}
-            <span
-              style={{
-                background: '#EC5E5E',
-                padding: '2px 6px',
+            let the
+            <Typography.Header
+              variant='header5'
+              css={{
+                display: 'inline',
                 borderRadius: 4,
+                width: 'fit-content',
+                color: 'var(--colors-background)',
+                padding: '5px 10px',
+                background: '#EC5E5E',
+                fontSize: '1.125rem',
+                fontWeight: '700',
+                textAlign: 'center',
+                lineHeight: '27px',
               }}
             >
               work
-            </span>{' '}
+            </Typography.Header>
             flow
-          </Typography.Header>
+          </Box>
         </Box>
       </Box>
     </Box>

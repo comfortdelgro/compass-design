@@ -15,7 +15,7 @@ export default function Item(props: Props) {
   const {title, description, image, textLink, urlLink = '/', target} = props
   return (
     <Box
-      style={{
+      css={{
         height: 131,
         width: '100%',
         display: 'flex',
@@ -36,7 +36,7 @@ export default function Item(props: Props) {
         }}
       />
       <Box
-        style={{
+        css={{
           padding: 'var(--cdg-spacing-4) var(--cdg-spacing-3)',
           display: 'flex',
           alignItems: 'flex-start',
@@ -44,16 +44,16 @@ export default function Item(props: Props) {
           justifyContent: 'space-around',
         }}
       >
-        <Typography.Header variant='header3' style={{color: 'black'}}>
+        <Typography.Header variant='header3' css={{color: 'black'}}>
           {title}
         </Typography.Header>
-        <Typography.Body variant='body2' style={{color: 'black'}}>
+        <Typography.Body variant='body2' css={{color: 'black'}}>
           {description}
         </Typography.Body>
         <Link href={urlLink} style={{textDecoration: 'none'}} target={target}>
           <Typography.Body
             variant='body2'
-            style={{color: 'var(--colors-cdgBlue)', fontWeight: 'bold'}}
+            css={{color: 'var(--colors-cdgBlue)', fontWeight: 'bold'}}
           >
             {textLink}
           </Typography.Body>

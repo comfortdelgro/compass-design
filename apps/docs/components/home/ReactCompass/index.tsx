@@ -14,7 +14,7 @@ function ReactCompass() {
   const isDarkTheme = useIsDarkTheme()
   return (
     <Box
-      style={{
+      css={{
         padding: '4rem 0',
         background: isDarkTheme ? 'var(--colors-gray90)' : '#ECE2EF',
       }}
@@ -24,13 +24,13 @@ function ReactCompass() {
           <Typography.Header>Usage</Typography.Header>
           <Typography.Body
             variant='body2'
-            style={{padding: 'var(--cdg-spacing-5) 0 var(--cdg-spacing-3) 0'}}
+            css={{padding: 'var(--cdg-spacing-5) 0 var(--cdg-spacing-3) 0'}}
           >
             There are three parts of the package: CSS, Javascript, and Icon or
             Image resource. We are fetching icon and images from cdn by default.
           </Typography.Body>
         </Box>
-        <Box style={{paddingTop: 'var(cdg-spacing-4)'}}>
+        <Box css={{paddingTop: 'var(cdg-spacing-4)'}}>
           <div className='cdg-card-row'>
             <Item
               title='Latest updates'
@@ -50,15 +50,15 @@ function ReactCompass() {
             />
           </div>
         </Box>
-        <Divider style={{padding: 'var(--cdg-spacing-4)'}} />
-        <Box style={{paddingTop: 'var(--cdg-spacing-8)'}}>
-          <Typography.Header style={{paddingBottom: 'var(--cdg-spacing-3)'}}>
+        <Divider css={{padding: 'var(--cdg-spacing-4)'}} />
+        <Box css={{paddingTop: 'var(--cdg-spacing-8)'}}>
+          <Typography.Header css={{paddingBottom: 'var(--cdg-spacing-3)'}}>
             Add compass-design style into your SSR app
           </Typography.Header>
           <CoreShowcase />
         </Box>
-        <Box style={{padding: 'var(--cdg-spacing-8) 0px'}}>
-          <Typography.Header style={{paddingBottom: 'var(--cdg-spacing-3)'}}>
+        <Box css={{padding: 'var(--cdg-spacing-8) 0px'}}>
+          <Typography.Header css={{paddingBottom: 'var(--cdg-spacing-3)'}}>
             Add Preflight component for better CSS resets according to design
             guidelines.
           </Typography.Header>
