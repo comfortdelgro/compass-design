@@ -1,9 +1,6 @@
-import { CodeVariant } from "./types"
-
 export default function SandboxDependencies(
   demo: {
     raw: string
-    codeVariant: CodeVariant
   },
   options?: any,
 ) {

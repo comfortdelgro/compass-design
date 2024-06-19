@@ -3,8 +3,6 @@ import LZString from 'lz-string'
 import addHiddenInput from 'utils/addHiddenInput'
 import * as CRA from './CreateReactApp'
 import SandboxDependencies from './Dependencies'
-import getFileExtension from './FileExtension'
-import {CodeVariant} from './types'
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -13,8 +11,7 @@ function compress(object: any) {
     .replace(/=+$/, '') // Remove ending '='
 }
 
-function openSandbox({files, codeVariant, initialFile = '/App'}: any) {
-  const extension = codeVariant === 'TS' ? '.tsx' : '.js'
+function openSandbox({files, initialFile = '/App'}: any) {
   const parameters = compress({files})
 
   // ref: https://codesandbox.io/docs/api/#define-api
@@ -27,7 +24,7 @@ function openSandbox({files, codeVariant, initialFile = '/App'}: any) {
     form,
     'query',
     `file=${initialFile}${
-      initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension
+      initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : '.tsx'
     }`,
   )
   document.body.appendChild(form)
@@ -39,27 +36,23 @@ const createReactApp = (demo: {
   title: string
   language: string
   raw: string
-  codeVariant: CodeVariant
   githubLocation: string
 }) => {
-  const ext = getFileExtension(demo.codeVariant)
   const {title, githubLocation: description} = demo
 
   const files: Record<string, object> = {
     'public/index.html': {
       content: CRA.getHtml(demo),
     },
-    [`index.${ext}`]: {
+    [`index.tsx`]: {
       content: CRA.getRootIndex(),
     },
-    [`demo.${ext}`]: {
+    [`demo.tsx`]: {
       content: demo.raw,
     },
-    ...(demo.codeVariant === 'TS' && {
-      'tsconfig.json': {
-        content: CRA.getTsconfig(),
-      },
-    }),
+    'tsconfig.json': {
+      content: CRA.getTsconfig(),
+    },
   }
 
   const {dependencies, devDependencies} = SandboxDependencies(demo, {
@@ -71,12 +64,10 @@ const createReactApp = (demo: {
       description,
       dependencies,
       devDependencies,
-      ...(demo.codeVariant === 'TS' && {
-        main: 'index.tsx',
-        scripts: {
-          start: 'react-scripts start',
-        },
-      }),
+      main: 'index.tsx',
+      scripts: {
+        start: 'react-scripts start',
+      },
     },
   }
 
@@ -86,8 +77,7 @@ const createReactApp = (demo: {
     files,
     dependencies,
     devDependencies,
-    openSandbox: (initialFile?: string) =>
-      openSandbox({files, codeVariant: demo.codeVariant, initialFile}),
+    openSandbox: (initialFile?: string) => openSandbox({files, initialFile}),
   }
 }
 

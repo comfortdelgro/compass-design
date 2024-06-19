@@ -11,21 +11,10 @@ import PagePropsProvider from 'contexts/PageProps'
 import ThemeContext from 'contexts/Theme'
 import NextHead from 'next/head'
 import * as React from 'react'
-import {getStaticPath} from 'utils'
 import {CodeCopyProvider} from 'utils/CodeCopy'
-import useLazyCSS from 'utils/useLazyCSS'
+import '../public/static/styles/prism-okaidia.css'
 import '../styles/code-editor.css'
 import './global.css'
-
-let dependenciesLoaded = false
-
-function loadDependencies() {
-  if (dependenciesLoaded) {
-    return
-  }
-
-  dependenciesLoaded = true
-}
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
   // eslint-disable-next-line no-console
@@ -41,12 +30,6 @@ function AppWrapper(props: any) {
   const {children} = props
 
   const [mode, setMode] = React.useState<ETheme>(ETheme.Light)
-
-  React.useEffect(() => {
-    loadDependencies()
-  }, [])
-
-  useLazyCSS(getStaticPath('/static/styles/prism-okaidia.css'), '#prismjs')
 
   const handleChangeThemeMode = () => {
     setMode(mode === ETheme.Light ? ETheme.Dark : ETheme.Light)
@@ -89,11 +72,11 @@ export default function MyApp(props: any) {
   )
 }
 
-MyApp.getInitialProps = async ({ctx, Component}: any) => {
+MyApp.getServerSideProps = async ({ctx, Component}: any) => {
   let pageProps = {}
 
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx)
+  if (Component.getServerSideProps) {
+    pageProps = await Component.getServerSideProps(ctx)
   }
 
   return {

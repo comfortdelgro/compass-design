@@ -18,29 +18,18 @@ function getDemoName(location: string) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
 }
 
-function useDemoData(codeVariant: string, demo: any, githubLocation: string) {
+function useDemoData(demo: any, githubLocation: string) {
 
   return React.useMemo(() => {
     let name = 'React Compass'
 
     let codeOptions = {}
 
-    if (codeVariant === 'TS' && demo.rawTS) {
-      codeOptions = {
-        codeVariant: 'TS',
-        githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
-        raw: demo.rawTS,
-        Component: demo.tsx,
-        sourceLanguage: 'tsx',
-      }
-    } else {
-      codeOptions = {
-        codeVariant: 'JS',
-        githubLocation,
-        raw: demo.raw,
-        Component: demo.js,
-        sourceLanguage: 'jsx',
-      }
+    codeOptions = {
+      githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+      raw: demo.rawTS,
+      Component: demo.tsx,
+      sourceLanguage: 'tsx',
     }
 
     let jsxPreview = demo.jsxPreview
@@ -51,7 +40,7 @@ function useDemoData(codeVariant: string, demo: any, githubLocation: string) {
       ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
     }
-  }, [codeVariant, demo, githubLocation])
+  }, [demo, githubLocation])
 }
 
 function useDemoElement({
@@ -97,9 +86,7 @@ function useDemoElement({
 export default function Demo(props: any) {
   const {demo, demoOptions, githubLocation} = props
 
-  const codeVariant = 'TS'
-
-  const demoData: any = useDemoData('codeVariant', demo, githubLocation)
+  const demoData: any = useDemoData(demo, githubLocation)
 
   const [demoHovered, setDemoHovered] = React.useState(false)
   const handleDemoHover = (event: any) => {
@@ -241,7 +228,6 @@ export default function Demo(props: any) {
       <React.Suspense fallback={<></>}>
         <DemoToolbar
           codeOpen={codeOpen}
-          codeVariant={codeVariant}
           demo={demo}
           demoData={demoData}
           demoHovered={demoHovered}

@@ -75,14 +75,15 @@ export default class MyDocument extends Document {
 MyDocument.getInitialProps = async (ctx: any) => {
   try {
     const initialProps = await Document.getInitialProps(ctx)
-
     // It might be undefined, e.g. after an error.
 
     // All the URLs should have a leading /.
     // This is missing in the Next.js static export.
-    let url = ctx.req.url
-    if (url[url.length - 1] !== '/') {
-      url += '/'
+    if (ctx.req && ctx.req.url) {
+      let url = ctx.req.url
+      if (url[url.length - 1] !== '/') {
+        url += '/'
+      }
     }
 
     return {

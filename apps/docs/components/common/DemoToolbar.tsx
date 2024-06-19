@@ -66,7 +66,6 @@ export default function DemoToolbar(props: any) {
               css={{
                 color: 'var(--cdg-color-gray80)',
                 backgroundColor: 'var(--cdg-color-gray40)',
-                '&:hover': {backgroundColor: 'grey'},
               }}
             />
           </Box>
