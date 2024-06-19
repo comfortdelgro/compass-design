@@ -14,35 +14,36 @@ import {isNil} from 'lodash'
 import Link from 'next/link'
 import {useCallback, useEffect, useRef, useState} from 'react'
 import {TSideNavItem} from 'types/common'
-import styles from './styles/Menulist.module.css'
-import sidenavStyles from './styles/Sidenav.module.css'
 
-type TDocsAppSideNav = {
-  handleExpandSidenav: (path: string) => void
+interface Props {
+  handleExpand: (path: string) => void
   onClickItem?: () => void
 }
 
-const DocsAppSideNav = (props: TDocsAppSideNav) => {
-  const {handleExpandSidenav, onClickItem} = props
+const SideMenu = (props: Props) => {
+  const {handleExpand, onClickItem} = props
   const sideNavs = useSidenavContext()
 
   return (
     <Sidenav
       css={{
-        '.sidenav-item-title': {
-          width: '100%',
-        },
+        paddingRight: 4,
+        height: '100%',
+        position: 'relative',
+        backgroundColor: 'var(--cdg-color-background)',
+        width: '100%',
+        overflowY: 'scroll',
+        filter: 'none',
       }}
-      className={sidenavStyles.CdgSidenav}
       expand={true}
       delay={200}
     >
       {sideNavs.map((item) => {
         return (
-          <CustomSidenavItem
-            key={`${item.pathname}${item.title}`}
+          <SideMenuItem
             {...item}
-            handleExpandSidenav={handleExpandSidenav}
+            key={`${item.pathname}${item.title}`}
+            handleExpand={handleExpand}
             onClickItem={onClickItem}
           />
         )
@@ -51,19 +52,19 @@ const DocsAppSideNav = (props: TDocsAppSideNav) => {
   )
 }
 
-type TCustomSideNavItem = {
-  handleExpandSidenav: (path: string) => void
+interface SideMenuItemProps extends TSideNavItem {
+  handleExpand: (path: string) => void
   onClickItem?: () => void
-} & TSideNavItem
+}
 
-const CustomSidenavItem = (props: TCustomSideNavItem) => {
+const SideMenuItem = (props: SideMenuItemProps) => {
   const {
     icon,
     title,
     children,
     isExpanded: isExpandedProps,
     pathname,
-    handleExpandSidenav,
+    handleExpand,
     onClickItem,
   } = props
 
@@ -74,7 +75,7 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
   const handleClickSidenav = () => {
     if (isNil(isExpandedProps)) return
     setInternalIsExpanded((prev) => !prev)
-    handleExpandSidenav(pathname)
+    handleExpand(pathname)
   }
 
   const handleOnClickItem = useCallback(() => {
@@ -95,7 +96,6 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
       >
         <Sidenav.Item
           isActive={isExpanded}
-          // @ts-ignore
           css={{
             marginBottom: '0 !important',
             overflow: 'initial',
@@ -158,12 +158,10 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
                   onClick={handleOnClickItem}
                 >
                   <MenuListDropdownItem
+                    tabIndex={-1}
                     key={child.pathname}
                     isActive={child.isActive}
-                    tabIndex={-1}
-                    className={`${styles.CdgMenuListItem} ${
-                      child.isActive ? 'active' : ''
-                    }`}
+                    className={child.isActive ? 'active' : ''}
                   >
                     {child.title}
                   </MenuListDropdownItem>
@@ -178,9 +176,7 @@ const CustomSidenavItem = (props: TCustomSideNavItem) => {
 }
 
 const MenuListDropdownItem = (props: MenuListDropdownItemProps) => {
-  const {css = {}, ...delegated} = props
   const ref = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     if (props.isActive) {
       ref.current?.scrollIntoView({
@@ -190,8 +186,7 @@ const MenuListDropdownItem = (props: MenuListDropdownItemProps) => {
       })
     }
   }, [])
-
-  return <MenuListDropdown.Item ref={ref} css={css} {...delegated} />
+  return <MenuListDropdown.Item ref={ref} {...props} />
 }
 
-export default DocsAppSideNav
+export default SideMenu

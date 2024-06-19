@@ -1,5 +1,5 @@
+import {Box} from '@comfortdelgro/react-compass'
 import HighlightedCode from 'components/common/HighlightedCode'
-import MarkdownElement from '../../markdown/MarkdownElement'
 import ShowcaseContainer from './ShowcaseContainer'
 
 export const coreCode = `
@@ -20,7 +20,7 @@ export default function CoreShowcase() {
       code={
         <HighlightedCode
           copyButtonHidden
-          component={MarkdownElement}
+          component={Box}
           code={coreCode}
           language='jsx'
         />

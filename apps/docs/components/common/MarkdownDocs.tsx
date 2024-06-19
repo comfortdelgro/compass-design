@@ -3,7 +3,7 @@ import MarkdownElement from 'components/common/MarkdownElement'
 import {usePageProps} from 'contexts/PageProps'
 import path from 'path'
 import {useEffect} from 'react'
-import DocsAppLayout from '../layouts/DocsAppLayout'
+import Layout from '../layouts'
 
 function noComponent(moduleID: string) {
   return function NoComponent() {
@@ -30,7 +30,7 @@ export default function MarkdownDocs(props: any) {
   }, [localizedDoc])
 
   return (
-    <DocsAppLayout
+    <Layout
       description={description}
       disableAd={disableAd}
       disableToc={disableToc}
@@ -107,6 +107,6 @@ export default function MarkdownDocs(props: any) {
           />
         )
       })}
-    </DocsAppLayout>
+    </Layout>
   )
 }

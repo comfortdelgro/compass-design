@@ -1,22 +1,14 @@
 import AlignLeft from '@comfortdelgro/compass-icons/react/align-left'
-import {
-  Box,
-  Button,
-  Drawer,
-  Icon,
-  Navbar,
-  Typography,
-} from '@comfortdelgro/react-compass'
-import {faClose} from '@fortawesome/free-solid-svg-icons'
-import SvgLogo from 'components/icons/SvgLogo'
+import CrossIcon from '@comfortdelgro/compass-icons/react/cross'
+import {Box, Button, Drawer, Typography} from '@comfortdelgro/react-compass'
 import routes from 'constants/routes'
 import SidenavContext from 'contexts/SideNav'
 import {map} from 'lodash'
-import Link from 'next/link'
+import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import {TSideNavItem} from 'types/common'
-import DocsAppSideNav from './DocsAppSideNav'
+import SideMenu from './SideMenu'
 
 export default function DocsAppSideNavMobile(props: any) {
   const [isShowDrawer, setIsShowDrawer] = useState(false)
@@ -84,12 +76,23 @@ export default function DocsAppSideNavMobile(props: any) {
   return (
     <SidenavContext.Provider value={sidenav}>
       <Button
-        css={{padding: 'var(--cdg-spacing-1)'}}
+        css={{
+          width: 34,
+          padding: 'var(--cdg-spacing-1)',
+          span: {
+            padding: 0,
+          },
+          svg: {
+            width: 'fit-content !important',
+          },
+        }}
+        isSquare
         type='button'
         onClick={() => setIsShowDrawer(true)}
       >
         <AlignLeft />
       </Button>
+
       <Drawer
         css={{
           width: 312,
@@ -101,42 +104,42 @@ export default function DocsAppSideNavMobile(props: any) {
         onClose={() => setIsShowDrawer(false)}
         position='left'
       >
-        <Box
-          padding='7px $3'
-          css={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            position: 'sticky',
-            top: 0,
-            zIndex: 99,
-            background: 'var(--cdg-color-background)',
-          }}
-        >
-          <Navbar.Brand>
-            <Link href='/' style={{textDecoration: 'none'}}>
-              <Box css={{display: 'flex', alignItems: 'center'}}>
-                <SvgLogo />
-                <Typography.Header
-                  variant='header4'
-                  css={{marginLeft: '10px', fontWeight: 'bold'}}
-                >
-                  REACT COMPASS
-                </Typography.Header>
-              </Box>
-            </Link>
-          </Navbar.Brand>
+        <Drawer.Header css={{padding: 8}}>
+          <Box css={{display: 'flex', alignItems: 'center'}}>
+            <Image
+              src={'/static/icons/compass.svg'}
+              alt='banner'
+              width={30}
+              height={30}
+            />
+            <Typography.Header
+              variant='header4'
+              css={{marginLeft: '10px', fontWeight: 'bold'}}
+            >
+              REACT COMPASS
+            </Typography.Header>
+          </Box>
           <Button
+            css={{
+              width: 32,
+              padding: 'var(--cdg-spacing-1)',
+              span: {
+                padding: 0,
+              },
+              svg: {
+                width: 'fit-content !important',
+              },
+            }}
+            isSquare
+            type='button'
             variant='ghost'
             onClick={() => setIsShowDrawer(false)}
-            css={{padding: 'var(--cdg-spacing-1)'}}
           >
-            <Icon icon={faClose} />
+            <CrossIcon />
           </Button>
-        </Box>
-
-        <DocsAppSideNav
-          handleExpandSidenav={handleExpandSidenav}
+        </Drawer.Header>
+        <SideMenu
+          handleExpand={handleExpandSidenav}
           onClickItem={onClickItem}
         />
       </Drawer>

@@ -1,12 +1,11 @@
 import {Box} from '@comfortdelgro/react-compass'
+import Footer from 'components/Footer'
 import EditPage from 'components/common/EditPage'
 import Head from 'components/common/Head'
-import AppFrame from 'components/layouts/DocsAppFrame'
-import DocsAppToc from 'components/layouts/DocsAppToc'
-import AppFooter from './AppFooter'
-import DocsAppFooter from './DocsAppFooter'
+import AppFrame from 'components/layouts/components/DocsFrame'
+import TableOfContent from 'components/layouts/components/TableOfContent'
 
-export default function AppLayoutDocs(props: any) {
+export default function Layout(props: any) {
   const {children, description, location, title, toc} = props
 
   if (description === undefined) {
@@ -45,11 +44,10 @@ export default function AppLayoutDocs(props: any) {
           >
             <EditPage sourceLocation={location} />
             {children}
-            <DocsAppFooter tableOfContents={toc} />
           </Box>
-          <AppFooter />
+          <Footer />
         </Box>
-        <DocsAppToc toc={toc} />
+        <TableOfContent toc={toc} />
       </Box>
     </AppFrame>
   )

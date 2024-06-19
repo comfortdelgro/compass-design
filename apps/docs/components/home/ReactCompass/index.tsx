@@ -4,7 +4,7 @@ import {
   Typography,
   useIsDarkTheme,
 } from '@comfortdelgro/react-compass'
-import Container from 'components/layouts/Container'
+import Container from 'components/common/Container'
 import {getStaticPath} from 'utils'
 import Item from '../Introduction/item'
 import CoreShowcase from './CoreShowcase'

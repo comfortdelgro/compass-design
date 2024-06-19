@@ -15,6 +15,7 @@ export default function ShowcaseContainer({
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
+          color: '#FFFFFF',
         }}
       >
         <Box
@@ -51,7 +52,6 @@ export default function ShowcaseContainer({
         >
           <Box
             css={{
-              padding: 'var(--cdg-spacing-3)',
               overflow: 'hidden',
               flexGrow: 1,
               '&::-webkit-scrollbar': {

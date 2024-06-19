@@ -1,5 +1,5 @@
 import {Box, Typography} from '@comfortdelgro/react-compass'
-import Container from 'components/layouts/Container'
+import Container from 'components/common/Container'
 import Image from 'next/image'
 import {getStaticPath} from 'utils'
 import GetStartedButtons from './GetStartedButtons'

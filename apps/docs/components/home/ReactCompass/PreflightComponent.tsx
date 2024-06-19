@@ -1,6 +1,6 @@
 import HighlightedCode from 'components/common/HighlightedCode'
-import MarkdownElement from '../../markdown/MarkdownElement'
 import ShowcaseContainer from './ShowcaseContainer'
+import { Box } from '@comfortdelgro/react-compass'
 
 const componentCode = `
 // _app.tsx
@@ -27,7 +27,7 @@ export default function PreflightComponent() {
       code={
         <HighlightedCode
           copyButtonHidden
-          component={MarkdownElement}
+          component={Box}
           code={componentCode}
           language='jsx'
         />

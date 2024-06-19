@@ -1,17 +1,27 @@
 import AlignRight from '@comfortdelgro/compass-icons/react/align-right'
-import {Box, Button, Drawer, Icon} from '@comfortdelgro/react-compass'
-import {faClose} from '@fortawesome/free-solid-svg-icons'
+import CrossIcon from '@comfortdelgro/compass-icons/react/cross'
+import {Box, Button, Drawer} from '@comfortdelgro/react-compass'
 import {GITHUB_REPOSITORY} from 'constants/index'
 import Link from 'next/link'
 import {useState} from 'react'
 
-export default function AppNavbarMobile(props: any) {
+export default function NavbarMobile() {
   const [isShowDrawer, setIsShowDrawer] = useState(false)
 
   return (
     <>
       <Button
-        css={{padding: 'var(--cdg-spacing-1)'}}
+        css={{
+          width: 34,
+          padding: 'var(--cdg-spacing-1)',
+          span: {
+            padding: 0,
+          },
+          svg: {
+            width: 'fit-content !important',
+          },
+        }}
+        isSquare
         type='button'
         onClick={() => setIsShowDrawer(true)}
       >
@@ -28,26 +38,27 @@ export default function AppNavbarMobile(props: any) {
         onClose={() => setIsShowDrawer(false)}
         position='right'
       >
-        <Box
-          padding='7px var(--cdg-spacing-3)'
-          css={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            position: 'sticky',
-            top: 0,
-            zIndex: 99,
-            background: 'var(--cdg-color-background)',
-          }}
-        >
+        <Drawer.Header css={{padding: 8}}>
+          <Box />
           <Button
+            css={{
+              width: 32,
+              padding: 'var(--cdg-spacing-1)',
+              span: {
+                padding: 0,
+              },
+              svg: {
+                width: 'fit-content !important',
+              },
+            }}
+            isSquare
+            type='button'
             variant='ghost'
             onClick={() => setIsShowDrawer(false)}
-            css={{padding: 'var(--cdg-spacing-1)'}}
           >
-            <Icon icon={faClose} />
+            <CrossIcon />
           </Button>
-        </Box>
+        </Drawer.Header>
 
         <Box
           css={{

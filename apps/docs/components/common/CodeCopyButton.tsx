@@ -16,7 +16,7 @@ export default function CodeCopyButton(props: CodeCopyButtonProps) {
   useEffect(() => {
     const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0
     setKey(macOS ? '⌘' : 'Ctrl + ')
-  })
+  }, [])
 
   return (
     <button

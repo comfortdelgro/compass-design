@@ -4,8 +4,8 @@ import {
   ToastContextProvider,
 } from '@comfortdelgro/react-compass'
 import '@comfortdelgro/react-compass/style.css'
+import Header from 'components/Header'
 import 'components/common/bootstrap'
-import AppHeader from 'components/layouts/AppHeader'
 import {ETheme} from 'constants/index'
 import PagePropsProvider from 'contexts/PageProps'
 import ThemeContext from 'contexts/Theme'
@@ -36,6 +36,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
     'font-family:monospace;color:#1976d2;font-size:12px;',
   )
 }
+
 function AppWrapper(props: any) {
   const {children} = props
 
@@ -64,7 +65,7 @@ function AppWrapper(props: any) {
             {/* <ThemeProvider changeBy={mode}> */}
             <CodeCopyProvider>
               <Preflight />
-              <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
+              <Header handleChangeThemeMode={handleChangeThemeMode} />
               {children}
             </CodeCopyProvider>
             {/* </ThemeProvider> */}
@@ -97,7 +98,6 @@ MyApp.getInitialProps = async ({ctx, Component}: any) => {
 
   return {
     pageProps: {
-      userLanguage: ctx.query.userLanguage || 'en',
       ...pageProps,
     },
   }

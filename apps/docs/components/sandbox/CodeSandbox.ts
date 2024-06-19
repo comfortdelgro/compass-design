@@ -4,6 +4,7 @@ import addHiddenInput from 'utils/addHiddenInput'
 import * as CRA from './CreateReactApp'
 import SandboxDependencies from './Dependencies'
 import getFileExtension from './FileExtension'
+import {CodeVariant} from './types'
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))

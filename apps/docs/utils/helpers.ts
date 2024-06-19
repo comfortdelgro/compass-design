@@ -1,4 +1,3 @@
-import {LANGUAGES} from 'docs/config'
 import camelCase from 'lodash/camelCase'
 import upperFirst from 'lodash/upperFirst'
 
@@ -78,24 +77,11 @@ export function getCookie(name: string): string | undefined {
  * https://nextjs.org/docs/api-reference/next/router
  */
 export function pathnameToLanguage(pathname: string): {
-  userLanguage: string
   canonicalAs: string
   canonicalAsServer: string
   canonicalPathname: string
 } {
-  let userLanguage
-  const userLanguageCandidate = pathname.substring(1, 3)
-
-  if (
-    [...LANGUAGES, 'zh'].indexOf(userLanguageCandidate) !== -1 &&
-    pathname.indexOf(`/${userLanguageCandidate}/`) === 0
-  ) {
-    userLanguage = userLanguageCandidate
-  } else {
-    userLanguage = 'en'
-  }
-
-  const canonicalAs = userLanguage === 'en' ? pathname : pathname.substring(3)
+  const canonicalAs = pathname
   // Remove hash as it's never sent to the server
   // https://github.com/vercel/next.js/issues/25202
   const canonicalAsServer = canonicalAs.replace(/#(.*)$/, '')
@@ -104,7 +90,6 @@ export function pathnameToLanguage(pathname: string): {
     .replace(/\/$/, '')
 
   return {
-    userLanguage,
     canonicalAs,
     canonicalAsServer,
     canonicalPathname,

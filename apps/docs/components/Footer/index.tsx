@@ -1,13 +1,9 @@
 import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
 import {Box, Typography} from '@comfortdelgro/react-compass'
 import Link from 'next/link'
-import Container from './Container'
+import Container from '../common/Container'
 
-interface AppFooterProps {
-  stackOverflowUrl?: string
-}
-
-export default function AppFooter(props: AppFooterProps) {
+export default function Footer() {
   return (
     <Box
       css={{
@@ -32,7 +28,7 @@ export default function AppFooter(props: AppFooterProps) {
             <Compass width={25} height={25} />
           </Link>
           <Typography.Body variant='body2' css={{marginLeft: 5}}>
-            © 2023 CDG Zig. All rights reserved.
+            © {new Date().getFullYear()} CDG Zig. All rights reserved.
           </Typography.Body>
         </Box>
         <Box css={{display: 'flex'}}>

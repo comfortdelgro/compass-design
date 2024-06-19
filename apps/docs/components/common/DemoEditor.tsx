@@ -4,24 +4,21 @@ import * as React from 'react'
 import SimpleCodeEditor from 'react-simple-code-editor'
 import {useCodeCopy} from 'utils/CodeCopy'
 import styles from './styles/DemoEditor.module.css'
-import simpleCodeStyles from './styles/SimpleCodeEditor.module.css'
 interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
-  id: string
   language: string
   onChange: (value: any) => void
   value: string
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
-  const {language, value, onChange, children, id, ...other} = props
+  const {language, value, onChange, children, ...other} = props
   const wrapperRef = React.useRef<HTMLDivElement | null>(null)
   const enterRef = React.useRef<HTMLElement | null>(null)
   const handlers = useCodeCopy()
 
   return (
     <div
-      className={'markDownElement'}
       ref={wrapperRef}
       onKeyDown={(event: React.KeyboardEvent) => {
         if (event.key === 'Tab') {
@@ -44,35 +41,46 @@ export default function DemoEditor(props: DemoEditorProps) {
       }}
       {...other}
     >
-      <div className={`cdg-root ${'cdg-root'}`} {...handlers}>
-        <div className={`scrollContainer ${'scrollContainer'}`}>
-          {/* @ts-ignore */}
-          <SimpleCodeEditor
-            className={simpleCodeStyles.simpleCodeEditor}
-            highlight={(code: any) =>
-              `<code class="language-${language}">${prism(
-                code,
-                language,
-              )}</code>`
-            }
-            id={id}
-            value={value}
-            onValueChange={onChange}
-          />
-        </div>
-        <Box
-          ref={enterRef}
-          tabIndex={0}
-          className={`${styles.CdgDemoEditorInfo}`}
-          dangerouslySetInnerHTML={{
-            __html: 'Press <kbd>Enter</kbd> to start editing',
-          }}
+      <Box
+        {...handlers}
+        css={{
+          maxHeight: 500,
+          background: 'var(--cdg-color-gray10)',
+          overflow: 'auto',
+          '.cdg-code-editor': {
+            fontSize: 13,
+            lineHeight: 1.5,
+            background: 'var(--cdg-color-gray10)',
+            pre: {
+              outline: 'none',
+              padding: 'var(--cdg-spacing-4) !important',
+            },
+            textarea: {
+              outline: 'none',
+              padding: 'var(--cdg-spacing-4) !important',
+            },
+          },
+        }}
+      >
+        {/* @ts-ignore */}
+        <SimpleCodeEditor
+          value={value}
+          onValueChange={onChange}
+          className='cdg-code-editor'
+          highlight={(code: any) =>
+            `<code class="language-${language}">${prism(code, language)}</code>`
+          }
         />
-        {/* <NoSsr>
-          <CodeCopyButton {...copyButtonProps} code={value} />
-        </NoSsr> */}
-        {children}
-      </div>
+      </Box>
+      <Box
+        ref={enterRef}
+        tabIndex={0}
+        className={`${styles.CdgDemoEditorInfo}`}
+        dangerouslySetInnerHTML={{
+          __html: 'Press <kbd>Enter</kbd> to start editing',
+        }}
+      />
+      {children}
     </div>
   )
 }

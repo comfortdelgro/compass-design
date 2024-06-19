@@ -3,9 +3,9 @@ import Head from 'components/common/Head'
 import MarkdownLinks from 'components/common/MarkdownLinks'
 import Banner from 'components/home/Banner'
 import Introduction from 'components/home/Introduction'
+import Footer from '../components/Footer'
 import ReactCompass from '../components/home/ReactCompass'
 import ReadyToUse from '../components/home/ReadyToUse'
-import AppFooter from '../components/layouts/AppFooter'
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
         <ReactCompass />
         <Divider />
       </main>
-      <AppFooter />
+      <Footer />
     </>
   )
 }

@@ -1,4 +1,4 @@
-import Search from '@comfortdelgro/compass-icons/react/search'
+import SearchIcon from '@comfortdelgro/compass-icons/react/search'
 import {
   Box,
   Button,
@@ -14,14 +14,22 @@ import routes from 'constants/routes'
 import {useIsTabletScreen} from 'hooks'
 import {chain, toLower} from 'lodash'
 import {useRouter} from 'next/router'
-import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {TSearchItem} from 'types/common'
 import {getDataSearch} from 'utils'
-import styles from './styles/Shortcut.module.css'
 
 const dataSearch = getDataSearch()
 
-export default function AppSearch(props: any) {
+export default function SearchBar() {
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  return <React.Fragment>{mounted ? <Search /> : <Box />}</React.Fragment>
+}
+
+function Search() {
   const searchInputRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
   const [keyword, setKeyword] = useState('')
@@ -128,7 +136,7 @@ export default function AppSearch(props: any) {
               justifyContent: 'center',
             }}
           >
-            <Search fill='white' />
+            <SearchIcon fill='white' />
           </Button>
         ) : (
           <>
@@ -145,12 +153,22 @@ export default function AppSearch(props: any) {
               onClick={onOpen}
               placeholder='Search...'
             />
-            <div
-              className={styles.shortcut}
-              style={{position: 'absolute', color: '#FFF', top: 3, right: 3}}
+            <Box
+              css={{
+                fontSize: '12px',
+                fontWeight: 500,
+                lineHeight: '20px',
+                backgroundColor: 'var(--cdg-color-cdgBlue60)',
+                padding: '4px var(--cdg-spacing-2)',
+                borderRadius: '4px',
+                position: 'absolute',
+                color: '#FFF',
+                top: 3,
+                right: 3,
+              }}
             >
               {macOS ? '⌘' : 'Ctrl+'}K
-            </div>
+            </Box>
           </>
         )}
       </Box>
@@ -190,6 +208,7 @@ export default function AppSearch(props: any) {
             >
               {routes.map((route) => (
                 <Button
+                  key={route.pathname}
                   size='lg'
                   onClick={() =>
                     handleClickItemSearch(

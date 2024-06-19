@@ -4,9 +4,8 @@ import DemoEditorError from 'components/common/DemoEditorError'
 import DemoSandbox from 'components/common/DemoSandbox'
 import HighlightedCode from 'components/common/HighlightedCode'
 import ReactRunner from 'components/common/ReactRunner'
-import {debounce, uniqueId} from 'lodash'
+import {debounce} from 'lodash'
 import * as React from 'react'
-import {useCodeVariant} from 'utils/codeVariant'
 import styles from './styles/DemoCodeViewer.module.css'
 
 function trimLeadingSpaces(input = '') {
@@ -20,7 +19,6 @@ function getDemoName(location: string) {
 }
 
 function useDemoData(codeVariant: string, demo: any, githubLocation: string) {
-  const userLanguage = 'en'
 
   return React.useMemo(() => {
     let name = 'React Compass'
@@ -52,9 +50,8 @@ function useDemoData(codeVariant: string, demo: any, githubLocation: string) {
       jsxPreview,
       ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
-      language: userLanguage,
     }
-  }, [codeVariant, demo, githubLocation, userLanguage])
+  }, [codeVariant, demo, githubLocation])
 }
 
 function useDemoElement({
@@ -100,9 +97,9 @@ function useDemoElement({
 export default function Demo(props: any) {
   const {demo, demoOptions, githubLocation} = props
 
-  const codeVariant = useCodeVariant()
+  const codeVariant = 'TS'
 
-  const demoData: any = useDemoData(codeVariant, demo, githubLocation)
+  const demoData: any = useDemoData('codeVariant', demo, githubLocation)
 
   const [demoHovered, setDemoHovered] = React.useState(false)
   const handleDemoHover = (event: any) => {
@@ -146,8 +143,6 @@ export default function Demo(props: any) {
 
   const [demoKey, setDemoKey] = React.useReducer((key) => key + 1, 0)
 
-  const demoId = `demo-${uniqueId()}`
-  const demoSourceId = `demoSource-${uniqueId()}`
   const openDemoSource = codeOpen || showPreview
 
   const initialFocusRef = React.useRef(null)
@@ -250,10 +245,8 @@ export default function Demo(props: any) {
           demo={demo}
           demoData={demoData}
           demoHovered={demoHovered}
-          demoId={demoId}
           demoName={demoName}
           demoOptions={demoOptions}
-          demoSourceId={demoSourceId}
           initialFocusRef={initialFocusRef}
           onCodeOpenChange={() => {
             setCodeOpen((open: boolean) => !open)
@@ -268,7 +261,7 @@ export default function Demo(props: any) {
           <HighlightedCode
             className={styles.demoCodeViewer}
             code={editorCode.value}
-            id={demoSourceId}
+            // id={demoSourceId}
             language={demoData.sourceLanguage}
           />
         ) : (
@@ -283,7 +276,6 @@ export default function Demo(props: any) {
             onFocus={() => {
               setLiveDemoActive(true)
             }}
-            id={demoSourceId}
             language={demoData.sourceLanguage}
           >
             <DemoEditorError>{debouncedError}</DemoEditorError>

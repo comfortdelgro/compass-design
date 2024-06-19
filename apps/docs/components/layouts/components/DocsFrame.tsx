@@ -8,19 +8,9 @@ import {map} from 'lodash'
 import {useRouter} from 'next/router'
 import * as React from 'react'
 import {TSideNavItem} from 'types/common'
-import DocsAppSideNav from './DocsAppSideNav'
+import SideMenu from '../../Header/components/SideMenu'
 
-const AppSearch = React.lazy(() => import('./AppSearch'))
-export function DeferredAppSearch() {
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  return <React.Fragment>{mounted ? <AppSearch /> : <Box />}</React.Fragment>
-}
-
-export default function DocsAppFrame(props: {children: React.ReactNode}) {
+export default function DocsFrame(props: {children: React.ReactNode}) {
   const {children} = props
   const router = useRouter()
   const isTabletScreen = useIsTabletScreen()
@@ -94,9 +84,14 @@ export default function DocsAppFrame(props: {children: React.ReactNode}) {
         }}
       >
         <Box css={{width: '100%', display: 'flex'}}>
-          {!isTabletScreen && (
-            <DocsAppSideNav handleExpandSidenav={handleExpandSidenav} />
-          )}
+          <Box
+            css={{
+              width: 320,
+              height: 'calc(100vh - 54px)',
+            }}
+          >
+            {!isTabletScreen && <SideMenu handleExpand={handleExpandSidenav} />}
+          </Box>
           <Box
             css={{
               display: 'flex',

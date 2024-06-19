@@ -5,7 +5,6 @@ import {noop} from 'lodash'
 import throttle from 'lodash/throttle'
 import Link from 'next/link'
 import * as React from 'react'
-import styles from './styles/DocsAppToc.module.css'
 // @ts-ignore
 function useThrottledOnScroll(callback, delay) {
   const throttledCallback = React.useMemo(
@@ -43,7 +42,7 @@ function flatten(headings: any) {
   return itemsWithNode
 }
 
-export default function DocsAppToc(props: any) {
+export default function TableOfContent(props: any) {
   const {toc} = props
 
   const items = React.useMemo(() => flatten(toc), [toc])
@@ -118,9 +117,11 @@ export default function DocsAppToc(props: any) {
       }}
     >
       <Box
-        className={styles.DocsTOC}
         dangerouslySetInnerHTML={{__html: item.text}}
         css={{
+          '&:hover': {
+            background: 'var(--cdg-color-gray30)',
+          },
           color:
             activeState === item.hash
               ? 'var(--cdg-color-gray80)'
