@@ -11,7 +11,7 @@ type Props = {
   target: '_blank' | '_self' | '_parent' | '_top'
 }
 
-export default function Item(props: Props) {
+export default function Card(props: Props) {
   const {title, description, image, textLink, urlLink = '/', target} = props
   return (
     <Box

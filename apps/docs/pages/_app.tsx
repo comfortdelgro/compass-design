@@ -14,6 +14,7 @@ import ThemeContext from 'utils/contexts/Theme'
 import '../public/static/styles/code-editor.css'
 import '../public/static/styles/global.css'
 import '../public/static/styles/prism-okaidia.css'
+import useMarkdownLinks from 'utils/hooks/useMarkdownLinks'
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
   // eslint-disable-next-line no-console
@@ -59,6 +60,7 @@ function AppWrapper(props: any) {
 export default function MyApp(props: any) {
   const {Component, pageProps} = props
   const getLayout = Component.getLayout ?? ((page: any) => page)
+  useMarkdownLinks()
 
   return (
     <AppWrapper pageProps={pageProps}>

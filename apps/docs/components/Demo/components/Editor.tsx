@@ -3,15 +3,14 @@ import {Box} from '@comfortdelgro/react-compass'
 import * as React from 'react'
 import SimpleCodeEditor from 'react-simple-code-editor'
 import useCodeCopy from 'utils/hooks/useCodeCopy'
-import styles from '../styles/DemoEditor.module.css'
-interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
+interface EditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   language: string
   onChange: (value: any) => void
   value: string
 }
 
-export default function DemoEditor(props: DemoEditorProps) {
+export default function Editor(props: EditorProps) {
   const {language, value, onChange, children, ...other} = props
   const wrapperRef = React.useRef<HTMLDivElement | null>(null)
   const enterRef = React.useRef<HTMLElement | null>(null)
@@ -72,14 +71,6 @@ export default function DemoEditor(props: DemoEditorProps) {
           }
         />
       </Box>
-      <Box
-        ref={enterRef}
-        tabIndex={0}
-        className={`${styles.CdgDemoEditorInfo}`}
-        dangerouslySetInnerHTML={{
-          __html: 'Press <kbd>Enter</kbd> to start editing',
-        }}
-      />
       {children}
     </div>
   )

@@ -1,5 +1,5 @@
 import {createContext} from 'react'
-import {TPageProps} from 'utils/types/common'
+import {TPageProps} from 'utils/types'
 
 interface PagePropsContextType {
   pageProps?: TPageProps

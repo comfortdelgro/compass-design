@@ -1,6 +1,26 @@
 import Router from 'next/router'
 import * as React from 'react'
-import {pathnameToLanguage, shouldHandleLinkClick} from 'utils'
+import {shouldHandleLinkClick} from 'utils'
+
+export function pathnameToLanguage(pathname: string): {
+  canonicalAs: string
+  canonicalAsServer: string
+  canonicalPathname: string
+} {
+  const canonicalAs = pathname
+  // Remove hash as it's never sent to the server
+  // https://github.com/vercel/next.js/issues/25202
+  const canonicalAsServer = canonicalAs.replace(/#(.*)$/, '')
+  const canonicalPathname = canonicalAsServer
+    .replace(/^\/api/, '/api-docs')
+    .replace(/\/$/, '')
+
+  return {
+    canonicalAs,
+    canonicalAsServer,
+    canonicalPathname,
+  }
+}
 
 function handleClick(event: any) {
   let activeElement = event.target
@@ -33,7 +53,7 @@ function handleClick(event: any) {
   Router.push(canonicalPathname, as)
 }
 
-export default function MarkdownLinks() {
+export default function useMarkdownLinks() {
   React.useEffect(() => {
     document.addEventListener('click', handleClick)
     return () => {

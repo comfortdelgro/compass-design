@@ -19,7 +19,7 @@ import Link from 'next/link'
 import {useIsMobileScreen} from 'utils/hooks/useMediaQuery'
 import sandbox from 'utils/sandbox'
 
-export default function DemoToolbar(props: any) {
+export default function Toolbar(props: any) {
   const {
     codeOpen,
     demo,

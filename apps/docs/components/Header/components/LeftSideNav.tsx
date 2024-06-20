@@ -5,12 +5,13 @@ import {map} from 'lodash'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
+import {getStaticPath} from 'utils'
 import {routes} from 'utils/constants/routes'
 import SidenavContext from 'utils/contexts/SideNav'
-import {TSideNavItem} from 'utils/types/common'
+import {TSideNavItem} from 'utils/types'
 import SideMenu from './SideMenu'
 
-export default function DocsAppSideNavMobile(props: any) {
+export default function LeftSideNav() {
   const [isShowDrawer, setIsShowDrawer] = useState(false)
   const [sidenav, setSidenav] = useState<TSideNavItem[]>([])
   const router = useRouter()
@@ -107,7 +108,7 @@ export default function DocsAppSideNavMobile(props: any) {
         <Drawer.Header css={{padding: 8}}>
           <Box css={{display: 'flex', alignItems: 'center'}}>
             <Image
-              src={'/static/icons/compass.svg'}
+              src={getStaticPath('/static/icons/compass.svg')}
               alt='banner'
               width={30}
               height={30}

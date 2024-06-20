@@ -5,7 +5,7 @@ import {
   faSquarePen,
   faToggleOn,
 } from '@fortawesome/free-solid-svg-icons'
-import {TSideNavItem} from 'utils/types/common'
+import {TSideNavItem} from 'utils/types'
 
 export const routes: TSideNavItem[] = [
   {

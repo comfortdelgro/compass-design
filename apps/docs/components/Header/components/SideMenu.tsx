@@ -13,7 +13,7 @@ import {isNil} from 'lodash'
 import Link from 'next/link'
 import {useCallback, useEffect, useRef, useState} from 'react'
 import useSidenav from 'utils/hooks/useSideNav'
-import {TSideNavItem} from 'utils/types/common'
+import {TSideNavItem} from 'utils/types'
 
 interface Props {
   handleExpand: (path: string) => void

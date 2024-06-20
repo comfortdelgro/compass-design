@@ -9,6 +9,7 @@ import {
 } from '@comfortdelgro/react-compass'
 import Image from 'next/image'
 import Link from 'next/link'
+import {getStaticPath} from 'utils'
 import {ETheme, GITHUB_REPOSITORY} from 'utils/constants'
 import {useIsMobileScreen, useIsTabletScreen} from 'utils/hooks/useMediaQuery'
 import useTheme from 'utils/hooks/useTheme'
@@ -16,11 +17,11 @@ import LeftSideNav from './components/LeftSideNav'
 import RightSideNav from './components/RightSideNav'
 import SearchBar from './components/SearchBar'
 
-interface AppHeaderProps {
+interface HeaderProps {
   handleChangeThemeMode: () => void
 }
 
-export default function Header(props: AppHeaderProps) {
+export default function Header(props: HeaderProps) {
   const {handleChangeThemeMode} = props
 
   const mode = useTheme()
@@ -36,7 +37,7 @@ export default function Header(props: AppHeaderProps) {
         <Link href='/' style={{textDecoration: 'none'}}>
           <Box css={{display: 'flex', alignItems: 'center'}}>
             <Image
-              src={'/static/icons/compass.svg'}
+              src={getStaticPath('/static/icons/compass.svg')}
               alt='banner'
               width={30}
               height={30}

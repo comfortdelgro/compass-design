@@ -2,17 +2,17 @@ import {Box, Button} from '@comfortdelgro/react-compass'
 import {debounce} from 'lodash'
 import * as React from 'react'
 import HighlightedCode from '../HighlightedCode'
-import DemoEditor from './components/DemoEditor'
-import DemoEditorError from './components/DemoEditorError'
-import DemoSandbox from './components/DemoSandbox'
+import Editor from './components/Editor'
+import EditorError from './components/EditorError'
 import ReactRunner from './components/ReactRunner'
-import styles from './styles/DemoCodeViewer.module.css'
+import Sandbox from './components/Sandbox'
+import styles from './styles/index.module.css'
 
 function trimLeadingSpaces(input = '') {
   return input.replace(/^\s+/gm, '')
 }
 
-const DemoToolbar = React.lazy(() => import('./components/DemoToolbar'))
+const Toolbar = React.lazy(() => import('./components/Toolbar'))
 
 function getDemoName(location: string) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
@@ -214,7 +214,7 @@ export default function Demo(props: any) {
             },
           }}
         />
-        <DemoSandbox
+        <Sandbox
           key={demoKey}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
@@ -222,10 +222,10 @@ export default function Demo(props: any) {
           onResetDemoClick={resetDemo}
         >
           {demoElement}
-        </DemoSandbox>
+        </Sandbox>
       </Box>
       <React.Suspense fallback={<></>}>
-        <DemoToolbar
+        <Toolbar
           codeOpen={codeOpen}
           demo={demo}
           demoData={demoData}
@@ -244,13 +244,13 @@ export default function Demo(props: any) {
       <Box>
         {!codeOpen ? (
           <HighlightedCode
-            className={styles.demoCodeViewer}
+            className={styles.demoHighlightedCode}
             code={editorCode.value}
             // id={demoSourceId}
             language={demoData.sourceLanguage}
           />
         ) : (
-          <DemoEditor
+          <Editor
             value={editorCode.value}
             onChange={(value) => {
               setEditorCode({
@@ -263,8 +263,8 @@ export default function Demo(props: any) {
             }}
             language={demoData.sourceLanguage}
           >
-            <DemoEditorError>{debouncedError}</DemoEditorError>
-          </DemoEditor>
+            <EditorError>{debouncedError}</EditorError>
+          </Editor>
         )}
       </Box>
     </Box>

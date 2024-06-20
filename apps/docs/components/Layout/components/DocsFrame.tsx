@@ -1,12 +1,11 @@
 import {Box} from '@comfortdelgro/react-compass'
-import MarkdownLinks from 'components/MarkdownLinks'
 import {map} from 'lodash'
 import {useRouter} from 'next/router'
 import * as React from 'react'
 import {routes} from 'utils/constants/routes'
 import SidenavContext from 'utils/contexts/SideNav'
 import {useIsTabletScreen} from 'utils/hooks/useMediaQuery'
-import {TSideNavItem} from 'utils/types/common'
+import {TSideNavItem} from 'utils/types'
 import SideMenu from '../../Header/components/SideMenu'
 import {CommonHeader} from './CommonHeader'
 
@@ -73,7 +72,6 @@ export default function DocsFrame(props: {children: React.ReactNode}) {
 
   return (
     <SidenavContext.Provider value={sidenav}>
-      <MarkdownLinks />
       <Box
         css={{
           width: '100vw',

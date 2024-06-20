@@ -1,7 +1,7 @@
 import {Box} from '@comfortdelgro/react-compass'
 import * as React from 'react'
 
-export default function DemoEditorError(props: {children: React.ReactNode}) {
+export default function EditorError(props: {children: React.ReactNode}) {
   if (!props.children) {
     return null
   }

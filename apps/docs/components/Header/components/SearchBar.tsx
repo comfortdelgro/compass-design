@@ -15,7 +15,7 @@ import {useRouter} from 'next/router'
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {routes} from 'utils/constants/routes'
 import {useIsTabletScreen} from 'utils/hooks/useMediaQuery'
-import {TSearchItem, TSideNavItem} from 'utils/types/common'
+import {TSearchItem, TSideNavItem} from 'utils/types'
 
 const getDataSearch = (): TSearchItem[] => {
   const result: TSearchItem[] = []
@@ -38,15 +38,6 @@ const getDataSearch = (): TSearchItem[] => {
 }
 
 const dataSearch = getDataSearch()
-
-export default function SearchBar() {
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  return <React.Fragment>{mounted ? <Search /> : <Box />}</React.Fragment>
-}
 
 function Search() {
   const searchInputRef = useRef(null)
@@ -322,4 +313,13 @@ function Search() {
       </Modal.Trigger>
     </>
   )
+}
+
+export default function SearchBar() {
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  return <React.Fragment>{mounted ? <Search /> : <Box />}</React.Fragment>
 }

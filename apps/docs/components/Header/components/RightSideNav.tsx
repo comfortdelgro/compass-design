@@ -5,7 +5,7 @@ import Link from 'next/link'
 import {useState} from 'react'
 import {GITHUB_REPOSITORY} from 'utils/constants'
 
-export default function NavbarMobile() {
+export default function RightSideNav() {
   const [isShowDrawer, setIsShowDrawer] = useState(false)
 
   return (

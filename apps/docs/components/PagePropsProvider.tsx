@@ -1,5 +1,5 @@
 import {PropsWithChildren, useState} from 'react'
-import {TPageProps} from '../utils/types/common'
+import {TPageProps} from 'utils/types'
 import PagePropsContext from 'utils/contexts/PageProps'
 
 const PagePropsProvider = (props: PropsWithChildren<unknown>) => {
