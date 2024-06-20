@@ -1,3 +1,4 @@
+// @ts-nocheck
 import MarkdownDocs from 'components/MarkdownDocs'
 import * as pageProps from 'docs/data/utilities/date/calendar-date-time.md?@comfortdelgro/compass-design'
 

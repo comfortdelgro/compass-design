@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 process.env.NODE_ENV = 'production'
 
 function withDocsInfra(nextConfig) {

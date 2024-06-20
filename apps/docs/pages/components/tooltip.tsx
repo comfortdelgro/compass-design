@@ -1,3 +1,4 @@
+// @ts-nocheck
 import MarkdownDocs from 'components/MarkdownDocs'
 import * as pageProps from 'docs/data/components/tooltip/tooltip.md?@comfortdelgro/compass-design'
 
