@@ -1,12 +1,12 @@
 import {Box, Grid, Typography} from '@comfortdelgro/react-compass'
 import Footer from 'components/Footer'
-import Head from 'components/common/Head'
-import DocsFrame from 'components/layouts/components/DocsFrame'
-import {usePageProps} from 'contexts/PageProps'
+import DocsFrame from 'components/Layout/components/DocsFrame'
+import Head from 'components/Head'
 import Image from 'next/image'
 import Link from 'next/link'
 import {useEffect} from 'react'
 import {getStaticPath} from 'utils'
+import usePageProps from 'utils/hooks/usePageProps'
 import styles from './styles/overview.module.css'
 
 const introduces = [

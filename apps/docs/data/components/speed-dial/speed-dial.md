@@ -7,7 +7,7 @@ components: SpeedDial
 
 <p class="description">Provides the behavior and accessibility implementation for a speed-dial component.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {SpeedDial} from '@comfortdelgro/react-compass'

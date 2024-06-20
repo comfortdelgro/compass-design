@@ -7,7 +7,7 @@ components: Sidenav
 
 <p class="description">The Sidenav displays horizontally information and navigation relating to the current screen.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Sidenav} from '@comfortdelgro/react-compass'

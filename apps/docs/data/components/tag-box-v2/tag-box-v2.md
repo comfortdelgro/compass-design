@@ -7,7 +7,7 @@ components: TagBoxV2
 
 <p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {TagBoxV2} from '@comfortdelgro/react-compass'

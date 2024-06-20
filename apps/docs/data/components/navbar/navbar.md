@@ -7,7 +7,7 @@ components: Navbar
 
 <p class="description">The Navbar displays horizontally information and navigation relating to the current screen.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Navbar} from '@comfortdelgro/react-compass'

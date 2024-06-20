@@ -7,7 +7,7 @@ components: Chip
 
 <p class="description">Chips are compact elements that represent an input, attribute, or action.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Chip} from '@comfortdelgro/react-compass'

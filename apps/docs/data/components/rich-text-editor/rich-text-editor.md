@@ -7,7 +7,7 @@ components: RichTextEditor
 
 <p class="description">A rich text editor is an interface or input field for text editing.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {

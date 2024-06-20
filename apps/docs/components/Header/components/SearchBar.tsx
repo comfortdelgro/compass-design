@@ -10,13 +10,32 @@ import {
 } from '@comfortdelgro/react-compass'
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import routes from 'constants/routes'
-import {useIsTabletScreen} from 'hooks'
 import {chain, toLower} from 'lodash'
 import {useRouter} from 'next/router'
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
-import {TSearchItem} from 'types/common'
-import {getDataSearch} from 'utils'
+import {routes} from 'utils/constants/routes'
+import {useIsTabletScreen} from 'utils/hooks/useMediaQuery'
+import {TSearchItem, TSideNavItem} from 'utils/types/common'
+
+const getDataSearch = (): TSearchItem[] => {
+  const result: TSearchItem[] = []
+  routes.forEach((route) => {
+    if (route.children) {
+      const childrenRoutes = route.children.map(
+        (childrenRoute: TSideNavItem) => {
+          return {
+            parent: route.title,
+            title: childrenRoute.title,
+            pathname: `${route.pathname}${childrenRoute.pathname}`,
+            description: childrenRoute.description,
+          }
+        },
+      )
+      result.push(...childrenRoutes)
+    }
+  })
+  return result
+}
 
 const dataSearch = getDataSearch()
 

@@ -9,11 +9,11 @@ import {
   MenuListDropdownItemProps,
   Sidenav,
 } from '@comfortdelgro/react-compass'
-import {useSidenavContext} from 'contexts/SideNav'
 import {isNil} from 'lodash'
 import Link from 'next/link'
 import {useCallback, useEffect, useRef, useState} from 'react'
-import {TSideNavItem} from 'types/common'
+import useSidenav from 'utils/hooks/useSideNav'
+import {TSideNavItem} from 'utils/types/common'
 
 interface Props {
   handleExpand: (path: string) => void
@@ -22,7 +22,7 @@ interface Props {
 
 const SideMenu = (props: Props) => {
   const {handleExpand, onClickItem} = props
-  const sideNavs = useSidenavContext()
+  const sideNavs = useSidenav()
 
   return (
     <Sidenav

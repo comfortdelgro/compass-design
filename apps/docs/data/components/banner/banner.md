@@ -7,7 +7,7 @@ components: Banner
 
 <p class="description">The Banner component is a reusable React component that displays a banner or header section on a web page.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Import
 

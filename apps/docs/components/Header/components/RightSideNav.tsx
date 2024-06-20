@@ -1,9 +1,9 @@
 import AlignRight from '@comfortdelgro/compass-icons/react/align-right'
 import CrossIcon from '@comfortdelgro/compass-icons/react/cross'
 import {Box, Button, Drawer} from '@comfortdelgro/react-compass'
-import {GITHUB_REPOSITORY} from 'constants/index'
 import Link from 'next/link'
 import {useState} from 'react'
+import {GITHUB_REPOSITORY} from 'utils/constants'
 
 export default function NavbarMobile() {
   const [isShowDrawer, setIsShowDrawer] = useState(false)

@@ -7,7 +7,7 @@ components: Calendar
 
 <p class="description">Calendars display a grid of days in one or more months and allow users to select a single date.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Calendar} from '@comfortdelgro/react-compass'

@@ -1,13 +1,13 @@
 import AlignLeft from '@comfortdelgro/compass-icons/react/align-left'
 import CrossIcon from '@comfortdelgro/compass-icons/react/cross'
 import {Box, Button, Drawer, Typography} from '@comfortdelgro/react-compass'
-import routes from 'constants/routes'
-import SidenavContext from 'contexts/SideNav'
 import {map} from 'lodash'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
-import {TSideNavItem} from 'types/common'
+import {routes} from 'utils/constants/routes'
+import SidenavContext from 'utils/contexts/SideNav'
+import {TSideNavItem} from 'utils/types/common'
 import SideMenu from './SideMenu'
 
 export default function DocsAppSideNavMobile(props: any) {

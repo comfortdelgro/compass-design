@@ -7,7 +7,7 @@ components: Textfield
 
 <p class="description">Text Fields let users enter and edit text.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Textfield} from '@comfortdelgro/react-compass'

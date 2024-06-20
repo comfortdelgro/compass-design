@@ -7,11 +7,11 @@ import {
   TooltipTrigger,
   Typography,
 } from '@comfortdelgro/react-compass'
-import {ETheme, GITHUB_REPOSITORY} from 'constants/index'
-import {useThemeContext} from 'contexts/Theme'
-import {useIsMobileScreen, useIsTabletScreen} from 'hooks'
 import Image from 'next/image'
 import Link from 'next/link'
+import {ETheme, GITHUB_REPOSITORY} from 'utils/constants'
+import {useIsMobileScreen, useIsTabletScreen} from 'utils/hooks/useMediaQuery'
+import useTheme from 'utils/hooks/useTheme'
 import LeftSideNav from './components/LeftSideNav'
 import RightSideNav from './components/RightSideNav'
 import SearchBar from './components/SearchBar'
@@ -23,7 +23,7 @@ interface AppHeaderProps {
 export default function Header(props: AppHeaderProps) {
   const {handleChangeThemeMode} = props
 
-  const mode = useThemeContext()
+  const mode = useTheme()
   const isTabletScreen = useIsTabletScreen()
   const isMobileScreen = useIsMobileScreen()
 

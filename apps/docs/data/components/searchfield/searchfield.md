@@ -7,7 +7,7 @@ components: SearchField
 
 <p class="description">Search Fields let users enter search input.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {SearchField} from '@comfortdelgro/react-compass'

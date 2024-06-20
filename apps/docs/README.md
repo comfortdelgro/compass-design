@@ -23,7 +23,7 @@ Inside the file we need to import `MarkdownDocs` and the markdown file path.
 Example
 
 ```tsx
-import MarkdownDocs from 'components/common/MarkdownDocs'
+import MarkdownDocs from 'components/MarkdownDocs'
 import * as pageProps from 'docs/data/components/button/button.md?@comfortdelgro/compass-design'
 
 export default function Page() {
@@ -66,13 +66,13 @@ To add a demo, you need to create a `.tsx` file and import by `{{"component": "[
 Example
 
 ```md
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 ```
 
 If you want to pass prop to component, follow below steps
 
 ```md
-{{"component": "components/common/ComponentLinkHeader.tsx", "background": "red"}}
+{{"component": "components/ComponentLinkHeader.tsx", "background": "red"}}
 ```
 
 ```tsx

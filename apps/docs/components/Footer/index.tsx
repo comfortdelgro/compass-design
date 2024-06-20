@@ -1,7 +1,7 @@
 import Compass from '@comfortdelgro/compass-icons/react/colorful/compass'
 import {Box, Typography} from '@comfortdelgro/react-compass'
+import Container from 'components/Container'
 import Link from 'next/link'
-import Container from '../common/Container'
 
 export default function Footer() {
   return (

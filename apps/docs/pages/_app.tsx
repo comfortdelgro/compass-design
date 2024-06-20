@@ -4,17 +4,16 @@ import {
   ToastContextProvider,
 } from '@comfortdelgro/react-compass'
 import '@comfortdelgro/react-compass/style.css'
+import CodeCopyProvider from 'components/CodeCopyProvider'
 import Header from 'components/Header'
-import 'components/common/bootstrap'
-import {ETheme} from 'constants/index'
-import PagePropsProvider from 'contexts/PageProps'
-import ThemeContext from 'contexts/Theme'
+import PagePropsProvider from 'components/PagePropsProvider'
 import NextHead from 'next/head'
 import * as React from 'react'
-import {CodeCopyProvider} from 'utils/CodeCopy'
+import {ETheme} from 'utils/constants'
+import ThemeContext from 'utils/contexts/Theme'
+import '../public/static/styles/code-editor.css'
+import '../public/static/styles/global.css'
 import '../public/static/styles/prism-okaidia.css'
-import '../styles/code-editor.css'
-import './global.css'
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
   // eslint-disable-next-line no-console
@@ -45,13 +44,11 @@ function AppWrapper(props: any) {
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <ThemeStaticProvider changeBy={mode}>
-            {/* <ThemeProvider changeBy={mode}> */}
             <CodeCopyProvider>
               <Preflight />
               <Header handleChangeThemeMode={handleChangeThemeMode} />
               {children}
             </CodeCopyProvider>
-            {/* </ThemeProvider> */}
           </ThemeStaticProvider>
         </ToastContextProvider>
       </ThemeContext.Provider>

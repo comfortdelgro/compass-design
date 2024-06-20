@@ -7,7 +7,7 @@ components: Avatar, AvatarGroup, Badge
 
 <p class="description">Avatars can be used in everything including a person's profile picture, dialog menu, ext.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Avatar} from '@comfortdelgro/react-compass'

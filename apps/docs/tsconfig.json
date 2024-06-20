@@ -1,7 +1,7 @@
 {
   "include": [
     "next-env.d.ts",
-    "types",
+    "utils/types",
     "src",
     "pages",
     "data",
