@@ -73,29 +73,26 @@ export default class MyDocument extends Document {
 }
 
 MyDocument.getInitialProps = async (ctx: any) => {
-  try {
-    const initialProps = await Document.getInitialProps(ctx)
-    // It might be undefined, e.g. after an error.
+  const initialProps = await Document.getInitialProps(ctx)
+  // It might be undefined, e.g. after an error.
 
-    // All the URLs should have a leading /.
-    // This is missing in the Next.js static export.
-    if (ctx.req && ctx.req.url) {
-      let url = ctx.req.url
-      if (url[url.length - 1] !== '/') {
-        url += '/'
-      }
+  // All the URLs should have a leading /.
+  // This is missing in the Next.js static export.
+  if (ctx.req && ctx.req.url) {
+    let url = ctx.req.url
+    if (url[url.length - 1] !== '/') {
+      url += '/'
     }
+  }
 
-    return {
-      ...initialProps,
-      styles: [
-        <style id='material-icon-font' key='material-icon-font' />,
-        <style id='font-awesome-css' key='font-awesome-css' />,
-        <style id='app-search' key='app-search' />,
-        <style id='prismjs' key='prismjs' />,
-        ...React.Children.toArray(initialProps.styles),
-      ],
-    }
-  } finally {
+  return {
+    ...initialProps,
+    styles: [
+      <style id='material-icon-font' key='material-icon-font' />,
+      <style id='font-awesome-css' key='font-awesome-css' />,
+      <style id='app-search' key='app-search' />,
+      <style id='prismjs' key='prismjs' />,
+      ...React.Children.toArray(initialProps.styles),
+    ],
   }
 }

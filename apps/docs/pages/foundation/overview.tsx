@@ -59,7 +59,8 @@ export default function Page() {
   // Overview not using any data of context, so clear it before loading
   useEffect(() => {
     setPageProps?.({})
-  }, [])
+  }, [setPageProps])
+
   return (
     <DocsFrame>
       <Head

@@ -17,6 +17,7 @@ export default function LeftSideNav() {
   const router = useRouter()
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, parentPath = 'foundation', childrenPath = 'overview'] =
       router.route.split('/')
     const newSidenav = map(routes, (route) => {

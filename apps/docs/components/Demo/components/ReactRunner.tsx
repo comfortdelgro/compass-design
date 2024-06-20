@@ -4,10 +4,10 @@ import {useRunner} from 'react-runner'
 interface ReactRunnerProps {
   code: string
   scope: {
-    process: {}
-    import: {}
+    process: object
+    import: object
   }
-  onError: (error: string | null) => {}
+  onError: (error: string | null) => void
 }
 
 // The docs https://github.com/nihgwu/react-runner

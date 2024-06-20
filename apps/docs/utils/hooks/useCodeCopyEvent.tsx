@@ -50,7 +50,7 @@ export default function useCodeCopyEvent() {
 
         const handleMouseLeave = () => {
           if (rootNode.current === elm) {
-            ;(
+            (
               rootNode.current.querySelector(
                 '.cdg-copy',
               ) as null | HTMLButtonElement
@@ -158,6 +158,6 @@ export default function useCodeCopyEvent() {
       copyBtn.click()
       copyBtn.dataset.gaEventAction = initialEventAction! // reset the 'data-ga-event-action' back to initial
     })
-  }, [])
+  }, [rootNode])
   return null
 }

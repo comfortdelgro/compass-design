@@ -17,6 +17,7 @@ export default function DocsFrame(props: {children: React.ReactNode}) {
   const [sidenav, setSidenav] = React.useState<TSideNavItem[]>([])
 
   React.useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, parentPath = 'foundation', childrenPath = 'overview'] =
       router.route.split('/')
     const newSidenav = map(routes, (route) => {
@@ -52,7 +53,7 @@ export default function DocsFrame(props: {children: React.ReactNode}) {
     })
 
     setSidenav(newSidenav)
-  }, [])
+  }, [router.route])
 
   const handleExpandSidenav = (path: string) => {
     const newSidenav = map(sidenav, (sideNavItem) => {

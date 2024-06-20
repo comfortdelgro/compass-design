@@ -133,6 +133,18 @@ importers:
       '@types/marked':
         specifier: ^4.3.1
         version: 4.3.2
+      eslint:
+        specifier: ^8.45.0
+        version: 8.57.0
+      eslint-plugin-react-hooks:
+        specifier: ^4.6.0
+        version: 4.6.0(eslint@8.57.0)
+      eslint-plugin-react-refresh:
+        specifier: ^0.4.3
+        version: 0.4.5(eslint@8.57.0)
+      eslint-plugin-storybook:
+        specifier: ^0.6.13
+        version: 0.6.15(eslint@8.57.0)(typescript@5.3.3)
 
   packages/markdown:
     dependencies:

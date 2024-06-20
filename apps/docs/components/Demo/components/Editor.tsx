@@ -61,7 +61,6 @@ export default function Editor(props: EditorProps) {
           },
         }}
       >
-        {/* @ts-ignore */}
         <SimpleCodeEditor
           value={value}
           onValueChange={onChange}

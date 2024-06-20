@@ -23,7 +23,7 @@ export function getSandboxDependencies(demo: {raw: string}) {
     )
 
     packagesWithDTPackage.forEach((name) => {
-      let resolvedName = name
+      const resolvedName = name
 
       deps[`@types/${resolvedName}`] = 'latest'
     })
@@ -51,14 +51,14 @@ export function getSandboxDependencies(demo: {raw: string}) {
       return newDeps
     }
     let deps: Record<string, string> = {}
-    let versions: Record<string, string> = {
+    const versions: Record<string, string> = {
       react: 'latest',
       'react-dom': 'latest',
     }
 
     const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm
     let m: RegExpExecArray | null = null
-    // eslint-disable-next-line no-cond-assign
+     
     while ((m = re.exec(raw))) {
       const fullName = m[2] ?? m[1]
       // handle scope names

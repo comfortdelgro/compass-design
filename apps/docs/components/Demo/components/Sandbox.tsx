@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {Button, Typography} from '@comfortdelgro/react-compass'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
@@ -16,7 +17,6 @@ class ErrorBoundary extends React.Component {
     const {error} = this.state
 
     if (error) {
-      /* eslint-disable material-ui/no-hardcoded-labels */
       return (
         <div>
           <Typography.Label color='error'>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import SearchIcon from '@comfortdelgro/compass-icons/react/search'
 import {
   Box,
@@ -77,8 +78,7 @@ function Search() {
       setTimeout(() => {
         const input = document.querySelector(
           '[placeholder="Enter the keyword you want to search..."]',
-        )
-        // @ts-ignore
+        ) as any
         input?.focus()
       }, 200)
     }

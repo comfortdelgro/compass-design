@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {Box, Typography} from '@comfortdelgro/react-compass'
 import {noop} from 'lodash'
 import throttle from 'lodash/throttle'
@@ -5,8 +6,8 @@ import Link from 'next/link'
 import * as React from 'react'
 import {shouldHandleLinkClick} from 'utils'
 import {useIsTabletScreen} from 'utils/hooks/useMediaQuery'
-// @ts-ignore
-function useThrottledOnScroll(callback, delay) {
+
+function useThrottledOnScroll(callback: any, delay: any) {
   const throttledCallback = React.useMemo(
     () => (callback ? throttle(callback, delay) : noop),
     [callback, delay],
@@ -81,8 +82,7 @@ export default function TableOfContent(props: any) {
 
   useThrottledOnScroll(items.length > 0 ? findActiveIndex : null, 166)
 
-  // @ts-ignore
-  const handleClick = (hash) => (event) => {
+  const handleClick = (hash: any) => (event: any) => {
     // Ignore click for new tab/new window behavior
     if (shouldHandleLinkClick(event)) {
       return

@@ -11,6 +11,7 @@ const MarkdownElement = React.forwardRef(function MarkdownElement(
     typeof renderedMarkdown === 'string' &&
     !renderedMarkdown.includes('class="description hidden"')
   ) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     more.dangerouslySetInnerHTML = {__html: renderedMarkdown}
   }

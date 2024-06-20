@@ -20,7 +20,7 @@ function getDemoName(location: string) {
 
 function useDemoData(demo: any, githubLocation: string) {
   return React.useMemo(() => {
-    let name = 'React Compass'
+    const name = 'React Compass'
 
     let codeOptions = {}
 
@@ -31,7 +31,7 @@ function useDemoData(demo: any, githubLocation: string) {
       sourceLanguage: 'tsx',
     }
 
-    let jsxPreview = demo.jsxPreview
+    const jsxPreview = demo.jsxPreview
 
     return {
       scope: demo.scope,

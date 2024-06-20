@@ -9,7 +9,7 @@ export default function useCodeCopy(): any {
     },
     onMouseLeave: (event: React.MouseEvent) => {
       if (rootNode.current === event.currentTarget) {
-        ;(
+        (
           rootNode.current.querySelector(
             '.cdg-copy',
           ) as null | HTMLButtonElement

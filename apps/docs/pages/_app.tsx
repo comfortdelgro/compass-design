@@ -11,13 +11,12 @@ import NextHead from 'next/head'
 import * as React from 'react'
 import {ETheme} from 'utils/constants'
 import ThemeContext from 'utils/contexts/Theme'
+import useMarkdownLinks from 'utils/hooks/useMarkdownLinks'
 import '../public/static/styles/code-editor.css'
 import '../public/static/styles/global.css'
 import '../public/static/styles/prism-okaidia.css'
-import useMarkdownLinks from 'utils/hooks/useMarkdownLinks'
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
-  // eslint-disable-next-line no-console
   console.log(
     `%c
     Tip: you can access the documentation \`theme\` object directly in the console.
@@ -89,7 +88,7 @@ MyApp.getServerSideProps = async ({ctx, Component}: any) => {
 // Filter sessions instead of individual events so that we can track multiple metrics per device.
 // See https://github.com/GoogleChromeLabs/web-vitals-report to use this data
 const disableWebVitalsReporting = Math.random() > 0.0001
-export function reportWebVitals({id, name, label, delta, value}: any) {
+export function reportWebVitals() {
   if (disableWebVitalsReporting) {
     return
   }

@@ -185,7 +185,7 @@ const MenuListDropdownItem = (props: MenuListDropdownItemProps) => {
         inline: 'center',
       })
     }
-  }, [])
+  }, [props.isActive])
   return <MenuListDropdown.Item ref={ref} {...props} />
 }
 

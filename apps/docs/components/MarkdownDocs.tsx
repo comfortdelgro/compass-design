@@ -27,7 +27,7 @@ export default function MarkdownDocs(props: any) {
 
   useEffect(() => {
     setPageProps?.(localizedDoc)
-  }, [localizedDoc])
+  }, [localizedDoc, setPageProps])
 
   return (
     <Layout
