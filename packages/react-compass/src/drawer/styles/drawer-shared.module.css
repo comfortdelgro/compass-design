@@ -1,0 +1,100 @@
+@import '../../theme/theme.module.css';
+
+@layer default, keyframes;
+
+body:has(.drawer[open].modal) {
+  overflow: hidden;
+}
+
+@layer default {
+  .drawer,
+  .drawerHeader,
+  .drawerContent,
+  .drawerFooter {
+    box-sizing: border-box;
+  }
+
+  .drawer {
+    --cdg-drawer-animation-timing-fn: cubic-bezier(0.32, 0.72, 0, 1);
+    --cdg-drawer-open-animation-duration: 500ms;
+    --cdg-drawer-close-animation-duration: 200ms;
+
+    --cdg-drawer-backdrop-bg: rgba(0, 0, 0, 0.4);
+    --cdg-drawer-backdrop-blur: 0;
+    --cdg-drawer-backdrop-opacity: 1;
+
+    padding: 0;
+    max-width: unset;
+    max-block-size: 100%;
+    max-inline-size: unset;
+
+    flex-direction: column;
+
+    border: none;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    background-color: var(--cdg-color-background);
+    color: var(--cdg-color-primaryText);
+
+    pointer-events: none;
+  }
+
+  .drawer:focus-visible {
+    outline: none;
+  }
+
+  .drawer::backdrop {
+    background: var(--cdg-drawer-backdrop-bg);
+    backdrop-filter: blur(var(--cdg-drawer-backdrop-blur));
+  }
+
+  .drawer[open] {
+    display: flex;
+    pointer-events: auto;
+  }
+}
+
+@layer keyframes {
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slideOutLeft {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes slideOutRight {
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes slideOutUp {
+    to {
+      transform: translateY(100%);
+    }
+  }
+}
+
+@starting-style {
+  .drawer[open],
+  .drawer[open]::backdrop {
+    opacity: 0;
+  }
+}

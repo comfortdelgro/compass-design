@@ -98,6 +98,7 @@ export type {
   DrawerHeaderProps,
   DrawerProps,
   DrawerRef,
+  DrawerStylingSelectors,
 } from './drawer'
 export {default as Dropdown} from './dropdown'
 export type {
