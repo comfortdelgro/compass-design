@@ -1,12 +1,11 @@
 import {
-  Preflight,
   ThemeStaticProvider,
   ToastContextProvider,
 } from '@comfortdelgro/react-compass'
 import '@comfortdelgro/react-compass/style.css'
 import CodeCopyProvider from 'components/CodeCopyProvider'
-import Header from 'components/Header'
 import PagePropsProvider from 'components/PagePropsProvider'
+import dynamic from 'next/dynamic'
 import NextHead from 'next/head'
 import * as React from 'react'
 import {ETheme} from 'utils/constants'
@@ -15,6 +14,8 @@ import useMarkdownLinks from 'utils/hooks/useMarkdownLinks'
 import '../public/static/styles/code-editor.css'
 import '../public/static/styles/global.css'
 import '../public/static/styles/prism-okaidia.css'
+
+const Header = dynamic(() => import('components/Header'), {ssr: false})
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
   console.log(
@@ -45,7 +46,6 @@ function AppWrapper(props: any) {
         >
           <ThemeStaticProvider changeBy={mode}>
             <CodeCopyProvider>
-              <Preflight />
               <Header handleChangeThemeMode={handleChangeThemeMode} />
               {children}
             </CodeCopyProvider>

@@ -101,7 +101,10 @@ const SideMenuItem = (props: SideMenuItemProps) => {
             overflow: 'initial',
             minHeight: 46,
             height: 'auto',
-            '&.sidenav-item-active, &:hover': {
+            '&.sidenav-item-active': {
+              color: 'var(--cdg-color-cdgBlue100)',
+            },
+            '&:hover': {
               color: 'var(--cdg-color-cdgBlue100)',
             },
             '& .cdg-sidenav-item-icon svg': {
@@ -162,6 +165,13 @@ const SideMenuItem = (props: SideMenuItemProps) => {
                     key={child.pathname}
                     isActive={child.isActive}
                     className={child.isActive ? 'active' : ''}
+                    css={{
+                      '&:hover': {
+                        transition: 'all .3s',
+                        background: 'var(--cdg-color-cdgBlue20)',
+                        color: 'var(--cdg-color-cdgBlue100)',
+                      },
+                    }}
                   >
                     {child.title}
                   </MenuListDropdownItem>

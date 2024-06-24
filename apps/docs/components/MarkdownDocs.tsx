@@ -1,9 +1,11 @@
 import Demo from 'components/Demo'
-import Layout from 'components/Layout'
 import MarkdownElement from 'components/MarkdownElement'
+import dynamic from 'next/dynamic'
 import path from 'path'
 import {useEffect} from 'react'
 import usePageProps from 'utils/hooks/usePageProps'
+
+const Layout = dynamic(() => import('components/Layout'), {ssr: false})
 
 function noComponent(moduleID: string) {
   return function NoComponent() {

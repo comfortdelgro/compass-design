@@ -37,7 +37,7 @@ export default function Layout(props: any) {
             css={{
               padding: 'var(--cdg-spacing-5) var(--cdg-spacing-16)',
               width: '100%',
-              '@max_1024': {
+              '@media (max-width: 1024px)': {
                 padding: 'var(--cdg-spacing-4)',
               },
             }}

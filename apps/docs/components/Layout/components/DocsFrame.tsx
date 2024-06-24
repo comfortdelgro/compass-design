@@ -83,14 +83,16 @@ export default function DocsFrame(props: {children: React.ReactNode}) {
         }}
       >
         <Box css={{width: '100%', display: 'flex'}}>
-          <Box
-            css={{
-              width: 320,
-              height: 'calc(100vh - 54px)',
-            }}
-          >
-            {!isTabletScreen && <SideMenu handleExpand={handleExpandSidenav} />}
-          </Box>
+          {!isTabletScreen && (
+            <Box
+              css={{
+                width: 320,
+                height: 'calc(100vh - 54px)',
+              }}
+            >
+              <SideMenu handleExpand={handleExpandSidenav} />
+            </Box>
+          )}
           <Box
             css={{
               display: 'flex',

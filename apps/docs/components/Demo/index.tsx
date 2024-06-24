@@ -6,13 +6,12 @@ import Editor from './components/Editor'
 import EditorError from './components/EditorError'
 import ReactRunner from './components/ReactRunner'
 import Sandbox from './components/Sandbox'
+import Toolbar from './components/Toolbar'
 import styles from './styles/index.module.css'
 
 function trimLeadingSpaces(input = '') {
   return input.replace(/^\s+/gm, '')
 }
-
-const Toolbar = React.lazy(() => import('./components/Toolbar'))
 
 function getDemoName(location: string) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
