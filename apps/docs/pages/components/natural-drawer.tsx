@@ -1,6 +1,5 @@
-// @ts-nocheck
 import MarkdownDocs from 'components/MarkdownDocs'
-import * as pageProps from 'docs/data/components/natural-drawer/natural-drawer.md?@comfortdelgro/compass-design'
+import * as pageProps from 'data/components/natural-drawer/natural-drawer.md'
 
 export default function Page() {
   return <MarkdownDocs {...pageProps} />

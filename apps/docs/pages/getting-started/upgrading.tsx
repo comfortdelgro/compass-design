@@ -1,6 +1,5 @@
-// @ts-nocheck
 import MarkdownDocs from 'components/MarkdownDocs'
-import * as pageProps from 'docs/data/getting-started/upgrading/upgrading.md?@comfortdelgro/compass-design'
+import * as pageProps from 'data/getting-started/upgrading/upgrading.md'
 
 export default function Page() {
   return <MarkdownDocs {...pageProps} />

@@ -1,12 +1,5 @@
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core'
 
-declare module 'clsx'
-declare global {
-    interface Window {
-        Prism: any;
-    }
-}
-
 export type TSideNavItem = {
   isActive?: boolean
   isExpanded?: boolean

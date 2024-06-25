@@ -1,6 +1,5 @@
-// @ts-nocheck
 import MarkdownDocs from 'components/MarkdownDocs'
-import * as pageProps from 'docs/data/components/dropdown/dropdown.md?@comfortdelgro/compass-design'
+import * as pageProps from 'data/components/dropdown/dropdown.md'
 
 export default function Page() {
   return <MarkdownDocs {...pageProps} />

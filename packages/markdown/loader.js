@@ -201,7 +201,6 @@ ${Array.from(componentModuleIDs)
       .join('\n')}
 };
 `
-console.log(componentModuleIDs)
 
   return transformed
 }

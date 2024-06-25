@@ -53,7 +53,6 @@ export default function MarkdownDocs(props: any) {
         if (renderedMarkdownOrDemo.component) {
           const name = renderedMarkdownOrDemo.component
           const Component = srcComponents?.[name]
-          console.log(srcComponents)
 
           if (Component === undefined) {
             throw new Error(
