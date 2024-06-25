@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 const path = require('path')
 const withDocsInfra = require('./nextConfigDocsInfra')
 const workspaceRoot = path.join(__dirname, '../')
@@ -20,7 +22,7 @@ module.exports = withDocsInfra({
     }
 
     config.module.rules.forEach((r) => {
-      r.resourceQuery = {not: [/raw/]}
+      r.resourceQuery = { not: [/raw/] }
     })
 
     return {
@@ -41,36 +43,19 @@ module.exports = withDocsInfra({
         rules: config.module.rules.concat([
           {
             test: /\.md$/,
-            oneOf: [
+            use: [
+              options.defaultLoaders.babel,
               {
-                resourceQuery: /@comfortdelgro\/compass-design/,
-                use: [
-                  options.defaultLoaders.babel,
-                  {
-                    loader: require.resolve('@comfortdelgro/markdown/loader'),
-                    options: {
-                      ignoreLanguagePages: [],
-                    },
-                  },
-                ],
-              },
-              {
-                // used in some /getting-started/templates
-                type: 'asset/source',
+                loader: require.resolve('@comfortdelgro/markdown/loader')
               },
             ],
           },
           {
             test: /\.(js|mjs|tsx|ts)$/,
-            resourceQuery: {not: [/raw/]},
+            resourceQuery: { not: [/raw/] },
             include: [workspaceRoot],
-            exclude: /(node_modules|mui-icons-material)/,
             use: options.defaultLoaders.babel,
-          },
-          {
-            resourceQuery: /raw/,
-            type: 'asset/source',
-          },
+          }
         ]),
       },
     }

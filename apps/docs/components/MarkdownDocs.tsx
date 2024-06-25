@@ -23,7 +23,7 @@ export default function MarkdownDocs(props: any) {
     srcComponents,
   } = props
 
-  const localizedDoc = docs.en
+  const localizedDoc = docs
   const {description, location, rendered, title, toc} = localizedDoc
   const {setPageProps} = usePageProps()
 
@@ -53,6 +53,7 @@ export default function MarkdownDocs(props: any) {
         if (renderedMarkdownOrDemo.component) {
           const name = renderedMarkdownOrDemo.component
           const Component = srcComponents?.[name]
+          console.log(srcComponents)
 
           if (Component === undefined) {
             throw new Error(
