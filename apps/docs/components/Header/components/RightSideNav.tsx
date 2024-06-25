@@ -79,11 +79,11 @@ export default function RightSideNav() {
             </Button>
           </Link>
           <Link
-            href='https://comfortdelgro.github.io/compass-design/ladle/'
+            href='https://comfortdelgro.github.io/compass-design/storybook/'
             target='_blank'
           >
             <Button variant='secondary' fullWidth>
-              Ladle
+              Storybook
             </Button>
           </Link>
         </Box>

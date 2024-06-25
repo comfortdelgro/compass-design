@@ -59,10 +59,10 @@ export default function Header(props: HeaderProps) {
             <Button>Document</Button>
           </Link>
           <Link
-            href='https://comfortdelgro.github.io/compass-design/ladle/'
+            href='https://comfortdelgro.github.io/compass-design/storybook/'
             target='_blank'
           >
-            <Button>Ladle</Button>
+            <Button>Storybook</Button>
           </Link>
         </Navbar.Links>
       )}

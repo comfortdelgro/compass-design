@@ -41,7 +41,7 @@ jobs:
         run: |
           BASE_PATH="/compass-design" pnpm run --filter=@comfortdelgro/compass-design-website build
           pnpm run --filter=@comfortdelgro/react-compass build-storybook --docs
-          mv packages/react-compass/storybook-static apps/docs/out/ladle
+          mv packages/react-compass/storybook-static apps/docs/out/storybook
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
