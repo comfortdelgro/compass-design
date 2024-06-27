@@ -149,8 +149,8 @@ importers:
   packages/markdown:
     dependencies:
       marked:
-        specifier: ^5.1.0
-        version: 5.1.2
+        specifier: ^13.0.1
+        version: 13.0.1
       prismjs:
         specifier: ^1.29.0
         version: 1.29.0
@@ -8172,9 +8172,9 @@ packages:
       react: 18.3.1
     dev: true
 
-  /marked@5.1.2:
-    resolution: {integrity: sha512-ahRPGXJpjMjwSOlBoTMZAK7ATXkli5qCPxZ21TG44rx1KEo44bii4ekgTDQPNRQ4Kh7JMb9Ub1PVk1NxRSsorg==}
-    engines: {node: '>= 16'}
+  /marked@13.0.1:
+    resolution: {integrity: sha512-7kBohS6GrZKvCsNXZyVVXSW7/hGBHe49ng99YPkDCckSUrrG7MSFLCexsRxptzOmyW2eT5dySh4Md1V6my52fA==}
+    engines: {node: '>= 18'}
     hasBin: true
     dev: false
 
