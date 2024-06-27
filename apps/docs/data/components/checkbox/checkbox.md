@@ -7,7 +7,7 @@ components: Checkbox
 
 <p class="description">Checkbox is a small interactive box that can be toggled by the user to indicate an affirmative or negative choice.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Checkbox} from '@comfortdelgro/react-compass'

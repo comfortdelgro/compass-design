@@ -6,7 +6,7 @@ title: CalendarDate
 
 <p class="description">A CalendarDate represents a date without any time components in a specific calendar system.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

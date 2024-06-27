@@ -6,7 +6,7 @@ title: useDateFormatter
 
 <p class="description">Provides localized date formatting for the current locale. Automatically updates when the locale changes, and handles caching of the date formatter for performance.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

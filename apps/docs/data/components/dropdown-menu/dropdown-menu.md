@@ -7,7 +7,7 @@ components: DropdownMenu
 
 <p class="description">A drop-down menu is toggle contextual overlays for displaying lists of links and more.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {DropdownMenu} from '@comfortdelgro/react-compass'

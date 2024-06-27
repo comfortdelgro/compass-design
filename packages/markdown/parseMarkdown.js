@@ -1,7 +1,6 @@
-const {marked} = require('marked')
+const { marked } = require('marked')
 const textToHash = require('./textToHash')
 const prism = require('./prism')
-const {startsWith} = require('lodash')
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/
 const titleRegExp = /# (.*)[\r\n]/
@@ -192,13 +191,9 @@ function renderInline(markdown) {
  * @param {object} context
  * @param {Record<string, string>} context.headingHashes - WILL BE MUTATED
  * @param {TableOfContentsEntry[]} context.toc - WILL BE MUTATED
- * @param {string} context.userLanguage
- * @param {object} context.options
  */
 function createRender(context) {
-  const {headingHashes, toc, userLanguage, options} = context
-  const headingHashesFallbackTranslated = {}
-  let headingIndex = -1
+  const { headingHashes, toc } = context
 
   /**
    * @param {string} markdown
@@ -222,16 +217,7 @@ function createRender(context) {
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
-      let hash
-      if (userLanguage === 'en') {
-        hash = textToHash(headingText, headingHashes)
-      } else {
-        headingIndex += 1
-        hash = Object.keys(headingHashes)[headingIndex]
-        if (!hash) {
-          hash = textToHash(headingText, headingHashesFallbackTranslated)
-        }
-      }
+      const hash = textToHash(headingText, headingHashes)
 
       // enable splitting of long words from function name + first arg name
       // Closing parens are less interesting since this would only allow breaking one character earlier.
@@ -272,11 +258,10 @@ function createRender(context) {
       ].join('')
     }
     renderer.link = (href, linkTitle, linkText) => {
-      return `<a href="${href}" ${
-        startsWith(href, 'http')
-          ? 'target="_blank" rel="noopener nofollow"'
-          : ''
-      }>${linkText}</a>`
+      return `<a href="${href}" ${href.startsWith('http')
+        ? 'target="_blank" rel="noopener nofollow"'
+        : ''
+        }>${linkText}</a>`
     }
 
     renderer.image = (href, title, alt) => {
@@ -294,9 +279,8 @@ function createRender(context) {
       code = `${code.replace(/\n$/, '')}\n`
 
       if (!lang) {
-        return `<pre><code>${
-          escaped ? code : escape(code, true)
-        }</code></pre>\n`
+        return `<pre><code>${escaped ? code : escape(code, true)
+          }</code></pre>\n`
       }
 
       return `<div class="cdg-root"><pre><code class="language-${escape(
@@ -353,9 +337,8 @@ function createRender(context) {
             return undefined
           },
           renderer(token) {
-            return `<aside class="CdgCallout-root CdgCallout-${
-              token.severity
-            }">${this.parser.parse(token.tokens)}\n</aside>`
+            return `<aside class="CdgCallout-root CdgCallout-${token.severity
+              }">${this.parser.parse(token.tokens)}\n</aside>`
           },
         },
       ],
@@ -368,18 +351,15 @@ function createRender(context) {
 }
 
 function prepareMarkdown(config) {
-  const {fileRelativeContext, translations, options} = config
+  const { fileRelativeContext, translations } = config
 
   const demos = {}
-  const docs = {}
+  let docs = {}
   const headingHashes = {}
 
   translations
-    // Process the English markdown before the other locales.
-    // English ToC anchor links are used in all languages
-    .sort((a) => (a.userLanguage === 'en' ? -1 : 1))
     .forEach((translation) => {
-      const {filename, markdown, userLanguage} = translation
+      const { filename, markdown } = translation
       const headers = getHeaders(markdown)
       const location = headers.filename || `/${fileRelativeContext}/${filename}`
       const title = headers.title || getTitle(markdown)
@@ -439,9 +419,7 @@ function prepareMarkdown(config) {
       const render = createRender({
         headingHashes,
         toc,
-        userLanguage,
         location,
-        options,
       })
 
       const rendered = contents.map((content) => {
@@ -460,7 +438,7 @@ function prepareMarkdown(config) {
           )?.[1]
           const blocks = [
             ...content.matchAll(/^```(\S*) (\S*)\n([^`]*)\n```/gmsu),
-          ].map(([, language, tab, code]) => ({language, tab, code}))
+          ].map(([, language, tab, code]) => ({ language, tab, code }))
 
           const blocksData = blocks.filter(
             (block) => block.tab !== undefined && !emptyRegExp.test(block.code),
@@ -508,7 +486,7 @@ function prepareMarkdown(config) {
       </symbol>
       </svg>`)
 
-      docs[userLanguage] = {
+      docs = {
         description,
         location,
         rendered,
@@ -521,8 +499,7 @@ function prepareMarkdown(config) {
         imgSrc,
       }
     })
-
-  return {demos, docs}
+  return { demos, docs }
 }
 
 module.exports = {

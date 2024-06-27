@@ -7,7 +7,7 @@ components: OTPInput
 
 <p class="description">OTP Input component for inputting One-Time Passwords.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {OTPInput} from '@comfortdelgro/react-compass'

@@ -1,9 +1,7 @@
-const {promises: fs, readdirSync} = require('fs')
+const { promises: fs } = require('fs')
 const path = require('path')
-const {prepareMarkdown} = require('./parseMarkdown')
+const { prepareMarkdown } = require('./parseMarkdown')
 const extractImports = require('./extractImports')
-
-const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/
 
 function upperCaseFirst(string) {
   return `${string[0].toUpperCase()}${string.slice(1)}`
@@ -20,48 +18,31 @@ function moduleIDToJSIdentifier(moduleID) {
 }
 
 module.exports = async function demoLoader() {
-  const englishFilepath = this.resourcePath
-  const options = this.getOptions()
+  const resourcePath = this.resourcePath
 
-  const englishFilename = path.basename(englishFilepath, '.md')
+  const file = path.basename(resourcePath, '.md')
 
-  const files = await fs.readdir(path.dirname(englishFilepath))
+  const directory = await fs.readdir(path.dirname(resourcePath))
+
   const translations = await Promise.all(
-    files
+    directory
       .map((filename) => {
-        if (filename === `${englishFilename}.md`) {
-          return {
-            filename,
-            userLanguage: 'en',
-          }
+        if (filename === `${file}.md`) {
+          return filename
         }
-
-        const matchNotEnglishMarkdown = filename.match(notEnglishMarkdownRegExp)
-
-        if (
-          filename.startsWith(englishFilename) &&
-          matchNotEnglishMarkdown !== null &&
-          options.languagesInProgress.indexOf(matchNotEnglishMarkdown[1]) !== -1
-        ) {
-          return {
-            filename,
-            userLanguage: matchNotEnglishMarkdown[1],
-          }
-        }
-
         return null
       })
       .filter((translation) => translation)
-      .map(async (translation) => {
+      .map(async (filename) => {
         const filepath = path.join(
-          path.dirname(englishFilepath),
-          translation.filename,
+          path.dirname(resourcePath),
+          filename,
         )
-        this.addDependency(filepath)
-        const markdown = await fs.readFile(filepath, {encoding: 'utf8'})
+        // this.addDependency(filepath)x
+        const markdown = await fs.readFile(filepath, { encoding: 'utf8' })
 
         return {
-          ...translation,
+          filename,
           markdown,
         }
       }),
@@ -74,10 +55,9 @@ module.exports = async function demoLoader() {
     // win32 to posix
     .replace(/\\/g, '/')
 
-  const {docs} = prepareMarkdown({
+  const { docs } = prepareMarkdown({
     fileRelativeContext,
     translations,
-    options,
   })
 
   const demos = {}
@@ -87,7 +67,7 @@ module.exports = async function demoLoader() {
   const componentModuleIDs = new Set()
   const demoNames = Array.from(
     new Set(
-      docs.en.rendered
+      docs.rendered
         .filter((markdownOrComponentConfig) => {
           return (
             typeof markdownOrComponentConfig !== 'string' &&
@@ -111,10 +91,10 @@ module.exports = async function demoLoader() {
         path.dirname(this.resourcePath),
         moduleID.replace(/\//g, path.sep),
       )
-      this.addDependency(moduleFilepath)
+      // this.addDependency(moduleFilepath)
       demos[demoName] = {
         module: moduleID,
-        raw: await fs.readFile(moduleFilepath, {encoding: 'utf8'}),
+        raw: await fs.readFile(moduleFilepath, { encoding: 'utf8' }),
       }
       demoModuleIDs.add(moduleID)
       extractImports(demos[demoName].raw).forEach((importModuleID) =>
@@ -123,12 +103,10 @@ module.exports = async function demoLoader() {
 
       try {
         const previewFilepath = moduleFilepath.replace(/\.tsx$/, '.tsx.preview')
-        console.log(previewFilepath)
-
         const jsxPreview = await fs.readFile(previewFilepath, {
           encoding: 'utf8',
         })
-        this.addDependency(previewFilepath)
+        // this.addDependency(previewFilepath)
 
         demos[demoName].jsxPreview = jsxPreview
       } catch (error) {
@@ -141,8 +119,8 @@ module.exports = async function demoLoader() {
           path.dirname(this.resourcePath),
           moduleTS.replace(/\//g, path.sep),
         )
-        this.addDependency(moduleTSFilepath)
-        const rawTS = await fs.readFile(moduleTSFilepath, {encoding: 'utf8'})
+        // this.addDependency(moduleTSFilepath)
+        const rawTS = await fs.readFile(moduleTSFilepath, { encoding: 'utf8' })
 
         // In development devs can choose whether they want to work on the TS or JS version.
         // But this leads to building both demo version i.e. more build time.
@@ -158,7 +136,7 @@ module.exports = async function demoLoader() {
 
   const componentNames = Array.from(
     new Set(
-      docs.en.rendered
+      docs.rendered
         .filter((markdownOrComponentConfig) => {
           return (
             typeof markdownOrComponentConfig !== 'string' &&
@@ -182,23 +160,18 @@ module.exports = async function demoLoader() {
 
   const transformed = `
   ${Array.from(importedModuleIDs)
-    .map((moduleID) => {
-      return `import * as ${moduleIDToJSIdentifier(
+      .map((moduleID) => `import * as ${moduleIDToJSIdentifier(
         moduleID.replace('@', '$'),
-      )} from '${moduleID}';`
-    })
-    .join('\n')}
+      )} from '${moduleID}';`)
+      .join('\n')}
 
     ${Array.from(demoModuleIDs)
-      .map((moduleID) => {
-        return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`
-      })
+      .map((moduleID) => `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`)
       .join('\n')}
     ${Array.from(componentModuleIDs)
-      .map((moduleID) => {
-        return `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`
-      })
+      .map((moduleID) => `import ${moduleIDToJSIdentifier(moduleID)} from '${moduleID}';`)
       .join('\n')}
+
 export const docs = ${JSON.stringify(docs, null, 2)};
 export const demos = ${JSON.stringify(demos, null, 2)};
 
@@ -206,29 +179,26 @@ demos.scope = {
   process: {},
   import: {
 ${Array.from(importedModuleIDs)
-  .map(
-    (moduleID) =>
-      `    "${moduleID}": ${moduleIDToJSIdentifier(
-        moduleID.replace('@', '$'),
-      )},`,
-  )
-  .join('\n')}
+      .map(
+        (moduleID) =>
+          `    "${moduleID}": ${moduleIDToJSIdentifier(
+            moduleID.replace('@', '$'),
+          )},`,
+      )
+      .join('\n')}
   },
 };
 
 export const demoComponents = {
 ${Array.from(demoModuleIDs)
-  .map((moduleID) => {
-    return `  "${moduleID}": ${moduleIDToJSIdentifier(moduleID)},`
-  })
-  .join('\n')}
+      .map((moduleID) => `  "${moduleID}": ${moduleIDToJSIdentifier(moduleID)},`)
+      .join('\n')}
 };
+
 export const srcComponents = {
 ${Array.from(componentModuleIDs)
-  .map((moduleID) => {
-    return `  "${components[moduleID]}": ${moduleIDToJSIdentifier(moduleID)},`
-  })
-  .join('\n')}
+      .map((moduleID) => `  "${components[moduleID]}": ${moduleIDToJSIdentifier(moduleID)},`)
+      .join('\n')}
 };
 `
 

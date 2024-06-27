@@ -7,7 +7,7 @@ components: VideoPlayer
 
 <p class="description">Using to display a video.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {VideoPlayer, VideoPlayerProps} from '@comfortdelgro/react-compass'

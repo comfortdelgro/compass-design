@@ -8,7 +8,7 @@ components: Natural Drawer
 <p class="description">The new version of Drawer that using natural scrollbar to handle everything and have less logic.
 </p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Natural Drawer} from '@comfortdelgro/react-compass'

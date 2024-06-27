@@ -6,7 +6,7 @@ title: useCollator
 
 <p class="description">Provides localized string collation for the current locale. Automatically updates when the locale changes, and handles caching of the collator for performance.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

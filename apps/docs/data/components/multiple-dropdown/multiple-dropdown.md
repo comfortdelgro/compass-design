@@ -7,7 +7,7 @@ components: Multiple Dropdown
 
 <p class="description">Provides the behavior and accessibility implementation for a listbox component. A listbox displays a list of options and allows a user to select one or more of them.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {MultipleDropdown} from '@comfortdelgro/react-compass'

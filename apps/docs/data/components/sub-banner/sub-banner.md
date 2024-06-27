@@ -7,7 +7,7 @@ components: SubBanner
 
 <p class="description">The Sub Banner.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {SubBanner} from '@comfortdelgro/react-compass'

@@ -1,2 +1,1 @@
-export * from './getStaticPath'
-export * from './search'
+export * from './common'

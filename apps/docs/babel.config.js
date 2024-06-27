@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
 const fse = require('fs-extra')
-const path = require('path')
 
 const alias = {
   docs: './',

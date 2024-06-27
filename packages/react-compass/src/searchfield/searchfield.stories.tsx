@@ -1,4 +1,3 @@
-// import type {StoryDecorator} from '@ladle/react'
 import {Meta} from '@storybook/react'
 import React from 'react'
 import SearchField from './index'

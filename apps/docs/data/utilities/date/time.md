@@ -6,7 +6,7 @@ title: Time
 
 <p class="description">A Time represents a clock time without any date components.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

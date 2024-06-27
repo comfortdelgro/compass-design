@@ -6,7 +6,7 @@ title: Calendar
 
 <p class="description">The Calendar represents a calendar system, including information about how days, months, years, eras are organized, and methods to perform arithmetic on dates.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

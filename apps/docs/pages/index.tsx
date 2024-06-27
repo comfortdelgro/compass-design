@@ -1,13 +1,9 @@
 import {Divider} from '@comfortdelgro/react-compass'
-import Head from 'components/common/Head'
-import MarkdownLinks from 'components/common/MarkdownLinks'
-import Banner from 'components/home/Banner'
-import Introduction from 'components/home/Introduction'
-import ReactCompass from '../components/home/ReactCompass'
-import ReadyToUse from '../components/home/ReadyToUse'
-import AppFooter from '../components/layouts/AppFooter'
+import Head from 'components/Head'
+import Home from 'components/Home'
+import Footer from '../components/Footer'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Head
@@ -15,14 +11,10 @@ export default function Home() {
         description='Compass Design: The React component library you always wanted'
       ></Head>
       <main id='main-content'>
-        <MarkdownLinks />
-        <Banner />
-        <ReadyToUse />
-        <Introduction />
-        <ReactCompass />
+        <Home />
         <Divider />
       </main>
-      <AppFooter />
+      <Footer />
     </>
   )
 }

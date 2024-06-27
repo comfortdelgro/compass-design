@@ -6,7 +6,7 @@ title: DateFormatter
 
 <p class="description">A wrapper around Intl.DateTimeFormat that fixes various browser bugs, and polyfills new features.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

@@ -1,5 +1,5 @@
-import MarkdownDocs from 'components/common/MarkdownDocs'
-import * as pageProps from 'docs/data/utilities/date/calendar-date-time.md?@comfortdelgro/compass-design'
+import MarkdownDocs from 'components/MarkdownDocs'
+import * as pageProps from 'data/utilities/date/calendar-date-time.md'
 
 export default function Page() {
   return <MarkdownDocs {...pageProps} />

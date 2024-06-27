@@ -7,7 +7,7 @@ components: Error
 
 <p class="description">An error displays a message that describes an error that occurred.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Error} from '@comfortdelgro/react-compass'
