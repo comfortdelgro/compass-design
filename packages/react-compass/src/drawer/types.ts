@@ -88,7 +88,7 @@ type MobileDrawerChildrenAsFunctionParams = {
   'variant' | 'position' | 'onExpandChange' | 'onHeightChange' | 'children'
 >
 
-type MobileDrawerProps = {
+export type MobileDrawerProps = {
   /**
    * A variant that utilizes modern web technologies to replicate the iOS drawer (sheets) experience on the web.
    *
