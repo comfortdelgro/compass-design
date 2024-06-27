@@ -12,13 +12,12 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(
   const {
     copyButtonHidden = false,
     code,
-    language,
     component: Component = MarkdownElement,
     ...other
   } = props
   const renderedCode = React.useMemo(() => {
-    return prism(code.trim(), language)
-  }, [code, language])
+    return prism(code.trim())
+  }, [code])
   const handlers = useCodeCopy()
 
   return (
@@ -26,7 +25,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(
       <div {...handlers}>
         <pre>
           <code
-            className={`language-${language}`}
+            className={`language-tsx`}
             dangerouslySetInnerHTML={{__html: renderedCode}}
           />
         </pre>

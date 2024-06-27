@@ -5,13 +5,12 @@ import SimpleCodeEditor from 'react-simple-code-editor'
 import useCodeCopy from 'utils/hooks/useCodeCopy'
 interface EditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
-  language: string
   onChange: (value: any) => void
   value: string
 }
 
 export default function Editor(props: EditorProps) {
-  const {language, value, onChange, children, ...other} = props
+  const {value, onChange, children, ...other} = props
   const wrapperRef = React.useRef<HTMLDivElement | null>(null)
   const enterRef = React.useRef<HTMLElement | null>(null)
   const handlers = useCodeCopy()
@@ -66,7 +65,7 @@ export default function Editor(props: EditorProps) {
           onValueChange={onChange}
           className='cdg-code-editor'
           highlight={(code: any) =>
-            `<code class="language-${language}">${prism(code, language)}</code>`
+            `<code class="language-tsx">${prism(code)}</code>`
           }
         />
       </Box>

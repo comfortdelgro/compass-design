@@ -92,7 +92,6 @@ function Usage() {
                 copyButtonHidden
                 component={Box}
                 code={coreCode}
-                language='jsx'
               />
             }
           />
@@ -108,7 +107,6 @@ function Usage() {
                 copyButtonHidden
                 component={Box}
                 code={preflightCode}
-                language='jsx'
               />
             }
           />

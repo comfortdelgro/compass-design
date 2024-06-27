@@ -148,9 +148,6 @@ importers:
 
   packages/markdown:
     dependencies:
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       marked:
         specifier: ^5.1.0
         version: 5.1.2

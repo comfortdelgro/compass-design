@@ -1,7 +1,6 @@
 const { marked } = require('marked')
 const textToHash = require('./textToHash')
 const prism = require('./prism')
-const { startsWith } = require('lodash')
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/
 const titleRegExp = /# (.*)[\r\n]/
@@ -259,9 +258,9 @@ function createRender(context) {
       ].join('')
     }
     renderer.link = (href, linkTitle, linkText) => {
-      return `<a href="${href}" ${startsWith(href, 'http')
-          ? 'target="_blank" rel="noopener nofollow"'
-          : ''
+      return `<a href="${href}" ${href.startsWith('http')
+        ? 'target="_blank" rel="noopener nofollow"'
+        : ''
         }>${linkText}</a>`
     }
 
@@ -500,7 +499,6 @@ function prepareMarkdown(config) {
         imgSrc,
       }
     })
-
   return { demos, docs }
 }
 

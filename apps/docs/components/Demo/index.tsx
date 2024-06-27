@@ -27,7 +27,6 @@ function useDemoData(demo: any, githubLocation: string) {
       githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
       raw: demo.rawTS,
       Component: demo.tsx,
-      sourceLanguage: 'tsx',
     }
 
     const jsxPreview = demo.jsxPreview
@@ -243,10 +242,8 @@ export default function Demo(props: any) {
       <Box>
         {!codeOpen ? (
           <HighlightedCode
-            className={styles.demoHighlightedCode}
             code={editorCode.value}
-            // id={demoSourceId}
-            language={demoData.sourceLanguage}
+            className={styles.demoHighlightedCode}
           />
         ) : (
           <Editor
@@ -260,7 +257,6 @@ export default function Demo(props: any) {
             onFocus={() => {
               setLiveDemoActive(true)
             }}
-            language={demoData.sourceLanguage}
           >
             <EditorError>{debouncedError}</EditorError>
           </Editor>
