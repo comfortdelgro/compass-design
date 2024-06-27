@@ -1,31 +1,24 @@
-import {
-  Button,
-  Column,
-  Drawer,
-  Link,
-  Row,
-  Typography,
-} from '@comfortdelgro/react-compass'
+import {Button, Drawer, Link, Typography} from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
 export default function DrawerModeDocs() {
   const [openNonModalDrawer, setOpenNonModalDrawer] = useState(false)
 
   return (
-    <Column>
-      <Row>
-        <Button
-          type='button'
-          onClick={() => setOpenNonModalDrawer(!openNonModalDrawer)}
-        >
-          Toggle Non-modal Drawer
-        </Button>
-      </Row>
+    <>
+      <Button
+        variant={openNonModalDrawer ? 'danger' : 'secondary'}
+        type='button'
+        onClick={() => setOpenNonModalDrawer(!openNonModalDrawer)}
+      >
+        {openNonModalDrawer ? 'Close' : 'Open'} Non-modal Drawer
+      </Button>
 
       <Drawer
         open={openNonModalDrawer}
         onClose={() => setOpenNonModalDrawer(false)}
         drawerMode='non-modal'
+        style={{zIndex: 10}}
       >
         <Drawer.Header>
           <Typography.Header variant='header3'>
@@ -35,7 +28,7 @@ export default function DrawerModeDocs() {
 
         <Typography.Body variant='body2'>
           <Link
-            href='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations'
+            href='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility'
             target='_blank'
           >
             Read more
@@ -53,6 +46,6 @@ export default function DrawerModeDocs() {
           </Button>
         </Drawer.Footer>
       </Drawer>
-    </Column>
+    </>
   )
 }

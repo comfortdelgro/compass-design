@@ -1,11 +1,12 @@
+import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
+import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
 import Cross from '@comfortdelgro/compass-icons/react/cross'
-import ArrowLeft from '@comfortdelgro/compass-icons/react/filled/arrow-left-filled'
-import ArrowRight from '@comfortdelgro/compass-icons/react/filled/arrow-right-filled'
 import {Meta} from '@storybook/react'
 import {FormEventHandler, useState} from 'react'
-import Button from '../button'
-import Drawer, {DrawerProps} from './index'
-import storiesStyles from './styles/drawer-stories.module.css'
+import Drawer from '..'
+import Button from '../../button'
+import storiesStyles from '../styles/drawer-stories.module.css'
+import {DrawerProps} from '../types'
 
 export function Default() {
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -15,6 +16,9 @@ export function Default() {
   const [openDrawerPosition, setOpenDrawerPosition] = useState(false)
   const [drawerPosition, setDrawerPosition] =
     useState<DrawerProps['position']>(undefined)
+
+  const [openDrawerBackdropCustomized, setOpenDrawerBackdropCustomized] =
+    useState(false)
 
   const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
@@ -57,6 +61,7 @@ export function Default() {
         className={storiesStyles.drawerExample}
         open={openDrawer}
         onClose={listenOnCloseDrawer}
+        styles={{footer: {display: 'flex', gap: '1rem'}}}
       >
         <Drawer.Header>
           <h2 style={{marginBlock: 0}}>Drawer controlled by form</h2>
@@ -146,7 +151,7 @@ export function Default() {
           </p>
         </section>
 
-        <Drawer.Footer css={{display: 'flex', gap: '1rem'}}>
+        <Drawer.Footer>
           <Button
             variant='secondary'
             form='form-in-drawer'
@@ -216,10 +221,11 @@ export function Default() {
       </p>
 
       <Button
+        variant={openDrawerNonModal ? 'danger' : 'secondary'}
         type='button'
         onClick={() => setOpenDrawerNonModal(!openDrawerNonModal)}
       >
-        Toggle Non-modal Drawer
+        {openDrawerNonModal ? 'Close' : 'Open'} Non-modal Drawer
       </Button>
 
       <Drawer
@@ -277,6 +283,48 @@ export function Default() {
         >
           Close Drawer
         </Button>
+      </Drawer>
+
+      <h4>Backdrop styling</h4>
+      <p className={storiesStyles.description}>
+        We can customize the backdrop of the drawer by using the{' '}
+        <code>backdropProps</code> prop, update related CSS variables or
+        <br />
+        apply styles directly to the <code>::backdrop</code> CSS pseudo-element.
+      </p>
+
+      <Button
+        variant='secondary'
+        type='button'
+        onClick={() => setOpenDrawerBackdropCustomized(true)}
+      >
+        Open Drawer
+      </Button>
+
+      <Drawer
+        className={storiesStyles.drawerExample}
+        open={openDrawerBackdropCustomized}
+        onClose={() => setOpenDrawerBackdropCustomized(false)}
+        styles={{header: {fontWeight: 600}, content: {paddingBlock: 0}}}
+        backdropProps={{
+          blur: 1,
+          opacity: 0.9,
+          background:
+            'linear-gradient(-25deg,rgba(238,174,202,0.6) 0%,rgba(148,187,233,0.6) 100%)',
+        }}
+      >
+        <Drawer.Header>Backdrop styling</Drawer.Header>
+
+        <p>Article contents</p>
+
+        <Drawer.Footer>
+          <Button
+            type='button'
+            onClick={() => setOpenDrawerBackdropCustomized(false)}
+          >
+            Close Drawer
+          </Button>
+        </Drawer.Footer>
       </Drawer>
     </div>
   )
