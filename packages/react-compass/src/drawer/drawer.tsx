@@ -2,10 +2,12 @@
 
 import {forwardRef} from 'react'
 import DrawerDefault from './drawer-default'
+import DrawerFooter from './drawer-footer'
+import DrawerHeader from './drawer-header'
 import DrawerMobile from './drawer-mobile'
 import {DrawerProps, DrawerRef} from './types'
 
-const DrawerComposable = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
+const Drawer = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
   if (props.variant === 'mobile') {
     return <DrawerMobile ref={ref} {...props} />
   }
@@ -13,4 +15,7 @@ const DrawerComposable = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
   return <DrawerDefault ref={ref} {...props} />
 })
 
-export default DrawerComposable
+export default Drawer as typeof Drawer & {
+  Header: typeof DrawerHeader
+  Footer: typeof DrawerFooter
+}
