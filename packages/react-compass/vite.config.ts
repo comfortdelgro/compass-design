@@ -1,5 +1,4 @@
 import react from '@vitejs/plugin-react-swc'
-import swcPreserveDirectives from 'rollup-swc-preserve-directives'
 import {defineConfig} from 'vite'
 import dts from 'vite-plugin-dts'
 
@@ -17,7 +16,6 @@ export default defineConfig({
       ],
       include: ['src'],
     }),
-    swcPreserveDirectives(),
   ],
   // library mode
   build: {
@@ -29,10 +27,11 @@ export default defineConfig({
     },
     cssCodeSplit: false,
     rollupOptions: {
-      external: ['react', 'react-dom', 'chart.js', 'react-chartjs-2'],
+      external: ['react', 'react-dom'],
       output: {
         globals: {
           react: 'React',
+          'react-dom': 'ReactDOM',
         },
       },
     },

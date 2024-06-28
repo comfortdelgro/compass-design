@@ -2,7 +2,6 @@ import prism from '@comfortdelgro/markdown/prism'
 import {Box} from '@comfortdelgro/react-compass'
 import * as React from 'react'
 import SimpleCodeEditor from 'react-simple-code-editor'
-import useCodeCopy from 'utils/hooks/useCodeCopy'
 interface EditorProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   onChange: (value: any) => void
@@ -13,7 +12,6 @@ export default function Editor(props: EditorProps) {
   const {value, onChange, children, ...other} = props
   const wrapperRef = React.useRef<HTMLDivElement | null>(null)
   const enterRef = React.useRef<HTMLElement | null>(null)
-  const handlers = useCodeCopy()
 
   return (
     <div
@@ -40,7 +38,7 @@ export default function Editor(props: EditorProps) {
       {...other}
     >
       <Box
-        {...handlers}
+        className='cdg-copy'
         css={{
           maxHeight: 500,
           background: 'var(--cdg-color-gray10)',

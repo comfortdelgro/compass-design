@@ -2,6 +2,19 @@ const { marked } = require('marked')
 const textToHash = require('./textToHash')
 const prism = require('./prism')
 
+const markedOptions = {
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  headerPrefix: false,
+  headerIds: false,
+  mangle: false,
+};
+
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/
 const titleRegExp = /# (.*)[\r\n]/
 const descriptionRegExp = /<p class="description(.*?)">(.*?)<\/p>/s
@@ -200,7 +213,8 @@ function createRender(context) {
    */
   function render(markdown) {
     const renderer = new marked.Renderer()
-    renderer.heading = (headingHtml, level) => {
+    renderer.heading = function heading({ tokens, depth: level }) {
+      const headingHtml = this.parser.parseInline(tokens);
       // Main title, no need for an anchor.
       // It adds noises to the URL.
       //
@@ -211,9 +225,9 @@ function createRender(context) {
       }
 
       // Remove links to avoid nested links in the TOCs
-      const headingText = headingHtml
-        .replace(/<a\b[^>]*>/i, '')
-        .replace(/<\/a>/i, '')
+      let headingText = headingHtml.replace(/<a\b[^>]*>/gi, '').replace(/<\/a>/gi, '');
+      // Remove `code` tags
+      headingText = headingText.replace(/<code\b[^>]*>/gi, '').replace(/<\/code>/gi, '');
 
       // Standardizes the hash from the default location (en) to different locations
       // Need english.md file parsed first
@@ -257,30 +271,39 @@ function createRender(context) {
         `</h${level}>`,
       ].join('')
     }
-    renderer.link = (href, linkTitle, linkText) => {
-      return `<a href="${href}" ${href.startsWith('http')
-        ? 'target="_blank" rel="noopener nofollow"'
-        : ''
-        }>${linkText}</a>`
+
+    renderer.link = function link({ href, title, tokens }) {
+      const linkText = this.parser.parseInline(tokens);
+      let more = '';
+
+      if (title) {
+        more += ` title="${title}"`;
+      }
+
+      if (href.startsWith('http')) {
+        more = ' target="_blank" rel="noopener nofollow"';
+      }
+
+      let finalHref = href;
+      return `<a href="${finalHref}"${more}>${linkText}</a>`;
     }
 
     renderer.image = (href, title, alt) => {
       return `<img src="${href}" alt="${title || alt}"/>`
     }
 
-    renderer.code = (code, infostring, escaped) => {
-      const lang = (infostring || '').match(/\S*/)[0]
-      const out = prism(code, lang)
-      if (out != null && out !== code) {
-        escaped = true
-        code = out
+    renderer.code = ({ lang, text, escaped }) => {
+      const langString = (lang || '').match(/\S*/)[0];
+      const out = prism(text, langString);
+      if (out != null && out !== text) {
+        escaped = true;
+        text = out;
       }
 
-      code = `${code.replace(/\n$/, '')}\n`
+      const code = `${text.replace(/\n$/, '')}\n`;
 
       if (!lang) {
-        return `<pre><code>${escaped ? code : escape(code, true)
-          }</code></pre>\n`
+        return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
       }
 
       return `<div class="cdg-root"><pre><code class="language-${escape(
@@ -294,20 +317,6 @@ function createRender(context) {
         '</svg>',
         '<span class="cdg-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
       ].join('')}\n`
-    }
-
-    const markedOptions = {
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      headerPrefix: false,
-      headerIds: false,
-      mangle: false,
-      renderer,
     }
 
     marked.use({
@@ -344,7 +353,7 @@ function createRender(context) {
       ],
     })
 
-    return marked(markdown, markedOptions)
+    return marked(markdown, { ...markedOptions, renderer });
   }
 
   return render
@@ -372,13 +381,13 @@ function prepareMarkdown(config) {
       const imgSrc = headers.imgSrc || getImageSource(markdown)
 
       if (title == null || title === '') {
-        throw new Error(`docs-infra: Missing title in the page: ${location}\n`)
+        throw new Error(`compass-docs: Missing title in the page: ${location}\n`)
       }
 
       if (title.length > 70) {
         throw new Error(
           [
-            `docs-infra: The title "${title}" is too long (${title.length} characters).`,
+            `compass-docs: The title "${title}" is too long (${title.length} characters).`,
             'It needs to have fewer than 70 characters—ideally less than 60. For more details, see:',
             'https://developers.google.com/search/docs/advanced/appearance/title-link',
             '',
@@ -395,7 +404,7 @@ function prepareMarkdown(config) {
       if (description.length > 170) {
         throw new Error(
           [
-            `docs-infra: The description "${description}" is too long (${description.length} characters).`,
+            `compass-docs: The description "${description}" is too long (${description.length} characters).`,
             'It needs to have fewer than 170 characters—ideally less than 160. For more details, see:',
             'https://ahrefs.com/blog/meta-description/#4-be-concise',
             '',
@@ -406,13 +415,7 @@ function prepareMarkdown(config) {
       const contents = getContents(markdown)
 
       if (headers.unstyled) {
-        contents.push(`
-## Unstyled
-
-:::success
-[Base UI](/base-ui/getting-started/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
-:::
-        `)
+        contents.push(`compass-docs: Unstyled headers`)
       }
 
       const toc = []
