@@ -4,7 +4,12 @@ import DrawerHeader from './drawer-header'
 
 export type {DrawerFooterProps} from './drawer-footer'
 export type {DrawerHeaderProps} from './drawer-header'
-export type {DrawerDefaultProps, DrawerProps, DrawerRef, DrawerStylingSelectors} from './types'
+export type {
+  DrawerDefaultProps,
+  DrawerProps,
+  DrawerRef,
+  DrawerStylingSelectors,
+} from './types'
 
 const Drawer = DrawerComposable as typeof DrawerComposable & {
   Header: typeof DrawerHeader

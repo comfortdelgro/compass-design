@@ -1,29 +1,28 @@
 import {useCallback, useEffect} from 'react'
+import {useSafeLayoutEffect} from '../../utils'
 import {
   DRAWER_CLASSES,
   DRAWER_CSS_VARIABLES,
   DRAWER_SCALE_TARGET,
 } from '../constants'
-import {DrawerMobileProps} from '../types'
+import type {DrawerMobileProps} from '../types'
 import {updateElementStyles} from '../utils'
 
 type UseScaleEffectOptions = Readonly<
-  Pick<
-    DrawerMobileProps,
-    'enableScaleBg' | 'scaleBgOffset' | 'scaleBgClassName'
-  > & {
+  Pick<DrawerMobileProps, 'scaleBgOffset' | 'scaleBgClassName'> & {
+    enable?: boolean
     drawerOpened?: boolean
   }
 >
 
 export const useScaleEffect = ({
-  drawerOpened,
-  enableScaleBg,
+  drawerOpened = false,
+  enable = false,
   scaleBgClassName = '',
   scaleBgOffset = 16,
 }: UseScaleEffectOptions = {}) => {
   const scaleBackground = useCallback(() => {
-    if (!enableScaleBg || typeof document === 'undefined') {
+    if (!enable || typeof document === 'undefined') {
       return
     }
 
@@ -57,9 +56,9 @@ export const useScaleEffect = ({
       scaleBgClassName,
     )
     scaleElement.classList.remove(DRAWER_CLASSES.SCALE_DRAWER_OPENED)
-  }, [enableScaleBg, drawerOpened, scaleBgClassName, scaleBgOffset])
+  }, [enable, drawerOpened, scaleBgClassName, scaleBgOffset])
 
-  useEffect(() => {
+  useSafeLayoutEffect(() => {
     scaleBackground()
   }, [scaleBackground])
 

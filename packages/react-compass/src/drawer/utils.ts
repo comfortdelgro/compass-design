@@ -4,6 +4,7 @@ import {
   cloneElement,
   isValidElement,
   type CSSProperties,
+  type ComponentPropsWithoutRef,
   type ElementType,
   type PropsWithChildren,
   type ReactElement,
@@ -39,12 +40,13 @@ const processChildren = (children: ReactNode) => {
 }
 
 export const drawerPickChild = <
-  P extends HTMLAttributes<HTMLElement> = HTMLAttributes<HTMLElement>,
+  T extends ElementType = ElementType,
+  P extends HTMLAttributes<HTMLElement> = ComponentPropsWithoutRef<T>,
 >(
   children: ReactNode,
-  targetType: ElementType,
-  customProps?: P,
-): {child?: ReactElement<P>; rest: ReactNode} => {
+  targetType: T,
+  customProps?: ComponentPropsWithoutRef<T>,
+): {matchedNode?: ReactElement<P>; rest: ReactNode} => {
   const matched: ReactElement[] = []
 
   const rest = Children.map(processChildren(children), (item) => {
@@ -72,7 +74,27 @@ export const drawerPickChild = <
   })
 
   return {
-    child: matched.length > 0 ? matched[0] : undefined,
+    matchedNode: matched.length > 0 ? matched[0] : undefined,
     rest,
   }
 }
+
+function testUAPlatform(re: RegExp): boolean | undefined {
+  if (typeof window === 'undefined' || !window.navigator) {
+    return undefined
+  }
+
+  /**
+   * Docs & type declaration:
+   * https://wicg.github.io/ua-client-hints/#navigatoruadata
+   * https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData/platform
+   */
+  const platform: string =
+    // @ts-expect-error: TS doesn't ship with type declarations for the experimental navigator.userAgentData property.
+    window.navigator.userAgentData?.platform || window.navigator.platform
+  return re.test(platform)
+}
+
+export const isIOS = (): boolean | undefined =>
+  testUAPlatform(/^iPhone|^iPad/) ||
+  (testUAPlatform(/^Mac/) && navigator.maxTouchPoints > 1) // iPadOS 13 lies and says it's a Mac, we can distinguish by detecting touch support.

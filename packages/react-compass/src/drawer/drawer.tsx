@@ -3,7 +3,7 @@
 import {forwardRef} from 'react'
 import DrawerDefault from './drawer-default'
 import DrawerMobile from './drawer-mobile'
-import {DrawerProps, DrawerRef} from './types'
+import type {DrawerProps, DrawerRef} from './types'
 
 const DrawerComposable = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
   if (props.variant === 'mobile') {

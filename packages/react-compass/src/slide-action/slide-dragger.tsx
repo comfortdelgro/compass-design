@@ -1,15 +1,9 @@
-import {useMemo, useRef} from 'react'
-import useDrag from '../utils/hooks/useDrag'
+import {useEffect, useMemo, useRef, useState} from 'react'
+import {useDrag} from '../utils/hooks'
 import {classNames} from '../utils/string'
-import {SlideDraggerProps} from './slide-action.types'
+import type {SlideDraggerParams, SlideDraggerProps} from './slide-action.types'
 import classes from './styles/slide-action.module.css'
 
-/**
- * @note This component is draggable.
- *
- * It will be re-render (to reflect with the user's drag actions) and how frequently is
- * depend on the `stepSize` option of `useDrag` hook.
- */
 export default function SlideDragger({
   slideRef,
   icon,
@@ -17,48 +11,58 @@ export default function SlideDragger({
   onDragEnd,
   disableDrag = false,
 }: SlideDraggerProps) {
-  const slideDragRef = useRef<HTMLButtonElement>(null)
-  const SlideDragElement = slideDragRef.current
+  const slideDraggerRef = useRef<HTMLButtonElement>(null)
+  const [draggerWidth, setDraggerWidth] = useState(0)
 
-  const slideDragInfo = useMemo(() => {
+  const slideDraggerInfo = useMemo<SlideDraggerParams>(() => {
     if (typeof window === 'undefined' || !slideRef.current) {
       return {
-        slideDragWidth: 0,
+        draggerWidth,
         maxSlideDistance: 0,
       }
     }
 
     const computedStyle = window.getComputedStyle(slideRef.current)
-    const elementPaddingInline =
+    const slideContainerPaddingX =
       parseFloat(computedStyle.paddingLeft) +
       parseFloat(computedStyle.paddingRight)
-    const slideDragWidth = SlideDragElement?.offsetWidth ?? 0
 
     return {
-      slideDragWidth,
+      draggerWidth,
       maxSlideDistance:
-        slideRef.current.offsetWidth - elementPaddingInline - slideDragWidth,
+        slideRef.current.offsetWidth - slideContainerPaddingX - draggerWidth,
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [SlideDragElement?.offsetWidth])
+  }, [draggerWidth, slideRef])
 
   useDrag({
-    targetRef: slideDragRef,
+    targetRef: slideDraggerRef,
     direction: 'horizontal',
-
-    limit: {x: {min: 0, max: slideDragInfo.maxSlideDistance}},
+    limit: {x: {min: 0, max: slideDraggerInfo.maxSlideDistance}},
     onMove: (...params) => {
-      onDrag?.(slideDragInfo, ...params)
+      onDrag?.(slideDraggerInfo, ...params)
     },
     onEnd: (...params) => {
-      onDragEnd?.(slideDragInfo, ...params)
+      onDragEnd?.(slideDraggerInfo, ...params)
     },
     disabled: disableDrag,
   })
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || !slideDraggerRef.current) {
+      return
+    }
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      setDraggerWidth((entries[0].target as HTMLButtonElement).offsetWidth)
+    })
+
+    resizeObserver.observe(slideDraggerRef.current)
+    return () => resizeObserver.disconnect()
+  }, [slideDraggerRef])
+
   return (
     <button
-      ref={slideDragRef}
+      ref={slideDraggerRef}
       className={classNames(
         classes.slideActionDragger,
         'cdg-slide-action__dragger',

@@ -57,13 +57,7 @@ export function Mobile() {
         enableScaleBg
         scaleBgClassName={storiesStyles.bgScaleOverride}
         scaleBgOffset={16}
-        styles={{content: {paddingInline: '1rem'}, footer: {color: 'red'}}}
-        backdropProps={{
-          blur: 1,
-          // opacity: 0.55,
-          // background: 'rgb(0 0 0 / 0.35)',
-          background: 'linear-gradient(-25deg,rgba(238,174,202,0.6) 0%,rgba(148,187,233,0.6) 100%)',
-        }}
+        styles={{content: {paddingInline: '1rem'}}}
       >
         <p style={{textAlign: 'center'}}>Pull up to expand the drawer</p>
 

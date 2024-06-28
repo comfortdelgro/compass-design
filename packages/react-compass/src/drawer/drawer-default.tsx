@@ -82,13 +82,13 @@ const DrawerDefault = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     [preventClose],
   )
 
-  const {child: DrawerHeaderElement, rest: OtherElementsExceptHeader} =
+  const {matchedNode: DrawerHeaderElement, rest: OtherElementsExceptHeader} =
     drawerPickChild(children, DrawerHeader, {
       className: stylingClassNames?.header,
       style: styles?.header,
     })
 
-  const {child: DrawerFooterElement, rest: OtherElements} = drawerPickChild(
+  const {matchedNode: DrawerFooterElement, rest: OtherElements} = drawerPickChild(
     OtherElementsExceptHeader,
     DrawerFooter,
     {className: stylingClassNames?.footer, style: styles?.footer},

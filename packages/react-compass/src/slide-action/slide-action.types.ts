@@ -43,15 +43,20 @@ type Props = {
 export type SlideActionProps = Props &
   Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
 
+export type SlideDraggerParams = {
+  draggerWidth: number
+  maxSlideDistance: number
+}
+
 export type SlideDraggerProps = {
   slideRef: RefObject<HTMLDivElement>
   icon?: ReactNode
   onDrag?: (
-    slideDragInfo: {slideDragWidth: number; maxSlideDistance: number},
+    slideDraggerInfo: SlideDraggerParams,
     ...params: Parameters<NonNullable<DraggableOptions['onMove']>>
   ) => void
   onDragEnd?: (
-    slideDragInfo: {slideDragWidth: number; maxSlideDistance: number},
+    slideDraggerInfo: SlideDraggerParams,
     ...params: Parameters<NonNullable<DraggableOptions['onEnd']>>
   ) => void
   disableDrag?: boolean

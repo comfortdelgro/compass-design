@@ -241,7 +241,7 @@ export function Default() {
 
         <p>
           <a
-            href='https:developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations'
+            href='https:developer.mozilla.org/docs/Web/HTML/Element/dialog#accessibility_considerations'
             target='_blank'
           >
             Read more

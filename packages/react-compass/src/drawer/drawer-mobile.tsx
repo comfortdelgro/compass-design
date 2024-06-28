@@ -7,6 +7,7 @@ import {
   type DialogHTMLAttributes,
   type MouseEvent,
 } from 'react'
+import {useDrag} from '../utils/hooks'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DRAWER_CLASSES, DRAWER_SCALE_OFFSET} from './constants'
@@ -49,17 +50,23 @@ const DrawerMobile = forwardRef<
   } = props
   const DrawerRef = useDOMRef<DrawerRef>(ref)
   const DrawerElement = DrawerRef.current
-  const {child: DrawerHeaderElement, rest: OtherElementsExceptHeader} =
+  const {matchedNode: DrawerHeaderElement, rest: OtherElementsExceptHeader} =
     drawerPickChild(children, DrawerHeader, {
       className: classes?.header,
       style: styles?.header,
     })
 
-  const {child: DrawerFooterElement, rest: OtherElements} = drawerPickChild(
-    OtherElementsExceptHeader,
-    DrawerFooter,
-    {className: classes?.footer, style: styles?.footer},
-  )
+  const {matchedNode: DrawerFooterElement, rest: OtherElements} =
+    drawerPickChild(OtherElementsExceptHeader, DrawerFooter, {
+      className: classes?.footer,
+      style: styles?.footer,
+    })
+console.log('rerender');
+
+  useDrag({
+    targetRef: DrawerRef,
+    direction: 'vertical',
+  })
 
   const handleCloseDrawer = useCallback(
     (dialogReturnValue?: string) => {
@@ -93,8 +100,8 @@ const DrawerMobile = forwardRef<
 
   useBackDropStyling(DrawerRef, backdropProps)
   useScaleEffect({
+    enable: enableScaleBg && drawerMode === 'modal',
     drawerOpened: open,
-    enableScaleBg: enableScaleBg && drawerMode === 'modal',
     scaleBgClassName,
     scaleBgOffset,
   })

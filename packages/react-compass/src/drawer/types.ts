@@ -47,7 +47,7 @@ type DrawerSharedProps = {
    *
    * The content below the non-modal drawer can be interacted.
    *
-   * {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations Read more}
+   * {@link https://developer.mozilla.org/docs/Web/HTML/Element/dialog#accessibility_considerations Read more}
    *
    */
   drawerMode?: 'non-modal' | 'modal'
@@ -84,11 +84,11 @@ type MobileDrawerChildrenAsFunctionParams = {
   isExpanded: boolean
   height: number
 } & Omit<
-  MobileDrawerProps,
+  MobileDrawerSpecifiedProps,
   'variant' | 'position' | 'onExpandChange' | 'onHeightChange' | 'children'
 >
 
-type MobileDrawerProps = {
+export type MobileDrawerSpecifiedProps = {
   /**
    * A variant that utilizes modern web technologies to replicate the iOS drawer (sheets) experience on the web.
    *
@@ -160,10 +160,11 @@ type MobileDrawerProps = {
     | ((params: MobileDrawerChildrenAsFunctionParams) => ReactNode)
 }
 
-export type DrawerMobileProps = DrawerSharedProps & MobileDrawerProps
+export type DrawerMobileProps = DrawerSharedProps & MobileDrawerSpecifiedProps
 export type DrawerDefaultProps = DrawerSharedProps & DefaultDrawerProps
 
-type Props = DrawerSharedProps & (DefaultDrawerProps | MobileDrawerProps)
+type Props = DrawerSharedProps &
+  (DefaultDrawerProps | MobileDrawerSpecifiedProps)
 
 export type DrawerProps = Props &
   Omit<

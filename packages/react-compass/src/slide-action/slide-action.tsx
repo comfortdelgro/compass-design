@@ -5,6 +5,7 @@ import {CSSProperties, forwardRef, useCallback, useRef, useState} from 'react'
 import {CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useLazyEffect} from './hooks'
 import {SLIDER_REDUCE_OPACITY} from './slide-action.const'
 import {SlideActionProps, SlideDraggerProps} from './slide-action.types'
 import SlideDragger from './slide-dragger'
@@ -51,6 +52,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
     const slideBgRef = useRef<HTMLDivElement>(null)
     const slideLabelRef = useRef<HTMLDivElement>(null)
     const [disableDrag, setDisableDrag] = useState(false)
+    const [slideStatus, setSlideStatus] = useState(false)
 
     const handleUpdateSlideBg = useCallback<
       (opacity: number, width: number) => void
@@ -71,7 +73,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
     )
 
     const handleOnDrag = useCallback<NonNullable<SlideDraggerProps['onDrag']>>(
-      ({slideDragWidth, maxSlideDistance}, _, {x}) => {
+      ({draggerWidth, maxSlideDistance}, _, {x}) => {
         if (!slideRef.current || !slideLabelRef.current) {
           return
         }
@@ -84,7 +86,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
         const bgOpacity = x / maxSlideDistance - SLIDER_REDUCE_OPACITY
         handleUpdateSlideBg(
           bgOpacity > SLIDER_REDUCE_OPACITY ? SLIDER_REDUCE_OPACITY : bgOpacity,
-          slideDragWidth + x,
+          draggerWidth + x,
         )
       },
       [handleUpdateSlideBg],
@@ -105,7 +107,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
 
           setDisableDrag(false)
 
-          onChange?.(false)
+          setSlideStatus(false)
           setPosition({x: 0, y: 0}, {transition: 'transform .2s ease'})
 
           handleUpdateSlideBg(0, 0)
@@ -113,10 +115,10 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
 
         if (x === maxSlideDistance) {
           if (!allowSwipeAfterEnd) {
-            setDisableDrag?.(true)
+            setDisableDrag(true)
           }
 
-          onChange?.(true)
+          setSlideStatus?.(true)
           onSwipeEnd?.(resetPosition)
           return
         }
@@ -126,31 +128,20 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
       [onChange, handleUpdateSlideBg, allowSwipeAfterEnd, onSwipeEnd],
     )
 
-    const rootClasses = classNames(
-      classes.slideAction,
-      compact && classes.compact,
-      className,
-      'cdg-slide-action',
-    )
-
-    const bgClasses = classNames(
-      classes.slideActionBackground,
-      slideColor && classes[slideColor],
-      slideType && classes[slideType],
-      'cdg-slide-action__bg',
-    )
-
-    const labelClasses = classNames(
-      classes.slideActionLabel,
-      labelType && classes[labelType],
-      'cdg-slide-action__label',
-    )
+    useLazyEffect(() => {
+      onChange?.(slideStatus)
+    }, [slideStatus, onChange])
 
     return (
       <CssInjection css={css} childrenRef={slideRef}>
         <div
           ref={slideRef}
-          className={rootClasses}
+          className={classNames(
+            classes.slideAction,
+            compact ? classes.compact : '',
+            className,
+            'cdg-slide-action',
+          )}
           // data-color={color} // attr(data-color) is not widely supported yet, using inline style for now
           style={
             {
@@ -161,7 +152,15 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
           }
           {...htmlDivAttributes}
         >
-          <div ref={slideBgRef} className={bgClasses} />
+          <div
+            ref={slideBgRef}
+            className={classNames(
+              classes.slideActionBackground,
+              slideColor && classes[slideColor],
+              slideType && classes[slideType],
+              'cdg-slide-action__bg',
+            )}
+          />
           <SlideDragger
             slideRef={slideRef}
             icon={icon}
@@ -172,7 +171,11 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
 
           <div
             ref={slideLabelRef}
-            className={labelClasses}
+            className={classNames(
+              classes.slideActionLabel,
+              labelType && classes[labelType],
+              'cdg-slide-action__label',
+            )}
             title={typeof children === 'string' ? children : label}
           >
             {children || label}

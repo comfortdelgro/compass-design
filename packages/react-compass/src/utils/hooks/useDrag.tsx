@@ -1,11 +1,5 @@
-import {
-  RefObject,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import {RefObject, useCallback, useEffect, useMemo, useRef} from 'react'
+import {useDebouncedState} from './useDebouncedState'
 
 const clamp = (value: number, [min, max]: [number, number]): number => {
   return Math.min(Math.max(value, min), max)
@@ -21,7 +15,12 @@ type DragPosition = {x: number; y: number}
 
 type SetPosition = (
   position: DragPosition,
-  options?: {transition?: string; skipCalulateStep?: boolean},
+  options?: {
+    transition?: string
+    skipCalulateStep?: boolean
+    /** @default false */
+    shouldUpdatePositionState?: boolean
+  },
 ) => void
 
 export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
@@ -52,15 +51,24 @@ export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
    * @default 'both'
    */
   direction?: 'vertical' | 'horizontal' | 'both'
-  /** Set css transform
-   * @default true
-   */
-  setCSS?: boolean
   /** Limit dragging distance */
   limit?: {
     x?: {max?: number; min?: number}
     y?: {max?: number; min?: number}
   }
+  /**
+   * Set to `true` to allow update position state onMove and manually handle styling such as CSS transform.
+   * @default false
+   */
+  manualStylingOnMove?: boolean
+  /**
+   * Enable debouncing for the useDrag's position state. Useful for manually handling the transform animation (`manualStyling = false`)
+   * by using returned position state instead of `onMove` event.
+   *
+   * It doesn't affect the default transform animation (`manualStyling = true`).
+   * @default 0 // Hook's returned position state updated on every single pixel movement
+   */
+  returnedPositionDebounceTime?: number
   /**
    * Position step size
    * @default 0
@@ -101,7 +109,7 @@ export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
   disabled?: boolean
 }
 
-const useDrag = <T extends HTMLElement = HTMLElement>(
+export const useDrag = <T extends HTMLElement = HTMLElement>(
   options?: DraggableOptions<T>,
 ): {
   /**
@@ -126,7 +134,8 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
         y: {max: Infinity, min: -Infinity},
       },
       stepSize: 0,
-      setCSS: true,
+      manualStylingOnMove: false,
+      returnedPositionDebounceTime: 0,
       disabled: false,
 
       // customize/override the default options
@@ -145,8 +154,11 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
   const target = opts.targetRef || targetRef
   const startXY = useRef<DragPosition>({x: 0, y: 0})
   const prevPosition = useRef<DragPosition>({x: 0, y: 0})
-  const dragging = useRef<boolean>(false)
-  const [position, setPosition] = useState<DragPosition>({x: 0, y: 0})
+  const dragging = useRef(false)
+  const [position, setPosition] = useDebouncedState<DragPosition>(
+    {x: 0, y: 0},
+    opts.returnedPositionDebounceTime ?? 0,
+  )
 
   const setTransform = useCallback<SetPosition>(
     (newPosition, options) => {
@@ -168,9 +180,8 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
       }
 
       prevPosition.current = newPosition
-      setPosition(newPosition)
-
-      if (!opts.setCSS) {
+      if (options?.shouldUpdatePositionState) {
+        setPosition(newPosition)
         return
       }
 
@@ -182,7 +193,7 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
 
       target.current.style.transform = `translate3d(${newPosition.x}px, ${newPosition.y}px, 0)`
     },
-    [opts.setCSS, opts.stepSize, position.x, position.y, target],
+    [opts.stepSize, position.x, position.y, setPosition, target],
   )
 
   const handleStart = useCallback(
@@ -285,7 +296,13 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
         opts.onMove?.(target, {x, y})
       }
 
-      setTransform({x, y}, {skipCalulateStep: true})
+      setTransform(
+        {x, y},
+        {
+          skipCalulateStep: true,
+          shouldUpdatePositionState: opts.manualStylingOnMove,
+        },
+      )
     },
     [opts, setTransform, target],
   )
@@ -356,5 +373,3 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
     setPosition: setTransform,
   }
 }
-
-export default useDrag

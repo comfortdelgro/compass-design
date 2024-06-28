@@ -1,12 +1,47 @@
 import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
-import {useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import Typography from '../typography'
+import {useDrag} from '../utils'
+import {classNames} from '../utils/string'
 import SlideAction from './slide-action'
 import classes from './styles/stories.module.css'
 
 export function Default() {
   const [slideStatus, setSlideStatus] = useState(false)
+
+  const {target, position} = useDrag<HTMLDivElement>({
+    direction: 'horizontal',
+    manualStylingOnMove: true,
+    stepSize: 20,
+    limit: {x: {min: 0, max: 400}},
+    onMove: (targetRef, {x}) => {
+      targetRef.current?.style.setProperty(
+        'transform',
+        `translate3d(${x}px, 0, 0)`,
+      )
+      targetRef.current?.style.removeProperty('transition')
+    },
+    onEnd: (targetRef, _, setPosition) => {
+      setPosition(
+        {x: 0, y: 0},
+        {transition: 'transform .2s ease',},
+      )
+
+      targetRef.current?.style.setProperty('transform', `translate3d(0, 0, 0)`)
+      targetRef.current?.style.setProperty('transition', 'transform 0.2s ease')
+    },
+  })
+
+  useEffect(() => {
+    console.log(position.x)
+  }, [position.x])
+
+  const handleOnChange = useCallback((isSuccess: boolean) => {
+    console.log('onChange', isSuccess)
+
+    setSlideStatus(isSuccess)
+  }, [])
 
   return (
     <div className={classes.sliderActionStories}>
@@ -16,12 +51,16 @@ export function Default() {
       <Typography.Body variant='body3'>
         Slide status: <strong>{`${slideStatus}`}</strong>
       </Typography.Body>
+      <div ref={target} style={{width: 50, height: 50, background: 'red'}}>
+        LOL
+      </div>
 
       <SlideAction
         color='--cdg-color-cdgBlue'
-        onChange={(isSuccess) => setSlideStatus(isSuccess)}
+        onChange={handleOnChange}
         onSwipeEnd={(reset) => {
-          console.log('success')
+          console.log('swiped to the end')
+
           // do sth when users swiped to the end
           setTimeout(() => {
             reset()
@@ -135,9 +174,10 @@ export function Customize() {
       <Typography.Header variant='header5'>With custom icon</Typography.Header>
       <div className={classes.iphoneFake}>
         <div
-          className={[classes.showCase, turnedOff && classes.turnedOff]
-            .filter(Boolean)
-            .join(' ')}
+          className={classNames(
+            classes.showCase,
+            turnedOff ? classes.turnedOff : '',
+          )}
         >
           <SlideAction
             css={{
