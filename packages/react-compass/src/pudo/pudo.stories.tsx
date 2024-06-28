@@ -3,12 +3,11 @@ import InfoOutlined from '@comfortdelgro/compass-icons/react/outlined/info-outli
 import {Meta} from '@storybook/react'
 import debounce from 'lodash/debounce'
 import {useCallback, useState} from 'react'
-import {SlideAction} from '..'
+import {Box, SlideAction} from '..'
 import Button from '../button'
 import Typography from '../typography'
 import Pudo from './pudo'
 import {PudoItemProps, PudoValueChange} from './pudo.types'
-import classes from './styles/pudo-stories.module.css'
 
 const exampleItem = [
   {name: 'item1', value: '', placeholder: 'item1'},
@@ -91,25 +90,64 @@ export function Default() {
   }
 
   return (
-    <div className={classes.pudoStories}>
-      <h4>PUDO</h4>
-      <Typography.Body variant='body3' className={classes.description}>
+    <Box
+      css={{
+        padding: 'var(--cdg-spacing-4)',
+        paddingBottom: 'var(--cdg-spacing-12)',
+        h4: {
+          marginBlock: 'var(--cdg-spacing-6) var(--cdg-spacing-2)',
+        },
+        h5: {
+          marginBlock: 'var(--cdg-spacing-4) var(--cdg-spacing-1)',
+        },
+      }}
+    >
+      <h4 style={{marginBlock: 0}}>PUDO</h4>
+      <Typography.Body
+        variant='body3'
+        css={{
+          marginTop: '0',
+          fontSize: 'var(--cdg-font-size-body3)',
+          color: 'var(--cdg-color-grayShades60)',
+        }}
+      >
         with 200ms debounced value changes.
       </Typography.Body>
       <Pudo items={exampleItems} onValuesChange={debounceUpdate} />
       <Button
         size='sm'
-        className={classes.pudoUpdateItemButton}
+        css={{marginBlock: 'var(--cdg-spacing-4)'}}
         onClick={handleAddLocation}
       >
         Update first item
       </Button>
-      <pre className={classes.previewCode}>
-        {JSON.stringify(exampleValues, null, 2)}
-      </pre>
+      <Box
+        css={{
+          pre: {
+            padding: 'var(--cdg-spacing-2)',
+            margin: '0',
+            width: '100%',
+            minHeight: 'var(--cdg-spacing-5)',
+            borderRadius: 'var(--cdg-border-radius-lg)',
+            backgroundColor: 'var(--cdg-color-secondaryBg)',
+            fontSize: 'var(--cdg-font-size-label1)',
+            whiteSpace: 'pre-wrap',
+            overflowWrap: 'anywhere',
+          },
+        }}
+      >
+        <pre>{JSON.stringify(exampleValues, null, 2)}</pre>
+      </Box>
 
       <h4>Swap, add and remove items</h4>
-      <Typography.Body className={classes.description} variant='body3'>
+      <Typography.Body
+        css={{
+          marginTop: '0',
+          fontSize: 'var(--cdg-font-size-body3)',
+          color: 'var(--cdg-color-grayShades60)',
+        }}
+        variant='body3'
+      >
         Default value - Minlength: <strong>2</strong>, Maxlength:{' '}
         <strong>3</strong>, Input&#39;s maxlength: <strong>255</strong>
       </Typography.Body>
@@ -126,9 +164,23 @@ export function Default() {
         isClearable
       />
       {formValues && (
-        <pre className={classes.previewCode}>
-          {JSON.stringify(formValues, null, 2)}
-        </pre>
+        <Box
+          css={{
+            pre: {
+              padding: 'var(--cdg-spacing-2)',
+              margin: '0',
+              width: '100%',
+              minHeight: 'var(--cdg-spacing-5)',
+              borderRadius: 'var(--cdg-border-radius-lg)',
+              backgroundColor: 'var(--cdg-color-secondaryBg)',
+              fontSize: 'var(--cdg-font-size-label1)',
+              whiteSpace: 'pre-wrap',
+              overflowWrap: 'anywhere',
+            },
+          }}
+        >
+          <pre>{JSON.stringify(formValues, null, 2)}</pre>
+        </Box>
       )}
 
       <h4>
@@ -251,10 +303,23 @@ export function Default() {
       />
 
       <h4>Compact</h4>
-      <Typography.Body variant='body3' className={classes.description}>
+      <Typography.Body
+        variant='body3'
+        css={{
+          marginTop: '0',
+          fontSize: 'var(--cdg-font-size-body3)',
+          color: 'var(--cdg-color-grayShades60)',
+        }}
+      >
         Compact size: sm (1st example), md (2nd example)
       </Typography.Body>
-      <div className={classes.compactContainer}>
+      <Box
+        css={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--cdg-spacing-4)',
+        }}
+      >
         <Pudo
           items={[
             {name: 'item1', value: '', placeholder: 'item1'},
@@ -269,12 +334,18 @@ export function Default() {
           ]}
           compact='md'
         />
-      </div>
+      </Box>
 
       <h5>
         Type <code>custom</code>
       </h5>
-      <div className={classes.compactContainer}>
+      <Box
+        css={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--cdg-spacing-4)',
+        }}
+      >
         <Pudo
           items={[
             {
@@ -309,11 +380,16 @@ export function Default() {
           type='custom'
           compact='md'
         />
-      </div>
+      </Box>
 
       <h4>Styling</h4>
       <Pudo
-        className={classes.pudoCustomStyling}
+        css={{
+          '.cdg-pudo-items-wrapper': {
+            border: 'none',
+            boxShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.16)',
+          },
+        }}
         items={[
           {
             name: 'item1',
@@ -329,7 +405,7 @@ export function Default() {
           {name: 'item2', value: 'Destination', placeholder: 'item2'},
         ]}
       />
-    </div>
+    </Box>
   )
 }
 

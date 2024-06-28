@@ -1,16 +1,16 @@
 import HeartFilled from '@comfortdelgro/compass-icons/react/filled/heart-filled'
 import {Meta} from '@storybook/react'
 import {useState} from 'react'
+import Box from '../box'
 import Typography from '../typography'
 import SlideAction from './slide-action'
-import classes from './styles/stories.module.css'
 
 export function Default() {
   const [slideStatus, setSlideStatus] = useState(false)
 
   return (
-    <div className={classes.sliderActionStories}>
-      <Typography.Body variant='body2' className={classes.description}>
+    <Box css={{padding: 'var(--cdg-spacing-4)'}}>
+      <Typography.Body variant='body2'>
         Component will be reset after 1000ms
       </Typography.Body>
       <Typography.Body variant='body3'>
@@ -33,7 +33,7 @@ export function Default() {
         fugit reprehenderit minus beatae hic dolor rerum, labore architecto
         facere nam numquam?
       </SlideAction>
-    </div>
+    </Box>
   )
 }
 
@@ -55,7 +55,7 @@ export function Customize() {
   const [turnedOff, setTurnedOff] = useState(false)
 
   return (
-    <div className={classes.sliderActionStories}>
+    <Box css={{padding: 'var(--cdg-spacing-4)'}}>
       <Typography.Header variant='header3'>Default</Typography.Header>
       <pre>color: var(--cdg-color-dangerShades) // #E31617</pre>
       <SlideAction css={{marginTop: 'var(--cdg-spacing-4)'}}>
@@ -73,11 +73,31 @@ export function Customize() {
 
       <Typography.Header variant='header3'>More colors 🎨</Typography.Header>
 
-      <div className={classes.colorPickerWrapper}>
+      <Box
+        css={{
+          display: 'flex',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 'var(--cdg-spacing-2)',
+          marginBottom: 'var(--cdg-spacing-4)',
+          '.colorPicker': {
+            height: 'var(--cdg-spacing-10)',
+            width: 'var(--cdg-spacing-20)',
+            fontWeight: 'var(--cdg-font-weight-semibold)',
+            color: 'var(--cdg-color-whiteText)',
+            fontSize: 'var(--cdg-font-size-label2)',
+            border: 'none',
+            borderRadius: 'var(--cdg-border-radius-md)',
+            opacity: 0.8,
+            transition: 'opacity 0, 2s ease',
+            cursor: 'pointer',
+          },
+        }}
+      >
         {slideBgColors.map((color) => (
           <button
             key={color}
-            className={classes.colorPicker}
+            className={'colorPicker'}
             title={color}
             style={{backgroundColor: color}}
             type='button'
@@ -86,7 +106,7 @@ export function Customize() {
         ))}
 
         <button
-          className={classes.colorPicker}
+          className={'colorPicker'}
           type='button'
           style={{
             background:
@@ -98,7 +118,7 @@ export function Customize() {
         >
           Random
         </button>
-      </div>
+      </Box>
 
       <SlideAction color={colorBg}>Slide background</SlideAction>
 
@@ -133,9 +153,45 @@ export function Customize() {
       </SlideAction>
 
       <Typography.Header variant='header5'>With custom icon</Typography.Header>
-      <div className={classes.iphoneFake}>
+      <Box
+        css={{
+          height: '360px',
+          paddingTop: 'var(--cdg-spacing-4)',
+          marginBottom: '-1rem',
+          overflow: 'hidden',
+          boxSizing: 'border-box',
+          '.showCase': {
+            position: 'relative',
+            marginInline: 'auto',
+            padding: 'var(--cdg-spacing-4) var(--cdg-spacing-12)',
+            paddingTop: 'var(--cdg-spacing-20)',
+            height: '720px',
+            width: '360px',
+            backgroundColor: 'rgb(34, 193, 195)',
+            background:
+              'linear-gradient(321deg, rgba(34, 193, 195, 0.8) 0%, rgba(253, 187, 45, 0.8) 100%)',
+            fontWeight: 'var(--cdg-font-weight-semibold)',
+            textAlign: 'center',
+            outline: '10px solid #000',
+            borderRadius: '2.25rem',
+            boxSizing: 'border-box',
+            '&::before': {
+              content: '',
+              position: 'absolute',
+              top: 'var(--cdg-spacing-2)',
+              insetInline: '0',
+              marginInline: 'auto',
+              height: 'var(--cdg-spacing-6)',
+              width: 'var(--cdg-spacing-20)',
+              borderRadius: 'var(--cdg-border-radius-full)',
+              backgroundColor: '#000',
+            },
+            '&.turnedOff': {background: '#000', '& > *': {display: 'none'}},
+          },
+        }}
+      >
         <div
-          className={[classes.showCase, turnedOff && classes.turnedOff]
+          className={['showCase', turnedOff && 'turnedOff']
             .filter(Boolean)
             .join(' ')}
         >
@@ -152,8 +208,8 @@ export function Customize() {
             Slide to power off
           </SlideAction>
         </div>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 

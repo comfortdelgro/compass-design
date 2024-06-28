@@ -11,6 +11,7 @@ export default defineConfig({
       exclude: [
         '**/__tests__/**/*',
         '**/*.test-d.ts',
+        '**/stories/**/*',
         '*.stories',
         '.storybook',
       ],

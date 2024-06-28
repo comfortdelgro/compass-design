@@ -8,7 +8,6 @@ import Pencil from '@comfortdelgro/compass-icons/react/pencil-filled'
 import type {Meta} from '@storybook/react'
 import React from 'react'
 import Button from './index'
-import styles from './styles/stories.module.css'
 
 const Style = {
   width: '100%',
@@ -65,7 +64,7 @@ export const Variations: React.FC = () => (
     <div style={{...Style}}>
       <Button
         onClick={(e) => console.log('click', e)}
-        className={styles.myButton}
+        css={{width: '300px', backgroundColor: 'purple'}}
       >
         Custom width and background color
       </Button>
