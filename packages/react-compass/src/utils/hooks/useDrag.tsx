@@ -1,17 +1,15 @@
-import {
-  RefObject,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import {useCallback, useEffect, useMemo, useRef, type RefObject} from 'react'
+import {useDebouncedState} from './useDebouncedState'
 
 const clamp = (value: number, [min, max]: [number, number]): number => {
   return Math.min(Math.max(value, min), max)
 }
 
 const getNearestScale = (value: number, stepSize: number) => {
+  if (stepSize === 1) {
+    return value
+  }
+
   const prevStep = Math.floor(value / stepSize) * stepSize
   const nextStep = Math.ceil(value / stepSize) * stepSize
   return value - prevStep > nextStep - value ? nextStep : prevStep
@@ -21,7 +19,16 @@ type DragPosition = {x: number; y: number}
 
 type SetPosition = (
   position: DragPosition,
-  options?: {transition?: string; skipCalulateStep?: boolean},
+  options?: {
+    transition?: string
+    /**
+     * If `stepSize` > 0 and you wanna manually update the position, consider set this option to `true` to skip the default calculation.
+     * @default false
+     */
+    skipCalulateStep?: boolean
+    /** @default false */
+    shouldUpdatePositionState?: boolean
+  },
 ) => void
 
 export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
@@ -52,25 +59,29 @@ export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
    * @default 'both'
    */
   direction?: 'vertical' | 'horizontal' | 'both'
-  /** Set css transform
-   * @default true
-   */
-  setCSS?: boolean
   /** Limit dragging distance */
   limit?: {
     x?: {max?: number; min?: number}
     y?: {max?: number; min?: number}
   }
   /**
+   * Set to `true` to allow update position state onMove and manually handle styling such as CSS transform.
+   * @default false
+   */
+  manualStylingOnMove?: boolean
+  /**
+   * Enable debouncing for the `setPosition` setter in millisecond (ms). Used for manually handling the moving transform animation (`manualStylingOnMove = true`)
+   * by using returned position state instead of the `onMove` event.
+   *
+   * It doesn't affect the default `onMove` transform animation (`manualStylingOnMove = false`).
+   * @default 0
+   */
+  returnedPositionDebounceTime?: number
+  /**
    * Position step size
    * @default 0
    */
-  stepSize?:
-    | number
-    | {
-        x: number
-        y: number
-      }
+  stepSize?: number | DragPosition
 
   onStart?: (
     target: RefObject<T>,
@@ -101,14 +112,14 @@ export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
   disabled?: boolean
 }
 
-const useDrag = <T extends HTMLElement = HTMLElement>(
+export const useDrag = <T extends HTMLElement = HTMLElement>(
   options?: DraggableOptions<T>,
 ): {
   /**
    * Target element ref.
-   * @returns `undefined` if `options.targetRef` is provided
+   * @returns a RefObject of `null` if `options.targetRef` is provided or the target element is not found.
    */
-  target: RefObject<T> | undefined
+  target: RefObject<T>
   /** Position state {x, y} */
   position: DragPosition
   /** Function to set a new position value. */
@@ -126,7 +137,8 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
         y: {max: Infinity, min: -Infinity},
       },
       stepSize: 0,
-      setCSS: true,
+      manualStylingOnMove: false,
+      returnedPositionDebounceTime: 0,
       disabled: false,
 
       // customize/override the default options
@@ -145,8 +157,11 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
   const target = opts.targetRef || targetRef
   const startXY = useRef<DragPosition>({x: 0, y: 0})
   const prevPosition = useRef<DragPosition>({x: 0, y: 0})
-  const dragging = useRef<boolean>(false)
-  const [position, setPosition] = useState<DragPosition>({x: 0, y: 0})
+  const dragging = useRef(false)
+  const [position, setPosition] = useDebouncedState<DragPosition>(
+    {x: 0, y: 0},
+    opts.returnedPositionDebounceTime ?? 0,
+  )
 
   const setTransform = useCallback<SetPosition>(
     (newPosition, options) => {
@@ -168,21 +183,27 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
       }
 
       prevPosition.current = newPosition
-      setPosition(newPosition)
+      if (options?.shouldUpdatePositionState) {
+        if (position.x !== newPosition.x || position.y !== newPosition.y) {
+          setPosition(newPosition)
+        }
 
-      if (!opts.setCSS) {
         return
       }
 
+      const targetStyle = target.current.style
       if (options?.transition) {
-        target.current.style.transition = options.transition
+        targetStyle.setProperty('transition', options.transition)
       } else {
-        target.current.style.transition = ''
+        targetStyle.removeProperty('transition')
       }
 
-      target.current.style.transform = `translate3d(${newPosition.x}px, ${newPosition.y}px, 0)`
+      targetStyle.setProperty(
+        'transform',
+        `translate3d(${newPosition.x}px, ${newPosition.y}px, 0)`,
+      )
     },
-    [opts.setCSS, opts.stepSize, position.x, position.y, target],
+    [opts.stepSize, position.x, position.y, setPosition, target],
   )
 
   const handleStart = useCallback(
@@ -285,7 +306,13 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
         opts.onMove?.(target, {x, y})
       }
 
-      setTransform({x, y}, {skipCalulateStep: true})
+      setTransform(
+        {x, y},
+        {
+          skipCalulateStep: true,
+          shouldUpdatePositionState: opts.manualStylingOnMove,
+        },
+      )
     },
     [opts, setTransform, target],
   )
@@ -351,10 +378,8 @@ const useDrag = <T extends HTMLElement = HTMLElement>(
   }, [target, opts, handleStart, handleMove, handleEnd])
 
   return {
-    target: opts.targetRef ? undefined : target,
+    target,
     position,
     setPosition: setTransform,
   }
 }
-
-export default useDrag

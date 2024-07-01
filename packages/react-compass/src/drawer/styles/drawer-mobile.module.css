@@ -2,11 +2,11 @@
 
 @layer default, variant, compoundVariant, keyframes;
 
-html:global(.cdg-webpage-drawer-scale) {
+:global(.cdg-webpage-drawer-scale) {
   background-color: initial;
   overflow: hidden;
 
-  body {
+  &:is(body) {
     background-color: black;
   }
 }

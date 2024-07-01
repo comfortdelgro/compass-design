@@ -1,6 +1,11 @@
 import SlideAction from './slide-action'
 
-export type {SlideActionProps} from './slide-action.types'
+export type {
+  SlideActionOnChange,
+  SlideActionOnSwipeEnd,
+  SlideActionProps,
+  SlideActionRef,
+} from './slide-action.types'
 
 SlideAction.displayName = 'SlideAction'
 
