@@ -7,7 +7,7 @@ components: Portal
 
 <p class="description">The sample of portal layout, admin page layout.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Portal} from '@comfortdelgro/react-compass'

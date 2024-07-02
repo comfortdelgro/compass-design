@@ -1,46 +1,10 @@
-/* Importing the theme module */
-@import '../../theme/theme.module.css';
+@import './drawer-shared.module.css';
 
 @layer default, variant, compoundVariant;
 
 @layer default {
-  .drawer,
-  .drawerHeader,
-  .drawerContent,
-  .drawerFooter {
-    box-sizing: border-box;
-  }
-
   .drawer {
-    position: fixed;
-    inset-block: 0;
-
-    padding: 0;
-    max-height: 100%;
-    max-width: unset;
-
-    flex-direction: column;
-
-    border: none;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-      0 4px 6px -4px rgb(0 0 0 / 0.1);
-    pointer-events: none;
-    background-color: var(--cdg-color-background);
-    color: var(--cdg-color-primaryText);
-    z-index: 48;
-  }
-
-  .drawer:focus-visible {
-    outline: none;
-  }
-
-  .drawer::backdrop {
-    background: rgba(0, 0, 0, 0.4);
-  }
-
-  .drawer[open] {
-    display: flex;
-    pointer-events: auto;
+    max-height: 100dvh;
   }
 
   .drawerHeader {
@@ -66,16 +30,36 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    .drawer,
+    .drawer::backdrop {
+      opacity: 0;
+    }
+
     .drawer {
       display: flex;
-      opacity: 0;
-      animation: 0.2s cubic-bezier(0.25, 0, 0.3, 1) forwards;
-      transition: height 0.2s ease, opacity 0.2s ease;
+      animation: var(--cdg-drawer-close-animation-duration)
+        var(--cdg-drawer-animation-timing-fn) forwards;
+      transition: height var(--cdg-drawer-close-animation-duration) ease,
+        opacity var(--cdg-drawer-close-animation-duration) ease;
     }
 
     .drawer[open] {
+      animation: var(--cdg-drawer-open-animation-duration)
+        var(--cdg-drawer-animation-timing-fn) forwards;
       opacity: 1;
-      animation: 0.4s cubic-bezier(0.25, 0, 0.3, 1) forwards;
+    }
+
+    .drawer[open]::backdrop {
+      opacity: var(--cdg-drawer-backdrop-opacity);
+    }
+
+    @supports (transition-behavior: allow-discrete) {
+      .drawer,
+      .drawer::backdrop {
+        transition: opacity var(--cdg-drawer-close-animation-duration),
+          display var(--cdg-drawer-close-animation-duration) allow-discrete,
+          overlay var(--cdg-drawer-close-animation-duration) allow-discrete;
+      }
     }
   }
 }
@@ -87,6 +71,8 @@
   }
 
   .drawer.non-modal {
+    position: fixed;
+    inset-block: 0;
     overflow: hidden;
   }
 
@@ -126,46 +112,5 @@
     .drawer.default:not(.bottom) {
       width: clamp(30vw, var(--cdg-spacing-160), 50vw);
     }
-  }
-}
-
-/* 
-  ========================================
-  Keyframes for the slide effect animation 
-  ========================================
-*/
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slideOutLeft {
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes slideOutRight {
-  to {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    transform: translateY(100%);
-  }
-}
-
-@keyframes slideOutUp {
-  to {
-    transform: translateY(100%);
   }
 }

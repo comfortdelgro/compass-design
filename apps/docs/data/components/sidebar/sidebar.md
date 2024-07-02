@@ -7,7 +7,7 @@ components: Sidebar
 
 <p class="description">is an expandable and collapsible component that typically acts as a side container to place primary or secondary content alongside the main content.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Sidebar} from '@comfortdelgro/react-compass'

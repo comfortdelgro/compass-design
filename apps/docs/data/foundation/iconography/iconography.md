@@ -8,7 +8,7 @@ imgSrc: /static/images/iconography-background.png
 
 <p class="description hidden">Icons are visual representations of commands, devices, directories, or common actions.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Icons
 

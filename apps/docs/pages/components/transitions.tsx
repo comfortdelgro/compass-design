@@ -1,5 +1,5 @@
-import MarkdownDocs from 'components/common/MarkdownDocs'
-import * as pageProps from 'docs/data/components/transitions/transitions.md?@comfortdelgro/compass-design'
+import MarkdownDocs from 'components/MarkdownDocs'
+import * as pageProps from 'data/components/transitions/transitions.md'
 
 export default function Page() {
   return <MarkdownDocs {...pageProps} />

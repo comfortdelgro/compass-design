@@ -7,7 +7,7 @@ components: Box
 
 <p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Box} from '@comfortdelgro/react-compass'

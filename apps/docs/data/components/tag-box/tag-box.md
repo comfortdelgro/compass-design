@@ -7,7 +7,7 @@ components: TagBox
 
 <p class="description">Using to display list of tags.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {TagBox} from '@comfortdelgro/react-compass'

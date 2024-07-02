@@ -7,7 +7,7 @@ components: PUDO
 
 <p class="description">A journey planner that allows user to input multiple locations.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Pudo} from '@comfortdelgro/react-compass'

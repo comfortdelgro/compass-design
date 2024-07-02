@@ -98,6 +98,7 @@ export type {
   DrawerHeaderProps,
   DrawerProps,
   DrawerRef,
+  DrawerStylingSelectors,
 } from './drawer'
 export {default as Dropdown} from './dropdown'
 export type {
@@ -279,7 +280,12 @@ export type {
 export {default as Skeleton} from './skeleton'
 export type {SkeletonProps} from './skeleton'
 export {default as SlideAction} from './slide-action'
-export type {SlideActionProps} from './slide-action'
+export type {
+  SlideActionOnChange,
+  SlideActionOnSwipeEnd,
+  SlideActionProps,
+  SlideActionRef,
+} from './slide-action'
 export {default as Slider} from './slider'
 export type {SliderProps} from './slider'
 export {default as Snackbar} from './snackbar'

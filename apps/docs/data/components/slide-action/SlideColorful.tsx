@@ -4,10 +4,11 @@ import {
   SlideAction,
   Typography,
 } from '@comfortdelgro/react-compass'
-import {ReactNode, useState} from 'react'
+import {useState} from 'react'
+import classes from './styles/slide-action-document.module.css'
 
 // Slate, Orange, Emerald, CdgBlue, Cyan, Violet, Rose
-const slideBgColors = [
+const slideColors = [
   '#475569',
   '#ea580c',
   '#059669',
@@ -18,12 +19,20 @@ const slideBgColors = [
 ]
 
 export default function SliderColorfulDocs() {
-  const [colorBg, setColorBg] = useState(slideBgColors[0] || 'var(--cdg-color-cdgBlue)')
+  const [themeColor, setThemeColor] = useState(slideColors[0])
+
   return (
-    <Column>
-      <Typography.Header variant='header4'>Default color</Typography.Header>
-      <code>var(--cdg-color-dangerShades) - #E31617</code>
-      <SlideAction css={{marginBlock: 'var(--cdg-spacing-4)'}}>
+    <Column className={classes.exampleContainer}>
+      <Typography.Header variant='header4'>Theme color</Typography.Header>
+      <Typography.Body variant='body2'>
+        You can use the <code>color</code> prop to change the theme color.
+        <br />
+        <small>
+          Default color: &nbsp;
+          <code style={{color: '#0142AF'}}>--cdg-color-cdgBlue #0142AF</code>
+        </small>
+      </Typography.Body>
+      <SlideAction color='--cdg-color-success' style={{marginBlock: '1rem'}}>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque enim
         sint labore nesciunt
       </SlideAction>
@@ -31,36 +40,46 @@ export default function SliderColorfulDocs() {
       <Divider />
 
       <Typography.Header variant='header4'>More colors 🎨</Typography.Header>
-      <StyledColorPickerWrapper styles={{marginBottom: 'var(--cdg-spacing-4)'}}>
-        {slideBgColors.map((color) => (
-          <StyledColorPicker
+      <div className={classes.colorPickerWrapper}>
+        {slideColors.map((color) => (
+          <button
             key={color}
             title={color}
-            styles={{backgroundColor: color}}
-            onClick={() => setColorBg(color)}
+            className={classes.colorPickerBtn}
+            onClick={() => setThemeColor(color)}
+            style={{backgroundColor: color}}
           />
         ))}
 
-        <StyledColorPicker
-          styles={{
+        <button
+          className={classes.colorPickerBtn}
+          style={{
             background:
               'linear-gradient(to right top, #fff6f2, #ffd4c1, #ffb194, #f98d6b, #f16645, #dc5135, #c63a26, #b12118, #8d2318, #6a2117, #481d15, #281713)',
           }}
           onClick={() =>
-            setColorBg(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
+            setThemeColor(
+              `#${Math.floor(Math.random() * 0xffffff)
+                .toString(16)
+                .padStart(6, '0')}`,
+            )
           }
         >
           Random
-        </StyledColorPicker>
-      </StyledColorPickerWrapper>
+        </button>
+      </div>
 
-      <SlideAction color={colorBg}>Slide background</SlideAction>
+      <SlideAction color={themeColor}>Slide background</SlideAction>
 
-      <SlideAction css={{marginBlock: 'var(--cdg-spacing-4)'}} color={colorBg} slideType='static'>
+      <SlideAction
+        color={themeColor}
+        slideType='static'
+        style={{marginBlock: '1rem'}}
+      >
         Fadein background
       </SlideAction>
 
-      <SlideAction labelType='slide' color={colorBg}>
+      <SlideAction labelType='slide' color={themeColor}>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa non
         ipsum, pariatur in eveniet neque dolores sequi, numquam aspernatur
         ratione veritatis nemo earum maxime aut distinctio repellat dolorum ipsa
@@ -70,61 +89,11 @@ export default function SliderColorfulDocs() {
       <Divider css={{marginBlock: 'var(--cdg-spacing-4)'}} />
 
       <Typography.Header variant='header4'>
-        Default gradient background
+        Gradient slide background
       </Typography.Header>
-      <SlideAction color='#e11d48' slideColor='gradient'>
+      <SlideAction className={classes.slideActionGradient}>
         Slide to see bg color change
       </SlideAction>
     </Column>
   )
 }
-
-const StyledColorPickerWrapper = (props: {
-  children: ReactNode
-  styles: object
-}) => (
-  <div
-    {...props}
-    style={{
-      ...props.styles,
-      display: 'flex',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      gap: '0.5rem',
-    }}
-  >
-    {props.children}
-  </div>
-)
-
-const StyledColorPicker = (props: {
-  children?: ReactNode
-  title?: string
-  styles: object
-  onClick: () => void
-}) => (
-  <button
-    {...props}
-    type='button'
-    style={{
-      ...props.styles,
-      height: '2.5rem',
-      width: '5rem',
-      fontWeight: '600',
-      color: '#FFF',
-      fontSize: '0.75rem',
-
-      border: 'none',
-      borderRadius: '4px',
-      opacity: 0.8,
-      transition: 'opacity .2s ease',
-      cursor: 'pointer',
-
-      // '&:hover': {
-      //   opacity: 1,
-      // },
-    }}
-  >
-    {props.children}
-  </button>
-)

@@ -8,7 +8,7 @@ imgSrc: /static/images/typography-background.png
 
 <p class="description hidden">Clear typographical hierarchy organizes and structures content, making it easy for people to find their way through an experience.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Typography} from '@comfortdelgro/react-compass'

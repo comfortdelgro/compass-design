@@ -18,13 +18,11 @@ You need to create a `.tsx` file in the `apps/docs-v2/pages` folder with the fil
 
 Inside the file we need to import `MarkdownDocs` and the markdown file path.
 
-> Note that there will be an extra `?@comfortdelgro/compass-design` at the end of the link.
-
 Example
 
 ```tsx
-import MarkdownDocs from 'components/common/MarkdownDocs'
-import * as pageProps from 'docs/data/components/button/button.md?@comfortdelgro/compass-design'
+import MarkdownDocs from 'components/MarkdownDocs'
+import * as pageProps from 'data/components/button/button.md'
 
 export default function Page() {
   return <MarkdownDocs {...pageProps} />
@@ -66,13 +64,13 @@ To add a demo, you need to create a `.tsx` file and import by `{{"component": "[
 Example
 
 ```md
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 ```
 
 If you want to pass prop to component, follow below steps
 
 ```md
-{{"component": "components/common/ComponentLinkHeader.tsx", "background": "red"}}
+{{"component": "components/ComponentLinkHeader.tsx", "background": "red"}}
 ```
 
 ```tsx

@@ -1,12 +1,12 @@
 {
   "include": [
     "next-env.d.ts",
-    "types",
+    "index.d.ts",
     "src",
     "pages",
     "data",
     "components",
-    "utils"
+    "utils",
   ],
   "compilerOptions": {
     "module": "esnext",

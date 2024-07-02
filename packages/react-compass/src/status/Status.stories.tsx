@@ -16,28 +16,29 @@ export const Variants: React.FC = () => (
   >
     <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
       {Object.keys(STATUS_SIZE_MAP).map((size) => {
-        return <Status type='online' size={size as StatusSize} />
+        return <Status key={size} type='online' size={size as StatusSize} />
       })}
     </div>
     <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
       {Object.keys(STATUS_SIZE_MAP).map((size) => {
-        return <Status type='offline' size={size as StatusSize} />
+        return <Status key={size} type='offline' size={size as StatusSize} />
       })}
     </div>
     <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
       {Object.keys(STATUS_SIZE_MAP).map((size) => {
-        return <Status type='verified' size={size as StatusSize} />
+        return <Status key={size} type='verified' size={size as StatusSize} />
       })}
     </div>
     <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
       {Object.keys(STATUS_SIZE_MAP).map((size) => {
-        return <Status type='zig' size={size as StatusSize} />
+        return <Status key={size} type='zig' size={size as StatusSize} />
       })}
     </div>
     <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
       {Object.keys(STATUS_SIZE_MAP).map((size, index) => {
         return (
           <Status
+            key={size}
             type='icon'
             icon={
               <div

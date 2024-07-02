@@ -181,7 +181,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>((props, ref) => {
                     const expended =
                       row.getIsExpanded() && renderRowSubComponent !== undefined
                     return (
-                      <React.Fragment>
+                      <React.Fragment key={row.id}>
                         <TableRow
                           key={row.id}
                           isSelected={row.getIsSelected()}

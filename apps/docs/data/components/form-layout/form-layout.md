@@ -8,7 +8,7 @@ components: FormLayout
 <p class="description">
 The FormLayout component is a convenient way to build form layout.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Import
 

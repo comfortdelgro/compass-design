@@ -7,7 +7,7 @@ components: QuantityToggle
 
 <p class="description">Quantity Toggle fields allow users to enter a number, and increment or decrement the value using stepper buttons.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {QuantityToggle} from '@comfortdelgro/react-compass'

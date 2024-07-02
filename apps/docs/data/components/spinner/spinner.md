@@ -7,7 +7,7 @@ components: Spinner
 
 <p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Spinner} from '@comfortdelgro/react-compass'

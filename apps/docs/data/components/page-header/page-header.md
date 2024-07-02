@@ -7,7 +7,7 @@ components: PageHeader
 
 <p class="description">The Page header is used to begin pages and is a format guideline to how the top of a page should be organised.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {PageHeader} from '@comfortdelgro/react-compass'

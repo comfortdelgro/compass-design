@@ -1,0 +1,80 @@
+@import './drawer-shared.module.css';
+
+@layer default, variant, compoundVariant, keyframes;
+
+:global(.cdg-webpage-drawer-scale) {
+  background-color: initial;
+  overflow: hidden;
+
+  &:is(body) {
+    background-color: black;
+  }
+}
+
+:global(.cdg-drawer-bg-scale) {
+  transition-property: border-radius, transform;
+  transition-duration: 500ms;
+  transition-timing-function: var(--cdg-drawer-animation-timing-fn);
+  transform-origin: center top;
+}
+
+:global(.cdg-drawer-opened-bg-scale) {
+  --cdg-drawer-scale-offset: 16px;
+  --cdg-drawer-scale: 1;
+
+  border-radius: var(--cdg-border-radius-lg, 8px);
+  transform: scale(var(--cdg-drawer-scale))
+    translate(
+      0,
+      calc(env(safe-area-inset-top) + var(--cdg-drawer-scale-offset))
+    );
+  overflow: hidden;
+}
+
+@layer default {
+  html {
+    --cdg-drawer-animation-timing-fn: cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .drawer {
+    width: 100%;
+    margin-block: auto 0;
+    margin-inline: unset;
+    max-height: 100%;
+
+    border-radius: var(--cdg-border-radius-xl) var(--cdg-border-radius-xl) 0 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .drawer,
+    .drawer::backdrop {
+      transition: opacity var(--cdg-drawer-close-animation-duration),
+        display var(--cdg-drawer-close-animation-duration) allow-discrete,
+        overlay var(--cdg-drawer-close-animation-duration) allow-discrete;
+      opacity: 0;
+    }
+
+    .drawer {
+      animation: slideOutUp var(--cdg-drawer-close-animation-duration)
+        var(--cdg-drawer-animation-timing-fn) forwards;
+    }
+
+    .drawer[open] {
+      animation: slideInUp var(--cdg-drawer-open-animation-duration)
+        var(--cdg-drawer-animation-timing-fn) forwards;
+      opacity: 1;
+    }
+
+    .drawer[open]::backdrop {
+      opacity: var(--cdg-drawer-backdrop-opacity);
+    }
+  }
+}
+
+@layer variant {
+  .drawer.non-modal {
+    bottom: 0;
+    box-shadow: none;
+    overflow: clip;
+  }
+}

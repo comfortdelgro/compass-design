@@ -7,7 +7,7 @@ components: Date Picker
 
 <p class="description">DatePickers combine input and a Calendar popover to allow users to enter or select a date.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Import
 

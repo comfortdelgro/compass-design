@@ -7,7 +7,7 @@ components: Carousel
 
 <p class="description">A group of slider components. The core component is CarouselSlider with common feature is switching slides.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Carousel} from '@comfortdelgro/react-compass'

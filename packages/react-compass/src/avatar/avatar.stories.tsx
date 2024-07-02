@@ -242,40 +242,40 @@ export const Grouped: React.FC = () => (
     <h3>1. Extra Extra Small</h3>
     <Avatar.Group display={5} size='xxs'>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} image={avatar} />
+        return <Avatar key={avatar} label={nameList[index]} image={avatar} />
       })}
     </Avatar.Group>
 
     <h3>2. Extra Small</h3>
     <Avatar.Group display={5} size='xs'>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} image={avatar} />
+        return <Avatar key={avatar} label={nameList[index]} image={avatar} />
       })}
     </Avatar.Group>
 
     <h3>3. Small</h3>
     <Avatar.Group display={5} size='sm'>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} image={avatar} />
+        return <Avatar key={avatar} label={nameList[index]} image={avatar} />
       })}
     </Avatar.Group>
 
     <h3>4. Medium</h3>
     <Avatar.Group display={5} size='md'>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} image={avatar} />
+        return <Avatar key={avatar} label={nameList[index]} image={avatar} />
       })}
     </Avatar.Group>
     <Avatar.Group display={5} size='md'>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} />
+        return <Avatar key={avatar} label={nameList[index]} />
       })}
     </Avatar.Group>
 
     <h3>5. Large</h3>
     <Avatar.Group display={5} size='lg'>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} image={avatar} />
+        return <Avatar key={avatar} label={nameList[index]} image={avatar} />
       })}
     </Avatar.Group>
   </div>
@@ -286,35 +286,35 @@ export const WithAddMore: React.FC = () => (
     <h3>1. Extra Extra Small</h3>
     <Avatar.Group display={5} size='xxs' useAddMore={true}>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} image={avatar} />
+        return <Avatar key={avatar} label={nameList[index]} image={avatar} />
       })}
     </Avatar.Group>
 
     <h3>2. Extra Small</h3>
     <Avatar.Group display={5} size='xs' useAddMore={true}>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} image={avatar} />
+        return <Avatar key={avatar} label={nameList[index]} image={avatar} />
       })}
     </Avatar.Group>
 
     <h3>3. Small</h3>
     <Avatar.Group display={5} size='sm' useAddMore={true}>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} image={avatar} />
+        return <Avatar key={avatar} label={nameList[index]} image={avatar} />
       })}
     </Avatar.Group>
 
     <h3>4. Medium</h3>
     <Avatar.Group display={5} size='md' useAddMore={true}>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} />
+        return <Avatar key={avatar} label={nameList[index]} />
       })}
     </Avatar.Group>
 
     <h3>5. Large</h3>
     <Avatar.Group display={5} size='lg' useAddMore={true}>
       {images.map((avatar, index) => {
-        return <Avatar label={nameList[index]} image={avatar} />
+        return <Avatar key={avatar} label={nameList[index]} image={avatar} />
       })}
     </Avatar.Group>
   </div>

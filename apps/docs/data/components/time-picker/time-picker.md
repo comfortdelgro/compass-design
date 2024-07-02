@@ -7,7 +7,7 @@ components: Time Picker
 
 <p class="description">TimePicker is used to let user select a time or input time.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {TimePicker} from '@comfortdelgro/react-compass'

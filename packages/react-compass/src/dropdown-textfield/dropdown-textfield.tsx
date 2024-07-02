@@ -4,6 +4,7 @@ import TextField from '../textfield'
 import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useId} from '../utils/useId'
 import styles from './styles/dropdown-textfield.module.css'
 
 interface Props {
@@ -17,6 +18,8 @@ interface Props {
   isRequired?: boolean
   isDisabled?: boolean
   isReadOnly?: boolean
+  selectedKey?: string
+  inputValue?: string | number
   defaultSelectedKey?: string
   defaultInputValue?: string | number
   onChangeEvent?: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -72,9 +75,11 @@ const DropdownTextfield = React.forwardRef<
   DropdownTextfieldProps
 >((props, ref) => {
   const {
-    id = '',
+    id: propsId,
     className,
     options,
+    selectedKey,
+    inputValue,
     defaultSelectedKey,
     defaultInputValue,
     isErrored = false,
@@ -107,9 +112,13 @@ const DropdownTextfield = React.forwardRef<
   } = props
   const componentRef = useDOMRef(ref)
 
-  const [selectedDropdownKey, setDropdownKey] = React.useState<Key>('')
+  const id = useId(propsId)
+
+  const [selectedDropdownKey, setDropdownKey] = React.useState<Key>(
+    selectedKey ?? defaultSelectedKey ?? '',
+  )
   const [textfieldValue, setTextfieldValue] = React.useState<Key>(
-    defaultInputValue ?? '',
+    inputValue ?? defaultInputValue ?? '',
   )
 
   const handleDropdownChange = (newValue: Key) => {
@@ -122,9 +131,16 @@ const DropdownTextfield = React.forwardRef<
   }
 
   React.useEffect(() => {
-    setDropdownKey(defaultSelectedKey as Key)
-    setTextfieldValue(defaultInputValue)
-  }, [defaultSelectedKey, defaultInputValue])
+    if (selectedKey) {
+      setDropdownKey(selectedKey as Key)
+    }
+  }, [selectedKey])
+
+  React.useEffect(() => {
+    if (inputValue) {
+      setTextfieldValue(inputValue as Key)
+    }
+  }, [inputValue])
 
   return (
     <CssInjection css={css} childrenRef={componentRef}>

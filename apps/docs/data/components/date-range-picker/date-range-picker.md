@@ -8,7 +8,7 @@ components: Date Range Picker
 <p class="description">
 DateRangePickers combine two input fields and a RangeCalendar popover to allow users to enter or select a date and time range .</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Import
 

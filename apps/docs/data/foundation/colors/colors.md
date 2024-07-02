@@ -8,7 +8,7 @@ imgSrc: /static/images/colors-background.png
 
 <p class="description hidden">Color distinguishes a brand. It is used to convey personality, attracts the eye and indicate change.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {theme} from '@comfortdelgro/react-compass'

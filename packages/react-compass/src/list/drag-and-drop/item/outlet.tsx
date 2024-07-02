@@ -15,6 +15,7 @@ const DragAndDropListOutletItem = ({
   props,
   isDragged,
 }: DragAndDropListItemProps) => {
+  delete props.key
   return (
     <li
       {...props}

@@ -140,9 +140,10 @@ export const Basic = () => {
             },
           }}
         >
-          {navLinks.map((navItem) => {
+          {navLinks.map((navItem, index) => {
             return (
               <div
+                key={index}
                 className='footer-column'
                 style={{
                   flex: '1',
@@ -155,7 +156,11 @@ export const Basic = () => {
                   {navItem.title}
                 </h2>
                 {navItem.children.map((child) => {
-                  return <a href={child.link}>{child.name}</a>
+                  return (
+                    <a key={child.name + Math.random()} href={child.link}>
+                      {child.name}
+                    </a>
+                  )
                 })}
               </div>
             )
@@ -245,9 +250,10 @@ export const Basic = () => {
             },
           }}
         >
-          {navLinks.map((navItem) => {
+          {navLinks.map((navItem, index) => {
             return (
               <div
+                key={index}
                 className='footer-column'
                 style={{
                   flex: '1',
@@ -260,7 +266,11 @@ export const Basic = () => {
                   {navItem.title}
                 </h3>
                 {navItem.children.map((child) => {
-                  return <a href={child.link}>{child.name}</a>
+                  return (
+                    <a key={child.name + Math.random()} href={child.link}>
+                      {child.name}
+                    </a>
+                  )
                 })}
               </div>
             )
@@ -350,9 +360,10 @@ export const Basic = () => {
             },
           }}
         >
-          {navLinks.map((navItem) => {
+          {navLinks.map((navItem, index) => {
             return (
               <div
+                key={index}
                 className='footer-column'
                 style={{
                   flex: '1',
@@ -365,7 +376,11 @@ export const Basic = () => {
                   {navItem.title}
                 </h2>
                 {navItem.children.map((child) => {
-                  return <a href={child.link}>{child.name}</a>
+                  return (
+                    <a key={child.name + Math.random()} href={child.link}>
+                      {child.name}
+                    </a>
+                  )
                 })}
               </div>
             )

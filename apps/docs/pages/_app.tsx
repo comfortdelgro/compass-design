@@ -1,34 +1,23 @@
 import {
-  Preflight,
   ThemeStaticProvider,
   ToastContextProvider,
 } from '@comfortdelgro/react-compass'
 import '@comfortdelgro/react-compass/style.css'
-import 'components/common/bootstrap'
-import AppHeader from 'components/layouts/AppHeader'
-import {ETheme} from 'constants/index'
-import PagePropsProvider from 'contexts/PageProps'
-import ThemeContext from 'contexts/Theme'
+import PagePropsProvider from 'components/PagePropsProvider'
+import dynamic from 'next/dynamic'
 import NextHead from 'next/head'
 import * as React from 'react'
-import {getStaticPath} from 'utils'
-import {CodeCopyProvider} from 'utils/CodeCopy'
-import useLazyCSS from 'utils/useLazyCSS'
-import '../styles/code-editor.css'
-import './global.css'
+import {ETheme} from 'utils/constants'
+import ThemeContext from 'utils/contexts/Theme'
+import useCodeCopyEvent from 'utils/hooks/useCodeCopyEvent'
+import useMarkdownLinks from 'utils/hooks/useMarkdownLinks'
+import '../public/static/styles/code-editor.css'
+import '../public/static/styles/global.css'
+import '../public/static/styles/prism-okaidia.css'
 
-let dependenciesLoaded = false
-
-function loadDependencies() {
-  if (dependenciesLoaded) {
-    return
-  }
-
-  dependenciesLoaded = true
-}
+const Header = dynamic(() => import('components/Header'), {ssr: false})
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
-  // eslint-disable-next-line no-console
   console.log(
     `%c
     Tip: you can access the documentation \`theme\` object directly in the console.
@@ -36,16 +25,12 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
     'font-family:monospace;color:#1976d2;font-size:12px;',
   )
 }
+
 function AppWrapper(props: any) {
   const {children} = props
+  useCodeCopyEvent()
 
   const [mode, setMode] = React.useState<ETheme>(ETheme.Light)
-
-  React.useEffect(() => {
-    loadDependencies()
-  }, [])
-
-  useLazyCSS(getStaticPath('/static/styles/prism-okaidia.css'), '#prismjs')
 
   const handleChangeThemeMode = () => {
     setMode(mode === ETheme.Light ? ETheme.Dark : ETheme.Light)
@@ -61,13 +46,8 @@ function AppWrapper(props: any) {
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <ThemeStaticProvider changeBy={mode}>
-            {/* <ThemeProvider changeBy={mode}> */}
-            <CodeCopyProvider>
-              <Preflight />
-              <AppHeader handleChangeThemeMode={handleChangeThemeMode} />
-              {children}
-            </CodeCopyProvider>
-            {/* </ThemeProvider> */}
+            <Header handleChangeThemeMode={handleChangeThemeMode} />
+            {children}
           </ThemeStaticProvider>
         </ToastContextProvider>
       </ThemeContext.Provider>
@@ -78,6 +58,7 @@ function AppWrapper(props: any) {
 export default function MyApp(props: any) {
   const {Component, pageProps} = props
   const getLayout = Component.getLayout ?? ((page: any) => page)
+  useMarkdownLinks()
 
   return (
     <AppWrapper pageProps={pageProps}>
@@ -88,16 +69,15 @@ export default function MyApp(props: any) {
   )
 }
 
-MyApp.getInitialProps = async ({ctx, Component}: any) => {
+MyApp.getServerSideProps = async ({ctx, Component}: any) => {
   let pageProps = {}
 
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx)
+  if (Component.getServerSideProps) {
+    pageProps = await Component.getServerSideProps(ctx)
   }
 
   return {
     pageProps: {
-      userLanguage: ctx.query.userLanguage || 'en',
       ...pageProps,
     },
   }
@@ -107,7 +87,7 @@ MyApp.getInitialProps = async ({ctx, Component}: any) => {
 // Filter sessions instead of individual events so that we can track multiple metrics per device.
 // See https://github.com/GoogleChromeLabs/web-vitals-report to use this data
 const disableWebVitalsReporting = Math.random() > 0.0001
-export function reportWebVitals({id, name, label, delta, value}: any) {
+export function reportWebVitals() {
   if (disableWebVitalsReporting) {
     return
   }

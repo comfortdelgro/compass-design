@@ -6,7 +6,7 @@ title: I18nProvider
 
 <p class="description">Provides the locale for the application to all child components..</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

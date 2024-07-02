@@ -7,7 +7,7 @@ components: No-SSR
 
 <p class="description">The No-SSR component defers the rendering of children components from the server to the client.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {NoSsr} from '@comfortdelgro/react-compass'

@@ -7,7 +7,7 @@ components: Grid
 
 <p class="description">The Grid component is designed to create responsive and fluid grid layouts for your application.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Grid} from '@comfortdelgro/react-compass'

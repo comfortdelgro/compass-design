@@ -7,7 +7,7 @@ components: Wizard
 
 <p class="description">Using for display stepper.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Wizard} from '@comfortdelgro/react-compass'

@@ -6,13 +6,29 @@ type Props = {
   css?: CSS
   icon?: ReactNode
   label?: string
+  /**
+   * Component theme color, value for `--slide-action-theme` CSS variable.
+   *
+   * @example
+   * ```tsx
+   * <SlideAction color='--cdg-color-cdgBlue'>...</SlideAction>
+   * // or
+   * <SlideAction color='var(--cdg-color-cdgBlue)'>...</SlideAction>
+   * // or
+   * <SlideAction color='#0142af'>...</SlideAction>
+   * ```
+   */
   color?: string
-  /** Trigger when component's status changes */
+  /**
+   * Trigger when component's status changes
+   * @type {SlideActionOnChange}
+   */
   onChange?: (isSuccess: boolean) => void
   /**
    * Trigger when users swiped all the way to the end. It will be considered as a successful or confirmatory action.
    *
    * Call the `reset()` function to reset the component status.
+   * @type {SlideActionOnSwipeEnd}
    */
   onSwipeEnd?: (reset: () => void) => void
   /**
@@ -36,23 +52,40 @@ type Props = {
   /** @default 'static' */
   slideType?: 'static' | 'slide'
 
-  /** @default 'mono' */
+  /**
+   * @deprecated No longer supported, it will be removed in the next major version. Set your the gradient effect to the `.cdg-slide-action__bg` class instead.
+   * @default 'mono'
+   */
   slideColor?: 'mono' | 'gradient'
 }
+
+/**
+ * Trigger when users swiped all the way to the end. It will be considered as a successful or confirmatory action.
+ *
+ * Call the `reset()` function to reset the component status.
+ */
+export type SlideActionOnSwipeEnd = NonNullable<Props['onSwipeEnd']>
+export type SlideActionOnChange = NonNullable<Props['onChange']>
 
 export type SlideActionProps = Props &
   Omit<HTMLAttributes<HTMLDivElement>, keyof Props>
 
+export type SlideDraggerParams = {
+  draggerWidth: number
+  maxSlideDistance: number
+}
+
 export type SlideDraggerProps = {
   slideRef: RefObject<HTMLDivElement>
-  icon?: ReactNode
   onDrag?: (
-    slideDragInfo: {slideDragWidth: number; maxSlideDistance: number},
+    slideDraggerInfo: SlideDraggerParams,
     ...params: Parameters<NonNullable<DraggableOptions['onMove']>>
   ) => void
   onDragEnd?: (
-    slideDragInfo: {slideDragWidth: number; maxSlideDistance: number},
+    slideDraggerInfo: SlideDraggerParams,
     ...params: Parameters<NonNullable<DraggableOptions['onEnd']>>
   ) => void
   disableDrag?: boolean
 }
+
+export type SlideActionRef = HTMLDivElement & {resetState: () => void}

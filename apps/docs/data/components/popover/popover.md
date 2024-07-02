@@ -7,7 +7,7 @@ components: Popover
 
 <p class="description">When you want to show a content on above and anchor with an element when user click on it, just use this component follow this guidelines.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Popover} from '@comfortdelgro/react-compass'

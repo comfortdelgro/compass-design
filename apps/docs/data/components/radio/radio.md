@@ -7,7 +7,7 @@ components: Radio
 
 <p class="description">Radio allow users to select a single item from a list of mutually exclusive options.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Radio} from '@comfortdelgro/react-compass'

@@ -6,7 +6,7 @@ title: NumberParser
 
 <p class="description">A NumberParser can be used to perform locale-aware parsing of numbers from Unicode strings, as well as validation of partial user input.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

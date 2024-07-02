@@ -7,7 +7,7 @@ components: Card
 
 <p class="description">Cards provide a flexible and extensible content container with multiple variants and options.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Card} from '@comfortdelgro/react-compass'

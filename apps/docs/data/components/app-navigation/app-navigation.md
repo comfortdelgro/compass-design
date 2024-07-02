@@ -7,7 +7,7 @@ components: AppNav
 
 <p class="description">AppNav is a navigation bar containing a number of destinations at the top or bottom of the screen.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {AppNav} from '@comfortdelgro/react-compass'

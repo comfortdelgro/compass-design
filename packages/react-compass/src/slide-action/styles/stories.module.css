@@ -1,5 +1,6 @@
 .sliderActionStories {
   padding: var(--cdg-spacing-4);
+  line-height: 1.5;
 
   h3:not(:first-child) {
     margin-block: var(--cdg-spacing-8) var(--cdg-spacing-4);
@@ -15,6 +16,25 @@
     &.description {
       color: var(--cdg-color-grayShades60);
     }
+  }
+
+  hr {
+    margin-block: var(--cdg-spacing-4);
+  }
+
+  code {
+    font-family: Monaco, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      Liberation Mono, Courier New, monospace;
+    font-size: var(--cdg-font-size-label1);
+    padding: 2px var(--cdg-spacing-1);
+    background-color: var(--cdg-color-gray20);
+    border-radius: var(--cdg-border-radius-md);
+  }
+
+  .slideActionGradient :global(.cdg-slide-action__bg) {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientWave 4s ease infinite;
   }
 }
 
@@ -94,5 +114,17 @@
         display: none;
       }
     }
+  }
+}
+
+@keyframes gradientWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

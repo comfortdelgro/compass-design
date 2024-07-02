@@ -7,7 +7,7 @@ components: SubHeader
 
 <p class="description">The Sub header is then used to follow up on the top of subsequent child pages.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {SubHeader} from '@comfortdelgro/react-compass'

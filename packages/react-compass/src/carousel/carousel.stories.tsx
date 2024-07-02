@@ -9,7 +9,6 @@ import {
   CarouselSliderItem,
   SocicalIcon,
 } from './carousel.const'
-import styles from './styles/stories.module.css'
 
 const socials: SocicalIcon[] = [
   {
@@ -164,9 +163,23 @@ export const MultipleResponsive: React.FC = () => {
           <CarouselSlider.Slide
             key={index}
             active={activeIndex === index}
-            className={styles.slideItem}
+            css={{
+              display: 'flex',
+              height: '100%',
+              width: '33.33%',
+              '@media screen and (max-width: 767px)': {
+                width: '100%',
+              },
+            }}
           >
-            <div className={styles.slideContent} style={{}}>
+            <div
+              style={{
+                backgroundColor: '#ccc',
+                border: '1px solid #aaa',
+                width: '100%',
+                height: '250px',
+              }}
+            >
               Carousel slide {index}
             </div>
           </CarouselSlider.Slide>

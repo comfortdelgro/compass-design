@@ -7,7 +7,7 @@ components: Tabs
 
 <p class="description">Provides the behavior and accessibility implementation for a tab list. Tabs organize content into multiple sections and allow users to navigate between them.</p>
 
-{{"component": "components/common/ComponentLinkHeader.tsx"}}
+{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Tabs, TabsProps} from '@comfortdelgro/react-compass'
