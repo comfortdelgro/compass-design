@@ -78,7 +78,7 @@ export function Customize() {
   const [turnedOff, setTurnedOff] = useState(false)
 
   return (
-    <Box css={{padding: 'var(--cdg-spacing-4)'}}>
+    <div className={classes.sliderActionStories}>
       <Typography.Header variant='header3'>Default</Typography.Header>
       <pre>color: --cdg-color-cdgBlue #0142AF</pre>
       <SlideAction css={{marginTop: 'var(--cdg-spacing-4)'}}>
@@ -100,7 +100,7 @@ export function Customize() {
         {slideColors.map((color) => (
           <button
             key={color}
-            className={'colorPicker'}
+            className={classes.colorPicker}
             title={color}
             style={{backgroundColor: color}}
             type='button'
@@ -109,7 +109,7 @@ export function Customize() {
         ))}
 
         <button
-          className={'colorPicker'}
+          className={classes.colorPicker}
           type='button'
           style={{
             background:
@@ -125,7 +125,7 @@ export function Customize() {
         >
           Random
         </button>
-      </Box>
+      </div>
 
       <SlideAction color={themeColor}>Slide background</SlideAction>
 
@@ -156,43 +156,7 @@ export function Customize() {
       </SlideAction>
 
       <Typography.Header variant='header5'>With custom icon</Typography.Header>
-      <Box
-        css={{
-          height: '360px',
-          paddingTop: 'var(--cdg-spacing-4)',
-          marginBottom: '-1rem',
-          overflow: 'hidden',
-          boxSizing: 'border-box',
-          '.showCase': {
-            position: 'relative',
-            marginInline: 'auto',
-            padding: 'var(--cdg-spacing-4) var(--cdg-spacing-12)',
-            paddingTop: 'var(--cdg-spacing-20)',
-            height: '720px',
-            width: '360px',
-            backgroundColor: 'rgb(34, 193, 195)',
-            background:
-              'linear-gradient(321deg, rgba(34, 193, 195, 0.8) 0%, rgba(253, 187, 45, 0.8) 100%)',
-            fontWeight: 'var(--cdg-font-weight-semibold)',
-            textAlign: 'center',
-            outline: '10px solid #000',
-            borderRadius: '2.25rem',
-            boxSizing: 'border-box',
-            '&::before': {
-              content: '',
-              position: 'absolute',
-              top: 'var(--cdg-spacing-2)',
-              insetInline: '0',
-              marginInline: 'auto',
-              height: 'var(--cdg-spacing-6)',
-              width: 'var(--cdg-spacing-20)',
-              borderRadius: 'var(--cdg-border-radius-full)',
-              backgroundColor: '#000',
-            },
-            '&.turnedOff': {background: '#000', '& > *': {display: 'none'}},
-          },
-        }}
-      >
+      <div className={classes.iphoneFake}>
         <div
           className={classNames(
             classes.showCase,
@@ -229,8 +193,8 @@ export function Customize() {
             Slide to power off
           </SlideAction>
         </div>
-      </Box>
-    </Box>
+      </div>
+    </div>
   )
 }
 
