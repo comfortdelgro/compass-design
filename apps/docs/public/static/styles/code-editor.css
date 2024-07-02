@@ -95,8 +95,9 @@
 .markDownElement h2,
 .markDownElement h3,
 .markDownElement h4 {
-  position: relative;
-  padding-right: 26px * 2px + 10px;
+  gap: 8px;
+  display: flex;
+  align-items: center;
 }
 
 .markDownElement h1 code,
@@ -132,11 +133,9 @@
 .markDownElement h1 .comment-link,
 .markDownElement h3 .comment-link,
 .markDownElement h4 .comment-link {
-  line-height: 21.5px;
-  position: absolute;
-  text-align: center;
-  margin-left: 10px;
-  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 26px;
   width: 26px;
   background-color: var(--cdg-color-cdgBlue70);
@@ -145,7 +144,6 @@
   border-radius: 8px;
   color: var(--cdg-color-primaryText);
   cursor: pointer;
-  display: inline-block;
 }
 
 .markDownElement h1:hover .anchor-link:hover,

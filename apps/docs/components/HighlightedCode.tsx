@@ -3,7 +3,6 @@ import {NoSsr} from '@comfortdelgro/react-compass'
 import CodeCopyButton from 'components/CodeCopyButton'
 import MarkdownElement from 'components/MarkdownElement'
 import * as React from 'react'
-import useCodeCopy from 'utils/hooks/useCodeCopy'
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(
   props: any,
@@ -18,11 +17,9 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(
   const renderedCode = React.useMemo(() => {
     return prism(code.trim())
   }, [code])
-  const handlers = useCodeCopy()
-
   return (
     <Component ref={ref} {...other}>
-      <div {...handlers}>
+      <div>
         <pre>
           <code
             className={`language-tsx`}

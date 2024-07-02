@@ -1,7 +1,6 @@
 import copy from 'clipboard-copy'
 import {useRouter} from 'next/router'
 import React from 'react'
-import CodeBlockContext from 'utils/contexts/CodeCopy'
 
 function hasNativeSelection(element: HTMLTextAreaElement) {
   if (window.getSelection()?.toString()) {
@@ -22,7 +21,7 @@ function hasNativeSelection(element: HTMLTextAreaElement) {
 }
 
 export default function useCodeCopyEvent() {
-  const rootNode = React.useContext(CodeBlockContext)
+  const rootNode = React.useRef<HTMLElement | null>(null)
   const router = useRouter()
   React.useEffect(() => {
     let key = 'Ctrl + '
@@ -32,12 +31,12 @@ export default function useCodeCopyEvent() {
         key = '⌘'
       }
     }
+    const listeners: Array<() => void> = []
     const codeRoots = document.getElementsByClassName(
       'cdg-root',
     ) as HTMLCollectionOf<HTMLDivElement>
 
     if (codeRoots !== null) {
-      const listeners: Array<() => void> = []
       Array.from(codeRoots).forEach((elm) => {
         const handleMouseEnter = () => {
           rootNode.current = elm
@@ -50,11 +49,10 @@ export default function useCodeCopyEvent() {
 
         const handleMouseLeave = () => {
           if (rootNode.current === elm) {
-            (
-              rootNode.current.querySelector(
-                '.cdg-copy',
-              ) as null | HTMLButtonElement
-            )?.blur()
+            const copyElement = rootNode.current.querySelector(
+              '.cdg-copy',
+            ) as HTMLElement
+            copyElement?.blur()
             rootNode.current = null
           }
         }
@@ -117,6 +115,25 @@ export default function useCodeCopyEvent() {
           listeners.push(() => btn.removeEventListener('click', handleClick))
         }
       })
+
+      const linkRoots = document.getElementsByClassName(
+        'anchor-link',
+      ) as HTMLCollectionOf<HTMLAnchorElement>
+
+      if (linkRoots !== null) {
+        Array.from(linkRoots).forEach((elm) => {
+          async function handleClick() {
+            try {
+              if (elm.href) {
+                await copy(elm.href)
+              }
+              // eslint-disable-next-line no-empty
+            } catch (error) {}
+          }
+          elm.addEventListener('click', handleClick)
+          listeners.push(() => elm.addEventListener('click', handleClick))
+        })
+      }
 
       return () => {
         listeners.forEach((removeEventListener) => {

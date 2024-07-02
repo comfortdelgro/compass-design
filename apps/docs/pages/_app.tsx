@@ -3,13 +3,13 @@ import {
   ToastContextProvider,
 } from '@comfortdelgro/react-compass'
 import '@comfortdelgro/react-compass/style.css'
-import CodeCopyProvider from 'components/CodeCopyProvider'
 import PagePropsProvider from 'components/PagePropsProvider'
 import dynamic from 'next/dynamic'
 import NextHead from 'next/head'
 import * as React from 'react'
 import {ETheme} from 'utils/constants'
 import ThemeContext from 'utils/contexts/Theme'
+import useCodeCopyEvent from 'utils/hooks/useCodeCopyEvent'
 import useMarkdownLinks from 'utils/hooks/useMarkdownLinks'
 import '../public/static/styles/code-editor.css'
 import '../public/static/styles/global.css'
@@ -28,6 +28,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
 
 function AppWrapper(props: any) {
   const {children} = props
+  useCodeCopyEvent()
 
   const [mode, setMode] = React.useState<ETheme>(ETheme.Light)
 
@@ -45,10 +46,8 @@ function AppWrapper(props: any) {
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <ThemeStaticProvider changeBy={mode}>
-            <CodeCopyProvider>
-              <Header handleChangeThemeMode={handleChangeThemeMode} />
-              {children}
-            </CodeCopyProvider>
+            <Header handleChangeThemeMode={handleChangeThemeMode} />
+            {children}
           </ThemeStaticProvider>
         </ToastContextProvider>
       </ThemeContext.Provider>
