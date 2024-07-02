@@ -1,0 +1,62 @@
+.exampleContainer {
+  line-height: 1.5;
+}
+
+.exampleContainer code {
+  font-family: Monaco, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    Liberation Mono, Courier New, monospace;
+  font-size: var(--cdg-font-size-label1);
+  padding: 2px var(--cdg-spacing-1);
+  background-color: var(--cdg-color-gray20);
+  border-radius: var(--cdg-border-radius-md);
+}
+
+.exampleContainer p {
+  margin-block: var(--cdg-spacing-4);
+}
+
+.colorPickerWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cdg-spacing-2);
+
+  margin-block: var(--cdg-spacing-4);
+}
+
+.colorPickerBtn {
+  height: var(--cdg-spacing-10);
+  width: var(--cdg-spacing-20);
+
+  font-weight: 600;
+  color: #fff;
+  font-size: var(--cdg-font-size-label2);
+
+  border: none;
+  border-radius: var(--cdg-border-radius-md);
+  opacity: 0.8;
+  transition: opacity 200ms ease;
+  cursor: pointer;
+}
+
+.colorPickerBtn:hover {
+  opacity: 1;
+}
+
+.slideActionGradient :global(.cdg-slide-action__bg) {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientWave 4s ease infinite;
+}
+
+@keyframes gradientWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

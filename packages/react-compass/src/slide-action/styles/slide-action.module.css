@@ -4,7 +4,7 @@
 
 @layer default {
   .slideAction {
-    --slide-action-theme: var(--cdg-color-dangerShades);
+    --slide-action-theme: var(--cdg-color-cdgBlue, #0142af);
 
     position: relative;
     display: flex;
@@ -111,12 +111,6 @@
     opacity: 0;
   }
 
-  .slideActionBackground.gradient {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradientWave 4s ease infinite;
-  }
-
   @media (prefers-reduced-motion: no-preference) {
     .slideActionLabel.default {
       color: var(--slide-action-theme);
@@ -132,18 +126,6 @@
     .slideAction.compact {
       max-width: var(--cdg-spacing-60);
     }
-  }
-}
-
-@keyframes gradientWave {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
   }
 }
 

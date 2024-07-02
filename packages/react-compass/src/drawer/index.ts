@@ -9,7 +9,6 @@ export type {
   DrawerProps,
   DrawerRef,
   DrawerStylingSelectors,
-  MobileDrawerProps,
 } from './types'
 
 Drawer.Header = DrawerHeader
