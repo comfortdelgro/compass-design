@@ -1,7 +1,8 @@
 import {SlideAction} from '@comfortdelgro/react-compass'
 
 <SlideAction
-  onSwipeEnd={() => {
-    // handle confirmation logic
+  onSwipeEnd={async (reset) => {
+    await doStuff()
+    reset()
   }}
 />

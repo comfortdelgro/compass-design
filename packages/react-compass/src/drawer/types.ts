@@ -84,11 +84,11 @@ type MobileDrawerChildrenAsFunctionParams = {
   isExpanded: boolean
   height: number
 } & Omit<
-  MobileDrawerProps,
+  MobileDrawerSpecifiedProps,
   'variant' | 'position' | 'onExpandChange' | 'onHeightChange' | 'children'
 >
 
-export type MobileDrawerProps = {
+export type MobileDrawerSpecifiedProps = {
   /**
    * A variant that utilizes modern web technologies to replicate the iOS drawer (sheets) experience on the web.
    *
@@ -160,10 +160,10 @@ export type MobileDrawerProps = {
     | ((params: MobileDrawerChildrenAsFunctionParams) => ReactNode)
 }
 
-export type DrawerMobileProps = DrawerSharedProps & MobileDrawerProps
+export type DrawerMobileProps = DrawerSharedProps & MobileDrawerSpecifiedProps
 export type DrawerDefaultProps = DrawerSharedProps & DefaultDrawerProps
 
-type Props = DrawerSharedProps & (DefaultDrawerProps | MobileDrawerProps)
+type Props = DrawerSharedProps & (DefaultDrawerProps | MobileDrawerSpecifiedProps)
 
 export type DrawerProps = Props &
   Omit<

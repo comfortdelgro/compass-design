@@ -1,14 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
-import {CSSProperties, forwardRef, useCallback, useRef, useState} from 'react'
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
 import {CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
+import {useLazyEffect, useSlideActionDragger} from './hooks'
+import SlideActionDefaultIcon from './slide-action-icon'
 import {SLIDER_REDUCE_OPACITY} from './slide-action.const'
-import {SlideActionProps, SlideDraggerProps} from './slide-action.types'
-import SlideDragger from './slide-dragger'
+import type {
+  SlideActionProps,
+  SlideActionRef,
+  SlideDraggerProps,
+} from './slide-action.types'
 import classes from './styles/slide-action.module.css'
+
+const RESET_TRANSFORM_DURATION = 200 // ms
 
 const isValidColorVariable = (color: string): boolean => {
   if (typeof window === 'undefined' || typeof document === 'undefined') {
@@ -24,25 +38,24 @@ const isValidColorVariable = (color: string): boolean => {
 /**
  * A Slide action or Swiper component that requires user to swipe to confirm an action.
  *
- * Usually use for important actions, such as purchase order, turn off privacy setting, delete something, etc.
+ * Usually use for important actions, such as purchase order, turn off privacy setting, delete something, etc...
  */
-const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
+const SlideAction = forwardRef<SlideActionRef, SlideActionProps>(
   (
     {
-      css = {},
+      css,
       className = '',
       icon,
-      color = '--cdg-color-dangerShades',
+      color,
       label = 'Slide',
       labelType = 'default',
       onChange,
       onSwipeEnd,
       slideType = 'slide',
-      slideColor = 'mono',
       allowSwipeAfterEnd = false,
       compact = false,
-      children,
 
+      children,
       ...htmlDivAttributes
     },
     ref,
@@ -51,6 +64,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
     const slideBgRef = useRef<HTMLDivElement>(null)
     const slideLabelRef = useRef<HTMLDivElement>(null)
     const [disableDrag, setDisableDrag] = useState(false)
+    const [slideStatus, setSlideStatus] = useState(false)
 
     const handleUpdateSlideBg = useCallback<
       (opacity: number, width: number) => void
@@ -71,7 +85,7 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
     )
 
     const handleOnDrag = useCallback<NonNullable<SlideDraggerProps['onDrag']>>(
-      ({slideDragWidth, maxSlideDistance}, _, {x}) => {
+      ({draggerWidth, maxSlideDistance}, _, {x}) => {
         if (!slideRef.current || !slideLabelRef.current) {
           return
         }
@@ -84,11 +98,21 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
         const bgOpacity = x / maxSlideDistance - SLIDER_REDUCE_OPACITY
         handleUpdateSlideBg(
           bgOpacity > SLIDER_REDUCE_OPACITY ? SLIDER_REDUCE_OPACITY : bgOpacity,
-          slideDragWidth + x,
+          draggerWidth + x,
         )
       },
       [handleUpdateSlideBg],
     )
+
+    const resetState = useCallback(() => {
+      if (slideLabelRef.current) {
+        slideLabelRef.current.style.setProperty('opacity', '1')
+      }
+
+      setDisableDrag(false)
+      setSlideStatus(false)
+      handleUpdateSlideBg(0, 0)
+    }, [handleUpdateSlideBg])
 
     const handleOnDragEnd = useCallback<
       NonNullable<SlideDraggerProps['onDragEnd']>
@@ -99,80 +123,105 @@ const SlideAction = forwardRef<HTMLDivElement, SlideActionProps>(
         }
 
         const resetPosition = () => {
-          if (slideLabelRef.current) {
-            slideLabelRef.current.style.setProperty('opacity', '1')
-          }
-
-          setDisableDrag(false)
-
-          onChange?.(false)
-          setPosition({x: 0, y: 0}, {transition: 'transform .2s ease'})
-
-          handleUpdateSlideBg(0, 0)
+          resetState()
+          setPosition(
+            {x: 0, y: 0},
+            {transition: `transform ${RESET_TRANSFORM_DURATION}ms ease`},
+          )
         }
 
         if (x === maxSlideDistance) {
           if (!allowSwipeAfterEnd) {
-            setDisableDrag?.(true)
+            setDisableDrag(true)
           }
 
-          onChange?.(true)
+          setSlideStatus(true)
           onSwipeEnd?.(resetPosition)
           return
         }
 
         resetPosition()
       },
-      [onChange, handleUpdateSlideBg, allowSwipeAfterEnd, onSwipeEnd],
+      [handleUpdateSlideBg, allowSwipeAfterEnd, onSwipeEnd],
     )
 
-    const rootClasses = classNames(
-      classes.slideAction,
-      compact && classes.compact,
-      className,
-      'cdg-slide-action',
-    )
+    const {slideDraggerRef, setDraggerPosition} = useSlideActionDragger({
+      slideRef,
+      onDrag: handleOnDrag,
+      onDragEnd: handleOnDragEnd,
+      disableDrag,
+    })
 
-    const bgClasses = classNames(
-      classes.slideActionBackground,
-      slideColor && classes[slideColor],
-      slideType && classes[slideType],
-      'cdg-slide-action__bg',
-    )
+    const exposedResetHandler = useCallback(() => {
+      resetState()
+      setDraggerPosition(
+        {x: 0, y: 0},
+        {transition: `transform ${RESET_TRANSFORM_DURATION}ms ease`},
+      )
+    }, [resetState, setDraggerPosition])
 
-    const labelClasses = classNames(
-      classes.slideActionLabel,
-      labelType && classes[labelType],
-      'cdg-slide-action__label',
-    )
+    useImperativeHandle(ref, () => ({
+      ...slideRef.current!,
+      resetState: exposedResetHandler,
+    }))
+
+    useLazyEffect(() => {
+      onChange?.(slideStatus)
+    }, [slideStatus, onChange])
+
+    useEffect(() => {
+      if (!color) {
+        slideRef.current?.style.removeProperty('--slide-action-theme')
+        return
+      }
+
+      slideRef.current?.style.setProperty(
+        '--slide-action-theme',
+        isValidColorVariable(color) ? `var(${color})` : color,
+      )
+    }, [color])
 
     return (
       <CssInjection css={css} childrenRef={slideRef}>
         <div
           ref={slideRef}
-          className={rootClasses}
+          className={classNames(
+            classes.slideAction,
+            compact ? classes.compact : '',
+            className,
+            'cdg-slide-action',
+          )}
           // data-color={color} // attr(data-color) is not widely supported yet, using inline style for now
-          style={
-            {
-              '--slide-action-theme': isValidColorVariable(color)
-                ? `var(${color})`
-                : color,
-            } as CSSProperties
-          }
           {...htmlDivAttributes}
         >
-          <div ref={slideBgRef} className={bgClasses} />
-          <SlideDragger
-            slideRef={slideRef}
-            icon={icon}
-            onDrag={handleOnDrag}
-            onDragEnd={handleOnDragEnd}
-            disableDrag={disableDrag}
+          <div
+            ref={slideBgRef}
+            className={classNames(
+              classes.slideActionBackground,
+              slideType && classes[slideType],
+              'cdg-slide-action__bg',
+            )}
           />
+
+          <button
+            ref={slideDraggerRef}
+            className={classNames(
+              classes.slideActionDragger,
+              'cdg-slide-action__dragger',
+            )}
+            type='button'
+            style={disableDrag ? {pointerEvents: 'none'} : undefined}
+          >
+            {icon || <SlideActionDefaultIcon />}
+          </button>
 
           <div
             ref={slideLabelRef}
-            className={labelClasses}
+            className={classNames(
+              classes.slideActionLabel,
+              labelType && classes[labelType],
+              'cdg-slide-action__label',
+            )}
             title={typeof children === 'string' ? children : label}
           >
             {children || label}
