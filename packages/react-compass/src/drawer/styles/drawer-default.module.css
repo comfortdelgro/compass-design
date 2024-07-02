@@ -7,26 +7,12 @@
     max-height: 100dvh;
   }
 
-  .drawerHeader {
-    padding: var(--cdg-spacing-4);
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--cdg-spacing-4);
-  }
-
   .drawerContent {
     flex: 1;
     padding: var(--cdg-spacing-4);
-
     max-height: 100%;
     width: 100%;
     overflow: hidden auto;
-  }
-
-  .drawerFooter {
-    padding: var(--cdg-spacing-4);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -39,8 +25,14 @@
       display: flex;
       animation: var(--cdg-drawer-close-animation-duration)
         var(--cdg-drawer-animation-timing-fn) forwards;
-      transition: height var(--cdg-drawer-close-animation-duration) ease,
-        opacity var(--cdg-drawer-close-animation-duration) ease;
+      transition-property: height, opacity;
+      transition-duration: var(--cdg-drawer-close-transition-duration);
+      transition-timing-function: var(--cdg-drawer-transition-timing-fn);
+    }
+
+    .drawer[open],
+    .drawer[open]::backdrop {
+      transition-duration: var(--cdg-drawer-open-transition-duration);
     }
 
     .drawer[open] {
@@ -56,9 +48,9 @@
     @supports (transition-behavior: allow-discrete) {
       .drawer,
       .drawer::backdrop {
-        transition: opacity var(--cdg-drawer-close-animation-duration),
-          display var(--cdg-drawer-close-animation-duration) allow-discrete,
-          overlay var(--cdg-drawer-close-animation-duration) allow-discrete;
+        transition: opacity var(--cdg-drawer-close-transition-duration),
+          display var(--cdg-drawer-close-transition-duration) allow-discrete,
+          overlay var(--cdg-drawer-close-transition-duration) allow-discrete;
       }
     }
   }
@@ -94,9 +86,13 @@
     animation-name: slideInRight;
   }
 
+  .drawer.top,
   .drawer.bottom {
     height: 40dvh;
     width: 100%;
+  }
+
+  .drawer.bottom {
     inset-block: auto 0;
 
     box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1),
@@ -108,8 +104,19 @@
     animation-name: slideInUp;
   }
 
-  @media (min-width: 600px) {
-    .drawer.default:not(.bottom) {
+  .drawer.top {
+    inset-block: 0 auto;
+
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    animation-name: slideOutDown;
+  }
+
+  .drawer.top[open] {
+    animation-name: slideInDown;
+  }
+
+  @media (min-width: 768px) {
+    .drawer.default:not(.top, .bottom) {
       width: clamp(30vw, var(--cdg-spacing-160), 50vw);
     }
   }

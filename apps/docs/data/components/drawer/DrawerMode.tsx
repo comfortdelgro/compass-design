@@ -28,7 +28,7 @@ export default function DrawerModeDocs() {
 
         <Typography.Body variant='body2'>
           <Link
-            href='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility'
+            href='https://developer.mozilla.org/docs/Web/HTML/Element/dialog#accessibility'
             target='_blank'
           >
             Read more

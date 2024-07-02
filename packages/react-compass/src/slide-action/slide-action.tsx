@@ -22,8 +22,6 @@ import type {
 } from './slide-action.types'
 import classes from './styles/slide-action.module.css'
 
-const RESET_TRANSFORM_DURATION = 200 // ms
-
 const isValidColorVariable = (color: string): boolean => {
   if (typeof window === 'undefined' || typeof document === 'undefined') {
     return false
@@ -124,10 +122,7 @@ const SlideAction = forwardRef<SlideActionRef, SlideActionProps>(
 
         const resetPosition = () => {
           resetState()
-          setPosition(
-            {x: 0, y: 0},
-            {transition: `transform ${RESET_TRANSFORM_DURATION}ms ease`},
-          )
+          setPosition({x: 0, y: 0}, {transition: true})
         }
 
         if (x === maxSlideDistance) {
@@ -154,10 +149,7 @@ const SlideAction = forwardRef<SlideActionRef, SlideActionProps>(
 
     const exposedResetHandler = useCallback(() => {
       resetState()
-      setDraggerPosition(
-        {x: 0, y: 0},
-        {transition: `transform ${RESET_TRANSFORM_DURATION}ms ease`},
-      )
+      setDraggerPosition({x: 0, y: 0}, {transition: true})
     }, [resetState, setDraggerPosition])
 
     useImperativeHandle(ref, () => ({

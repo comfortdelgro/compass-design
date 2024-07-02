@@ -8,7 +8,6 @@ components: Drawer
 <p class="description">Display overlay area on top of a page and slides in from the side. Build on top of the native HTML <strong>&#60;dialog/></strong> element.
 </p>
 
-
 ```jsx
 import {Drawer} from '@comfortdelgro/react-compass'
 ```
@@ -50,14 +49,17 @@ By default, it respects the default accessibility behavior and settings of a `<d
 
 ### CSS Variables
 
-| Variable                                | Default                          | Description                                                                 |
-| :-------------------------------------- | :------------------------------- | :-------------------------------------------------------------------------- |
-| `--cdg-drawer-animation-timing-fn`      | `cubic-bezier(0.32, 0.72, 0, 1)` | Drawer's animation timing function.                                         |
-| `--cdg-drawer-open-animation-duration`  | `500ms`                          | Drawer's opening duration.                                                  |
-| `--cdg-drawer-close-animation-duration` | `200ms`                          | Drawer's closing duration.                                                  |
-| `--cdg-drawer-backdrop-bg`              | `rgba(0, 0, 0, 0.4)`             | Backdrop's background.                                                      |
-| `--cdg-drawer-backdrop-blur`            | `0`                              | Backdrop blur effect. It will be used by `backdrop-filter`'s blur function. |
-| `--cdg-drawer-backdrop-opacity`         | `1`                              | Backdrop's opacity.                                                         |
+| Variable                                 | Default                          | Description                                                                                                                                           |
+| :--------------------------------------- | :------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--cdg-drawer-animation-timing-fn`       | `cubic-bezier(0.32, 0.72, 0, 1)` | Drawer opening and closing stages animation timing function.                                                                                          |
+| `--cdg-drawer-open-animation-duration`   | `500ms`                          | Drawer's opening animation duration.                                                                                                                  |
+| `--cdg-drawer-close-animation-duration`  | `200ms`                          | Drawer's closing animation duration.                                                                                                                  |
+| `--cdg-drawer-transition-timing-fn`      | `cubic-bezier(0.32, 0.72, 0, 1)` | Drawer opening and closing stages transition timing function.                                                                                         |
+| `--cdg-drawer-open-transition-duration`  | `200ms`                          | Opening transition duration of the Drawer and its backdrop.<br/><small>It affects `opacity`, and discrete transitions (`display`, `overlay`)</small>. |
+| `--cdg-drawer-close-transition-duration` | `200ms`                          | Same as `--cdg-drawer-open-transition-duration` but for the closing stage.                                                                            |
+| `--cdg-drawer-backdrop-bg`               | `rgba(0, 0, 0, 0.4)`             | Backdrop's background.                                                                                                                                |
+| `--cdg-drawer-backdrop-blur`             | `0`                              | Backdrop blur effect. It will be used by `backdrop-filter`'s blur function.                                                                           |
+| `--cdg-drawer-backdrop-opacity`          | `1`                              | Backdrop's opacity.                                                                                                                                   |
 
 ### Elements
 
@@ -81,7 +83,7 @@ _Note:_
 </Drawer>
 ```
 
-In this case, `styles.header` will be ignored, the Drawer's header will have a blue background color. `Drawer.Header`'s class will be `'... drawer-header from-classNames'`
+In this case, `styles.header` will be ignored, the `Drawer.Header` should have a blue background color and it's class will be `'... drawer-header from-classNames'`.
 
 ### Backdrop
 
@@ -97,10 +99,10 @@ We can customize the Drawer's backdrop by
 
 ### Special Types
 
-| Name                     | Type                                                               | Description                                                         |
-| :----------------------- | :----------------------------------------------------------------- | :------------------------------------------------------------------ |
-| `DrawerStylingSelectors` | `'root' \| 'header' \| 'content' \| 'footer'`                      | Special styles APIs's available selectors (`classNames`, `styles`). |
-| `BackdropProps`          | `{background?: string; blur?: string \| number; opacity?: number}` | `backdropProps` prop's options.                                     |
+| Name                     | Type                                                               | Description                                                        |
+| :----------------------- | :----------------------------------------------------------------- | :----------------------------------------------------------------- |
+| `DrawerStylingSelectors` | `'root' \| 'header' \| 'content' \| 'footer'`                      | Available selectors of special styles APIs `classNames`, `styles`. |
+| `BackdropProps`          | `{background?: string; blur?: string \| number; opacity?: number}` | `backdropProps` prop's options.                                    |
 
 ### Shared Props
 
@@ -116,10 +118,19 @@ We can customize the Drawer's backdrop by
 
 ### Variant `'default'`
 
-| Name       | Type                                | Default   | Description                                          |
-| :--------- | :---------------------------------- | :-------- | :--------------------------------------------------- |
-| `position` | `'left'` \| `'bottom'` \| `'right'` | `'right'` | Side of the screen where drawer will be opened.      |
-| `css`      | `CSS`                               | —         | A legacy common prop that allows styling components. |
+| Name       | Type                                           | Default   | Description                                          |
+| :--------- | :--------------------------------------------- | :-------- | :--------------------------------------------------- |
+| `position` | `'right'` \| `'bottom'` \| `'left'` \| `'top'` | `'right'` | Side of the screen where drawer will be opened.      |
+| `css`      | `CSS`                                          | —         | A legacy common prop that allows styling components. |
+
+<!-- ### Variant `'mobile'`
+
+| Name                  | Type      | Default   | Description                                                                                                                                                                                                                                                             |
+| :-------------------- | :-------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `enableScaleLayer`    | `boolean` | `false`   | Enable document layer scale effect, creating a visual effect that the drawer is floating above the targeted scale element (page content below by default).<br/><small>The scale effect will be <strong>disabled</strong> if `drawerMode` is set to `non-modal`.</small> |
+| `scaleLayerOffset`    | `number`  | `16` (px) | The scale offset size.                                                                                                                                                                                                                                                  |
+| `scaleLayerClassName` | `string`  | —         | Add className to the targeted scale element.                                                                                                                                                                                                                            |
+-->
 
 \*: Required.
 

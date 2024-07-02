@@ -1,14 +1,13 @@
 import CrossIcon from '@comfortdelgro/compass-icons/react/cross'
 import {
   Button,
-  Column,
   Divider,
   Drawer,
   Row,
   TextField,
   Typography,
 } from '@comfortdelgro/react-compass'
-import {FormEventHandler, useState} from 'react'
+import {useState, type FormEventHandler} from 'react'
 
 export default function DrawerDocs() {
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -34,7 +33,7 @@ export default function DrawerDocs() {
   }
 
   return (
-    <Column>
+    <>
       <Typography.Header variant='header4'>
         Drawer controlled by form
       </Typography.Header>
@@ -186,6 +185,6 @@ export default function DrawerDocs() {
           </Button>
         </Drawer.Footer>
       </Drawer>
-    </Column>
+    </>
   )
 }
