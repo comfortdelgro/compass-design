@@ -58,8 +58,9 @@ const PudoItemComponent = <TItemName extends PropertyKey>({
               <Button
                 className={classNames(
                   classes.pudoItemInputBtnClear,
-                  (!value || !isClearable) &&
-                    classes.pudoItemInputBtnClearHidden,
+                  !value || !isClearable
+                    ? classes.pudoItemInputBtnClearHidden
+                    : '',
                   'cdg-pudo-item__input-btn-clear',
                 )}
                 variant='ghost'
@@ -129,18 +130,16 @@ const PudoItemComponent = <TItemName extends PropertyKey>({
     return <></>
   }
 
-  const rootClasses = classNames(
-    classes.pudoItem,
-    type && classes[type],
-    alignIcon && classes[`alignIcon--${alignIcon}`],
-    compact && classes[compact],
-    className,
-    'cdg-pudo-item',
-  )
-
   return (
     <div
-      className={rootClasses}
+      className={classNames(
+        classes.pudoItem,
+        type && classes[type],
+        alignIcon ? classes[`alignIcon--${alignIcon}`] : '',
+        compact ? classes[compact] : '',
+        'cdg-pudo-item',
+        className,
+      )}
       style={{zIndex: itemsLength - 1 - index ?? undefined}}
     >
       <div className={classNames(classes.pudoItemIcon, 'cdg-pudo-item__icon')}>

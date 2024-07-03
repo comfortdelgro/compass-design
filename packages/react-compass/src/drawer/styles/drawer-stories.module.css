@@ -120,7 +120,7 @@
 }
 
 .bgScaleOverride {
-  body {
+  :is(body) {
     background: black !important;
   }
 }

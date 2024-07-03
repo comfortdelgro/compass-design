@@ -1,3 +1,4 @@
+import CheckIcon from '@comfortdelgro/compass-icons/react/tick'
 import {Meta} from '@storybook/react'
 import {useCallback, useRef, useState} from 'react'
 import Button from '../button'
@@ -8,8 +9,9 @@ import SlideAction from './slide-action'
 import type {SlideActionOnSwipeEnd, SlideActionRef} from './slide-action.types'
 import classes from './styles/stories.module.css'
 
-export function Default() {
+export function BasicUsage() {
   const lastSlideRef = useRef<SlideActionRef>(null)
+  const [status, setStatus] = useState(false)
   const handleOnSwipeEnd = useCallback<SlideActionOnSwipeEnd>((reset) => {
     // do sth when users swiped to the end
     setTimeout(() => {
@@ -19,14 +21,7 @@ export function Default() {
 
   return (
     <div className={classes.sliderActionStories}>
-      <SlideAction
-        onChange={(isSuccess) => console.log('Status change: ', isSuccess)}
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,
-        minima quaerat, ipsum ad temporibus amet distinctio vitae cupiditate
-        fugit reprehenderit minus beatae hic dolor rerum, labore architecto
-        facere nam numquam?
-      </SlideAction>
+      <SlideAction>Swipe to confirm</SlideAction>
 
       <Divider />
 
@@ -40,9 +35,15 @@ export function Default() {
         <br />
         Below SlideAction will be reset after 1000ms:
       </Typography.Body>
-      <SlideAction onSwipeEnd={handleOnSwipeEnd}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit
-      </SlideAction>
+      <SlideAction
+        label='Swipe to confirm'
+        color={status ? '--cdg-color-success' : undefined}
+        icon={
+          status ? <CheckIcon color='#fff' width={20} height={20} /> : undefined
+        }
+        onChange={(isConfirmed) => setStatus(isConfirmed)}
+        onSwipeEnd={handleOnSwipeEnd}
+      />
 
       <Typography.Body variant='body2' style={{marginTop: '2rem'}}>
         2. Call <code>resetState</code> function from component ref.
@@ -198,10 +199,10 @@ export function Customize() {
   )
 }
 
-const meta: Meta<typeof Default> = {
+const meta: Meta<typeof BasicUsage> = {
   title: 'Example/Slide Action | Swiper',
   tags: ['autodocs'],
-  component: Default,
+  component: BasicUsage,
   parameters: {
     layout: 'fullscreen',
   },

@@ -1,0 +1,10 @@
+import {SlideAction} from '@comfortdelgro/react-compass'
+
+<SlideAction
+  onChange={(isConfirmed) => {
+    // trigger on status of SlideAction change (from unconfirmed to confirmed and vice versa).
+  }}
+  onSwipeEnd={(reset) => {
+    // handle confirmation logic
+  }}
+/>

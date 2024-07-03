@@ -14,35 +14,39 @@ components: Slide Action
 import {SlideAction} from '@comfortdelgro/react-compass'
 ```
 
-## Usage
+## Basic
 
-### Basic
+When users swiped all the way to the end, we can call it a successful or confirmatory action.
 
 {{"demo": "SlideAction.tsx"}}
 
-### Reset
+### Interactive
+
+{{"demo": "SlideActionInteractive.tsx"}}
+
+## Reset
 
 How to reset the component state?
 
 {{"demo": "SlideActionReset.tsx"}}
 
-### Effects
+## Effects
 
 {{"demo": "SlideEffect.tsx"}}
 
-### Icon
+## Icon
 
 {{"demo": "SlideActionIcon.tsx"}}
 
-### Color
+## Color
 
 {{"demo": "SlideColorful.tsx"}}
 
-### Compact
+## Compact
 
 {{"demo": "SlideCompact.tsx"}}
 
-### allowSwipeAfterEnd
+## allowSwipeAfterEnd
 
 Avoid enabling this flag as much as possible. If you wanna reset the component state, see the [Reset section](#reset).
 
@@ -52,23 +56,23 @@ Since an action is a successful action when users dragged/swiped this component 
 
 On that state, if users tap & release without swiping, this component will assume that it is an successful or confirmatory action. As a result, `onSwipeEnd` will be triggered.
 
-{{"demo": "SlideActionBehavior.tsx"}}
+{{"demo": "SlideActionAvoidBehavior.tsx"}}
 
 ## Component Props
 
-| Name                 | Type                           | Default                           | Description                                                                                                                     |
-| :------------------- | :----------------------------- | :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| `children`           | `ReactNode`                    | —                                 | Will be consider as a label                                                                                                     |
-| `css`                | `CSS`                          | —                                 | The system prop that allows defining system overrides as well as additional CSS styles.                                         |
-| `icon`               | `ReactNode`                    | Double arrow right                | Icon for the swiper                                                                                                             |
-| `color`              | `string`                       | `--cdg-color-cdgBlue` - `#0142AF` | Component theme color.<br/><small>Includes label, slide background, border and the dragger color.</small>                       |
-| `label`              | `string`                       | `'Slide'`                         | Label                                                                                                                           |
-| `labelType`          | `'default'` \| `'slide'`       | `'default'`                       | Label effect                                                                                                                    |
-| `slideType`          | `'static'` \| `'slide'`        | `'slide'`                         | The left behind background color's effect                                                                                       |
-| `onSwipeEnd`         | `(reset: () => void) => void`  | —                                 | Trigger when users swiped all the way to the end.<br/><small>Call the `reset()` function to reset the component status.</small> |
-| `onChange`           | `(isSuccess: boolean) => void` | —                                 | Trigger when component's status changes                                                                                         |
-| `compact`            | `boolean`                      | `false`                           | Compact size                                                                                                                    |
-| `allowSwipeAfterEnd` | `boolean`                      | `false`                           | Read the section **allowSwipeAfterEnd** above for detail                                                                        |
+| Name                 | Type                           | Default                           | Description                                                                                                                    |
+| :------------------- | :----------------------------- | :-------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| `children`           | `ReactNode`                    | —                                 | Will be consider as a label                                                                                                    |
+| `css`                | `CSS`                          | —                                 | The system prop that allows defining system overrides as well as additional CSS styles                                         |
+| `icon`               | `ReactNode`                    | Double arrow right                | Icon for the swiper                                                                                                            |
+| `color`              | `string`                       | `--cdg-color-cdgBlue` - `#0142AF` | Component theme color.<br/><small>Includes label, slide background, border and the dragger color</small>                       |
+| `label`              | `string`                       | `'Slide'`                         | Label                                                                                                                          |
+| `labelType`          | `'default'` \| `'slide'`       | `'default'`                       | Label effect                                                                                                                   |
+| `slideType`          | `'static'` \| `'slide'`        | `'slide'`                         | The left behind background color's effect                                                                                      |
+| `onSwipeEnd`         | `(reset: () => void) => void`  | —                                 | Trigger when users swiped all the way to the end.<br/><small>Call the `reset()` function to reset the component status</small> |
+| `onChange`           | `(isSuccess: boolean) => void` | —                                 | Trigger when component's status changes                                                                                        |
+| `compact`            | `boolean`                      | `false`                           | Compact size                                                                                                                   |
+| `allowSwipeAfterEnd` | `boolean`                      | `false`                           | See the [allowSwipeAfterEnd section](#allowswipeafterend) above                                                                |
 
 ## Other Types
 
