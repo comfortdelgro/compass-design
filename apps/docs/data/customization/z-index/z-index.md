@@ -1,6 +1,8 @@
-# z-index
+# Z-Index
 
 <p class="description">z-index is the CSS property that helps control layout by providing a third axis to arrange content.</p>
+
+## Rules
 
 The problem is when developers see the other have zIndex with value 999, they
 will increase number to let their zIndex higher. Someone uses 9999, someone
@@ -16,7 +18,7 @@ So that, following a rule will let our zIndex consistent.
 View on [Figma](https://www.figma.com/file/MQVnynY3v1pI55Cm6l5qHK/CDGNotes?node-id=8-2&t=PMEQNnRxCQq55Hk3-4)
 :::
 
-Notes:
+## Notes
 
 - The other or local component (absolute / relative inside one of above) will
   have z-index in range from 1 to 10

@@ -2,17 +2,18 @@ import {
   Box,
   Breadcrumbs,
   Column,
-  Row,
   Typography,
 } from '@comfortdelgro/react-compass'
 import _ from 'lodash'
 import {useRouter} from 'next/router'
 import {useMemo} from 'react'
 import {getStaticPath} from 'utils'
+import { useIsTabletScreen } from 'utils/hooks/useMediaQuery'
 import usePageProps from 'utils/hooks/usePageProps'
 
 export const CommonHeader = () => {
   const {pageProps} = usePageProps()
+  const isTabletScreen = useIsTabletScreen()
 
   const hasImage = Boolean(pageProps?.['imgSrc'])
 
@@ -25,14 +26,16 @@ export const CommonHeader = () => {
   }
 
   return (
-    <Row
+    <Box
       css={{
+        display: 'grid',
+        gridTemplateColumns: !isTabletScreen ? '1fr 1fr' : '1fr',
         padding: hasImage ? 'var(--cdg-spacing-4) 20px' : '0',
         gap: 'var(--cdg-spacing-4)',
       }}
     >
       <CommonHeaderTitle />
-      {hasImage ? (
+      {!isTabletScreen && hasImage && (
         <Box
           css={{
             backgroundColor: '#F3F2F1',
@@ -45,15 +48,13 @@ export const CommonHeader = () => {
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-            '@max_1200': {
+            '@media (max-width: 1200px)': {
               display: 'none',
             },
           }}
-        ></Box>
-      ) : (
-        <></>
+        />
       )}
-    </Row>
+    </Box>
   )
 }
 
@@ -111,7 +112,7 @@ export const CommonHeaderTitle = () => {
         css={{
           fontSize: '46px',
           fontWeight: 700,
-          '@max_768': {
+          '@media (max-width: 768px)': {
             fontSize: '32px',
           },
           color: pageProps?.textColor,

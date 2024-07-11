@@ -1,12 +1,11 @@
 ---
-backgroundColor: #F4CAC2
-textColor: #684842
-imgSrc: /static/images/typography-background.png
+title: Typography
+components: Typography
 ---
 
 # Typography
 
-<p class="description hidden">Clear typographical hierarchy organizes and structures content, making it easy for people to find their way through an experience.</p>
+<p class="description">Clear typographical hierarchy organizes and structures content, making it easy for people to find their way through an experience.</p>
 
 {{"component": "components/ComponentLinkHeader.tsx"}}
 

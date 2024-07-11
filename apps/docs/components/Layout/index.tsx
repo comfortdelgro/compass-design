@@ -1,54 +1,93 @@
 import {Box} from '@comfortdelgro/react-compass'
-import EditPage from 'components/EditPage'
-import Footer from 'components/Footer'
-import Head from 'components/Head'
-import AppFrame from 'components/Layout/components/DocsFrame'
-import TableOfContent from 'components/Layout/components/TableOfContent'
+import Header from 'components/Header'
+import SideMenu from 'components/Header/components/SideMenu'
+import {map} from 'lodash'
+import {useRouter} from 'next/router'
+import {useEffect, useState} from 'react'
+import {routes} from 'utils/constants'
+import SidenavContext from 'utils/contexts/SideNav'
+import {useIsTabletScreen} from 'utils/hooks/useMediaQuery'
+import {TSideNavItem} from 'utils/types'
 
-export default function Layout(props: any) {
-  const {children, description, location, title, toc} = props
+export default function Layout({children, handleChangeThemeMode}: any) {
+  const isTabletScreen = useIsTabletScreen()
+  const [sidenav, setSidenav] = useState<TSideNavItem[]>([])
+  const router = useRouter()
 
-  if (description === undefined) {
-    throw new Error('Missing description in the page')
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_, parentPath = 'foundation', childrenPath = 'overview'] =
+      router.route.split('/')
+    const newSidenav = map(routes, (route) => {
+      if (route.pathname === `/${parentPath}`) {
+        return {
+          ...route,
+          isExpanded: true,
+          children: map(route.children, (child) => {
+            if (child.pathname === `/${childrenPath}`) {
+              return {
+                ...child,
+                pathname: `${route.pathname}${child.pathname}`,
+                isActive: true,
+              }
+            }
+            return {
+              ...child,
+              pathname: `${route.pathname}${child.pathname}`,
+            }
+          }),
+        }
+      }
+      return {
+        ...route,
+        isExpanded: false,
+        children: map(route.children, (child) => {
+          return {
+            ...child,
+            pathname: `${route.pathname}${child.pathname}`,
+          }
+        }),
+      }
+    })
+
+    setSidenav(newSidenav)
+  }, [router])
+
+  const handleExpandSidenav = (path: string) => {
+    const newSidenav = map(sidenav, (sideNavItem) => {
+      if (path === sideNavItem.pathname) {
+        return {
+          ...sideNavItem,
+          isExpanded: true,
+        }
+      }
+      return {
+        ...sideNavItem,
+        isExpanded: false,
+      }
+    })
+    setSidenav(newSidenav)
   }
 
-  return (
-    <AppFrame>
-      <Head
-        title={`${title} - React Compass`}
-        description={description}
-        largeCard={false}
-        card='https://github.com/comfortdelgro/compass-design'
-      />
+  const isShowSideBar = !isTabletScreen && router.pathname !== '/'
 
-      <Box css={{display: 'flex', width: '100%'}}>
+  return (
+    <SidenavContext.Provider value={sidenav}>
+      <Box css={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+        <Header handleChangeThemeMode={handleChangeThemeMode} />
         <Box
-          css={{
-            overflowY: 'scroll',
-            width: '100%',
-            minHeight: 'calc(100vh - 51px)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}
           id='document'
+          css={{
+            width: '100%',
+            height: 'calc(100vh - 54px)',
+            display: 'grid',
+            gridTemplateColumns: isShowSideBar ? '300px 1fr' : '1fr',
+          }}
         >
-          <Box
-            css={{
-              padding: 'var(--cdg-spacing-5) var(--cdg-spacing-16)',
-              width: '100%',
-              '@media (max-width: 1024px)': {
-                padding: 'var(--cdg-spacing-4)',
-              },
-            }}
-          >
-            <EditPage sourceLocation={location} />
-            {children}
-          </Box>
-          <Footer />
+          {isShowSideBar && <SideMenu handleExpand={handleExpandSidenav} />}
+          <Box css={{overflow: 'auto'}}>{children}</Box>
         </Box>
-        <TableOfContent toc={toc} />
       </Box>
-    </AppFrame>
+    </SidenavContext.Provider>
   )
 }

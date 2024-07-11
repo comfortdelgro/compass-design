@@ -1,12 +1,11 @@
 ---
-backgroundColor: #EACEEA
-textColor: #684868
-imgSrc: /static/images/colors-background.png
+title: Colors
+components: Colors
 ---
 
 # Colors
 
-<p class="description hidden">Color distinguishes a brand. It is used to convey personality, attracts the eye and indicate change.</p>
+<p class="description">Color distinguishes a brand. It is used to convey personality, attracts the eye and indicate change.</p>
 
 {{"component": "components/ComponentLinkHeader.tsx"}}
 
