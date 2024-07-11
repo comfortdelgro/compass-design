@@ -7,7 +7,6 @@ components: Announcement
 
 <p class="description">An announcement banner displays an important, succinct message, and provides actions for users to address (or dismiss the banner).</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Announcement} from '@comfortdelgro/react-compass'

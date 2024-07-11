@@ -7,7 +7,6 @@ components: Iconography
 
 <p class="description">Icons are visual representations of commands, devices, directories, or common actions.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Icons
 

@@ -7,7 +7,6 @@ components: Divider
 
 <p class="description">A divider is a thin line that groups content in lists and layouts.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Divider} from '@comfortdelgro/react-compass'

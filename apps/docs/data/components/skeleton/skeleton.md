@@ -7,7 +7,6 @@ components: Skeleton
 
 <p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Skeleton} from '@comfortdelgro/react-compass'

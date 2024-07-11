@@ -8,7 +8,6 @@ components: Drawer
 <p class="description">Display overlay area on top of a page and slides in from the side. Build on top of the native HTML <strong>&#60;dialog/></strong> element.
 </p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Drawer} from '@comfortdelgro/react-compass'

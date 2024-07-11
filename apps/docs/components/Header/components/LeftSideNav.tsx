@@ -9,7 +9,7 @@ import {getStaticPath} from 'utils'
 import {routes} from 'utils/constants/routes'
 import SidenavContext from 'utils/contexts/SideNav'
 import {TSideNavItem} from 'utils/types'
-import SideMenu from './SideMenu'
+import SideMenu from '../../SideMenu'
 
 export default function LeftSideNav() {
   const [isShowDrawer, setIsShowDrawer] = useState(false)

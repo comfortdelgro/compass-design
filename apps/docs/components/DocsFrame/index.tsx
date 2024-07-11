@@ -1,9 +1,8 @@
 import {Box} from '@comfortdelgro/react-compass'
-// import EditPage from 'components/EditPage'
 import Footer from 'components/Footer'
 import Head from 'components/Head'
 import {useIsTabletScreen} from 'utils/hooks/useMediaQuery'
-import TableOfContent from './TableOfContent'
+import TableOfContent from './components/TableOfContent'
 
 export default function DocsFrame(props: any) {
   const {children, description = '', title, toc} = props
@@ -19,11 +18,10 @@ export default function DocsFrame(props: any) {
         largeCard={false}
         card='https://github.com/comfortdelgro/compass-design'
       />
-      {/* <CommonHeader /> */}
       <Box
         css={{
           display: 'grid',
-          gridTemplateColumns: isShowTOC ? '1fr 300px' : '1fr',
+          gridTemplateColumns: isShowTOC ? '1fr 250px' : '1fr',
         }}
       >
         <Box

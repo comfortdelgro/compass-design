@@ -10,7 +10,6 @@ components: Footer
 <p class="description">
 Footer component is an additional navigation used for displaying general information that a user might want to access from any page within your site.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Import
 

@@ -7,7 +7,6 @@ components: TextField
 
 <p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Import
 

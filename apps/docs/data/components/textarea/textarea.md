@@ -7,7 +7,6 @@ components: Textarea
 
 <p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Textarea} from '@comfortdelgro/react-compass'

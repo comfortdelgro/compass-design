@@ -7,7 +7,6 @@ components: Action Bar
 
 <p class="description">The ActionBar component is a versatile user interface element that provides a cohesive grouping of buttons, icons, and interactive elements within a container.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {ActionBar} from '@comfortdelgro/react-compass'

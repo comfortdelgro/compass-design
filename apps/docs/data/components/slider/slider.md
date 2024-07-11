@@ -7,7 +7,6 @@ components: Slider
 
 <p class="description">Provides the behavior and accessibility implementation for a slider component representing one or more values.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Slider} from '@comfortdelgro/react-compass'

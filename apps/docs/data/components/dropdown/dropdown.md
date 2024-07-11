@@ -7,7 +7,6 @@ components: Dropdown
 
 <p class="description">Dropdown components are used for collecting user provided information from a list of options.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Dropdown} from '@comfortdelgro/react-compass'

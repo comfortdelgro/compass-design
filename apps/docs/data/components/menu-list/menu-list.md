@@ -7,7 +7,6 @@ components: MenuList
 
 <p class="description">The Menu List component allows you to create a menu with expandable items.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {MenuList, MenuListDropdown} from '@comfortdelgro/react-compass'

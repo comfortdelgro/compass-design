@@ -7,7 +7,6 @@ components: Upload
 
 <p class="description">The upload component allows users to upload files of various types and sizes.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Upload} from '@comfortdelgro/react-compass'

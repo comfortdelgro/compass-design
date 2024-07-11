@@ -1,6 +1,6 @@
 import {Box} from '@comfortdelgro/react-compass'
 import Header from 'components/Header'
-import SideMenu from 'components/Header/components/SideMenu'
+import SideMenu from 'components/SideMenu'
 import {map} from 'lodash'
 import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
@@ -81,7 +81,7 @@ export default function Layout({children, handleChangeThemeMode}: any) {
             width: '100%',
             height: 'calc(100vh - 54px)',
             display: 'grid',
-            gridTemplateColumns: isShowSideBar ? '300px 1fr' : '1fr',
+            gridTemplateColumns: isShowSideBar ? '250px 1fr' : '1fr',
           }}
         >
           {isShowSideBar && <SideMenu handleExpand={handleExpandSidenav} />}

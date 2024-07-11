@@ -1,6 +1,6 @@
 import {Box, Grid, Typography} from '@comfortdelgro/react-compass'
+import DocsFrame from 'components/DocsFrame'
 import Head from 'components/Head'
-import DocsFrame from 'components/Layout/components/DocsFrame'
 import Image from 'next/image'
 import Link from 'next/link'
 import {useEffect} from 'react'

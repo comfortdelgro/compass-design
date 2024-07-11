@@ -145,7 +145,6 @@ export default function TableOfContent(props: any) {
   return (
     <Box
       css={{
-        width: 300,
         maxHeight: 'calc(100vh - 51px)',
         // overflowY: 'scroll',
         padding: 'var(--cdg-spacing-4)',

@@ -7,7 +7,6 @@ components: Toggle
 
 <p class="description">Provides the behavior and accessibility implementation for a toggle component. A toggle is similar to a checkbox, but represents on/off values as opposed to selection.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Toggle} from '@comfortdelgro/react-compass'

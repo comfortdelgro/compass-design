@@ -5,6 +5,7 @@ import {
   Icon,
   Tooltip,
   TooltipTrigger,
+  useToast,
 } from '@comfortdelgro/react-compass'
 import {
   faCode,
@@ -28,10 +29,18 @@ export default function Toolbar(props: any) {
     onCodeOpenChange,
     onResetDemoClick,
   } = props
+  const toast = useToast()
 
   const handleCopyClick = async () => {
-    await copy(demo.rawTS)
-    // TODO: handle toast
+    if (codeOpen) {
+      await copy(demo.rawTS)
+    } else {
+      await copy(demo.jsxPreview)
+    }
+    toast.show({
+      color: 'positive',
+      title: 'Copy successfully',
+    })
   }
 
   const isMobileScreen = useIsMobileScreen()

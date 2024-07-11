@@ -7,7 +7,6 @@ components: Breadcrumbs
 
 <p class="description">Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Breadcrumbs} from '@comfortdelgro/react-compass'
