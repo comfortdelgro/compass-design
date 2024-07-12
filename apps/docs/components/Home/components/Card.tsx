@@ -1,4 +1,4 @@
-import {Box, Typography, fontSizes} from '@comfortdelgro/react-compass'
+import {Box, Typography} from '@comfortdelgro/react-compass'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -32,7 +32,7 @@ export default function Card(props: Props) {
           },
           a: {
             fontSize: 14,
-          }
+          },
         },
         '@media (max-width: 360px)': {
           img: {
