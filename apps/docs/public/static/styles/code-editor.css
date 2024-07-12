@@ -195,8 +195,6 @@
 .markDownElement table {
   width: 100%;
   display: table;
-  word-break: normal;
-  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border-collapse: collapse;
   margin-bottom: 20px;
