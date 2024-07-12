@@ -7,7 +7,6 @@ components: Gutter
 
 <p class="description">Gutter is used to manage spacing and separation between elements in layout design.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Gutter} from '@comfortdelgro/react-compass'

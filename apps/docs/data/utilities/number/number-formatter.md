@@ -6,7 +6,6 @@ title: NumberParser
 
 <p class="description">A wrapper around Intl.NumberFormat providing additional options, polyfills, and caching for performance.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

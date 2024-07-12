@@ -7,7 +7,6 @@ components: Transitions
 
 <p class="description">The Transitions component provides you various transition effects.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Transitions} from '@comfortdelgro/react-compass'

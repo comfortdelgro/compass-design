@@ -7,7 +7,6 @@ components: ImageViewer
 
 <p class="description">Using to display list of images.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {ImageViewer} from '@comfortdelgro/react-compass'

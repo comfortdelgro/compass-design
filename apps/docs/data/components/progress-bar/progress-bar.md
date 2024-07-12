@@ -7,7 +7,6 @@ components: Progress Bar
 
 <p class="description">Provides the accessibility implementation for a progress bar component. Progress bars show either determinate or indeterminate progress of an operation over time.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {ProgressBar} from '@comfortdelgro/react-compass'

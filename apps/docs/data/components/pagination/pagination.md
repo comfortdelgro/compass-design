@@ -7,7 +7,6 @@ components: Pagination
 
 <p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Pagination} from '@comfortdelgro/react-compass'

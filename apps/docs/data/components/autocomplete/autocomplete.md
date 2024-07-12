@@ -7,7 +7,6 @@ components: TextField
 
 <p class="description">Auto-complete is a text input with a list of suggestions that users can select from.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {AutoComplete} from '@comfortdelgro/react-compass'

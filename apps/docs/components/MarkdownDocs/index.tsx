@@ -3,9 +3,8 @@ import DocsFrame from 'components/DocsFrame'
 import MarkdownElement from 'components/MarkdownElement'
 import path from 'path'
 import {useEffect} from 'react'
-import useCodeCopyEvent from 'utils/hooks/useCodeCopyEvent'
 import usePageProps from 'utils/hooks/usePageProps'
-import EditPage from './MarkdownDocs/components/EditPage'
+import EditPage from './components/EditPage'
 
 function noComponent(moduleID: string) {
   return function NoComponent() {
@@ -26,7 +25,6 @@ export default function MarkdownDocs(props: any) {
   const localizedDoc = docs
   const {description, location, rendered, title, toc} = localizedDoc
   const {setPageProps} = usePageProps()
-  useCodeCopyEvent()
 
   useEffect(() => {
     setPageProps?.(localizedDoc)

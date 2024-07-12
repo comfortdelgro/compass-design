@@ -7,7 +7,6 @@ components: Toast
 
 <p class="description">Toasts provide brief notifications.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Toast} from '@comfortdelgro/react-compass'

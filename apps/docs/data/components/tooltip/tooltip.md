@@ -7,7 +7,6 @@ components: Tooltip
 
 <p class="description">Display container for Tooltip content. Has a directional arrow dependent on its placement.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Tooltip} from '@comfortdelgro/react-compass'

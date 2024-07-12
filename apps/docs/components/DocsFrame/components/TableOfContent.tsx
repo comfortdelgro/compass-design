@@ -5,7 +5,6 @@ import throttle from 'lodash/throttle'
 import Link from 'next/link'
 import * as React from 'react'
 import {shouldHandleLinkClick} from 'utils'
-import {useIsTabletScreen} from 'utils/hooks/useMediaQuery'
 
 function useThrottledOnScroll(callback: any, delay: any) {
   const throttledCallback = React.useMemo(
@@ -49,7 +48,6 @@ export default function TableOfContent(props: any) {
   const items = React.useMemo(() => flatten(toc), [toc])
   const [activeState, setActiveState] = React.useState(null)
   const clickedRef = React.useRef(false)
-  const isTabletScreen = useIsTabletScreen()
   const unsetClickedRef = React.useRef(null)
   const findActiveIndex = React.useCallback(() => {
     if (clickedRef.current) {
@@ -144,14 +142,11 @@ export default function TableOfContent(props: any) {
     </Link>
   )
 
-  return isTabletScreen || toc.length === 0 ? (
-    <></>
-  ) : (
+  return (
     <Box
       css={{
-        width: 300,
         maxHeight: 'calc(100vh - 51px)',
-        overflowY: 'scroll',
+        // overflowY: 'scroll',
         padding: 'var(--cdg-spacing-4)',
         position: 'sticky',
         top: 0,

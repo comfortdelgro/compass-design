@@ -8,7 +8,6 @@ components: Dialog
 <p class="description">These <b>Dialog</b> boxes can be used to raise and alert, or to get confirmation on any input or to have a kind of input from the users.
 </p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Dialog} from '@comfortdelgro/react-compass'

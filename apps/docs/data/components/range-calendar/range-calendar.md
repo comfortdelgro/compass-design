@@ -7,7 +7,6 @@ components: RangeCalendar
 
 <p class="description">RangeCalendars display a grid of days in one or more months and allow users to select a contiguous range of dates.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## I18n
 

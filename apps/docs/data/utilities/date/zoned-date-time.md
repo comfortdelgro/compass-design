@@ -6,7 +6,6 @@ title: ZonedDateTime
 
 <p class="description">A ZonedDateTime represents a date and time in a specific time zone and calendar system.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

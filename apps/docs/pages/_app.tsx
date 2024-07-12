@@ -15,7 +15,7 @@ import '../public/static/styles/code-editor.css'
 import '../public/static/styles/global.css'
 import '../public/static/styles/prism-okaidia.css'
 
-const Header = dynamic(() => import('components/Header'), {ssr: false})
+const Layout = dynamic(() => import('components/Layout'), {ssr: false})
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
   console.log(
@@ -46,8 +46,7 @@ function AppWrapper(props: any) {
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
         >
           <ThemeStaticProvider changeBy={mode}>
-            <Header handleChangeThemeMode={handleChangeThemeMode} />
-            {children}
+            <Layout handleChangeThemeMode={handleChangeThemeMode}>{children}</Layout>
           </ThemeStaticProvider>
         </ToastContextProvider>
       </ThemeContext.Provider>

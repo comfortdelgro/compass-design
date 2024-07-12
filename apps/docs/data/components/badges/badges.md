@@ -7,7 +7,6 @@ components: Badges
 
 <p class="description">Badge can be used to highlight important bits of information such as labels, notifications, data trends & status.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Import
 

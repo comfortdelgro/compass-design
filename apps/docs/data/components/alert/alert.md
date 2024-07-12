@@ -7,7 +7,6 @@ components: Alert
 
 <p class="description">Alerts provide short, timely, and relevant information for your users without interrupting their tasks.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Import
 

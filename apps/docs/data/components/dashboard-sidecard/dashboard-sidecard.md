@@ -7,7 +7,6 @@ components: DashBoard SideCard
 
 <p class="description">Dashboard Sidecard presents section of data on dashboard.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {DashboardSidecard} from '@comfortdelgro/react-compass'

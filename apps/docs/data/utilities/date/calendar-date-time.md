@@ -6,7 +6,6 @@ title: CalendarDateTime
 
 <p class="description">A CalendarDateTime represents a date and time without a time zone, in a specific calendar system.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ## Introduction
 

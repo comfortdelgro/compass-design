@@ -7,7 +7,6 @@ components: DropdownTextfield
 
 <p class="description">A drop-down textfield is the component including two items, the left dropdown for showing selective information and the right textfield.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {DropdownTextfield} from '@comfortdelgro/react-compass'

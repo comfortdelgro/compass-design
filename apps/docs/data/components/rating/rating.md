@@ -7,7 +7,6 @@ components: Rating
 
 <p class="description">Rating provides others' opinions and experiences.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Rating} from '@comfortdelgro/react-compass'

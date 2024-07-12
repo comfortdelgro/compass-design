@@ -7,7 +7,6 @@ components: List
 
 <p class="description">Lists show a large set of items or options to the user.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {List, ListCard, InteractiveList} from '@comfortdelgro/react-compass'
