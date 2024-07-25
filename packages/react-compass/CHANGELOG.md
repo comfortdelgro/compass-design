@@ -1,5 +1,11 @@
 # @comfortdelgro/react-compass
 
+## 4.7.0
+
+### Minor Changes
+
+- 5eb370e: Improve performance
+
 ## 4.6.2
 
 ### Patch Changes
