@@ -7,7 +7,6 @@ components: Snackbar
 
 <p class="description">Snackbars provide brief messages of a process that an app has performed or will perform at the bottom of the screen.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Snackbar} from '@comfortdelgro/react-compass'

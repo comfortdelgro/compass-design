@@ -64,17 +64,17 @@ To add a demo, you need to create a `.tsx` file and import by `{{"component": "[
 Example
 
 ```md
-{{"component": "components/ComponentLinkHeader.tsx"}}
+{{"component": "components/MyComponent.tsx"}}
 ```
 
 If you want to pass prop to component, follow below steps
 
 ```md
-{{"component": "components/ComponentLinkHeader.tsx", "background": "red"}}
+{{"component": "components/MyComponent.tsx", "background": "red"}}
 ```
 
 ```tsx
-export default function ComponentLinkHeader({backround}: {background: string}) {
+export default function MyComponent({backround}: {background: string}) {
   return (
     <Flexbox
       css={{

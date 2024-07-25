@@ -7,7 +7,6 @@ components: Table
 
 <p class="description">Table is a wrapper around the core table logic. Most of its job is related to managing state the "react" way.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Table} from '@comfortdelgro/react-compass'

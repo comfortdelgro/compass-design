@@ -27,7 +27,8 @@ const SideMenu = (props: Props) => {
   return (
     <Sidenav
       css={{
-        paddingRight: 4,
+        padding: 0,
+        paddingTop: 'var(--cdg-spacing-2)',
         height: '100%',
         position: 'relative',
         backgroundColor: 'var(--cdg-color-background)',

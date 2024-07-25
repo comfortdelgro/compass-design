@@ -16,36 +16,75 @@ export default function GetStartedButtons() {
     })
   }
   return (
-    <Box>
+    <Box
+      css={{marginTop: 10, display: 'flex', gap: 10, flexDirection: 'column'}}
+    >
       <Button
-        href='/getting-started/installation/'
         size='md'
         variant='primary'
-        css={{marginRight: 10, marginTop: 10}}
+        href='/getting-started/installation/'
         rightIcon={<ArrowRightFilled />}
       >
         Get started
       </Button>
-      <Button
-        size='md'
-        variant='secondary'
-        rightIcon={copied ? <Tick color='primary' /> : <Copy />}
-        onClick={handleCopy}
+      <Box
         css={{
-          display: 'inline-block',
-          justifyContent: 'start',
-          overflowX: 'hidden',
-          whiteSpace: 'nowrap',
-          textOverflow: 'ellipsis',
-          position: 'relative',
-          background: '#f4f6f9',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#f4f6f9',
+          borderRadius: 'var(--cdg-border-radius-md)',
+          border: '1px solid var(--cdg-color-cdgBlue)',
+          fontSize: '10px',
           color: '#2d3843',
-          fontWeight: 400,
-          marginTop: 10,
         }}
+        onClick={handleCopy}
       >
-        {installation}
-      </Button>
+        <Box
+          css={{
+            lineHeight: 1.5,
+            padding: 'var(--cdg-spacing-2)',
+            overflow: 'hidden',
+            display: "flex", 
+            flexFlow: "row nowrap",
+            fontSize: '13px',
+            margin: '0',
+            border: '0',
+            flexGrow: 1,
+          }}
+        >
+          {installation}
+        </Box>
+        <Box
+          css={{
+            display: 'inline-flex',
+            flexDirection: 'row-reverse',
+            alignItems: ['center', 'center'],
+            width: '26px',
+            height: '26px',
+            cursor: 'pointer',
+            position: 'relative',
+            padding: 'var(--cdg-spacing-1)',
+            margin: 'var(--cdg-spacing-1)',
+            fontFamily: 'inherit',
+            fontWeight: 500,
+            borderRadius: '4px',
+            border: 'none',
+            svg: {
+              userSelect: 'none',
+              width: '16px',
+              height: '16px',
+              display: 'inline-block',
+              flexShrink: 0,
+              fontSize: '18px',
+              margin: 'auto',
+              color: '#2d3843',
+            },
+          }}
+        >
+          {copied ? <Tick color='primary' /> : <Copy />}
+        </Box>
+      </Box>
     </Box>
   )
 }

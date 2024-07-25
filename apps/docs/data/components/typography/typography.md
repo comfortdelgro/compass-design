@@ -7,7 +7,6 @@ components: Typography
 
 <p class="description">The Typography component.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Typography} from '@comfortdelgro/react-compass'

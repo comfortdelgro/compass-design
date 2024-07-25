@@ -4,7 +4,9 @@ import {getStaticPath} from 'utils'
 
 const Banner = () => {
   return (
-    <Box css={{position: 'relative'}}>
+    <Box
+      css={{position: 'relative', display: 'flex', justifyContent: 'center'}}
+    >
       <Image
         style={{
           position: 'absolute',
@@ -21,7 +23,6 @@ const Banner = () => {
       />
       <Box
         css={{
-          position: 'relative',
           zIndex: 1,
           display: 'flex',
           alignItems: 'center',
@@ -35,6 +36,10 @@ const Banner = () => {
             padding: '25px 70px',
             borderRadius: '16px',
             color: '#FFFFFF',
+            '@media (max-width: 599px)': {
+              padding: '25px 35px',
+              margin: '0px 16px',
+            },
           }}
         >
           <Typography.Header

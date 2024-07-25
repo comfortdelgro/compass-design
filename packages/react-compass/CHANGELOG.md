@@ -1,11 +1,5 @@
 # @comfortdelgro/react-compass
 
-## 4.6.3
-
-### Patch Changes
-
-- fef5a06: Improve performance and productivity
-
 ## 4.6.2
 
 ### Patch Changes

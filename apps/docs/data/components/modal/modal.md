@@ -7,7 +7,6 @@ components: Modal
 
 <p class="description">The Modal component is a flexible and customizable modal/dialog that can be used in various use cases like confirmation dialogs, information popups, and more.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Modal} from '@comfortdelgro/react-compass'

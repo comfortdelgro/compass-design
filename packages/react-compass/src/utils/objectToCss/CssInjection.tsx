@@ -1,6 +1,8 @@
+'use client'
 import React, {FC} from 'react'
 import {CSS, objectToCSS} from '.'
 import generateRandomString from '../generateRandomString'
+import {classNames} from '../string'
 
 export interface Props {
   children?: React.ReactNode
@@ -19,28 +21,7 @@ const CssInjection: FC<Props> = (props) => {
     setAdditionalClasses(childClassName)
   }, [childrenRef])
 
-  const modifiedChildren: React.ReactNode = React.Children.map(
-    children,
-    (child) => {
-      if (React.isValidElement(child)) {
-        // Cast child to include className property
-        const childWithClassName = child as React.DetailedReactHTMLElement<
-          React.HTMLAttributes<HTMLElement>,
-          HTMLElement
-        >
-        // Clone the child element and add additional classes
-        return React.cloneElement(childWithClassName, {
-          className: `${
-            childWithClassName.props.className || ''
-          } ${additionalClasses}`,
-        })
-      }
-      return child as React.ReactNode
-    },
-  )
-
-  // should have used useInsertionEffect() but it needs typescript 5 as dependency, not sure if it works for all cdg's projects.
-  React.useEffect(() => {
+  React.useInsertionEffect(() => {
     if (additionalClasses === '') return
     if (!css) return
     const cssString = objectToCSS(css, [`.${additionalClasses}`])
@@ -53,7 +34,23 @@ const CssInjection: FC<Props> = (props) => {
     }
   }, [css, additionalClasses])
 
-  return <>{modifiedChildren}</>
+  return React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      // Cast child to include className property
+      const childWithClassName = child as React.DetailedReactHTMLElement<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >
+      // Clone the child element and add additional classes
+      return React.cloneElement(childWithClassName, {
+        className: classNames(
+          childWithClassName.props.className,
+          additionalClasses,
+        ),
+      })
+    }
+    return child as React.ReactNode
+  })
 }
 
 export default CssInjection

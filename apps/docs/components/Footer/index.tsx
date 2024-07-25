@@ -16,6 +16,10 @@ export default function Footer() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          '@media (max-width: 599px)': {
+            gap: 'var(--cdg-spacing-4)',
+            flexDirection: 'column-reverse'
+          },
         }}
       >
         <Box

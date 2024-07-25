@@ -7,7 +7,6 @@ components: Timeline
 
 <p class="description">The timeline displays a list of events in chronological order.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Timeline} from '@comfortdelgro/react-compass'

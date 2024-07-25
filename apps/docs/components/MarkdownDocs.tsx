@@ -1,11 +1,11 @@
 import Demo from 'components/Demo'
+import DocsFrame from 'components/DocsFrame'
 import MarkdownElement from 'components/MarkdownElement'
-import dynamic from 'next/dynamic'
 import path from 'path'
 import {useEffect} from 'react'
+import useCodeCopyEvent from 'utils/hooks/useCodeCopyEvent'
 import usePageProps from 'utils/hooks/usePageProps'
-
-const Layout = dynamic(() => import('components/Layout'), {ssr: false})
+import EditPage from './MarkdownDocs/components/EditPage'
 
 function noComponent(moduleID: string) {
   return function NoComponent() {
@@ -26,20 +26,21 @@ export default function MarkdownDocs(props: any) {
   const localizedDoc = docs
   const {description, location, rendered, title, toc} = localizedDoc
   const {setPageProps} = usePageProps()
+  useCodeCopyEvent()
 
   useEffect(() => {
     setPageProps?.(localizedDoc)
   }, [localizedDoc, setPageProps])
 
   return (
-    <Layout
+    <DocsFrame
       description={description}
       disableAd={disableAd}
       disableToc={disableToc}
-      location={location}
       title={title}
       toc={toc}
     >
+      <EditPage sourceLocation={location} />
       {rendered.map((renderedMarkdownOrDemo: any, index: number) => {
         if (typeof renderedMarkdownOrDemo === 'string') {
           return (
@@ -109,6 +110,6 @@ export default function MarkdownDocs(props: any) {
           />
         )
       })}
-    </Layout>
+    </DocsFrame>
   )
 }

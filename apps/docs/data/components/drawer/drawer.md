@@ -8,7 +8,6 @@ components: Drawer
 <p class="description">Display overlay area on top of a page and slides in from the side. Build on top of the native HTML <strong>&#60;dialog/></strong> element.
 </p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import {Drawer} from '@comfortdelgro/react-compass'
@@ -36,13 +35,20 @@ The content below the non-modal drawer can be interacted.
 
 ## Accessibility
 
-`Drawer` component build on top of the HTML [`<dialog/>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element.
+`Drawer` component build on top of the HTML [`<dialog/>`](https://developer.mozilla.org/docs/Web/HTML/Element/dialog) element.
 
 By default, it respects the default accessibility behavior and settings of a `<dialog/>` element.
 
+### Keyboard interactions
+
+| Key                                               | Description                                                                        |
+| :------------------------------------------------ | :--------------------------------------------------------------------------------- |
+| <kbd>Escape</kbd>                                 | Close the drawer. This behavior will be disabled if `drawerMode` is `'non-modal'`. |
+| <kbd>Tab</kbd> \| <kbd>Shift</kbd> <kbd>Tab</kbd> | Cycles through all the focusable elements of the drawer only.                      |
+
 ## Styling
 
-CSS Variables:
+### CSS Variables
 
 | Variable                                | Default                          | Description                                                                 |
 | :-------------------------------------- | :------------------------------- | :-------------------------------------------------------------------------- |
@@ -79,16 +85,13 @@ In this case, `styles.header` will be ignored, the Drawer's header will have a b
 
 ### Backdrop
 
-We can customize the Drawer's backdrop by using the <code>backdropProps</code> prop or update related CSS variables or apply styles directly to the <code>::backdrop</code> CSS pseudo-element.
+We can customize the Drawer's backdrop by
+
+- Using the <code>backdropProps</code> prop.
+- Update related CSS variables.
+- Apply styles directly to the <code>::backdrop</code> CSS pseudo-element.
 
 {{"demo": "DrawerStyling.tsx"}}
-
-### Keyboard interactions
-
-| Key                                               | Description                                                                        |
-| :------------------------------------------------ | :--------------------------------------------------------------------------------- |
-| <kbd>Escape</kbd>                                 | Close the drawer. This behavior will be disabled if `drawerMode` is `'non-modal'`. |
-| <kbd>Tab</kbd> \| <kbd>Shift</kbd> <kbd>Tab</kbd> | Cycles through all the focusable elements of the drawer only.                      |
 
 ## Component Props
 
@@ -121,4 +124,4 @@ We can customize the Drawer's backdrop by using the <code>backdropProps</code> p
 \*: Required.
 
 (1): Act the same as a default `<dialog/>`. It will be rendered on the top-layer with a backdrop. Everything other than the drawer and its contents will be ignored by the browsers and can't be interact with.<br/>
-(2): It has no backdrop and also doesn't render on the top-layer. It can not be closed by pressing the `ESC` key. The content below the non-modal drawer can be interacted. [Read more](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog/#accessibility).
+(2): It has no backdrop and also doesn't render on the top-layer. It can not be closed by pressing the `ESC` key. The content below the non-modal drawer can be interacted. [Read more](https://developer.mozilla.org/docs/Web/HTML/Element/dialog/#accessibility).

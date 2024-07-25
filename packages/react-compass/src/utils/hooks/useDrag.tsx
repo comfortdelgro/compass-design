@@ -347,10 +347,8 @@ export const useDrag = <T extends HTMLElement = HTMLElement>(
     }
 
     if (opts.touch) {
-      node.addEventListener('touchstart', handleStart)
-      node.addEventListener('touchmove', handleMove, {
-        passive: !opts.prevent,
-      })
+      node.addEventListener('touchstart', handleStart, {passive: true})
+      node.addEventListener('touchmove', handleMove, {passive: !opts.prevent})
       document.addEventListener('touchcancel', handleEnd)
       document.addEventListener('touchend', handleEnd)
     }

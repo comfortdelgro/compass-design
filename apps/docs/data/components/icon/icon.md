@@ -7,7 +7,6 @@ components: Icon
 
 <p class="description">The SGV icons.</p>
 
-{{"component": "components/ComponentLinkHeader.tsx"}}
 
 ```jsx
 import Activity from '@comfortdelgro/compass-icons/react/activity'
