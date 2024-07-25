@@ -60,7 +60,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const handleCheckboxChange = (
       event?: React.ChangeEvent<HTMLInputElement>,
     ) => {
-      onChangeEvent(event)
+      onChangeEvent?.(event)
       if (isDisabled || isReadOnly) return
       if (onChange) {
         onChange(!checked)
@@ -72,6 +72,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
       const key = event.key
+      console.log(1)
       if (key === 'Enter' || key === ' ') {
         event.preventDefault()
         handleCheckboxChange()
