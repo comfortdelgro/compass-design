@@ -168,30 +168,40 @@ export function Default() {
       </Drawer>
 
       <h4>Position</h4>
-      <div className={storiesStyles.container}>
-        <Button
-          type='button'
-          leftIcon={<ArrowLeft />}
-          onClick={() => handleChangePosition('left')}
-        >
-          Open on the left
-        </Button>
-
+      <div className={storiesStyles.positionControlContainer}>
         <Button
           variant='secondary'
           type='button'
-          onClick={() => handleChangePosition('bottom')}
+          onClick={() => handleChangePosition('top')}
         >
-          Open on the bottom
+          Open at the top
         </Button>
 
-        <Button
-          type='button'
-          rightIcon={<ArrowRight />}
-          onClick={() => handleChangePosition('right')}
-        >
-          Open on the right
-        </Button>
+        <div className={storiesStyles.flexContainer}>
+          <Button
+            type='button'
+            leftIcon={<ArrowLeft />}
+            onClick={() => handleChangePosition('left')}
+          >
+            Open on the left
+          </Button>
+
+          <Button
+            variant='secondary'
+            type='button'
+            onClick={() => handleChangePosition('bottom')}
+          >
+            Open at the bottom
+          </Button>
+
+          <Button
+            type='button'
+            rightIcon={<ArrowRight />}
+            onClick={() => handleChangePosition('right')}
+          >
+            Open on the right
+          </Button>
+        </div>
       </div>
 
       <Drawer
@@ -241,7 +251,7 @@ export function Default() {
 
         <p>
           <a
-            href='https:developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations'
+            href='https:developer.mozilla.org/docs/Web/HTML/Element/dialog#accessibility_considerations'
             target='_blank'
           >
             Read more
@@ -249,32 +259,41 @@ export function Default() {
           about non-modal mode and accessibility considerations.
         </p>
 
-        <div className={storiesStyles.container}>
+        <div className={storiesStyles.positionControlContainer}>
           <Button
+            variant='secondary'
             type='button'
-            leftIcon={<ArrowLeft />}
-            onClick={() => setDrawerPosition('left')}
+            onClick={() => setDrawerPosition('top')}
           >
-            Open on the left
+            Open at the top
           </Button>
+
+          <div className={storiesStyles.flexContainer}>
+            <Button
+              type='button'
+              leftIcon={<ArrowLeft />}
+              onClick={() => setDrawerPosition('left')}
+            >
+              Open on the left
+            </Button>
+
+            <Button
+              type='button'
+              rightIcon={<ArrowRight />}
+              onClick={() => setDrawerPosition('right')}
+            >
+              Open on the right
+            </Button>
+          </div>
 
           <Button
             variant='secondary'
             type='button'
             onClick={() => setDrawerPosition('bottom')}
           >
-            Open on the bottom
-          </Button>
-
-          <Button
-            type='button'
-            rightIcon={<ArrowRight />}
-            onClick={() => setDrawerPosition('right')}
-          >
-            Open on the right
+            Open at the bottom
           </Button>
         </div>
-
         <Button
           css={{marginTop: '1rem'}}
           type='button'

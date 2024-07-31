@@ -2,10 +2,9 @@ import ArrowLeft from '@comfortdelgro/compass-icons/react/arrow-left'
 import ArrowRight from '@comfortdelgro/compass-icons/react/arrow-right'
 import {
   Button,
-  Column,
   Drawer,
-  DrawerProps,
   Row,
+  type DrawerProps,
 } from '@comfortdelgro/react-compass'
 import {useState} from 'react'
 
@@ -24,8 +23,17 @@ export default function DrawerPositionDocs() {
   }
 
   return (
-    <Column>
-      <Row>
+    <>
+      <Button
+        variant='secondary'
+        type='button'
+        onClick={() => handleChangePosition('top')}
+        style={{display: 'block', marginInline: 'auto', marginBottom: '.5rem'}}
+      >
+        Open at the top
+      </Button>
+
+      <Row style={{justifyContent: 'center', flexWrap: 'wrap'}}>
         <Button
           type='button'
           leftIcon={<ArrowLeft />}
@@ -39,7 +47,7 @@ export default function DrawerPositionDocs() {
           type='button'
           onClick={() => handleChangePosition('bottom')}
         >
-          Open on the bottom
+          Open at the bottom
         </Button>
 
         <Button
@@ -62,10 +70,10 @@ export default function DrawerPositionDocs() {
 
         <p>Article contents</p>
 
-        <Button type='button' onClick={handleCloseDrawer}>
+        <Button type='button' variant='danger' onClick={handleCloseDrawer}>
           Close Drawer
         </Button>
       </Drawer>
-    </Column>
+    </>
   )
 }

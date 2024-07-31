@@ -17,11 +17,20 @@
     color: var(--cdg-color-grayShades60);
   }
 
-  .container {
+  .flexContainer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: var(--cdg-spacing-4);
+  }
+
+  .positionControlContainer {
+    text-align: center;
+
+    .flexContainer {
+      justify-content: center;
+      margin-block: var(--cdg-spacing-4);
+    }
   }
 
   & code {
