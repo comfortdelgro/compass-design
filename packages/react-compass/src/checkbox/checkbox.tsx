@@ -41,6 +41,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       isIndeterminate = false,
       defaultSelected = false,
       cssCheckBoxInput = {},
+      onClick,
       onChange,
       onChangeEvent,
       ...ariaSafeProps
@@ -110,6 +111,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                 aria-invalid={
                   validationState === 'invalid' ? 'true' : undefined
                 }
+                onClick={onClick}
                 onChange={handleCheckboxChange}
               />
             </CssInjection>
