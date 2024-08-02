@@ -1,27 +1,27 @@
-import {Meta} from '@storybook/react'
-import {useState} from 'react'
-import {CalendarProps} from '..'
-import {getLocalTimeZone, parseDate, today} from '../internationalized/date'
-import {I18nProvider, useDateFormatter} from '../internationalized/i18n'
+import { Meta } from '@storybook/react'
+import { useState } from 'react'
+import { CalendarProps } from '..'
+import { getLocalTimeZone, parseDate, today } from '../internationalized/date'
+import { I18nProvider, useDateFormatter } from '../internationalized/i18n'
 import DatePicker from './date-picker'
 
-export const Basic = () => {
+export const Controlled = () => {
   const [date, setDate] = useState<CalendarProps | null>(
     parseDate(today(getLocalTimeZone()).toString()),
   )
 
-  const formatter = useDateFormatter({dateStyle: 'full'})
+  const formatter = useDateFormatter({ dateStyle: 'full' })
 
   return (
-    <div style={{padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)'}}>
+    <div style={{ padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)' }}>
       <I18nProvider locale='en-SG'>
         <p>
           <b>Selected date:</b>
-          <span style={{marginLeft: '4px'}}>
+          <span style={{ marginLeft: '4px' }}>
             {date ? (
               formatter.format(date?.toDate(getLocalTimeZone()))
             ) : (
-              <span style={{marginLeft: '4px'}}>Invalid Date</span>
+              <span style={{ marginLeft: '4px' }}>Invalid Date</span>
             )}
           </span>
         </p>
@@ -30,6 +30,7 @@ export const Basic = () => {
           value={date}
           defaultValue={today(getLocalTimeZone())}
           onChange={(date) => {
+            console.log(date)
             setDate(date)
           }}
         />
@@ -40,7 +41,7 @@ export const Basic = () => {
 
 export const Variants = () => {
   return (
-    <div style={{padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)'}}>
+    <div style={{ padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)' }}>
       <I18nProvider locale='en-SG'>
         <h3>Readonly</h3>
         <DatePicker
@@ -65,8 +66,8 @@ export const Variants = () => {
         <h3>MinValue</h3>
         <DatePicker
           label='Date'
-          defaultValue={today(getLocalTimeZone()).add({days: 1})}
-          minValue={today(getLocalTimeZone()).add({days: 1})}
+          defaultValue={today(getLocalTimeZone()).add({ days: 1 })}
+          minValue={today(getLocalTimeZone()).add({ days: 1 })}
         />
         <h3>MaxValue</h3>
         <DatePicker
@@ -88,9 +89,56 @@ export const Variants = () => {
   )
 }
 
+export const MonthPicker = () => {
+  const [date, setDate] = useState<CalendarProps | null>(
+    parseDate(today(getLocalTimeZone()).toString()),
+  )
+
+  return <div style={{ padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)' }}>
+    <h3>Basic</h3>
+    <DatePicker label='Month' picker='month' />
+    <h3>Controlled</h3>
+    <h4>Value: {date?.toString()}</h4>
+    <h4>Month: {date?.month}</h4>
+    <DatePicker value={date} label='Month' picker='month' onChange={setDate}/>
+    <h3>Min & Max Value</h3>
+    <DatePicker
+      label='Month'
+      picker='month'
+      minValue={today(getLocalTimeZone()).subtract({ months: 1 })}
+      maxValue={today(getLocalTimeZone()).add({years: 2})}
+    />
+  </div>
+}
+
+
+export const YearPicker = () => {
+  const [date, setDate] = useState<CalendarProps | null>(
+    parseDate(today(getLocalTimeZone()).toString()),
+  )
+  
+
+  return <div style={{ padding: '1rem', backgroundColor: 'var(--cdg-color-gray20)' }}>
+    <h3>Basic</h3>
+    <DatePicker label='Year' picker='year' />
+    <h3>Controlled</h3>
+    <h4>Value: {date?.toString()}</h4>
+    <h4>Year: {date?.year}</h4>
+    <DatePicker value={date} label='Year' picker='year' onChange={setDate}/>
+    <h3>Min & Max Value</h3>
+    <DatePicker
+      label='Year'
+      picker='year'
+      minValue={today(getLocalTimeZone()).subtract({ months: 1 })}
+      maxValue={today(getLocalTimeZone()).add({years: 2})}
+    />
+  </div>
+}
+
+
 export const Custom = () => {
   return (
-    <div style={{padding: '1rem', backgroundColor: 'white'}}>
+    <div style={{ padding: '1rem', backgroundColor: 'white' }}>
       <DatePicker
         css={{
           '& .cdg-date-field > div': {
@@ -109,15 +157,16 @@ export const Custom = () => {
   )
 }
 
+
 const meta = {
   title: 'Example/Date Picker',
-  component: Basic,
+  component: Controlled,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof Basic>
+} satisfies Meta<typeof Controlled>
 
 export default meta
