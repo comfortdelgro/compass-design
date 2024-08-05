@@ -1,9 +1,10 @@
-import {useCallback, useEffect, useMemo, useState} from 'react'
-import {ButtonProps} from '../../button'
-import {CalendarDate} from '../../internationalized/date'
-import {useDateFormatter, useLocale} from '../../internationalized/i18n'
-import {MAX_YEAR, MIN_YEAR} from '../constants/common'
-import {CalendarState, DateValue, RangeCalendarState} from '../types'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { ButtonProps } from '../../button'
+import { CalendarDate } from '../../internationalized/date'
+import { useDateFormatter, useLocale } from '../../internationalized/i18n'
+import { MAX_YEAR, MIN_YEAR } from '../constants/common'
+import { CalendarState, DateValue, RangeCalendarState } from '../types'
+import { Picker } from '../../date-picker/date-picker'
 
 export enum MONTH_YEAR_STATE {
   DATE = 0,
@@ -14,6 +15,7 @@ export enum MONTH_YEAR_STATE {
 interface Props {
   state: CalendarState | RangeCalendarState
   maxValue?: DateValue | null | undefined
+  picker?: Picker
 }
 
 export type StateType = 0 | 1 | 2 | MONTH_YEAR_STATE
@@ -31,13 +33,22 @@ export interface MonthYearState {
   prevState: () => void
   nextButtonProps: ButtonProps
   prevButtonProps: ButtonProps
+  picker?: Picker
 }
 
 export const useMonthYearCalendar = (props: Props): MonthYearState => {
-  const {state} = props
+  const { state, picker } = props
 
   const [currentState, setCurrentState] = useState<StateType>(
-    MONTH_YEAR_STATE.DATE,
+    () => {
+      if (picker === 'month') {
+        return MONTH_YEAR_STATE.MONTH
+      } else if (picker === 'year') {
+        return MONTH_YEAR_STATE.YEAR
+      } else {
+        return MONTH_YEAR_STATE.DATE
+      }
+    },
   )
 
   const dayFormatter = useDateFormatter({
@@ -45,7 +56,7 @@ export const useMonthYearCalendar = (props: Props): MonthYearState => {
     timeZone: state.timeZone,
   })
 
-  const {locale} = useLocale()
+  const { locale } = useLocale()
 
   const months = useMemo(() => {
     const dayOfEachMonths = []
@@ -105,7 +116,7 @@ export const useMonthYearCalendar = (props: Props): MonthYearState => {
   useEffect(() => {
     const focusedDate = state.focusedDate
     const years = generateYears(focusedDate?.year ?? new Date().getFullYear())
-    setEndStartYears({start: years[0], end: years[11]})
+    setEndStartYears({ start: years[0], end: years[11] })
     setRenderedYears(years)
   }, [state.focusedDate, currentState, generateYears])
 
@@ -117,19 +128,46 @@ export const useMonthYearCalendar = (props: Props): MonthYearState => {
   }, [renderedYears])
 
   const setMonthYearState = (state: 0 | 1 | 2 | MONTH_YEAR_STATE) => {
+    if(picker === 'month' && state === MONTH_YEAR_STATE.DATE){
+      return
+    }
+
+    if(picker === 'year' && (state === MONTH_YEAR_STATE.MONTH || state === MONTH_YEAR_STATE.DATE)){
+      return
+    }
+    
     setCurrentState(state)
   }
 
   const nextState = () => {
-    setCurrentState((currentState) => (currentState + 1) % 3)
+    setCurrentState((currentState) => {
+      if (picker === 'month') {
+        return (currentState + 1) % 3 === MONTH_YEAR_STATE.DATE ? MONTH_YEAR_STATE.YEAR : (currentState + 1) % 3
+      }
+
+      if (picker === 'year') {
+        return MONTH_YEAR_STATE.YEAR
+      }
+
+      return (currentState + 1) % 3
+    })
   }
 
   const prevState = () => {
     if (currentState - 1 < 0) {
-      setCurrentState(2)
+      setCurrentState(MONTH_YEAR_STATE.MONTH)
       return
     }
-    setCurrentState((currentState) => (currentState - 1) % 3)
+    setCurrentState((currentState) => {
+      if (picker === 'month') {
+        return (currentState - 1) % 3 === MONTH_YEAR_STATE.DATE ? MONTH_YEAR_STATE.MONTH : (currentState - 1) % 3
+      }
+
+      if (picker === 'year') {
+        return MONTH_YEAR_STATE.YEAR
+      }
+      return (currentState - 1) % 3
+    })
   }
 
   const prevYears = () => {
@@ -146,6 +184,7 @@ export const useMonthYearCalendar = (props: Props): MonthYearState => {
 
   return {
     months,
+    picker,
     currentState,
     renderedYears,
     endStartYears,

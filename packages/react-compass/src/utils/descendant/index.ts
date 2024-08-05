@@ -8,3 +8,4 @@ export {
   createDescendantContext as default,
 } from './use-descendant'
 export type {UseDescendantsReturn} from './use-descendant'
+export * from './utils'

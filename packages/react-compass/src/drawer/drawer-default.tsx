@@ -14,7 +14,7 @@ import {DRAWER_CLASSES} from './constants'
 import DrawerFooter from './drawer-footer'
 import DrawerHeader from './drawer-header'
 import {useBackDropStyling} from './hooks'
-import drawerClasses from './styles/drawer.module.css'
+import drawerClasses from './styles/drawer-default.module.css'
 import type {DrawerProps, DrawerRef} from './types'
 import {drawerPickChild} from './utils'
 
@@ -35,11 +35,10 @@ const DrawerDefault = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     preventClose = false,
 
     variant = 'default',
-    position: drawerPosition = 'right',
+    position = 'right',
     ...htmlDialogAttributes
   } = props
 
-  const position: DrawerProps['position'] = drawerPosition
   const DrawerRef = useDOMRef<DrawerRef>(ref)
   const DrawerElement = DrawerRef.current
 
@@ -82,17 +81,17 @@ const DrawerDefault = forwardRef<DrawerRef, DrawerProps>((props, ref) => {
     [preventClose],
   )
 
-  const {child: DrawerHeaderElement, rest: OtherElementsExceptHeader} =
+  const {matchedNode: DrawerHeaderElement, rest: OtherElementsExceptHeader} =
     drawerPickChild(children, DrawerHeader, {
       className: stylingClassNames?.header,
       style: styles?.header,
     })
 
-  const {child: DrawerFooterElement, rest: OtherElements} = drawerPickChild(
-    OtherElementsExceptHeader,
-    DrawerFooter,
-    {className: stylingClassNames?.footer, style: styles?.footer},
-  )
+  const {matchedNode: DrawerFooterElement, rest: OtherElements} =
+    drawerPickChild(OtherElementsExceptHeader, DrawerFooter, {
+      className: stylingClassNames?.footer,
+      style: styles?.footer,
+    })
 
   useBackDropStyling(DrawerRef, backdropProps)
 

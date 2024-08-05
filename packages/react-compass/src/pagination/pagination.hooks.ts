@@ -43,8 +43,12 @@ export const usePagination = ({
     [total, setActivePage],
   )
 
-  const next = () => setPage(active + 1)
-  const previous = () => setPage(active - 1)
+  const next = () => {
+    if (active < total) setPage(active + 1)
+  }
+  const previous = () => {
+    if (active > 1) setPage(active - 1)
+  }
   const first = () => setPage(1)
   const last = () => setPage(total)
 

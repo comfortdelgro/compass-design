@@ -3,7 +3,7 @@ import {CSS, CssInjection} from '../utils/objectToCss'
 import {classNames} from '../utils/string'
 import {useDOMRef} from '../utils/use-dom-ref'
 import {DRAWER_CLASSES} from './constants'
-import drawerClasses from './styles/drawer.module.css'
+import drawerClasses from './styles/drawer-shared.module.css'
 
 export type DrawerHeaderProps = PropsWithChildren<{css?: CSS}> &
   HTMLAttributes<HTMLElement>

@@ -1,14 +1,15 @@
 import React from 'react'
-import {ButtonProps} from '../../button'
-import {createCalendar} from '../../internationalized/date'
-import {useLocale} from '../../internationalized/i18n'
-import {classNames} from '../../utils/string'
-import {useDOMRef} from '../../utils/use-dom-ref'
-import {useDateField} from '../hooks/useDateField'
-import {useDateFieldState} from '../hooks/useDateFieldState'
-import {DateFieldState} from '../types'
+import { ButtonProps } from '../../button'
+import { createCalendar } from '../../internationalized/date'
+import { useLocale } from '../../internationalized/i18n'
+import { classNames } from '../../utils/string'
+import { useDOMRef } from '../../utils/use-dom-ref'
+import { useDateField } from '../hooks/useDateField'
+import { useDateFieldState } from '../hooks/useDateFieldState'
+import { DateFieldState, SegmentType } from '../types'
 import DateSegment from './date-segment'
 import styles from './styles/date-field.module.css'
+import { Picker } from '../../date-picker/date-picker'
 
 interface Props {
   children?: React.ReactNode
@@ -22,6 +23,7 @@ interface Props {
   isMobile?: boolean | undefined
   helperText?: React.ReactNode
   errorMessage?: React.ReactNode
+  picker?: Picker
 }
 
 const Icon = () => (
@@ -42,7 +44,7 @@ const Icon = () => (
 )
 
 const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {locale} = useLocale()
+  const { locale } = useLocale()
   const expandButtonRef = useDOMRef<HTMLButtonElement>(null)
   const state = useDateFieldState({
     ...props,
@@ -53,7 +55,7 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const dateFieldRef = useDOMRef(ref)
 
-  const {labelProps, fieldProps} = useDateField(
+  const { labelProps, fieldProps } = useDateField(
     {
       ...props,
       isReadOnly: props.isReadOnly ? true : props.isMobile ? true : false,
@@ -105,7 +107,25 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     return ''
   }
 
-  const {onPress, ...buttonProps} = props.buttonProps
+  const { onPress, ...buttonProps } = props.buttonProps
+
+  const shouldRenderSegment = (type: SegmentType, prevType: SegmentType, picker?: Picker) => {
+    if (picker === 'month') {
+      if (type === 'literal' && prevType !== 'day') {
+        return true
+      }
+      return type === 'month' || type === 'year'
+    }
+
+    if (picker === 'year') {
+      if (type === 'literal' && prevType !== 'day' && prevType !== 'month') {
+        return true
+      }
+      return type === 'year'
+    }
+
+    return true
+  }
 
   const rootClasses = classNames(
     styles.dateField,
@@ -154,13 +174,14 @@ const DateField = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
               segment.isPlaceholder =
                 state.segments[i - 1]?.isPlaceholder ?? false
             }
-            return (
+
+            return shouldRenderSegment(segment.type, state.segments[i - 1]?.type, props.picker) ? (
               <DateSegment
                 key={i}
                 segment={segment}
                 state={state as unknown as DateFieldState}
               />
-            )
+            ) : <></>
           })}
 
           <button

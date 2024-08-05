@@ -2,23 +2,23 @@
 
 @layer default, variant, compoundVariant, keyframes;
 
-:global(.cdg-webpage-drawer-scale) {
+:global(.cdg-webpage-scaled-by-drawer) {
   background-color: initial;
   overflow: hidden;
 
   &:is(body) {
-    background-color: black;
+    background-color: rgb(15, 23, 42);
   }
 }
 
-:global(.cdg-drawer-bg-scale) {
+:global(.cdg-drawer-scale-layer) {
   transition-property: border-radius, transform;
   transition-duration: 500ms;
-  transition-timing-function: var(--cdg-drawer-animation-timing-fn);
+  transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
   transform-origin: center top;
 }
 
-:global(.cdg-drawer-opened-bg-scale) {
+:global(.cdg-drawer-scale-layer-scaled) {
   --cdg-drawer-scale-offset: 16px;
   --cdg-drawer-scale: 1;
 
@@ -32,31 +32,47 @@
 }
 
 @layer default {
-  html {
-    --cdg-drawer-animation-timing-fn: cubic-bezier(0.32, 0.72, 0, 1);
-  }
-
   .drawer {
+    top: auto;
+    bottom: 0;
+
     width: 100%;
-    margin-block: auto 0;
+    margin-block: 0;
     margin-inline: unset;
-    max-height: 100%;
+    max-height: calc(100dvh - 1rem);
 
     border-radius: var(--cdg-border-radius-xl) var(--cdg-border-radius-xl) 0 0;
+    touch-action: none;
+  }
+
+  .drawerContent {
+    touch-action: pinch-zoom;
+    overflow: hidden auto;
   }
 
   @media (prefers-reduced-motion: no-preference) {
     .drawer,
     .drawer::backdrop {
-      transition: opacity var(--cdg-drawer-close-animation-duration),
-        display var(--cdg-drawer-close-animation-duration) allow-discrete,
-        overlay var(--cdg-drawer-close-animation-duration) allow-discrete;
       opacity: 0;
     }
 
     .drawer {
+      transition: opacity var(--cdg-drawer-close-transition-duration),
+        display var(--cdg-drawer-close-transition-duration) allow-discrete,
+        overlay var(--cdg-drawer-close-transition-duration) allow-discrete;
+      transition-timing-function: var(--cdg-drawer-transition-timing-fn);
       animation: slideOutUp var(--cdg-drawer-close-animation-duration)
         var(--cdg-drawer-animation-timing-fn) forwards;
+    }
+
+    .drawer::backdrop {
+      /* Backdrop's transition is managed internally, and will be same as the drawer by default (--cdg-drawer-backdrop-transition is undefined) */
+      transition: var(--cdg-drawer-backdrop-transition, inherit);
+    }
+
+    .drawer[open],
+    .drawer[open]::backdrop {
+      transition-duration: var(--cdg-drawer-open-transition-duration);
     }
 
     .drawer[open] {
@@ -73,8 +89,21 @@
 
 @layer variant {
   .drawer.non-modal {
-    bottom: 0;
     box-shadow: none;
     overflow: clip;
+  }
+
+  .drawer.enableScaleEffect {
+    max-height: calc(100dvh - 1.5rem);
+  }
+
+  .drawerContent:global(.cdg-drawer-content-scrollable) {
+    touch-action: pan-y pinch-zoom;
+  }
+
+  @media (width >= 768px) {
+    .drawer.enableScaleEffect {
+      max-height: calc(100dvh - 2.5rem);
+    }
   }
 }

@@ -54,24 +54,24 @@ export function Mobile() {
         open={openDrawer}
         variant='mobile'
         onClose={() => setOpenDrawer(false)}
-        enableScaleBg
-        scaleBgClassName={storiesStyles.bgScaleOverride}
-        scaleBgOffset={16}
-        styles={{content: {paddingInline: '1rem'}, footer: {color: 'red'}}}
-        backdropProps={{
-          blur: 1,
-          // opacity: 0.55,
-          // background: 'rgb(0 0 0 / 0.35)',
-          background: 'linear-gradient(-25deg,rgba(238,174,202,0.6) 0%,rgba(148,187,233,0.6) 100%)',
-        }}
+        enableScaleLayer
+        scaleLayerClassName={storiesStyles.bgScaleOverride}
+        scaleLayerOffset={16}
+        styles={{content: {paddingInline: '1rem'}}}
       >
         <p style={{textAlign: 'center'}}>Pull up to expand the drawer</p>
 
+        <p style={{height: '50dvh'}}>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi fuga
+          qui corporis alias molestiae, excepturi suscipit natus autem ut nulla
+          quis placeat, animi nisi ipsum, blanditiis possimus nihil eos ex.
+        </p>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi fuga
           qui corporis alias molestiae, excepturi suscipit natus autem ut nulla
           quis placeat, animi nisi ipsum, blanditiis possimus nihil eos ex.
         </p>
+
         <Drawer.Footer>Footer</Drawer.Footer>
       </Drawer>
 

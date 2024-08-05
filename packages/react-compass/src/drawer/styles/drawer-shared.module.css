@@ -18,6 +18,9 @@ body:has(.drawer[open].modal) {
     --cdg-drawer-animation-timing-fn: cubic-bezier(0.32, 0.72, 0, 1);
     --cdg-drawer-open-animation-duration: 500ms;
     --cdg-drawer-close-animation-duration: 200ms;
+    --cdg-drawer-transition-timing-fn: cubic-bezier(0.32, 0.72, 0, 1);
+    --cdg-drawer-open-transition-duration: 200ms;
+    --cdg-drawer-close-transition-duration: 200ms;
 
     --cdg-drawer-backdrop-bg: rgba(0, 0, 0, 0.4);
     --cdg-drawer-backdrop-blur: 0;
@@ -37,6 +40,7 @@ body:has(.drawer[open].modal) {
     color: var(--cdg-color-primaryText);
 
     pointer-events: none;
+    will-change: transform;
   }
 
   .drawer:focus-visible {
@@ -51,6 +55,19 @@ body:has(.drawer[open].modal) {
   .drawer[open] {
     display: flex;
     pointer-events: auto;
+  }
+
+  .drawerHeader {
+    padding: var(--cdg-spacing-4);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cdg-spacing-4);
+  }
+
+  .drawerFooter {
+    padding: var(--cdg-spacing-4);
   }
 }
 
@@ -88,6 +105,18 @@ body:has(.drawer[open].modal) {
   @keyframes slideOutUp {
     to {
       transform: translateY(100%);
+    }
+  }
+
+  @keyframes slideInDown {
+    from {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes slideOutDown {
+    to {
+      transform: translateY(-100%);
     }
   }
 }
