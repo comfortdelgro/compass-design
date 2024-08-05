@@ -4,6 +4,7 @@ import { DateValue } from '../internationalized/date';
 import * as i18n from '../internationalized/i18n';
 import { CSS } from '../utils/objectToCss';
 import { DatePickerState, ValueBase } from './types';
+import { Picker } from '../date-picker/date-picker';
 interface Props extends ValueBase<DateValue> {
     css?: CSS;
     children?: React.ReactNode;
@@ -16,6 +17,7 @@ interface Props extends ValueBase<DateValue> {
     isDateUnavailable?: (date: DateValue) => boolean;
     'aria-labelledby'?: string;
     'aria-describedby'?: string;
+    picker?: Picker;
 }
 export type CalendarProps = Props & DateValue;
 declare const _default: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLDivElement>> & {

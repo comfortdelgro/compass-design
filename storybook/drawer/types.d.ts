@@ -1,4 +1,4 @@
-import type { CSSProperties, DialogHTMLAttributes, ReactNode } from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
+import type { CSSProperties, DialogHTMLAttributes } from '../../../../node_modules/.pnpm/react@18.3.1/node_modules/react';
 import type { CSS } from '../utils/objectToCss';
 export type DrawerStylingSelectors = 'root' | 'header' | 'content' | 'footer';
 type DrawerSharedProps = {
@@ -45,7 +45,7 @@ type DrawerSharedProps = {
      *
      * The content below the non-modal drawer can be interacted.
      *
-     * {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#accessibility_considerations Read more}
+     * {@link https://developer.mozilla.org/docs/Web/HTML/Element/dialog#accessibility_considerations Read more}
      *
      */
     drawerMode?: 'non-modal' | 'modal';
@@ -63,86 +63,87 @@ type DrawerSharedProps = {
     preventClose?: boolean;
 };
 type DefaultDrawerProps = {
-    /** A normal drawer */
+    /**
+     * ___
+     * `'default'` - Normal drawer.
+     *
+     * Browsers released starting from 2022 are fully supported https://developer.mozilla.org/docs/Web/HTML/Element/dialog#browser_compatibility.
+     * ___
+     */
     variant?: 'default';
-    position?: 'right' | 'bottom' | 'left';
+    /** @default 'right' */
+    position?: 'right' | 'bottom' | 'left' | 'top';
     css?: CSS;
-    onExpandChange?: never;
-    onHeightChange?: never;
-    expandedPoint?: never;
-    expandableLine?: never;
+    snapPoints?: never;
     disableResize?: never;
     disableDragClose?: never;
 };
-type MobileDrawerChildrenAsFunctionParams = {
-    triggerCollapse: () => void;
-    isExpanded: boolean;
-    height: number;
-} & Omit<MobileDrawerSpecifiedProps, 'variant' | 'position' | 'onExpandChange' | 'onHeightChange' | 'children'>;
 export type MobileDrawerSpecifiedProps = {
     /**
-     * A variant that utilizes modern web technologies to replicate the iOS drawer (sheets) experience on the web.
+     * `'mobile'` - ⚠️ [Experimental] DO NOT use this variant in production.
      *
-     * https://developer.apple.com/design/human-interface-guidelines/sheets#iOS-iPadOS
-     * ___
-     * ⚠️ **Browser compatibility warning**: this variant experiments with the latest web technology concepts and CSS features
-     * such as view transitions, transitioning discrete animations, the `inert` attribute, etc...
+     * A variant that utilizes modern web technologies to replicate the iOS drawer (sheets) experience on the web
+     * https://developer.apple.com/design/human-interface-guidelines/sheets#iOS-iPadOS.
      *
-     * Consider using the `Drawer`'s `h5` variant or the `Dialog` component for a more stable and widely browser supported experience.
+     *  🛠️ Under development features:
+     * - Multiple snap points via `snapPoints` prop, the old `h5` variant only supports 1 snap point.
+     * - Collapse the drawer height when a vitural keyboard is opened.
+     * - [Considering] Dynamic Safari (iOS) theme bar.
+     *
+     * ⚠️ **Browser compatibility warning**: the `'mobile'` variant experiments with the latest web technology concepts and CSS features
+     * such as view transitions, transitioning discrete animations, the `inert` attribute, etc... Browsers released starting from 2023 are fully supported.
+     * Consider using and customizing the `Dialog` component for a more stable and widely browser supported experience.
      */
     variant: 'mobile';
     position?: never;
-    /** @deprecated The `mobile` variant does NOT support this prop. Please use the `className`, `classNames`, `styles` or `style` property for styling instead. */
+    /** @deprecated The `mobile` variant does NOT support this prop. Please use the `className`, `classNames`, `style` or `styles` property for styling instead. */
     css?: never;
-    onExpandChange?: (isExpand: boolean) => void;
     /**
-     * How many **percentage** of the viewport height that the drawer will be fully expanded.
+     * An array of the percentage of the viewport height that represents the snap points of the drawer.
      * ___
-     * Accepted value range: `0` - `100`
+     * The drawer will snap to the **nearest** point when users release their finger.
+     * Be aware that the drawer's `max-height` has *higher priority* and will decide the maximum height that the drawer can expand to.
      *
-     * Must be greater than `expandableLine` and drawer initialization height (percent).
-     * ___
-     * @default 100 // the top edge of available viewport
-     */
-    expandedPoint?: number;
-    /**
-     * A boundary to tell the drawer to fully expand when its top crosses this line.
-     * ___
-     * Accepted value range: `0` - `100`
+     * Non-finite and out-of-range [0-100] numbers will be filtered out.
+     * @example
+     * ```jsx
+     * <Drawer
+     *  variant='mobile'
+     *  styles={{root: {maxHeight: '80dvh'}}}
+     *  snapPoints={[50, 20, NaN, Infinity, 1 / 0, 100, 123, -123, 10]} // => [10, 20, 50, 80]
+     * />
+     * // the drawer can snap to 10%, 20%, 50%, 80% (`max-height` is `80dvh`) of the viewport height.
+     * ```
      *
-     * Must be smaller than `expandedPoint` and greater than drawer initialization height (percent).
-     * ___
-     * @default 67 // 2/3 viewport from bottom of available viewport
+     * @default [100] // allow to expand to fullscreen
      */
-    expandableLine?: number;
+    snapPoints?: number[];
     /**
-     * if `true`, the H5 drawer will NOT be able to expand/collapse and the expander line will be hidden.
+     * If `true`, the `'mobile'` drawer will NOT be able to expand/collapse, `snapPoints` will be ignored and the expander line will be hidden.
      * @default false
      */
     disableResize?: boolean;
     /**
-     * Close the H5 drawer if the user drags and drops it below the default height.
+     * Close the drawer if the user drags and drops it below the default height.
      *
      * Note that if `disableResize` is true, users can't drag the the drawer.
      * ___
      * @default false
      */
     disableDragClose?: boolean;
-    onHeightChange?: (height: number) => void;
     /**
-     * Enable the drawer's background scale effect
+     * Enable document layer scale effect, creating a visual effect that the drawer is floating above the page content.
      * ___
-     * The scale background effect will be **disabled** if `drawerMode` is set to `non-modal`.
+     * The scale effect will be **disabled** if `drawerMode` is set to `non-modal`.
      * @default false
      */
-    enableScaleBg?: boolean;
+    enableScaleLayer?: boolean;
     /** @default 16 (px) */
-    scaleBgOffset?: number;
-    scaleBgClassName?: string;
-    children?: ReactNode | ((params: MobileDrawerChildrenAsFunctionParams) => ReactNode);
+    scaleLayerOffset?: number;
+    scaleLayerClassName?: string;
 };
-export type DrawerMobileProps = DrawerSharedProps & MobileDrawerSpecifiedProps;
 export type DrawerDefaultProps = DrawerSharedProps & DefaultDrawerProps;
+export type DrawerMobileProps = DrawerSharedProps & MobileDrawerSpecifiedProps;
 type Props = DrawerSharedProps & (DefaultDrawerProps | MobileDrawerSpecifiedProps);
 export type DrawerProps = Props & Omit<DialogHTMLAttributes<HTMLDialogElement>, keyof Props | 'tabIndex' | 'autoFocus'>;
 export type DrawerRef = HTMLDialogElement & {

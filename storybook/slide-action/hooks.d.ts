@@ -8,7 +8,7 @@ export declare const useSlideActionDragger: ({ slideRef, onDrag, onDragEnd, disa
         x: number;
         y: number;
     }, options?: {
-        transition?: string;
+        transition?: string | true;
         skipCalulateStep?: boolean;
         shouldUpdatePositionState?: boolean;
     }) => void;

@@ -1,6 +1,10 @@
-import { DrawerMobileProps } from '../types';
-type UseScaleEffectOptions = Readonly<Pick<DrawerMobileProps, 'enableScaleBg' | 'scaleBgOffset' | 'scaleBgClassName'> & {
-    drawerOpened?: boolean;
+import type { DrawerMobileProps } from '../types';
+type UseScaleEffectOptions = Readonly<Pick<DrawerMobileProps, 'scaleLayerOffset' | 'scaleLayerClassName'> & {
+    enable?: boolean;
 }>;
-export declare const useScaleEffect: ({ drawerOpened, enableScaleBg, scaleBgClassName, scaleBgOffset, }?: UseScaleEffectOptions) => void;
+export declare const useScaleEffect: ({ enable, scaleLayerClassName, scaleLayerOffset, }?: UseScaleEffectOptions) => {
+    scaleElement: HTMLElement;
+    getScaleValue: () => number;
+    controlScaleEffect: (shouldScale?: boolean) => void;
+};
 export {};

@@ -4,13 +4,29 @@ type DragPosition = {
     y: number;
 };
 type SetPosition = (position: DragPosition, options?: {
-    transition?: string;
+    /**
+     * CSS transition for the position change.
+     *
+     * Note that this hook will transform the target element by using CSS [translate](https://developer.mozilla.org/docs/Web/CSS/translate) if the browser supports it, otherwise `transform`.
+     * ___
+     * If `true`, the transition will be
+     * `{property} 500ms cubic-bezier(0.32, 0.72, 0, 1)` - `transition-property` is [translate](https://developer.mozilla.org/docs/Web/CSS/translate) if the browser supports it, otherwise `transform`.
+     * @default undefined // no transition
+     */
+    transition?: string | true;
     /**
      * If `stepSize` > 0 and you wanna manually update the position, consider set this option to `true` to skip the default calculation.
      * @default false
      */
     skipCalulateStep?: boolean;
-    /** @default false */
+    /**
+     * By default, the hook will transform the target element for you.
+     *
+     * Enable this flag to allow update the returned `position` state and manually handle the transform animation,
+     * your component will rerender on every position value change.
+     *
+     * @default false
+     */
     shouldUpdatePositionState?: boolean;
 }) => void;
 export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
@@ -22,17 +38,15 @@ export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
      */
     targetRef?: RefObject<T>;
     /**
-     * use Event.preventDefault with the touchmove events
-     * @default true
-     */
-    prevent?: boolean;
-    /**
      * Listen touch events
+     * ___
+     * ***Note***: This hook will treat pointer events caused by a pen or stylus device (`pointerType === 'pen'`) same as touch events.
+     *
      * @default true
      */
     touch?: boolean;
     /**
-     * Listen mouse events
+     * Listen mouse's main button events (usually left-click)
      * @default true
      */
     mouse?: boolean;
@@ -52,6 +66,16 @@ export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
             min?: number;
         };
     };
+    /**
+     * Allow dragging over the limit, and enable deceleration effect.
+     *
+     * After releasing (`pointercancel` or `pointerup` event),
+     * the target element will move back to the nearest limit position.
+     * ___
+     * Only available when `limit` is provided.
+     * @default false
+     */
+    decelerationEffect?: boolean;
     /**
      * Set to `true` to allow update position state onMove and manually handle styling such as CSS transform.
      * @default false
@@ -79,9 +103,16 @@ export type DraggableOptions<T extends HTMLElement = HTMLElement> = {
     onMove?: (target: RefObject<T>, position: DragPosition) => void;
     onEnd?: (target: RefObject<T>, position: DragPosition, setPosition: SetPosition) => void;
     /**
+     * By default, the hook will add `will-change: transform` and `touch-action: none` to the target element.
+     * @default true
+     */
+    addBrowserHintStyles?: boolean;
+    /** @default false */
+    ignorePointerCancel?: boolean;
+    /**
      * If `true`, the target element won't draggable anymore.
      * ___
-     * Equivalent with `touch === false && mouse === false`
+     * Equivalent to `touch === false && mouse === false`
      * ___
      * @default false
      */

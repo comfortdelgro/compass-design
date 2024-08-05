@@ -1,5 +1,6 @@
 import { ButtonProps } from '../../button';
 import { CalendarState, DateValue, RangeCalendarState } from '../types';
+import { Picker } from '../../date-picker/date-picker';
 export declare enum MONTH_YEAR_STATE {
     DATE = 0,
     YEAR = 1,
@@ -8,6 +9,7 @@ export declare enum MONTH_YEAR_STATE {
 interface Props {
     state: CalendarState | RangeCalendarState;
     maxValue?: DateValue | null | undefined;
+    picker?: Picker;
 }
 export type StateType = 0 | 1 | 2 | MONTH_YEAR_STATE;
 export interface MonthYearState {
@@ -23,6 +25,7 @@ export interface MonthYearState {
     prevState: () => void;
     nextButtonProps: ButtonProps;
     prevButtonProps: ButtonProps;
+    picker?: Picker;
 }
 export declare const useMonthYearCalendar: (props: Props) => MonthYearState;
 export {};
