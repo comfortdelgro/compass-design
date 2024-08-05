@@ -1,23 +1,24 @@
-import React, {useCallback, useMemo} from 'react'
+import React, { useCallback, useMemo } from 'react'
 import Button from '../button'
-import {useDatePickerContext} from '../date-picker/date-picker-context'
+import { useDatePickerContext } from '../date-picker/date-picker-context'
 import * as InternationalizedDate from '../internationalized/date'
-import {DateValue, createCalendar, parseDate} from '../internationalized/date'
+import { DateValue, createCalendar, parseDate } from '../internationalized/date'
 import * as i18n from '../internationalized/i18n'
-import {useLocale} from '../internationalized/i18n'
-import {CSS, CssInjection} from '../utils/objectToCss'
-import {classNames} from '../utils/string'
-import {useDOMRef} from '../utils/use-dom-ref'
+import { useLocale } from '../internationalized/i18n'
+import { CSS, CssInjection } from '../utils/objectToCss'
+import { classNames } from '../utils/string'
+import { useDOMRef } from '../utils/use-dom-ref'
 import CalendarGrid from './calendar-grid'
 import CalendarHeader from './calendar-header'
 import CalendarMonthGrid from './calendar-month-grid'
 import CalendarYearGrid from './calendar-year-grid'
-import {useCalendar} from './hooks/useCalendar'
-import {useCalendarState} from './hooks/useCalendarState'
-import {MONTH_YEAR_STATE, useMonthYearCalendar} from './hooks/useMonthYearState'
+import { useCalendar } from './hooks/useCalendar'
+import { useCalendarState } from './hooks/useCalendarState'
+import { MONTH_YEAR_STATE, useMonthYearCalendar } from './hooks/useMonthYearState'
 import styles from './styles/calendar.module.css'
-import {DatePickerState, ValueBase} from './types'
-import {isInvalid} from './utils'
+import { DatePickerState, ValueBase } from './types'
+import { isInvalid } from './utils'
+import { Picker } from '../date-picker/date-picker'
 
 interface Props extends ValueBase<DateValue> {
   css?: CSS
@@ -31,6 +32,7 @@ interface Props extends ValueBase<DateValue> {
   isDateUnavailable?: (date: DateValue) => boolean
   'aria-labelledby'?: string
   'aria-describedby'?: string
+  picker?: Picker
 }
 
 export type CalendarProps = Props & DateValue
@@ -45,10 +47,11 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     ctaButtonRender,
     'aria-labelledby': ariaLabelledBy,
     'aria-describedby': ariaDescribedBy,
+    picker,
     ...delegated
   } = props
 
-  const {locale} = useLocale()
+  const { locale } = useLocale()
 
   const calendarRef = useDOMRef(ref)
 
@@ -60,16 +63,16 @@ const Calendar = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     value: props.state ? props.state?.value : (props.value as DateValue),
   })
 
-  const monthYearState = useMonthYearCalendar({state, maxValue})
+  const monthYearState = useMonthYearCalendar({ state, maxValue, picker })
 
-  const {calendarProps, prevButtonProps, nextButtonProps} = useCalendar(
+  const { calendarProps, prevButtonProps, nextButtonProps } = useCalendar(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    {isDisabled, ...delegated},
+    { isDisabled, ...delegated },
     state,
   )
 
-  const {setIsReset} = useDatePickerContext()
+  const { setIsReset } = useDatePickerContext()
 
   const handleClearButtonClick = () => {
     if (!setIsReset) {

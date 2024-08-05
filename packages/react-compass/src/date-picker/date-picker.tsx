@@ -30,7 +30,10 @@ interface Props extends SpectrumDatePickerProps<DateValue> {
   calendarCSS?: CSS
   helperText?: React.ReactNode
   ctaButtonRender?: React.ReactNode
+  picker?: Picker
 }
+
+export type Picker =  'month' | 'year'
 
 export type DatePickerProps = Props &
   Omit<React.HTMLAttributes<HTMLElement>, keyof Props>
@@ -42,6 +45,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       maxValue = parseDate('2999-03-10'),
       ctaButtonRender,
       className,
+      picker,
     } = props
     const state = useDatePickerState({
       ...props,
@@ -113,6 +117,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                   label={props.label}
                   errorMessage={props.errorMessage}
                   helperText={props.helperText}
+                  picker={picker}
                 />
               }
               css={{width: '100%'}}
@@ -127,6 +132,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 calendarRef={calendarRef}
                 css={props.calendarCSS}
                 ctaButtonRender={ctaButtonRender}
+                picker={picker}
               />
             </Popover>
           </DatePickerProvider>
@@ -146,6 +152,7 @@ interface DatePickerFieldWrapperProps {
   isReadOnly?: boolean | undefined
   errorMessage?: React.ReactNode
   helperText?: React.ReactNode
+  picker?: Picker
 }
 
 const DatePickerFieldWrapper = React.forwardRef<
@@ -162,6 +169,7 @@ const DatePickerFieldWrapper = React.forwardRef<
     isReadOnly = false,
     errorMessage,
     helperText,
+    picker
   } = props
 
   return (
@@ -176,6 +184,7 @@ const DatePickerFieldWrapper = React.forwardRef<
         isReadOnly={isReadOnly}
         errorMessage={errorMessage}
         helperText={helperText}
+        picker={picker}
       />
     </div>
   )
@@ -189,6 +198,7 @@ interface DatePickerCalendarWrapperProps {
   maxValue?: DateValue | null | undefined
   ctaButtonRender?: React.ReactNode
   css?: CSS
+  picker?: Picker
 }
 
 const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
@@ -198,6 +208,7 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
     maxValue = parseDate('2999-03-10'),
     ctaButtonRender,
     css = {},
+    picker,
   } = props
 
   return (
@@ -208,6 +219,7 @@ const DatePickerCalendarWrapper = (props: DatePickerCalendarWrapperProps) => {
       maxValue={maxValue}
       css={css}
       ctaButtonRender={ctaButtonRender}
+      picker={picker}
     />
   )
 }

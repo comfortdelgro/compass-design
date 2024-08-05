@@ -53,7 +53,7 @@ const CalendarHeader = (props: Props) => {
       case MONTH_YEAR_STATE.DATE:
         return formatedDate
       case MONTH_YEAR_STATE.MONTH:
-        return months ? `${months[0]}-${months[months.length - 1]}` : 'Jan-Dec'
+        return months ? `${months[0]}-${months[months.length - 1]} (${state.focusedDate.year})` : `Jan-Dec ${state.focusedDate.year}`
       case MONTH_YEAR_STATE.YEAR:
         return `${middleButtonProps.endStartYears.start}-${middleButtonProps.endStartYears.end}`
       default:

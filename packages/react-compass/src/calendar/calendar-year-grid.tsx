@@ -1,8 +1,8 @@
-import {CalendarDate} from '../internationalized/date'
-import {classNames} from '../utils/string'
-import {MonthYearState} from './hooks/useMonthYearState'
+import { CalendarDate } from '../internationalized/date'
+import { classNames } from '../utils/string'
+import { MonthYearState } from './hooks/useMonthYearState'
 import styles from './styles/calendar-month-year-grid.module.css'
-import {CalendarState, DateValue, RangeCalendarState} from './types'
+import { CalendarState, DateValue, RangeCalendarState } from './types'
 
 interface Props {
   state: CalendarState | RangeCalendarState
@@ -11,24 +11,26 @@ interface Props {
 }
 
 const CalendarYearGrid = (props: Props) => {
-  const {state, monthYearState, maxValue} = props
+  const { state, monthYearState, maxValue } = props
 
   const handleYearClick = (year: number) => {
     const focusedDate = state.focusedDate
 
     return () => {
-      state.setFocusedDate?.(
-        new CalendarDate(
-          year,
-          focusedDate?.month ?? new Date().getMonth() + 1,
-          1,
-        ),
-      )
-      monthYearState?.nextState()
+      const value = new CalendarDate(
+        year,
+        focusedDate?.month ?? new Date().getMonth() + 1,
+        1,
+      );
+      if (monthYearState.picker === 'year') {
+        (state as CalendarState).setValue(value)
+        state.setFocusedDate?.(value)
+      } else {
+        state.setFocusedDate?.(value)
+        monthYearState?.nextState()
+      }
     }
   }
-
-  const currentDate = new Date()
 
   return (
     <div
@@ -40,6 +42,9 @@ const CalendarYearGrid = (props: Props) => {
       {Array.isArray(monthYearState?.renderedYears) &&
         monthYearState?.renderedYears.map((year) => {
           const isDisabled = (() => {
+            if (maxValue && state.minValue) {
+              return maxValue?.year < year || state.minValue?.year > year
+            }
             if (maxValue) {
               return maxValue?.year < year
             }
@@ -49,7 +54,7 @@ const CalendarYearGrid = (props: Props) => {
             return false
           })()
 
-          const isCurrentYear = year === currentDate.getFullYear()
+          const isCurrentYear = year === (state.focusedDate as CalendarDate)?.year
 
           // content classes
           const rootClasses = classNames(

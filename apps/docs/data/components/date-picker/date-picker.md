@@ -7,7 +7,6 @@ components: Date Picker
 
 <p class="description">DatePickers combine input and a Calendar popover to allow users to enter or select a date.</p>
 
-
 ## Import
 
 ```js
@@ -39,6 +38,14 @@ const {
 ### Controlled Date Picker
 
 {{"demo": "DatePickerControlled.tsx"}}
+
+### Month Picker
+
+{{"demo": "MonthPicker.tsx"}}
+
+### Year Picker
+
+{{"demo": "YearPicker.tsx"}}
 
 ### Granularity
 
@@ -81,6 +88,7 @@ Mobile variant of date picker will remove the ability of inputing values by hand
 | calendarCSS         | `CSS`                                            |         | Style for calendar                                                                                                                                  |
 | minValue            | `DateValue`                                      |         | The minimum allowed date that a user may select.                                                                                                    |
 | maxValue            | `DateValue`                                      |         | The maximum allowed date that a user may select.                                                                                                    |
+| picker              | `'month' \| 'year'`                              |         | Allow user to change type of picker                                                                                                                 |
 | granularity         | `'day' \| 'hour' \| 'minute' \| 'second'`        |         | Determines the smallest unit that is displayed in the date picker. By default, this is "day" for dates, and "minute" for times.                     |
 | isReadOnly          | `boolean`                                        | false   | Whether the calendar value is immutable.                                                                                                            |
 | isDisabled          | `boolean`                                        | false   | Whether the calendar is disabled.                                                                                                                   |
